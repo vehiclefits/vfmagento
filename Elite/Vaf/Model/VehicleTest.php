@@ -42,6 +42,12 @@ class Elite_Vaf_Model_VehicleTest extends Elite_Vaf_TestCase
         $vehicles = $this->vehicleFinder()->findByLevels(array('year'=>'2000'));
         $this->assertEquals(1, count($vehicles));
     }
+
+    function testToString()
+    {
+        $vehicle = $this->createMMY('Honda','Civic','2000');
+        $this->assertEquals( 'Honda Civic 2000', $vehicle->__toString(), 'should convert vehicle to string');
+    }
     
     function testLevelIdsTruncateAfter()
     {
