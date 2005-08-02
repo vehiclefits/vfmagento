@@ -253,9 +253,9 @@ class VF_Schema_Generator
     
     function createSchemaTable()
     {
-        $return = "CREATE TABLE `elite_schema` (`key` VARCHAR( 25 ) NOT NULL , `value` VARCHAR( 255 ) NOT NULL ) ENGINE = InnoDB CHARSET=utf8;";
+        $return = "CREATE TABLE `elite_schema` (`id` int(11) NOT NULL AUTO_INCREMENT, `key` VARCHAR( 25 ) NOT NULL , `value` VARCHAR( 255 ) NOT NULL, PRIMARY KEY (`id`) ) ENGINE = InnoDB CHARSET=utf8;";
         $return .= sprintf(
-            "INSERT INTO `elite_schema` ( `key`, `value` ) VALUES ( 'levels', %s );",
+            "INSERT INTO `elite_schema` ( `id`, `key`, `value` ) VALUES ( 1, 'levels', %s );",
             $this->getReadAdapter()->quote( $this->levelsDelimByComma() )
         );
         

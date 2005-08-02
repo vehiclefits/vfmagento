@@ -21,7 +21,30 @@ class VF_Schema implements
     static public $levels;
     
     static public $global_status;
+    
+    protected $id;
        
+    static function create($levels)
+    {
+        $schema = new VF_Schema;
+        $schema->getReadAdapter()->insert('elite_schema', array(
+            'key'=>'levels',
+            'value'=>$levels
+        ));
+        $schema->setId($schema->getReadAdapter()->lastInsertId());
+        return $schema;
+    }
+    
+    function id()
+    {
+        return isset($this->id) ? $this->id : 1;
+    }
+    
+    function setId($id)
+    {
+        $this->id = $id;
+    }
+    
     function getConfig()
     {
         if( !$this->config instanceof Zend_Config )
@@ -62,7 +85,7 @@ class VF_Schema implements
     
     function getLevels()
     {
-        $levels = self::$levels;
+        $levels = isset(self::$levels[$this->id()]) ? self::$levels[$this->id()] : null;
         
         if( is_array($levels) && count($levels) )
         {
@@ -71,7 +94,8 @@ class VF_Schema implements
         
         $select = $this->getReadAdapter()->select()
             ->from('elite_schema', 'value')
-            ->where('`key`=?','levels');
+            ->where('`key`=?','levels')
+            ->where('id=?',$this->id());
         $levels = $select->query()->fetchColumn();
         
         $levels = explode( ',', $levels );
@@ -79,7 +103,7 @@ class VF_Schema implements
         {
             $levels[ $k ] = trim( $level );
         }
-        return self::$levels = $levels;
+        return self::$levels[$this->id()] = $levels;
     }
 
     function getRewriteLevels()
