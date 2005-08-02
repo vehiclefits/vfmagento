@@ -85,20 +85,20 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     {
 	if( !$this->currentlySelectedFit() )
         {
-	    return parent::getFinalPrice();
+	    return parent::getFinalPrice($qty);
 	}
         $selection = $this->currentlySelectedFit();
         $vehicle = $selection->getFirstVehicle();
         if(!$vehicle)
         {
-            return parent::getFinalPrice();
+            return parent::getFinalPrice($qty);
         }
         $customPrice = $this->customPrice($vehicle);
         if($customPrice)
         {
             return $customPrice;
         }
-        return parent::getFinalPrice();
+        return parent::getFinalPrice($qty);
     }
 
     function getPrice()
