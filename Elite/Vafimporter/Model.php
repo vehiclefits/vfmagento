@@ -120,7 +120,7 @@ abstract class Elite_Vafimporter_Model extends Ne8Vehicle_Import_Abstract implem
 		    !isset($this->fieldPositions[$level . '_range'])
 	    )
 	    {
-		throw new Elite_Vafimporter_Model_VehiclesList_CSV_Exception_FieldHeaders('Unable to locate field header for [' . $level . '], perhaps not using comma delimiter');
+		throw new Elite_Vafimporter_Model_VehiclesList_CSV_Exception_FieldHeaders('Unable to locate field header for [' . $level . '], perhaps not using comma delimiter' . print_r($this->fieldPositions,1));
 	    }
 	}
 	return $this->fieldPositions;

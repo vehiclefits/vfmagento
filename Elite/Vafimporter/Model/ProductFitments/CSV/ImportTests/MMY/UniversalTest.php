@@ -4,22 +4,29 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_UniversalTest 
     protected function doSetUp()
     {
         $this->switchSchema('make,model,year');
-        
-        $this->csvData = 'sku, make, model, year, universal
-sku,,,,1';
-        
         $this->insertProduct( self::SKU );
     }
     
     function testMakesProductUniversal()
     {
-        $this->mappingsImport($this->csvData);
+        $this->mappingsImport('sku, make, model, year, universal
+"sku","","","","1"');
         $this->assertTrue( $this->getProductForSku('sku')->isUniversal() );
+    }
+        
+    
+    function testMakesProductUniversal_YearRange()
+    {
+        $this->mappingsImport('sku, make, model, year_start, year_end, universal
+"sku","","","","","1"');
+        return $this->markTestIncomplete();
+        //$this->assertTrue( $this->getProductForSku('sku')->isUniversal() );
     }
         
     function testDoesNotImportBlankDefinition()
     {
-        $this->mappingsImport($this->csvData);
+        $this->mappingsImport('sku, make, model, year, universal
+"sku","","","","1"');
         
         $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema());
         $vehicles = $vehicleFinder->findAll();
@@ -28,7 +35,8 @@ sku,,,,1';
             
     function testDoesNotInsertNullVehicle()
     {
-        $this->mappingsImport($this->csvData);
+        $this->mappingsImport('sku, make, model, year, universal
+"sku","","","","1"');
         
         $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema());
         $count = $this->getReadAdapter()->query('select count(*) from elite_definition')->fetchColumn();
@@ -37,7 +45,8 @@ sku,,,,1';
     
     function testShouldNotLogErrorsForUniversalRecord()
     {
-        $importer = $this->mappingsImporterFromData($this->csvData);
+        $importer = $this->mappingsImporterFromData('sku, make, model, year, universal
+"sku","","","","1"');
         $importer->import();
         
         $writer = new Zend_Log_Writer_Mock();
@@ -48,6 +57,25 @@ sku,,,,1';
         $importer->import();
         
         $this->assertEquals( 0, count($writer->events) );
+    }
+    
+    function testShouldNotTallyInvalidVehicle()
+    {
+        $importer = $this->mappingsImporterFromData('sku, make, model, year, universal
+"sku","","","","1"');
+        $importer->import();
+
+        $this->assertEquals( 0, $importer->invalidVehicleCount() );
+    }
+    
+    function testShouldNotTallyInvalidVehicle_YearRange()
+    {
+        return $this->markTestIncomplete();
+        $importer = $this->mappingsImporterFromData('sku, make, model, year_start, year_end, universal
+"sku","","","","1"');
+        $importer->import();
+
+        $this->assertEquals( 0, $importer->invalidVehicleCount() );
     }
     
 }

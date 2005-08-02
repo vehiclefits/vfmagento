@@ -52,9 +52,17 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
 	    {
 		continue;
 	    }
-
-	    $combinations = $this->getCombinations($values, $row);
-
+            
+            if(false&&$this->getFieldValue('universal', $row))
+            {
+//                $combinations = array( $values + array('year'=>'','sku'=>$this->getFieldValue('sku',$row), 'universal'=>1));
+//                unset($combinations[0]['year_start']);
+//                unset($combinations[0]['year_end']);
+            }
+            else
+            {
+                $combinations = $this->getCombinations($values, $row);
+            }
 	    foreach ($combinations as $combination)
 	    {
 		$this->insertIntoTempStream($stream, $row, $combination);
@@ -320,8 +328,8 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     }
 
     function getCombinations($values, $row)
-    {
-	$combiner = new Elite_Vafimporter_Model_Combiner($this->getSchema(), $this->getConfig());
+    {       
+        $combiner = new Elite_Vafimporter_Model_Combiner($this->getSchema(), $this->getConfig());
 	$combinations = $combiner->getCombinations($values);
 	if ($combiner->getError())
 	{

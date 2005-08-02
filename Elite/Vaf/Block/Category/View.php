@@ -18,6 +18,10 @@ class Elite_Vaf_Block_Category_View extends Mage_Catalog_Block_Category_View
 
     protected function _toHtml()
     {
+        if($this->shouldShowSplash())
+        {
+            return parent::_toHtml();
+        }
         if($this->getConfig()->category->mode == 'group')
         {
             $otherBlock = new Elite_Vaf_Block_Product_Result_Group;
@@ -35,6 +39,10 @@ class Elite_Vaf_Block_Category_View extends Mage_Catalog_Block_Category_View
             $this->disableLayeredNavigation();
             return 'vaf/splash.phtml';
         }
+//        if($this->getConfig()->category->mode == 'group')
+//        {
+//            return 'vaf/group/result.phtml';
+//        }
         return parent::getTemplate();
     }
     

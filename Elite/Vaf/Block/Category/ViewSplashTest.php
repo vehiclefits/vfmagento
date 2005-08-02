@@ -11,10 +11,20 @@ class Elite_Vaf_Block_Category_ViewSplashTest extends Elite_Vaf_TestCase
     function testWhenCategoryRequiresVehicleAndNoVehicleSelectedShouldShowSplash()
     {
         $config = new Zend_Config( array('category'=>array('requireVehicle'=>'1')) );
-        $categoryView = new Elite_Vaf_Block_Category_View;
+        $categoryView = new Elite_Vaf_Block_Category_View_SubClass;
         $categoryView->setConfig($config);
         $categoryView->setCategoryId(1);
+        $this->assertEquals( 'vaf/splash.phtml', $categoryView->getTemplate() );
         $this->assertShouldShowSplash( $categoryView, 'when category requires a vehicle & no vehicle is selected, should show the splash page' );
+    }
+    
+    function test_GroupMode_ShouldShowSplash()
+    {
+        $config = new Zend_Config( array('category'=>array('mode'=>'group','requireVehicle'=>'1')) );
+        $categoryView = new Elite_Vaf_Block_Category_View_SubClass;
+        $categoryView->setConfig($config);
+        $categoryView->setCategoryId(1);
+        $this->assertEquals( 'vaf/splash.phtml', $categoryView->getTemplate(), 'when category is in group mode should show splash page' );
     }
 
     function testWhenWildcardAndNoVehicleSelectedShouldShowSplash()
@@ -74,4 +84,9 @@ class Elite_Vaf_Block_Category_ViewSplashTest extends Elite_Vaf_TestCase
         $this->assertFalse( $categoryView->shouldShowSplash(), $message );
     }
     
+}
+
+class Elite_Vaf_Block_Category_View_SubClass extends Elite_Vaf_Block_Category_View
+{
+    function disableLayeredNavigation() {}
 }
