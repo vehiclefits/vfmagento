@@ -2,7 +2,7 @@
 if(isset($_GET['make']))
 {
     echo 'The current vehicle is: ';
-    $makeFinder = new Elite_Vaf_Model_Level_Finder();
+    $makeFinder = new VF_Level_Finder();
     $make = $makeFinder->find('make',$_GET['make']);
     echo $make;
 

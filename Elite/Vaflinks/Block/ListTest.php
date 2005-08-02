@@ -119,7 +119,7 @@ class Elite_Vaflinks_Block_ListTestSub extends Elite_Vaflinks_Block_List {
         return $this->_toHtml();
     }
 
-    protected function _toHtml() {
+    function _toHtml() {
         ob_start();
         include(ELITE_PATH . '/Vaflinks/design/frontend/default/default/template/vaflinks/list.phtml');
         return ob_get_clean();

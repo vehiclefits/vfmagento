@@ -5,7 +5,7 @@ class Elite_Vaflinks_Block_CMSListTests_TestSub extends Elite_Vaflinks_Block_CMS
         return $this->_toHtml();
     }
 
-    protected function _toHtml() {
+    function _toHtml() {
         if (!$this->isEnabled()) {
             return;
         }
