@@ -289,7 +289,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends Elite_Vaf_Test
 
 class Elite_Vaf_Block_Search_SubmitTestSub extends Elite_Vaf_Block_Search
 {
-    protected function url( $route )
+    function url( $route )
     {
         return $route;
     }

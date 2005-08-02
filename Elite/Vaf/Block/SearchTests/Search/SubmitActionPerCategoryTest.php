@@ -53,7 +53,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionPerCategoryTest extends Eli
 
 class Elite_Vaf_Block_Search_SubmitTestSub2 extends Elite_Vaf_Block_Search
 {
-    protected function url( $route )
+    function url( $route )
     {
         return $route;
     }

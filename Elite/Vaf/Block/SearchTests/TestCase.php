@@ -24,7 +24,7 @@ abstract class Elite_Vaf_Block_SearchTests_TestCase extends Elite_Vaf_TestCase
     
     protected function doGetBlock()
     {
-        return new Elite_Vaf_Block_Search_TestSubClass();
+        return new Elite_Vaf_Block_Search();
     }
     
     function getRequest( $params = array() )

@@ -13,18 +13,18 @@
 */
 class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements VF_Configurable
 {
-    protected $search;
+    public $searchStrategy;
     
     function __construct()
     {
-        $this->search = new VF_Search_Mage;
+        $this->searchStrategy = new VF_Search_Mage;
     }
     
     function __call($method, $arguments)
     {
-        if(method_exists($this->search,$method))
+        if(method_exists($this->searchStrategy,$method))
         {
-            return call_user_func_array(array($this->search,$method), $arguments);
+            return call_user_func_array(array($this->searchStrategy,$method), $arguments);
         }
         else
         {
@@ -64,8 +64,29 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements VF_Conf
     
     function setTemplate($template)
     {
-        $this->search->setTemplate($template);
+        $this->searchStrategy->setTemplate($template);
         parent::setTemplate($template);
+    }
+    
+    function setRequest($request)
+    {
+        $this->request = $request;
+        $this->searchStrategy->setRequest($request);
+    }
+    
+    function getRequest()
+    {
+        return $this->searchStrategy->getRequest();
+    }
+    
+    function getConfig()
+    {
+        return $this->searchStrategy->getConfig();
+    }
+
+    function setConfig( Zend_Config $config )
+    {
+        $this->searchStrategy->setConfig($config);
     }
 }
 
