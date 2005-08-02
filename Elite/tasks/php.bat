@@ -1,1 +1,1 @@
-C:\wamp\bin\php\php5.3.13\php.exe %*
+C:\xampp\php\php.exe %*
