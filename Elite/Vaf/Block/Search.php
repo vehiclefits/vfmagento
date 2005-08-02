@@ -32,21 +32,6 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements VF_Conf
         }
     }
     
-    function getFilter()
-    {
-        if( !$this->filter instanceof Elite_Vaf_Model_Catalog_Category_Filter )
-        {
-            $this->filter = new Elite_Vaf_Model_Catalog_Category_FilterImpl();
-            $this->filter->setConfig( $this->getConfig() );
-        }    
-        return $this->filter;
-    }
-    
-    function setFilter( Elite_Vaf_Model_Catalog_Category_Filter $filter )
-    {
-        $this->filter = $filter;
-    }
-    
     function url( $route )
     {
         return Mage::getUrl( $route );
