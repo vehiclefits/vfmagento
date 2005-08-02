@@ -54,7 +54,40 @@ sku, honda, civic, 2000, 222.22');
 	$product = $this->getProductForSku('sku');
 	$product->setCurrentlySelectedFit($this->vehicleFinder()->findOneByLevels(array('make'=>'honda', 'model'=>'civic', 'year'=>2000)));
 	$this->assertEquals( 222.22, $product->getMinimalPrice(), 'should change price based on selected vehicle');
+    }
 
+    function testDoesntChangeMinimalPrice()
+    {
+	$this->insertProduct('sku');
+
+	$this->mappingsImport('sku, make, model, year, price
+sku, honda, civic, 2000, 222.22');
+
+	$product = $this->getProductForSku('sku');
+	$this->assertNull( $product->getMinimalPrice(), 'should not change price when no vehicle');
+    }
+
+    function testChangesFinalPrice()
+    {
+	$this->insertProduct('sku');
+
+	$this->mappingsImport('sku, make, model, year, price
+sku, honda, civic, 2000, 222.22');
+
+	$product = $this->getProductForSku('sku');
+	$product->setCurrentlySelectedFit($this->vehicleFinder()->findOneByLevels(array('make'=>'honda', 'model'=>'civic', 'year'=>2000)));
+	$this->assertEquals( 222.22, $product->getFinalPrice(), 'should change price based on selected vehicle');
+    }
+
+    function testDoesntChangeFinalPrice()
+    {
+	$this->insertProduct('sku');
+
+	$this->mappingsImport('sku, make, model, year, price
+sku, honda, civic, 2000, 222.22');
+
+	$product = $this->getProductForSku('sku');
+	$this->assertNull( $product->getFinalPrice(), 'should not change price when no vehicle');
     }
 
     function testChangesPrice2()

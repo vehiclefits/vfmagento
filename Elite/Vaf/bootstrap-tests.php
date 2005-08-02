@@ -65,6 +65,16 @@ class Mage_Catalog_Model_Product
     
     }
     
+    function getMinimalPrice()
+    {
+        
+    }
+    
+    function getFinalPrice()
+    {
+        
+    }
+    
 }
 
 class Mage_Customer_Model_Session
