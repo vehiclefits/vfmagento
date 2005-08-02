@@ -5,6 +5,12 @@
     <fieldset>
         <input type="checkbox" id="universal" name="universal" <?= $this->getProduct()->isUniversal() ? ' checked="checked"' : '' ?> value="1" />
         Universal Product
+        <br />
+	<?php
+	$relatedProduct = new Elite_Vafrelated_Model_Catalog_Product($this->getProduct());
+	?>
+	<input type="checkbox" id="related" name="related" <?php $relatedProduct->showInRelated() ? ' checked="checked"' : '' ?> value="1" />
+        Show In Automotive Related Products
     </fieldset>
 </div>
 

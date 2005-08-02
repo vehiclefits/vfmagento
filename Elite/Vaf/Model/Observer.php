@@ -46,7 +46,20 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
         {
             $product->setUniversal( false );
         }
-        
+
+	if (file_exists(ELITE_PATH . '/Vafrelated'))
+	{
+	    $relatedProduct = new Elite_Vafrelated_Model_Catalog_Product($product);
+	    if( isset( $_POST['related'] ) && $_POST['related'] )
+	    {
+		$relatedProduct->setShowInRelated( true );
+	    }
+	    else
+	    {
+		$relatedProduct->setShowInRelated( false );
+	    }
+	}
+
         // add new fit(s)
         if( is_array( $controller->getRequest()->getParam( 'vaf' ) ) && count( $controller->getRequest()->getParam( 'vaf' ) ) >= 1 )
         {
