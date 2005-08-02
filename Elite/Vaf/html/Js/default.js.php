@@ -32,7 +32,7 @@ var chained = function() {
     var showSelect = function( select ) {
         jQuery(select)
             .show()
-            .attr('disabled','')
+            .removeAttr('disabled')
             .prev('label').show();
     }
     
