@@ -15,6 +15,7 @@
                     <vafimporter_mappings>Elite_Vafimporter_Adminhtml_Block_Mappings</vafimporter_mappings>
                     <vafimporter_mappingsexport>Elite_Vafimporter_Adminhtml_Block_Mappingsexport</vafimporter_mappingsexport>
                     <vafimporter_mappingsadvanced>Elite_Vafimporter_Adminhtml_Block_MappingsAdvanced</vafimporter_mappingsadvanced>
+                    <vafimporter_settings>Elite_Vafimporter_Adminhtml_Block_Settings</vafimporter_settings>
                 </rewrite>
             </adminhtml> 
         </blocks>
@@ -50,6 +51,11 @@
                         </children>
                         <sort_order>20</sort_order>
                     </mappings>
+                    <importexportsettings translate="title">
+                        <title>Import Export Settings</title>
+                        <action>adminhtml/vafimportexportsettings/index</action>
+                        <sort_order>21</sort_order>
+                    </importexportsettings>
                 </children>
             </vaf>
         </menu>

@@ -1,0 +1,14 @@
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('catalog')->__( 'Import/Export Settings' ) ?></h4>
+    </div>
+    <fieldset>
+                 
+        <legend><?php echo Mage::helper('catalog')->__('Import/Export Settings') ?></legend>
+        <?php
+        $form = new Elite_Vafimporter_Model_Settings;
+        $form->setView( new Zend_View);
+        echo $form->render();
+        ?>
+    </fieldset>
+</div>

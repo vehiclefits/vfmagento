@@ -177,7 +177,7 @@ class Elite_Vafimporter_Admin_VafdefinitionsimporterController extends Mage_Admi
         return Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
     }
 
-	protected function checkVersion()
+    protected function checkVersion()
     {
         $version = new Elite_Vafinstall_Migrate;
         if( $version->needsUpgrade() )
