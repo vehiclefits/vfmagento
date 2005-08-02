@@ -15,17 +15,11 @@
 class Elite_Vaf_Model_SearchLayer extends Mage_CatalogSearch_Model_Layer
 {
     
-    public function _prepareProductCollection($collection)
+    public function prepareProductCollection($collection)
     {
-        $collection
-            ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes());
-        
-        if(Mage::helper('catalogsearch')->getQuery()->getQueryText())
-        {
-            $collection->addSearchFilter(Mage::helper('catalogsearch')->getQuery()->getQueryText());
-        }
         
         $collection
+            ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
             ->setStore(Mage::app()->getStore())
             ->addMinimalPrice()
             ->addFinalPrice()
@@ -35,15 +29,24 @@ class Elite_Vaf_Model_SearchLayer extends Mage_CatalogSearch_Model_Layer
 
         Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($collection);
         Mage::getSingleton('catalog/product_visibility')->addVisibleInSearchFilterToCollection($collection);
-
         
         $ids = Elite_Vaf_Helper_Data::getInstance()->getProductIds();
         if($ids)
         {
             $collection->addIdFilter($ids);
         }
+        
+        $collection->addAttributeToSelect('name');        
 
+        if(Mage::helper('catalogsearch')->getQuery()->getQueryText())
+        {
+            $collection->addFieldToFilter(array(
+                    array('attribute'=>'name','like'=>'%'.Mage::helper('catalogsearch')->getQuery()->getQueryText().'%')
+            ));
+        }
+        
         return $this;
     }
+        
 
 }
