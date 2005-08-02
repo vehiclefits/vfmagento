@@ -24,7 +24,8 @@ class Elite_Vaf_Model_SearchLayer extends Mage_CatalogSearch_Model_Layer
         if (isset($this->_productCollections[$this->getCurrentCategory()->getId()]))
         {
             $collection = $this->_productCollections[$this->getCurrentCategory()->getId()];
-        } else
+        }
+        else
         {
             $ids = Elite_Vaf_Helper_Data::getInstance()->getProductIds();
 
@@ -48,7 +49,8 @@ class Elite_Vaf_Model_SearchLayer extends Mage_CatalogSearch_Model_Layer
                 // Comment out following line for work-around for:
                 // 0000295: Group View not Displaying products, but products show in browsing
                 Mage::getSingleton('catalog/product_visibility')->addVisibleInSearchFilterToCollection($collection);
-            } elseif (!Mage::helper('catalogSearch')->getEscapedQueryText())
+            }
+            elseif (!Mage::helper('catalogSearch')->getEscapedQueryText())
             {
 
                 $collection = Mage::getResourceModel('catalog/product_collection')
@@ -69,10 +71,12 @@ class Elite_Vaf_Model_SearchLayer extends Mage_CatalogSearch_Model_Layer
                 // Comment out following line for work-around for:
                 // 0000295: Group View not Displaying products, but products show in browsing
                 Mage::getSingleton('catalog/product_visibility')->addVisibleInSearchFilterToCollection($collection);
-            } else
+            }
+            else
             {
 
                 $collection = Mage::getResourceModel('catalogsearch/fulltext_collection');
+                $collection->addIdFilter($ids);
                 $this->prepareProductCollection($collection);
             }
 
