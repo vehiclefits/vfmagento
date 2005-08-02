@@ -19,7 +19,7 @@ class Vf_Ajax implements VF_Configurable
     /** @var Zend_Config */
     protected $config;
     
-    function execute( VF_Schema $schema, $alphaNumeric=true )
+    function execute( VF_Schema $schema, $alphaNumeric=false )
     {
         $this->alphaNumeric = $alphaNumeric;
         $this->schema = $schema;

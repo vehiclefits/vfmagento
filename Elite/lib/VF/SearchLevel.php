@@ -77,6 +77,19 @@ class VF_SearchLevel
     /** @return bool */
     function getSelected( $entity )
     {
+        $selected = false;
+        if( $this->level != $this->leafLevel() )
+        {
+            return (bool)( $entity->getId() == $this->block->getSelected( $this->level ) );
+        }
+        
+        $fit = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
+        if( false === $fit )
+        {
+            return false;
+        }
+        
+        
         if('year_start' == $this->yearRangeAlias)
         {
             return (bool) ($entity->getTitle() == $fit->earliestYear());
@@ -86,7 +99,11 @@ class VF_SearchLevel
             return (bool) ($entity->getTitle() == $fit->latestYear());
         }
         
-        return (bool)( $entity->getId() == $this->block->getSelected( $this->level ) );
+        $level = $fit->getLevel( $this->leafLevel() );
+        if( $level )
+        {
+            return (bool)( $entity->getTitle() == $level->getTitle() );
+        }
     }
     
     protected function getEntities()

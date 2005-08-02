@@ -21,8 +21,8 @@ class VF_FlexibleSearchTests_FitYMMGlobalTest extends Elite_Vaf_TestCase
     
     function testTest()
     {
-        $vehicle1 = $this->createVehicle('2000','Toyota','Base');
-        $vehicle2 = $this->createVehicle('1991','Toyota','Base');
+        $vehicle1 = $this->createVehicle(array('year'=>'2000','make'=>'Toyota','model'=>'Base'));
+        $vehicle2 = $this->createVehicle(array('year'=>'1991','make'=>'Toyota','model'=>'Base'));
         
         $this->insertMappingMMY($vehicle1, 1);
         $this->insertMappingMMY($vehicle2, 1);
