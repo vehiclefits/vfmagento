@@ -77,7 +77,7 @@ class Elite_Vafdiagram_Model_ProductFitments_CSV_Import extends Elite_Vafimporte
 	    $serviceCode = $this->getFieldValue('service_code', $row);
 	    foreach ($this->serviceCodeCombinations($combination, $serviceCode) as $serviceCodeCombination)
 	    {
-		$this->insertIntoTempTable($stream, $row, $serviceCodeCombination);
+		$this->insertIntoTempStream($stream, $row, $serviceCodeCombination);
 	    }
 	}
 	
