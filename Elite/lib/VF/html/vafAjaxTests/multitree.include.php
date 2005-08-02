@@ -18,7 +18,7 @@ class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf_AjaxTestStub extend
     
     function designScriptPath()
     {
-        return 'F:\dev\vaf\app\code\local\Elite\Vaf\design';
+        return 'E:\dev\vaf\app\code\local\Elite\Vaf\design';
     }
     
     function getUrl( $routeString )

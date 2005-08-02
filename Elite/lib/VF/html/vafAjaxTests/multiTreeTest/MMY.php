@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('F:\dev\vaf\app\code\local\Elite\Vaf\bootstrap-tests.php');
+require_once('E:\dev\vaf\app\code\local\Elite\Vaf\bootstrap-tests.php');
 
 $schemaGenerator = new VF_Schema_Generator();
 $schemaGenerator->dropExistingTables();
