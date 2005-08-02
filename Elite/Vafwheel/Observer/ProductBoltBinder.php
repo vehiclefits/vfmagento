@@ -21,27 +21,29 @@ class Elite_Vafwheel_Observer_ProductBoltBinder
             $importer = new Elite_Vafwheel_Model_Catalog_Product_Import( $_FILES['boltpatterncsv']['tmp_name'] );
             $importer->import();
         }
-            
-        $patterns = $controller->getRequest()->getParam( 'wheel_side_pattern' ) ? $controller->getRequest()->getParam( 'wheel_side_pattern' ) : $controller->getRequest()->getParam( 'multipatterns' );
-        $patterns = explode( "\n", $patterns );
-        foreach( $patterns as $k => $pattern )
+        else
         {
-            $pattern = str_replace( "\r", '', $pattern );
-            if( !trim( $pattern ) )
-            {
-                return;
-            }
             
-            $boltPattern = Elite_Vafwheel_Model_BoltPattern::create( $pattern );
-            if( !is_array( $boltPattern ) )
+            $patterns = $controller->getRequest()->getParam( 'wheel_side_pattern' ) ? $controller->getRequest()->getParam( 'wheel_side_pattern' ) : $controller->getRequest()->getParam( 'multipatterns' );
+            $patterns = explode( "\n", $patterns );
+            foreach( $patterns as $k => $pattern )
             {
-                $boltPattern = array( $boltPattern );
-            }
-            foreach( $boltPattern as $each )
-            {
-                $wheelProduct->addBoltPattern( $each );
+                $pattern = str_replace( "\r", '', $pattern );
+                if( !trim( $pattern ) )
+                {
+                    return;
+                }
+
+                $boltPattern = Elite_Vafwheel_Model_BoltPattern::create( $pattern );
+                if( !is_array( $boltPattern ) )
+                {
+                    $boltPattern = array( $boltPattern );
+                }
+                foreach( $boltPattern as $each )
+                {
+                    $wheelProduct->addBoltPattern( $each );
+                }
             }
         }
-        
     }
 }

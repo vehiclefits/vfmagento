@@ -1,7 +1,7 @@
 <?php
 class Elite_Vafwheel_Model_Catalog_Product
 {
-	/** @var Elite_Vaf_Model_Catalog_Product */
+    /** @var Elite_Vaf_Model_Catalog_Product */
     protected $wrappedProduct;
     
     function __construct(Elite_Vaf_Model_Catalog_Product $productToWrap )
@@ -12,10 +12,11 @@ class Elite_Vafwheel_Model_Catalog_Product
     function addBoltPattern( Elite_Vafwheel_Model_BoltPattern $boltPattern )
     {
         $sql = sprintf(
-            "REPLACE INTO `elite_product_wheel` ( `entity_id`, `lug_count`, `bolt_distance` ) VALUES ( %d, %d, %s )",
+            "REPLACE INTO `elite_product_wheel` ( `entity_id`, `lug_count`, `bolt_distance`, `offset` ) VALUES ( %d, %d, %s, %s )",
             $this->getId(),
             (int)$boltPattern->getLugCount(),
-            (float)$boltPattern->getDistance()
+            (float)$boltPattern->getDistance(),
+            (float)$boltPattern->getOffset()
         );
         $this->query($sql);
         $this->insertMappings($boltPattern);
@@ -35,7 +36,7 @@ class Elite_Vafwheel_Model_Catalog_Product
         $return = array();
         while( $row = $result->fetchObject() )
         {
-            $bolt = Elite_Vafwheel_Model_BoltPattern::create($row->lug_count.'x'.$row->bolt_distance);
+            $bolt = Elite_Vafwheel_Model_BoltPattern::create($row->lug_count.'x'.$row->bolt_distance, $row->offset);
             array_push($return,$bolt);
         }
         $result->closeCursor();
@@ -50,20 +51,36 @@ class Elite_Vafwheel_Model_Catalog_Product
     
     function insertMappings( Elite_Vafwheel_Model_BoltPattern $boltPattern )
     {
-        $q = sprintf(
-            "
-            SELECT DISTINCT(`leaf_id`) as leaf_id
-            FROM `elite_definition_wheel`
-            WHERE `bolt_distance` = %s
-            AND `lug_count` = %d
-            AND `offset` >= %s
-            AND `offset` <= %s
-            ",
-            (float)$boltPattern->getDistance(),
-            (float)$boltPattern->getLugCount(),
-            (float)$boltPattern->offsetMin(),
-            (float)$boltPattern->offsetMax()
-        );
+        if( $boltPattern->getOffset() )
+        {
+            $q = sprintf(
+                "
+                SELECT DISTINCT(`leaf_id`) as leaf_id
+                FROM `elite_definition_wheel`
+                WHERE `bolt_distance` = %s
+                AND `lug_count` = %d
+                AND `offset` >= %s
+                AND `offset` <= %s
+                ",
+                (float)$boltPattern->getDistance(),
+                (float)$boltPattern->getLugCount(),
+                (float)$boltPattern->offsetMin(),
+                (float)$boltPattern->offsetMax()
+            );
+        }
+        else
+        {
+            $q = sprintf(
+                "
+                SELECT DISTINCT(`leaf_id`) as leaf_id
+                FROM `elite_definition_wheel`
+                WHERE `bolt_distance` = %s
+                AND `lug_count` = %d
+                ",
+                (float)$boltPattern->getDistance(),
+                (float)$boltPattern->getLugCount()
+            );
+        }
         
         $result = $this->query( $q );
         
@@ -79,8 +96,8 @@ class Elite_Vafwheel_Model_Catalog_Product
     
     function definition($leaf_id)
     {
-		$vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new Elite_Vaf_Model_Schema() );
-		return $vehicleFinder->findByLeaf($leaf_id);
+        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new Elite_Vaf_Model_Schema() );
+        return $vehicleFinder->findByLeaf($leaf_id);
     }
     
     function __call($methodName,$arguments)

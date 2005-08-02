@@ -49,12 +49,17 @@ class Elite_Vafwheel_Model_BoltPattern_Single  extends Elite_Vafwheel_Model_Bolt
     
     function offsetMin()
     {
-        return $this->getOffset();
+        return $this->getOffset() - $this->offsetThreshold();
     }
     
     function offsetMax()
     {
-        return $this->getOffset();
+        return $this->getOffset() + $this->offsetThreshold();
+    }
+    
+    function offsetThreshold()
+    {
+        return 5;
     }
     
     function __toString()

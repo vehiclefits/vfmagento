@@ -29,8 +29,9 @@ class Elite_Vafwheel_Model_Catalog_Product_Import extends Ne8Vehicle_Import_Abst
     {
 	$lugCount = $this->getFieldValue('lug_count', $row);
 	$boltDistance = $this->getFieldValue('bolt_distance', $row);
+	$offset = $this->getFieldValue('offset', $row);
 	
-	return Elite_Vafwheel_Model_BoltPattern::create($lugCount.'x'.$boltDistance);
+	return Elite_Vafwheel_Model_BoltPattern::create($lugCount.'x'.$boltDistance, $offset);
     }
 
     function tireType($row)

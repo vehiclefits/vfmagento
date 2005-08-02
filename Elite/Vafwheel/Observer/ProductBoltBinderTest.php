@@ -25,7 +25,7 @@ class Elite_Vafwheel_Observer_ProductBoltBinderTest extends Elite_Vaf_TestCase
         
         $wheelProduct = new Elite_Vafwheel_Model_Catalog_Product($product);
         $this->assertEquals( 1, count($wheelProduct->getBoltPatterns()), 'should add bolt pattern to product' );
-    }
+    } 
     
     function testAddsMultipleBoltPatternsToProduct()
     {

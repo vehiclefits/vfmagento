@@ -31,7 +31,7 @@ class Elite_Vafwheel_Model_Vehicle
     {
         $r = $this->query( sprintf(
             "
-            SELECT lug_count, bolt_distance
+            SELECT lug_count, bolt_distance, offset
             FROM elite_definition_wheel
             WHERE leaf_id = %d
             ",

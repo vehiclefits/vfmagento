@@ -25,4 +25,16 @@ class Elite_Vafwheel_Model_BoltPatternTest extends Elite_Vaf_TestCase
         $bolt = Elite_Vafwheel_Model_BoltPattern::create('4x114.3', 38.5);
         $this->assertEquals( 38.5, $bolt->getOffset() );
     }
+    
+    function testOffsetThresholdMinimum()
+    {
+        $bolt = Elite_Vafwheel_Model_BoltPattern::create('4x114.3', 20);
+        $this->assertEquals( 15, $bolt->offsetMin() );
+    }
+    
+    function testOffsetThresholdMaximum()
+    {
+        $bolt = Elite_Vafwheel_Model_BoltPattern::create('4x114.3', 20);
+        $this->assertEquals( 25, $bolt->offsetMax() );
+    }
 }
