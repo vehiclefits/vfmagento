@@ -1,6 +1,6 @@
 <?php
 
-abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
+abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
 {
     const ENTITY_TYPE_MAKE = 'make';
     const ENTITY_TYPE_MODEL = 'model';
@@ -10,7 +10,25 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
     const A_DIFFERENT_ENTITY_TITLE = 'test josh different';
     const NON_EXISTANT_ID = 999;
     const INVALID_TYPE = 'foo';
+    
+    protected $maxRunningTime;
 
+    function runTest()
+    {
+        $startTime = microtime();
+        parent::runTest();
+        $endTime = microtime();
+        if( 0 != $this->maxRunningTime && $endTime-$startTime > $this->maxRunningTime)
+        {
+            $this->fail('expected running time: <= ' . $this->maxRunningTime . ' but was ' . ($endTime-$startTime) );
+        }
+    }
+    
+    function setMaxRunningTime($maxRunningTime)
+    {
+        $this->maxRunningTime = $maxRunningTime;
+    }
+    
     function setUp()
     {
 	Elite_Vaf_Helper_Data::getInstance(true);

@@ -1,5 +1,5 @@
 <?php
-class Ne8Vehicle_YearTests_ValidationTest extends PHPUnit_Extensions_PerformanceTestCase
+class Ne8Vehicle_YearTests_ValidationTest extends PHPUnit_Framework_TestCase
 {
     function testShouldNotBeValid()
     {

@@ -1,5 +1,5 @@
 <?php
-class Ne8Vehicle_YearTests_ValueTest extends PHPUnit_Extensions_PerformanceTestCase
+class Ne8Vehicle_YearTests_ValueTest extends PHPUnit_Framework_TestCase
 {
     /**
     * @expectedException Ne8Vehicle_Year_Exception
