@@ -12,7 +12,7 @@
             var testPages = new Array(
                 'ajaxTestJs/MMY.php',
                 'ajaxTestJs/Space.php',
-                'ajaxTestJs/MMYMultiple.php',
+                //'ajaxTestJs/MMYMultiple.php',
                 'ajaxTestJs/MMYLoadNextLevelAuto.php',
                 'ajaxTestJs/MMYNonAjax.php',
                 'ajaxTestJs/MMTC.php',
