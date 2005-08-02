@@ -5,8 +5,7 @@ class Elite_Vafdiagram_Model_Schema_Generator extends Ne8Vehicle_Schema_Generato
     {
         return 'CREATE TABLE IF NOT EXISTS `elite_product_servicecode` (
 				  `product_id` int(100) NOT NULL,
-				  `service_code` varchar(100) NOT NULL,
-				  PRIMARY KEY (`product_id`,`service_code`)
+				  `service_code` varchar(100) NOT NULL
 				) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 				
 				ALTER TABLE  `elite_import` ADD  `service_code` VARCHAR( 100 ) NOT NULL;
@@ -21,6 +20,7 @@ ADD `category4_id` INT( 10 ) NOT NULL ;
 				ALTER TABLE `elite_product_servicecode` ADD `illustration_id` VARCHAR( 10 )  NULL;
 				
 				ALTER TABLE  `elite_product_servicecode` ADD  `callout` INT( 3 ) NOT NULL;
+				ALTER TABLE `elite_product_servicecode` ADD PRIMARY KEY ( `product_id` , `service_code` , `category1_id` , `category2_id` , `category3_id` , `category4_id` , `illustration_id` , `callout` ) ;
 				';
     }
 }

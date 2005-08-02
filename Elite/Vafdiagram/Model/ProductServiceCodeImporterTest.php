@@ -38,6 +38,21 @@ class Elite_Vafdiagram_Model_ProductServiceCodeImporterTest extends Elite_Vafdia
 	$this->assertEquals(array(123), $product->serviceCodes(), 'should skip duplicates');
     }
 
+    function testShouldSkipDuplicates2()
+    {
+	$productId = $this->insertProduct('sku1');
+
+	$this->importProductServiceCodes('sku,service_code' . "\n" .
+		'sku1,123');
+
+
+	$this->importProductServiceCodes('sku,service_code' . "\n" .
+		'sku1,123');
+
+	$product = $this->product($productId);
+	$this->assertEquals(array(123), $product->serviceCodes(), 'should skip duplicates');
+    }
+
     function testShouldImportCallout()
     {
 	$productId = $this->insertProduct('sku1');
@@ -96,6 +111,32 @@ class Elite_Vafdiagram_Model_ProductServiceCodeImporterTest extends Elite_Vafdia
 	$product = $this->product($productId);
 	$this->assertEquals(array(123), $product->serviceCodes(array('category1' => 1, 'category2' => 1, 'category3' => 1, 'category4' => 1)), 'should assocaite category 4 with product service codes');
 	$this->assertEquals(array(456), $product->serviceCodes(array('category1' => 1, 'category2' => 1, 'category3' => 1, 'category4' => 2)), 'should assocaite category 4 with product service codes');
+    }
+
+    function testShouldSkipDuplicates3()
+    {
+	$productId = $this->insertProduct('sku1');
+
+	$this->importProductServiceCodes('sku,category1,category2,category3,category4,service_code' . "\n" .
+		'sku1,1,1,1,1,123');
+
+	$this->importProductServiceCodes('sku,category1,category2,category3,category4,service_code' . "\n" .
+		'sku1,1,1,1,1,123');
+	$product = $this->product($productId);
+	$this->assertEquals(array(123), $product->serviceCodes(array('category1' => 1, 'category2' => 1, 'category3' => 1, 'category4' => 1)), 'should assocaite category 4 with product service codes');
+    }
+
+    function testShouldSkipDuplicates4()
+    {
+	$productId = $this->insertProduct('sku1');
+
+	$this->importProductServiceCodes('sku,category1,category2,category3,category4,service_code' . "\n" .
+		'sku1,1,1,1,4,123');
+
+	$this->importProductServiceCodes('sku,category1,category2,category3,category4,service_code' . "\n" .
+		'sku1,1,1,1,1,123');
+	$product = $this->product($productId);
+	$this->assertEquals(array(123), $product->serviceCodes(array('category1' => 1, 'category2' => 1, 'category3' => 1, 'category4' => 1)), 'should assocaite category 4 with product service codes');
     }
 
     function testShouldAssociateCategory1WithIllustration()

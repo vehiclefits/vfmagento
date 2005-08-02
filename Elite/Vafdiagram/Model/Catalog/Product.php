@@ -23,6 +23,18 @@ class Elite_Vafdiagram_Model_Catalog_Product
 	    {
 		$select->where('category1_id = ?', $paramaters['category1']);
 	    }
+	    if (isset($paramaters['category2']) && !is_null($paramaters['category2']))
+	    {
+		$select->where('category2_id = ?', $paramaters['category2']);
+	    }
+	    if (isset($paramaters['category3']) && !is_null($paramaters['category3']))
+	    {
+		$select->where('category3_id = ?', $paramaters['category3']);
+	    }
+	    if (isset($paramaters['category4']) && !is_null($paramaters['category4']))
+	    {
+		$select->where('category4_id = ?', $paramaters['category4']);
+	    }
 	}
 
 	$result = $select->query();
