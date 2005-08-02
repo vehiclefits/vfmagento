@@ -33,17 +33,17 @@ $mapping->save();
             
             test("Make should be enabled by default", function() {
                 expect(1);
-                equals( '', jQuery( '.makeSelect').attr('disabled') );
+                equals( undefined, jQuery( '.makeSelect').attr('disabled') );
             });
             
             test("Model should be disabled by default", function() {
                 expect(1);
-                equals( true, jQuery( '.modelSelect').attr('disabled') );
+                equals( 'disabled', jQuery( '.modelSelect').attr('disabled') );
             });
             
             test("Year should be disabled by default", function() {
                 expect(1);
-                equals( true, jQuery( '.yearSelect').attr('disabled') );
+                equals( 'disabled', jQuery( '.yearSelect').attr('disabled') );
             });
             
             test("Clicking Make enable Model", function() {
@@ -53,7 +53,7 @@ $mapping->save();
                 $(".modelSelect").bind( 'vafLevelLoaded', function() {
                     start();
                     $(".modelSelect").unbind('vafLevelLoaded');
-                    equals( false, jQuery( '.modelSelect').attr('disabled') );
+                    equals( undefined, jQuery( '.modelSelect').attr('disabled') );
                 });
             });
 
@@ -67,7 +67,7 @@ $mapping->save();
                         start();
                         $(".modelSelect").unbind('vafLevelLoaded');
                         $(".yearSelect").unbind('vafLevelLoaded');
-                        equals( false, jQuery( '.yearSelect').attr('disabled') );
+                        equals( undefined, jQuery( '.yearSelect').attr('disabled') );
                     });
                 });
             });
