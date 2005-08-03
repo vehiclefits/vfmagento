@@ -5,6 +5,7 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
 
     protected $schema;
     protected $request;
+    protected $config;
 
     function __construct(Elite_Vaf_Model_Schema $schema, Zend_Controller_Request_Abstract $request)
     {
@@ -249,6 +250,11 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
      */
     function storeFitInSession()
     {
+	if(isset($this->getConfig()->search->storeVehicleInSession) && false === $this->getConfig()->search->storeVehicleInSession)
+	{
+	    return;
+	}
+	
 	if ($this->hasGETRequest())
 	{
 	    foreach ($this->schema()->getLevels() as $level)
@@ -329,6 +335,16 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
     function schema()
     {
 	return new Elite_Vaf_Model_Schema();
+    }
+
+    function setConfig($config)
+    {
+	$this->config = $config;
+    }
+
+    function getConfig()
+    {
+	return $this->config;
     }
 
 }

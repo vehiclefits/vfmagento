@@ -42,9 +42,20 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitMMYTest extends Elite_Vaf_Helper_Da
         $helper = $this->getHelper( array(), $vehicle->toValueArray() );
         $helper->storeFitInSession();
         unset($_SESSION['garage']);
-        $this->assertEquals( $vehicle->toValueArray(), $_SESSION );
+        $this->assertEquals( $vehicle->toValueArray(), $_SESSION, 'should store vehicle in session' );
     }
     
+
+    function testShouldNotStoreInSession()
+    {
+        $_SESSION = array('make'=>null, 'model'=>null, 'year'=>null);
+        $vehicle = $this->createMMY();
+        $helper = $this->getHelper( array('search'=>array('storeVehicleInSession' => false)), $vehicle->toValueArray() );
+        $helper->storeFitInSession();
+        unset($_SESSION['garage']);
+        $this->assertNotEquals( $vehicle->toValueArray(), $_SESSION, 'should not store in session when disabled' );
+    }
+
     function testGetsIdFromSession()
     {
         $vehicle = $this->createMMY();

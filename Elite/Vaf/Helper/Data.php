@@ -302,6 +302,7 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
     function flexibleSearch()
     {
 	$search = new Elite_Vaf_Model_FlexibleSearch($this->schema(), $this->getRequest());
+	$search->setConfig($this->getConfig());
 
 	if (file_exists(ELITE_PATH . '/Vafwheel'))
 	{
