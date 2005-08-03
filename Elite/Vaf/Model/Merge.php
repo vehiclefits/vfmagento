@@ -55,18 +55,23 @@ class Elite_Vaf_Model_Merge extends Elite_Vaf_Model_Base
     
     function ensureCompatible($slaveVehicles, $masterVehicle)
     {
-    	$wheelValidator = new Elite_Vafwheel_Model_MergeValidator;
-    	$wheelValidator->ensureCompatible($slaveVehicles, $masterVehicle);
-    	
-    	$masterVehicle = new Elite_Vaftire_Model_Vehicle($masterVehicle);
-    	foreach($slaveVehicles as $slaveVehicle)
+    	if( file_exists(ELITE_PATH.'/Vafwheel') )
     	{
-    		$slaveVehicle = new Elite_Vaftire_Model_Vehicle($slaveVehicle);
-	    	if( $masterVehicle->tireSize() != $slaveVehicle->tireSize() )
-	    	{
-	    		throw new Elite_Vaf_Model_Merge_Exception_IncompatibleVehicleAttribute('tire sizes dont match');
-	    	}
+			$wheelValidator = new Elite_Vafwheel_Model_MergeValidator;
+	    	$wheelValidator->ensureCompatible($slaveVehicles, $masterVehicle);    		
     	}
+    	
+    	if( file_exists(ELITE_PATH.'/Vaftire') )
+    	{
+	    	$tireValidator = new Elite_Vaftire_Model_MergeValidator;
+	    	$tireValidator->ensureCompatible($slaveVehicles, $masterVehicle);
+    	}
+    	
+    	if( file_exists(ELITE_PATH.'/Vafpaint') )
+    	{
+	    	$paintValidator = new Elite_Vafpaint_Model_MergeValidator;
+	    	$paintValidator->ensureCompatible($slaveVehicles, $masterVehicle);
+    	}    	
     }
     
     function operatingGrain()
