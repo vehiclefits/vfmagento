@@ -57,6 +57,16 @@ class Elite_Vaf_Model_Merge extends Elite_Vaf_Model_Base
     {
     	$wheelValidator = new Elite_Vafwheel_Model_MergeValidator;
     	$wheelValidator->ensureCompatible($slaveVehicles, $masterVehicle);
+    	
+    	$masterVehicle = new Elite_Vaftire_Model_Vehicle($masterVehicle);
+    	foreach($slaveVehicles as $slaveVehicle)
+    	{
+    		$slaveVehicle = new Elite_Vaftire_Model_Vehicle($slaveVehicle);
+	    	if( $masterVehicle->tireSize() != $slaveVehicle->tireSize() )
+	    	{
+	    		throw new Elite_Vaf_Model_Merge_Exception_IncompatibleVehicleAttribute('tire sizes dont match');
+	    	}
+    	}
     }
     
     function operatingGrain()

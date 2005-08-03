@@ -49,6 +49,11 @@ class Elite_Vaftire_Model_Vehicle
         ));
     }
     
+    function vehicle()
+    {
+    	return $this->wrappedVehicle;
+    }
+    
     function __call($methodName,$arguments)
     {
         $method = array($this->wrappedVehicle,$methodName);
