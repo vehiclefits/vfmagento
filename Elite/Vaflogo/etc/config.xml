@@ -6,4 +6,12 @@
             <version>1.32</version>
         </Elite_Vaflogo>
     </modules>
+    <global>
+
+        <blocks>
+            <vaflogo>
+                <class>Elite_Vaflogo_Block</class>
+            </vaflogo>
+        </blocks>
+    </global>
 </config>
