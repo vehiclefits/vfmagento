@@ -24,22 +24,29 @@ class Elite_Vaf_Model_Split extends Elite_Vaf_Model_Base
         {
             $this->apply($descendant);
         }
-        if(count($descendants))
+        if(count($descendants) && $this->shouldDeleteOldVehicle()  )
         {
             $this->vehicle()->unlink();
         }
     }
     
+    function shouldDeleteOldVehicle()
+    {
+    	$oldVehiclesTitleForCurrentOperatingLevel = $this->vehicle()->getLevel($this->grain)->getTitle();
+    	return !in_array( $oldVehiclesTitleForCurrentOperatingLevel, $this->newTitles );
+    }
+    
     function apply(Elite_Vaf_Model_Vehicle $descendant)
     {
         $titles = $descendant->toTitleArray();
+        
         $levelsToReplace = $this->getSchema()->getPrevLevelsIncluding($this->grain);
         foreach( $levelsToReplace as $levelToReplace )
         {
             $replacementTitle = $this->vehicle()->getLevel($levelToReplace)->getTitle();
             $titles[$levelToReplace] = $replacementTitle;
         }
-        
+    
         foreach($this->newTitles as $replacementTitle)
         {
             $titles[$this->grain] = $replacementTitle;
