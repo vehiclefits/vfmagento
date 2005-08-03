@@ -18,8 +18,24 @@ class Elite_Vafnote_Model_Catalog_Product
     
     function numberOfNotes(Elite_Vaf_Model_Vehicle $vehicle)
     {
+        return count($this->notes($vehicle));
+    }
+    
+    function notesCodes(Elite_Vaf_Model_Vehicle $vehicle)
+    {
+        $codes = array();
+        foreach($this->notes($vehicle) as $note)
+        {
+        	$codes[] = $note->code;
+        }
+        return $codes;
+    }
+    
+    
+    function notes(Elite_Vaf_Model_Vehicle $vehicle)
+    {
         $mappingId = $this->getMappingId($vehicle);
-        return count($this->noteFinder()->getNotes($mappingId));
+        return $this->noteFinder()->getNotes($mappingId);
     }
     
     function noteFinder()

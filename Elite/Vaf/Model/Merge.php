@@ -31,6 +31,9 @@ class Elite_Vaf_Model_Merge extends Elite_Vaf_Model_Base
             $this->ensureSameGrain();
             
             $slaveVehicles = $this->slaveVehicles();
+            
+            $this->ensureCompatible($slaveVehicles, $master_vehicle);
+            
             foreach($slaveVehicles as $slaveVehicle)
             {
                 if($this->equalsAboveOperatingGrain($slaveVehicle, $master_vehicle))
@@ -48,6 +51,12 @@ class Elite_Vaf_Model_Merge extends Elite_Vaf_Model_Base
             throw $e;
         }
         $this->getReadAdapter()->commit();
+    }
+    
+    function ensureCompatible($slaveVehicles, $masterVehicle)
+    {
+    	$wheelValidator = new Elite_Vafwheel_Model_MergeValidator;
+    	$wheelValidator->ensureCompatible($slaveVehicles, $masterVehicle);
     }
     
     function operatingGrain()

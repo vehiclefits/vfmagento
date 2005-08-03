@@ -282,10 +282,6 @@ class Elite_Vaf_Model_MergeTests_MMYTest extends Elite_Vaf_TestCase
         return $this->markTestIncomplete();
     }
     
-    function merge($slaveLevels, $masterLevel)
-    {
-        $merge = new Elite_Vaf_Model_Merge($slaveLevels, $masterLevel);
-        $merge->execute();
-    }
+    
     
 }

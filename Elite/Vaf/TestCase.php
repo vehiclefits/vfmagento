@@ -688,6 +688,18 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
     {
         return new Elite_Vaf_Model_Schema_Generator();
     }
+    
+	function newNoteProduct($id=0)
+    {
+        $product = $this->newProduct($id);
+        return new Elite_Vafnote_Model_Catalog_Product($product);
+    }
+    
+	function merge($slaveLevels, $masterLevel)
+    {
+        $merge = new Elite_Vaf_Model_Merge($slaveLevels, $masterLevel);
+        $merge->execute();
+    }
 }
 
 class Elite_Vaf_Model_TestSubClass extends Elite_Vaf_Model_Level
