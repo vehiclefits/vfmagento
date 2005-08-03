@@ -254,7 +254,7 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
 
 	$resource = Mage::getSingleton('core/resource');
 	$read = $resource->getConnection('core_read');
-	$read->query('SET character_set_client = utf8;'); echo 2; exit();
+	$read->query('SET character_set_client = utf8;');
 	return $read;
     }
 
