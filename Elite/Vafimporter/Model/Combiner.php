@@ -69,7 +69,7 @@ class Elite_Vafimporter_Model_Combiner
             $combinations[$key] = array();
             foreach( $this->getSchema()->getLevels()  as $level )
             {
-                $combinations[$key][$level] = $combination[$level];
+                $combinations[$key][$level] = trim($combination[$level]);
             }
         }
         return $combinations;

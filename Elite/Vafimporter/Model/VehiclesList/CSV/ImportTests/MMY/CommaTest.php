@@ -10,7 +10,10 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_CommaTest extends
     
     function testComma()
     {
-        $this->importDefinitions();
+        $importer = $this->vehiclesListImporter('"make", "model", "year"
+"honda", "accord,civic", "2000,2003"');
+        $importer->import();
+
         $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new Elite_Vaf_Model_Schema );
         $vehicles = $vehicleFinder->findByLevels( array('make'=>'honda') );
                               
@@ -20,13 +23,16 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_CommaTest extends
         $this->assertEquals( 'honda civic 2000', $vehicles[2]->__toString() );        
         $this->assertEquals( 'honda civic 2003', $vehicles[3]->__toString() );        
     }
-  
-    protected function importDefinitions()
+
+    function testCommaWithSpaces()
     {
         $importer = $this->vehiclesListImporter('"make", "model", "year"
-"honda", "accord,civic", "2000,2003"');
+"honda", "accord, civic", "2000,2003"');
         $importer->import();
+
+        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new Elite_Vaf_Model_Schema );
+        $this->assertTrue($this->vehicleExists(array('make'=>'honda', 'model'=>'civic','year'=>'2000')));
     }
-    
+
     
 }
