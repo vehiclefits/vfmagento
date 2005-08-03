@@ -240,6 +240,13 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
 	    {
 		self::$dbAdapter = new My_Adapter(array('dbname' => VAF_DB_NAME, 'username' => VAF_DB_USERNAME, 'password' => VAF_DB_PASSWORD));
 		self::$dbAdapter->getConnection()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
+		
+		self::$dbAdapter->getConnection()->query('SET character set utf8;');
+		self::$dbAdapter->getConnection()->query('SET character_set_client = utf8;');
+		self::$dbAdapter->getConnection()->query('SET character_set_results = utf8;');
+		self::$dbAdapter->getConnection()->query('SET character_set_connection = utf8;');
+		self::$dbAdapter->getConnection()->query('SET character_set_database = utf8;');
+		self::$dbAdapter->getConnection()->query('SET character_set_server = utf8;');
 	    }
 	    return self::$dbAdapter;
 	}
@@ -247,6 +254,7 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
 
 	$resource = Mage::getSingleton('core/resource');
 	$read = $resource->getConnection('core_read');
+	$read->query('SET character_set_client = utf8;'); echo 2; exit();
 	return $read;
     }
 
