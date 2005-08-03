@@ -107,8 +107,19 @@ class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
     
     function __toString()
     {
-        $string = array();
-        $levels = $this->schema->getLevels(); 
+	$template = $this->getConfig()->search->vehicleTemplate;
+	$levels = $this->schema->getLevels();
+	if($template)
+	{
+	    foreach($levels as $level)
+	    {
+		$find = '%' . $level . '%';
+		$template = str_replace($find,$this->getLevel($level)->getTitle(),$template);
+	    }
+	    return $template;
+	}
+
+	$string = array();
         foreach( $levels as $level )
         {
             if( $this->levelIsOutsideFlexibleSelection( $level ) )
