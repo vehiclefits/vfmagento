@@ -7,7 +7,7 @@ class Elite_Vafdiagram_Model_ProductFinder
     {
 	$select = $this->getReadAdapter()->select()
 			->from('elite_product_servicecode', array('product_id'));
-	$this->filter($select,$paramaters);
+	$this->filter($select, $paramaters);
 	$select->order('callout');
 	$rs = $select->query()->fetchAll();
 	$return = array();
@@ -21,8 +21,9 @@ class Elite_Vafdiagram_Model_ProductFinder
     function listIllustrationIds($paramaters)
     {
 	$select = $this->getReadAdapter()->select()
-			->from('elite_product_servicecode', array('distinct(illustration_id)'));
-	$this->filter($select,$paramaters);
+			->from('elite_product_servicecode', array('distinct(illustration_id)'))
+			->order('illustration_id');
+	$this->filter($select, $paramaters);
 	$select->order('callout');
 	$rs = $select->query()->fetchAll();
 	$return = array();
@@ -33,7 +34,7 @@ class Elite_Vafdiagram_Model_ProductFinder
 	return $return;
     }
 
-    function filter($select,$paramaters)
+    function filter($select, $paramaters)
     {
 	$select->where('category1_id = ?', $paramaters['category1']);
 	if (isset($paramaters['category2']))
