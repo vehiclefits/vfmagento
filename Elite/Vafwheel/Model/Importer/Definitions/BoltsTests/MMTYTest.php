@@ -29,6 +29,37 @@ MAZDA,PROTÉGÉ ,DX,1988,2000,8X165.1');
         $this->assertEquals( 8, $vehicle->boltPattern()->lug_count, 'should import' );
     }
 
+    function testShouldImport3()
+    {
+	$this->import('"MAKE","MODEL","TRIM","year_start","year_end","BOLT PATTERN"
+"PROTÉGÉ","2.2, 3.0 CL","base","1995","2009","4x114.3"');
+
+	$vehicle = $this->vehicleFinder()->findOneByLevels(array('make'=>'PROTÉGÉ','model'=>'2.2', 'trim'=>'base', 'year'=>1995));
+	$vehicle = new Elite_Vafwheel_Model_Vehicle($vehicle);
+        $this->assertEquals( 4, $vehicle->boltPattern()->lug_count, 'should import' );
+    }
+
+    function testShouldImportUTF8()
+    {
+	$importer = new Elite_Vafwheel_Model_Importer_Definitions_Bolts(dirname(__FILE__).'/bolts_small-utf8.csv');
+        $importer->import();
+
+	$vehicle = $this->vehicleFinder()->findOneByLevels(array('make'=>'PROTÉGÉ','model'=>'2.2', 'trim'=>'base', 'year'=>1995));
+	$vehicle = new Elite_Vafwheel_Model_Vehicle($vehicle);
+        $this->assertEquals( 4, $vehicle->boltPattern()->lug_count, 'should import' );
+    }
+
+    function testShouldImportANSI()
+    {
+	return $this->markTestIncomplete();
+	$importer = new Elite_Vafwheel_Model_Importer_Definitions_Bolts(dirname(__FILE__).'/bolts_small-ansi.csv');
+        $importer->import();
+
+	$vehicle = $this->vehicleFinder()->findOneByLevels(array('make'=>'PROTÉGÉ','model'=>'2.2', 'trim'=>'base', 'year'=>1995));
+	$vehicle = new Elite_Vafwheel_Model_Vehicle($vehicle);
+        $this->assertEquals( 4, $vehicle->boltPattern()->lug_count, 'should import' );
+    }
+
     function import($data)
     {
 	$this->csvData = $data;
