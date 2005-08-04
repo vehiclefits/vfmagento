@@ -208,8 +208,26 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements
         return 'All Categories';
     }
 
+    function categoryAction($categoryId)
+    {
+        $categoryIdsHomepage = explode(',', $this->getConfig()->search->categoriesThatSubmitToHomepage);
+        $categoryIdsRefresh = explode(',', $this->getConfig()->search->categoriesThatRefresh);
+        if(in_array($categoryId, $categoryIdsHomepage))
+        {
+            return 'homepage';
+        }
+        if(in_array($categoryId, $categoryIdsRefresh))
+        {
+            return 'refresh';
+        }
+    }
+
     function action()
     {
+        if($this->categoryAction($this->currentCategoryId()))
+        {
+            return $this->categoryAction($this->currentCategoryId());
+        }
         $submitAction = $this->getConfig()->search->submitAction;
         $submitOnCategoryAction = $this->getConfig()->search->submitOnCategoryAction;
         $submitOnProductAction = $this->getConfig()->search->submitOnProductAction;
@@ -348,14 +366,30 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements
     
     protected function _toHtml()
     {
-        $category = Mage::registry('current_category');
-        $categoryId = is_object($category) ? $category->getId() : 0;
-        if( !$this->shouldShow( $categoryId ) )
+        
+        if( !$this->shouldShow( $this->currentCategoryId() ) )
         {
             return '';
         }
         $html = $this->renderView();
         return $html;
+    }
+
+    function currentCategoryId()
+    {
+        if(isset($this->current_category_id))
+        {
+            return $this->current_category_id;
+        }
+        $category = Mage::registry('current_category');
+        $categoryId = is_object($category) ? $category->getId() : 0;
+        $this->setCurrentCategoryId($categoryId);
+        return $categoryId;
+    }
+
+    function setCurrentCategoryId($id)
+    {
+        $this->current_category_id = $id;
     }
     
     function shouldShow( $categoryId )
