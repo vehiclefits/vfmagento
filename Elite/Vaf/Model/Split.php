@@ -20,6 +20,7 @@ class Elite_Vaf_Model_Split extends Elite_Vaf_Model_Base
             throw new Elite_Vaf_Model_Split_Exception('no grain');
         }
         $descendants = $this->vehicleDescendants();
+        $this->ensureCompatible($descendants);
         foreach($descendants as $descendant)
         {
             $this->apply($descendant);
@@ -28,6 +29,15 @@ class Elite_Vaf_Model_Split extends Elite_Vaf_Model_Base
         {
             $this->vehicle()->unlink();
         }
+    }
+    
+    function ensureCompatible($descendants)
+    {
+    	if( file_exists(ELITE_PATH.'/Vafpaint') )
+    	{
+	    	$paintValidator = new Elite_Vafpaint_Model_MergeValidator;
+	    	$paintValidator->ensureCompatible($descendants, $this->vehicle);
+    	}    
     }
     
     function shouldDeleteOldVehicle()
