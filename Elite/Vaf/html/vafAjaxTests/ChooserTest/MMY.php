@@ -33,7 +33,7 @@ $mapping->save();
     <script type="text/javascript" src="/vaf/ajax/js?front=1"></script>
     <script type="text/javascript" src="../common.js"></script>
     <script type="text/javascript">
-        jQuery(document).ready(function($){
+        jQuery(document).ready(function(){
             
             QUnit.done = function (failures, total) {
                 top.testPageComplete( 'chooserTest/MMY.php', failures, total );
@@ -44,24 +44,26 @@ $mapping->save();
             test("Selecting a MAKE should display a loading message in the MODEL select box", function() {
                 expect(1);
                 click( 'make', <?=$values['make']?> );
-                selectionTextEquals( $("#vafForm .modelSelect"), "loading" );
+                selectionTextEquals( jQuery("#vafForm .modelSelect"), "loading" );
             });
             
             test("Selecting a MAKE should NOT affect \"chooser form\"", function() {
                 expect(1);
                 click( 'make', <?=$values['make']?> );
-                selectionTextEquals( $("#vafChooserForm .modelSelect"), "-please select-" );
+                selectionTextEquals( jQuery("#vafChooserForm .modelSelect"), "-please select-" );
             });
             
             test("Clicking Make Should Load Models", function() {
                 stop(); 
                 expect(1);
-                click( 'make', <?=$values['make']?> );
-                $("#vafForm .modelSelect").bind( 'vafLevelLoaded', function() {
+                
+                jQuery("#vafForm .modelSelect").bind( 'vafLevelLoaded', function() {
                     start();
-                    $(".modelSelect").unbind('vafLevelLoaded');
-                    selectionTextEquals( $("#vafForm .modelSelect"), "Civic" );
+                    jQuery(".modelSelect").unbind('vafLevelLoaded');
+                    selectionTextEquals( jQuery("#vafForm .modelSelect"), "Civic" );
                 });
+                
+                click( 'make', <?=$values['make']?> );
             });
             
             module("Chooser Form");
@@ -70,7 +72,7 @@ $mapping->save();
                 expect(1);
                 chooserClick( 'make', <?=$values['make']?> );
                 
-                equals( 'loading', $("#vafChooserForm .modelSelect :selected").text() );
+                equals( 'loading', jQuery("#vafChooserForm .modelSelect :selected").text() );
             });
             
         });
@@ -84,8 +86,8 @@ $mapping->save();
     </ol>
     
     <?php
-    include('../search.include.php');
-    include('../chooser.include.php');
+    require('../search.include.php');
+    require('../chooser.include.php');
     ?>
   </body>
 </html>

@@ -32,7 +32,7 @@ $mapping->save();
     <script type="text/javascript" src="/vaf/ajax/js?front=1"></script>
     <script type="text/javascript" src="../common.js"></script>
     <script type="text/javascript">
-        jQuery(document).ready(function($){
+        jQuery(document).ready(function(){
             
             QUnit.done = function (failures, total) {
                 top.testPageComplete( 'ajaxTestJs/MMYLoadNextLevelAuto.php', failures, total );
@@ -44,12 +44,14 @@ $mapping->save();
             test("Clicking Make Should Load Years automatically when only one model is there", function() {
                 stop();
                 expect(1);
-                click( 'make', <?=$values['make']?> );
-                $(".yearSelect").bind( 'vafLevelLoaded', function() {
+                
+                jQuery(".yearSelect").bind( 'vafLevelLoaded', function() {
                     start();
-                    $(".yearSelect").unbind('vafLevelLoaded');
-                    selectionTextEquals( $(".yearSelect"), "2002" );
+                    jQuery(".yearSelect").unbind('vafLevelLoaded');
+                    selectionTextEquals( jQuery(".yearSelect"), "2002" );
                 });
+                
+                click( 'make', <?=$values['make']?> );
             });
             
         });

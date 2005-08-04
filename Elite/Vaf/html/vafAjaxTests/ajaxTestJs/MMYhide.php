@@ -25,7 +25,7 @@ $mapping->save();
     <script type="text/javascript" src="../common.js"></script>
     <script type="text/javascript" src="/vaf/ajax/js?front=1&unavailableSelections=hide"></script>
     <script type="text/javascript">
-        jQuery(document).ready(function($){
+        jQuery(document).ready(function(){
             
             QUnit.done = function (failures, total) {
                 top.testPageComplete( 'ajaxTestJs/MMYhide.php', failures, total );
@@ -49,23 +49,27 @@ $mapping->save();
             test("Clicking a Make should show Models", function() {
                 stop(); 
                 expect(1);
-                click( 'make', <?=$vehicle->getLevel('make')->getId()?> );
-                $(".modelSelect").bind( 'vafLevelLoaded', function() {
+                
+                jQuery(".modelSelect").bind( 'vafLevelLoaded', function() {
                     start();
-                    $(".modelSelect").unbind('vafLevelLoaded');
+                    jQuery(".modelSelect").unbind('vafLevelLoaded');
                     equals( jQuery( '.modelSelect').css('display'), "inline" );
                 });
+                
+                click( 'make', <?=$vehicle->getLevel('make')->getId()?> );
             });
             
             test("Clicking a Model should show Years", function() {
                 stop(); 
                 expect(1);
-                click( 'model', <?=$vehicle->getLevel('make')->getId()?> );
-                $(".yearSelect").bind( 'vafLevelLoaded', function() {
+                
+                jQuery(".yearSelect").bind( 'vafLevelLoaded', function() {
                     start();
-                    $(".yearSelect").unbind('vafLevelLoaded');
+                    jQuery(".yearSelect").unbind('vafLevelLoaded');
                     equals( jQuery( '.yearSelect').css('display'), "inline" );
                 });
+                
+                click( 'model', <?=$vehicle->getLevel('make')->getId()?> );
             });
 
             

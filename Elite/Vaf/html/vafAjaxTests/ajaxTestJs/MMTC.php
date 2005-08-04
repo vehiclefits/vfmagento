@@ -25,7 +25,7 @@ $mapping->save();
     <script type="text/javascript" src="../qunit/qunit.js"></script>
     <script type="text/javascript" src="/vaf/ajax/js?front=1"></script>
     <script type="text/javascript">
-        jQuery(document).ready(function($){
+        jQuery(document).ready(function(){
             
             QUnit.done = function (failures, total) {
                 top.testPageComplete( 'ajaxTestJs/MMTC.php', failures, total );
@@ -36,34 +36,36 @@ $mapping->save();
             test("Selecting a MAKE should display a loading message in the MODEL select box", function() {
                 expect(1);
                 click( 'make', <?=$vehicle->getLevel('make')->getId()?> );
-                selectionTextEquals( $(".modelSelect"), "loading" );
+                selectionTextEquals( jQuery(".modelSelect"), "loading" );
             });
             
             test("Clicking Make Should Load Models", function() {
                 stop(); 
                 expect(1);
-                click( 'make', <?=$vehicle->getLevel('make')->getId()?> );
-                $(".modelSelect").bind( 'vafLevelLoaded', function() {
+                
+                jQuery(".modelSelect").bind( 'vafLevelLoaded', function() {
                     start();
-                    $(".modelSelect").unbind('vafLevelLoaded');
-                    selectionTextEquals( $(".modelSelect"), "Civic" );
+                    jQuery(".modelSelect").unbind('vafLevelLoaded');
+                    selectionTextEquals( jQuery(".modelSelect"), "Civic" );
                 });
+                
+                click( 'make', <?=$vehicle->getLevel('make')->getId()?> );
             });
             
 //            test("Selecting a MODEL should display a loading message in the CHASSIS select box", function() {
 //                expect(1);
 //                click( 'model', <?=$vehicle->getLevel('make')->getId()?> );
-//                selectionTextEquals( $(".chassisSelect"), "loading" );
+//                selectionTextEquals( jQuery(".chassisSelect"), "loading" );
 //            });
             
 //            test("Clicking Model Should Load Trims", function() {
 //                stop(); 
 //                expect(1);
 //                click( 'make', <?=$vehicle->getLevel('make')->getId()?> );
-//                $(".modelSelect").bind( 'vafLevelLoaded', function() {
+//                jQuery(".modelSelect").bind( 'vafLevelLoaded', function() {
 //                    start();
-//                    $(".modelSelect").unbind('vafLevelLoaded');
-//                    selectionTextEquals( $(".modelSelect"), "Civic" );
+//                    jQuery(".modelSelect").unbind('vafLevelLoaded');
+//                    selectionTextEquals( jQuery(".modelSelect"), "Civic" );
 //                });
 //            });
             

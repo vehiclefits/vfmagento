@@ -39,7 +39,7 @@ $mapping->save();
     <script type="text/javascript" src="/vaf/ajax/js?front=1"></script>
     <script type="text/javascript" src="../common.js"></script>
     <script type="text/javascript">
-        jQuery(document).ready(function($){
+        jQuery(document).ready(function(){
             
             QUnit.done = function (failures, total) {
                 top.testPageComplete( 'ajaxTestJs/MMYInUse.php', failures, total );
@@ -51,16 +51,19 @@ $mapping->save();
             test("Should only show years in use", function() {
                 stop(); 
                 expect(1);
-                click( 'make', <?=$values['make']?> ); 
-                $(".modelSelect").bind( 'vafLevelLoaded', function() { 
-                    click( 'model', <?=$values['model']?> );
-                    $(".yearSelect").bind( 'vafLevelLoaded', function() {
-                        start();
-                        $(".modelSelect").unbind('vafLevelLoaded');
-                        $(".yearSelect").unbind('vafLevelLoaded');
-                        equal( 1, $(".yearSelect option").length );
-                    });
+                
+                jQuery(".yearSelect").bind( 'vafLevelLoaded', function() {
+                    start();
+                    jQuery(".modelSelect").unbind('vafLevelLoaded');
+                    jQuery(".yearSelect").unbind('vafLevelLoaded');
+                    equal( 1, jQuery(".yearSelect option").length );
                 });
+
+                jQuery(".modelSelect").bind( 'vafLevelLoaded', function() { 
+                    click( 'model', <?=$values['model']?> );
+                });
+                
+                click( 'make', <?=$values['make']?> ); 
             });
             
         });

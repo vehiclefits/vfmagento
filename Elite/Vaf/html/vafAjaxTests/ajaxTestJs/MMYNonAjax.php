@@ -31,7 +31,7 @@ $mapping->save();
     <script type="text/javascript" src="/vaf/ajax/js?front=1&loadingStrategy=offline"></script>
     <script type="text/javascript" src="../common.js"></script>
     <script type="text/javascript">
-        jQuery(document).ready(function($){
+        jQuery(document).ready(function(){
             
             QUnit.done = function (failures, total) {
                 top.testPageComplete( 'ajaxTestJs/MMYNonAjax.php', failures, total );
@@ -44,7 +44,7 @@ $mapping->save();
                 expect(1);
                 click( 'make', <?=$values['make']?> );
                 
-                var options = $(".modelSelect option");
+                var options = jQuery(".modelSelect option");
                 equals( jQuery(options[0]).text(), "-please select-" );
                 
             });
@@ -53,13 +53,13 @@ $mapping->save();
 //                stop(); 
 //                expect(1);
 //                click( 'make', <?=$values['make']?> ); 
-//                $("#modelSelect").bind( 'vafLevelLoaded', function() { 
+//                jQuery("#modelSelect").bind( 'vafLevelLoaded', function() { 
 //                    click( 'model', <?=$values['model']?> );
-//                    $("#yearSelect").bind( 'vafLevelLoaded', function() {
+//                    jQuery("#yearSelect").bind( 'vafLevelLoaded', function() {
 //                        start();
-//                        $("#modelSelect").unbind('vafLevelLoaded');
-//                        $("#yearSelect").unbind('vafLevelLoaded');
-//                        selectionTextEquals( $("#yearSelect"), "2002" );
+//                        jQuery("#modelSelect").unbind('vafLevelLoaded');
+//                        jQuery("#yearSelect").unbind('vafLevelLoaded');
+//                        selectionTextEquals( jQuery("#yearSelect"), "2002" );
 //                    });
 //                });
 //            });

@@ -25,7 +25,7 @@ $mapping->save();
     <script type="text/javascript" src="../common.js"></script>
     <script type="text/javascript" src="/vaf/ajax/js?front=1&unavailableSelections=disable"></script>
     <script type="text/javascript">
-        jQuery(document).ready(function($){
+        jQuery(document).ready(function(){
             
             QUnit.done = function (failures, total) {
                 top.testPageComplete( 'ajaxTestJs/MMYdisabled.php', failures, total );
@@ -49,27 +49,31 @@ $mapping->save();
             test("Clicking Make enable Model", function() {
                 stop(); 
                 expect(1);
-                click( 'make', <?=$vehicle->getLevel('make')->getId()?> );
-                $(".modelSelect").bind( 'vafLevelLoaded', function() {
+                
+                jQuery(".modelSelect").bind( 'vafLevelLoaded', function() {
                     start();
-                    $(".modelSelect").unbind('vafLevelLoaded');
+                    jQuery(".modelSelect").unbind('vafLevelLoaded');
                     equals( undefined, jQuery( '.modelSelect').attr('disabled') );
                 });
+                
+                click( 'make', <?=$vehicle->getLevel('make')->getId()?> );
             });
 
             test("Clicking Model Should enable Year", function() {
                 stop(); 
                 expect(1);
-                click( 'make', <?=$vehicle->getLevel('make')->getId()?> ); 
-                $(".modelSelect").bind( 'vafLevelLoaded', function() { 
-                    click( 'model', <?=$vehicle->getLevel('model')->getId()?> );
-                    $(".yearSelect").bind( 'vafLevelLoaded', function() {
-                        start();
-                        $(".modelSelect").unbind('vafLevelLoaded');
-                        $(".yearSelect").unbind('vafLevelLoaded');
-                        equals( undefined, jQuery( '.yearSelect').attr('disabled') );
-                    });
+                
+                jQuery(".yearSelect").bind( 'vafLevelLoaded', function() {
+                    start();
+                    jQuery(".modelSelect").unbind('vafLevelLoaded');
+                    jQuery(".yearSelect").unbind('vafLevelLoaded');
+                    equals( undefined, jQuery( '.yearSelect').attr('disabled') );
                 });
+
+                jQuery(".modelSelect").bind( 'vafLevelLoaded', function() { 
+                    click( 'model', <?=$vehicle->getLevel('model')->getId()?> );
+                });
+                click( 'make', <?=$vehicle->getLevel('make')->getId()?> ); 
             });
             
         });

@@ -35,7 +35,7 @@ $values = $vehicle->toValueArray();
     <script type="text/javascript" src="/vaf/ajax/js"></script>
     <script type="text/javascript" src="../common.js"></script>
     <script type="text/javascript">
-        jQuery(document).ready(function($){
+        jQuery(document).ready(function(){
             
             QUnit.done = function (failures, total) {
                 top.testPageComplete( 'multiTreeTest/YMMGlobalMake.php', failures, total );
@@ -46,81 +46,87 @@ $values = $vehicle->toValueArray();
             test("Clicking Year Should Load Makes", function() {
                 stop(); 
                 expect(1);
-                multiTreeClick( 'year', <?=$values['year']?> );
-                $(".makeSelect").bind( 'vafLevelLoaded', function() {
+                
+                jQuery(".makeSelect").bind( 'vafLevelLoaded', function() {
                     start();
-                    $(".makeSelect").unbind('vafLevelLoaded');
-                    firstOptionTextEquals( $(".makeSelect"), "Honda" );
+                    jQuery(".makeSelect").unbind('vafLevelLoaded');
+                    firstOptionTextEquals( jQuery(".makeSelect"), "Honda" );
                 });
+                
+                multiTreeClick( 'year', <?=$values['year']?> );
             });
             
             test("Clicking Make Should Load Models", function() {
                 stop(); 
                 expect(1);
-                multiTreeClick( 'make', <?=$values['make']?> );
-                $(".modelSelect").bind( 'vafLevelLoaded', function() {
+                
+                jQuery(".modelSelect").bind( 'vafLevelLoaded', function() {
                     start();
-                    $(".modelSelect").unbind('vafLevelLoaded');
-                    firstOptionTextEquals( $(".modelSelect"), "Civic" );
+                    jQuery(".modelSelect").unbind('vafLevelLoaded');
+                    firstOptionTextEquals( jQuery(".modelSelect"), "Civic" );
                 });
+                
+                multiTreeClick( 'make', <?=$values['make']?> );
             });
             
             test("'quick add' year should 'quick add' new year to year select box", function() {
                 stop(); 
                 expect(3);
-                $('.vafQuickAdd_year').val('2006');
-                $('.yearSelect').bind('vafLevelQuickAdd', function() {
+                
+                jQuery('.yearSelect').bind('vafLevelQuickAdd', function() {
                     start();
-                    $('.yearSelect').unbind('vafLevelQuickAdd');
+                    jQuery('.yearSelect').unbind('vafLevelQuickAdd');
                     
-                    equals( $('.yearSelect option:last').text(), '2006', "Should add option with title 2006" );
-                    ok( $('.yearSelect option:last').val() != 0, "Added option should have an id" );
-                    equals( $('.vafQuickAdd_year').val(), "", "should clear quick add box afterwards" );
+                    equals( jQuery('.yearSelect option:last').text(), '2006', "Should add option with title 2006" );
+                    ok( jQuery('.yearSelect option:last').val() != 0, "Added option should have an id" );
+                    equals( jQuery('.vafQuickAdd_year').val(), "", "should clear quick add box afterwards" );
                     
                 });
-                $('.vafQuickAddSubmit_year').click();
+                
+                jQuery('.vafQuickAdd_year').val('2006');
+                jQuery('.vafQuickAddSubmit_year').click();
             });
             
             test("'quick add' make should 'quick add' new make to make select box", function() {
                 stop(); 
                 expect(4);
                 
+                jQuery('.makeSelect').bind('vafLevelQuickAdd', function() {
+                    multiTreeClick( 'make', <?=$values['make']?> );
+                });
+                
+                jQuery(".modelSelect").bind( 'vafLevelLoaded', function() {
+                    start();
+                    jQuery('.makeSelect').unbind('vafLevelQuickAdd');
+
+                    equals( jQuery('.makeSelect option:first').text(), 'Honda', "Should add option with title Honda" );
+                    ok( jQuery('.makeSelect option:last').val() != 0, "Added option should have an id" );
+                    equals( jQuery('.vafQuickAdd_make').val(), "", "should clear quick add box afterwards" );
+                    equals( 0, jQuery('.modelSelect option').length, "should not have any models yet" );
+                });
+
+                jQuery(".makeSelect").bind( 'vafLevelLoaded', function() {
+                    jQuery(".makeSelect").unbind( 'vafLevelLoaded');
+                        
+                    jQuery('.vafQuickAdd_make').val('Honda');
+                    jQuery('.vafQuickAddSubmit_make').click();
+                });
+                
                 var year2006 = jQuery(".yearSelect option:contains('2006')").val();
                 multiTreeClick('year', year2006);
-                $(".makeSelect").bind( 'vafLevelLoaded', function() {
-                    $(".makeSelect").unbind( 'vafLevelLoaded');
-                        
-                    $('.vafQuickAdd_make').val('Honda');
-                    
-                    $('.makeSelect').bind('vafLevelQuickAdd', function() {
-                        multiTreeClick( 'make', <?=$values['make']?> );
-                    });
-                    
-                    $(".modelSelect").bind( 'vafLevelLoaded', function() {
-                        start();
-                        $('.makeSelect').unbind('vafLevelQuickAdd');
-                        
-                        equals( $('.makeSelect option:first').text(), 'Honda', "Should add option with title Honda" );
-                        ok( $('.makeSelect option:last').val() != 0, "Added option should have an id" );
-                        equals( $('.vafQuickAdd_make').val(), "", "should clear quick add box afterwards" );
-                        equals( 0, $('.modelSelect option').length, "should not have any models yet" );
-                        
-                    });
-                    $('.vafQuickAddSubmit_make').click();
-                });
             });
 
             test("Clicking add Should add make selection", function() {
                 stop();
                 expect(1);
 
-                $(".multiTree").bind( 'vafMultiTreeAdded', function() {
+                jQuery(".multiTree").bind( 'vafMultiTreeAdded', function() {
                     start();
-                    equals( 'year:2;make:1;', $('.multiTree-selection').find('.vafcheck').val() );
-                    $(".multiTree").unbind( 'vafMultiTreeAdded');
+                    equals( 'year:2;make:1;', jQuery('.multiTree-selection').find('.vafcheck').val() );
+                    jQuery(".multiTree").unbind( 'vafMultiTreeAdded');
                 });
 
-                $('.multiTree-Add').click();
+                jQuery('.multiTree-Add').click();
             });
             
         });

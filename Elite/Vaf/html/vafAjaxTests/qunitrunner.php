@@ -7,7 +7,7 @@
                 display: block;
             }
         </style>
-        <script src="http://vaf.localhost/skin/adminhtml/default/default/jquery-1.7.1.min.js"> </script>
+        <script src="/skin/adminhtml/default/default/jquery-1.7.1.min.js"> </script>
         <script type="text/javascript">
             var testPages = new Array(
                 'ajaxTestJs/MMY.php',

@@ -46,7 +46,7 @@ $values = $vehicle->toValueArray();
     <script type="text/javascript" src="/vaf/ajax/js?front=1"></script>
     <script type="text/javascript" src="../common.js"></script>
     <script type="text/javascript">
-        jQuery(document).ready(function($){
+        jQuery(document).ready(function(){
             
             QUnit.done = function (failures, total) {
                 top.testPageComplete( 'ajaxTestJs/YMMGlobalMake.php', failures, total );
@@ -58,19 +58,20 @@ $values = $vehicle->toValueArray();
                 stop(); 
                 expect(3);
                 
-                click( 'year', <?=$values['year']?> );
-                $(".makeSelect").bind( 'vafLevelLoaded', function() {
-                    $(".makeSelect").unbind('vafLevelLoaded');
-                    selectionTextEquals( $(".makeSelect"), "Honda" );
-                });
-                
-                $(".modelSelect").bind( 'vafLevelLoaded', function() {
-                    $(".modelSelect").unbind('vafLevelLoaded');
-                    equals( $(".modelSelect option").length, 1, "Models should not crossover different years" );
-                    equals( $(".modelSelect option:first").html(), 'Civic' );
+                jQuery(".modelSelect").bind( 'vafLevelLoaded', function() {
+                    jQuery(".modelSelect").unbind('vafLevelLoaded');
+                    equals( jQuery(".modelSelect option").length, 1, "Models should not crossover different years" );
+                    equals( jQuery(".modelSelect option:first").html(), 'Civic' );
                     
                     start();
                 });
+                
+                jQuery(".makeSelect").bind( 'vafLevelLoaded', function() {
+                    jQuery(".makeSelect").unbind('vafLevelLoaded');
+                    selectionTextEquals( jQuery(".makeSelect"), "Honda" );
+                });
+                
+                click( 'year', <?=$values['year']?> );
             });
             
         });

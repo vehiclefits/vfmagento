@@ -37,7 +37,7 @@ $mapping->save();
     <script type="text/javascript" src="/vaf/ajax/js?front=1"></script>
     <script type="text/javascript" src="../common.js"></script>
     <script type="text/javascript">
-        jQuery(document).ready(function($){
+        jQuery(document).ready(function(){
             
             QUnit.done = function (failures, total) {
                 top.testPageComplete( 'ajaxTestJs/MMYMultiple.php', failures, total );
@@ -48,23 +48,25 @@ $mapping->save();
             test("Clicking Make Should Load Models", function() {
                 stop(); 
                 expect(1);
-                click( 'make', <?=$vehicle1->getValue('make')?> );
-                $(".modelSelect").bind( 'vafLevelLoaded', function() {
-                    
-                    $(".modelSelect").unbind('vafLevelLoaded');
-                    click('model', <?=$vehicle1->getValue('model')?>);
-                    
-                    $(".yearSelect").bind( 'vafLevelLoaded', function() {
-                        $(".yearSelect").unbind('vafLevelLoaded');
-                        click('model', <?=$vehicle2->getValue('model')?>);    
-                        $(".yearSelect").bind( 'vafLevelLoaded', function() {
-                            $(".yearSelect").unbind('vafLevelLoaded');
-                            selectionTextEquals( $(".yearSelect"), "2002", "when making a selection and changing it, should load" );
-                            start();
-                        });
+                
+                jQuery(".yearSelect").bind( 'vafLevelLoaded', function() {
+                    jQuery(".yearSelect").unbind('vafLevelLoaded');
+
+                    jQuery(".yearSelect").bind( 'vafLevelLoaded', function() {
+                        jQuery(".yearSelect").unbind('vafLevelLoaded');
+                        selectionTextEquals( jQuery(".yearSelect"), "2002", "when making a selection and changing it, should load" );
+                        start();
                     });
-                    
+
+                    click('model', <?=$vehicle2->getValue('model')?>);    
                 });
+
+                jQuery(".modelSelect").bind( 'vafLevelLoaded', function() {
+                    jQuery(".modelSelect").unbind('vafLevelLoaded');
+                    click('model', <?=$vehicle1->getValue('model')?>);
+                });
+                
+                click( 'make', <?=$vehicle1->getValue('make')?> );
             });
           
         });
