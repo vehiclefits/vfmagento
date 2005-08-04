@@ -26,7 +26,7 @@ $mapping->save();
   <head>
     <link rel="stylesheet" href="../qunit/qunit.css" type="text/css"/>
     
-    <script src="/skin/adminhtml/default/default/jquery-1.4.2.min.js"> </script>
+    <script src="/skin/adminhtml/default/default/jquery-1.7.1.min.js"> </script>
     <script type="text/javascript" src="../qunit/qunit.js"></script>
     <script type="text/javascript" src="/vaf/ajax/js?front=1&loadingStrategy=offline"></script>
     <script type="text/javascript" src="../common.js"></script>
