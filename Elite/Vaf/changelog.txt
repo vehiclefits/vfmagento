@@ -1,3 +1,15 @@
+1.31 January 2, 2010 
+======================================================
+- 0000778: [Other] Merge & Split should have documented behavior with fitment notes, paint codes, tires, wheels, wheel adapters (all modules)
+- 0000791: [Search Filter] Should not have hard coded style on drop downs
+
+ISSUES
+- 0000774: [Search Filter] If using select animation 'hide' it hides on back end, erroneously
+- 0000799: [Other] When doing a split, if old title is also in new requested titles, it should not delete the old title
+- 0000790: [Other] Upgrade issue
+- 0000789: [Wheels Module] Product wheel size import not operational
+- 0000767: [Grouped Product View] Group2/Category View Doesnt have correct links if in subdirectory
+
 1.30 December 9, 2010
 ======================================================
 - 0000782: [Vehicles List] Can not edit level
