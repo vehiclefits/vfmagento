@@ -161,6 +161,11 @@
                                 <sort_order>70</sort_order>
                                 <action>adminhtml/vafsettingscategorychooser</action>
                             </categorychooser>
+                            <logo translate="title">
+                                <title>Logo</title>
+                                <sort_order>80</sort_order>
+                                <action>adminhtml/vafsettingslogo</action>
+                            </logo>
                             
                         </children>
                     </settings>
