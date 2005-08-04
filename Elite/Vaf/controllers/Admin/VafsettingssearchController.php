@@ -29,7 +29,7 @@ class Elite_Vaf_Admin_VafsettingssearchController extends Mage_Adminhtml_Control
             foreach($form->getElements() as $name=>$element)
             {
                 if($name=='save') continue;
-                $config->category->$name = $element->getValue();
+                $config->search->$name = $element->getValue();
             }
             
             $writer = new Zend_Config_Writer_Ini(array('config'   => $config,
