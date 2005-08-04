@@ -310,11 +310,6 @@
         <echo msg="Creating archives..." />
 
         <!-- importer module -->
-        <tar destfile="${modulepath}/vaf-importer-${version}.tar.gz" compression="gzip">
-            <fileset dir="${modulepath}/build/importer">
-                <include name="**" />
-            </fileset>
-        </tar>
         <zip destfile="${modulepath}/vaf-importer-${version}.zip">
              <fileset dir="${modulepath}/build/importer">
                  <include name="**" />
@@ -322,11 +317,6 @@
         </zip>
         
         <!-- directory module -->
-        <tar destfile="${modulepath}/vaf-directory-${version}.tar.gz" compression="gzip">
-            <fileset dir="${modulepath}/build/directory">
-                <include name="**" />
-            </fileset>
-        </tar>
         <zip destfile="${modulepath}/vaf-directory-${version}.zip">
              <fileset dir="${modulepath}/build/directory">
                  <include name="**" />
@@ -334,11 +324,6 @@
         </zip>
         
         <!-- vaf module -->
-        <tar destfile="${modulepath}/vaf-${version}.tar.gz" compression="gzip">
-            <fileset dir="${modulepath}/build/vaf">
-                <include name="**" />
-            </fileset>
-        </tar>
         <zip destfile="${modulepath}/vaf-${version}.zip">
               <fileset dir="${modulepath}/build/vaf">
                 <include name="**/**" />
@@ -346,11 +331,6 @@
         </zip>
         
         <!-- sitemap module -->
-        <tar destfile="${modulepath}/vaf-sitemap-${version}.tar.gz" compression="gzip">
-            <fileset dir="${modulepath}/build/sitemap">
-                <include name="**" />
-            </fileset>
-        </tar>
         <zip destfile="${modulepath}/vaf-sitemap-${version}.zip">
              <fileset dir="${modulepath}/build/sitemap">
                  <include name="**" />
@@ -358,11 +338,6 @@
         </zip>
         
         <!-- notes module -->
-        <tar destfile="${modulepath}/vaf-note-${version}.tar.gz" compression="gzip">
-            <fileset dir="${modulepath}/build/note">
-                <include name="**" />
-            </fileset>
-        </tar>
         <zip destfile="${modulepath}/vaf-note-${version}.zip">
              <fileset dir="${modulepath}/build/note">
                  <include name="**" />
@@ -370,11 +345,6 @@
         </zip>
 
         <!-- paint module -->
-        <tar destfile="${modulepath}/vaf-paint-${version}.tar.gz" compression="gzip">
-            <fileset dir="${modulepath}/build/paint">
-                <include name="**" />
-            </fileset>
-        </tar>
         <zip destfile="${modulepath}/vaf-paint-${version}.zip">
              <fileset dir="${modulepath}/build/paint">
                  <include name="**" />
@@ -382,11 +352,6 @@
         </zip>
         
         <!-- wheel module -->
-        <tar destfile="${modulepath}/vaf-wheel-${version}.tar.gz" compression="gzip">
-            <fileset dir="${modulepath}/build/wheel">
-                <include name="**" />
-            </fileset>
-        </tar>
         <zip destfile="${modulepath}/vaf-wheel-${version}.zip">
              <fileset dir="${modulepath}/build/wheel">
                  <include name="**" />
@@ -394,11 +359,6 @@
         </zip>
         
         <!-- tire module -->
-        <tar destfile="${modulepath}/vaf-tire-${version}.tar.gz" compression="gzip">
-            <fileset dir="${modulepath}/build/tire">
-                <include name="**" />
-            </fileset>
-        </tar>
         <zip destfile="${modulepath}/vaf-tire-${version}.zip">
              <fileset dir="${modulepath}/build/tire">
                  <include name="**" />
@@ -406,11 +366,6 @@
         </zip>
         
         <!-- logo module -->
-        <tar destfile="${modulepath}/vaf-logo-${version}.tar.gz" compression="gzip">
-            <fileset dir="${modulepath}/build/logo">
-                <include name="**" />
-            </fileset>
-        </tar>
         <zip destfile="${modulepath}/vaf-logo-${version}.zip">
              <fileset dir="${modulepath}/build/logo">
                  <include name="**" />
@@ -418,11 +373,6 @@
         </zip>
         
         <!-- bundle module -->
-        <tar destfile="${modulepath}/vaf-bundle-${version}.tar.gz" compression="gzip">
-            <fileset dir="${modulepath}/build/bundle">
-                <include name="**" />
-            </fileset>
-        </tar>
         <zip destfile="${modulepath}/vaf-bundle-${version}.zip">
              <fileset dir="${modulepath}/build/bundle">
                  <include name="**" />
@@ -430,14 +380,6 @@
         </zip>
         
         <!-- 'old' starter package  (includes vaf & importer modules) -->
-        <tar destfile="${packagepath}/vaf-old-starter-${version}.tar.gz" compression="gzip">
-            <fileset dir="${modulepath}/build/vaf">
-                 <include name="**" />
-             </fileset>
-             <fileset dir="${modulepath}/build/importer">
-                <include name="**" />
-            </fileset>
-        </tar>
         <zip destfile="${packagepath}/vaf-old-starter-${version}.zip">
              <fileset dir="${modulepath}/build/vaf">
                  <include name="**" />
@@ -448,20 +390,6 @@
         </zip>
         
         <!-- 'new' starter package  (includes notes module modules) -->
-        <tar destfile="${packagepath}/vaf-starter-${version}.tar.gz" compression="gzip">
-            <fileset dir="${modulepath}/build/vaf">
-                 <include name="**" />
-             </fileset>
-             <fileset dir="${modulepath}/build/importer">
-                <include name="**" />
-            </fileset>
-             <fileset dir="${modulepath}/build/note">
-                <include name="**" />
-            </fileset>
-            <fileset dir="${modulepath}/build/logo">
-                <include name="**" />
-            </fileset>
-        </tar>
         <zip destfile="${packagepath}/vaf-starter-${version}.zip">
              <fileset dir="${modulepath}/build/vaf">
                  <include name="**" />
@@ -478,23 +406,6 @@
         </zip>
         
         <!-- professional package  (includes vaf, importer, sitemap, bundle, & directory modules) -->
-        <tar destfile="${packagepath}/vaf-professional-${version}.tar.gz" compression="gzip">
-            <fileset dir="${modulepath}/build/vaf">
-                 <include name="**" />
-             </fileset>
-             <fileset dir="${modulepath}/build/importer">
-                <include name="**" />
-            </fileset>
-            <fileset dir="${modulepath}/build/sitemap">
-                <include name="**" />
-            </fileset>
-            <fileset dir="${modulepath}/build/bundle">
-                <include name="**" />
-            </fileset>
-            <fileset dir="${modulepath}/build/directory">
-                <include name="**" />
-            </fileset>
-        </tar>
         <zip destfile="${packagepath}/vaf-professional-${version}.zip">
              <fileset dir="${modulepath}/build/vaf">
                  <include name="**" />
@@ -514,38 +425,6 @@
         </zip>
         
         <!-- enterprise package  (includes ALL - vaf, importer, sitemap, bundle, directory, logos, wheels, paint, adapter modules) -->
-        <tar destfile="${packagepath}/vaf-enterprise-${version}.tar.gz" compression="gzip">
-            <fileset dir="${modulepath}/build/vaf">
-                 <include name="**" />
-             </fileset>
-             <fileset dir="${modulepath}/build/importer">
-                <include name="**" />
-            </fileset>
-            <fileset dir="${modulepath}/build/sitemap">
-                <include name="**" />
-            </fileset>
-            <fileset dir="${modulepath}/build/bundle">
-                <include name="**" />
-            </fileset>
-            <fileset dir="${modulepath}/build/paint">
-                <include name="**" />
-            </fileset>
-            <fileset dir="${modulepath}/build/note">
-                <include name="**" />
-            </fileset>
-            <fileset dir="${modulepath}/build/wheel">
-                <include name="**" />
-            </fileset>
-            <fileset dir="${modulepath}/build/tire">
-                <include name="**" />
-            </fileset>
-            <fileset dir="${modulepath}/build/logo">
-                <include name="**" />
-            </fileset>
-            <fileset dir="${modulepath}/build/directory">
-                <include name="**" />
-            </fileset>
-        </tar>
         <zip destfile="${packagepath}/vaf-enterprise-${version}.zip">
              <fileset dir="${modulepath}/build/vaf">
                  <include name="**" />
@@ -591,43 +470,33 @@
         <exec command="scp ${modulepath}/build/vaf/Elite/Vaf/changelog.txt vehiclefits.com:&quot;/var/www/vehiclefits.com/views/changelog_data.phtml&quot;" />
     
 	    <!-- free -->
-        <exec command="scp ${modulepath}/vaf-${version}.tar.gz ne8.net:&quot;/var/www/vehiclefits.com/public_html/free/vaf-free-${version}.tar.gz&quot;" />
         <exec command="scp ${modulepath}/vaf-${version}.zip ne8.net:&quot;/var/www/vehiclefits.com/public_html/free/vaf-free-${version}.zip&quot;" />
         
         <!-- 'old' starter -->
-        <exec command="scp ${packagepath}/vaf-old-starter-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Old\ Starter/&quot;" />
         <exec command="scp ${packagepath}/vaf-old-starter-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Old\ Starter/&quot;" />
 
         <!-- 'new' starter -->
-	    <exec command="scp ${packagepath}/vaf-starter-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Starter/&quot;" />
 	    <exec command="scp ${packagepath}/vaf-starter-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Starter/&quot;" />
 
         <!-- professional -->
-        <exec command="scp ${packagepath}/vaf-professional-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Professional/&quot;" />
         <exec command="scp ${packagepath}/vaf-professional-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Professional/&quot;" />
 
         <!-- enterprise -->
-        <exec command="scp ${packagepath}/vaf-enterprise-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Enterprise/&quot;" />
         <exec command="scp ${packagepath}/vaf-enterprise-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Enterprise/&quot;" />
 
         <!-- wheel -->
-        <exec command="scp ${modulepath}/vaf-wheel-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Wheel/&quot;" />
         <exec command="scp ${modulepath}/vaf-wheel-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Wheel/&quot;" />
 
         <!-- tire -->
-        <exec command="scp ${modulepath}/vaf-tire-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Tire/&quot;" />
         <exec command="scp ${modulepath}/vaf-tire-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Tire/&quot;" />
 
         <!-- logo -->
-        <exec command="scp ${modulepath}/vaf-logo-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Logo/&quot;" />
         <exec command="scp ${modulepath}/vaf-logo-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Logo/&quot;" />
 
         <!-- note -->
-        <exec command="scp ${modulepath}/vaf-note-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Adapter\ \(notes\)/&quot;" />
         <exec command="scp ${modulepath}/vaf-note-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Adapter\ \(notes\)/&quot;" />
 
 	    <!-- paint -->
-	    <exec command="scp ${modulepath}/vaf-paint-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Paint/&quot;" />
 	    <exec command="scp ${modulepath}/vaf-paint-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Paint/&quot;" />
 
     </target>
