@@ -44,7 +44,7 @@ class Elite_Vaflogo_Block_LogoTests_YMMTest extends Elite_Vaf_TestCase
 	$vehicle = $this->createMMY('Honda', 'Civic', '2000');
 	$block = new Elite_Vaflogo_Block_Logo;
 	$this->setRequestParams($vehicle->toValueArray());
-	$this->assertEquals('<img class="vafLogo" src="/logos/HONDA.PNG" style="width:100%" />', $block->_toHtml());
+	$this->assertEquals('<img class="vafLogo" src="/logos/HONDA.PNG" />', $block->_toHtml());
     }
 
 }

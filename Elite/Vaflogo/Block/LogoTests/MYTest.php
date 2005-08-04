@@ -15,7 +15,7 @@ class Elite_Vaflogo_Block_LogoTests_MYTest extends Elite_Vaf_TestCase
 	$block->setConfig( new Zend_Config( array('logo' => array()) ) );
 
 	$this->setRequestParams($vehicle->toValueArray());
-	$this->assertEquals('<img class="vafLogo" src="/logos/CIVIC.PNG" style="width:100%" />', $block->_toHtml());
+	$this->assertEquals('<img class="vafLogo" src="/logos/CIVIC.PNG" />', $block->_toHtml());
     }
 
     function testShouldUseJPG()
@@ -26,7 +26,7 @@ class Elite_Vaflogo_Block_LogoTests_MYTest extends Elite_Vaf_TestCase
 	$block->setConfig( new Zend_Config( array('logo' => array('extension'=>'jpg')) ) );
 
 	$this->setRequestParams($vehicle->toValueArray());
-	$this->assertEquals('<img class="vafLogo" src="/logos/CIVIC.jpg" style="width:100%" />', $block->_toHtml());
+	$this->assertEquals('<img class="vafLogo" src="/logos/CIVIC.jpg" />', $block->_toHtml());
     }
 
     function testShouldOverrideLevel()
@@ -37,6 +37,6 @@ class Elite_Vaflogo_Block_LogoTests_MYTest extends Elite_Vaf_TestCase
 	$block->setConfig( new Zend_Config( array('logo' => array('level'=>'year')) ) );
 
 	$this->setRequestParams($vehicle->toValueArray());
-	$this->assertEquals('<img class="vafLogo" src="/logos/2000.PNG" style="width:100%" />', $block->_toHtml());
+	$this->assertEquals('<img class="vafLogo" src="/logos/2000.PNG" />', $block->_toHtml());
     }
 }
