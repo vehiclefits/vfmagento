@@ -9,7 +9,7 @@ class Elite_Vafwheel_Model_Importer_Definitions_BoltsTests_MMY_MultipleVehiclesT
     function testShouldImportHondaLugCount()
     {
         $this->importVehicleBolts(
-            '"Make","Model","Year","Bolt Pattern"' . "\n" .
+            '"make","model","year","bolt pattern"' . "\n" .
             'honda, civic, 2000, 4x114.3' . "\n" .
             'acura, integra, 2000, 5x117.3');
         $vehicle = $this->findVehicleByLevelsMMY( 'honda', 'civic', '2000' );
@@ -19,7 +19,7 @@ class Elite_Vafwheel_Model_Importer_Definitions_BoltsTests_MMY_MultipleVehiclesT
     function testShouldImportHondaBoltDistance()
     {
         $this->importVehicleBolts(
-            '"Make","Model","Year","Bolt Pattern"' . "\n" .
+            '"make","model","year","bolt pattern"' . "\n" .
             'honda, civic, 2000, 4x114.3' . "\n" .
             'acura, integra, 2000, 5x117.3');
         $vehicle = $this->findVehicleByLevelsMMY( 'honda', 'civic', '2000' );
@@ -29,7 +29,7 @@ class Elite_Vafwheel_Model_Importer_Definitions_BoltsTests_MMY_MultipleVehiclesT
     function testShouldImportAcuraLugCount()
     {
         $this->importVehicleBolts(
-            '"Make","Model","Year","Bolt Pattern"' . "\n" .
+            '"make","model","year","bolt pattern"' . "\n" .
             'honda, civic, 2000, 4x114.3' . "\n" .
             'acura, integra, 2000, 5x117.3');
         $vehicle = $this->findVehicleByLevelsMMY( 'acura', 'integra', '2000' );
@@ -39,7 +39,7 @@ class Elite_Vafwheel_Model_Importer_Definitions_BoltsTests_MMY_MultipleVehiclesT
     function testShouldImportAcuraBoltDistance()
     {
         $this->importVehicleBolts(
-            '"Make","Model","Year","Bolt Pattern"' . "\n" .
+            '"make","model","year","bolt pattern"' . "\n" .
             'honda, civic, 2000, 4x114.3' . "\n" .
             'acura, integra, 2000, 5x117.3');
         $vehicle = $this->findVehicleByLevelsMMY( 'acura', 'integra', '2000' );

@@ -8,7 +8,7 @@ class Elite_Vafwheel_Model_Importer_Definitions_BoltsTests_YMMTest extends Elite
     {
         $this->switchSchema('year,make,model');
         
-        $this->csvData = '"Make","Model","year_start","year_end","Bolt Pattern"
+        $this->csvData = '"make","model","year_start","year_end","bolt pattern"
 honda, civic, 2000, 2002, 1x114.3
 acura, integra, 2000, 2003, 2x114.3';
         $this->csvFile = TESTFILES . '/bolt-definitions-range.csv';

@@ -11,7 +11,7 @@ class Elite_Vafwheel_Model_Importer_Definitions_BoltsTests_MMTYTest extends Elit
     
     function testShouldImport1()
     {
-	$this->import('Make,Model,Trim,Year_Start,Year_End,Bolt_Pattern
+	$this->import('make,model,trim,year_start,year_end,bolt_pattern
 CHEVROLET,K-2500 PICKUP ,BASE,1988,2000,8X165.1');
 
 	$vehicle = $this->vehicleFinder()->findOneByLevels(array('make'=>'CHEVROLET','model'=>'K-2500 PICKUP', 'trim'=>'BASE', 'year'=>1988));
@@ -21,7 +21,7 @@ CHEVROLET,K-2500 PICKUP ,BASE,1988,2000,8X165.1');
     
     function testShouldImport2()
     {
-	$this->import('Make,Model,Trim,Year_Start,Year_End,Bolt_Pattern
+	$this->import('make,model,trim,year_start,year_end,bolt_pattern
 MAZDA,PROTÉGÉ ,DX,1988,2000,8X165.1');
 
 	$vehicle = $this->vehicleFinder()->findOneByLevels(array('make'=>'MAZDA','model'=>'PROTÉGÉ', 'trim'=>'dx', 'year'=>1990));
@@ -31,7 +31,7 @@ MAZDA,PROTÉGÉ ,DX,1988,2000,8X165.1');
 
     function testShouldImport3()
     {
-	$this->import('"MAKE","MODEL","TRIM","year_start","year_end","BOLT PATTERN"
+	$this->import('"make","model","trim","year_start","year_end","bolt pattern"
 "PROTÉGÉ","2.2, 3.0 CL","base","1995","2009","4x114.3"');
 
 	$vehicle = $this->vehicleFinder()->findOneByLevels(array('make'=>'PROTÉGÉ','model'=>'2.2', 'trim'=>'base', 'year'=>1995));
