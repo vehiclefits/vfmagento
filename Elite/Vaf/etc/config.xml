@@ -122,16 +122,23 @@
                             </local>
                         </children>
                     </vehicleslist>
-                    <schema translate="title">
-                        <title>Schema</title>
-                        <sort_order>200</sort_order>
+                    <settings translate="settings">
+                        <title>Settings</title>
+                        <sort_order>300</sort_order>
                         <children>
-                            <local translate="title">
-                                <title>Manage</title>
+                            <schema translate="title">
+                                <title>Schema</title>
+                                <sort_order>10</sort_order>
                                 <action>adminhtml/schema</action>
-                            </local>
+                            </schema>
+                            <settingscategory translate="title">
+                                <title>Category</title>
+                                <sort_order>20</sort_order>
+                                <action>adminhtml/vafsettingscategory</action>
+                            </settingscategory>
+                            
                         </children>
-                    </schema>
+                    </settings>
                 </children>
             </vaf>
         </menu>

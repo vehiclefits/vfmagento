@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Admin_VafimportexportsettingsController extends Mage_Adminhtml_Controller_Action
+class Elite_Vaf_Admin_VafsettingscategoryController extends Mage_Adminhtml_Controller_Action
 { 
     function indexAction()
     {
@@ -11,8 +11,8 @@ class Elite_Vafimporter_Admin_VafimportexportsettingsController extends Mage_Adm
         $this->myIndexAction();
         
         $block = $this->getLayout()
-                ->createBlock('core/template', 'vafimporter/settings' )
-                ->setTemplate('vafimporter/settings.phtml');
+                ->createBlock('core/template', 'vafsettings/category' )
+                ->setTemplate('vafsettings/category.phtml');
         
         $this->_addContent( $block );
         $this->renderLayout();
@@ -20,15 +20,18 @@ class Elite_Vafimporter_Admin_VafimportexportsettingsController extends Mage_Adm
     
     function myIndexAction()
     {
-        if($_SERVER['REQUEST_METHOD'])
+        if($_SERVER['REQUEST_METHOD']=='POST')
         {
-            $form = new Elite_Vafimporter_Model_Settings;
+            $form = new Elite_Vaf_Model_Settings_Category;
             $form->populate($_POST);
             
             $config = $form->getConfig();
-            $config->importer->allowMissingFields = $form->getValue('allowMissingFields');
-            $config->importer->Y2KMode = $form->getValue('Y2KMode');
-            $config->importer->Y2KThreshold = $form->getValue('Y2KThreshold');
+            $config->category->disable = $form->getValue('disable');
+            $config->category->mode = $form->getValue('mode');
+            $config->category->whitelist = $form->getValue('whitelist');
+            $config->category->blacklist = $form->getValue('blacklist');
+            $config->category->requireVehicle = $form->getValue('requireVehicle');
+            
             
             $writer = new Zend_Config_Writer_Ini(array('config'   => $config,
                                                     'filename' => ELITE_CONFIG));
