@@ -1,5 +1,4 @@
 <?php
-
 class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_Interface
 {
 
@@ -250,11 +249,11 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
      */
     function storeFitInSession()
     {
-	if(isset($this->getConfig()->search->storeVehicleInSession) && false === $this->getConfig()->search->storeVehicleInSession)
+	if(!$this->shouldStoreVehicleInSession())
 	{
 	    return;
 	}
-	
+
 	if ($this->hasGETRequest())
 	{
 	    foreach ($this->schema()->getLevels() as $level)
@@ -281,6 +280,11 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
 	}
 
 	return $this->getValueForSelectedLevel($this->schema()->getLeafLevel());
+    }
+
+    function shouldStoreVehicleInSession()
+    {
+        return null == $this->getConfig() || !isset($this->getConfig()->search->storeVehicleInSession) || false != $this->getConfig()->search->storeVehicleInSession;
     }
 
     function getFlexibleDefinition()
@@ -344,6 +348,10 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
 
     function getConfig()
     {
+        if(!$this->config)
+        {
+            return Elite_Vaf_Helper_Data::getInstance()->getConfig();
+        }
 	return $this->config;
     }
 
