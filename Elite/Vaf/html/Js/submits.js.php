@@ -44,7 +44,7 @@ submitVafForm = function()
         jQuery('#vafForm').attr( 'action', jQuery('#categorySelect').val() );
     }
     var chooser = jQuery('#categorySelect');
-    if( !chooser.is('input') ) {
+    if( !chooser.is('input') && !chooser.is('select')) {
         chooser.html('<option value=""></option>');
     }
     jQuery('#vafForm').trigger("vafSubmit");
