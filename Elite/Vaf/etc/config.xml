@@ -141,6 +141,16 @@
                                 <sort_order>30</sort_order>
                                 <action>adminhtml/vafsettingssearch</action>
                             </settingssearch>
+                            <settingsproduct translate="title">
+                                <title>Product</title>
+                                <sort_order>40</sort_order>
+                                <action>adminhtml/vafsettingsproduct</action>
+                            </settingsproduct>
+                            <settingsgarage translate="title">
+                                <title>Garage</title>
+                                <sort_order>40</sort_order>
+                                <action>adminhtml/vafsettingsgarage</action>
+                            </settingsgarage>
                             
                         </children>
                     </settings>

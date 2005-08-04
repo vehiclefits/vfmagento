@@ -1,0 +1,17 @@
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('catalog')->__( 'Product Settings' ) ?></h4>
+    </div>
+    <fieldset>
+                 
+        <legend><?php echo Mage::helper('catalog')->__('Product Settings') ?></legend>
+        <?php
+        $form = new Elite_Vaf_Model_Settings_Product;
+        $form->populate($_POST);
+        $form->setAction('?');
+        $form->addElement('hidden','form_key',array('value'=>Mage::getSingleton('core/session')->getFormKey()));
+        $form->setView( new Zend_View);
+        echo $form->render();
+        ?>
+    </fieldset>
+</div>
