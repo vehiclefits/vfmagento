@@ -211,4 +211,9 @@ class Mage
     {
         
     }
+    
+    static function getBaseUrl()
+    {
+        return '/';
+    }
 }
