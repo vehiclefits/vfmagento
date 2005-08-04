@@ -30,7 +30,7 @@ Set text you want to appear in each dropdown while the ajax is loading, if left 
         $this->addElement('text','labels', array(
             'label'=>'labels',
             'description'=> ' Set to false if you don\'t want labels in front of the select boxes. Defaults to true.',
-            'value' => $this->getConfig()->search->labels
+            'value' => $this->getConfig()->search->labels ? 'true' : 'false'
         ));
         $this->addElement('text','unavailableSelections', array(
             'label'=>'unavailableSelections',
@@ -42,7 +42,7 @@ Before the user completely makes all selections you have several drop downs that
         $this->addElement('text','insertBrTag', array(
             'label'=>'insertBrTag',
             'description'=> 'Wether or not to insert a <br /> tag between each level. Set to true/false. Defaults to true. ',
-            'value' => $this->getConfig()->search->insertBrTag
+            'value' => $this->getConfig()->search->insertBrTag ? 'true' : 'false'
         ));
         $this->addElement('text','loadingStrategy', array(
             'label'=>'loadingStrategy',
@@ -87,7 +87,7 @@ Before the user completely makes all selections you have several drop downs that
         $this->addElement('text','storeVehicleInSession', array(
             'label'=>'storeVehicleInSession',
             'description'=> 'Set to false to not store the vehicle in the user\'s session. Defaults to true.',
-            'value' => $this->getConfig()->search->storeVehicleInSession
+            'value' => $this->getConfig()->search->storeVehicleInSession ? 'true' : 'false'
         ));
         
         $this->addElement('submit','save', array('label'=>'Save'));
