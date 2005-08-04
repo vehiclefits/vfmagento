@@ -156,6 +156,11 @@
                                 <sort_order>60</sort_order>
                                 <action>adminhtml/vafsettingshomepagesearch</action>
                             </homepagesearch>
+                            <categorychooser translate="title">
+                                <title>Category Chooser</title>
+                                <sort_order>70</sort_order>
+                                <action>adminhtml/vafsettingscategorychooser</action>
+                            </categorychooser>
                             
                         </children>
                     </settings>
