@@ -32,7 +32,7 @@ $mapping->save();
     <script type="text/javascript" src="/vaf/ajax/js?front=1"></script>
     <script type="text/javascript" src="../common.js"></script>
     <script type="text/javascript">
-        jQuery(document).ready(function($){
+        jQuery(document).ready(function(){
             
             QUnit.done = function (failures, total) {
                 top.testPageComplete( 'ajaxTestJs/Space.php', failures, total );
@@ -43,49 +43,56 @@ $mapping->save();
             test("Selecting a MAKE should display a loading message in the MODEL TYPE select box", function() {
                 expect(1);
                 click( 'make', <?=$values['make']?> );
-                selectionTextEquals( $(".model_typeSelect"), "loading" );
+                selectionTextEquals( jQuery(".model_typeSelect"), "loading" );
             });
             
             test("Clicking Make Should Load Models", function() {
-                stop(); 
                 expect(1);
-                click( 'make', <?=$values['make']?> );
-                $(".model_typeSelect").bind( 'vafLevelLoaded', function() {
+                stop(); 
+                
+                jQuery(".model_typeSelect").bind( 'vafLevelLoaded', function() {
+                    jQuery(".model_typeSelect").unbind('vafLevelLoaded');
+                    selectionTextEquals( jQuery(".model_typeSelect"), "Civic" );
                     start();
-                    $(".model_typeSelect").unbind('vafLevelLoaded');
-                    selectionTextEquals( $(".model_typeSelect"), "Civic" );
                 });
+                click( 'make', <?=$values['make']?> );
             });
+            
             test("Selecting a MODEL TYPE should display a loading message in the YEAR select box", function() {
                 expect(1);
                 click( 'model_type', <?=$values['make']?> );
-                selectionTextEquals( $(".yearSelect"), "loading" );
+                selectionTextEquals( jQuery(".yearSelect"), "loading" );
             });
             
             test("Clicking MODEL TYPE Should Load Years", function() {
                 stop(); 
                 expect(1);
-                click( 'make', <?=$values['make']?> ); 
-                $(".model_typeSelect").bind( 'vafLevelLoaded', function() { 
-                    click( 'model', <?=$values['model type']?> );
-                    $(".yearSelect").bind( 'vafLevelLoaded', function() {
-                        start();
-                        $(".model_typeSelect").unbind('vafLevelLoaded');
-                        $(".yearSelect").unbind('vafLevelLoaded');
-                        selectionTextEquals( $(".yearSelect"), "2002" );
-                    });
+                
+                jQuery(".yearSelect").bind( 'vafLevelLoaded', function() {
+                    
+                    jQuery(".model_typeSelect").unbind('vafLevelLoaded');
+                    jQuery(".yearSelect").unbind('vafLevelLoaded');
+                    selectionTextEquals( jQuery(".yearSelect"), "2002" );
+                    
+                    start();
                 });
+
+                jQuery(".model_typeSelect").bind( 'vafLevelLoaded', function() { 
+                    click( 'model', <?=$values['model type']?> );
+                });
+                click( 'make', <?=$values['make']?> );
             });
+            
             test("Submitting form should not cause error", function() {
                 jQuery().unbind("vafSubmit");
-                $("#vafSubmit").trigger("click");
+                jQuery("#vafSubmit").trigger("click");
             });
             
         });
     </script>
   </head>
   <body>
-    <h1 id="qunit-header">VAF - MMY</h1>
+    <h1 id="qunit-header">VAF - Space</h1>
     <h2 id="qunit-banner"></h2>
     <h2 id="qunit-userAgent"></h2>
     <ol id="qunit-tests">
