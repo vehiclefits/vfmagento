@@ -136,6 +136,11 @@
                                 <sort_order>20</sort_order>
                                 <action>adminhtml/vafsettingscategory</action>
                             </settingscategory>
+                            <settingssearch translate="title">
+                                <title>Search</title>
+                                <sort_order>30</sort_order>
+                                <action>adminhtml/vafsettingssearch</action>
+                            </settingssearch>
                             
                         </children>
                     </settings>
