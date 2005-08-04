@@ -93,6 +93,31 @@ Product B's fitments:
 
 <p>So basically, even though all years get merged together into one single model, care is taken that if a product does not fit one of those years, they will not be added as a result of the merge</p>
 
+<h2>Interoperation with other Modules</h2>
+<p>
+Fitment Notes<br />
+=====<br />
+MERGE Should "multiply" out all notes + vehicle combinations when requesting merge. All products that fit *any* vehicle, will now have notes from *all* vehicles.
+<br /><br />
+SPLIT Should copy notes to each resultant vehicle/mapping.<br /><br />
+
+Wheels/Wheel adapters<br />
+=====<br />
+MERGE Should prevent (throw exception) when requesting to merge vehicles that do not all share a common bolt pattern.<br /><br />
+
+SPLIT Should copy wheel (bolt pattern) to each resultant vehicle.<br /><br />
+
+Tires<br />
+======<br />
+MERGE Should prevent (throw exception) when requesting to merge vehicles that do not all share a common tire size.<br /><br />
+
+SPLIT Should copy tire size to each resultant vehicle.<br /><br />
+
+Paint Codes<br />
+======<br />
+MERGE Should prevent (throw exception) when requesting to merge vehicles that have paint codes.<br /><br />
+
+SPLIT Should prevent operation if vehicles have paint codes</p>
 
 </div>
 </body>
