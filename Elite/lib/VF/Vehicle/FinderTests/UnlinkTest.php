@@ -200,7 +200,7 @@ class VF_Vehicle_FinderTests_UnlinkTest extends VF_Import_TestCase
         $params = array( 'make'=>$make->getId(), 'model'=>$model->getId(), 'year'=>$year->getId());
         $this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::INCLUDE_PARTIALS )->unlink();
         
-        $this->assertEquals(0,$this->getReadAdapter()->query('select count(*) from elite_mapping')->fetchColumn( ));
+        $this->assertEquals(0,$this->getReadAdapter()->query('select count(*) from elite_1_mapping')->fetchColumn( ));
     }
     
     function levelExists($level,$id)

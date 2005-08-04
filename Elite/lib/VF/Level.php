@@ -199,7 +199,7 @@ class VF_Level implements VF_Configurable
         $bind = array($this->getSchema()->getRootLevel() . '_id' => $this->getId());
         if (!count($this->vehicleFinder()->findByLevelIds($bind, true)))
         {
-            $this->getReadAdapter()->insert('elite_definition', $bind);
+            $this->getReadAdapter()->insert('elite_' . $this->getSchema()->id() . '_definition', $bind);
         }
     }
 
@@ -234,7 +234,7 @@ class VF_Level implements VF_Configurable
             $titles[$this->getType()] = $this->getTitle();
             if (!count($this->vehicleFinder()->findByLevelIds($bind, true)))
             {
-                $this->getReadAdapter()->insert('elite_definition', $bind);
+                $this->getReadAdapter()->insert($this->getSchema()->definitionTable(), $bind);
             }
         }
     }
@@ -249,10 +249,12 @@ class VF_Level implements VF_Configurable
             }
         } else
         {
+            $rootTable = $this->getSchema()->levelTable($this->getSchema()->getRootLevel());
             $select = $this->getReadAdapter()->select()
-                            ->from('elite_level_' . $this->getSchema()->getRootLevel(), $this->vehicleFinder()->getColumns());
+                            ->from($rootTable, $this->vehicleFinder()->getColumns());
             $select .= $this->getJoinsNoDefinition();
-            $select .= sprintf(" WHERE `elite_level_%s`.`id` = %d", $this->getSchema()->getLeafLevel(), $this->getId());
+            $leafTable = $this->getSchema()->levelTable($this->getSchema()->getLeafLevel());
+            $select .= sprintf(" WHERE `".$leafTable."`.`id` = %d", $this->getId());
 
             $row = $this->query($select)->fetch(Zend_Db::FETCH_ASSOC);
         }
@@ -269,7 +271,7 @@ class VF_Level implements VF_Configurable
 
         if (count($this->vehicleFinder()->findByLevelIds($bind)) == 0)
         {
-            $this->getReadAdapter()->insert('elite_definition', $bind);
+            $this->getReadAdapter()->insert($this->getSchema()->definitionTable(), $bind);
         }
     }
 
@@ -292,12 +294,13 @@ class VF_Level implements VF_Configurable
             $joins .= sprintf(
                             '
                 LEFT JOIN
-                    `elite_level_%1$s`
+                    `%1$s`
                 ON
-                    `elite_level_%1$s`.`%2$s_id` = `elite_level_%2$s`.`id`
+                    `%1$s`.`%2$s_id` = `%3$s`.`id`
                 ',
-                            $level,
-                            $this->getSchema()->getPrevLevel($level)
+                $this->getSchema()->levelTable($level),
+                $this->getSchema()->getPrevLevel($level),
+                $this->getSchema()->levelTable($this->getSchema()->getPrevLevel($level))
             );
         }
         return $joins;
@@ -329,7 +332,7 @@ class VF_Level implements VF_Configurable
         $query = sprintf("DELETE FROM `" . $this->getTable() . "` WHERE   `id` = %d", $this->getId());
         $this->query($query);
 
-        $query = sprintf("DELETE FROM `elite_definition` WHERE `" . $this->getType() . "_id` = %d", $this->getId());
+        $query = sprintf("DELETE FROM `" . $this->getSchema()->definitionTable() . "` WHERE `" . $this->getType() . "_id` = %d", $this->getId());
         $this->query($query);
 
         if ($this->getType() == $this->getSchema()->getLeafLevel() && file_exists(ELITE_PATH . '/Vafwheel'))
@@ -363,7 +366,7 @@ class VF_Level implements VF_Configurable
         }
 
         $mappingsQuery = sprintf(
-                        "SELECT `id` FROM `elite_mapping` WHERE %s = %d",
+                        "SELECT `id` FROM `" . $this->getSchema()->mappingsTable() . "` WHERE %s = %d",
                         $this->getReadAdapter()->quoteIdentifier($this->getType() . '_id'),
                         (int) $this->getId()
         );
@@ -376,7 +379,7 @@ class VF_Level implements VF_Configurable
                 $this->query($deleteQuery);
             }
 
-            $deleteQuery = sprintf("DELETE FROM `elite_mapping` WHERE `id` = %d LIMIT 1", $mappingsRow['id']);
+            $deleteQuery = sprintf("DELETE FROM `" . $this->getSchema()->mappingsTable() . "` WHERE `id` = %d LIMIT 1", $mappingsRow['id']);
             $this->query($deleteQuery);
         }
     }
@@ -407,7 +410,7 @@ class VF_Level implements VF_Configurable
 
     function getTable()
     {
-        return 'elite_level_' . $this->getType();
+        return 'elite_level_' . $this->getSchema()->id() . '_' . $this->getType();
     }
 
     function getLevels()

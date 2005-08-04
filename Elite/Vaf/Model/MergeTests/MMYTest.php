@@ -268,7 +268,7 @@ class Elite_Vaf_Model_MergeTests_MMYTest extends Elite_Vaf_TestCase
         $masterLevel = array('make', $vehicle1 );
         $this->merge($slaveLevels, $masterLevel);
         
-        $count = $this->getReadAdapter()->select()->from('elite_mapping', array('count(*)'))->where('year_id = 0')->query()->fetchColumn();
+        $count = $this->getReadAdapter()->select()->from('elite_1_mapping', array('count(*)'))->where('year_id = 0')->query()->fetchColumn();
         $this->assertEquals( 0, $count );
     }
 

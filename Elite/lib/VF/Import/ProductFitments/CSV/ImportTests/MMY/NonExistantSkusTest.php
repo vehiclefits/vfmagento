@@ -21,7 +21,7 @@ class VF_Import_ProductFitments_CSV_ImportTests_MMY_NonExistantSkusTest extends 
             'sku, make, model, year' . "\n" .
             'nonexistantsku, honda, civic, 2000');
         $importer->import();
-        $count = $this->getReadAdapter()->query('select count(*) from elite_mapping where entity_id=0')->fetchColumn();
+        $count = $this->getReadAdapter()->query('select count(*) from elite_1_mapping where entity_id=0')->fetchColumn();
         $this->assertEquals(0,$count);
     }
     

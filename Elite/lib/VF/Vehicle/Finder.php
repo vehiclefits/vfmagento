@@ -32,12 +32,12 @@ class VF_Vehicle_Finder implements VF_Configurable
 	$columnsToSelect = array('id') + $this->getColumns();
 
 	$select = $this->getReadAdapter()->select()
-			->from('elite_definition', $columnsToSelect);
+			->from('elite_' . $this->schema->id() .'_definition', $columnsToSelect);
 	$this->addJoins($select, false);
 
 	foreach ($this->schema->getLevels() as $level)
 	{
-	    $select->where('elite_definition.' . $level . '_id != 0');
+	    $select->where('elite_' . $this->schema->id() .'_definition.' . $level . '_id != 0');
 	}
 
 	$r = $this->query($select);
@@ -62,9 +62,9 @@ class VF_Vehicle_Finder implements VF_Configurable
 	}
 
 	$select = $this->getReadAdapter()->select()
-			->from('elite_definition', $this->getColumns());
+			->from('elite_'.$this->schema->id().'_definition', $this->getColumns());
 	$this->addJoins($select, false);
-	$select->where('elite_definition.id = ?', $id);
+	$select->where('elite_'.$this->schema->id().'_definition.id = ?', $id);
 
 	$r = $this->query($select);
 	if (!$r)
@@ -96,7 +96,7 @@ class VF_Vehicle_Finder implements VF_Configurable
 	}
 
 	$select = $this->getReadAdapter()->select()
-			->from('elite_definition', $this->cols($level))
+			->from('elite_' . $this->schema->id() . '_definition', $this->cols($level))
 			->where(sprintf('%s_id = ?', $level), $id)
 			->limit(1);
 
@@ -150,8 +150,8 @@ class VF_Vehicle_Finder implements VF_Configurable
     {
 	$select = new VF_Select($this->getReadAdapter());
 	$select
-		->from('elite_definition')
-		->addLevelTitles('elite_definition');
+		->from('elite_' . $this->schema->id() . '_definition')
+		->addLevelTitles('elite_' . $this->schema->id() . '_definition');
 
 	foreach ($levels as $level => $value)
 	{
@@ -163,11 +163,11 @@ class VF_Vehicle_Finder implements VF_Configurable
 	    if (strpos($value, '-') || false !== strpos($value, '*'))
 	    {
 		$value = $this->regexifyValue($value);
-		$where = $this->getReadAdapter()->quoteInto('elite_level_' . $this->inflect($level) . '.title RLIKE ?', '^' . $value . '$');
+		$where = $this->getReadAdapter()->quoteInto('elite_level_' . $this->schema->id() . '_' . $this->inflect($level) . '.title RLIKE ?', '^' . $value . '$');
 		$select->where($where);
 	    } else
 	    {
-		$select->where('elite_level_' . $this->inflect($level) . '.title = ?', $value);
+		$select->where('elite_level_'  . $this->schema->id() . '_' . $this->inflect($level) . '.title = ?', $value);
 	    }
 	}
 
@@ -175,7 +175,7 @@ class VF_Vehicle_Finder implements VF_Configurable
 	{
 	    foreach ($this->schema->getLevels() as $level)
 	    {
-		$select->where('elite_definition.' . $this->inflect($level) . '_id != 0');
+		$select->where('elite_' . $this->schema->id() . '_definition.' . $this->inflect($level) . '_id != 0');
 	    }
 	}
 
@@ -231,8 +231,8 @@ class VF_Vehicle_Finder implements VF_Configurable
 
 	$select = new VF_Select($this->getReadAdapter());
 	$select
-		->from('elite_definition')
-		->addLevelTitles('elite_definition', $levelsToSelect);
+		->from('elite_' . $this->schema->id() . '_definition')
+		->addLevelTitles('elite_' . $this->schema->id() . '_definition', $levelsToSelect);
 
 	foreach ($this->schema->getLevels() as $level)
 	{
@@ -242,7 +242,7 @@ class VF_Vehicle_Finder implements VF_Configurable
 	    if ($value != false)
 	    {
 		$level = str_replace(' ', '_', $level);
-                $select->where('`elite_definition`.`' . $level . '_id` = ?', $value);
+                $select->where('`elite_' . $this->schema->id() . '_definition`.`' . $level . '_id` = ?', $value);
 	    }
 	}
 
@@ -253,7 +253,7 @@ class VF_Vehicle_Finder implements VF_Configurable
 		if (self::EXACT_ONLY != $mode || (isset($levelIds[$level]) && $levelIds[$level]))
 		{
 		    $level = str_replace(' ', '_', $level);
-                    $select->where('elite_definition.' . $level . '_id != 0');
+                    $select->where('elite_' . $this->schema->id() . '_definition.' . $level . '_id != 0');
 		}
 	    }
 	}
@@ -350,8 +350,8 @@ class VF_Vehicle_Finder implements VF_Configurable
 
 	foreach ($levels as $level)
 	{
-	    $columns[$level . '_id'] = 'elite_level_' . $level . '.id';
-	    $columns[$level] = 'elite_level_' . $level . '.title';
+	    $columns[$level . '_id'] = 'elite_level_' . $this->schema->id() .'_' . $level . '.id';
+	    $columns[$level] = 'elite_level_'  . $this->schema->id() .'_' . $level . '.title';
 	}
 	return $columns;
     }
@@ -363,8 +363,8 @@ class VF_Vehicle_Finder implements VF_Configurable
 
 	foreach ($levels as $level)
 	{
-	    $condition = sprintf('`elite_level_%1$s`.`id` = `elite_definition`.`%1$s_id`', $level);
-	    $select->joinLeft('elite_level_' . $level, $condition);
+	    $condition = sprintf('`elite_level_%2$d_%1$s`.`id` = `elite_%2$d_definition`.`%1$s_id`', $level, $this->schema->id());
+	    $select->joinLeft('elite_level_' . $this->schema->id() . '_' . $level, $condition);
 	}
     }
 

@@ -332,7 +332,7 @@ class VF_FlexibleSearch implements VF_FlexibleSearch_Interface
 	}
 	$where .= ')';
         
-	$rows = $this->getReadAdapter()->fetchAll("SELECT distinct( entity_id ) FROM elite_mapping WHERE  $where");
+	$rows = $this->getReadAdapter()->fetchAll("SELECT distinct( entity_id ) FROM " . $this->schema()->mappingsTable() . " WHERE  $where");
 
 	if (count($rows) == 0)
 	{

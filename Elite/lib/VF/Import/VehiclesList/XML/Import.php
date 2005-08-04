@@ -64,7 +64,8 @@ class VF_Import_VehiclesList_Xml_Import extends VF_Import
     {
         if( !$this->getSchema()->hasParent($level))
         {
-            $sql = "INSERT INTO elite_level_{$level} (`id`, `title`) ";
+            $levelTable = $this->getSchema()->levelTable($level);
+            $sql = "INSERT INTO {$levelTable} (`id`, `title`) ";
             $sql .= "SELECT DISTINCT `{$level}_id`, `{$level}` ";
             $sql .= "FROM elite_import i WHERE universal != 1 ";
             $sql .= "ON DUPLICATE KEY UPDATE title=VALUES(title);)";
@@ -73,7 +74,8 @@ class VF_Import_VehiclesList_Xml_Import extends VF_Import
         else
         {
             $pevLevel = $this->getSchema()->getPrevLevel($level);
-            $sql = "INSERT INTO `elite_level_{$level}` (`id`, `title`, `{$pevLevel}_id`)";
+            $levelTable = $this->getSchema()->levelTable($level);
+            $sql = "INSERT INTO `{$levelTable}` (`id`, `title`, `{$pevLevel}_id`)";
             $sql .= "SELECT DISTINCT `{$level}_id`, `{$level}`, `{$pevLevel}_id`";
             $sql .= "FROM `elite_import` i WHERE universal != 1 ";
             $sql .= "ON DUPLICATE KEY UPDATE title=VALUES(title);)";

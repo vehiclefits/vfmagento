@@ -44,7 +44,7 @@ class VF_Mapping implements VF_Configurable
         $levels = $schema->getLevels();
 
         $select = $this->getReadAdapter()->select()
-                        ->from('elite_mapping', array('id'));
+                        ->from($schema->mappingsTable(), array('id'));
         foreach ($this->vehicle->toValueArray() as $level => $id)
         {
             $select->where($this->inflect($level) . '_id = ?', $id);
@@ -68,7 +68,7 @@ class VF_Mapping implements VF_Configurable
         $query = sprintf(
                         '
             INSERT INTO
-                `elite_mapping`
+                `'.$schema->mappingsTable().'`
             (
                 ' . $columns . '
                 `entity_id`

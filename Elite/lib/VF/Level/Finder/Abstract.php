@@ -64,6 +64,6 @@ class VF_Level_Finder_Abstract implements VF_Configurable
     
     function getTable($table)
     {
-        return 'elite_level_' . str_replace(' ','_',$table);
+        return 'elite_level_' . $this->getSchema()->id() . '_' . str_replace(' ','_',$table);
     }
 }

@@ -231,7 +231,7 @@ class VF_Import_VehiclesList_CSV_Import extends VF_Import
     {
 	foreach ($this->getSchema()->getLevels() as $level)
 	{
-	    $select = $this->getReadAdapter()->select()->from('elite_level_' . str_replace(' ', '_', $level), 'count(*)');
+	    $select = $this->getReadAdapter()->select()->from('elite_level_' . $this->getSchema()->id() .'_' . str_replace(' ', '_', $level), 'count(*)');
 	    $result = $select->query()->fetchColumn();
 	    $this->start_count_added_by_level[$level] = $result;
 	}
@@ -239,7 +239,7 @@ class VF_Import_VehiclesList_CSV_Import extends VF_Import
 
     function startCountingAddedVehicles()
     {
-	$select = $this->getReadAdapter()->select()->from('elite_definition', 'count(*)');
+	$select = $this->getReadAdapter()->select()->from($this->getSchema()->definitionTable(), 'count(*)');
 	$result = $select->query()->fetchColumn();
 	$this->start_count_vehicles = $result;
     }
@@ -261,7 +261,7 @@ class VF_Import_VehiclesList_CSV_Import extends VF_Import
     {
 	foreach ($this->getSchema()->getLevels() as $level)
 	{
-	    $select = $this->getReadAdapter()->select()->from('elite_level_' . str_replace(' ', '_', $level), 'count(*)');
+	    $select = $this->getReadAdapter()->select()->from('elite_level_' . $this->getSchema()->id() . '_' . str_replace(' ', '_', $level), 'count(*)');
 	    $result = $select->query()->fetchColumn();
 	    $this->stop_count_added_by_level[$level] = $result;
 	    $this->count_added_by_level[$level] = $this->stop_count_added_by_level[$level] - $this->start_count_added_by_level[$level];
@@ -270,7 +270,7 @@ class VF_Import_VehiclesList_CSV_Import extends VF_Import
 
     function stopCountingAddedVehicles()
     {
-	$select = $this->getReadAdapter()->select()->from('elite_definition', 'count(*)');
+	$select = $this->getReadAdapter()->select()->from($this->getSchema()->definitionTable(), 'count(*)');
 	$result = $select->query()->fetchColumn();
 	$this->stop_count_vehicles = $result;
     }

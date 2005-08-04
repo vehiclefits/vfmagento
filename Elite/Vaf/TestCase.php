@@ -61,11 +61,11 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
 
     protected function truncateTables()
     {
-	$this->truncateTable('elite_level_make');
-	$this->truncateTable('elite_level_model');
-	$this->truncateTable('elite_level_year');
-	$this->truncateTable('elite_definition');
-	$this->truncateTable('elite_mapping');
+	$this->truncateTable('elite_level_1_make');
+	$this->truncateTable('elite_level_1_model');
+	$this->truncateTable('elite_level_1_year');
+	$this->truncateTable('elite_1_definition');
+	$this->truncateTable('elite_1_mapping');
 	$this->truncateTable('elite_mapping_paint');
 	$this->truncateTable('elite_note');
 	$this->truncateTable('elite_mapping_notes');
@@ -251,7 +251,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
     {
 	$result = $this->query(sprintf(
 				"SELECT `id` FROM %s WHERE `title` = %s",
-				$this->getReadAdapter()->quoteIdentifier('elite_level_' . $type),
+				$this->getReadAdapter()->quoteIdentifier('elite_level_1_' . $type),
 				$this->getReadAdapter()->quote($title)
 		));
 	$id = $result->fetchColumn(0);
@@ -280,7 +280,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
     /** @return integer the created fit's ID */
     protected function insertMappingYMM($year_id, $make_id, $model_id = 0, $product_id = 0)
     {
-	$sql = sprintf("REPLACE INTO `elite_mapping` ( `year_id`, `make_id`, `model_id`, `entity_id` ) VALUES ( %d, %d, %d, %d )", (int) $year_id, (int) $make_id, (int) $model_id, (int) $product_id);
+	$sql = sprintf("REPLACE INTO `elite_1_mapping` ( `year_id`, `make_id`, `model_id`, `entity_id` ) VALUES ( %d, %d, %d, %d )", (int) $year_id, (int) $make_id, (int) $model_id, (int) $product_id);
 	$this->query($sql);
 	return $this->getReadAdapter()->lastInsertId();
     }
@@ -294,7 +294,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
 
     protected function insertUniversalFit($product_id)
     {
-	$this->query(sprintf("REPLACE INTO `elite_mapping` ( `universal`, `entity_id` ) VALUES ( 1, %d )", (int) $product_id));
+	$this->query(sprintf("REPLACE INTO `elite_1_mapping` ( `universal`, `entity_id` ) VALUES ( 1, %d )", (int) $product_id));
 	return $this->getReadAdapter()->lastInsertId();
     }
 
@@ -397,19 +397,19 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
 	$sql = sprintf(
 			"
             SELECT
-                elite_level_year.*
+                elite_level_1_year.*
             FROM   
-                elite_level_make
+                elite_level_1_make
             LEFT JOIN
-                elite_level_model on elite_level_model.make_id = elite_level_make.id
+                elite_level_1_model on elite_level_1_model.make_id = elite_level_1_make.id
             LEFT JOIN
-                elite_level_year on elite_level_year.model_id = elite_level_model.id
+                elite_level_1_year on elite_level_1_year.model_id = elite_level_1_model.id
             WHERE
-                elite_level_make.title = %s
+                elite_level_1_make.title = %s
             AND
-                elite_level_model.title = %s
+                elite_level_1_model.title = %s
             AND
-                elite_level_year.title = %s
+                elite_level_1_year.title = %s
             ",
 			$this->getReadAdapter()->quote($make),
 			$this->getReadAdapter()->quote($model),
@@ -431,19 +431,19 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
 	$sql = sprintf(
 			"
             SELECT
-                elite_level_model.*
+                elite_level_1_model.*
             FROM   
-                elite_level_year
+                elite_level_1_year
             LEFT JOIN
-                elite_level_make on elite_level_make.year_id = elite_level_year.id
+                elite_level_1_make on elite_level_1_make.year_id = elite_level_1_year.id
             LEFT JOIN
-                elite_level_model on elite_level_model.make_id = elite_level_make.id
+                elite_level_1_model on elite_level_1_model.make_id = elite_level_1_make.id
             WHERE
-                elite_level_year.title = %s
+                elite_level_1_year.title = %s
             AND
-                elite_level_make.title = %s
+                elite_level_1_make.title = %s
             AND
-                elite_level_model.title = %s
+                elite_level_1_model.title = %s
             ",
 			$this->getReadAdapter()->quote($year),
 			$this->getReadAdapter()->quote($make),

@@ -9,10 +9,10 @@ class VF_Import_VehiclesList_BaseExport
     protected function rowResult()
     {
         $select = $this->getReadAdapter()->select()
-            ->from( array('d' => 'elite_definition') );    
+            ->from( array('d' => $this->schema()->definitionTable()) );    
         foreach( $this->schema()->getLevels() as $level )
         {
-            $table = 'elite_level_' . $level;
+            $table = $this->schema()->levelTable($level);
             $condition = sprintf('%s.id = d.%s_id', $table, $level );
             $select
                 ->joinLeft( $table, $condition, array($level=>'title') )

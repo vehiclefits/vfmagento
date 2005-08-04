@@ -34,14 +34,14 @@ class VF_Import_ProductFitments_CSV_Export extends VF_Import_VehiclesList_CSV_Ex
     {
 	$this->getReadAdapter()->getConnection()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
 	$select = $this->getReadAdapter()->select()
-			->from('elite_mapping', array('id', 'universal'));
+			->from($this->schema()->mappingsTable(), array('id', 'universal'));
 	foreach ($this->schema->getLevels() as $level)
 	{
-	    $table = 'elite_level_' . $level;
-	    $condition = sprintf('%s.id = elite_mapping.%s_id', $table, $level);
-	    $select->joinLeft($table, $condition, array($level => 'title'));
+	    $levelTable = $this->schema()->levelTable($level);
+	    $condition = sprintf('%s.id = '.$this->schema()->mappingsTable().'.%s_id', $levelTable, $level);
+	    $select->joinLeft($levelTable, $condition, array($level => 'title'));
 	}
-	$select->joinLeft(array('p' => $this->getProductTable()), 'p.entity_id = elite_mapping.entity_id', array('sku'));
+	$select->joinLeft(array('p' => $this->getProductTable()), 'p.entity_id = '.$this->schema()->mappingsTable().'.entity_id', array('sku'));
 	return $this->query($select);
     }
 

@@ -17,7 +17,7 @@ abstract class Elite_Vaf_Model_Base
     {
         $select = new VF_Select($this->getReadAdapter());
         $select
-            ->from('elite_mapping')
+            ->from($this->getSchema()->mappingsTable())
             ->whereLevelIdsEqual($vehicle_object->toValueArray());
         
         $result = $select->query()->fetchAll();

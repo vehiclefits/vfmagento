@@ -142,7 +142,8 @@ class VF_Schema_Generator
     protected function createLevel( $i )
     {
         $return = sprintf(
-            'CREATE TABLE IF NOT EXISTS `elite_level_%s` (',
+            'CREATE TABLE IF NOT EXISTS `elite_level_%d_%s` (',
+            $this->id(),
             $this->getLevel($i)
         ) . self::NEWLINE;
             $return .= '`id` int(255) NOT NULL AUTO_INCREMENT,' . self::NEWLINE;
@@ -171,7 +172,8 @@ class VF_Schema_Generator
     protected function enforceUniquenessOnLevel( $i )
     {
         return sprintf(
-            'ALTER TABLE `elite_level_%s` ADD UNIQUE (`title`);',
+            'ALTER TABLE `elite_level_%d_%s` ADD UNIQUE (`title`);',
+            $this->id(),
             $this->getLevel( $i )
         ) . self::NEWLINE;
     }
@@ -183,7 +185,8 @@ class VF_Schema_Generator
             return '';
         }
         return sprintf(
-            'ALTER TABLE `elite_level_%s` ADD INDEX ( `%s_id` );',
+            'ALTER TABLE `elite_level_%d_%s` ADD INDEX ( `%s_id` );',
+            $this->id(),
             $this->getLevel($i),
             $this->getPreviousLevel($i)
         ) . self::NEWLINE;
@@ -196,7 +199,7 @@ class VF_Schema_Generator
     
     protected function createMappingsTable()
     {
-        $return = 'CREATE TABLE IF NOT EXISTS `elite_mapping` (';
+        $return = sprintf('CREATE TABLE IF NOT EXISTS `elite_%d_mapping` (',$this->id());
             $return .= '`id` int(50) NOT NULL AUTO_INCREMENT,';
             $return .= $this->columns();
             $return .= '`entity_id` int(25) NOT NULL,';
@@ -205,19 +208,18 @@ class VF_Schema_Generator
 	    $return .= 'PRIMARY KEY (`id`),';
             $return .= 'KEY `universal` (`universal`),';
             $return .= $this->keys();
-        $return .= ') ENGINE=InnoDB CHARSET=utf8;
+        $return .= ') ENGINE=InnoDB CHARSET=utf8;';
 
-	ALTER TABLE `elite_mapping` ADD `price` FLOAT NOT NULL ;
-        ALTER TABLE `elite_mapping` ADD INDEX ( `entity_id` ) ;
-        ';
+	$return .= sprintf('ALTER TABLE `elite_%d_mapping` ADD `price` FLOAT NOT NULL ;',$this->id());
+        $return .= sprintf('ALTER TABLE `elite_%d_mapping` ADD INDEX ( `entity_id` ) ;',$this->id());
         
         return $return;
     }
     
     protected function createDefinitionTable()
     {
-        $return = "CREATE TABLE IF NOT EXISTS `elite_definition` (
-          `id` int(50) NOT NULL AUTO_INCREMENT,";
+        $return = sprintf("CREATE TABLE IF NOT EXISTS `elite_%d_definition` (",$this->id());
+          $return .= "`id` int(50) NOT NULL AUTO_INCREMENT,";
         $return .= $this->columns();
         $return .= "PRIMARY KEY (`id`),";
         $return .= $this->keys();
@@ -234,7 +236,7 @@ class VF_Schema_Generator
             $levels[] = sprintf( '`%s_id`', $level );
         }
         $levels = implode( ',', $levels );
-        return sprintf("ALTER TABLE `elite_definition` ADD UNIQUE ( %s );",$levels);
+        return sprintf("ALTER TABLE `elite_%d_definition` ADD UNIQUE ( %s );",$this->id(),$levels);
     }
     
     function addUniqueOnMappingsTable()
@@ -248,7 +250,7 @@ class VF_Schema_Generator
         $levels[] = 'universal';
         $levels[] = 'entity_id';
         $levels = implode( ',', $levels );
-        return sprintf("ALTER TABLE `elite_mapping` ADD UNIQUE ( %s );",$levels);
+        return sprintf("ALTER TABLE `elite_%d_mapping` ADD UNIQUE ( %s );",$this->id(),$levels);
     }
     
     function createSchemaTable()
@@ -390,5 +392,10 @@ class VF_Schema_Generator
     function getReadAdapter()
     {
         return Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
+    }
+    
+    function id()
+    {
+        return 1;
     }
 }

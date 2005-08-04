@@ -38,7 +38,7 @@ class Elite_Vafsitemap_Model_Sitemap_Vehicle extends VF_Import_Abstract
 	    $cols[] = $col . '_id';
 	}
 	$select = $db->select()
-			->from('elite_mapping', $cols);
+			->from($this->getSchema()->mappingsTable(), $cols);
 	foreach ($rewriteLevels as $level)
 	{
 	    $select->group($level . '_id');
@@ -77,7 +77,7 @@ class Elite_Vafsitemap_Model_Sitemap_Vehicle extends VF_Import_Abstract
 	$col .= ')))';
 
 	$select = $this->getReadAdapter()->select()
-			->from('elite_mapping', array($col));
+			->from($this->getSchema()->mappingsTable(), array($col));
 
 	$result = $select->query();
 	$count = $result->fetchColumn();

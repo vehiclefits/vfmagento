@@ -10,7 +10,7 @@ class Elite_Vafdiagram_Model_Schema_Generator extends VF_Schema_Generator
 				
 				ALTER TABLE  `elite_import` ADD  `service_code` VARCHAR( 100 ) NOT NULL;
 				
-				ALTER TABLE  `elite_definition` ADD  `service_code` VARCHAR( 100 ) NOT NULL;
+				ALTER TABLE  `elite_1_definition` ADD  `service_code` VARCHAR( 100 ) NOT NULL;
 				
 				ALTER TABLE `elite_product_servicecode` ADD `category1_id` INT( 10 ) NOT NULL ,
 ADD `category2_id` INT( 10 ) NOT NULL ,

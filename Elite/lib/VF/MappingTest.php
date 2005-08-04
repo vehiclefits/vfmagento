@@ -17,6 +17,18 @@ class VF_MappingTest extends Elite_Vaf_TestCase
         $mapping_id2 = $mapping->save();
         $this->assertEquals($mapping_id1, $mapping_id2, 'on repeated save should return existing mapping id');
     }
+
+    function testAlreadyHasMapping()
+    {
+        $vehicle = $this->createMMY();
+        
+        $mapping = new VF_Mapping( 1, $vehicle );
+        $mapping_id1 = $mapping->save();
+        
+        $mapping = new VF_Mapping( 1, $vehicle );
+        $mapping_id2 = $mapping->save();
+        $this->assertEquals($mapping_id1, $mapping_id2);
+    }
     
     /**
     * @expectedException Exception

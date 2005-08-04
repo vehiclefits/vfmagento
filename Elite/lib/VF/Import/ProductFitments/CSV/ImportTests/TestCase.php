@@ -44,7 +44,7 @@ abstract class VF_Import_ProductFitments_CSV_ImportTests_TestCase extends VF_Imp
         $r->closeCursor();
         
         $sql = sprintf(
-            "SELECT `%s_id` from `elite_mapping` WHERE `entity_id` = %d AND `universal` = 0",
+            "SELECT `%s_id` from `elite_1_mapping` WHERE `entity_id` = %d AND `universal` = 0",
             $schema->getLeafLevel(),
             $product_id
         );
@@ -71,7 +71,7 @@ abstract class VF_Import_ProductFitments_CSV_ImportTests_TestCase extends VF_Imp
         $r->closeCursor();
         
         $sql = sprintf(
-            "SELECT `id` from `elite_mapping` WHERE `entity_id` = %d",
+            "SELECT `id` from `elite_1_mapping` WHERE `entity_id` = %d",
             $product_id
         );
         $r = $this->query( $sql );

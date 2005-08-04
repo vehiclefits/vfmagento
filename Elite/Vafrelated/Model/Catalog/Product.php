@@ -12,7 +12,7 @@ class Elite_Vafrelated_Model_Catalog_Product
     function relatedProducts($vehicle)
     {
 	$select = $this->getReadAdapter()->select()
-	    ->from('elite_mapping',array('entity_id'))
+	    ->from($this->wrappedProduct->getSchema()->mappingsTable(),array('entity_id'))
 	    ->where('entity_id != ' . $this->getId())
 	    ->where('related = 1');
 	 foreach($vehicle->toValueArray() as $level=>$id)
@@ -35,7 +35,7 @@ class Elite_Vafrelated_Model_Catalog_Product
 	    return false;
 	}
 	$select = $this->getReadAdapter()->select()
-	    ->from('elite_mapping',array('related'))
+	    ->from($this->wrappedProduct->getSchema()->mappingsTable(),array('related'))
 	    ->where('entity_id = ' . $this->getId());
 	
 	return (bool)$select->query()->fetchColumn();
@@ -44,7 +44,7 @@ class Elite_Vafrelated_Model_Catalog_Product
     function setShowInRelated($value)
     {
 	$select =  $this->getReadAdapter()->select()
-	    ->from('elite_mapping',array('count(*)'))
+	    ->from($this->wrappedProduct->getSchema()->mappingsTable(),array('count(*)'))
 	    ->where('entity_id = ' . $this->getId());
 	if( 0 == $select->query()->fetchColumn())
 	{
@@ -52,7 +52,7 @@ class Elite_Vafrelated_Model_Catalog_Product
 		sprintf(
 			"
 		    REPLACE INTO
-			`elite_mapping`
+			`" . $this->wrappedProduct->getSchema()->mappingsTable() . "`
 		    (
 			`related`,
 			`entity_id`
@@ -68,7 +68,7 @@ class Elite_Vafrelated_Model_Catalog_Product
 		    )
 	    );
 	}
-	$this->query('UPDATE elite_mapping set related = ' . (int)$value . ' where entity_id = ' . (int)$this->getId() );
+	$this->query('UPDATE ' . $this->wrappedProduct->getSchema()->mappingsTable() . ' set related = ' . (int)$value . ' where entity_id = ' . (int)$this->getId() );
     }
 
     function __call($methodName,$arguments)

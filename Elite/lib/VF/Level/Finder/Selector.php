@@ -75,9 +75,10 @@ class VF_Level_Finder_Selector extends VF_Level_Finder_Abstract implements VF_Le
             throw new Exception( 'this type doesnt have children' );
         }
         
+        $nextLevelsTable = $this->getSchema()->levelTable($entity->getNextLevel());
         $q = $this->getReadAdapter()->select()
-            ->from(array('l'=>'elite_level_' . $entity->getNextLevel()))
-            ->joinLeft(array('d'=>'elite_definition'), 'l.id = d.' . $entity->getNextLevel() . '_id', array())
+            ->from(array('l'=>$nextLevelsTable))
+            ->joinLeft(array('d'=>$this->getSchema()->definitionTable()), 'l.id = d.' . $entity->getNextLevel() . '_id', array())
             ->where('d.' . $entity->getType() . '_id = ?', $entity->getId() )
             ->order('title')
             ->group('l.id');
@@ -121,8 +122,8 @@ class VF_Level_Finder_Selector extends VF_Level_Finder_Abstract implements VF_Le
         }
         
         $q = $this->getReadAdapter()->select()
-            ->from(array('l'=>'elite_level_' . $entity->getNextLevel()), 'count(distinct(l.id))')
-            ->joinLeft(array('d'=>'elite_definition'), 'l.id = d.' . $entity->getNextLevel() . '_id', array())
+            ->from(array('l'=>$this->getSchema()->levelTable($entity->getNextLevel())), 'count(distinct(l.id))')
+            ->joinLeft(array('d'=>$this->getSchema()->definitionTable()), 'l.id = d.' . $entity->getNextLevel() . '_id', array())
             ->where('d.' . $entity->getType() . '_id = ?', $entity->getId() )
             ->where('d.' . $entity->getNextLevel() . '_id != 0' );
                               
@@ -149,13 +150,13 @@ class VF_Level_Finder_Selector extends VF_Level_Finder_Abstract implements VF_Le
         if( is_numeric($parent_id) && $parent_id > 0 && $entity->getPrevLevel() )
         {
             $select
-                ->joinLeft(array('d'=>'elite_definition'), 'l.id = d.' . $entity->getType() . '_id', array())
+                ->joinLeft(array('d'=>$this->getSchema()->definitionTable()), 'l.id = d.' . $entity->getType() . '_id', array())
                 ->where('d.' . $entity->getPrevLevel() . '_id = ?', $parent_id );
         }
         
         if( is_array($parent_id) && $entity->getPrevLevel() )
         {
-            $select->joinLeft(array('d'=>'elite_definition'), 'l.id = d.' . $entity->getType() . '_id', array());
+            $select->joinLeft(array('d'=>$this->getSchema()->definitionTable()), 'l.id = d.' . $entity->getType() . '_id', array());
             foreach( $parent_id as $level => $each_parent_id)
             {
                 if(!in_array($level,$this->getSchema()->getLevels(),true))
@@ -223,7 +224,7 @@ class VF_Level_Finder_Selector extends VF_Level_Finder_Abstract implements VF_Le
     protected function doListInUse( $entity, $parents, $product_id = 0 )
     {
         $subQuery = $this->getReadAdapter()->select();
-        $subQuery->from('elite_mapping as fitment', array($entity->getType() .'_id'));
+        $subQuery->from($this->getSchema()->mappingsTable().' as fitment', array($entity->getType() .'_id'));
 
         if( $product_id )
         {
@@ -253,7 +254,7 @@ class VF_Level_Finder_Selector extends VF_Level_Finder_Abstract implements VF_Le
         
         $select = $this->getReadAdapter()->select();
         $select
-        	->from( array('m'=>'elite_level_' . $entity->getType() ), array('id', 'title') )
+        	->from( array('m'=>$this->getSchema()->levelTable($entity->getType()) ), array('id', 'title') )
         	->group('m.title');
         if(count($idSet))
         {
@@ -298,20 +299,20 @@ class VF_Level_Finder_Selector extends VF_Level_Finder_Abstract implements VF_Le
         $inflectedType = $this->inflect($type);
         
         $query = $this->getReadAdapter()->select()
-            ->from(array('l'=>'elite_level_' . $inflectedType))
+            ->from(array('l'=>'elite_level_' . $this->getSchema()->id() . '_' . $inflectedType))
             ->where('`title` LIKE binary ?', $title );
         
         if( !$this->getSchema()->isGlobal($type) && is_numeric($parent_id) && $parent_id )
         {
             $parent_type = $this->getSchema()->getPrevLevel($type);
             $inflected_parent_type = $this->inflect($parent_type);
-            $query->joinLeft(array('d'=>'elite_definition'), "l.id = d.{$inflectedType}_id", array());
+            $query->joinLeft(array('d'=>'elite_' . $this->getSchema()->id() . '_definition'), "l.id = d.{$inflectedType}_id", array());
             $query->where('d.' . $inflected_parent_type . '_id = ?', $parent_id);
         }
         
         if( is_array($parent_id) )
         {
-            $query->joinLeft(array('d'=>'elite_definition'), 'l.id = d.' . str_replace(' ', '_',$type) . '_id', array());
+            $query->joinLeft(array('d'=>'elite_' . $this->getSchema()->id() . '_definition'), 'l.id = d.' . str_replace(' ', '_',$type) . '_id', array());
             foreach($parent_id as $level=>$val)
             {
                 $query->where('d.' . str_replace(' ', '_',$level) . '_id = ?', $val);

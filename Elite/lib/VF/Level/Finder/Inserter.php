@@ -88,7 +88,7 @@ class VF_Level_Finder_Inserter extends VF_Level_Finder_Abstract implements VF_Le
 	    $bind = $this->vehicleBind();
 	    if (count($vehicleFinder->findByLevelIds($bind)) == 0)
 	    {
-		$this->getReadAdapter()->insert('elite_definition', $bind);
+		$this->getReadAdapter()->insert('elite_' . $this->getSchema()->id() . '_definition', $bind);
 	    }
 	} else
 	{

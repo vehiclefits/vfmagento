@@ -24,14 +24,14 @@ class VF_Import_ProductFitments_CSV_Import extends VF_Import_VehiclesList_CSV_Im
     
     function doStartCountingAdded()
     {
-        $select = $this->getReadAdapter()->select()->from('elite_mapping','count(*)');
+        $select = $this->getReadAdapter()->select()->from($this->getSchema()->mappingsTable(),'count(*)');
         $result = $select->query()->fetchColumn();
         $this->start_count_mappings = $result;
     }
     
     function doStopCountingAdded()
     {
-        $select = $this->getReadAdapter()->select()->from('elite_mapping','count(*)');
+        $select = $this->getReadAdapter()->select()->from($this->getSchema()->mappingsTable(),'count(*)');
         $result = $select->query()->fetchColumn();
         $this->stop_count_mappings = $result;
     }
@@ -139,7 +139,7 @@ class VF_Import_ProductFitments_CSV_Import extends VF_Import_VehiclesList_CSV_Im
         
         $select = $this->getReadAdapter()->select()
             ->from(array('i'=>'elite_import'), 'count(*)')
-            ->joinLeft(array('m'=>'elite_mapping'), $condition, array())
+            ->joinLeft(array('m'=>$this->schema()->mappingsTable()), $condition, array())
             ->where('i.product_id = m.entity_id');
         $this->skipped_mappings = $this->getReadAdapter()->query($select)->fetchColumn();
     }
@@ -156,7 +156,7 @@ class VF_Import_ProductFitments_CSV_Import extends VF_Import_VehiclesList_CSV_Im
             }
         }
         
-        $this->query('UPDATE elite_import i, elite_mapping m
+        $this->query('UPDATE elite_import i, '.$this->schema()->mappingsTable().' m
                       SET i.mapping_id = m.id
                       WHERE ' . $condition . ' && i.product_id = m.entity_id');
     }
@@ -164,7 +164,7 @@ class VF_Import_ProductFitments_CSV_Import extends VF_Import_VehiclesList_CSV_Im
     function extractFitmentsFromImportTable()
     {
 	$cols = $this->cols();
-        $sql = 'INSERT IGNORE INTO elite_mapping (' . $this->cols() . ' universal, entity_id, price) SELECT ' . $this->cols() . ' universal, product_id, price from elite_import where product_id != 0';
+        $sql = 'INSERT IGNORE INTO '.$this->getSchema()->mappingsTable().' (' . $this->cols() . ' universal, entity_id, price) SELECT ' . $this->cols() . ' universal, product_id, price from elite_import where product_id != 0';
         $this->query($sql);
     }
     
@@ -260,73 +260,6 @@ class VF_Import_ProductFitments_CSV_Import extends VF_Import_VehiclesList_CSV_Im
     function sku($row)
     {
         return $row[ $this->getFieldPosition('sku') ];    
-    }
-    
-    /**
-    * @var integer entity_id of the product row
-    * @var VF_Vehicle to check for assocation with
-    * @return boolean true only if the mapping between the product+definition exists
-    */
-    function hasMapping( $entity_id, VF_Vehicle $vehicle )
-    {
-        $sql = sprintf(
-            "SELECT count(*) FROM elite_mapping WHERE entity_id = %d AND %s = %d LIMIT 1",
-            (int)$entity_id,
-            $this->getReadAdapter()->quoteIdentifier( $this->getSchema()->getLeafLevel() . '_id' ),
-            (int)$vehicle->getLeafValue()
-        );
-        $r = $this->query( $sql );
-        return (bool) 0 != $r->fetchColumn();
-    }
-    
-    /**
-    * @var integer product id
-    * @var mixed boolean false for universal, or VF_Vehicle to create a mapping for
-    */
-    function insertMapping($row, $vehicle )
-    {
-        $sku = $this->sku($row);
-        $productId = $this->productId($sku);
-        if(!$productId)
-        {
-			$this->skipped_mappings++;
-			return;
-        }
-        
-        if( $this->isUniversal($row) )
-        {
-            $product = new Elite_Vaf_Model_Catalog_Product();
-            $product->setId($productId);
-            $product->setUniversal(1);
-            return;
-        }
-        
-        if(false === $vehicle)
-        {
-            $this->invalid_vehicle_count++;
-            $this->skipped_mappings++;
-            return;
-        }
-        
-        $mapping = new VF_Mapping($productId,$vehicle);
-        
-        if($this->hasMapping($productId,$vehicle))
-        {
-            $this->already_existing_mappings++;
-            $this->skipped_mappings++;
-            return $mapping->save();
-        }
-        
-        $mapping_id = $mapping->save();
-        if(!$mapping_id)
-        {
-            $this->skipped_mappings++;
-        }
-        else
-        {
-            $this->added_mappings++;
-        }
-        return $mapping_id;
     }
     
     function isUniversal($row)

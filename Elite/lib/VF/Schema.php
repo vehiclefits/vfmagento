@@ -307,6 +307,21 @@ class VF_Schema implements
         return $result->fetchColumn();
     }
     
+    function definitionTable()
+    {
+        return 'elite_'.$this->id() . '_definition';
+    }
+    
+    function mappingsTable()
+    {
+        return 'elite_'.$this->id() . '_mapping';
+    }
+    
+    function levelTable($level)
+    {
+         return 'elite_level_' . $this->id() .'_'.str_replace(' ', '_', $level);
+    }
+    
     /** @return Zend_Db_Adapter_Abstract */
     function getReadAdapter()
     {

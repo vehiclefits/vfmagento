@@ -12,7 +12,7 @@ class Elite_Vafdiagram_Model_Vehicle
 	function serviceCode()
     {
     	$select = $this->getReadAdapter()->select()
-            ->from('elite_definition', array('service_code'));
+            ->from($this->wrappedVehicle->schema()->definitionTable(), array('service_code'));
 		foreach($this->toValueArray() as $key=>$val)
 		{
 			$select->where($key . '_id = ?', $val);

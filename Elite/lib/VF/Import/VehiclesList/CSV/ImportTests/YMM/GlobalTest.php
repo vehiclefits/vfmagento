@@ -28,7 +28,7 @@ class VF_Import_VehiclesList_CSV_ImportTests_YMM_GlobalTest extends VF_Import_Te
                                   '1995,CJ8');
         $vehicle1 = $this->vehicleFinder()->findOneByLevels(array('model'=>'CJ7', 'year'=>'1995'));
         $vehicle2 = $this->vehicleFinder()->findOneByLevels(array('model'=>'CJ8', 'year'=>'1995'));
-        $count = $this->getReadAdapter()->query('select count(*) from elite_level_year')->fetchColumn();
+        $count = $this->getReadAdapter()->query('select count(*) from elite_level_1_year')->fetchColumn();
         $this->assertEquals(1,$count);
     }
     
@@ -49,7 +49,7 @@ class VF_Import_VehiclesList_CSV_ImportTests_YMM_GlobalTest extends VF_Import_Te
                                   '1996,CJ7');
         $vehicle1 = $this->vehicleFinder()->findOneByLevels(array('model'=>'CJ7', 'year'=>'1995'));
         $vehicle2 = $this->vehicleFinder()->findOneByLevels(array('model'=>'CJ7', 'year'=>'1996'));
-        $count = $this->getReadAdapter()->query('select count(*) from elite_level_model')->fetchColumn();
+        $count = $this->getReadAdapter()->query('select count(*) from elite_level_1_model')->fetchColumn();
         $this->assertEquals(1,$count);
     }
     

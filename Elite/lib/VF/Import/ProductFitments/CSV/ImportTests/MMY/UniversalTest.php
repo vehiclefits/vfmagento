@@ -39,7 +39,7 @@ class VF_Import_ProductFitments_CSV_ImportTests_MMY_UniversalTest extends VF_Imp
 "sku","","","","1"');
         
         $vehicleFinder = new VF_Vehicle_Finder(new VF_Schema());
-        $count = $this->getReadAdapter()->query('select count(*) from elite_definition')->fetchColumn();
+        $count = $this->getReadAdapter()->query('select count(*) from elite_1_definition')->fetchColumn();
         $this->assertEquals( 0, $count);
     }
     

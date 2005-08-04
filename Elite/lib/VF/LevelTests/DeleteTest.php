@@ -10,7 +10,7 @@ class VF_LevelTests_DeleteTest extends Elite_Vaf_TestCase
 	{
 		$vehicle = $this->createMMY('Honda','Civic','2000');
 		$vehicle->getLevel('model')->delete();
-		$result = $this->query('select count(*) from elite_level_model where id = '.$vehicle->getValue('model'));
+		$result = $this->query('select count(*) from elite_level_1_model where id = '.$vehicle->getValue('model'));
 		$this->assertEquals( 0, $result->fetchColumn(), 'should be able to delete a level' );
 	}
 	
@@ -18,7 +18,7 @@ class VF_LevelTests_DeleteTest extends Elite_Vaf_TestCase
 	{
 		$vehicle = $this->createMMY('Honda','Civic','2000');
 		$vehicle->getLevel('model')->delete();
-		$result = $this->query('select count(*) from elite_definition where id = '.$vehicle->getId());
+		$result = $this->query('select count(*) from elite_1_definition where id = '.$vehicle->getId());
 		$this->assertEquals( 0, $result->fetchColumn(), 'should delete vehicle record when deleting a model' );
 	}
     
@@ -26,7 +26,7 @@ class VF_LevelTests_DeleteTest extends Elite_Vaf_TestCase
     {
         $vehicle = $this->createMMY('Honda','Civic','2000');
         $vehicle->getLevel('model')->delete();
-        $result = $this->query('select count(*) from elite_definition where model_id = '.$vehicle->getValue('model'));
+        $result = $this->query('select count(*) from elite_1_definition where model_id = '.$vehicle->getValue('model'));
         $this->assertEquals( 0, $result->fetchColumn(), 'should delete vehicle record when deleting a model' );
     }
 	
@@ -34,7 +34,7 @@ class VF_LevelTests_DeleteTest extends Elite_Vaf_TestCase
 	{
 		$vehicle = $this->createMMY('Honda','Civic','2000');
 		$vehicle->getLevel('model')->delete();
-		$result = $this->query('select count(*) from elite_level_year where id = '.$vehicle->getValue('year'));
+		$result = $this->query('select count(*) from elite_level_1_year where id = '.$vehicle->getValue('year'));
 		$this->assertEquals( 0, $result->fetchColumn(), 'should delete year record when deleting a model' );
 	}
 	
@@ -42,7 +42,7 @@ class VF_LevelTests_DeleteTest extends Elite_Vaf_TestCase
 	{
 		$vehicle = $this->createMMY('Honda','Civic','2000');
 		$vehicle->getLevel('make')->delete();
-		$result = $this->query('select count(*) from elite_level_year where id = '.$vehicle->getValue('year'));
+		$result = $this->query('select count(*) from elite_level_1_year where id = '.$vehicle->getValue('year'));
 		$this->assertEquals( 0, $result->fetchColumn(), 'should delete year record when deleting a model' );
 	}
 	

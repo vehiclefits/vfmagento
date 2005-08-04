@@ -106,7 +106,7 @@ class Elite_Vafdiagram_Model_ProductFitments_CSV_Import extends VF_Import_Produc
 	    $cols[$i] = $this->getReadAdapter()->quoteIdentifier($col . '_id');
 	}
 	$cols[] = 'service_code';
-	$query = 'REPLACE INTO elite_definition (' . implode(',', $cols) . ')';
+	$query = 'REPLACE INTO ' . $this->getSchema()->definitionTable() . ' (' . implode(',', $cols) . ')';
 	$query .= ' SELECT DISTINCT ' . implode(',', $cols) . ' FROM elite_import WHERE universal != 1';
 
 	$this->query($query);

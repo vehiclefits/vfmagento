@@ -81,7 +81,7 @@ class VF_LevelTests_DeleteGlobalTest extends Elite_Vaf_TestCase
     {
         $honda = $this->createVehicle(array('make'=>'Honda', 'model'=>'Civic', 'year'=>2000));
         $honda->unlink();
-        $r = $this->getReadAdapter()->query("select count(*) from elite_level_model where title = 'Civic';");
+        $r = $this->getReadAdapter()->query("select count(*) from elite_level_1_model where title = 'Civic';");
         $this->assertEquals(0, $r->fetchColumn(), 'when unlinking a model, should delete that model' );
     }
     
@@ -89,7 +89,7 @@ class VF_LevelTests_DeleteGlobalTest extends Elite_Vaf_TestCase
     {
         $honda = $this->createVehicle(array('make'=>'Honda', 'model'=>'Civic', 'year'=>2000));
         $honda->unlink();
-        $r = $this->getReadAdapter()->query("select count(*) from elite_level_year where title = '2000';");
+        $r = $this->getReadAdapter()->query("select count(*) from elite_level_1_year where title = '2000';");
         $this->assertEquals(1, $r->fetchColumn(), 'should not delete year' );
     }
     

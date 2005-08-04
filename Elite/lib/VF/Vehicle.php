@@ -254,7 +254,7 @@ class VF_Vehicle implements VF_Configurable
     {
         $where = $this->whereForUnlink();
                                     
-        $result = $this->query('SELECT * FROM elite_definition WHERE ' . $where)->fetchAll();
+        $result = $this->query('SELECT * FROM ' . $this->schema()->definitionTable() .' WHERE ' . $where)->fetchAll();
         foreach($result as $row)
         {
             $this->unlinkVehicle($row);
@@ -265,16 +265,16 @@ class VF_Vehicle implements VF_Configurable
     function unlinkVehicle($vehicleRow)
     {
         $where = $this->whereForUnlink();       
-        $this->query('DELETE FROM elite_definition WHERE ' . $where);
-        $this->query('DELETE FROM elite_mapping WHERE ' . $where);
+        $this->query('DELETE FROM ' . $this->schema()->definitionTable() . ' WHERE ' . $where);
+        $this->query('DELETE FROM ' . $this->schema()->mappingsTable() . ' WHERE ' . $where);
         
         foreach(array_reverse($this->getLevelObjs()) as $level)
         {
-            $countInUse = $this->query('SELECT count(*) from elite_definition WHERE ' . $level->getType() . '_id = ' . $vehicleRow[$level->getType().'_id'] )->fetchColumn();
+            $countInUse = $this->query('SELECT count(*) from ' . $this->schema()->definitionTable() .' WHERE ' . $level->getType() . '_id = ' . $vehicleRow[$level->getType().'_id'] )->fetchColumn();
             if(!$countInUse)
             {
                 $levelType = $level->getType();
-                $this->query('DELETE FROM elite_level_' . $level->getType() . ' WHERE id = ' . $vehicleRow[$levelType.'_id'] );
+                $this->query('DELETE FROM ' . $this->schema()->levelTable($level->getType()) . ' WHERE id = ' . $vehicleRow[$levelType.'_id'] );
                 if($this->getValue($levelType))
                 {
                     return;
@@ -328,5 +328,10 @@ class VF_Vehicle implements VF_Configurable
         
         $var = str_replace(' ', '_', $level) . '_id';
         return isset( $this->row->$var ) ? $this->row->$var : 0;
+    }
+    
+    function schema()
+    {
+        return $this->schema;
     }
 }
