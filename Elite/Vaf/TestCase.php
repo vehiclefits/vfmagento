@@ -700,6 +700,12 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
         $merge = new Elite_Vaf_Model_Merge($slaveLevels, $masterLevel);
         $merge->execute();
     }
+    
+	function split($vehicle, $grain, $newTitles)
+    {
+        $split = new Elite_Vaf_Model_Split($vehicle, $grain, $newTitles);
+        $split->execute();
+    }
 }
 
 class Elite_Vaf_Model_TestSubClass extends Elite_Vaf_Model_Level
