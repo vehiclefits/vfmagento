@@ -9,14 +9,14 @@ class Elite_Vaftire_Model_Importer_Definitions_TireSizeTests_MMY_SimpleTest exte
     function testNoVehicle()
     {
         $this->importVehicleTireSizes(
-            '"Make","Model","Year","Tire_Size"' . "\n" .
+            '"make","model","year","tire_size"' . "\n" .
             ', , , ');
     }
     
     function testNoTireSize()
     {
         $this->importVehicleTireSizes(
-            '"Make","Model","Year","Tire_Size"' . "\n" .
+            '"make","model","year","tire_size"' . "\n" .
             'honda, civic, 2000, ');
         $vehicle = $this->findVehicleByLevelsMMY('honda','civic','2000');
         $tireSizes = $vehicle->tireSize();
@@ -26,7 +26,7 @@ class Elite_Vaftire_Model_Importer_Definitions_TireSizeTests_MMY_SimpleTest exte
     function testShouldImportSectionWidth()
     {
         $this->importVehicleTireSizes(
-            '"Make","Model","Year","Tire_Size"' . "\n" .
+            '"make","model","year","tire_size"' . "\n" .
             'honda, civic, 2000, 215/60-15');
         $vehicle = $this->findVehicleByLevelsMMY('honda','civic','2000');
         $tireSizes = $vehicle->tireSize();
@@ -36,7 +36,7 @@ class Elite_Vaftire_Model_Importer_Definitions_TireSizeTests_MMY_SimpleTest exte
     function testShouldImportAspectRatio()
     {
         $this->importVehicleTireSizes(
-            '"Make","Model","Year","Tire_Size"' . "\n" .
+            '"make","model","year","tire_size"' . "\n" .
             'honda, civic, 2000, 215/60-15');
         $vehicle = $this->findVehicleByLevelsMMY('honda','civic','2000');
         $tireSizes = $vehicle->tireSize();
@@ -46,7 +46,7 @@ class Elite_Vaftire_Model_Importer_Definitions_TireSizeTests_MMY_SimpleTest exte
     function testShouldImportDiameter()
     {
         $this->importVehicleTireSizes(
-            '"Make","Model","Year","Tire_Size"' . "\n" .
+            '"make","model","year","tire_size"' . "\n" .
             'honda, civic, 2000, 215/60-15');
         $vehicle = $this->findVehicleByLevelsMMY('honda','civic','2000');
         $tireSizes = $vehicle->tireSize();

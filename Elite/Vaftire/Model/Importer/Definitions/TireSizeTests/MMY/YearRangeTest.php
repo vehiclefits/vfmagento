@@ -9,14 +9,14 @@ class Elite_Vaftire_Model_Importer_Definitions_TireSizeTests_MMY_YearRangeTest e
     function testNoVehicle()
     {
         $this->importVehicleTireSizes(
-            '"Make","Model","Year_Start","Year_End","Tire_Size"' . "\n" .
+            '"make","model","year_start","year_end","tire_size"' . "\n" .
             ', , ,, ');
     }
     
     function testNoTireSize()
     {
         $this->importVehicleTireSizes(
-            '"Make","Model","Year_Start","Year_End","Tire_Size"' . "\n" .
+            '"make","model","year_start","year_end","tire_size"' . "\n" .
             'honda, civic, 2000, ');
         $vehicle = $this->findVehicleByLevelsMMY('honda','civic','2000');
         $tireSizes = $vehicle->tireSize();
@@ -26,7 +26,7 @@ class Elite_Vaftire_Model_Importer_Definitions_TireSizeTests_MMY_YearRangeTest e
     function testShouldImportSingleYear()
     {
         $this->importVehicleTireSizes(
-            '"Make","Model","Year_Start","Year_End","Tire_Size"' . "\n" .
+            '"make","model","year_start","year_end","tire_size"' . "\n" .
             'honda, civic, 2000, 2000, 215/60-15');
         $vehicle = $this->findVehicleByLevelsMMY('honda','civic','2000');
         $tireSizes = $vehicle->tireSize();
@@ -36,7 +36,7 @@ class Elite_Vaftire_Model_Importer_Definitions_TireSizeTests_MMY_YearRangeTest e
     function testShouldImportAdjacentYears()
     {
         $this->importVehicleTireSizes(
-            '"Make","Model","Year_Start","Year_End","Tire_Size"' . "\n" .
+            '"make","model","year_start","year_end","tire_size"' . "\n" .
             'honda, civic, 2000, 2001, 215/60-15');
         $vehicle = $this->findVehicleByLevelsMMY('honda','civic','2000');
         $tireSizes = $vehicle->tireSize();
@@ -50,7 +50,7 @@ class Elite_Vaftire_Model_Importer_Definitions_TireSizeTests_MMY_YearRangeTest e
     function testShouldImportRangeOfYears()
     {
         $this->importVehicleTireSizes(
-            '"Make","Model","Year_Start","Year_End","Tire_Size"' . "\n" .
+            '"make","model","year_start","year_end","tire_size"' . "\n" .
             'honda, civic, 2000, 2002, 215/60-15');
         $vehicle = $this->findVehicleByLevelsMMY('honda','civic','2000');
         $tireSizes = $vehicle->tireSize();
