@@ -1,0 +1,9 @@
+<?php
+$relatedProduct = new Elite_Vafrelated_Model_Catalog_Product($_product);
+$products = $relatedProduct->relatedProducts(Elite_Vaf_Helper_Data::getInstance()->getFit());
+echo '<h1>Related Vehicle Products</h1><ul>';
+foreach($products as $relatedProduct)
+{
+    echo '<li>' . $relatedProduct->getName(). '</li>';
+}
+echo '</ul>';

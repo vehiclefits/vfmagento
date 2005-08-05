@@ -9,7 +9,7 @@ class Elite_Vaftire_Model_Importer_Definitions_TireSizeTests_MMY_MultipleSizesOn
     function testShouldImportMultipleSizesOnSingleVehicle()
     {
         $this->importVehicleTireSizes(
-            '"Make","Model","Year","Tire_Size"' . "\n" .
+            '"make","model","year","Tire_Size"' . "\n" .
             'honda, civic, 2000, 215/60-15' . "\n" . 
             'honda, civic, 2000, 215/60-16');
         $vehicle = $this->findVehicleByLevelsMMY('honda','civic','2000');
@@ -19,7 +19,7 @@ class Elite_Vaftire_Model_Importer_Definitions_TireSizeTests_MMY_MultipleSizesOn
     function testShouldSkipDuplicates()
     {
         $this->importVehicleTireSizes(
-            '"Make","Model","Year","Tire_Size"' . "\n" .
+            '"make","model","year","Tire_Size"' . "\n" .
             'honda, civic, 2000, 215/60-15' . "\n" . 
             'honda, civic, 2000, 215/60-15');
         $vehicle = $this->findVehicleByLevelsMMY('honda','civic','2000');

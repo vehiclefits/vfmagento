@@ -31,7 +31,7 @@ class Elite_Vaflogo_Block_Logo extends Mage_Core_Block_Abstract
 	    return;
 	}
 	$pathSuffix = $this->selectionToken() . '.' . $this->extension();
-	return '<img class="vafLogo" src="/logos/' . $pathSuffix . '" style="width:100%" />';
+	return '<img class="vafLogo" src="/logos/' . $pathSuffix . '" />';
     }
 
     function extension()

@@ -8,7 +8,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_SpecialCharactersTest extends Elite_Va
 
     function testShouldImport2()
     {
-	$this->importVehiclesList('Make,Model,Trim,Year_Start,Year_End,Bolt_Pattern
+	$this->importVehiclesList('make,model,trim,year_start,year_end,Bolt_Pattern
 MAZDA,PROTÉGÉ ,DX,1988,2000,8X165.1');
 
 	$vehicle = $this->vehicleFinder()->findOneByLevels(array('make'=>'MAZDA','model'=>'PROTÉGÉ', 'trim'=>'dx', 'year'=>1990));

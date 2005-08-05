@@ -10,7 +10,7 @@ class Elite_Vafpaint_Model_Importer_Definitions_PaintYMMTest extends Elite_Vaf_T
     {
         $this->switchSchema('year,make,model');
         
-        $this->csvData = 'Make,Model,Year,Code,Name,Color(hex)' . self::NEWLINE;
+        $this->csvData = 'make,model,year,Code,Name,Color(hex)' . self::NEWLINE;
         $this->csvData .= 'Acura, Integra, 1986,  B-26MZ,  Avignon Blue Metallic Clearcoat, #9CBBCC' . self::NEWLINE;
         $this->csvData .= 'Acura, Integra, 1986,  B-38,  Capitol Blue, #061D72' . self::NEWLINE;
         $this->csvFile = TESTFILES . '/paint-definitions.csv';
