@@ -6,7 +6,7 @@ class Elite_Vafdiagram_Model_Schema_Generator extends Ne8Vehicle_Schema_Generato
         return 'CREATE TABLE IF NOT EXISTS `elite_product_servicecode` (
 				  `product_id` int(100) NOT NULL,
 				  `service_code` varchar(100) NOT NULL
-				) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 				
 				ALTER TABLE  `elite_import` ADD  `service_code` VARCHAR( 100 ) NOT NULL;
 				

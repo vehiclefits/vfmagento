@@ -11,7 +11,7 @@ class Elite_Vafpaint_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
           `color` varchar(50) NOT NULL,
           PRIMARY KEY (`id`),
           KEY `mapping_id` (`mapping_id`)
-        ) ENGINE=InnoDb ;";
+        ) ENGINE = InnoDB CHARSET=utf8; ";
         return $sql;
     }
     

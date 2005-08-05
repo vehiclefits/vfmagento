@@ -10,7 +10,7 @@ class Elite_Vaftire_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
               `diameter` int(3) NOT NULL,
               `tire_type` int(1) NOT NULL,
               UNIQUE KEY `entity_id` (`entity_id`)
-            ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
             
             CREATE TABLE IF NOT EXISTS `elite_vehicle_tire` (
 			  `leaf_id` int(50) NOT NULL,

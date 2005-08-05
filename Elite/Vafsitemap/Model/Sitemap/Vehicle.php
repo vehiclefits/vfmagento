@@ -26,6 +26,8 @@ class Elite_Vafsitemap_Model_Sitemap_Vehicle extends Ne8Vehicle_Import_Abstract
 
     function doGetDefinitions($perPage, $offset, $productId=null)
     {
+	$rewriteLevels = $this->getSchema()->getRewriteLevels();
+	
 	$db = $this->getReadAdapter();
 
 	$cols = array();
@@ -35,7 +37,7 @@ class Elite_Vafsitemap_Model_Sitemap_Vehicle extends Ne8Vehicle_Import_Abstract
 	}
 	$select = $db->select()
 			->from('elite_mapping', $cols);
-	foreach ($this->getSchema()->getRewriteLevels() as $level)
+	foreach ($rewriteLevels as $level)
 	{
 	    $select->group($level . '_id');
 	}

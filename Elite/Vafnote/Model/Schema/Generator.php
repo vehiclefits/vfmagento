@@ -27,13 +27,13 @@ class Elite_Vafnote_Model_Schema_Generator
 		  `message` varchar(255) NOT NULL,
 		  PRIMARY KEY (`id`),
 		  UNIQUE KEY `code` (`code`)
-		) ENGINE=InnoDB;
+		) ENGINE = InnoDB CHARSET=utf8;
 
         CREATE TABLE IF NOT EXISTS `elite_mapping_notes` (
           `fit_id` int(50) NOT NULL,
           `note_id` varchar(50) NOT NULL,
           PRIMARY KEY (`fit_id`,`note_id`)
-        ) ENGINE=InnoDb;';
+        ) ENGINE = InnoDB CHARSET=utf8;';
     }
 
     protected function query( $sql )

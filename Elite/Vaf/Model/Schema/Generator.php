@@ -254,7 +254,7 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
     
     function createSchemaTable()
     {
-        $return = "CREATE TABLE `elite_schema` (`key` VARCHAR( 25 ) NOT NULL , `value` VARCHAR( 255 ) NOT NULL ) ENGINE = InnoDB CHARSET=utf8;;";
+        $return = "CREATE TABLE `elite_schema` (`key` VARCHAR( 25 ) NOT NULL , `value` VARCHAR( 255 ) NOT NULL ) ENGINE = InnoDB CHARSET=utf8;";
         $return .= sprintf(
             "INSERT INTO `elite_schema` ( `key`, `value` ) VALUES ( 'levels', %s );",
             $this->getReadAdapter()->quote( $this->levelsDelimByComma() )

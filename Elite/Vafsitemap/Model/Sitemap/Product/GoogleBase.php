@@ -23,6 +23,7 @@ class Elite_Vafsitemap_Model_Sitemap_Product_GoogleBase extends Elite_Vafsitemap
 	    {
 		continue;
 	    }
+	    
 	    $this->doProduct($product);
 	}
     }
