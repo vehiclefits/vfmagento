@@ -13,7 +13,7 @@
 */
 class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
 {
-    const VERSION = 21;
+    const VERSION = 22;
     
     function __construct()
     {
@@ -206,7 +206,8 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
             $return .= $this->columns();
             $return .= '`entity_id` int(25) NOT NULL,';
             $return .= '`universal` int(1) NOT NULL COMMENT \'if there is a row with this flag set for a product ( entity_id ) then it should be returned universally for all vehicles\',';
-            $return .= 'PRIMARY KEY (`id`),';
+            $return .= '`related` int(1) NOT NULL,';
+	    $return .= 'PRIMARY KEY (`id`),';
             $return .= 'KEY `universal` (`universal`),';
             $return .= $this->keys();
         $return .= ') ENGINE=InnoDB CHARSET=utf8;
