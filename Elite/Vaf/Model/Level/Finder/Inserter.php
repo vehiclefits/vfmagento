@@ -1,146 +1,141 @@
 <?php
+
 /**
-* Vehicle Fits Free Edition - Copyright (c) 2008-2010 by Ne8, LLC
-* PROFESSIONAL IDENTIFICATION:
-* "www.vehiclefits.com"
-* PROMOTIONAL SLOGAN FOR AUTHOR'S PROFESSIONAL PRACTICE:
-* "Automotive Ecommerce Provided By Ne8 llc"
-*
-* All Rights Reserved
-* VEHICLE FITS ATTRIBUTION ASSURANCE LICENSE (adapted from the original OSI license)
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the conditions in license.txt are met
-*/
+ * Vehicle Fits Free Edition - Copyright (c) 2008-2010 by Ne8, LLC
+ * PROFESSIONAL IDENTIFICATION:
+ * "www.vehiclefits.com"
+ * PROMOTIONAL SLOGAN FOR AUTHOR'S PROFESSIONAL PRACTICE:
+ * "Automotive Ecommerce Provided By Ne8 llc"
+ *
+ * All Rights Reserved
+ * VEHICLE FITS ATTRIBUTION ASSURANCE LICENSE (adapted from the original OSI license)
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the conditions in license.txt are met
+ */
 class Elite_Vaf_Model_Level_Finder_Inserter extends Elite_Vaf_Model_Level_Finder_Abstract implements Elite_Vaf_Model_Level_Saver
 {
+
     /** @var integer id of the model being saved */
     protected $id;
-    
     /** @var integer */
     protected $parent_id;
-    
     /** @var Elite_Vaf_Model */
     protected $entity;
-    
     protected $requestedSaveId;
-    
+
     /**
-    * @param Elite_Vaf_Model_Level $entity
-    * @return Elite_Vaf_Model_Level_Saver
-    */
-    function __construct( Elite_Vaf_Model_Level $entity, $parent_id = 0 )
+     * @param Elite_Vaf_Model_Level $entity
+     * @return Elite_Vaf_Model_Level_Saver
+     */
+    function __construct(Elite_Vaf_Model_Level $entity, $parent_id = 0)
     {
-        $this->entity = $entity;
-        $this->parent_id = $parent_id;
+	$this->entity = $entity;
+	$this->parent_id = $parent_id;
     }
-    
+
     function save($requestedSaveId=null)
     {
-        $this->requestedSaveId = $requestedSaveId;
-        
-        if(  $this->getSchema()->isGlobal($this->entity->getType()))
-        {
-            $id = $this->entity->getId();
-            $existingId = $this->levelFinder()->findEntityIdByTitle($this->entity->getType(), $this->entity->getTitle() );
-            if( false == $existingId )
-            {
-                $this->getReadAdapter()->insert( $this->entity->getTable(), $this->getBind() );
-                
-                $id = $this->getReadAdapter()->lastInsertId();
-                $this->entity->setId($id);
-            }
-            else
-            {
-                $this->entity->setId($existingId);
-            }
-            $this->createVehicleDefinition();
-            return $id;
-        }
-        else
-        {
-            if(is_array($this->parent_id))
-            {
-                $prevLevel = $this->getSchema()->getPrevLevel($this->entity->getType());
-                $parent_id = $this->parent_id[$prevLevel];
-            }
-            else
-            {
-                $parent_id = $this->parent_id;
-            }
-            $existingId = $this->levelFinder()->findEntityIdByTitle($this->entity->getType(), $this->entity->getTitle(), $parent_id );
-            if( !$existingId)
-            {
-                $this->getReadAdapter()->insert( $this->entity->getTable(), $this->getBind() );
-            }
-        }
-        
-        $id = $existingId ? $existingId : $this->getReadAdapter()->lastInsertId();
-        if(!$this->entity->getId())
-        {
-            $this->entity->setId( $id );
-        }
-        
-        $this->createVehicleDefinition();
-        return $id;        
+	$this->requestedSaveId = $requestedSaveId;
+
+	if ($this->getSchema()->isGlobal($this->entity->getType()))
+	{
+	    $id = $this->entity->getId();
+	    $existingId = $this->levelFinder()->findEntityIdByTitle($this->entity->getType(), $this->entity->getTitle());
+	    if (false == $existingId)
+	    {
+		$this->getReadAdapter()->insert($this->entity->getTable(), $this->getBind());
+
+		$id = $this->getReadAdapter()->lastInsertId();
+		$this->entity->setId($id);
+	    } else
+	    {
+		$this->entity->setId($existingId);
+	    }
+	    $this->createVehicleDefinition();
+	    return $id;
+	} else
+	{
+	    if (is_array($this->parent_id))
+	    {
+		$prevLevel = $this->getSchema()->getPrevLevel($this->entity->getType());
+		$parent_id = $this->parent_id[$prevLevel];
+	    } else
+	    {
+		$parent_id = $this->parent_id;
+	    }
+	    $existingId = $this->levelFinder()->findEntityIdByTitle($this->entity->getType(), $this->entity->getTitle(), $parent_id);
+	    if (!$existingId)
+	    {
+		$this->getReadAdapter()->insert($this->entity->getTable(), $this->getBind());
+	    }
+	}
+
+	$id = $existingId ? $existingId : $this->getReadAdapter()->lastInsertId();
+	if (!$this->entity->getId())
+	{
+	    $this->entity->setId($id);
+	}
+
+	$this->createVehicleDefinition();
+	return $id;
     }
-    
+
     function createVehicleDefinition()
     {
-        if( is_array($this->parent_id))
-        {
-            $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
-            $bind = $this->vehicleBind();
-            if( count($vehicleFinder->findByLevelIds($bind)) == 0 )
-            {
-                $this->getReadAdapter()->insert('elite_definition', $bind);
-            }
-        }
-        else
-        {
-            $this->entity->createDefinition($this->parent_id);
-        }
+	if (is_array($this->parent_id))
+	{
+	    $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
+	    $bind = $this->vehicleBind();
+	    if (count($vehicleFinder->findByLevelIds($bind)) == 0)
+	    {
+		$this->getReadAdapter()->insert('elite_definition', $bind);
+	    }
+	} else
+	{
+	    $this->entity->createDefinition($this->parent_id);
+	}
     }
-    
+
     function getBind()
     {
-		$bind = array();
-		if($this->requestedSaveId)
+	$bind = array();
+	if ($this->requestedSaveId)
+	{
+	    $bind['id'] = $this->requestedSaveId;
+	}
+
+	if ($this->entity->getPrevLevel())
+	{
+	    $parentKey = $this->entity->getPrevLevel() . '_id';
+	    if (is_numeric($this->parent_id) && $this->parent_id)
 	    {
-	        $bind['id'] = $this->requestedSaveId;
-		}
-        
-        if( $this->entity->getPrevLevel() )
-        {
-            $parentKey = $this->entity->getPrevLevel() . '_id';
-            if( is_numeric($this->parent_id) && $this->parent_id )
-            {
-        	    $bind[ $parentKey ] = $this->parent_id;
-		    }
-            
-            if( is_array($this->parent_id))
-            {
-                $bind[$parentKey] = $this->parent_id[$this->entity->getPrevLevel()];
-            }
-		}
-        
-		$bind['title'] = $this->entity->getTitle();
-		return $bind;
+		$bind[$parentKey] = $this->parent_id;
+	    }
+
+	    if (is_array($this->parent_id))
+	    {
+		$bind[$parentKey] = $this->parent_id[$this->entity->getPrevLevel()];
+	    }
+	}
+
+	$bind['title'] = $this->entity->getTitle();
+	return $bind;
     }
-    
+
     function vehicleBind()
     {
-        $bind = array();
-        foreach($this->parent_id as $level=>$val)
-        {
-            $bind[$level.'_id'] = $val;
-        }
-        $bind[$this->entity->getType().'_id'] = $this->entity->getId();
-        return $bind;
+	$bind = array();
+	foreach ($this->parent_id as $level => $val)
+	{
+	    $bind[$level . '_id'] = $val;
+	}
+	$bind[$this->entity->getType() . '_id'] = $this->entity->getId();
+	return $bind;
     }
-    
+
     function levelFinder()
     {
-        return new Elite_Vaf_Model_Level_Finder();
+	return new Elite_Vaf_Model_Level_Finder();
     }
-    
+
 }

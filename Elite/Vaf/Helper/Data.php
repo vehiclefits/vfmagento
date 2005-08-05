@@ -227,6 +227,8 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
     /** @return Zend_Db_Adapter_Abstract */
     function getReadAdapter()
     {
+	if(isset(self::$dbAdapter)) return self::$dbAdapter;
+	
 	// cron
 	if (Zend_Registry::isRegistered('db'))
 	{
@@ -238,6 +240,7 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
 	{
 	    if (is_null(self::$dbAdapter))
 	    {
+
 		self::$dbAdapter = new My_Adapter(array('dbname' => VAF_DB_NAME, 'username' => VAF_DB_USERNAME, 'password' => VAF_DB_PASSWORD));
 		self::$dbAdapter->getConnection()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
 		
@@ -255,7 +258,21 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
 	$resource = Mage::getSingleton('core/resource');
 	$read = $resource->getConnection('core_read');
 	$read->query('SET character_set_client = utf8;');
-	return $read;
+
+
+	$config = $read->getConfig();
+	
+	self::$dbAdapter = new My_Adapter(array('dbname' => $config['dbname'], 'username' => $config['username'], 'password' => $config['password']));
+	self::$dbAdapter->getConnection()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
+
+	self::$dbAdapter->getConnection()->query('SET character set utf8;');
+	self::$dbAdapter->getConnection()->query('SET character_set_client = utf8;');
+	self::$dbAdapter->getConnection()->query('SET character_set_results = utf8;');
+	self::$dbAdapter->getConnection()->query('SET character_set_connection = utf8;');
+	self::$dbAdapter->getConnection()->query('SET character_set_database = utf8;');
+	self::$dbAdapter->getConnection()->query('SET character_set_server = utf8;');
+
+	return self::$dbAdapter;
     }
 
     function displayBrTag()

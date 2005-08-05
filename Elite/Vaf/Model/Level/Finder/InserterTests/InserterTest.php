@@ -11,12 +11,37 @@ class Elite_Vaf_Model_Level_Finder_InserterTests_InserterTest extends Elite_Vaf_
         $model = $this->findEntityById( $model->getId(), $model->getType(), self::PARENT_ID );
         $this->assertSame( self::ENTITY_TITLE, $model->getTitle(), 'saved entity should have correct title value' );
     }
+
+    function testSaveSetsMakeId()
+    {
+        $make = new Elite_Vaf_Model_Level('make');
+        $make->setTitle( self::ENTITY_TITLE );
+        $make->save();
+        $this->assertNotEquals( 0, $make->getId(), 'saved entity should have an id value' );
+    }
     
-    function testSaveSetsId()
+    function testSaveSetsMakeId2()
+    {
+        $make = new Elite_Vaf_Model_Level('make');
+        $make->setTitle( self::ENTITY_TITLE );
+        $make->save(array());
+        $this->assertNotEquals( 0, $make->getId(), 'saved entity should have an id value' );
+    }
+
+    function testSaveSetsModelId()
     {
         $model = new Elite_Vaf_Model_Level('model');
         $model->setTitle( self::ENTITY_TITLE );
         $model->save(self::PARENT_ID);
+        $model = $this->findEntityById( $model->getId(), $model->getType(), self::PARENT_ID );
+        $this->assertNotEquals( 0, $model->getId(), 'saved entity should have an id value' );
+    }
+
+    function testSaveSetsModelId2()
+    {
+        $model = new Elite_Vaf_Model_Level('model');
+        $model->setTitle( self::ENTITY_TITLE );
+        $model->save(array('make'=>self::PARENT_ID));
         $model = $this->findEntityById( $model->getId(), $model->getType(), self::PARENT_ID );
         $this->assertNotEquals( 0, $model->getId(), 'saved entity should have an id value' );
     }
