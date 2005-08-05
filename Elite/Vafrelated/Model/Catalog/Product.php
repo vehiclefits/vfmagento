@@ -24,12 +24,47 @@ class Elite_Vafrelated_Model_Catalog_Product
 	 {
 	     $productIds[] = $row['entity_id'];
 	 }
+	 
 	 return $productIds;
+    }
+
+    function showInRelated()
+    {
+	$select = $this->getReadAdapter()->select()
+	    ->from('elite_mapping',array('related'))
+	    ->where('entity_id = ' . $this->getId());
+	
+	return (bool)$select->query()->fetchColumn();
     }
 
     function setShowInRelated($value)
     {
-	$this->query($this->getReadAdapter()->quoteInto('update elite_mapping set `related` = ' . (int)$value . ' where entity_id = ?', $this->getId()));
+	$select =  $this->getReadAdapter()->select()
+	    ->from('elite_mapping',array('count(*)'))
+	    ->where('entity_id = ' . $this->getId());
+	if( 0 == $select->query()->fetchColumn())
+	{
+	    $this->query(
+		sprintf(
+			"
+		    REPLACE INTO
+			`elite_mapping`
+		    (
+			`related`,
+			`entity_id`
+		    )
+		    VALUES
+		    (
+			%d,
+			%d
+		    )
+		    ",
+			1,
+			(int) $this->getId()
+		    )
+	    );
+	}
+	$this->query('UPDATE elite_mapping set related = ' . (int)$value . ' where entity_id = ' . (int)$this->getId() );
     }
 
     function __call($methodName,$arguments)

@@ -42,6 +42,13 @@ class Elite_Vafrelated_Model_Catalog_ProductTest extends Elite_Vaf_TestCase
 	$this->assertEquals( array(2), $product1->relatedProducts($vehicle1), '');
     }
 
+    function testShouldExposeRelatedStatus()
+    {
+	$product = $this->newRelatedProduct(1);
+	$product->setShowInRelated(true);
+	$this->assertTrue($product->showInRelated());
+    }
+
     function newRelatedProduct($id=null)
     {
 	$product = $this->newProduct($id);
