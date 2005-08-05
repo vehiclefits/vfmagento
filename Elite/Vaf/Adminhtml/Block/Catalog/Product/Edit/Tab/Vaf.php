@@ -1,6 +1,9 @@
 <?php
 class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf extends Mage_Adminhtml_Block_Template 
+    implements Elite_Vaf_Configurable
 {
+    protected $config;
+    
     function __construct()
     {
         parent::__construct();
@@ -169,5 +172,24 @@ class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf extends Mage_Adminh
     {
         $entity = new Elite_Vaf_Model_Level( $type );
         return $entity->listAll( $parent_id );              
+    }
+    
+    function getConfig()
+    {
+        if( !$this->config instanceof Zend_Config )
+        {
+            $this->config = Elite_Vaf_Helper_Data::getInstance()->getConfig();
+        }
+        return $this->config;
+    }
+
+    function setConfig( Zend_Config $config )
+    {
+        $this->config = $config;
+    }
+    
+    function unavailableSelections()
+    {
+        return $this->getConfig()->search->unavailableSelections;
     }
 }

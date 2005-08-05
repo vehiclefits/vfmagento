@@ -567,4 +567,14 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements
     {
         return 'vafForm';
     }
+    
+    function loadingStrategy()
+    {
+        return $this->getConfig()->search->loadingStrategy;
+    }
+    
+    function unavailableSelections()
+    {
+        return $this->getConfig()->search->unavailableSelections;
+    }
 }

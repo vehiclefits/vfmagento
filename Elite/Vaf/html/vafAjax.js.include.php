@@ -20,11 +20,6 @@ $schema = new Elite_Vaf_Model_Schema;
 $CONFIG['unavailableSelections'] = isset( $_GET['unavailableSelections'] ) ? $_GET['unavailableSelections'] : Mage::helper('vaf')->getConfig()->search->unavailableSelections;
 $CONFIG['loadingStrategy'] = isset( $_GET['loadingStrategy'] ) ? $_GET['loadingStrategy'] : Mage::helper('vaf')->getConfig()->search->loadingStrategy;
 
-if( isset( $_GET['leafFirst']) && $_GET['leafFirst'])
-{
-	Elite_Vaf_Helper_Data::getInstance()->getConfig()->search->leafLevelFirst = true;
-}
-
 if( $front )
 {
     function shouldAutoSubmit()
