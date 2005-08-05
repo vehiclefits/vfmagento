@@ -101,6 +101,7 @@ abstract class Elite_Vafimporter_Model extends Ne8Vehicle_Import_Abstract implem
 	{
 	    throw new Elite_Vafimporter_Model_VehiclesList_CSV_Exception_FieldHeaders('Field headers missing');
 	}
+	
 	foreach ($this->schema()->getLevels() as $level)
 	{
 

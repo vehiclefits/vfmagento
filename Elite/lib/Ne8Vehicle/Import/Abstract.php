@@ -42,7 +42,7 @@ abstract class Ne8Vehicle_Import_Abstract
         foreach( $this->fieldPositions as $label => $position )
         {
             unset( $this->fieldPositions[ $label ] );
-            $this->fieldPositions[ str_replace( ' ', '_', strtolower( trim($label) ) ) ] = $position;
+            $this->fieldPositions[ str_replace( ' ', '_', trim($label) ) ] = $position;
         }
 
         return $this->fieldPositions;

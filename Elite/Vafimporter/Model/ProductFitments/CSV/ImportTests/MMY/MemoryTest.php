@@ -5,7 +5,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_MemoryTest ext
     
     function doSetUp()
     {
-        $this->switchSchema('model,year');
+        $this->switchSchema('model,year',true);
 	$this->oldLimit = ini_get('memory_limit');
     }
     
