@@ -9,4 +9,4 @@ class Vaf22
         $db->query('ALTER TABLE `elite_mapping` ADD `related` FLOAT NOT NULL  ');
     }
 }
-Vaf21::run();
+Vaf22::run();
