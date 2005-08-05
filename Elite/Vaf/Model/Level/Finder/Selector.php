@@ -200,10 +200,17 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         return $this->objs_in_use[ $entity->getType() ][ $entity->getId() ];
     }
     
+    /** @todo - highly optomized for performance, write performance test case with 4.5 Million fitments if possible. used to take 100 seconds
+     * optomized to take 1-3 seconds.
+     */
     protected function doListInUse( $entity, $parents, $product_id = 0 )
     {
         $select = $this->getReadAdapter()->select();
-        $select->from( 'elite_mapping', sprintf( '%s_id', $entity->getType() ) );
+        $select
+        	->from( array('m'=>'elite_level_' . $entity->getType() ), array('id', 'title') )
+        	->joinLeft(array('fitment'=>'elite_mapping'), 'fitment.' . $entity->getType() . '_id = m.id', array())
+        	->group('m.title');
+        
         foreach( $parents as $parentType => $parentId )
         {
             if( !in_array( $parentType, $this->getSchema()->getLevels() ) )
@@ -214,20 +221,14 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
             {
                 continue;
             }
-            $select->where( sprintf( '`%s_id` = ?', $parentType ), $parentId );
+            $select->where( sprintf( 'fitment.`%s_id` = ?', $parentType ), $parentId );
         }
         if( $product_id )
         {
             $select->where( '`entity_id` = ?', $product_id );
         }
-
-        $query = $this->getReadAdapter()->select()
-            ->from($entity->getTable(), array('id','title'))
-            ->where(sprintf('id IN (%s)',$select))
-            ->group('title')
-            ->order('title ' . $entity->getSortOrder());
-        
-        return $this->query( $query );
+        $select->order('m.title ' . $entity->getSortOrder());
+        return $this->query( $select );
     }
     
     /** @return Elite_Vaf_Model_Level */
