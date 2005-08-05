@@ -74,6 +74,22 @@ class Elite_Vaf_Model_MergeTests_MMYTest extends Elite_Vaf_TestCase
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Accord')) );
         $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic')), 'should delete slave vehicle' );
     }
+
+    function testShouldMergeModelWithWhitespace()
+    {
+        $vehicle1 = $this->createMMY('Honda','Civic ','2000');
+        $vehicle2 = $this->createMMY('Honda','Civic','2000');
+
+        $slaveLevels = array(
+            array('model', $vehicle1 ),
+            array('model', $vehicle2 ),
+        );
+        $masterLevel = array('model', $vehicle2 );
+        $this->merge($slaveLevels, $masterLevel);
+
+	$this->assertEquals($vehicle1->getValue('model'), $vehicle2->getValue('model'));
+        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic')) );
+    }
     
     function testShouldMergeYears_WhenMergeModel()
     {
@@ -255,23 +271,7 @@ class Elite_Vaf_Model_MergeTests_MMYTest extends Elite_Vaf_TestCase
         $count = $this->getReadAdapter()->select()->from('elite_mapping', array('count(*)'))->where('year_id = 0')->query()->fetchColumn();
         $this->assertEquals( 0, $count );
     }
-    
-    function testShouldMergeSpace()
-    {
-        $vehicle1 = $this->createMMY('Honda','Civic','2000');
-        $vehicle2 = $this->createMMY('Honda2','Civic','2000');
-        
-        $slaveLevels = array(
-            array('make', $vehicle1 ),
-            array('make', $vehicle2 ),
-        );
-        $masterLevel = array('make', $vehicle1 );
-        $this->merge($slaveLevels, $masterLevel);
-        
-        $vehicles = $this->vehicleFinder()->findByLevels(array('year'=>'2000'));
-        $this->assertEquals(1, count($vehicles));
-    }
-    
+
     function testShouldClearVehicleFinderIdentityMap()
     {
         return $this->markTestIncomplete();
