@@ -49,6 +49,19 @@ class Elite_Vafrelated_Model_Catalog_ProductTest extends Elite_Vaf_TestCase
 	$this->assertTrue($product->showInRelated());
     }
 
+    function testShouldFitVehicleAndBeRelated()
+    {
+	$vehicle = $this->createVehicle(array('make'=>'Honda', 'model'=>'Civic', 'year'=>2000));
+
+	$product = $this->newRelatedProduct(1);
+	$product->setCurrentlySelectedFit($vehicle);
+	$product->addVafFit($vehicle->toValueArray());
+	$product->setShowInRelated(true);
+
+	$this->assertTrue($product->showInRelated());
+	$this->assertTrue($product->fitsSelection());
+    }
+
     function newRelatedProduct($id=null)
     {
 	$product = $this->newProduct($id);
