@@ -26,7 +26,8 @@ class Elite_Vafimporter_Model_Schema_Generator extends Ne8Vehicle_Schema_Generat
             $query .= '`note_message` VARCHAR( 255 ) NOT NULL,';
             $query .= '`notes` VARCHAR( 255 ) NOT NULL,';
             $query .= 'PRIMARY KEY (`id`)';
-        $query .= ') ENGINE = InnoDb;';
+        $query .= ') ENGINE = InnoDb;
+	    ALTER TABLE `elite_import` ADD `price` FLOAT NOT NULL ;';
         return $query;
     }
     

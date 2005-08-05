@@ -72,7 +72,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
 		LOAD DATA INFILE ' . $this->getReadAdapter()->quote($streamFile) . '
 		INTO TABLE elite_import
 		    FIELDS TERMINATED BY \',\'  ENCLOSED BY \'"\'
-		(' . $this->getSchema()->getLevelsString() . ',sku,universal,line,note_message,notes)
+		(' . $this->getSchema()->getLevelsString() . ',sku,universal,line,note_message,notes,price)
 	    ');
 	} catch (Exception $e)
 	{
@@ -95,7 +95,8 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
 		    'universal' => $row[$i + 1],
 		    'line' => $row[$i + 2],
 		    'note_message' => $row[$i + 3],
-		    'notes' => isset($row[$i + 4]) ? $row[$i + 4] : ''
+		    'notes' => isset($row[$i + 4]) ? $row[$i + 4] : '',
+		    'price' => isset($row[$i+6]) ? $row[$i+6] : ''
 		);
 
 		$this->insertIntoTempTable($newRow, $newRow);
@@ -121,7 +122,8 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
 	$combination['note_message'] = $this->getFieldValue('note_message', $row);
 	$combination['notes'] = $this->getFieldValue('notes', $row);
 	$combination['universal'] = $this->getFieldValue('universal', $row);
-
+	$combination['price'] = $this->getFieldValue('price', $row);
+	
 	fputcsv($stream, $combination);
     }
 

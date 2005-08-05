@@ -58,7 +58,12 @@ class Mage_Catalog_Model_Product
     function getName()
     {
         return $this->name;
-    }    
+    }
+
+    function getPrice()
+    {
+    
+    }
     
 }
 

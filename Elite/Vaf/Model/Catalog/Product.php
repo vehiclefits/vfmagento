@@ -65,6 +65,38 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 	return array();
     }
 
+    function getPrice()
+    {
+	if( $this->currentlySelectedFit() && $customPrice = $this->customPrice($this->currentlySelectedFit()))
+	{
+	    return $customPrice;
+	}
+	return parent::getPrice();
+    }
+
+    function customPrice($vehicle)
+    {
+	$select = $this->getReadAdapter()->select();
+        $select->from( array('m'=>'elite_mapping' ), array('price') );
+
+        foreach( $vehicle->toValueArray() as $parentType => $parentId )
+        {
+            if( !in_array( $parentType, $this->getSchema()->getLevels() ) )
+            {
+                throw new Elite_Vaf_Model_Level_Exception( $parentType );
+            }
+            if( !(int)$parentId )
+            {
+                continue;
+            }
+            $select->where( sprintf( 'm.`%s_id` = ?', $parentType ), $parentId );
+        }
+        
+	$select->where( '`entity_id` = ?', $this->getId() );
+        
+        return $this->query( $select )->fetchColumn();
+    }
+
     function getOrderBy()
     {
 	$schema = new Elite_Vaf_Model_Schema();

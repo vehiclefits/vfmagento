@@ -164,7 +164,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
     function extractFitmentsFromImportTable()
     {
         $cols = $this->cols();
-        $sql = 'INSERT IGNORE INTO elite_mapping (' . $this->cols() . ' universal, entity_id) SELECT ' . $this->cols() . ' universal, product_id from elite_import ';
+        $sql = 'INSERT IGNORE INTO elite_mapping (' . $this->cols() . ' universal, entity_id, price) SELECT ' . $this->cols() . ' universal, product_id, price from elite_import ';
         $this->query($sql);
     }
     
