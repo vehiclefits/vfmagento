@@ -39,11 +39,21 @@ $values = $vehicle->toValueArray();
 <html>
   <head>
     <link rel="stylesheet" href="../qunit/qunit.css" type="text/css"/>
+  </head>
+  <body>
+    <h1 id="qunit-header">VAF - MMY</h1>
+    <h2 id="qunit-banner"></h2>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests">
+    </ol>
     
-    <script src="/skin/adminhtml/default/default/jquery-1.7.1.min.js"> </script>
-    <script src="/skin/adminhtml/default/default/jquery.metadata.pack.js"> </script>
+    <?php
+    include('../search.include.php');
+    $search = new Elite_Vaf_Block_Search_AjaxTestSub();
+    $search->toHtml();
+    ?>
+    
     <script type="text/javascript" src="../qunit/qunit.js"></script>
-    <script type="text/javascript" src="/vaf/ajax/js?front=1"></script>
     <script type="text/javascript" src="../common.js"></script>
     <script type="text/javascript">
         jQuery(document).ready(function(){
@@ -76,16 +86,5 @@ $values = $vehicle->toValueArray();
             
         });
     </script>
-  </head>
-  <body>
-    <h1 id="qunit-header">VAF - MMY</h1>
-    <h2 id="qunit-banner"></h2>
-    <h2 id="qunit-userAgent"></h2>
-    <ol id="qunit-tests">
-    </ol>
-    
-    <?php
-    include('../search.include.php');
-    ?>
   </body>
 </html>

@@ -37,5 +37,3 @@ class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf_AjaxTestStub extend
         return htmlentities($string);
     }
 }
-$block = new Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf_AjaxTestStub;
-echo $block->toHtml();
