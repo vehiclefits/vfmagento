@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Elite_Vafgarage>
+            <version>1.31</version>
+        </Elite_Vafgarage>
+    </modules>
+    
+    <global>
+        <blocks>
+            <vafgarage>
+                <class>Elite_Vafgarage_Block</class>
+            </vafgarage>
+        </blocks>
+     </global>
+
+     <frontend>
+        <routers>
+            <vafgarage>
+                <use>standard</use>
+                <args>
+                    <module>Elite_Vafgarage</module>
+                    <frontName>vafgarage</frontName>
+                </args>
+            </vafgarage>
+        </routers>
+        <layout>
+            <updates>
+                <Elite_Vafgarage>
+                    <file>vafgarage.xml</file>
+                </Elite_Vafgarage>
+            </updates>
+        </layout>
+     </frontend>
+</config>

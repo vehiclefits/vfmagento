@@ -41,6 +41,7 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitMMYTest extends Elite_Vaf_Helper_Da
         $vehicle = $this->createMMY();
         $helper = $this->getHelper( array(), $vehicle->toValueArray() );
         $helper->storeFitInSession();
+        unset($_SESSION['garage']);
         $this->assertEquals( $vehicle->toValueArray(), $_SESSION );
     }
     

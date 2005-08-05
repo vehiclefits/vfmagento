@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <!-- add MMY search on right hand side of any applicable page -->
+    <default>
+        <reference name="right">
+            <block type="vafgarage/garage" name="vafgarage_garage" template="vafgarage/garage.phtml" before="-"></block>
+        </reference>
+    </default>
+    
+</layout>
+        

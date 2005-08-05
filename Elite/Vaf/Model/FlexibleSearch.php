@@ -256,11 +256,17 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
                 $_SESSION[$level] = $this->getValueForSelectedLevel($level);
             }
             
+            if(!isset($_SESSION['garage']))
+            {
+            	$_SESSION['garage'] = new Elite_Vafgarage_Model_Garage;
+            }
+    		$_SESSION['garage']->addVehicle($this->getRequestValues());
+    		
             $leafVal = $this->getValueForSelectedLevel( $this->schema()->getLeafLevel() );
             if( $leafVal )
             {
                 return $leafVal;
-            } 
+            }
         }
         
         if( $this->shouldClear() )
