@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `elite_import` (
   `year_id` int(50) NOT NULL,
   `sku` varchar(255) DEFAULT NULL,
   `product_id` int(255) DEFAULT NULL,
-  `universal` int(1) DEFAULT '0',
+  `universal` int(1) DEFAULT \'0\',
   `existing` int(1) NOT NULL,
   `line` int(255) NOT NULL,
   `mapping_id` int(255) NOT NULL,
