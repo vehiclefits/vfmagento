@@ -1,6 +1,13 @@
 <?php
 class Elite_Vafrelated_Model_Catalog_ProductTest extends Elite_Vaf_TestCase
 {
+    function testCreateNewProduct()
+    {
+	$product = new Elite_Vaf_Model_Catalog_Product;
+	$relatedProduct = new Elite_Vafrelated_Model_Catalog_Product($product);
+	$this->assertFalse($relatedProduct->showInRelated(), 'should default to not show in related when create new product');
+    }
+
     function testShouldNotFindUnrelated()
     {
 	$vehicle1 = $this->createVehicle(array('make'=>'Honda', 'model'=>'Civic', 'year'=>2000));

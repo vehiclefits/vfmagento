@@ -30,6 +30,10 @@ class Elite_Vafrelated_Model_Catalog_Product
 
     function showInRelated()
     {
+	if(!$this->getId())
+	{
+	    return false;
+	}
 	$select = $this->getReadAdapter()->select()
 	    ->from('elite_mapping',array('related'))
 	    ->where('entity_id = ' . $this->getId());
