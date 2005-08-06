@@ -1,6 +1,20 @@
 <?php
 class Elite_Vafwheeladapter_Model_Catalog_ProductTest extends Elite_Vaf_TestCase
 { 
+    function testCreateNewProduct()
+    {
+	$product = new Elite_Vaf_Model_Catalog_Product;
+	$wheelAdapterProduct = new Elite_Vafwheeladapter_Model_Catalog_Product($product);
+	$this->assertFalse( $wheelAdapterProduct->getWheelSideBoltPattern(), 'should create new product w/ no bolt patterns');
+    }
+
+    function testCreateNewProduct2()
+    {
+	$product = new Elite_Vaf_Model_Catalog_Product;
+	$wheelAdapterProduct = new Elite_Vafwheeladapter_Model_Catalog_Product($product);
+	$this->assertEquals( array(), $wheelAdapterProduct->getVehicleSideBoltPatterns(), 'should create new product w/ no bolt patterns');
+    }
+
     function testWhenNoVehicleSide()
     {
         $product = $this->newWheeladapterProduct();

@@ -5,7 +5,7 @@ class Elite_Vafwheel_Model_Catalog_ProductTest extends Elite_Vaf_TestCase
     {
 	$product = new Elite_Vaf_Model_Catalog_Product;
 	$wheelProduct = new Elite_Vafwheel_Model_Catalog_Product($product);
-	$this->assertFalse($wheelProduct->getBoltPatterns(), 'should create new product w/ no bolt patterns');
+	$this->assertEquals( array(), $wheelProduct->getBoltPatterns(), 'should create new product w/ no bolt patterns');
     }
 
     function testWhenNoBoltPattern()

@@ -25,7 +25,7 @@ class Elite_Vafwheel_Model_Catalog_Product
     {
 	if(!$this->getId())
 	{
-	    return false;
+	    return array();
 	}
         $select = $this->getReadAdapter()->select()
             ->from('elite_product_wheel')
