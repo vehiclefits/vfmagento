@@ -23,6 +23,10 @@ class Elite_Vafwheel_Model_Catalog_Product
     
     function getBoltPatterns()
     {
+	if(!$this->getId())
+	{
+	    return false;
+	}
         $select = $this->getReadAdapter()->select()
             ->from('elite_product_wheel')
             ->where('entity_id=?',$this->getId());
