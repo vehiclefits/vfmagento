@@ -63,6 +63,10 @@ class Elite_Vaftire_Model_Catalog_Product
     /** @return Elite_Vaftire_Model_TireSize */
     function getTireSize()
     {
+	if(!$this->getId())
+	{
+	    return false;
+	}
 	$select = $this->getReadAdapter()->select()
 			->from('elite_product_tire')
 			->where('entity_id=?', $this->getId());
@@ -80,6 +84,10 @@ class Elite_Vaftire_Model_Catalog_Product
 
     function tireType()
     {
+	if(!$this->getId())
+	{
+	    return false;
+	}
 	$select = $this->getReadAdapter()->select()
 			->from('elite_product_tire')
 			->where('entity_id=?', $this->getId());

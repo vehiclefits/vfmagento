@@ -3,6 +3,20 @@ class Elite_Vaftire_Model_Catalog_ProductTests_TireSizeTest extends Elite_Vaf_Te
 {
     const ID = 1;
     
+    function testCreateNewProduct()
+    {
+	$product = new Elite_Vaf_Model_Catalog_Product;
+	$tireProduct = new Elite_Vaftire_Model_Catalog_Product($product);
+	$this->assertFalse( $tireProduct->getTireSize(), 'should create new product w/ no tire size');
+    }
+
+    function testCreateNewProduct_TireType()
+    {
+	$product = new Elite_Vaf_Model_Catalog_Product;
+	$tireProduct = new Elite_Vaftire_Model_Catalog_Product($product);
+	$this->assertFalse( $tireProduct->tireType(), 'should create new product w/ no tire type');
+    }
+
     function testWhenNoTireSize()
     {
         $product = $this->newTireProduct();
