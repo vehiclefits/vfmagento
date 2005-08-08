@@ -41,7 +41,7 @@ class Elite_Vafdiagram_Model_ImporterTest extends Elite_Vaf_TestCase
 		$product->addServiceCode(123);
 		
 		$this->import('sku,make,model,year,service_code' . "\n" . 
-										',Honda,Civic,2000,123');
+					  ',Honda,Civic,2000,123');
 		
 		$this->assertEquals(1, count($product->getFits()), 'should import fitments from service code');
 	}
@@ -53,7 +53,7 @@ class Elite_Vafdiagram_Model_ImporterTest extends Elite_Vaf_TestCase
 		$product->addServiceCode(123);
 		
 		$this->import('sku,make,model,year,service_code' . "\n" . 
-										',Honda,Civic,2000,456');
+					  ',Honda,Civic,2000,456');
 		
 		$this->assertEquals(0, count($product->getFits()), 'should not import wrong fitments when service code differs');
 	}
