@@ -454,7 +454,7 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements
     protected function proxyValues()
     {
         ob_start();
-        $ignore = array( 'category', 'submitb' );
+        $ignore = array( 'category', 'submitb', 'q' );
         $ignore = array_merge( $ignore, $this->getLevels() );
         
         foreach ( $this->getRequest()->getParams() as $key => $value)
