@@ -10,6 +10,8 @@ class Elite_Vafdiagram_Model_Schema_Generator extends Ne8Vehicle_Schema_Generato
 				) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 				
 				ALTER TABLE  `elite_import` ADD  `service_code` VARCHAR( 100 ) NOT NULL;
+				
+				ALTER TABLE  `elite_definition` ADD  `service_code` VARCHAR( 100 ) NOT NULL;
 				';
     }
 }

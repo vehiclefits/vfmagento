@@ -44,15 +44,15 @@ class Elite_Vafdiagram_Model_Catalog_Product
         return $return;
     }
     
-    function query($sql)
-    {
-    	return $this->getReadAdapter()->query($sql);
-    }
-    
-	function __call($methodName,$arguments)
+    function __call($methodName,$arguments)
     {
         $method = array($this->wrappedProduct,$methodName);
         return call_user_func_array( $method, $arguments );
+    }
+    
+	function query($sql)
+    {
+    	return $this->getReadAdapter()->query($sql);
     }
     
  	/** @return Zend_Db_Adapter_Abstract */

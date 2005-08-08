@@ -31,6 +31,20 @@ class Elite_Vafdiagram_Model_ProductFitments_CSV_Import extends Elite_Vafimporte
     {
     	
     }
+
+    function insertVehicleRecords()
+    {
+        $cols = $this->getSchema()->getLevels();
+        foreach($cols as $i=>$col)
+        {
+            $cols[$i] = $this->getReadAdapter()->quoteIdentifier($col.'_id');
+        }
+        $cols[] = 'service_code';
+        $query = 'REPLACE INTO elite_definition (' . implode(',', $cols) . ')';
+        $query .= ' SELECT DISTINCT ' . implode(',', $cols) . ' FROM elite_import WHERE universal != 1';
+
+        $this->query($query);
+    }
     
 	function serviceCodeCombinations($combination, $serviceCode)
     {
@@ -38,7 +52,8 @@ class Elite_Vafdiagram_Model_ProductFitments_CSV_Import extends Elite_Vafimporte
     	foreach($this->products($serviceCode) as $product_id)
     	{
     		$combinations[] = $combination + array(
-    			'product_id' => $product_id
+    			'product_id' => $product_id,
+    			'service_code' => $serviceCode,
     		);
     	}
     	return $combinations;

@@ -13,6 +13,7 @@ class Vaf19
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;');
 
         $db->query('ALTER TABLE  `elite_import` ADD  `service_code` VARCHAR( 100 ) NOT NULL');
+        $db->query('ALTER TABLE  `elite_definition` ADD  `service_code` VARCHAR( 100 ) NOT NULL');
           
         
     }
