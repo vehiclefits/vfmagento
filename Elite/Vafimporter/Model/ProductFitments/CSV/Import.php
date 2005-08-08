@@ -36,12 +36,6 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
         $this->stop_count_mappings = $result;
     }
     
-    //function importRow($row)
-//    {   
-//        $this->row_number++;
-//        $this->oldImportRow($row);
-//    }
-    
     function getSkippedSkus()
     {
         return $this->skipped_skus;
