@@ -13,7 +13,7 @@
 */
 class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
 {
-    const VERSION = 18;
+    const VERSION = 19;
     
     function __construct()
     {
@@ -100,6 +100,11 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
         if( file_exists(ELITE_PATH.'/Vafgarage') )
         {
             $generator = new Elite_Vafgarage_Model_Schema_Generator();
+            $return .= $generator->generator($levels);
+        }
+        if( file_exists(ELITE_PATH.'/Vafdiagram') )
+        {
+            $generator = new Elite_Vafdiagram_Model_Schema_Generator();
             $return .= $generator->generator($levels);
         }
         
