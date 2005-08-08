@@ -11,6 +11,8 @@ class Vaf19
   `service_code` varchar(100) NOT NULL,
   PRIMARY KEY (`product_id`,`service_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;');
+
+        $db->query('ALTER TABLE  `elite_import` ADD  `service_code` VARCHAR( 100 ) NOT NULL');
           
         
     }

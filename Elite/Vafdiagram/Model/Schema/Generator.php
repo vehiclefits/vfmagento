@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafgarage_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
+class Elite_Vafdiagram_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
 {
     function generator()
     {
@@ -7,6 +7,9 @@ class Elite_Vafgarage_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
 				  `product_id` int(100) NOT NULL,
 				  `service_code` varchar(100) NOT NULL,
 				  PRIMARY KEY (`product_id`,`service_code`)
-				) ENGINE=InnoDB DEFAULT CHARSET=latin1;';
+				) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+				
+				ALTER TABLE  `elite_import` ADD  `service_code` VARCHAR( 100 ) NOT NULL;
+				';
     }
 }
