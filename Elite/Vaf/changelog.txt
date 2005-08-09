@@ -2,7 +2,6 @@
 ===================================================================
 ISSUES
 - Fixed product pricing
-- When doing a site text search, products should be filtered, or layered navigation should not
 - Before adding the first product, all makes/models/years are shown
 - When fitment is deleted from admin panel, should clear session
 - Should only be able to make single selections on 'vehicle fits' tab when editing product
@@ -10,7 +9,6 @@ ISSUES
 IMPROVEMENTS
 - Can set configuration settings to admin panel
 - Added OE offset criteria for wheel filtering
-- Can search on vehicle+keyword criteria
 - Includes JS automatically, removed need to copy & paste into head.phtml
 
 
