@@ -9,12 +9,16 @@ class Elite_Vafdiagram_Model_Catalog_Product
         $this->wrappedProduct = $productToWrap;
     }
 
-    function addServiceCode($serviceCode)
+    function addServiceCode($serviceCode, $category1=null)
     {
     	$select = $this->getReadAdapter()->select()
             ->from('elite_product_servicecode')
             ->where('product_id = ?', (int)$this->getId())
             ->where('service_code = ?', $serviceCode);
+    	if(!is_null($category1))
+        {
+        	$select->where('category1_id = ?', $category1);
+        }
         
         $result = $select->query();
         if($result->fetchColumn())
@@ -22,17 +26,28 @@ class Elite_Vafdiagram_Model_Catalog_Product
             return;
         }
         
-        $this->getReadAdapter()->insert('elite_product_servicecode', array(
+        $values = array(
             'product_id' => (int)$this->getId(),
             'service_code' => $serviceCode
-        ));
+       	);
+       	if(!is_null($category1))
+        {
+	       	$values = $values + array(
+	        	'category1_id' => $category1
+	        );
+        }
+        $this->getReadAdapter()->insert('elite_product_servicecode', $values);
     }
     
-    function serviceCodes()
+    function serviceCodes($category1=null)
     {
     	$select = $this->getReadAdapter()->select()
             ->from('elite_product_servicecode', array('product_id','service_code'))
             ->where('product_id = ?', (int)$this->getId() );
+        if(!is_null($category1))
+        {
+        	$select->where('category1_id = ?', $category1);
+        }
         
         $result = $this->query($select);
         
