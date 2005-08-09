@@ -99,7 +99,7 @@ class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf extends Mage_Adminh
                 <?php
                 $metadata = "{level:'$level', parent:'" . $schema->getPrevLevel($level) . "', parents:'" . implode(',',$schema->getPrevLevels($level)) . "',  parents_including:'" . implode(',',$schema->getPrevLevelsIncluding($level)) . "' }";
                 ?>
-                <select class="multiTree-select <?=$level?>Select <?=$metadata?>" multiple="multiple">
+                <select class="multiTree-select <?=$level?>Select <?=$metadata?>" size="10">
                     <?php
                     if( $schema->getRootLevel() == $level )
                     {
