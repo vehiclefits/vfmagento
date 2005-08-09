@@ -344,7 +344,27 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
 
     function shouldStoreVehicleInSession()
     {
-        return null == $this->getConfig() || !isset($this->getConfig()->search->storeVehicleInSession) || false != $this->getConfig()->search->storeVehicleInSession;
+        if (null == $this->getConfig())
+        {
+            return true;
+        }
+        if(!isset($this->getConfig()->search->storeVehicleInSession))
+        {
+            return true;
+        }
+        if( '' == $this->getConfig()->search->storeVehicleInSession)
+        {
+            return false;
+        }
+        if( 'false' == $this->getConfig()->search->storeVehicleInSession)
+        {
+            return false;
+        }        
+        if( (bool)$this->getConfig()->search->storeVehicleInSession)
+        {
+            return true;
+        }
+        return false;
     }
 
     function getFlexibleDefinition()
