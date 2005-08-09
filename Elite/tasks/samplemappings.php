@@ -18,7 +18,7 @@ class SampleData
     
     function main()
     {
-        $this->seedCsv = new Csv_Reader('products.csv');
+        $this->seedCsv = new Csv_Reader('sampleProducts.csv');
         $newCsv = '';
         $newCsv .= "sku,make,model,year\n";
         for( $this->i = 1; $this->i <= 300; $this->i++ )
@@ -36,7 +36,7 @@ class SampleData
             
             $newCsv .= $line . "\n";
         }
-        $file = 'E:\dev\vaf\app\code\local\Elite\tasks\sampleMappings.csv';
+        $file = 'F:\dev\vaf\app\code\local\Elite\tasks\sampleMappings.csv';
         file_put_contents($file,$newCsv);
         $importer = new Elite_Vafimporter_Model_ProductFitments_CSV_Import($file);
         $importer->import();
