@@ -380,7 +380,7 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
 	    }
 
 	    $levelObj = $vehicle->getLevel($level);
-	    if (!$level || !$levelObj->getId())
+	    if (!$level || !$levelObj || !$levelObj->getId())
 	    {
 		return false;
 	    }

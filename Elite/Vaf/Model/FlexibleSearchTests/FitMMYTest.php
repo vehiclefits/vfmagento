@@ -95,6 +95,14 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitMMYTest extends Elite_Vaf_Helper_Da
         $this->assertEquals( $vehicle->getLevel('year')->getId(), $helper->storeFitInSession(), 'gets fit id from session if there is no request' );
     }
     
+    function testShouldAutomaticallyClearInvalidSession()
+    {
+        $_SESSION = array('make'=>99, 'model'=>99, 'year'=>99);
+        $helper = $this->getHelper();
+        $flexibleSearch = new Elite_Vaf_Model_FlexibleSearch(new Elite_Vaf_Model_Schema, $this->getRequest());
+        $this->assertFalse($flexibleSearch->getFlexibleDefinition(), 'when fitment is deleted should automatically clear invalid session');
+    }
+    
     function testgetValueForSelectedLevel()
     {
         $vehicle = $this->createMMY();
