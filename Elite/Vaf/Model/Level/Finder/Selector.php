@@ -239,6 +239,10 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         {
             $select->where('m.id IN (' . implode(',', $idSet) . ')');
         }
+        else
+        {
+            $select->where('m.id IN (0)');
+        }
         
         $select->order('m.title ' . $entity->getSortOrder());
         return $this->query( $select );

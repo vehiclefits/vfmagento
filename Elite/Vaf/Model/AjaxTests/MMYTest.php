@@ -77,6 +77,14 @@ class Elite_Vaf_Model_AjaxTests_MMYTest extends Elite_Vaf_TestCase
         $this->assertEquals( '<option value="0">-please select-</option><option value="' . $vehicle1->getValue('model') . '">Accord</option><option value="' . $vehicle2->getValue('model') . '">Civic</option>', $this->execute(), 'should list models for a make' );
     }
     
+    function testShouldNotListModelsNotInUse()
+    {
+        $vehicle = $this->createMMY('Honda', 'Civic', '2001');
+        $_GET['make'] = $vehicle->getLevel('make')->getId();
+        $_GET['requestLevel'] = 'model';
+        $this->assertEquals( '', $this->execute(), 'should not list models not in use' );
+    }
+    
     function testShouldListMultipleModels_WithDefaultOption()
     {
         $vehicle1 = $this->createMMY('Honda', 'Accord', '2000');

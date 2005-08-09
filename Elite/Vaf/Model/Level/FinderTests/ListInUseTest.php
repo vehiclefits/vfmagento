@@ -1,6 +1,10 @@
 <?php
 class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
 {
+    function doSetUp()
+    {
+        $this->switchSchema('make,model,year');
+    }
 
     function testShouldNotIncludeOptionsNotInUse()
     {
@@ -16,6 +20,15 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $this->assertEquals( 'A', $actual[0]->getTitle() );
         $this->assertEquals( 'B', $actual[1]->getTitle() );
         $this->assertFalse( isset($actual[2]) );
+    }
+
+    function testShouldNotIncludeOptionsWhenNoFitments()
+    {        
+        $vehicle = $this->createMMY( 'A', 'A', '1' );
+
+        $model = new Elite_Vaf_Model_Level('model');
+        $actual = $model->listInUse();
+        $this->assertEquals(0,count($actual), 'when no fitments, should not list anything');
     }
 
 
