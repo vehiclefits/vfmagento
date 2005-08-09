@@ -9,7 +9,7 @@ class Elite_Vafdiagram_Model_Catalog_Product
         $this->wrappedProduct = $productToWrap;
     }
 
-    function addServiceCode($serviceCode, $category1=null)
+    function addServiceCode($serviceCode, $category1=null,$category2=null,$category3=null,$category4=null,$illustration_id=null )
     {
     	$select = $this->getReadAdapter()->select()
             ->from('elite_product_servicecode')
@@ -28,7 +28,8 @@ class Elite_Vafdiagram_Model_Catalog_Product
         
         $values = array(
             'product_id' => (int)$this->getId(),
-            'service_code' => $serviceCode
+            'service_code' => $serviceCode,
+        	'illustration_id' => $illustration_id
        	);
        	if(!is_null($category1))
         {
@@ -57,6 +58,20 @@ class Elite_Vafdiagram_Model_Catalog_Product
             array_push($return, $row->service_code );
         }
         return $return;
+    }
+    
+    function illustrationId($category1=null,$category2=null,$category3=null,$category4=null,$serviceCode)
+    {
+    	$select = $this->getReadAdapter()->select()
+            ->from('elite_product_servicecode', array('illustration_id'))
+            ->where('product_id = ?', (int)$this->getId() )
+            ->where('service_code = ?', $serviceCode );
+        if(!is_null($category1))
+        {
+        	$select->where('category1_id = ?', $category1);
+        }
+        $result = $this->query($select);
+        return $result->fetchColumn();
     }
     
     function __call($methodName,$arguments)

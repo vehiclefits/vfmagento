@@ -6,12 +6,32 @@ class Elite_Vafdiagram_Model_ProductServiceCodeImporterTest extends Elite_Vafdia
 		$this->switchSchema('make,model,year');
 	}
 	
-	function testShouldAddSingleServiceCodeToProduct()
+	function testShouldAddSingleServiceCode()
 	{
 		$product = $this->newProduct(1);
 		$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
 		$product->addServiceCode(123);
 		$this->assertEquals( array(123), $product->serviceCodes(), 'should add single service code for product');
+	}
+	
+	function testShouldAddMultipleServiceCode()
+	{
+		$product = $this->newProduct(1);
+		$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
+		$product->addServiceCode(123);
+		$product->addServiceCode(456);
+		$this->assertEquals( array(123,456), $product->serviceCodes(), 'should add multiple service codes for product');
+	}
+	
+	function testShouldPersistServiceCodes()
+	{
+		$product = $this->newProduct(1);
+		$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
+		$product->addServiceCode(123);
+		
+		$product = $this->newProduct(1);
+		$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
+		$this->assertEquals( array(123), $product->serviceCodes(), 'should persist service codes for product');
 	}
 	
 	function testShouldFilterServiceCodesByCategory1()
@@ -23,16 +43,31 @@ class Elite_Vafdiagram_Model_ProductServiceCodeImporterTest extends Elite_Vafdia
 		$this->assertEquals( array(123), $product->serviceCodes(1), 'should filter service codes by category 1');
 	}
 	
-	function testShouldAddMultipleServiceCodeToProduct()
+	function testShouldFilterServiceCodesByCategory2()
+	{
+		return $this->markTestIncomplete();
+	}
+	
+	function testShouldFilterServiceCodesByCategory3()
+	{
+		return $this->markTestIncomplete();
+	}
+	
+	function testShouldFilterServiceCodesByCategory4()
+	{
+		return $this->markTestIncomplete();
+	}
+	
+	function testShouldAddIllustrationID()
 	{
 		$product = $this->newProduct(1);
 		$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
-		$product->addServiceCode(123);
-		$product->addServiceCode(456);
-		$this->assertEquals( array(123,456), $product->serviceCodes(), 'should add multiple service codes for product');
+		$product->addServiceCode(123, 1, null, null, null, 1234);
+		$product->addServiceCode(456, 2, null, null, null, 4567);
+		$this->assertEquals( 1234, $product->illustrationID(1, null, null, null, 123), 'should add illustration ID');
 	}
 	
-	function testShouldImportServiceCodesToProduct()
+	function testShouldImportServiceCodes()
 	{
 		$productId = $this->insertProduct('sku1');
 		
@@ -43,7 +78,7 @@ class Elite_Vafdiagram_Model_ProductServiceCodeImporterTest extends Elite_Vafdia
 		$this->assertEquals( array(123,456), $product->serviceCodes(), 'should import multiple service codes for product');
 	}
 	
-	function testShouldAssociateCategory1WithProductServiceCode()
+	function testShouldAssociateCategory1WithServiceCode()
 	{
 		$productId = $this->insertProduct('sku1');
 		
@@ -55,29 +90,29 @@ class Elite_Vafdiagram_Model_ProductServiceCodeImporterTest extends Elite_Vafdia
 		$this->assertEquals( array(456), $product->serviceCodes(2), 'should assocaite category 1 with product service codes');
 	}
 	
-	function testShouldAssociateCategory2WithProductServiceCode()
+	function testShouldAssociateCategory2WithServiceCode()
 	{
 		return $this->markTestIncomplete();
 	}
 	
-	function testShouldAssociateCategory3WithProductServiceCode()
+	function testShouldAssociateCategory3WithServiceCode()
 	{
 		return $this->markTestIncomplete();
 	}
 	
-	function testShouldAssociateCategory4WithProductServiceCode()
+	function testShouldAssociateCategory4WithServiceCode()
 	{
 		return $this->markTestIncomplete();
 	}
 	
-	function testShouldPersistServiceCodesForProduct()
+	function testShouldAssociateCategory1WithIllustration()
 	{
-		$product = $this->newProduct(1);
-		$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
-		$product->addServiceCode(123);
+		$productId = $this->insertProduct('sku1');
 		
-		$product = $this->newProduct(1);
-		$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
-		$this->assertEquals( array(123), $product->serviceCodes(), 'should persist service codes for product');
+		$this->importProductServiceCodes('sku,category1,illustration_id,service_code' . "\n" .
+										 'sku1,1,1234,123' . "\n" . 
+										 'sku1,2,4567,456');
+		$product = $this->product($productId);		
+		$this->assertEquals( 1234, $product->illustrationId(1,null,null,null, 123), 'should lookup have correct illustration ID for category & service code combination');
 	}
 }
