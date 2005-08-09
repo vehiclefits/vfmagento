@@ -115,4 +115,9 @@ class Elite_Vafdiagram_Model_ProductServiceCodeImporterTest extends Elite_Vafdia
 		$product = $this->product($productId);		
 		$this->assertEquals( 1234, $product->illustrationId(1,null,null,null, 123), 'should lookup have correct illustration ID for category & service code combination');
 	}
+	
+	function testShouldAssociateProductIdWithIllustration()
+	{
+		return $this->markTestIncomplete();
+	}
 }
