@@ -23,6 +23,14 @@ class Elite_Vafdiagram_Model_Catalog_Product
         {
         	$select->where('category2_id = ?', $category2);
         }
+    	if(!is_null($category3))
+        {
+        	$select->where('category3_id = ?', $category3);
+        }
+    	if(!is_null($category4))
+        {
+        	$select->where('category4_id = ?', $category4);
+        }
         
         $result = $select->query();
         if($result->fetchColumn())
