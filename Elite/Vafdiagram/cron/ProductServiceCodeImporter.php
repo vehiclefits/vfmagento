@@ -10,6 +10,6 @@ $db = Zend_Db::factory('pdo_mysql', $params);
 $db->getConnection();
 Zend_Registry::set('db',$db);
 
-$file = 'import.csv';
-$import = new Elite_Vafdiagram_Model_ProductFitments_CSV_Import($file);
+$file = 'product-service-codes.csv';
+$import = new ProductServiceCodeImporter($file);
 $import->import();
