@@ -1,7 +1,7 @@
 <?php
 class Elite_Vafsitemap_Model_Url_Rewrite extends Mage_Core_Model_Url_Rewrite
 {
-    protected $uri;
+    protected $uri, $config;
     
     function rewrite(Zend_Controller_Request_Http $request=null, Zend_Controller_Response_Http $response=null) 
     {
@@ -115,7 +115,17 @@ class Elite_Vafsitemap_Model_Url_Rewrite extends Mage_Core_Model_Url_Rewrite
     
     function vehicleSlug($vehicle)
     {
-		$slug = implode('~',$vehicle->toTitleArray());
+    	$config = $this->getConfig();
+    	$rewriteLevels = $config->seo->rewriteLevels;
+    	if($rewriteLevels)
+    	{
+    		$rewriteLevels = explode(',', $rewriteLevels);
+    		$slug = implode('~',$vehicle->toTitleArray($rewriteLevels));
+    	}
+    	else
+    	{
+    		$slug = implode('~',$vehicle->toTitleArray());
+    	}
 		$slug = str_replace(' ','-',$slug);
 		return $slug;
     }
@@ -123,5 +133,19 @@ class Elite_Vafsitemap_Model_Url_Rewrite extends Mage_Core_Model_Url_Rewrite
     function getSchema()
     {
         return new Elite_Vaf_Model_Schema;
+    }
+    
+	function getConfig()
+    {
+        if( !$this->config instanceof Zend_Config )
+        {
+            $this->config = Elite_Vaf_Helper_Data::getInstance()->getConfig();
+        }    
+        return $this->config;
+    }
+    
+    function setConfig( Zend_Config $config )
+    {
+        $this->config = $config;
     }
 }
