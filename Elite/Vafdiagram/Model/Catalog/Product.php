@@ -19,6 +19,10 @@ class Elite_Vafdiagram_Model_Catalog_Product
         {
         	$select->where('category1_id = ?', $category1);
         }
+    	if(!is_null($category2))
+        {
+        	$select->where('category2_id = ?', $category2);
+        }
         
         $result = $select->query();
         if($result->fetchColumn())
@@ -37,10 +41,28 @@ class Elite_Vafdiagram_Model_Catalog_Product
 	        	'category1_id' => $category1
 	        );
         }
+       	if(!is_null($category2))
+        {
+	       	$values = $values + array(
+	        	'category2_id' => $category2
+	        );
+        }
+       	if(!is_null($category3))
+        {
+	       	$values = $values + array(
+	        	'category3_id' => $category3
+	        );
+        }
+       	if(!is_null($category4))
+        {
+	       	$values = $values + array(
+	        	'category4_id' => $category4
+	        );
+        }
         $this->getReadAdapter()->insert('elite_product_servicecode', $values);
     }
     
-    function serviceCodes($category1=null)
+    function serviceCodes($category1=null,$category2=null,$category3=null,$category4=null)
     {
     	$select = $this->getReadAdapter()->select()
             ->from('elite_product_servicecode', array('product_id','service_code'))
@@ -48,6 +70,20 @@ class Elite_Vafdiagram_Model_Catalog_Product
         if(!is_null($category1))
         {
         	$select->where('category1_id = ?', $category1);
+        }
+        if(!is_null($category2))
+        {
+        	$select->where('category2_id = ?', $category2);
+        }
+        
+        if(!is_null($category3))
+        {
+        	$select->where('category3_id = ?', $category3);
+        }
+        
+        if(!is_null($category4))
+        {
+        	$select->where('category4_id = ?', $category4);
         }
         
         $result = $this->query($select);

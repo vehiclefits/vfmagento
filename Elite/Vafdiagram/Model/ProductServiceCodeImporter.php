@@ -9,9 +9,12 @@ class Elite_Vafdiagram_Model_ProductServiceCodeImporter extends Ne8Vehicle_Impor
 			$sku = $this->getFieldValue('sku',$row);						
 			$service_code = $this->getFieldValue('service_code',$row);
 			$category1 = $this->getFieldValue('category1',$row);
+			$category2 = $this->getFieldValue('category2',$row);
+			$category3 = $this->getFieldValue('category3',$row);
+			$category4 = $this->getFieldValue('category4',$row);
 			$illustration_id = $this->getFieldValue('illustration_id',$row);
 			$product = $this->product($sku);
-			$product->addServiceCode($service_code, $category1, null, null, null, $illustration_id );
+			$product->addServiceCode($service_code, $category1, $category2, $category3, $category4, $illustration_id );
 		}
 	}
 	

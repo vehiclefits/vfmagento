@@ -92,17 +92,38 @@ class Elite_Vafdiagram_Model_ProductServiceCodeImporterTest extends Elite_Vafdia
 	
 	function testShouldAssociateCategory2WithServiceCode()
 	{
-		return $this->markTestIncomplete();
+		$productId = $this->insertProduct('sku1');
+		
+		$this->importProductServiceCodes('sku,category1,category2,service_code' . "\n" .
+										 'sku1,1,1,123' . "\n" . 
+										 'sku1,1,2,456');
+		$product = $this->product($productId);		
+		$this->assertEquals( array(123), $product->serviceCodes(1,1), 'should assocaite category 2 with product service codes');
+		$this->assertEquals( array(456), $product->serviceCodes(1,2), 'should assocaite category 2 with product service codes');
 	}
 	
 	function testShouldAssociateCategory3WithServiceCode()
 	{
-		return $this->markTestIncomplete();
+		$productId = $this->insertProduct('sku1');
+		
+		$this->importProductServiceCodes('sku,category1,category2,category3,service_code' . "\n" .
+										 'sku1,1,1,1,123' . "\n" . 
+										 'sku1,1,1,2,456');
+		$product = $this->product($productId);		
+		$this->assertEquals( array(123), $product->serviceCodes(1,1,1), 'should assocaite category 3 with product service codes');
+		$this->assertEquals( array(456), $product->serviceCodes(1,1,2), 'should assocaite category 3 with product service codes');
 	}
 	
 	function testShouldAssociateCategory4WithServiceCode()
 	{
-		return $this->markTestIncomplete();
+		$productId = $this->insertProduct('sku1');
+		
+		$this->importProductServiceCodes('sku,category1,category2,category3,category4,service_code' . "\n" .
+										 'sku1,1,1,1,1,123' . "\n" . 
+										 'sku1,1,1,1,2,456');
+		$product = $this->product($productId);		
+		$this->assertEquals( array(123), $product->serviceCodes(1,1,1,1), 'should assocaite category 4 with product service codes');
+		$this->assertEquals( array(456), $product->serviceCodes(1,1,1,2), 'should assocaite category 4 with product service codes');
 	}
 	
 	function testShouldAssociateCategory1WithIllustration()
