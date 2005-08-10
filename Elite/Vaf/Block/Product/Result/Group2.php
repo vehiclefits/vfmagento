@@ -43,7 +43,7 @@ class Elite_Vaf_Block_Product_Result_Group2 extends Elite_Vaf_Block_Product_Resu
     {
         $html = '<img align="left" src="/category-images/' . $this->htmlEscape($this->imagePath($category)) . '.jpg" />';
         
-        $html .= '<strong><a href="' . $this->baseUrl() . $category->getRequestPath() . '">' . $this->htmlEscape($category->getName()) . '</a></strong>';
+        $html .= '<strong><a href="' . $this->categoryUrl($category) . '">' . $this->htmlEscape($category->getName()) . '</a></strong>';
         
         if ($category->hasChildren())
         {
@@ -66,11 +66,6 @@ class Elite_Vaf_Block_Product_Result_Group2 extends Elite_Vaf_Block_Product_Resu
         return '<li>- <a href="' . $this->baseUrl() . $category->getRequestPath() . '">' . $this->htmlEscape($category->getName()) . '</a></li>';
     }
 
-	function baseUrl($storeId = 0)
-    {
-        return Mage::getBaseUrl();
-    }
-    
     function imagePath($category)
     {
         $name = $category->getName();

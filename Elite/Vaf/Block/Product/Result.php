@@ -243,4 +243,14 @@ class Elite_Vaf_Block_Product_Result extends Elite_Vaf_Block_Product_List
     {
         return $this->categoryIsRoot( $category ) ? 'Uncategorized' : $category->getName();
     }
+    
+	function categoryUrl($category)
+    {
+		return $this->baseUrl() . $category->getRequestPath();    	
+    }
+    
+	function baseUrl($storeId = 0)
+    {
+        return Mage::getBaseUrl();
+    }
 }

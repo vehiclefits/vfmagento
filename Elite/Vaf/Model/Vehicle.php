@@ -130,7 +130,7 @@ class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
         }
         return $ids;
     }
-    
+
     function toValueArray()
     {
         $array = array();
@@ -155,12 +155,17 @@ class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
         return $array;
     }
         
-    function toTitleArray()
+    function toTitleArray($levels = array())
     {
         $array = array();
 
-        foreach( $this->getLevelObjs() as $level )
+        $levels = count($levels) ? $levels : $this->getLevelObjs();
+        foreach( $levels as $level )
         {
+        	if( is_string($level) && strlen($level) > 0 )
+            {
+            	$level = $this->getLevel($level);
+            }
             if( !is_object($level) )
             {
                 break;

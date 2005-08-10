@@ -1,0 +1,43 @@
+<ul>
+<?php
+$categories = $this->getCategories();
+foreach( $categories as $category )
+{
+    ?>
+    <li>
+    	<a href="<?=$this->categoryUrl($category)?>"><?=$this->htmlEscape( $this->categoryName($category) )?></a>
+    </li>
+    <?php
+}
+?>
+</ul>
+
+<?php
+if(!count($categories))
+{
+	$category1 = $this->getRequest()->getParam('category1');
+    $category2 = $this->getRequest()->getParam('category2');
+    $category3 = $this->getRequest()->getParam('category3');
+    $category4 = $this->getRequest()->getParam('category4');
+    
+    $vehicle = Elite_Vaf_Helper_Data::getInstance()->getFit();
+    $vehicle = new Elite_Vafdiagram_Model_Vehicle($vehicle);
+    $serviceCode = $vehicle->serviceCode();
+    
+    $finder = new Elite_Vafdiagram_Model_ProductFinder;
+    $productIds = $finder->listProductIds($category1, $category2, $category3, $category4, $serviceCode);
+    
+    $product = Mage::getModel('catalog/product')->load(current($productIds));
+    $product = new Elite_Vafdiagram_Model_Catalog_Product($product);
+    $illustrationId = $product->illustrationId($category1, $category2, $category3, $category4, $serviceCode);
+    
+    echo '<img src="/illustrations/' . (int)$illustrationId . '.jpg" />';
+    
+    echo '<ul>';
+    foreach($productIds as $productId)
+    {
+    	$product = Mage::getModel('catalog/product')->load($productId);
+    	echo '<li>' . $this->htmlEscape($product->getName()) . '</li>';
+    }
+    echo '</ul>';
+}

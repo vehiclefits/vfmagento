@@ -48,6 +48,13 @@ class Elite_Vaf_ProductController extends Mage_Catalog_ProductController
                 $block = $this->createBlock( 'vaf/product_result_group2', 'vaf_products' );
                 $this->appendBlock($block);
             break;
+            case 'group3':
+                // unset the grid block added from layout.xml
+                $this->getLayout()->getBlock('content')->unsetChild('vaf_products');
+                
+                $block = $this->createBlock( 'vaf/product_result_group3', 'vaf_products' );
+                $this->appendBlock($block);
+            break;
         }
 
         $this->renderLayout();

@@ -18,7 +18,7 @@ ADD `category2_id` INT( 10 ) NOT NULL ,
 ADD `category3_id` INT( 10 ) NOT NULL ,
 ADD `category4_id` INT( 10 ) NOT NULL ;
 
-				ALTER TABLE `elite_product_servicecode` ADD `illustration_id` INT( 10 )  NULL
+				ALTER TABLE `elite_product_servicecode` ADD `illustration_id` INT( 10 )  NULL;
 				';
     }
 }
