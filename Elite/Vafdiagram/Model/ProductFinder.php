@@ -1,26 +1,26 @@
 <?php 
 class Elite_Vafdiagram_Model_ProductFinder
 {
-	function listProductIds($category1, $category2=null, $category3=null, $category4=null, $serviceCode=null)
+	function listProductIds($paramaters)
 	{
 		$select = $this->getReadAdapter()->select()
 			->from('elite_product_servicecode', array('product_id'))
-			->where('category1_id = ?', $category1);
-		if($category2)
+			->where('category1_id = ?', $paramaters['category1']);
+		if(isset($paramaters['category2']))
 		{
-			$select->where('category2_id = ?', $category2);
+			$select->where('category2_id = ?', $paramaters['category2']);
 		}
-		if($category3)
+		if(isset($paramaters['category3']))
 		{
-			$select->where('category3_id = ?', $category3);
+			$select->where('category3_id = ?', $paramaters['category3']);
 		}
-		if($category4)
+		if(isset($paramaters['category4']))
 		{
-			$select->where('category4_id = ?', $category4);
+			$select->where('category4_id = ?', $paramaters['category4']);
 		}
-		if($serviceCode)
+		if(isset($paramaters['service_code']))
 		{
-			$select->where('service_code = ?', $serviceCode);
+			$select->where('service_code = ?', $paramaters['service_code']);
 		}
 		$rs = $select->query()->fetchAll();
 		$return = array();

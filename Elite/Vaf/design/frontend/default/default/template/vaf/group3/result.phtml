@@ -25,13 +25,25 @@ if(!count($categories))
     $serviceCode = $vehicle->serviceCode();
     
     $finder = new Elite_Vafdiagram_Model_ProductFinder;
-    $productIds = $finder->listProductIds($category1, $category2, $category3, $category4, $serviceCode);
+    $productIds = $finder->listProductIds(array(
+    	'category1'=>$category1,
+    	'category2'=>$category2,
+    	'category3'=>$category3,
+    	'category4'=>$category4,
+    	'service_code'=>$serviceCode
+    ));
     
     $product = Mage::getModel('catalog/product')->load(current($productIds));
     $product = new Elite_Vafdiagram_Model_Catalog_Product($product);
-    $illustrationId = $product->illustrationId($category1, $category2, $category3, $category4, $serviceCode);
+    $illustrationId = $product->illustrationId(array(
+    	'category1'=>$category1,
+    	'category2'=>$category2,
+    	'category3'=>$category3,
+    	'category4'=>$category4,
+    	'service_code'=>$serviceCode
+   	));
     
-    echo '<img src="/illustrations/' . (int)$illustrationId . '.jpg" />';
+    echo '<img src="/illustrations/' . $this->htmlEscape($illustrationId) . '.jpg" />';
     
     echo '<ul>';
     foreach($productIds as $productId)

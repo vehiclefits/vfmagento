@@ -11,7 +11,11 @@ class Elite_Vafdiagram_Model_ProductFinderTest extends Elite_Vafdiagram_Model_Te
 										 'sku2,2,4567,456');		
 		
 		$finder = new Elite_Vafdiagram_Model_ProductFinder;
-		$this->assertEquals( array($productId1), $finder->listProductIds(1), 'should list products');
+		
+		$actual = $finder->listProductIds(array(
+			'category1'=>1
+		));
+		$this->assertEquals( array($productId1), $actual, 'should filter by category1');
 	}
 	
 	function testShouldFilterByCategory2()
@@ -24,7 +28,11 @@ class Elite_Vafdiagram_Model_ProductFinderTest extends Elite_Vafdiagram_Model_Te
 										 'sku2,1,2,4567,456');		
 		
 		$finder = new Elite_Vafdiagram_Model_ProductFinder;
-		$this->assertEquals( array($productId1), $finder->listProductIds(1,1), 'should list products');		
+		$actual = $finder->listProductIds(array(
+			'category1'=>1,
+			'category2'=>1,
+		));
+		$this->assertEquals( array($productId1), $actual, 'should filter by category2');		
 	}
 	
 	function testShouldFilterByCategory3()
@@ -37,7 +45,12 @@ class Elite_Vafdiagram_Model_ProductFinderTest extends Elite_Vafdiagram_Model_Te
 										 'sku2,1,1,2,4567,456');		
 		
 		$finder = new Elite_Vafdiagram_Model_ProductFinder;
-		$this->assertEquals( array($productId1), $finder->listProductIds(1,1,1), 'should list products');		
+		$actual = $finder->listProductIds(array(
+			'category1'=>1,
+			'category2'=>1,
+			'category3'=>1,
+		));
+		$this->assertEquals( array($productId1), $actual, 'should filter by category3');		
 	}	
 	
 	function testShouldFilterByCategory4()
@@ -50,7 +63,13 @@ class Elite_Vafdiagram_Model_ProductFinderTest extends Elite_Vafdiagram_Model_Te
 										 'sku2,1,1,1,2,4567,456');		
 		
 		$finder = new Elite_Vafdiagram_Model_ProductFinder;
-		$this->assertEquals( array($productId1), $finder->listProductIds(1,1,1,1), 'should list products');		
+		$actual = $finder->listProductIds(array(
+			'category1'=>1,
+			'category2'=>1,
+			'category3'=>1,
+			'category4'=>1,
+		));
+		$this->assertEquals( array($productId1), $actual, 'should filter by category4');		
 	}
 	
 	function testShouldFilterByServiceCode()
@@ -63,6 +82,13 @@ class Elite_Vafdiagram_Model_ProductFinderTest extends Elite_Vafdiagram_Model_Te
 										 'sku2,1,1,1,1,4567,456');		
 		
 		$finder = new Elite_Vafdiagram_Model_ProductFinder;
-		$this->assertEquals( array($productId1), $finder->listProductIds(1,1,1,1,123), 'should list products');		
+		$actual = $finder->listProductIds(array(
+			'category1'=>1,
+			'category2'=>1,
+			'category3'=>1,
+			'category4'=>1,
+			'service_code'=>123,
+		));
+		$this->assertEquals( array($productId1), $actual, 'should list products');		
 	}
 }

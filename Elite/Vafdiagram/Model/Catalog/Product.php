@@ -104,15 +104,15 @@ class Elite_Vafdiagram_Model_Catalog_Product
         return $return;
     }
     
-    function illustrationId($category1=null,$category2=null,$category3=null,$category4=null,$serviceCode)
+    function illustrationId($paramaters)
     {
     	$select = $this->getReadAdapter()->select()
             ->from('elite_product_servicecode', array('illustration_id'))
             ->where('product_id = ?', (int)$this->getId() )
-            ->where('service_code = ?', $serviceCode );
-        if(!is_null($category1))
+            ->where('service_code = ?', $paramaters['service_code'] );
+        if(!is_null($paramaters['category1']))
         {
-        	$select->where('category1_id = ?', $category1);
+        	$select->where('category1_id = ?', $paramaters['category1']);
         }
         $result = $this->query($select);
         return $result->fetchColumn();
