@@ -65,6 +65,24 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 	return array();
     }
 
+    function getMinimalPrice()
+    {
+	if( $this->currentlySelectedFit() && $customPrice = $this->customPrice($this->currentlySelectedFit()))
+	{
+	    return $customPrice;
+	}
+	return parent::getMinimalPrice();
+    }
+
+    function getFinalPrice($qty=null)
+    {
+	if( $this->currentlySelectedFit() && $customPrice = $this->customPrice($this->currentlySelectedFit()))
+	{
+	    return $customPrice;
+	}
+	return parent::getFinalPrice();
+    }
+
     function getPrice()
     {
 	if( $this->currentlySelectedFit() && $customPrice = $this->customPrice($this->currentlySelectedFit()))

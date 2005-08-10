@@ -20,8 +20,7 @@ class Elite_Vafdiagram_Model_ProductFitments_CSV_Import extends Elite_Vafimporte
         }
         catch(Exception $e)
         {
-            $this->getReadAdapter()->rollBack();
-            $this->log('Import Cancelled & Reverted Due To Critical Error: ' . $e->getMessage() . $e->getTraceAsString(), Zend_log::CRIT);
+	    $this->log('Import Cancelled & Reverted Due To Critical Error: ' . $e->getMessage() . $e->getTraceAsString(), Zend_log::CRIT);
             throw $e;
         }
 

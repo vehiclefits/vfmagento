@@ -242,7 +242,7 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
 	    {
 
 		self::$dbAdapter = new My_Adapter(array('dbname' => VAF_DB_NAME, 'username' => VAF_DB_USERNAME, 'password' => VAF_DB_PASSWORD));
-		self::$dbAdapter->getConnection()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
+		self::$dbAdapter->getConnection()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
 		
 		self::$dbAdapter->getConnection()->query('SET character set utf8;');
 		self::$dbAdapter->getConnection()->query('SET character_set_client = utf8;');
@@ -263,7 +263,7 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
 	$config = $read->getConfig();
 	
 	self::$dbAdapter = new My_Adapter(array('dbname' => $config['dbname'], 'username' => $config['username'], 'password' => $config['password']));
-	self::$dbAdapter->getConnection()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
+	self::$dbAdapter->getConnection()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
 
 	self::$dbAdapter->getConnection()->query('SET character set utf8;');
 	self::$dbAdapter->getConnection()->query('SET character_set_client = utf8;');

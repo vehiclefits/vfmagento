@@ -40,4 +40,30 @@ sku, honda, civic, 2000, 222.22');
 	$this->assertEquals( 222.22, $product->getPrice(), 'should change price based on selected vehicle');
 
     }
+
+    function testChangesMinimalPrice()
+    {
+	$this->insertProduct('sku');
+
+	$this->mappingsImport('sku, make, model, year, price
+sku, honda, civic, 2000, 222.22');
+
+	$product = $this->getProductForSku('sku');
+	$product->setCurrentlySelectedFit($this->vehicleFinder()->findOneByLevels(array('make'=>'honda', 'model'=>'civic', 'year'=>2000)));
+	$this->assertEquals( 222.22, $product->getMinimalPrice(), 'should change price based on selected vehicle');
+
+    }
+
+    function testChangesPrice2()
+    {
+	$this->insertProduct('sku');
+
+	$this->mappingsImport('price,sku, make, model, year,
+222.22,sku, honda, civic, 2000');
+
+	$product = $this->getProductForSku('sku');
+	$product->setCurrentlySelectedFit($this->vehicleFinder()->findOneByLevels(array('make'=>'honda', 'model'=>'civic', 'year'=>2000)));
+	$this->assertEquals( 222.22, $product->getPrice(), 'should change price based on selected vehicle');
+
+    }
 }

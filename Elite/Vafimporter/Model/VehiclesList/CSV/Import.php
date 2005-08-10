@@ -96,7 +96,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
 		    'line' => $row[$i + 2],
 		    'note_message' => $row[$i + 3],
 		    'notes' => isset($row[$i + 4]) ? $row[$i + 4] : '',
-		    'price' => isset($row[$i+6]) ? $row[$i+6] : ''
+		    'price' => isset($row[$i+5]) ? $row[$i+5] : ''
 		);
 
 		$this->insertIntoTempTable($newRow, $newRow);
