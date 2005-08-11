@@ -9,27 +9,18 @@ class Elite_Vafdiagram_Model_Catalog_Product
         $this->wrappedProduct = $productToWrap;
     }
 
-    function addServiceCode($serviceCode, $category1=null,$category2=null,$category3=null,$category4=null,$illustration_id=null )
+    function addServiceCode($serviceCode, $paramaters = array() )
     {
     	$select = $this->getReadAdapter()->select()
             ->from('elite_product_servicecode')
             ->where('product_id = ?', (int)$this->getId())
             ->where('service_code = ?', $serviceCode);
-    	if(!is_null($category1))
+        for($level=1; $level<=4; $level++)
         {
-        	$select->where('category1_id = ?', $category1);
-        }
-    	if(!is_null($category2))
-        {
-        	$select->where('category2_id = ?', $category2);
-        }
-    	if(!is_null($category3))
-        {
-        	$select->where('category3_id = ?', $category3);
-        }
-    	if(!is_null($category4))
-        {
-        	$select->where('category4_id = ?', $category4);
+	    	if(isset($paramaters['category1']) && !is_null($paramaters['category1']))
+	        {
+	        	$select->where('category1_id = ?', $paramaters['category1']);
+	        }
         }
         
         $result = $select->query();
@@ -40,32 +31,24 @@ class Elite_Vafdiagram_Model_Catalog_Product
         
         $values = array(
             'product_id' => (int)$this->getId(),
-            'service_code' => $serviceCode,
-        	'illustration_id' => $illustration_id
+            'service_code' => $serviceCode
        	);
-       	if(!is_null($category1))
+       	
+       	if(isset($paramaters['illustration_id']))
+       	{
+       		$values = $values + array(
+        		'illustration_id' => $paramaters['illustration_id']
+       		);
+       	}
+       	
+       	for($level=1; $level<=4; $level++)
         {
-	       	$values = $values + array(
-	        	'category1_id' => $category1
-	        );
-        }
-       	if(!is_null($category2))
-        {
-	       	$values = $values + array(
-	        	'category2_id' => $category2
-	        );
-        }
-       	if(!is_null($category3))
-        {
-	       	$values = $values + array(
-	        	'category3_id' => $category3
-	        );
-        }
-       	if(!is_null($category4))
-        {
-	       	$values = $values + array(
-	        	'category4_id' => $category4
-	        );
+	       	if(isset($paramaters['category'.$level]) && $paramaters['category'.$level])
+	        {
+		       	$values = $values + array(
+		        	'category'.$level.'_id' => $paramaters['category'.$level]
+		        );
+	        }
         }
         $this->getReadAdapter()->insert('elite_product_servicecode', $values);
     }

@@ -46,8 +46,12 @@ class Elite_Vafdiagram_Model_Catalog_ProductTest extends Elite_Vafdiagram_Model_
 	{
 		$product = $this->newProduct(1);
 		$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
-		$product->addServiceCode(123, 1);
-		$product->addServiceCode(456, 2);
+		$product->addServiceCode(123, array(
+			'category1'=>1
+		));
+		$product->addServiceCode(456, array(
+			'category1'=>2
+		));
 		$this->assertEquals( array(123), $product->serviceCodes(1), 'should filter service codes by category 1');
 	}
 	
@@ -70,8 +74,14 @@ class Elite_Vafdiagram_Model_Catalog_ProductTest extends Elite_Vafdiagram_Model_
 	{
 		$product = $this->newProduct(1);
 		$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
-		$product->addServiceCode(123, 1, null, null, null, 1234);
-		$product->addServiceCode(456, 2, null, null, null, 4567);
+		$product->addServiceCode(123, array(
+			'category1'=>1,
+			'illustration_id'=>1234
+		));
+		$product->addServiceCode(456, array(
+			'category1'=>2,
+			'illustration_id'=>4567
+		));
 		
 		$actual = $product->illustrationID(array(
 			'category1'=>1,
@@ -84,8 +94,14 @@ class Elite_Vafdiagram_Model_Catalog_ProductTest extends Elite_Vafdiagram_Model_
 	{
 		$product = $this->newProduct(1);
 		$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
-		$product->addServiceCode('0123', 1, null, null, null, '001234');
-		$product->addServiceCode(456, 2, null, null, null, 4567);
+		$product->addServiceCode('0123', array(
+			'category1'=>1,
+			'illustration_id'=>'001234'
+		));
+		$product->addServiceCode(456, array(
+			'category1'=>2,
+			'illustration_id'=>4567
+		));
 		
 		$actual = $product->illustrationID(array(
 			'category1'=>1,
