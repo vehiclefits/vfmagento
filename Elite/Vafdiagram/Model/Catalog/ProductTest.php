@@ -5,12 +5,21 @@ class Elite_Vafdiagram_Model_Catalog_ProductTest extends Elite_Vafdiagram_Model_
 	{
 		$this->switchSchema('make,model,year');
 	}
-function testShouldAddSingleServiceCode()
+
+	function testShouldAddSingleServiceCode()
 	{
 		$product = $this->newProduct(1);
 		$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
 		$product->addServiceCode(123);
 		$this->assertEquals( array(123), $product->serviceCodes(), 'should add single service code for product');
+	}
+	
+	function testShouldAddSingleServiceCode_WithPrefixingZero()
+	{
+		$product = $this->newProduct(1);
+		$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
+		$product->addServiceCode('00123');
+		$this->assertEquals( array('00123'), $product->serviceCodes(), 'should add single service code for product (with prefixing zero');
 	}
 	
 	function testShouldAddMultipleServiceCode()
@@ -69,5 +78,19 @@ function testShouldAddSingleServiceCode()
 			'service_code'=>123
 		));
 		$this->assertEquals( 1234, $actual, 'should add illustration ID');
+	}
+	
+	function testShouldAddIllustrationID_WithPrefixingZeros()
+	{
+		$product = $this->newProduct(1);
+		$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
+		$product->addServiceCode('0123', 1, null, null, null, '001234');
+		$product->addServiceCode(456, 2, null, null, null, 4567);
+		
+		$actual = $product->illustrationID(array(
+			'category1'=>1,
+			'service_code'=>'0123'
+		));
+		$this->assertSame( '001234', $actual, 'should add illustration ID (with prefixing zeros)');
 	}
 }
