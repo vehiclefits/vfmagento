@@ -3,9 +3,24 @@ class Elite_Vafdiagram_Model_CategoryFinder
 {
 	function listCategories($paramaters)
 	{
+		$paramaters['level'] = 1;
+		for($level=1; $level<=4; $level++)
+		{
+			if(isset($paramaters['level'.$level]) && $paramaters['level'.$level])
+			{
+				$paramaters['level'] = $level+1;
+			}
+		}
+		
+		$col = 'category' . $paramaters['level'] . '_id';
+		$expr = "distinct($col)";
+		
 		$select = $this->getReadAdapter()->select()
-			->from('elite_product_servicecode')
-			->where('product_id = ?', $paramaters['product']);
+			->from('elite_product_servicecode', array($expr));
+		if(isset($paramaters['product']))
+		{
+			$select->where('product_id = ?', $paramaters['product']);
+		}
 		$this->filterByParents($select, $paramaters);
 		if(isset($paramaters['service_code']))
 		{
@@ -15,7 +30,10 @@ class Elite_Vafdiagram_Model_CategoryFinder
 		$return = array();
 		foreach($rs as $result)
 		{
-			$return[] = $this->getCategoryIdFromResult($result,$paramaters);
+			$id = $this->getCategoryIdFromResult($result,$paramaters);
+			if(!$id) continue;
+			
+			$return[] = $id;
 		}
 		return $return;
 	}
@@ -29,7 +47,7 @@ class Elite_Vafdiagram_Model_CategoryFinder
 	{
 		for($level=1; $level<=4; $level++)
 		{
-			if(isset($paramaters['level'.$level]))
+			if(isset($paramaters['level'.$level]) && $paramaters['level'.$level])
 			{
 				$select->where('category'.$level.'_id =?', $paramaters['level'.$level]);
 			}

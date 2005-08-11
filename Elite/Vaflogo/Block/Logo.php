@@ -12,7 +12,7 @@ class Elite_Vaflogo_Block_Logo extends Mage_Core_Block_Abstract
 			return;
         }
         $pathSuffix = $this->selectionToken().'.PNG';
-		return '<img class="vafLogo" src="/logos/' . $pathSuffix .'" />';
+		return '<img class="vafLogo" src="/logos/' . $pathSuffix .'" style="width:100%" />';
 		
 	}
 	

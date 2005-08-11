@@ -1,6 +1,31 @@
 <ul>
 <?php
-$categories = $this->getCategories();
+$vehicle = Elite_Vaf_Helper_Data::getInstance()->getFit();
+$vehicle = new Elite_Vafdiagram_Model_Vehicle($vehicle);
+$serviceCode = $vehicle->serviceCode();
+
+?>
+<img src="/vehicle-images/<?=$serviceCode?>.jpg" style="width:100%" />
+<?php
+    
+
+$category1 = $this->getRequest()->getParam('category1');
+$category2 = $this->getRequest()->getParam('category2');
+$category3 = $this->getRequest()->getParam('category3');
+$category4 = $this->getRequest()->getParam('category4');
+    	
+$categoryFinder = new Elite_Vafdiagram_Model_CategoryFinder;
+$categories = $categoryFinder->listCategories(array(
+	'service_code' => $serviceCode,
+	'level1' => $category1,
+	'level2' => $category2,
+	'level3' => $category3,
+	'level4' => $category4,
+));
+foreach($categories as $key=>$category)
+{
+	$categories[$key] = Mage::getModel('catalog/category')->load($category);
+}
 foreach( $categories as $category )
 {
     ?>
@@ -19,10 +44,6 @@ if(!count($categories))
     $category2 = $this->getRequest()->getParam('category2');
     $category3 = $this->getRequest()->getParam('category3');
     $category4 = $this->getRequest()->getParam('category4');
-    
-    $vehicle = Elite_Vaf_Helper_Data::getInstance()->getFit();
-    $vehicle = new Elite_Vafdiagram_Model_Vehicle($vehicle);
-    $serviceCode = $vehicle->serviceCode();
     
     $finder = new Elite_Vafdiagram_Model_ProductFinder;
     $productIds = $finder->listProductIds(array(
@@ -43,7 +64,7 @@ if(!count($categories))
     	'service_code'=>$serviceCode
    	));
     
-    echo '<img src="/illustrations/' . $this->htmlEscape($illustrationId) . '.jpg" />';
+    echo '<img src="/illustrations/' . $this->htmlEscape($illustrationId) . '.jpg" style="width:100%" />';
     
     echo '<ul>';
     foreach($productIds as $productId)

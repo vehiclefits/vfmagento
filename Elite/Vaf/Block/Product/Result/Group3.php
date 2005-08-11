@@ -35,6 +35,38 @@ class Elite_Vaf_Block_Product_Result_Group3 extends Elite_Vaf_Block_Product_Resu
 		return $uri;    	
     }
     
+    function currentLevel()
+    {
+    	$category1 = $this->getRequest()->getParam('category1');
+    	$category2 = $this->getRequest()->getParam('category2');
+    	$category3 = $this->getRequest()->getParam('category3');
+    	$category4 = $this->getRequest()->getParam('category4');
+    	
+    	$level = $category1 ? 2 : 1;
+    	$level = $category2 ? 3 : $level;
+    	$level = $category3 ? 4 : $level;
+    	
+    	return $category;
+    }
+    
+    function currentCategory()
+    {
+    	$category1 = $this->getRequest()->getParam('category1');
+    	$category2 = $this->getRequest()->getParam('category2');
+    	$category3 = $this->getRequest()->getParam('category3');
+    	$category4 = $this->getRequest()->getParam('category4');
+    	
+    	if($category1||$category2||$category3)
+    	{
+    		// find the deepest requested category
+    		$category = $category1;
+    		$category = $category2 ? $category2 : $category;
+    		$category = $category3 ? $category3 : $category;
+    		$category = $category4 ? $category4 : $category;
+    	}
+    	return $category;
+    }
+    
 	function getCategories()
     {
     	$category1 = $this->getRequest()->getParam('category1');
