@@ -52,12 +52,29 @@ class Elite_Vafdiagram_Model_Catalog_ProductTest extends Elite_Vafdiagram_Model_
 		$product->addServiceCode(456, array(
 			'category1'=>2
 		));
-		$this->assertEquals( array(123), $product->serviceCodes(1), 'should filter service codes by category 1');
+		$actual = $product->serviceCodes(array(
+			'category1'=>1
+		));
+		$this->assertEquals( array(123), $actual, 'should filter service codes by category 1');
 	}
 	
 	function testShouldFilterServiceCodesByCategory2()
 	{
-		return $this->markTestIncomplete();
+		$product = $this->newProduct(1);
+		$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
+		$product->addServiceCode(123, array(
+			'category1'=>1,
+			'category2'=>1
+		));
+		$product->addServiceCode(456, array(
+			'category1'=>1,
+			'category2'=>2
+		));
+		$actual = $product->serviceCodes(array(
+			'category1'=>1,
+			'category2'=>2,
+		));
+		$this->assertEquals( array(456), $actual, 'should filter service codes by category 2');
 	}
 	
 	function testShouldFilterServiceCodesByCategory3()
