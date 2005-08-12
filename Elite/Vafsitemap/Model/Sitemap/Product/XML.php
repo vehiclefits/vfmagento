@@ -8,16 +8,14 @@ class Elite_Vafsitemap_Model_Sitemap_Product_XML extends Elite_Vafsitemap_Model_
         $return = '<?xml version="1.0" encoding="UTF-8"?>';
         $return .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
         
-        $record = 0;
+        $record = $startRecord;
         
         $query = Elite_Vaf_Helper_Data::getInstance()->getReadAdapter()->select()
 		->from($this->getProductTable(), array('entity_id'));
 	$rs = $query->query();
 	while($productRow = $rs->fetch())
 	{
-	    $product = Mage::getModel('catalog/product')
-			    ->setStoreId($this->storeId)
-			    ->load($productRow['entity_id']);
+	    $product = $this->loadProduct($productRow['entity_id']);
 	    if( !in_array($storeId, $product->getStoreIds()) )
 	    {
 		continue;
@@ -40,6 +38,25 @@ class Elite_Vafsitemap_Model_Sitemap_Product_XML extends Elite_Vafsitemap_Model_
         return $return;
     }
 
+    function fitmentCount($storeId)
+    {
+        $query = Elite_Vaf_Helper_Data::getInstance()->getReadAdapter()->select()
+		->from($this->getProductTable(), array('entity_id'));
+	$rs = $query->query();
+	while($productRow = $rs->fetch())
+	{
+	    $product = $this->loadProduct($productRow['entity_id']);
+	    if( !in_array($storeId, $product->getStoreIds()) )
+	    {
+		continue;
+	    }
+
+            $count += count($product->getFitModels());
+        }
+
+        return $count;
+    }
+
     function productCount()
     {
 	$count = 0;
@@ -48,9 +65,7 @@ class Elite_Vafsitemap_Model_Sitemap_Product_XML extends Elite_Vafsitemap_Model_
 	$rs = $query->query();
 	while($productRow = $rs->fetch())
 	{
-	    $product = Mage::getModel('catalog/product')
-			    ->setStoreId($this->storeId)
-			    ->load($productRow['entity_id']);
+	    $product = $this->loadProduct($productRow['entity_id']);
 	    if( !in_array($storeId, $product->getStoreIds()) )
 	    {
 		continue;
@@ -87,6 +102,14 @@ class Elite_Vafsitemap_Model_Sitemap_Product_XML extends Elite_Vafsitemap_Model_
         $return .= '<loc>'.$this->productUrl($product).'</loc>';
         $return .= '</url>';
         return $return;
+    }
+
+    function loadProduct($id)
+    {
+	$product = Mage::getModel('catalog/product')
+		->setStoreId($this->storeId)
+		->load($id);
+	return $product;
     }
     
 }

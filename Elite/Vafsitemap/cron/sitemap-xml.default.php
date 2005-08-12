@@ -9,7 +9,8 @@ $storeId = 1;
 // DO NOT EDIT BELOW HERE
 
 $sitemap = new Elite_Vafsitemap_Model_Sitemap_Product_XML();
-$size = $sitemap->productCount($storeId);
+$size = $sitemap->fitmentCount($storeId);
+
 $files = array();
 $chunkSize = 50000;
 
