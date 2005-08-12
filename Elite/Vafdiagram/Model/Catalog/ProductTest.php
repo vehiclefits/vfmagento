@@ -79,12 +79,49 @@ class Elite_Vafdiagram_Model_Catalog_ProductTest extends Elite_Vafdiagram_Model_
 	
 	function testShouldFilterServiceCodesByCategory3()
 	{
-		return $this->markTestIncomplete();
+		$product = $this->newProduct(1);
+		$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
+		$product->addServiceCode(123, array(
+			'category1'=>1,
+			'category2'=>1,
+			'category3'=>1
+		));
+		$product->addServiceCode(456, array(
+			'category1'=>1,
+			'category2'=>1,
+			'category3'=>2
+		));
+		$actual = $product->serviceCodes(array(
+			'category1'=>1,
+			'category2'=>1,
+			'category3'=>2
+		));
+		$this->assertEquals( array(456), $actual, 'should filter service codes by category 3');
 	}
 	
 	function testShouldFilterServiceCodesByCategory4()
 	{
-		return $this->markTestIncomplete();
+		$product = $this->newProduct(1);
+		$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
+		$product->addServiceCode(123, array(
+			'category1'=>1,
+			'category2'=>1,
+			'category3'=>1,
+			'category4'=>1,
+		));
+		$product->addServiceCode(456, array(
+			'category1'=>1,
+			'category2'=>1,
+			'category3'=>1,
+			'category4'=>2,
+		));
+		$actual = $product->serviceCodes(array(
+			'category1'=>1,
+			'category2'=>1,
+			'category3'=>1,
+			'category4'=>2
+		));
+		$this->assertEquals( array(456), $actual, 'should filter service codes by category 4');
 	}
 	
 	function testShouldAddIllustrationID()
