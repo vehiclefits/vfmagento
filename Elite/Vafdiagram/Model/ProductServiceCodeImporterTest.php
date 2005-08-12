@@ -17,6 +17,18 @@ class Elite_Vafdiagram_Model_ProductServiceCodeImporterTest extends Elite_Vafdia
 		$this->assertEquals( array(123,456), $product->serviceCodes(), 'should import multiple service codes for product');
 	}
 	
+	function testShouldImportCallout()
+	{
+		$productId = $this->insertProduct('sku1');
+		
+		$this->importProductServiceCodes('sku,category1,service_code,callout' . "\n" .
+										 'sku1,1,123,1' . "\n" . 
+										 'sku1,2,456,2');
+		$product = $this->product($productId);		
+		$this->assertEquals( 1, $product->callout(array('category1'=>1)), 'should import callout');
+		$this->assertEquals( 2, $product->callout(array('category1'=>2)), 'should import callout');
+	}
+	
 	function testShouldAssociateCategory1WithServiceCode()
 	{
 		$productId = $this->insertProduct('sku1');

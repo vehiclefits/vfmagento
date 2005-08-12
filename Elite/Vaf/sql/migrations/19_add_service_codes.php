@@ -15,10 +15,13 @@ class Vaf19
         $db->query('ALTER TABLE  `elite_import` ADD  `service_code` VARCHAR( 100 ) NOT NULL');
         $db->query('ALTER TABLE  `elite_definition` ADD  `service_code` VARCHAR( 100 ) NOT NULL');
         $db->query('ALTER TABLE `elite_product_servicecode` ADD `illustration_id` VARCHAR( 10 )  NULL');
+        
         $db->query('ALTER TABLE `elite_product_servicecode` ADD `category1_id` INT( 10 ) NOT NULL ,
 				ADD `category2_id` INT( 10 ) NOT NULL ,
 				ADD `category3_id` INT( 10 ) NOT NULL ,
 				ADD `category4_id` INT( 10 ) NOT NULL;');
+        
+        $db->query('ALTER TABLE  `elite_product_servicecode` ADD  `callout` INT( 3 ) NOT NULL');
           
         
     }

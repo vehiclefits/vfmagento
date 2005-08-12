@@ -124,6 +124,39 @@ class Elite_Vafdiagram_Model_Catalog_ProductTest extends Elite_Vafdiagram_Model_
 		$this->assertEquals( array(456), $actual, 'should filter service codes by category 4');
 	}
 	
+	function testShouldAssociateCallout()
+	{
+		$product = $this->newProduct(1);
+		$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
+		$product->addServiceCode(123, array(
+			'category1'=>1,
+			'callout' => 1
+		));
+		$actual = $product->callout(array(
+			'category1'=>1
+		));
+		$this->assertEquals( 1, $actual, 'should associate callout category 1');
+	}
+	
+	function testShouldFilterCalloutByServiceCode()
+	{
+		$product = $this->newProduct(1);
+		$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
+		$product->addServiceCode(123, array(
+			'category1'=>1,
+			'callout' => 1
+		));
+		$product->addServiceCode(345, array(
+			'category1'=>1,
+			'callout' => 2
+		));
+		$actual = $product->callout(array(
+			'service_code'=>345,
+			'category1'=>1
+		));
+		$this->assertEquals( 2, $actual, 'should associate calloutwith service code');
+	}
+	
 	function testShouldAddIllustrationID()
 	{
 		$product = $this->newProduct(1);

@@ -41,6 +41,13 @@ class Elite_Vafdiagram_Model_Catalog_Product
        		);
        	}
        	
+       	if(isset($paramaters['callout']))
+       	{
+       		$values = $values + array(
+        		'callout' => $paramaters['callout']
+       		);
+       	}
+       	
        	for($level=1; $level<=4; $level++)
         {
 	       	if(isset($paramaters['category'.$level]) && $paramaters['category'.$level])
@@ -74,6 +81,32 @@ class Elite_Vafdiagram_Model_Catalog_Product
             array_push($return, $row->service_code );
         }
         return $return;
+    }
+    
+    function callout($paramaters=array())
+    {
+    	$select = $this->getReadAdapter()->select()
+            ->from('elite_product_servicecode', array('callout'))
+            ->where('product_id = ?', (int)$this->getId() );
+    	if(isset($paramaters['service_code']))
+        {
+	        $select->where('service_code = ?', $paramaters['service_code']);
+        }
+    	for($level=1; $level<=4; $level++)
+        {
+	       	if(isset($paramaters['category'.$level]) && $paramaters['category'.$level])
+	        {
+		        $select->where('category'.$level.'_id = ?', $paramaters['category'.$level] );
+	        }
+        }
+        
+        $result = $this->query($select);
+        
+        $return = array();
+        foreach( $result->fetchAll(Zend_Db::FETCH_OBJ) as $row )
+        {
+            return $row->callout;
+        }
     }
     
     function illustrationId($paramaters)
