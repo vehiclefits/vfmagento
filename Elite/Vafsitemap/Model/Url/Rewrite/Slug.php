@@ -36,9 +36,10 @@ class Vafsitemap_Model_Url_Rewrite_Slug
 	$levels = array();
 	foreach ($this->levels() as $level)
 	{
-	    $levels[$level] = current($vehicleSlug);
+	    $levels[$level] = urldecode(current($vehicleSlug));
 	    next($vehicleSlug);
 	}
+
 	return $levels;
     }
 

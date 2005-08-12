@@ -36,5 +36,12 @@ class Elite_Vafsitemap_Model_Url_RewriteTests_ProductListTests_GeneratesURLS_MMY
         $rewrite = $this->rewrite(1,'test.html',$vehicle);
         $this->assertEquals( 'fit/Honda~All-Models~2000/test.html', $rewrite->getRequestPathRewritten(), 'should keep dashes as is' );
     }
+
+    function testShouldUrlencodeAmperstand()
+    {
+        $vehicle = $this->createMMY('Honda','All & Models','2000');
+        $rewrite = $this->rewrite(1,'test.html',$vehicle);
+        $this->assertEquals( 'fit/Honda~All-%26-Models~2000/test.html', $rewrite->getRequestPathRewritten(), 'should urlencode amperstand' );
+    }
     
 }

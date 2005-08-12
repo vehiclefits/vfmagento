@@ -131,6 +131,9 @@ class Elite_Vafsitemap_Model_Url_Rewrite extends Mage_Core_Model_Url_Rewrite
 	    $slug = implode('~', $vehicle->toTitleArray());
 	}
 	$slug = str_replace(' ', '-', $slug);
+
+	$slug = str_replace('%7E','~',urlencode($slug)); // url encode everything but tildes
+
 	return $slug;
     }
 
