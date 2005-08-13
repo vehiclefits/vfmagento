@@ -14,6 +14,9 @@
 require_once( 'Mage/Checkout/controllers/CartController.php' );
 class Elite_Vaf_CartController extends Mage_Checkout_CartController
 {    
+    protected $product;
+    protected $config;
+    
     /** Adding products to cart */
     function addAction()
     {
@@ -41,18 +44,19 @@ class Elite_Vaf_CartController extends Mage_Checkout_CartController
         $this->mageChooseVehicle();
     }
     
-    protected function shouldShowIntermediatePage()
+    function shouldShowIntermediatePage()
     {
-        if( !Elite_Vaf_Helper_Data::getInstance()->getConfig()->product->requireVehicleBeforeCart )
+        if( !$this->getConfig()->product->requireVehicleBeforeCart || $this->getConfig()->product->requireVehicleBeforeCart == 'false' )
         {
             return false;
         }
+        
         if( !count( $this->getProduct()->getFits() ) )
         {
             return false;
         }
-        $filter = new Elite_Vaf_Model_Catalog_Category_FilterImpl();
-        return !$this->customerAlreadySelectedFit() && $this->getProduct()->isInEnabledCategory( $filter );
+        
+        return !$this->customerAlreadySelectedFit();
     }
     
     /**
@@ -61,7 +65,18 @@ class Elite_Vaf_CartController extends Mage_Checkout_CartController
     */
     protected function getProduct()
     {
-        return Mage::getModel( 'catalog/product' )->load( $this->getProductId() );
+        if(isset($this->product))
+        {
+            return $this->product;
+        }
+        $product = Mage::getModel( 'catalog/product' )->load( $this->getProductId() );
+        $this->product = $product;
+        return $product;
+    }
+    
+    function setProduct($product)
+    {
+        $this->product = $product;
     }
     
     protected function getChooseVehicleUrl( $productid )
@@ -71,13 +86,7 @@ class Elite_Vaf_CartController extends Mage_Checkout_CartController
     
     protected function customerAlreadySelectedFit()
     {
-        return false !== $this->getFit();
-    }
-    
-    /** @return Elite_Vaf_Model_Vehicle */
-    protected function getFit()
-    {
-        return Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
+        return !Elite_Vaf_Helper_Data::getInstance()->vehicleSelection()->isEmpty();
     }
     
     protected function getProductId()
@@ -115,5 +124,19 @@ class Elite_Vaf_CartController extends Mage_Checkout_CartController
     function appendBlock($block)
     {
         $this->getLayout()->getBlock( 'content' )->append( $block );
+    }
+    
+    function setConfig($config)
+    {
+        $this->config = $config;
+    }
+    
+    function getConfig()
+    {
+        if( !$this->config instanceof Zend_Config )
+        {
+            $this->config = Elite_Vaf_Helper_Data::getInstance()->getConfig();
+        }    
+        return $this->config;
     }
 }
