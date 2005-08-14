@@ -22,6 +22,7 @@ class Elite_Vafdiagram_Model_ProductFinder
 		{
 			$select->where('service_code = ?', $paramaters['service_code']);
 		}
+		$select->order('callout');
 		$rs = $select->query()->fetchAll();
 		$return = array();
 		foreach($rs as $result)

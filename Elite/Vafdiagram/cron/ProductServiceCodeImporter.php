@@ -6,10 +6,6 @@ require_once('config.php');
 Mage::app('admin')->setUseSessionInUrl(false);
 Mage::getConfig()->init();
 
-$db = Zend_Db::factory('pdo_mysql', $params);
-$db->getConnection();
-Zend_Registry::set('db',$db);
-
 $file = 'product-service-codes.csv';
-$import = new ProductServiceCodeImporter($file);
+$import = new Elite_Vafdiagram_Model_ProductServiceCodeImporter($file);
 $import->import();
