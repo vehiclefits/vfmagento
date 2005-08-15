@@ -71,6 +71,15 @@ class Elite_Vaf_Model_Schema implements
         }
         return self::$levels = $levels;
     }
+
+    function getRewriteLevels()
+    {
+	if($this->getConfig()->seo->rewriteLevels)
+	{
+	    return explode(',', $this->getConfig()->seo->rewriteLevels );
+	}
+	return $this->getLevels();
+    }
     
     /**
     * Get the level that comes immediatly previous to the requested level, or false if none

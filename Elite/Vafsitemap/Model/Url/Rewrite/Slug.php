@@ -44,16 +44,7 @@ class Vafsitemap_Model_Url_Rewrite_Slug
 
     function levels()
     {
-	if($this->getConfig())
-	{
-	    $rewriteLevels = $this->getConfig()->seo->rewriteLevels;
-	    if ($rewriteLevels)
-	    {
-		$rewriteLevels = explode(',', $rewriteLevels);
-		return $rewriteLevels;
-	    }
-	}
-	return $this->getSchema()->getLevels();
+	return $this->getSchema()->getRewriteLevels();
     }
 
     function getSchema()

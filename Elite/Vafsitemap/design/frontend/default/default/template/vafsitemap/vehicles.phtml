@@ -31,7 +31,7 @@
 </div>
 <?php
 
-foreach( $this->getDefinitions( 50, $this->start() ) as $vehicle )
+foreach( $this->getDefinitions( 50, $this->start()-1 ) as $vehicle )
 {
     $url = $this->getUrl($this->getVehicleUrl( $vehicle ));
     ?>
