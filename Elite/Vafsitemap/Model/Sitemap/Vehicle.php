@@ -1,6 +1,8 @@
 <?php
+
 class Elite_Vafsitemap_Model_Sitemap_Vehicle
 {
+
     protected $config;
 
     function __construct($config)
@@ -8,18 +10,62 @@ class Elite_Vafsitemap_Model_Sitemap_Vehicle
 	$this->config = $config;
     }
 
-    function getDefinitions()
+    /** @todo move/rename this to definition finder -> find all in use() method */
+    function getDefinitions($perPage=false, $offset=false, $productId = null)
     {
-		$block = new Elite_Vafsitemap_Block_Vehicles;
-		return $block->getDefinitions();
+	$return = array();
+	$vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
+	$vehicles = $this->doGetDefinitions($perPage, $offset, $productId);
+	foreach ($vehicles as $vehicleStdClass)
+	{
+	    $vehicle = $vehicleFinder->findOneByLevelIds($vehicleStdClass, Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
+	    array_push($return, $vehicle);
+	}
+	return $return;
     }
-    
+
+    function doGetDefinitions($perPage, $offset, $productId=null)
+    {
+	$db = $this->getReadAdapter();
+
+	$cols = array();
+	foreach ($this->getSchema()->getRewriteLevels() as $col)
+	{
+	    $cols[] = $col . '_id';
+	}
+	$select = $db->select()
+			->from('elite_mapping', $cols);
+	foreach ($this->getSchema()->getRewriteLevels() as $level)
+	{
+	    $select->group($level . '_id');
+	}
+
+	if(!is_null($productId))
+	{
+	    $select->where('entity_id = ?', $productId);
+	}
+
+	if ($perPage || $offset)
+	{
+	    $select->limit($perPage, $offset);
+	}
+
+	$result = $select->query(Zend_Db::FETCH_ASSOC);
+	$return = array();
+	while ($row = $result->fetch())
+	{
+	    array_push($return, $row);
+	}
+
+	return $return;
+    }
+
     /** @return integer total # of definitions in the sitemap */
     function vehicleCount()
     {
 	$col = 'count(distinct(CONCAT(';
 	$colParams = array();
-	foreach($this->getSchema()->getRewriteLevels() as $level)
+	foreach ($this->getSchema()->getRewriteLevels() as $level)
 	{
 	    $colParams[] = $level . '_id';
 	}
@@ -28,28 +74,29 @@ class Elite_Vafsitemap_Model_Sitemap_Vehicle
 
 	$select = $this->getReadAdapter()->select()
 			->from('elite_mapping', array($col));
-	
+
 	$result = $select->query();
-        $count = $result->fetchColumn();
-        return $count;
+	$count = $result->fetchColumn();
+	return $count;
     }
-    
+
     /** @return Zend_Db_Statement_Interface */
-    protected function query( $sql, $bind = array() )
+    protected function query($sql, $bind = array())
     {
-        return $this->getReadAdapter()->query( $sql, $bind );
+	return $this->getReadAdapter()->query($sql, $bind);
     }
-    
+
     /** @return Zend_Db_Adapter_Abstract */
     protected function getReadAdapter()
     {
-        return Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
+	return Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
     }
-    
+
     protected function getSchema()
     {
-        $schema = new Elite_Vaf_Model_Schema();
+	$schema = new Elite_Vaf_Model_Schema();
 	$schema->setConfig($this->config);
 	return $schema;
     }
+
 }

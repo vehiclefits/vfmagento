@@ -6,8 +6,8 @@
   xml:lang="en">
 <head>
 
-    <link id="theme" rel="stylesheet" type="text/css" href="kodify/themes/cheery.css" />
-    <link id="theme" rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="kodify/themes/cheery.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
 
     <script type="text/javascript" src="kodify/js/lx_analyzer.js"></script>
     <script type="text/javascript" src="kodify/js/kodify.js"></script>
@@ -242,6 +242,11 @@
             <b>productNameTemplate</b> Change how product titles are altered
             <p>Template for changing how product titles are changed. Defaults to '_product_ for _vehicle_'</p>
         </li>
+        <li>
+            <b>rewriteLevels</b> Change how URLs are generated
+            <p>For example, if your schema is make/model/year you could set this to "make,model" to not have a page for each year. You must only omit levels off the end.</p>
+        </li>
+
     </ul>
     
 </div> 

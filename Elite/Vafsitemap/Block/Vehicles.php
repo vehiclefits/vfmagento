@@ -36,50 +36,8 @@ class Elite_Vafsitemap_Block_Vehicles extends Mage_Core_Block_Template implement
     /** @todo move/rename this to definition finder -> find all in use() method */
     function getDefinitions($perPage=false, $offset=false)
     {
-	$return = array();
-	$vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
-	foreach ($this->doGetDefinitions($perPage, $offset) as $vehicleStdClass)
-	{
-	    $vehicle = $vehicleFinder->findOneByLevelIds($vehicleStdClass, Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
-	    array_push($return, $vehicle);
-	}
-	return $return;
-    }
-
-    function doGetDefinitions($perPage, $offset)
-    {
-	$db = $this->getReadAdapter();
-	
-	$cols = array();
-	foreach($this->levels() as $col)
-	{
-	    $cols[] = $col.'_id';
-	}
-	$select = $db->select()
-			->from('elite_mapping', $cols);
-	foreach($this->levels() as $level)
-	{
-	    $select->group($level.'_id');
-	}
-
-	if ($perPage || $offset)
-	{
-	    $select->limit($perPage, $offset);
-	}
-
-	$result = $select->query(Zend_Db::FETCH_ASSOC);
-	$return = array();
-	while ($row = $result->fetch())
-	{
-	    array_push($return, $row);
-	}
-
-	return $return;
-    }
-
-    function levels()
-    {
-	return $this->getSchema()->getRewriteLevels();
+	$sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle($this->getConfig());
+	return $sitemap->getDefinitions($perPage, $offset);
     }
 
     protected function offset()

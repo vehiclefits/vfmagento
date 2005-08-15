@@ -10,7 +10,7 @@ class Elite_Vafsitemap_Admin_VafsitemapController extends Mage_Adminhtml_Control
         {
         	if( isset($_REQUEST['format']) && 'csv' == $_REQUEST['format'] )
             {
-                $sitemap = new Elite_Vafsitemap_Model_Sitemap_Product_GoogleBase();
+                $sitemap = new Elite_Vafsitemap_Model_Sitemap_Product_GoogleBase(Elite_Vaf_Helper_Data::getInstance()->getConfig());
                 
                 $basePath = Mage::getBaseDir() . '/var/vaf-sitemap-csv';
                 if(file_exists($basePath))
