@@ -1,4 +1,5 @@
 <?php
+
 class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelsTest extends Elite_Vaf_Model_Vehicle_FinderTests_TestCase
 {
 	function testShouldThrowExceptionForInvalidLevel()
@@ -28,7 +29,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelsTest extends Elite_Vaf_Model_V
     
     function testShouldFindByMakeAndYear()
     {
-		$this->createMMY( 'Not Honda', 'Civic', '2000' );
+	$this->createMMY( 'Not Honda', 'Civic', '2000' );
         $this->createMMY( 'Honda', 'Accord', '2000' );
         $this->createMMY( 'Honda', 'Accord', '6666' );
         $vehicles = $this->getFinder()->findByLevels( array('make'=>'Honda','year'=>'2000'));
@@ -78,6 +79,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelsTest extends Elite_Vaf_Model_V
         
         $vehicles = $this->getFinder()->findByLevels( array('make'=>'Honda'), true );
         $this->assertEquals( $make->getId(), $vehicles[0]->getValue('make'), 'partial vehicle should have make ID');
+        $this->assertEquals( 0, $vehicles[0]->getValue('model'), 'partial vehicle should have no model ID');
     }
     
     function testShouldEscapeRegex()
