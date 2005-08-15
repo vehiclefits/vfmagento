@@ -26,7 +26,7 @@ class Vafsitemap_Model_Url_Rewrite_Slug
     function findVehicle($vehicleSlug)
     {
 	$levels = $this->levelsArray($vehicleSlug);
-	$vehicle = $this->finder()->findOneByLevels($levels, true);
+	$vehicle = $this->finder()->findOneByLevels($levels, Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
 	return $vehicle;
     }
 
@@ -49,7 +49,12 @@ class Vafsitemap_Model_Url_Rewrite_Slug
 
     function getSchema()
     {
-	return new Elite_Vaf_Model_Schema;
+	$schema = new Elite_Vaf_Model_Schema;
+	if(!is_null($this->getConfig()))
+	{
+	    $schema->setConfig($this->getConfig());
+	}
+	return $schema;
     }
 
     function finder()

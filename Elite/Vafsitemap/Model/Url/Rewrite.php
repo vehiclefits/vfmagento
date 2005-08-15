@@ -66,7 +66,7 @@ class Elite_Vafsitemap_Model_Url_Rewrite extends Mage_Core_Model_Url_Rewrite
 
     function rewriteVehicleProductRequest()
     {
-	preg_match('#/fit/([^/]*)/(.*).html$#', $this->uri, $matches);
+	preg_match('#/fit/([^/]*)/(.*).html#', $this->uri, $matches);
 	if (!isset($matches[1]))
 	{
 	    return false;

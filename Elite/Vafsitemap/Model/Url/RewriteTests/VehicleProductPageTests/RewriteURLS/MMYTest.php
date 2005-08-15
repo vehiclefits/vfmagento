@@ -23,6 +23,13 @@ class Elite_Vafsitemap_Model_Url_RewriteTests_VehicleProductPageTests_RewriteURL
 	$this->assertTrue($this->rewrite($request), 'should rewrite');
     }
 
+    function testShouldClear()
+    {
+	$vehicle = $this->createMMY('honda', 'civic', '2000');
+	$request = $this->getSEORequest('http://example.com/fit/honda~civic~2000/test.html?make=0&model=0&year=0');
+	$this->assertTrue($this->rewrite($request), 'should rewrite');
+    }
+
     function testShouldGetRightPathInfo()
     {
 	$vehicle = $this->createMMY('honda', 'civic', '2000');

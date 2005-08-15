@@ -10,7 +10,7 @@ class Elite_Vafsitemap_Model_Sitemap_VehicleTests_DefinitionMMTCTest extends Eli
 
     function testDefinitions()
     {
-        $sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle;
+        $sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle(Elite_Vaf_Helper_Data::getInstance()->getConfig());
         $vehicle = $this->createMMTC();
         $this->insertMappingMMTC( $vehicle );
 
