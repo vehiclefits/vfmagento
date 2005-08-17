@@ -39,7 +39,7 @@ class Elite_Vafwheel_Model_FlexibleSearch extends Elite_Vaf_Model_FlexibleSearch
 	{
 	    return;
 	}
-
+	$this->clearSelection();
 	$tireSearch = new Elite_Vaftire_Model_FlexibleSearch($this);
 	$tireSearch->clear();
 	$_SESSION['lug_count'] = $this->lugCount();

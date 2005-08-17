@@ -40,4 +40,15 @@ class Elite_Vaftire_Model_FlexibleSearchTests_FilterBySizeTest extends Elite_Vaf
 	$this->assertEquals('', $this->flexibleWheelSearch()->boltPattern()->getLugCount(), 'should clear bolt pattern from session' );
     }
 
+    function testShouldClearVehicleSelection()
+    {
+	$vehicle = $this->createVehicle(array('make'=>'Honda', 'model'=>'Civic', 'year'=>'2000'));
+	$this->setRequestParams($vehicle->toValueArray());
+	$this->assertEquals( $vehicle->toValueArray(), Elite_Vaf_Helper_Data::getInstance()->getFit()->toValueArray(), 'should first select a vehicle');
+
+	$this->setRequestParams(array('section_width' => '205', 'aspect_ratio' => '55', 'diameter' => '16'));
+	Elite_Vaf_Helper_Data::getInstance()->flexibleSearch()->doGetProductIds();
+	$this->assertFalse(Elite_Vaf_Helper_Data::getInstance()->getFit(), 'should clear vehicle when searching on a tire size');
+    }
+
 }

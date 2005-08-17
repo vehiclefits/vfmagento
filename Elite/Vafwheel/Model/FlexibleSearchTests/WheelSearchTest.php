@@ -38,4 +38,15 @@ class Elite_Vafwheel_Model_FlexibleSearchTests_WheelSearchTest extends Elite_Vaf
 	$this->assertNull( $this->flexibleTireSearch()->aspectRatio(), 'should clear aspect ratio from session' );
     }
 
+    function testShouldClearVehicleSelection()
+    {
+	$vehicle = $this->createVehicle(array('make'=>'Honda', 'model'=>'Civic', 'year'=>'2000'));
+	$this->setRequestParams($vehicle->toValueArray());
+	$this->assertEquals( $vehicle->toValueArray(), Elite_Vaf_Helper_Data::getInstance()->getFit()->toValueArray(), 'should first select a vehicle');
+
+	$this->setRequestParams(array('lug_count' => '5', 'stud_spread' => '114.3'));
+	Elite_Vaf_Helper_Data::getInstance()->flexibleSearch()->doGetProductIds();
+	$this->assertFalse(Elite_Vaf_Helper_Data::getInstance()->getFit(), 'should clear vehicle when searching on a wheel size');
+    }
+
 }

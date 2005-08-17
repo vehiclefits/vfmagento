@@ -9,7 +9,7 @@ class Elite_Vaftire_Model_FlexibleSearch extends Elite_Vaf_Model_FlexibleSearch_
 	{
 	    return $this->clear();
 	}
-
+	$this->clearSelection();
 	$wheelSearch = new Elite_Vafwheel_Model_FlexibleSearch($this);
 	$wheelSearch->clear();
 	$_SESSION['section_width'] = $this->getParam('section_width');
