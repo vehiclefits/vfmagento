@@ -13,6 +13,7 @@ class Elite_Vaftire_Model_FlexibleSearchTests extends Elite_Vaf_TestCase
         $vehicle->addTireSize( Elite_Vaftire_Model_TireSize::create('205/55-16') );
         
         $search = $this->flexibleTireSearch($vehicle->toValueArray());
+	$search->setConfig( new Zend_Config(array('tire'=>array('populateWhenSelectVehicle'=>'true'))));
         $this->assertEquals( 55, $search->aspectRatio(), 'should preselect aspect ratio when selecting vehicle');
     }
        
@@ -22,6 +23,7 @@ class Elite_Vaftire_Model_FlexibleSearchTests extends Elite_Vaf_TestCase
         $vehicle->addTireSize( Elite_Vaftire_Model_TireSize::create('205/55-16') );
         
         $search = $this->flexibleTireSearch($vehicle->toValueArray());
+	$search->setConfig( new Zend_Config(array('tire'=>array('populateWhenSelectVehicle'=>'true'))));
         $this->assertEquals( 205, $search->sectionWidth(), 'should preselect section width when selecting vehicle');
     }
       
@@ -31,6 +33,7 @@ class Elite_Vaftire_Model_FlexibleSearchTests extends Elite_Vaf_TestCase
         $vehicle->addTireSize( Elite_Vaftire_Model_TireSize::create('205/55-16') );
         
         $search = $this->flexibleTireSearch($vehicle->toValueArray());
+	$search->setConfig( new Zend_Config(array('tire'=>array('populateWhenSelectVehicle'=>'true'))));
         $this->assertEquals( 16, $search->diameter(), 'should preselect diameter when selecting vehicle');
     }
       
@@ -44,5 +47,15 @@ class Elite_Vaftire_Model_FlexibleSearchTests extends Elite_Vaf_TestCase
         
         $search = $this->flexibleTireSearch($params);
         $this->assertEquals( 3, $search->sectionWidth(), 'should be able to override');
+    }
+
+    function testShouldNotSelectAspectRatioWhenDisabled()
+    {
+        $vehicle = $this->createTireMMY('Honda','Civic','2000');
+        $vehicle->addTireSize( Elite_Vaftire_Model_TireSize::create('205/55-16') );
+
+        $search = $this->flexibleTireSearch($vehicle->toValueArray());
+	$search->setConfig( new Zend_Config(array('tire'=>array('populateWhenSelectVehicle'=>''))));
+        $this->assertNull( $search->aspectRatio(), 'should not preselect aspect ratio when selecting vehicle');
     }
 }

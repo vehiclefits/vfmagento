@@ -60,5 +60,11 @@ class Elite_Vaf_Helper_DataTest_DataConfigTest extends Elite_Vaf_Helper_DataTest
         $config = $this->getHelper()->getConfig();
         $this->assertTrue( $config->importer instanceof Zend_Config, 'importer section should exist in default configuration' );
     }
-    
+
+    function testGetConfigTire()
+    {
+        $config = $this->getHelper()->getConfig();
+        $this->assertTrue( $config->tire instanceof Zend_Config, 'tire section should exist in default configuration' );
+    }
+
 }

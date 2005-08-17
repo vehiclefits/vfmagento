@@ -213,6 +213,7 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
 	$this->ensureSectionExists($config, 'logo');
 	$this->ensureSectionExists($config, 'directory');
 	$this->ensureSectionExists($config, 'importer');
+	$this->ensureSectionExists($config, 'tire');
     }
 
     function ensureSectionExists($config, $section)

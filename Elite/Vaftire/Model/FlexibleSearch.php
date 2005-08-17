@@ -3,6 +3,8 @@
 class Elite_Vaftire_Model_FlexibleSearch extends Elite_Vaf_Model_FlexibleSearch_Wrapper implements Elite_Vaf_Model_FlexibleSearch_Interface
 {
 
+    protected $config;
+    
     function storeTireSizeInSession()
     {
 	if ($this->shouldClear())
@@ -91,6 +93,10 @@ class Elite_Vaftire_Model_FlexibleSearch extends Elite_Vaf_Model_FlexibleSearch_
 
     function setSizeFromVehicle()
     {
+	if(!is_null($this->getConfig()->tire->populateWhenSelectVehicle) && $this->getConfig()->tire->populateWhenSelectVehicle === '' )
+	{
+	    return;
+	}
 	$vehicle = $this->getDefinition();
 	$select = $this->getReadAdapter()->select()
 			->from('elite_vehicle_tire', array('section_width', 'diameter', 'aspect_ratio'))
@@ -102,4 +108,17 @@ class Elite_Vaftire_Model_FlexibleSearch extends Elite_Vaf_Model_FlexibleSearch_
 	$_SESSION['aspect_ratio'] = $rs['aspect_ratio'];
     }
 
+    function getConfig()
+    {
+	if (!$this->config instanceof Zend_Config)
+	{
+	    $this->config = Elite_Vaf_Helper_Data::getInstance()->getConfig();
+	}
+	return $this->config;
+    }
+
+    function setConfig(Zend_Config $config)
+    {
+	$this->config = $config;
+    }
 }
