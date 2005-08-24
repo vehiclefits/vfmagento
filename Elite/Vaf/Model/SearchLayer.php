@@ -14,77 +14,36 @@
  */
 class Elite_Vaf_Model_SearchLayer extends Mage_CatalogSearch_Model_Layer
 {
-
-    /**
-     * I know its crap, but Magento sucks.
-     * @return Mage_Catalog_Model_Resource_Eav_Mysql4_Product_Collection
-     */
-    function getProductCollection()
+    
+    public function _prepareProductCollection($collection)
     {
-        if (isset($this->_productCollections[$this->getCurrentCategory()->getId()]))
+        $collection
+            ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes());
+        
+        if(Mage::helper('catalogsearch')->getQuery()->getQueryText())
         {
-            $collection = $this->_productCollections[$this->getCurrentCategory()->getId()];
+            $collection->addSearchFilter(Mage::helper('catalogsearch')->getQuery()->getQueryText());
         }
-        else
+        
+        $collection
+            ->setStore(Mage::app()->getStore())
+            ->addMinimalPrice()
+            ->addFinalPrice()
+            ->addTaxPercents()
+            ->addStoreFilter()
+            ->addUrlRewrite();
+
+        Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($collection);
+        Mage::getSingleton('catalog/product_visibility')->addVisibleInSearchFilterToCollection($collection);
+
+        
+        $ids = Elite_Vaf_Helper_Data::getInstance()->getProductIds();
+        if($ids)
         {
-            $ids = Elite_Vaf_Helper_Data::getInstance()->getProductIds();
-
-
-
-            if (Mage::helper('catalogSearch')->getEscapedQueryText() && Mage::getStoreConfig('catalog/search/filtering', Mage::app()->getStore()->getStoreId()))
-            {
-
-                $collection = Mage::getResourceModel('catalogsearch/fulltext_collection')
-                                ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
-                                ->addSearchFilter(Mage::helper('catalogSearch')->getEscapedQueryText())
-                                ->addIdFilter($ids)
-                                ->setStore(Mage::app()->getStore())
-                                ->addMinimalPrice()
-                                ->addFinalPrice()
-                                ->addTaxPercents()
-                                ->addStoreFilter()
-                                ->addUrlRewrite();
-
-                Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($collection);
-                // Comment out following line for work-around for:
-                // 0000295: Group View not Displaying products, but products show in browsing
-                Mage::getSingleton('catalog/product_visibility')->addVisibleInSearchFilterToCollection($collection);
-            }
-            elseif (!Mage::helper('catalogSearch')->getEscapedQueryText())
-            {
-
-                $collection = Mage::getResourceModel('catalog/product_collection')
-                                ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
-                                ->setStore(Mage::app()->getStore())
-                                ->addMinimalPrice()
-                                ->addFinalPrice()
-                                ->addTaxPercents()
-                                ->addStoreFilter()
-                                ->addUrlRewrite();
-
-                if($ids)
-                {
-                    $collection->addIdFilter($ids);
-                }
-
-                Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($collection);
-                // Comment out following line for work-around for:
-                // 0000295: Group View not Displaying products, but products show in browsing
-                Mage::getSingleton('catalog/product_visibility')->addVisibleInSearchFilterToCollection($collection);
-            }
-            else
-            {
-
-                $collection = Mage::getResourceModel('catalogsearch/fulltext_collection');
-                $collection->addIdFilter($ids);
-                $this->prepareProductCollection($collection);
-            }
-
-
-            $this->_productCollections[$this->getCurrentCategory()->getId()] = $collection;
+            $collection->addIdFilter($ids);
         }
 
-        return $collection;
+        return $this;
     }
 
 }

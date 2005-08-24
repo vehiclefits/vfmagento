@@ -94,7 +94,11 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
             return parent::getFinalPrice();
         }
         $customPrice = $this->customPrice($vehicle);
-        return $customPrice;
+        if($customPrice)
+        {
+            return $customPrice;
+        }
+        return parent::getFinalPrice();
     }
 
     function getPrice()
@@ -106,7 +110,12 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 	}
         
         $vehicle = $this->currentlySelectedFit()->getFirstVehicle();
-        return $this->customPrice($vehicle);	
+        $customPrice = $this->customPrice($vehicle);	
+        if($customPrice)
+        {
+            return $customPrice;
+        }
+        return parent::getPrice();
     }
 
     function getFormatedPrice()

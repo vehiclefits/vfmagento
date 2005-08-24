@@ -10,11 +10,12 @@ sku, honda, civic, 2000, 222.22
 sku, honda, civic, 2001');
         
 	$product = $this->getProductForSku('sku');
+        $product->setPrice(1);
         $vehicle1 = $this->vehicleFinder()->findOneByLevels(array('make'=>'honda', 'model'=>'civic', 'year'=>2000));
         $vehicle2 = $this->vehicleFinder()->findOneByLevels(array('make'=>'honda', 'model'=>'civic', 'year'=>2001));
 
 	$product->setCurrentlySelectedFit($vehicle2);
-	$this->assertNull( $product->getPrice(), 'should not change price');
+	$this->assertEquals( 1, $product->getPrice(), 'should not change price');
 
     }
 
@@ -77,6 +78,19 @@ sku, honda, civic, 2000, 222.22');
 	$product = $this->getProductForSku('sku');
 	$product->setCurrentlySelectedFit($this->vehicleFinder()->findOneByLevels(array('make'=>'honda', 'model'=>'civic', 'year'=>2000)));
 	$this->assertEquals( 222.22, $product->getFinalPrice(), 'should change price based on selected vehicle');
+    }
+
+    function testWhenVehicleDoesntChangeFinalPrice()
+    {
+	$this->insertProduct('sku');
+
+	$this->mappingsImport('sku, make, model, year, price
+sku, honda, civic, 2000, 0');
+
+	$product = $this->getProductForSku('sku');
+        $product->setFinalPrice(1);
+	$product->setCurrentlySelectedFit($this->vehicleFinder()->findOneByLevels(array('make'=>'honda', 'model'=>'civic', 'year'=>2000)));
+	$this->assertEquals( 1, $product->getFinalPrice(), 'when vehicle is selected, should not change final price');
     }
 
     function testDoesntChangeFinalPrice()
