@@ -1,2 +1,2 @@
 <?php
-class VafVehicle_Year_Exception extends Exception {}
+class VF_Year_Exception extends Exception {}

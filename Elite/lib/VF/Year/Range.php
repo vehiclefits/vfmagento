@@ -1,5 +1,5 @@
 <?php
-class VafVehicle_Year_Range extends VafVehicle_Year_Abstract
+class VF_Year_Range extends VF_Year_Abstract
 {
     protected $range;
     
@@ -70,7 +70,7 @@ class VafVehicle_Year_Range extends VafVehicle_Year_Abstract
     
     function year($input)
     {
-        $year = new VafVehicle_Year($input);
+        $year = new VF_Year($input);
         $year->setY2KMode($this->Y2KMode);
         $year->setThreshold($this->threshold);
         return $year;

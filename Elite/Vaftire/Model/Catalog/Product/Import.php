@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaftire_Model_Catalog_Product_Import extends VafVehicle_Import_Abstract
+class Elite_Vaftire_Model_Catalog_Product_Import extends VF_Import_Abstract
 {
 	function import()
 	{

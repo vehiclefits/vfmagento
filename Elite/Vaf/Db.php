@@ -11,7 +11,7 @@
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the conditions in license.txt are met
 */
-class Elite_Vaf_Db implements VafVehicle_Db
+class Elite_Vaf_Db implements VF_Db
 {
     function getReadAdapter()
     {

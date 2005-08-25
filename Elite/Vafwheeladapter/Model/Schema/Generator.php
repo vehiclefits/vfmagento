@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafwheeladapter_Model_Schema_Generator extends VafVehicle_Schema_Generator
+class Elite_Vafwheeladapter_Model_Schema_Generator extends VF_Schema_Generator
 {
     function generator()
     {

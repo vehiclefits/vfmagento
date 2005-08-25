@@ -1,5 +1,5 @@
 <?php
-abstract class VafVehicle_Schema_Generator
+abstract class VF_Schema_Generator
 {
     public $levels = array();
     public $level_options = array();

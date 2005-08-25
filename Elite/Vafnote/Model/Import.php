@@ -1,6 +1,6 @@
 <?php
 
-class Elite_Vafnote_Model_Import extends VafVehicle_Import_Abstract
+class Elite_Vafnote_Model_Import extends VF_Import_Abstract
 {
 
     function import()

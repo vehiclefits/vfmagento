@@ -1,6 +1,6 @@
 <?php
 /** Upgrade the database schema from v1.2 to v1.3 */
-class Elite_Vaf_Model_Schema_Upgrader extends VafVehicle_Schema_Generator
+class Elite_Vaf_Model_Schema_Upgrader extends VF_Schema_Generator
 {
     function generator( $levels )
     {

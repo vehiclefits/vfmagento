@@ -1,5 +1,5 @@
 <?php
-interface VafVehicle_Db 
+interface VF_Db 
 {
     function getReadAdapter();
     

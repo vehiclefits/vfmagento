@@ -11,7 +11,7 @@
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the conditions in license.txt are met
 */
-class Elite_Vaf_Model_Schema_Generator extends VafVehicle_Schema_Generator
+class Elite_Vaf_Model_Schema_Generator extends VF_Schema_Generator
 {
     const VERSION = 25;
     
