@@ -15,7 +15,7 @@ class Elite_Vafgarage_RemoveController extends Mage_Core_Controller_Front_Action
     {
     	$params = $this->getRequest()->getParam('vehicle');
     	$params = explode("-",$params);
-    	$schema = new Elite_Vaf_Model_Schema;
+    	$schema = new VF_Schema;
     	$levels = array();
     	foreach($schema->getLevels() as $level)
     	{

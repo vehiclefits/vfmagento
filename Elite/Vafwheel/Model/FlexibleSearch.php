@@ -1,6 +1,6 @@
 <?php
 
-class Elite_Vafwheel_Model_FlexibleSearch extends Elite_Vaf_Model_FlexibleSearch_Wrapper implements Elite_Vaf_Model_FlexibleSearch_Interface
+class Elite_Vafwheel_Model_FlexibleSearch extends VF_FlexibleSearch_Wrapper implements VF_FlexibleSearch_Interface
 {
 
     function doGetProductIds()

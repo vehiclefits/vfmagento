@@ -3,7 +3,7 @@ class Elite_Vaf_Model_AjaxTests_YMMGlobalMakeTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {
-        $schemaGenerator = new Elite_Vaf_Model_Schema_Generator();
+        $schemaGenerator = new VF_Schema_Generator();
         $schemaGenerator->dropExistingTables();
         $schemaGenerator->execute( array('year', 'make'=>array('global'=>true), 'model') );
         

@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_SchemaTests_SchemaSpaceInLevelNameTest extends Elite_Vafimporter_TestCase
+class VF_SchemaTests_SchemaSpaceInLevelNameTest extends Elite_Vafimporter_TestCase
 {
     function doSetUp()
     {
@@ -8,7 +8,7 @@ class Elite_Vaf_Model_SchemaTests_SchemaSpaceInLevelNameTest extends Elite_Vafim
     
     function testLevels()
     {
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         $this->assertEquals( array('make','model type','year'), $schema->getLevels(), 'should allow spaces in level name' );
     }
 

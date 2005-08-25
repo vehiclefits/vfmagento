@@ -5,7 +5,7 @@ class Elite_Vafimporter_Model_Combiner
     protected $schema;
     protected $config;
     
-    function __construct(Elite_Vaf_Model_Schema $schema, $config)
+    function __construct(VF_Schema $schema, $config)
     {
         $this->schema = $schema;
         $this->config = $config;

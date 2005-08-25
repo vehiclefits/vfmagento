@@ -33,7 +33,7 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
 
     function removeFitments($request,$product)
     {
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         if( is_array( $request->getParam( 'vaf-delete' ) ) && count( $request->getParam( 'vaf-delete' ) ) >= 1 )
         {
             foreach( $request->getParam( 'vaf-delete', array() ) as $fit )

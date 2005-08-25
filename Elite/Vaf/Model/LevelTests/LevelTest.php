@@ -73,7 +73,7 @@ class Elite_Vaf_Model_LevelTests_LevelTest extends Elite_Vaf_TestCase
         $year->setTitle('2000');
         $year_id = $year->save($model_id);
 
-        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema);
+        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema);
         $vehicle = $vehicleFinder->findByLeaf($year_id);
         $this->assertEquals( $year_id, $vehicle->getLevel('year')->getId() );
     }
@@ -81,7 +81,7 @@ class Elite_Vaf_Model_LevelTests_LevelTest extends Elite_Vaf_TestCase
     function testCreatesDefinitionWhenSavingLeafLevel2()
     {
         return $this->markTestIncomplete();
-      //  $schemaGenerator = new Elite_Vaf_Model_Schema_Generator();
+      //  $schemaGenerator = new VF_Schema_Generator();
       //  $schemaGenerator->execute( 'make,model,trim,chassis', false);
     }
     

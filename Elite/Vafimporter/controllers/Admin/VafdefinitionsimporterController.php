@@ -139,7 +139,7 @@ class Elite_Vafimporter_Admin_VafdefinitionsimporterController extends Mage_Admi
     /** @todo move to importer model */
     protected function formatMessages()
     {
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
             
         $this->formatMessage( '<strong>Vehicles List Import Results</strong>' );
         $this->formatMessage( number_format($this->importer->getCountAddedVehicles()) . ' Vehicles Added' );

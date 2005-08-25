@@ -7,7 +7,7 @@ $query = "CREATE TABLE `elite_schema` (
 ) ENGINE = InnoDB;";
 $db->query( $query );
 
-$schema = new Elite_Vaf_Model_Schema();
+$schema = new VF_Schema();
 $levels = $schema->getLevels();
 if(!count($levels))
 {

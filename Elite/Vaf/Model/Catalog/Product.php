@@ -153,7 +153,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 
     function getOrderBy()
     {
-	$schema = new Elite_Vaf_Model_Schema();
+	$schema = new VF_Schema();
 	$levels = $schema->getLevels();
 	$c = count($levels);
 	$sql = '';
@@ -168,7 +168,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     {
 	$joins = '';
 
-	$schema = new Elite_Vaf_Model_Schema();
+	$schema = new VF_Schema();
 	$levels = $schema->getLevels();
 
 	$c = count($levels);
@@ -389,7 +389,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 
     function getMappingId(Elite_Vaf_Model_Vehicle $vehicle)
     {
-	$schema = new Elite_Vaf_Model_Schema;
+	$schema = new VF_Schema;
 	$select = $this->getReadAdapter()->select()
 			->from('elite_mapping', 'id')
 			->where($schema->getLeafLevel() . '_id = ?', $vehicle->getLeafValue())
@@ -404,7 +404,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
      */
     function duplicate()
     {
-	$schema = new Elite_Vaf_Model_Schema();
+	$schema = new VF_Schema();
 	$vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder($schema);
 	$leaf = $schema->getLeafLevel() . '_id';
 
@@ -423,7 +423,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 
     protected function findDefinitionByLeafId($leaf_id)
     {
-	$finder = new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema);
+	$finder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema);
 	return $finder->findByLeaf($leaf_id);
     }
 
@@ -433,7 +433,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     function doAddFit($entity)
     {
 
-	$vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema);
+	$vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema);
 	$params = array($entity->getType() => $entity->getTitle());
 	$vehicles = $vehicleFinder->findByLevels($params);
 	return $vehicles;
@@ -441,7 +441,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 
     protected function createFitFromRow($row)
     {
-	$schema = new Elite_Vaf_Model_Schema();
+	$schema = new VF_Schema();
 	return new Elite_Vaf_Model_Vehicle($schema, $row->id, $row);
     }
 
@@ -467,7 +467,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 
     function getSchema()
     {
-	return new Elite_Vaf_Model_Schema();
+	return new VF_Schema();
     }
 
     /** @return Zend_Db_Statement_Interface */

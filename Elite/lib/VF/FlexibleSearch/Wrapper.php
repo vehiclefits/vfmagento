@@ -1,10 +1,10 @@
 <?php
-abstract class Elite_Vaf_Model_FlexibleSearch_Wrapper
+abstract class VF_FlexibleSearch_Wrapper
 {
-	/** @var Elite_Vaf_Model_FlexibleSearch */
+	/** @var VF_FlexibleSearch */
     protected $wrappedFlexibleSearch;
     
-    function __construct( Elite_Vaf_Model_FlexibleSearch_Interface $flexibleSearchToWrap )
+    function __construct( VF_FlexibleSearch_Interface $flexibleSearchToWrap )
     {
         $this->wrappedFlexibleSearch = $flexibleSearchToWrap;
     }

@@ -20,7 +20,7 @@ class Elite_Vaf_Model_Level implements Elite_Vaf_Configurable
     protected $type;
     /** @var Elite_Vaf_Model_Level_Finder */
     protected $finder;
-    /** @var Elite_Vaf_Model_Schema */
+    /** @var VF_Schema */
     protected $schema;
     /** @var Zend_Config */
     protected $config;
@@ -428,7 +428,7 @@ class Elite_Vaf_Model_Level implements Elite_Vaf_Configurable
 
     function getSchema()
     {
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         $schema->setConfig($this->getConfig());
         return $schema;
     }

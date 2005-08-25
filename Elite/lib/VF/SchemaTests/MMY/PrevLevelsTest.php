@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_SchemaTests_MMY_PrevLevelsTest extends Elite_Vaf_TestCase
+class VF_SchemaTests_MMY_PrevLevelsTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {
@@ -8,19 +8,19 @@ class Elite_Vaf_Model_SchemaTests_MMY_PrevLevelsTest extends Elite_Vaf_TestCase
     
     function testPrevLevelsMake()
     {
-        $schema = new Elite_Vaf_Model_Schema(); 
+        $schema = new VF_Schema(); 
         $this->assertEquals( array(), $schema->getPrevLevels('make') );
     }
     
     function testPrevLevelsModel()
     {
-        $schema = new Elite_Vaf_Model_Schema(); 
+        $schema = new VF_Schema(); 
         $this->assertEquals( array('make'), $schema->getPrevLevels('model') );
     }
     
     function testPrevLevelsYear()
     {
-        $schema = new Elite_Vaf_Model_Schema(); 
+        $schema = new VF_Schema(); 
         $this->assertEquals( array('make','model'), $schema->getPrevLevels('year') );
     }
 }

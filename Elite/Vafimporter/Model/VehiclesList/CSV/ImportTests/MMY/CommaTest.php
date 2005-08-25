@@ -14,7 +14,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_CommaTest extends
 "honda", "accord,civic", "2000,2003"');
         $importer->import();
 
-        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new Elite_Vaf_Model_Schema );
+        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new VF_Schema );
         $vehicles = $vehicleFinder->findByLevels( array('make'=>'honda') );
                               
         $this->assertEquals( 4, count($vehicles), 'should enumerate out options' );
@@ -30,7 +30,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_CommaTest extends
 "honda", "accord, civic", "2000,2003"');
         $importer->import();
 
-        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new Elite_Vaf_Model_Schema );
+        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new VF_Schema );
         $this->assertTrue($this->vehicleExists(array('make'=>'honda', 'model'=>'civic','year'=>'2000')));
     }
 
@@ -40,7 +40,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_CommaTest extends
 "honda", "accord,, test, civic", "2000,2003"');
         $importer->import();
 
-        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new Elite_Vaf_Model_Schema );
+        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new VF_Schema );
         $this->assertTrue($this->vehicleExists(array('make'=>'honda', 'model'=>'accord, test','year'=>'2000')));
     }
 

@@ -19,7 +19,7 @@ class Elite_Vafnote_Model_Schema_Generator
         }
     }
     
-    function generator()
+    function generator($levels)
     {
         return 'CREATE TABLE IF NOT EXISTS `elite_note` (
 		  `id` int(50) NOT NULL AUTO_INCREMENT,

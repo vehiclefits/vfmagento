@@ -22,7 +22,7 @@ class Elite_Vaf_SnippetTest extends Elite_Vaf_TestCase
     {
         $vehicle = $this->createMMY( self::MAKE, self::MODEL, self::YEAR );
         
-        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new Elite_Vaf_Model_Schema );
+        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new VF_Schema );
         $vehicle = $vehicleFinder->findByLeaf( $vehicle->getLevel('year')->getId() );
         $this->assertMMYTitlesEquals( self::MAKE, self::MODEL, self::YEAR, $vehicle );
     }

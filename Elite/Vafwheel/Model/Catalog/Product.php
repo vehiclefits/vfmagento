@@ -96,7 +96,7 @@ class Elite_Vafwheel_Model_Catalog_Product
     
     function definition($leaf_id)
     {
-        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new Elite_Vaf_Model_Schema() );
+        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new VF_Schema() );
         return $vehicleFinder->findByLeaf($leaf_id);
     }
     

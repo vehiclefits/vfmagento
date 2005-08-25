@@ -1,7 +1,7 @@
 <?php
 class Elite_Vafwheel_Model_Schema_Generator extends VF_Schema_Generator
 {
-    function generator()
+    function generator($levels)
     {
         return 'CREATE TABLE IF NOT EXISTS `elite_definition_wheel` (
           `leaf_id` int(50) NOT NULL,

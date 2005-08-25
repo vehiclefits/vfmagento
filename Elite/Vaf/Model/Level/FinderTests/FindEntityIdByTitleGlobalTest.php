@@ -3,7 +3,7 @@ class Elite_Vaf_Model_Level_FinderTests_FindEntityIdByTitleGlobalTest extends El
 {
     function doSetUp()
     {
-        $schemaGenerator = new Elite_Vaf_Model_Schema_Generator();
+        $schemaGenerator = new VF_Schema_Generator();
         $schemaGenerator->dropExistingTables();
         $schemaGenerator->execute(array(
             'year',
@@ -15,7 +15,7 @@ class Elite_Vaf_Model_Level_FinderTests_FindEntityIdByTitleGlobalTest extends El
     
     function doTearDown()
     {
-        $schemaGenerator = new Elite_Vaf_Model_Schema_Generator();
+        $schemaGenerator = new VF_Schema_Generator();
         $schemaGenerator->dropExistingTables();
     }
     

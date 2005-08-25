@@ -1,7 +1,7 @@
 <?php
 class Elite_Vafgarage_Model_Schema_Generator extends VF_Schema_Generator
 {
-    function generator()
+    function generator($levels)
     {
         return '';
     }

@@ -11,7 +11,7 @@ class Schema_CLI
     
     function __construct()
     {
-        $this->generator = new Elite_Vaf_Model_Schema_Generator();
+        $this->generator = new VF_Schema_Generator();
     }
     
     function main()

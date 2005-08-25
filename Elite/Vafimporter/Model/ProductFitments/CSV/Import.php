@@ -339,7 +339,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
         return $isUniversal;
     }
     
-    private static function getColumns( Elite_Vaf_Model_Schema $schema )
+    private static function getColumns( VF_Schema $schema )
     {
         $columns = '';
         
@@ -361,7 +361,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
     }
     
     /** @param Elite_Vaf_Model_Vehicle */
-    private static function getValues( $vehicle, Elite_Vaf_Model_Schema $schema )
+    private static function getValues( $vehicle, VF_Schema $schema )
     {
         $values = '';
         

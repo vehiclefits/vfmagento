@@ -18,7 +18,7 @@ class Elite_Vaf_Model_Ajax implements Elite_Vaf_Configurable
     /** @var Zend_Config */
     protected $config;
     
-    function execute( Elite_Vaf_Model_Schema $schema )
+    function execute( VF_Schema $schema )
     {
         $this->schema = $schema;
         

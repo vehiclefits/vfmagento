@@ -33,7 +33,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
     {
 	Elite_Vaf_Helper_Data::getInstance(true);
 	Elite_Vaf_Helper_Data::getInstance()->setRequest($this->getRequest());
-	Elite_Vaf_Model_Schema::$levels = null;
+	VF_Schema::$levels = null;
 
 	$_SESSION = array();
 	$_GET = array();
@@ -56,7 +56,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
 	Elite_Vaf_Model_Vehicle_Finder_IdentityMapByLevel::reset();
 	Elite_Vaf_Model_Level_IdentityMap::reset();
 	Elite_Vaf_Model_Level_IdentityMap_ByTitle::reset();
-	Elite_Vaf_Model_Schema::reset();
+	VF_Schema::reset();
     }
 
     protected function truncateTables()
@@ -97,7 +97,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
 	    {
 		try
 		{
-		    $schema = new Elite_Vaf_Model_Schema();
+		    $schema = new VF_Schema();
 		    if ($levels == implode(',', $schema->getLevels()))
 		    {
 			$this->startTransaction();
@@ -113,18 +113,18 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
 	    }
 	}
 
-	$schemaGenerator = new Elite_Vaf_Model_Schema_Generator();
+	$schemaGenerator = new VF_Schema_Generator();
 	$schemaGenerator->dropExistingTables();
 	$schemaGenerator->execute(explode(',', $levels));
 
-	Elite_Vaf_Model_Schema::reset();
+	VF_Schema::reset();
 
 	$this->startTransaction();
     }
 
     protected function createVehicle($titles = array())
     {
-	$vehicle = Elite_Vaf_Model_Vehicle::create(new Elite_Vaf_Model_Schema(), $titles);
+	$vehicle = Elite_Vaf_Model_Vehicle::create(new VF_Schema(), $titles);
 	$vehicle->save();
 	return $vehicle;
     }
@@ -136,7 +136,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
 	    'model' => $modelTitle ? $modelTitle : 'model',
 	    'year' => $yearTitle ? $yearTitle : 'year'
 	);
-	$vehicle = Elite_Vaf_Model_Vehicle::create(new Elite_Vaf_Model_Schema(), $titles);
+	$vehicle = Elite_Vaf_Model_Vehicle::create(new VF_Schema(), $titles);
 	$vehicle->save();
 	return $vehicle;
     }
@@ -156,21 +156,21 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
 
     protected function createYMM($yearTitle = 'test year', $makeTitle = 'test make', $modelTitle = 'test model')
     {
-	$vehicle = Elite_Vaf_Model_Vehicle::create(new Elite_Vaf_Model_Schema(), array('year' => $yearTitle, 'make' => $makeTitle, 'model' => $modelTitle));
+	$vehicle = Elite_Vaf_Model_Vehicle::create(new VF_Schema(), array('year' => $yearTitle, 'make' => $makeTitle, 'model' => $modelTitle));
 	$vehicle->save();
 	return $vehicle;
     }
 
     protected function createMMCT($makeTitle = 'test make', $modelTitle = 'test model', $chassisTitle = 'test chassis', $trimTitle = 'test trim')
     {
-	$vehicle = Elite_Vaf_Model_Vehicle::create(new Elite_Vaf_Model_Schema(), array('make' => $makeTitle, 'model' => $modelTitle, 'chassis' => $chassisTitle, 'trim' => $trimTitle));
+	$vehicle = Elite_Vaf_Model_Vehicle::create(new VF_Schema(), array('make' => $makeTitle, 'model' => $modelTitle, 'chassis' => $chassisTitle, 'trim' => $trimTitle));
 	$vehicle->save();
 	return $vehicle;
     }
 
     protected function createMMTC($makeTitle = 'test make', $modelTitle = 'test model', $trimTitle = 'test trim', $chassisTitle = 'test chassis')
     {
-	$vehicle = Elite_Vaf_Model_Vehicle::create(new Elite_Vaf_Model_Schema(), array('make' => $makeTitle, 'model' => $modelTitle, 'trim' => $trimTitle, 'chassis' => $chassisTitle));
+	$vehicle = Elite_Vaf_Model_Vehicle::create(new VF_Schema(), array('make' => $makeTitle, 'model' => $modelTitle, 'trim' => $trimTitle, 'chassis' => $chassisTitle));
 	$vehicle->save();
 	return $vehicle;
     }
@@ -376,19 +376,19 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
 
     function findVehicleByLevelsMMY($make, $model, $year)
     {
-	$vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema());
+	$vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema());
 	return $vehicleFinder->findOneByLevels(array('make' => $make, 'model' => $model, 'year' => $year));
     }
 
     function findVehicleByLevelsYMM($year, $make, $model)
     {
-	$vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema());
+	$vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema());
 	return $vehicleFinder->findOneByLevels(array('make' => $make, 'model' => $model, 'year' => $year));
     }
 
     function findVehicleByLevelsMMOY($make, $model, $option, $year)
     {
-	$vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema());
+	$vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema());
 	return $vehicleFinder->findOneByLevels(array('make' => $make, 'model' => $model, 'option' => $option, 'year' => $year));
     }
 
@@ -552,7 +552,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
     {
 	$this->setRequestParams($requestParams);
 
-	$flexibleSearch = new Elite_Vaf_Model_FlexibleSearch(new Elite_Vaf_Model_Schema(), $this->getRequest($requestParams));
+	$flexibleSearch = new VF_FlexibleSearch(new VF_Schema(), $this->getRequest($requestParams));
 	$tireFlexibleSearch = new Elite_Vaftire_Model_FlexibleSearch($flexibleSearch);
 	return $tireFlexibleSearch;
     }
@@ -562,7 +562,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
     {
 	$this->setRequestParams($requestParams);
 
-	$flexibleSearch = new Elite_Vaf_Model_FlexibleSearch(new Elite_Vaf_Model_Schema(), $this->getRequest($requestParams));
+	$flexibleSearch = new VF_FlexibleSearch(new VF_Schema(), $this->getRequest($requestParams));
 	$tireFlexibleSearch = new Elite_Vafwheeladapter_Model_FlexibleSearch($flexibleSearch);
 	return $tireFlexibleSearch;
     }
@@ -578,7 +578,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
 	    $request = Elite_Vaf_Helper_Data::getInstance()->getRequest();
 	}
 
-	$flexibleSearch = new Elite_Vaf_Model_FlexibleSearch(new Elite_Vaf_Model_Schema(), $request);
+	$flexibleSearch = new VF_FlexibleSearch(new VF_Schema(), $request);
 	$flexibleSearch = new Elite_Vafwheel_Model_FlexibleSearch($flexibleSearch);
 	return $flexibleSearch;
     }
@@ -634,7 +634,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
 
     function vehicleFinder()
     {
-	return new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema());
+	return new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema());
     }
 
     function boltPattern($boltPatternString,$offset=null)
@@ -709,7 +709,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
 
     function schemaGenerator()
     {
-	return new Elite_Vaf_Model_Schema_Generator();
+	return new VF_Schema_Generator();
     }
 
     function newNoteProduct($id=0)

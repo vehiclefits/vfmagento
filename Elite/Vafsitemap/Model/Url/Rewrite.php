@@ -112,7 +112,7 @@ class Elite_Vafsitemap_Model_Url_Rewrite extends Mage_Core_Model_Url_Rewrite
 	{
 	    return $this->getRequestPath();
 	}
-	$schema = new Elite_Vaf_Model_Schema();
+	$schema = new VF_Schema();
 
 	$path = 'fit/' . $this->vehicleSlug($vehicle) . '/' . $path;
 	return $path;
@@ -139,7 +139,7 @@ class Elite_Vafsitemap_Model_Url_Rewrite extends Mage_Core_Model_Url_Rewrite
 
     function getSchema()
     {
-	return new Elite_Vaf_Model_Schema;
+	return new VF_Schema;
     }
 
     function getConfig()

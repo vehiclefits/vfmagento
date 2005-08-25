@@ -32,7 +32,7 @@ abstract class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase 
     {
         if( is_null( $schema ) )
         {
-            $schema = new Elite_Vaf_Model_Schema;
+            $schema = new VF_Schema;
         }
         
         $sql = sprintf(

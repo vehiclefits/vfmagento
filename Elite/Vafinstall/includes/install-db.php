@@ -8,7 +8,7 @@
     <?php
     if( isset( $_REQUEST['levels'] ) && isset( $_REQUEST['runDb'] ) )
     {
-        $generator = new Elite_Vaf_Model_Schema_Generator();
+        $generator = new VF_Schema_Generator();
         $sql = $generator->generator( explode(',', $_REQUEST['levels'] ) );
 
         if( file_exists(ELITE_PATH.'/Vafpaint') )
@@ -38,7 +38,7 @@
     }
     else if( isset( $_REQUEST['levels'] ) && isset( $_REQUEST['generateDb'] ) )
     {
-        $generator = new Elite_Vaf_Model_Schema_Generator();
+        $generator = new VF_Schema_Generator();
         $sql = $generator->generator( explode(',', $_REQUEST['levels'] ) );
         if( file_exists(ELITE_PATH.'/Vafpaint') )
         {

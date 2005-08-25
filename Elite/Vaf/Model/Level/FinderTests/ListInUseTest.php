@@ -161,10 +161,10 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
     
     function testMakeDesc()
     {
-        $schemaGenerator = new Elite_Vaf_Model_Schema_Generator();
+        $schemaGenerator = new VF_Schema_Generator();
         $schemaGenerator->setSorting('make','desc');
         
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         $this->assertEquals( 'desc', $schema->getSorting('make') );
         
         $vehicle1 = $this->createMMY('A', 'Civic', '2000');
@@ -185,10 +185,10 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
     
     function testMakeAsc()
     {
-        $schemaGenerator = new Elite_Vaf_Model_Schema_Generator();
+        $schemaGenerator = new VF_Schema_Generator();
         $schemaGenerator->setSorting('make','asc');
         
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         $this->assertEquals( 'asc', $schema->getSorting('make') );
         
         $vehicle1 = $this->createMMY('A', 'Civic', '2000');
@@ -209,10 +209,10 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
     
     function testYearDesc()
     {
-        $schemaGenerator = new Elite_Vaf_Model_Schema_Generator();
+        $schemaGenerator = new VF_Schema_Generator();
         $schemaGenerator->setSorting('year','desc');
         
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         $this->assertEquals( 'desc', $schema->getSorting('year') );
         
         $vehicle1 = $this->createMMY('Honda', 'Civic', '1999');
@@ -233,10 +233,10 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
 
     function testYearAsc()
     {
-        $schemaGenerator = new Elite_Vaf_Model_Schema_Generator();
+        $schemaGenerator = new VF_Schema_Generator();
         $schemaGenerator->setSorting('year','asc');
         
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         $this->assertEquals( 'asc', $schema->getSorting('year') );
         
         $vehicle1 = $this->createMMY('Honda', 'Civic', '1999');

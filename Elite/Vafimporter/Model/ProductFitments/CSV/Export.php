@@ -3,7 +3,7 @@
 class Elite_Vafimporter_Model_ProductFitments_CSV_Export extends Elite_Vafimporter_Model_VehiclesList_CSV_Export
 {
 
-    /** @var Elite_Vaf_Model_Schema */
+    /** @var VF_Schema */
     protected $schema;
 
     protected function cols()

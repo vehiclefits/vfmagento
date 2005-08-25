@@ -22,7 +22,7 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
     const INCLUDE_PARTIALS = 1;
     const EXACT_ONLY = 2;
 
-    function __construct(Elite_Vaf_Model_Schema $schema)
+    function __construct(VF_Schema $schema)
     {
 	$this->schema = $schema;
     }

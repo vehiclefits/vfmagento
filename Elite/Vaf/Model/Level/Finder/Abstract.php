@@ -21,7 +21,7 @@ class Elite_Vaf_Model_Level_Finder_Abstract implements Elite_Vaf_Configurable
     
     protected function getSchema()
     {
-        $schema = new Elite_Vaf_Model_Schema;
+        $schema = new VF_Schema;
         $schema->setConfig( $this->getConfig() );
         return $schema;
     }

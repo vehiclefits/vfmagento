@@ -331,14 +331,14 @@ class Elite_Vaf_Admin_DefinitionsController extends Mage_Adminhtml_Controller_Ac
     
     function getDefaultLevel()
     {
-        $schema = new Elite_Vaf_Model_Schema;
+        $schema = new VF_Schema;
         $schema->setConfig( $this->getConfig() );
         return $schema->getRootLevel();
     }
     
     function schema()
     {
-        return new Elite_Vaf_Model_Schema();
+        return new VF_Schema();
     }
     
     function requestLevels()
@@ -356,6 +356,6 @@ class Elite_Vaf_Admin_DefinitionsController extends Mage_Adminhtml_Controller_Ac
     
     function vehicleFinder()
     {
-        return new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema());
+        return new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema());
     }
 }

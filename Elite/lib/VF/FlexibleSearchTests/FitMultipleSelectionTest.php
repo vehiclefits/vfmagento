@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_FlexibleSearchTests_FitMultipleSelectionTest extends Elite_Vaf_Helper_DataTestCase
+class VF_FlexibleSearchTests_FitMultipleSelectionTest extends Elite_Vaf_Helper_DataTestCase
 {
     protected function doSetUp()
     {

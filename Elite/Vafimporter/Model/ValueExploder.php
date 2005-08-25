@@ -58,7 +58,7 @@ class Elite_Vafimporter_Model_ValueExploder
     
     function getSchema()
     {
-        return new Elite_Vaf_Model_Schema();
+        return new VF_Schema();
     }
     
     /** @return Zend_Db_Adapter_Abstract */

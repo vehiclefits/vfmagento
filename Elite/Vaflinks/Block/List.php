@@ -58,11 +58,11 @@ class Elite_Vaflinks_Block_List extends Elite_Vaf_Block_Search {
     }
 
     protected function getFlexible() {
-        return new Elite_Vaf_Model_FlexibleSearch($this->getSchema(), $this->getRequest());
+        return new VF_FlexibleSearch($this->getSchema(), $this->getRequest());
     }
 
     protected function getSchema() {
-        return new Elite_Vaf_Model_Schema;
+        return new VF_Schema;
     }
 
     protected function _toHtml() {

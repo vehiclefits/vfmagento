@@ -39,7 +39,7 @@ class Elite_Vaf_Model_Mapping implements Elite_Vaf_Configurable
         {
             throw new Exception('Trying to insert a mapping with no product ID');
         }
-        $schema = new Elite_Vaf_Model_Schema;
+        $schema = new VF_Schema;
         $schema->setConfig($this->getConfig());
         $levels = $schema->getLevels();
 

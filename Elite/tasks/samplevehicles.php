@@ -5,8 +5,8 @@ class SampleData
 {
     function main()
     {
-        $schema = new Elite_Vaf_Model_Schema();
-        $schemaGenerator = new Elite_Vaf_Model_Schema_Generator();
+        $schema = new VF_Schema();
+        $schemaGenerator = new VF_Schema_Generator();
         $schemaGenerator->dropExistingTables();
         $schemaGenerator->execute(array('make','model','year'));
         

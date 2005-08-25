@@ -3,7 +3,7 @@ class Elite_Vafimporter_Model_VehiclesList_BaseExport
 {
     function schema()
     {
-        return new Elite_Vaf_Model_Schema();
+        return new VF_Schema();
     }
     
     protected function rowResult()

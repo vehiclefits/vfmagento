@@ -71,7 +71,7 @@ class Elite_Vaf_View_Helper_SearchLevel
     
     function schema()
     {
-        return new Elite_Vaf_Model_Schema();
+        return new VF_Schema();
     }
     
     /** @return bool */

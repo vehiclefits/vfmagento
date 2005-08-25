@@ -35,9 +35,9 @@ class Elite_Vaf_Model_AjaxTests_FilterByProductTest extends Elite_Vaf_TestCase
         return new Elite_Vaf_Model_Ajax();
     }
     
-    /** @return Elite_Vaf_Model_Schema */
+    /** @return VF_Schema */
     function getSchema()
     {
-        return new Elite_Vaf_Model_Schema();
+        return new VF_Schema();
     }
 }

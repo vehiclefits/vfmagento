@@ -1,7 +1,7 @@
 <?php
 class Elite_Vafdiagram_Model_Schema_Generator extends VF_Schema_Generator
 {
-    function generator()
+    function generator($levels)
     {
         return 'CREATE TABLE IF NOT EXISTS `elite_product_servicecode` (
 				  `product_id` int(100) NOT NULL,

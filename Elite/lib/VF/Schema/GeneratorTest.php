@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Schema_GeneratorTest extends Elite_Vaf_TestCase
+class VF_Schema_GeneratorTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {
@@ -7,7 +7,7 @@ class Elite_Vaf_Model_Schema_GeneratorTest extends Elite_Vaf_TestCase
     
     function tearDown()
     {
-        $schemaGenerator = new Elite_Vaf_Model_Schema_Generator();
+        $schemaGenerator = new VF_Schema_Generator();
         $schemaGenerator->dropExistingTables();
     }
     
@@ -85,6 +85,6 @@ class Elite_Vaf_Model_Schema_GeneratorTest extends Elite_Vaf_TestCase
     
     function schema()
     {
-        return new Elite_Vaf_Model_Schema();
+        return new VF_Schema();
     }
 }

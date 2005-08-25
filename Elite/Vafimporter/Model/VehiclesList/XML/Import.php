@@ -95,6 +95,6 @@ class Elite_Vafimporter_Model_VehiclesList_Xml_Import extends Elite_Vafimporter_
 
     function getSchema()
     {
-        return new Elite_Vaf_Model_Schema();
+        return new VF_Schema();
     }
 }

@@ -38,7 +38,7 @@ abstract class Elite_Vaf_Model_Base
     
     function getSchema()
     {
-        $schema = new Elite_Vaf_Model_Schema;
+        $schema = new VF_Schema;
         $schema->setConfig( $this->getConfig() );
         return $schema;
     }

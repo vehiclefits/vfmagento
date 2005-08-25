@@ -347,7 +347,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
 
     function getSchema()
     {
-	$schema = new Elite_Vaf_Model_Schema();
+	$schema = new VF_Schema();
 	$schema->setConfig($this->getConfig());
 	return $schema;
     }

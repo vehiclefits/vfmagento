@@ -86,13 +86,13 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
 
     function getLeafLevel()
     {
-	$schema = new Elite_Vaf_Model_Schema();
+	$schema = new VF_Schema();
 	return $schema->getLeafLevel();
     }
 
     function getValueForSelectedLevel($level)
     {
-	$search = new Elite_Vaf_Model_FlexibleSearch($this->schema(), $this->getRequest());
+	$search = new VF_FlexibleSearch($this->schema(), $this->getRequest());
 	$search->storeFitInSession();
 	return $search->getValueForSelectedLevel($level);
     }
@@ -294,14 +294,14 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
 
     function schema()
     {
-	$schema = new Elite_Vaf_Model_Schema();
+	$schema = new VF_Schema();
 	return $schema;
     }
 
-    /** @return Elite_Vaf_Model_FlexibleSearch */
+    /** @return VF_FlexibleSearch */
     function flexibleSearch()
     {
-        $search = new Elite_Vaf_Model_FlexibleSearch($this->schema(), $this->getRequest());
+        $search = new VF_FlexibleSearch($this->schema(), $this->getRequest());
 	$search->setConfig($this->getConfig());
 
 	if (file_exists(ELITE_PATH . '/Vafwheel'))

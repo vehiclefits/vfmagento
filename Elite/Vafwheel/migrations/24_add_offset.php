@@ -3,7 +3,7 @@ class Vaf24
 {
     function run()
     {
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         $db = Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
         foreach($schema->getLevels() as $level)
         {

@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_SchemaTests_PerformanceTest extends Elite_Vaf_TestCase
+class VF_SchemaTests_PerformanceTest extends Elite_Vaf_TestCase
 {
 
     function doSetUp()
@@ -12,7 +12,7 @@ class Elite_Vaf_Model_SchemaTests_PerformanceTest extends Elite_Vaf_TestCase
         $this->getReadAdapter()->getProfiler()->clear();
         $this->getReadAdapter()->getProfiler()->setEnabled(true);
         
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         $this->assertEquals( array( 'make','model','year'), $schema->getLevels(), 'should get levels MMY' );
         
         $queries = $this->getReadAdapter()->getProfiler()->getQueryProfiles();
@@ -24,7 +24,7 @@ class Elite_Vaf_Model_SchemaTests_PerformanceTest extends Elite_Vaf_TestCase
         $this->getReadAdapter()->getProfiler()->clear();
         $this->getReadAdapter()->getProfiler()->setEnabled(true);
         
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         $schema->getLevels();
         $schema->getLevels();
         
@@ -37,10 +37,10 @@ class Elite_Vaf_Model_SchemaTests_PerformanceTest extends Elite_Vaf_TestCase
         $this->getReadAdapter()->getProfiler()->clear();
         $this->getReadAdapter()->getProfiler()->setEnabled(true);
         
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         $schema->getLevels();
         
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         $schema->getLevels();
         
         $queries = $this->getReadAdapter()->getProfiler()->getQueryProfiles();

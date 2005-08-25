@@ -81,7 +81,7 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements
     
     function getSelected( $level )
     {
-        $search = new Elite_Vaf_Model_FlexibleSearch($this->getSchema(),$this->getRequest());
+        $search = new VF_FlexibleSearch($this->getSchema(),$this->getRequest());
         return $search->getValueForSelectedLevel($level);
     }
     
@@ -340,7 +340,7 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements
         $displayLevels = $this->getLevels();
         foreach( $displayLevels as $level )
         {
-            $search = new Elite_Vaf_Model_FlexibleSearch($this->getSchema(),$this->getRequest());
+            $search = new VF_FlexibleSearch($this->getSchema(),$this->getRequest());
             $val = $search->getValueForSelectedLevel( $level );
             if( !is_null( $val ) )
             {
@@ -423,7 +423,7 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements
     
     protected function getLevels()
     {
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         $schema->setConfig( $this->getConfig() );
         return $schema->getLevels();
     }
@@ -523,8 +523,8 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements
     
     protected function getFlexible()
     {
-        $schema = new Elite_Vaf_Model_Schema;
-        $flexible = new Elite_Vaf_Model_FlexibleSearch( $schema, $this->getRequest() );
+        $schema = new VF_Schema;
+        $flexible = new VF_FlexibleSearch( $schema, $this->getRequest() );
         return $flexible;
     }
     
@@ -549,7 +549,7 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements
 
     protected function getSchema()
     {
-		$schema = new Elite_Vaf_Model_Schema();
+		$schema = new VF_Schema();
 		$schema->setConfig( $this->getConfig() );
 		return $schema;
     }

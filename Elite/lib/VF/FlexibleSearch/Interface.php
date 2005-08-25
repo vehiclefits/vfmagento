@@ -1,4 +1,4 @@
 <?php
-interface Elite_Vaf_Model_FlexibleSearch_Interface
+interface VF_FlexibleSearch_Interface
 {
 }

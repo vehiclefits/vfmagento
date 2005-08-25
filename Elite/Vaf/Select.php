@@ -28,6 +28,6 @@ class Elite_Vaf_Select extends Zend_Db_Select
     
     function getSchema()
     {
-        return new Elite_Vaf_Model_Schema();
+        return new VF_Schema();
     }
 }

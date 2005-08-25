@@ -4,7 +4,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_PerformanceTest extends Elite_Vaf_Test
     function testFindById()
     {
         $vehicle = $this->createMMY();
-        $finder = new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema());
+        $finder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema());
         
         $this->getReadAdapter()->getProfiler()->clear();
         $this->getReadAdapter()->getProfiler()->setEnabled(true);
@@ -21,7 +21,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_PerformanceTest extends Elite_Vaf_Test
         $vehicle = $this->createMMY();
         $yearId = $vehicle->getValue('year');
         
-        $finder = new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema());
+        $finder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema());
         
         $this->getReadAdapter()->getProfiler()->clear();
         $this->getReadAdapter()->getProfiler()->setEnabled(true);
@@ -38,7 +38,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_PerformanceTest extends Elite_Vaf_Test
         $vehicle = $this->createMMY();
         $yearId = $vehicle->getValue('year');
         
-        $finder = new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema());
+        $finder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema());
         
         $this->getReadAdapter()->getProfiler()->clear();
         $this->getReadAdapter()->getProfiler()->setEnabled(true);

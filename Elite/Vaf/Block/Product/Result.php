@@ -61,7 +61,7 @@ class Elite_Vaf_Block_Product_Result extends Elite_Vaf_Block_Product_List
     }
     
     function setListCollection() {
-        $flexibleSearch = new Elite_Vaf_Model_FlexibleSearch(new Elite_Vaf_Model_Schema(), $this->getRequest());
+        $flexibleSearch = new VF_FlexibleSearch(new VF_Schema(), $this->getRequest());
         if($flexibleSearch->shouldClear())
         {
             return;

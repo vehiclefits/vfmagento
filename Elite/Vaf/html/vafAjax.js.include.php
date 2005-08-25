@@ -14,7 +14,7 @@ jQuery.noConflict();
 */ 
 $front = (bool)( isset( $_GET['front'] ) && $_GET['front'] );
 $command = $front ? 'getLevels' : 'getLevels';
-$schema = new Elite_Vaf_Model_Schema;
+$schema = new VF_Schema;
 
 
 $CONFIG['unavailableSelections'] = isset( $_GET['unavailableSelections'] ) ? $_GET['unavailableSelections'] : Mage::helper('vaf')->getConfig()->search->unavailableSelections;

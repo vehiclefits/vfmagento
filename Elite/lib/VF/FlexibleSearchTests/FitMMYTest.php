@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_FlexibleSearchTests_FitMMYTest extends Elite_Vaf_Helper_DataTestCase
+class VF_FlexibleSearchTests_FitMMYTest extends Elite_Vaf_Helper_DataTestCase
 {
     protected function doSetUp()
     {
@@ -79,7 +79,7 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitMMYTest extends Elite_Vaf_Helper_Da
         $vehicle = $this->createMMY();
         $helper = $this->getHelper( array('search'=>array('storeVehicleInSession' => '')), $vehicle->toValueArray() );
 
-        $flexibleSearch = new Elite_Vaf_Model_FlexibleSearch(new Elite_Vaf_Model_Schema, $this->getRequest($vehicle->toValueArray()));
+        $flexibleSearch = new VF_FlexibleSearch(new VF_Schema, $this->getRequest($vehicle->toValueArray()));
         $flexibleSearch->storeFitInSession();
         
         unset($_SESSION['garage']);
@@ -99,7 +99,7 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitMMYTest extends Elite_Vaf_Helper_Da
     {
         $_SESSION = array('make'=>99, 'model'=>99, 'year'=>99);
         $helper = $this->getHelper();
-        $flexibleSearch = new Elite_Vaf_Model_FlexibleSearch(new Elite_Vaf_Model_Schema, $this->getRequest());
+        $flexibleSearch = new VF_FlexibleSearch(new VF_Schema, $this->getRequest());
         $this->assertFalse($flexibleSearch->getFlexibleDefinition(), 'when fitment is deleted should automatically clear invalid session');
     }
     

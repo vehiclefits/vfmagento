@@ -15,7 +15,7 @@ class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
 {
     protected $row;
     
-    /** @var Elite_Vaf_Model_Schema */
+    /** @var VF_Schema */
     protected $schema;
     
     /** @var Zend_Config */
@@ -30,13 +30,13 @@ class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
     
     protected $lastFlexibleLevel;
     
-    static function create( Elite_Vaf_Model_Schema $schema, $titles = array() )
+    static function create( VF_Schema $schema, $titles = array() )
     {
         $row = new stdClass();
         return new Elite_Vaf_Model_Vehicle( $schema, 0, $row, false, $titles );   
     }
     
-    function __construct( Elite_Vaf_Model_Schema $schema, $id, $row, $lastFlexibleLevel = false, $titles = array() )
+    function __construct( VF_Schema $schema, $id, $row, $lastFlexibleLevel = false, $titles = array() )
     {
         $this->lastFlexibleLevel = $lastFlexibleLevel;
         $this->schema = $schema;

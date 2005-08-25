@@ -37,7 +37,7 @@ class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf extends Mage_Adminh
                     <a class="multiTree-closeLink" href="#">[ x ]</a>
                     <?php
                     $label = array();
-                    $schema = new Elite_Vaf_Model_Schema();
+                    $schema = new VF_Schema();
                     foreach( $schema->getLevels() as $level )
                     {
                         $label[] = $this->htmlEscape( $fit->$level );
@@ -89,7 +89,7 @@ class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf extends Mage_Adminh
         ob_start();
         ?>
         <?php
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         $levels = $schema->getLevels();
         foreach( $levels as $level )
         {

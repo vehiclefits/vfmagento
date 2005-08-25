@@ -2,7 +2,7 @@
 session_start();
 require_once('F:\dev\vaf\app\code\local\Elite\Vaf\bootstrap-tests.php');
 
-$schemaGenerator = new Elite_Vaf_Model_Schema_Generator();
+$schemaGenerator = new VF_Schema_Generator();
 $schemaGenerator->dropExistingTables();
 $schemaGenerator->execute(array(
     'year',
@@ -10,7 +10,7 @@ $schemaGenerator->execute(array(
     'model'
 ));
 
-$schema = new Elite_Vaf_Model_Schema();
+$schema = new VF_Schema();
 
 $vehicle = Elite_Vaf_Model_Vehicle::create( $schema, array(
     'make' => 'Honda',

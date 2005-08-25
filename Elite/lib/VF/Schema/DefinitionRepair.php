@@ -1,9 +1,9 @@
 <?php
-class Elite_Vaf_Model_Schema_DefinitionRepair extends VF_Schema_Generator
+class VF_Schema_DefinitionRepair extends VF_Schema_Generator
 {
     function repair()
     {
-    	$schema = new Elite_Vaf_Model_Schema(); 
+    	$schema = new VF_Schema(); 
         $this->levels = $schema->getLevels();
 
         $this->saveLeafLevels();
@@ -13,7 +13,7 @@ class Elite_Vaf_Model_Schema_DefinitionRepair extends VF_Schema_Generator
     
     protected function saveLeafLevels()
     {
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         
         $select = $this->getReadAdapter()->select()
             ->from( 'elite_' . $schema->getLeafLevel() );

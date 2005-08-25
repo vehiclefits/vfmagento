@@ -50,7 +50,7 @@ class Vafsitemap_Model_Url_Rewrite_Slug
 
     function getSchema()
     {
-	$schema = new Elite_Vaf_Model_Schema;
+	$schema = new VF_Schema;
 	if(!is_null($this->getConfig()))
 	{
 	    $schema->setConfig($this->getConfig());
@@ -60,7 +60,7 @@ class Vafsitemap_Model_Url_Rewrite_Slug
 
     function finder()
     {
-	return new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema());
+	return new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema());
     }
 
 }

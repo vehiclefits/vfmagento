@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_SchemaTests_SchemaReservedNameTest extends Elite_Vaf_TestCase
+class VF_SchemaTests_SchemaReservedNameTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {
@@ -8,7 +8,7 @@ class Elite_Vaf_Model_SchemaTests_SchemaReservedNameTest extends Elite_Vaf_TestC
     
     function testLevels()
     {
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         $this->assertEquals( array( 'make','model','version'), $schema->getLevels(), 'should get levels' );
     }
 }

@@ -44,6 +44,6 @@ class Elite_Vafimporter_Model_Schema_Generator extends VF_Schema_Generator
     
     function getSchema()
     {
-        return new Elite_Vaf_Model_Schema();
+        return new VF_Schema();
     }
 }

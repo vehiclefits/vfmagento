@@ -73,7 +73,7 @@ class Elite_Vaf_Admin_SchemaController extends Mage_Adminhtml_Controller_Action
     
     function setSortingLevels()
     {
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         foreach( $schema->getLevels() as $level )
         {
             if( isset($_GET[$level.'Sorting']) )
@@ -83,9 +83,9 @@ class Elite_Vaf_Admin_SchemaController extends Mage_Adminhtml_Controller_Action
         }
     }
     
-    function generator()
+    function generator($levels)
     {
-        return new Elite_Vaf_Model_Schema_Generator();
+        return new VF_Schema_Generator();
     }
     
     function query($sql)

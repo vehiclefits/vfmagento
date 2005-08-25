@@ -86,7 +86,7 @@ class Elite_Vafsitemap_Block_Vehicles extends Mage_Core_Block_Template implement
 
     protected function getSchema()
     {
-	$schema = new Elite_Vaf_Model_Schema();
+	$schema = new VF_Schema();
 	$schema->setConfig($this->getCOnfig());/** @todo potential linux bug needs regression test */
 	return $schema;
     }

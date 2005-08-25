@@ -11,8 +11,8 @@
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the conditions in license.txt are met
 */
-class Elite_Vaf_Model_Schema implements
-    Elite_Vaf_Model_Schema_Interface,
+class VF_Schema implements
+    VF_Schema_Interface,
     Elite_Vaf_Configurable
 {
     /** @var Zend_Config */

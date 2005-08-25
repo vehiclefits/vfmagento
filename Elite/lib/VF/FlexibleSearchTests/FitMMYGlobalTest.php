@@ -1,9 +1,9 @@
 <?php
-class Elite_Vaf_Model_FlexibleSearchTests_FitMMYGlobalTest extends Elite_Vaf_TestCase
+class VF_FlexibleSearchTests_FitMMYGlobalTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {
-        $schemaGenerator = new Elite_Vaf_Model_Schema_Generator();
+        $schemaGenerator = new VF_Schema_Generator();
         $schemaGenerator->dropExistingTables();
         $schemaGenerator->execute(array(
             'make' => array('global'=>true),
@@ -15,7 +15,7 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitMMYGlobalTest extends Elite_Vaf_Tes
     
     function doTearDown()
     {
-        $schemaGenerator = new Elite_Vaf_Model_Schema_Generator();
+        $schemaGenerator = new VF_Schema_Generator();
         $schemaGenerator->dropExistingTables();
     }
     

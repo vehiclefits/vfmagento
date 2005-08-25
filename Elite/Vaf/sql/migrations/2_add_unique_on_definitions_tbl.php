@@ -3,7 +3,7 @@ class Vaf2_add_unique_on_definitions
 {
 	function addUniqueOnDefinitions()
 	{
-		$schema = new Elite_Vaf_Model_Schema();
+		$schema = new VF_Schema();
 		$db = Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
 
 		$levels = array();

@@ -1,6 +1,6 @@
 <?php
 /** Upgrade the database schema from v1.2 to v1.3 */
-class Elite_Vaf_Model_Schema_Upgrader extends VF_Schema_Generator
+class VF_Schema_Upgrader extends VF_Schema_Generator
 {
     function generator( $levels )
     {
@@ -32,7 +32,7 @@ class Elite_Vaf_Model_Schema_Upgrader extends VF_Schema_Generator
     
     protected function saveLeafLevels()
     {
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         
         $select = $this->getReadAdapter()->select()
             ->from( 'elite_' . $schema->getLeafLevel() );

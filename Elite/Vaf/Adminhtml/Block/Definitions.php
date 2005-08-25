@@ -162,13 +162,13 @@ class Elite_Vaf_Adminhtml_Block_Definitions extends Elite_Vaf_Block_Abstract imp
     
     function getDefaultLevel()
     {
-        $schema = new Elite_Vaf_Model_Schema;
+        $schema = new VF_Schema;
         $schema->setConfig( $this->getConfig() );
         return $schema->getRootLevel();
     }
     
     function schema()
     {
-        return new Elite_Vaf_Model_Schema();
+        return new VF_Schema();
     }
 }

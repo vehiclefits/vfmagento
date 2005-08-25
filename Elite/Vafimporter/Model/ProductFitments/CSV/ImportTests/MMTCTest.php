@@ -18,7 +18,7 @@ sku, honda, civic, the_trim, the_chassis';
     function testSku()
     {
         $importer = $this->mappingsImport( $this->csvData );
-        $schema = new Elite_Vaf_Model_Schema();
+        $schema = new VF_Schema();
         $fit = $this->getFitForSku( self::SKU, $schema );
         $this->assertEquals( 'honda', $fit->getLevel( 'make' )->getTitle() );
     }

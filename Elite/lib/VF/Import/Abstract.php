@@ -67,7 +67,7 @@ abstract class VF_Import_Abstract
     
     function schema()
     {
-        return new Elite_Vaf_Model_Schema();
+        return new VF_Schema();
     }
     
     /** @return Csv_Reader */

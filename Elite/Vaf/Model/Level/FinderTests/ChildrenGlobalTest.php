@@ -4,7 +4,7 @@ class Elite_Vaf_Model_Level_FinderTests_ChildrenGlobalTest extends Elite_Vaf_Tes
     
     function doSetUp()
     {
-        $schemaGenerator = new Elite_Vaf_Model_Schema_Generator();
+        $schemaGenerator = new VF_Schema_Generator();
         $schemaGenerator->dropExistingTables();
         $schemaGenerator->execute(array(
             'year',
@@ -16,7 +16,7 @@ class Elite_Vaf_Model_Level_FinderTests_ChildrenGlobalTest extends Elite_Vaf_Tes
     
     function doTearDown()
     {
-        $schemaGenerator = new Elite_Vaf_Model_Schema_Generator();
+        $schemaGenerator = new VF_Schema_Generator();
         $schemaGenerator->dropExistingTables();
     }
     
