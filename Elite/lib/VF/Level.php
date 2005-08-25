@@ -12,13 +12,13 @@
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the conditions in license.txt are met
  */
-class Elite_Vaf_Model_Level implements Elite_Vaf_Configurable
+class VF_Level implements Elite_Vaf_Configurable
 {
 
     protected $id;
     protected $title;
     protected $type;
-    /** @var Elite_Vaf_Model_Level_Finder */
+    /** @var VF_Level_Finder */
     protected $finder;
     /** @var VF_Schema */
     protected $schema;
@@ -34,7 +34,7 @@ class Elite_Vaf_Model_Level implements Elite_Vaf_Configurable
     {
         if ($id && !in_array($type, $this->getSchema()->getLevels()))
         {
-            throw new Elite_Vaf_Model_Level_Exception_InvalidLevel('[' . $type . '] is an invalid level');
+            throw new VF_Level_Exception_InvalidLevel('[' . $type . '] is an invalid level');
         }
         $this->type = $type;
         $this->id = $id;
@@ -42,7 +42,7 @@ class Elite_Vaf_Model_Level implements Elite_Vaf_Configurable
 
     function identityMap()
     {
-        return Elite_Vaf_Model_Level_IdentityMap::getInstance();
+        return VF_Level_IdentityMap::getInstance();
     }
 
     function getConfig()
@@ -59,12 +59,12 @@ class Elite_Vaf_Model_Level implements Elite_Vaf_Configurable
         $this->config = $config;
     }
 
-    /** @return Elite_Vaf_Model_Level_Finder */
+    /** @return VF_Level_Finder */
     function getFinder()
     {
-        if (!( $this->finder instanceof Elite_Vaf_Model_Level_Finder ))
+        if (!( $this->finder instanceof VF_Level_Finder ))
         {
-            $this->finder = new Elite_Vaf_Model_Level_Finder();
+            $this->finder = new VF_Level_Finder();
         }
         $this->finder->setConfig($this->getConfig());
         return $this->finder;
@@ -114,7 +114,7 @@ class Elite_Vaf_Model_Level implements Elite_Vaf_Configurable
 
     function createEntity($level, $id = 0)
     {
-        return new Elite_Vaf_Model_Level($level, $id);
+        return new VF_Level($level, $id);
     }
 
     function getType()
@@ -163,11 +163,11 @@ class Elite_Vaf_Model_Level implements Elite_Vaf_Configurable
 
         if ($this->getId())
         {
-            $saver = new Elite_Vaf_Model_Level_Finder_Updater($this, $parent_id);
+            $saver = new VF_Level_Finder_Updater($this, $parent_id);
             return $saver->save();
         }
 
-        $saver = new Elite_Vaf_Model_Level_Finder_Inserter($this, $parent_id);
+        $saver = new VF_Level_Finder_Inserter($this, $parent_id);
         $saver->setConfig($this->getConfig());
         $levelId = $saver->save($requestedSaveId);
 
@@ -275,7 +275,7 @@ class Elite_Vaf_Model_Level implements Elite_Vaf_Configurable
 
     function vehicleFinder()
     {
-        return new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
+        return new VF_Vehicle_Finder($this->getSchema());
     }
 
     function getJoinsNoDefinition()
@@ -319,7 +319,7 @@ class Elite_Vaf_Model_Level implements Elite_Vaf_Configurable
             throw new Exception();
         }
 
-        $identityMap = Elite_Vaf_Model_Level_IdentityMap_ByTitle::getInstance();
+        $identityMap = VF_Level_IdentityMap_ByTitle::getInstance();
         $identityMap->remove($this->getType(), $this->getId());
 
         $this->deleteFits();

@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelTest extends Elite_Vaf_Model_Vehicle_FinderTests_TestCase
+class VF_Vehicle_FinderTests_ByLevelTest extends VF_Vehicle_FinderTests_TestCase
 {
     const MAKE = 'Honda';
     const MODEL = 'Civic';

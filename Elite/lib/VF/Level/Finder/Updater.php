@@ -11,7 +11,7 @@
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the conditions in license.txt are met
 */
-class Elite_Vaf_Model_Level_Finder_Updater extends Elite_Vaf_Model_Level_Finder_Abstract implements Elite_Vaf_Model_Level_Saver
+class VF_Level_Finder_Updater extends VF_Level_Finder_Abstract implements VF_Level_Saver
 {
     /** @var integer id of the model being saved */
     protected $id;
@@ -23,10 +23,10 @@ class Elite_Vaf_Model_Level_Finder_Updater extends Elite_Vaf_Model_Level_Finder_
     protected $entity;
     
     /**
-    * @param Elite_Vaf_Model_Level $entity
-    * @return Elite_Vaf_Model_Level_Saver
+    * @param VF_Level $entity
+    * @return VF_Level_Saver
     */
-    function __construct( Elite_Vaf_Model_Level $entity, $parent_id = 0 )
+    function __construct( VF_Level $entity, $parent_id = 0 )
     {
         $this->entity = $entity;
         $this->parent_id = $parent_id;

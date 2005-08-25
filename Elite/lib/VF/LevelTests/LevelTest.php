@@ -1,10 +1,10 @@
 <?php
-class Elite_Vaf_Model_LevelTests_LevelTest extends Elite_Vaf_TestCase
+class VF_LevelTests_LevelTest extends Elite_Vaf_TestCase
 {
     
     function testConstructorSetsType()
     {
-        $entity = new Elite_Vaf_Model_Level('make');   
+        $entity = new VF_Level('make');   
         $this->assertSame('make', $entity->getType() );
     }
     
@@ -31,19 +31,19 @@ class Elite_Vaf_Model_LevelTests_LevelTest extends Elite_Vaf_TestCase
     }
     
     /**
-    * @expectedException Elite_Vaf_Model_Level_Exception_InvalidLevel
+    * @expectedException VF_Level_Exception_InvalidLevel
     */
     function testInitThrowsExceptionIfTypeInvalid()
     {
         $id = $this->insertMake();
-        $entity = new Elite_Vaf_Model_Level( self::INVALID_TYPE, $id );
+        $entity = new VF_Level( self::INVALID_TYPE, $id );
     }
     
     function testInitDoesNothingIfNoId()
     {
         try
         {
-            $entity = new Elite_Vaf_Model_Level( self::INVALID_TYPE, 0 );
+            $entity = new VF_Level( self::INVALID_TYPE, 0 );
         }
         catch( Exception $e )
         {
@@ -61,19 +61,19 @@ class Elite_Vaf_Model_LevelTests_LevelTest extends Elite_Vaf_TestCase
     
     function testCreatesDefinitionWhenSavingLeafLevel()
     {
-        $make = new Elite_Vaf_Model_Level( 'make' );
+        $make = new VF_Level( 'make' );
         $make->setTitle('Honda');
         $make_id = $make->save();
         
-        $model = new Elite_Vaf_Model_Level( 'model' );
+        $model = new VF_Level( 'model' );
         $model->setTitle('Civic');
         $model_id = $model->save( $make_id );
         
-        $year = new Elite_Vaf_Model_Level( 'year' );
+        $year = new VF_Level( 'year' );
         $year->setTitle('2000');
         $year_id = $year->save($model_id);
 
-        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema);
+        $vehicleFinder = new VF_Vehicle_Finder(new VF_Schema);
         $vehicle = $vehicleFinder->findByLeaf($year_id);
         $this->assertEquals( $year_id, $vehicle->getLevel('year')->getId() );
     }
@@ -89,7 +89,7 @@ class Elite_Vaf_Model_LevelTests_LevelTest extends Elite_Vaf_TestCase
     {
         $vehicle = $this->createMMY();
         $this->insertMappingMMY( $vehicle, 1 );
-        $level = new Elite_Vaf_Model_Level( 'year', $vehicle->getLevel('year')->getId() );
+        $level = new VF_Level( 'year', $vehicle->getLevel('year')->getId() );
         $level->deleteFits();
     }
     
@@ -126,7 +126,7 @@ class Elite_Vaf_Model_LevelTests_LevelTest extends Elite_Vaf_TestCase
     
     function levelFinder()
     {
-        return new Elite_Vaf_Model_Level_Finder();
+        return new VF_Level_Finder();
     }
     
          

@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_LevelTests_DeleteTest extends Elite_Vaf_TestCase
+class VF_LevelTests_DeleteTest extends Elite_Vaf_TestCase
 {
 	function doSetUp()
 	{

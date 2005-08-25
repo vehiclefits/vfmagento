@@ -12,7 +12,7 @@
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the conditions in license.txt are met
  */
-class Elite_Vaf_Model_Level_Finder_Inserter extends Elite_Vaf_Model_Level_Finder_Abstract implements Elite_Vaf_Model_Level_Saver
+class VF_Level_Finder_Inserter extends VF_Level_Finder_Abstract implements VF_Level_Saver
 {
 
     /** @var integer id of the model being saved */
@@ -24,10 +24,10 @@ class Elite_Vaf_Model_Level_Finder_Inserter extends Elite_Vaf_Model_Level_Finder
     protected $requestedSaveId;
 
     /**
-     * @param Elite_Vaf_Model_Level $entity
-     * @return Elite_Vaf_Model_Level_Saver
+     * @param VF_Level $entity
+     * @return VF_Level_Saver
      */
-    function __construct(Elite_Vaf_Model_Level $entity, $parent_id = 0)
+    function __construct(VF_Level $entity, $parent_id = 0)
     {
 	$this->entity = $entity;
 	$this->parent_id = $parent_id;
@@ -84,7 +84,7 @@ class Elite_Vaf_Model_Level_Finder_Inserter extends Elite_Vaf_Model_Level_Finder
     {
 	if (is_array($this->parent_id))
 	{
-	    $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
+	    $vehicleFinder = new VF_Vehicle_Finder($this->getSchema());
 	    $bind = $this->vehicleBind();
 	    if (count($vehicleFinder->findByLevelIds($bind)) == 0)
 	    {
@@ -140,7 +140,7 @@ class Elite_Vaf_Model_Level_Finder_Inserter extends Elite_Vaf_Model_Level_Finder
 
     function levelFinder()
     {
-	return new Elite_Vaf_Model_Level_Finder();
+	return new VF_Level_Finder();
     }
 
 }

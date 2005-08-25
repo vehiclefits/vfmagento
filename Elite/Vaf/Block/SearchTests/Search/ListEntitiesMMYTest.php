@@ -2,7 +2,7 @@
 class Elite_Vaf_Block_SearchTests_Search_ListEntitiesMMYTest extends Elite_Vaf_Block_SearchTests_TestCase
 {
     /**
-    * @expectedException Elite_Vaf_Model_Level_Exception_InvalidLevel
+    * @expectedException VF_Level_Exception_InvalidLevel
     */
     function testListNoLevel()
     {
@@ -11,7 +11,7 @@ class Elite_Vaf_Block_SearchTests_Search_ListEntitiesMMYTest extends Elite_Vaf_B
     }
         
     /**
-    * @expectedException Elite_Vaf_Model_Level_Exception_InvalidLevel
+    * @expectedException VF_Level_Exception_InvalidLevel
     */
     function testListInvalidLevel()
     {

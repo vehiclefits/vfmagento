@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Level_FinderTests_FindTest extends Elite_Vaf_TestCase
+class VF_Level_FinderTests_FindTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {
@@ -62,8 +62,8 @@ class Elite_Vaf_Model_Level_FinderTests_FindTest extends Elite_Vaf_TestCase
     {
         $vehicle1 = $this->createMMY();
         $vehicle2 = $this->createMMY();
-        $model_reloaded = new Elite_Vaf_Model_Level('model',$vehicle1->getValue('model'));
-        $model_reloaded2 = new Elite_Vaf_Model_Level('model',$vehicle2->getValue('model'));
+        $model_reloaded = new VF_Level('model',$vehicle1->getValue('model'));
+        $model_reloaded2 = new VF_Level('model',$vehicle2->getValue('model'));
         $this->assertEquals( $vehicle1->getValue('model'), $model_reloaded->getId() );
         $this->assertEquals( $vehicle2->getValue('model'), $model_reloaded2->getId(), 'should load multiple model' );
     }
@@ -72,8 +72,8 @@ class Elite_Vaf_Model_Level_FinderTests_FindTest extends Elite_Vaf_TestCase
     {
         $vehicle1 = $this->createMMY();
         $vehicle2 = $this->createMMY();
-        $year_reloaded = new Elite_Vaf_Model_Level('year',$vehicle1->getValue('year'));
-        $year_reloaded2 = new Elite_Vaf_Model_Level('year',$vehicle2->getValue('year'));
+        $year_reloaded = new VF_Level('year',$vehicle1->getValue('year'));
+        $year_reloaded2 = new VF_Level('year',$vehicle2->getValue('year'));
         $this->assertEquals( $vehicle1->getValue('year'), $year_reloaded->getId() );
         $this->assertEquals( $vehicle2->getValue('year'), $year_reloaded2->getId(), 'should load multiple year' );
     }

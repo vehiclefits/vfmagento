@@ -38,7 +38,7 @@ class VF_Schema_Upgrader extends VF_Schema_Generator
             ->from( 'elite_' . $schema->getLeafLevel() );
         $result = $select->query();
         
-        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( $schema );
+        $vehicleFinder = new VF_Vehicle_Finder( $schema );
         while( $row = $result->fetchObject() )
         {
             $vehicle = $vehicleFinder->findByLeaf( $row->id );

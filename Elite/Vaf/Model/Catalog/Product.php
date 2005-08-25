@@ -15,9 +15,9 @@
 class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product implements Elite_Vaf_Configurable
 {
 
-    /** @var Collection of Elite_Vaf_Model_Vehicle */
+    /** @var Collection of VF_Vehicle */
     protected $fits = NULL;
-    /** @var Elite_Vaf_Model_Vehicle the customer has associated */
+    /** @var VF_Vehicle the customer has associated */
     protected $fit;
     /** @var Zend_Config */
     protected $config;
@@ -136,7 +136,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
         {
             if( !in_array( $parentType, $this->getSchema()->getLevels() ) )
             {
-                throw new Elite_Vaf_Model_Level_Exception( $parentType );
+                throw new VF_Level_Exception( $parentType );
             }
             if( !(int)$parentId )
             {
@@ -220,10 +220,10 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 
     function vehicleFinder()
     {
-	return new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
+	return new VF_Vehicle_Finder($this->getSchema());
     }
 
-    function insertMapping(Elite_Vaf_Model_Vehicle $vehicle)
+    function insertMapping(VF_Vehicle $vehicle)
     {
 	$mapping = new Elite_Vaf_Model_Mapping($this->getId(), $vehicle);
 	return $mapping->save();
@@ -333,7 +333,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 
     function setCurrentlySelectedFit($fit)
     {
-	$this->fit = new Elite_Vaf_Model_Vehicle_Selection(array($fit));
+	$this->fit = new VF_Vehicle_Selection(array($fit));
     }
 
     function currentlySelectedFit()
@@ -345,7 +345,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
         }
         else
         {
-            return new Elite_Vaf_Model_Vehicle_Selection();
+            return new VF_Vehicle_Selection();
         }
     }
 
@@ -387,7 +387,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 	return false;
     }
 
-    function getMappingId(Elite_Vaf_Model_Vehicle $vehicle)
+    function getMappingId(VF_Vehicle $vehicle)
     {
 	$schema = new VF_Schema;
 	$select = $this->getReadAdapter()->select()
@@ -405,7 +405,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     function duplicate()
     {
 	$schema = new VF_Schema();
-	$vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder($schema);
+	$vehicleFinder = new VF_Vehicle_Finder($schema);
 	$leaf = $schema->getLeafLevel() . '_id';
 
 	$newProduct = parent::duplicate();
@@ -423,7 +423,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 
     protected function findDefinitionByLeafId($leaf_id)
     {
-	$finder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema);
+	$finder = new VF_Vehicle_Finder(new VF_Schema);
 	return $finder->findByLeaf($leaf_id);
     }
 
@@ -433,7 +433,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     function doAddFit($entity)
     {
 
-	$vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema);
+	$vehicleFinder = new VF_Vehicle_Finder(new VF_Schema);
 	$params = array($entity->getType() => $entity->getTitle());
 	$vehicles = $vehicleFinder->findByLevels($params);
 	return $vehicles;
@@ -442,7 +442,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     protected function createFitFromRow($row)
     {
 	$schema = new VF_Schema();
-	return new Elite_Vaf_Model_Vehicle($schema, $row->id, $row);
+	return new VF_Vehicle($schema, $row->id, $row);
     }
 
     protected function doGetFits($productId)

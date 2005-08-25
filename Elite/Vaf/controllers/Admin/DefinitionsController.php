@@ -109,7 +109,7 @@ class Elite_Vaf_Admin_DefinitionsController extends Mage_Adminhtml_Controller_Ac
     function saveAction()
     {
         $id = (int)$this->getRequest()->getParam( 'save' ); 
-        $entity = new Elite_Vaf_Model_Level( $this->getEntity()->getType(), $id ); 
+        $entity = new VF_Level( $this->getEntity()->getType(), $id ); 
         $entity->setTitle( $this->getRequest()->getParam( 'title' ) );
         $entity->save( $this->requestLevels() ); 
         if($this->getRequest()->isXmlHttpRequest())
@@ -173,7 +173,7 @@ class Elite_Vaf_Admin_DefinitionsController extends Mage_Adminhtml_Controller_Ac
         if(isset($_POST['submit']))
         {
             $titles = explode(',', $_POST['new_titles']);
-            $vehicle = $this->vehicleFinder()->findOneByLevelIds($this->requestLevels(), Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
+            $vehicle = $this->vehicleFinder()->findOneByLevelIds($this->requestLevels(), VF_Vehicle_Finder::EXACT_ONLY);
             $split = new Elite_Vaf_Model_Split($vehicle, $_POST['entity'], $titles);
             $split->execute();
             header('location:' . $this->getListUrl2($_REQUEST['entity']) );
@@ -182,7 +182,7 @@ class Elite_Vaf_Admin_DefinitionsController extends Mage_Adminhtml_Controller_Ac
         
         $params = $this->requestLevels();
         $params[$this->getRequest()->getParam('entity')] = $this->getRequest()->getParam('id');
-        $this->block->vehicle = $this->vehicleFinder()->findOneByLevelIds($params, Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
+        $this->block->vehicle = $this->vehicleFinder()->findOneByLevelIds($params, VF_Vehicle_Finder::EXACT_ONLY);
         if(!$this->block->vehicle)
         {
             header('location:' . $this->getListUrl2($_REQUEST['entity']) );
@@ -208,7 +208,7 @@ class Elite_Vaf_Admin_DefinitionsController extends Mage_Adminhtml_Controller_Ac
     
     function levelFinder()
     {
-        return new Elite_Vaf_Model_Level_Finder();
+        return new VF_Level_Finder();
     }
     
     function masterLevel()
@@ -288,7 +288,7 @@ class Elite_Vaf_Admin_DefinitionsController extends Mage_Adminhtml_Controller_Ac
     {
         if( $this->getId() && $this->getEntity()->getPrevLevel() )
         {
-            $entity = new Elite_Vaf_Model_Level( $this->getEntity()->getPrevLevel(), $this->getId() );
+            $entity = new VF_Level( $this->getEntity()->getPrevLevel(), $this->getId() );
             return $entity->getTitle();
         }
     }
@@ -306,7 +306,7 @@ class Elite_Vaf_Admin_DefinitionsController extends Mage_Adminhtml_Controller_Ac
         {
             $entity = $this->getDefaultLevel();
         }
-        return new Elite_Vaf_Model_Level( $entity );
+        return new VF_Level( $entity );
     }
     
     function getId()
@@ -356,6 +356,6 @@ class Elite_Vaf_Admin_DefinitionsController extends Mage_Adminhtml_Controller_Ac
     
     function vehicleFinder()
     {
-        return new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema());
+        return new VF_Vehicle_Finder(new VF_Schema());
     }
 }

@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Vehicle_Selection
+class VF_Vehicle_Selection
 {
     public $vehicles;
     

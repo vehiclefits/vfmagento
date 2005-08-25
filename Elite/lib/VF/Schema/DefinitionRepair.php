@@ -19,7 +19,7 @@ class VF_Schema_DefinitionRepair extends VF_Schema_Generator
             ->from( 'elite_' . $schema->getLeafLevel() );
         $result = $select->query();
         
-        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( $schema );
+        $vehicleFinder = new VF_Vehicle_Finder( $schema );
         foreach( $result->fetchAll(Zend_Db::FETCH_OBJ) as $row )
         {
             $vehicle = $vehicleFinder->findByLeaf( $row->id );

@@ -118,7 +118,7 @@ class Elite_Vaf_Model_Merge extends Elite_Vaf_Model_Base
             $level_type = current($levelsToBeMergedArray);
             if ($last_level_type != $level_type && $i)
             {
-                throw new Elite_Vaf_Model_Vehicle_Finder_Exception_DifferingGrain('slave levels should all be at same grain to merge');
+                throw new VF_Vehicle_Finder_Exception_DifferingGrain('slave levels should all be at same grain to merge');
             }
             $last_level_type = $level_type;
             $i++;
@@ -126,7 +126,7 @@ class Elite_Vaf_Model_Merge extends Elite_Vaf_Model_Base
 
         if ($last_level_type != $this->operatingGrain())
         {
-            throw new Elite_Vaf_Model_Vehicle_Finder_Exception_DifferingGrain('master level must be at same grain as slave levels');
+            throw new VF_Vehicle_Finder_Exception_DifferingGrain('master level must be at same grain as slave levels');
         }
     }
 
@@ -135,7 +135,7 @@ class Elite_Vaf_Model_Merge extends Elite_Vaf_Model_Base
         if (!$this->equalsAboveOperatingGrain($slaveVehicle, $master_vehicle))
         {
             $params = $slaveVehicle->levelIdsTruncateAfter($this->operatingGrain());
-            $unlinkTarget = $this->vehicleFinder()->findOneByLevelIds($params, Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
+            $unlinkTarget = $this->vehicleFinder()->findOneByLevelIds($params, VF_Vehicle_Finder::EXACT_ONLY);
             if ($unlinkTarget)
             {
                 $unlinkTarget->unlink();
@@ -156,7 +156,7 @@ class Elite_Vaf_Model_Merge extends Elite_Vaf_Model_Base
         {
             $titles[$levelToReplace] = $master_vehicle->getLevel($levelToReplace)->getTitle();
         }
-        $new_vehicle = Elite_Vaf_Model_Vehicle::create($this->getSchema(), $titles);
+        $new_vehicle = VF_Vehicle::create($this->getSchema(), $titles);
         $new_vehicle->save();
 
         $this->mergeFitments($slave_vehicle, $new_vehicle);

@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Level_FinderTests_ChildrenTest extends Elite_Vaf_TestCase
+class VF_Level_FinderTests_ChildrenTest extends Elite_Vaf_TestCase
 {
     protected function doSetUp()
     {
@@ -11,14 +11,14 @@ class Elite_Vaf_Model_Level_FinderTests_ChildrenTest extends Elite_Vaf_TestCase
         return $this->markTestIncomplete();
         //$vehicle1 = $this->createMMY('Make', 'Model1');
 //        $vehicle2 = $this->createMMY('Make', 'Model2');
-//        $make = new Elite_Vaf_Model_Level('make',$vehicle1->getValue('make'));
+//        $make = new VF_Level('make',$vehicle1->getValue('make'));
 //        $children = $make->getChildren();
 //        $children = $make->getChildren();
     }
     
     function testGetChildCountReturns0ForLeafLevel()
     {
-        $entity = new Elite_Vaf_Model_Level('year');
+        $entity = new VF_Level('year');
         $this->assertSame( 0, $entity->getChildCount(), 'get child count should return 0 when no children have been inserted' );
     }
     
@@ -27,7 +27,7 @@ class Elite_Vaf_Model_Level_FinderTests_ChildrenTest extends Elite_Vaf_TestCase
     */
     function testGetChildrenThrowsExceptionForLeafLevel()
     {
-        $year = new Elite_Vaf_Model_Level( 'year' );
+        $year = new VF_Level( 'year' );
         $year->getChildren();
     }
     

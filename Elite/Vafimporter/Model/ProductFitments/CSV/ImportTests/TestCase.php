@@ -56,7 +56,7 @@ abstract class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase 
         {
             return false;
         }
-        $finder = new Elite_Vaf_Model_Vehicle_Finder( $schema );
+        $finder = new VF_Vehicle_Finder( $schema );
         return $finder->findByLeaf( $leaf_id );
     }
 

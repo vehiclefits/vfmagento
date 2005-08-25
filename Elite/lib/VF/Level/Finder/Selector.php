@@ -11,7 +11,7 @@
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the conditions in license.txt are met
 */
-class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder_Abstract implements Elite_Vaf_Model_Level_Finder_Interface
+class VF_Level_Finder_Selector extends VF_Level_Finder_Abstract implements VF_Level_Finder_Interface
 {
     /** @var mixed either NULL, or an array representing cached objects for listAll() method */
     protected $objs;
@@ -44,10 +44,10 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         $row = $select->query()->fetchObject();
         if( !is_object( $row ) )
         {
-            throw new Elite_Vaf_Model_Level_Exception_NotFound( 'error initializing model with level [' . $level . '] and id [' . $id . ']' );
+            throw new VF_Level_Exception_NotFound( 'error initializing model with level [' . $level . '] and id [' . $id . ']' );
         }
         
-        $level = new Elite_Vaf_Model_Level($level,$id);
+        $level = new VF_Level($level,$id);
         $level->setTitle( $row->title );
         
         $this->identityMap()->add($level);
@@ -58,12 +58,12 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
     {
         if(is_null($this->identityMap))
         {
-            $this->identityMap = new Elite_Vaf_Model_Level_IdentityMap;
+            $this->identityMap = new VF_Level_IdentityMap;
         }
         return $this->identityMap;
     }
 
-    function getChildren( Elite_Vaf_Model_Level $entity )
+    function getChildren( VF_Level $entity )
     {
         if($this->getSchema()->isGlobal($entity->getType()) && $this->getSchema()->getRootLevel() != $entity->getType())
         {
@@ -100,7 +100,7 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         return $type == $this->getSchema()->getLeafLevel() ? $this->getConfig()->search->leafSorting : 'ASC';
     }
     
-    function getChildCount( Elite_Vaf_Model_Level $entity )
+    function getChildCount( VF_Level $entity )
     {
         if($this->getSchema()->isGlobal($entity->getType()) && $this->getSchema()->getRootLevel() != $entity->getType())
         {
@@ -113,7 +113,7 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         return $this->child_count; 
     }
     
-    protected function doGetChildCount( Elite_Vaf_Model_Level $entity )
+    protected function doGetChildCount( VF_Level $entity )
     {    
         if( $entity->getNextLevel() == '' )
         {
@@ -130,7 +130,7 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         return (int)$r->fetchColumn();
     }
     
-    function listAll( Elite_Vaf_Model_Level $entity, $parent_id = 0 )
+    function listAll( VF_Level $entity, $parent_id = 0 )
     {
         if( isset( $this->objs[ $entity->getType() ][ $entity->getId() ] ) )
         {
@@ -139,7 +139,7 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         return $this->doListAll( $entity, $parent_id );
     }
     
-    protected function doListAll( Elite_Vaf_Model_Level $entity, $parent_id = 0 )
+    protected function doListAll( VF_Level $entity, $parent_id = 0 )
     {
         $select = $this->getReadAdapter()->select()
             ->from(array('l'=>$entity->getTable()))
@@ -160,7 +160,7 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
             {
                 if(!in_array($level,$this->getSchema()->getLevels(),true))
                 {
-                    throw new Elite_Vaf_Model_Level_Exception_InvalidLevel('Invalid level [' . $level . ']');
+                    throw new VF_Level_Exception_InvalidLevel('Invalid level [' . $level . ']');
                 }
                 $select->where('d.' . $level . '_id = ?', $each_parent_id );
             }
@@ -177,7 +177,7 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         return $this->objs[ $entity->getType() ][ $entity->getId() ];
     }
     
-    function listInUse( Elite_Vaf_Model_Level $entity, $parents = array(), $product_id = 0 )
+    function listInUse( VF_Level $entity, $parents = array(), $product_id = 0 )
     {
         unset( $parents[ $entity->getType() ] );
         if( isset( $this->objs_in_use[ $entity->getType() ][ $entity->getId() ] ) )
@@ -215,7 +215,7 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         {
             if( !in_array( $parentType, $this->getSchema()->getLevels() ) )
             {
-                throw new Elite_Vaf_Model_Level_Exception( $parentType );
+                throw new VF_Level_Exception( $parentType );
             }
             if( !(int)$parentId )
             {
@@ -248,7 +248,7 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         return $this->query( $select );
     }
     
-    /** @return Elite_Vaf_Model_Level */
+    /** @return VF_Level */
     function findEntityByTitle( $type, $title, $parent_id = 0 )
     {
         $levelId = $this->findEntityIdByTitle($type,$title,$parent_id);
@@ -256,7 +256,7 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         {
             return false;
         }
-        $level = new Elite_Vaf_Model_Level($type,$levelId);
+        $level = new VF_Level($type,$levelId);
         $level->setTitle($title);
         return $level;
     }
@@ -264,7 +264,7 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
     /** @return integer ID */
     function findEntityIdByTitle( $type, $title, $parent_id = 0 )
     {
-        $identityMap = Elite_Vaf_Model_Level_IdentityMap_ByTitle::getInstance();
+        $identityMap = VF_Level_IdentityMap_ByTitle::getInstance();
         if( $identityMap->has($type,$title,$parent_id))
         {
             return $identityMap->get($type,$title,$parent_id);
@@ -272,7 +272,7 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         
         if( !$this->getSchema()->isGlobal($type) && !$parent_id )
         {
-            throw new Elite_Vaf_Model_Level_Finder_SchemaException('Please specify parent level to search under. If you want all possible matches use the vehicle finder, not the level finder.');
+            throw new VF_Level_Finder_SchemaException('Please specify parent level to search under. If you want all possible matches use the vehicle finder, not the level finder.');
         }
 
         $inflectedType = $this->inflect($type);

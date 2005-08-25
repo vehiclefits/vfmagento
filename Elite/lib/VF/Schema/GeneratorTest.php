@@ -12,7 +12,7 @@ class VF_Schema_GeneratorTest extends Elite_Vaf_TestCase
     }
     
     /**
-    * @expectedException Elite_Vaf_Model_Level_Exception
+    * @expectedException VF_Level_Exception
     */
     function testShouldThrowExceptionForLessThanTwoLevels()
     {

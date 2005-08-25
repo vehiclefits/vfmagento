@@ -11,7 +11,7 @@ $schemaGenerator->execute(array(
 
 $schema = new VF_Schema();
 
-$vehicle = Elite_Vaf_Model_Vehicle::create( $schema, array(
+$vehicle = VF_Vehicle::create( $schema, array(
     'make' => 'Honda',
     'model' => 'Civic',
     'year' => '2002'
@@ -20,7 +20,7 @@ $vehicle->save();
 $mapping = new Elite_Vaf_Model_Mapping( 1, $vehicle );
 $mapping->save();
 
-$vehicle2 = Elite_Vaf_Model_Vehicle::create( $schema, array(
+$vehicle2 = VF_Vehicle::create( $schema, array(
     'make' => 'Honda',
     'model' => 'Accord',
     'year' => '2006'

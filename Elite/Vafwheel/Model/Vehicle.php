@@ -1,10 +1,10 @@
 <?php
 class Elite_Vafwheel_Model_Vehicle
 {
-    /** @var Elite_Vaf_Model_Vehicle */
+    /** @var VF_Vehicle */
     protected $wrappedVehicle;
     
-    function __construct(Elite_Vaf_Model_Vehicle $vehicle )
+    function __construct(VF_Vehicle $vehicle )
     {
         $this->wrappedVehicle = $vehicle;
     }

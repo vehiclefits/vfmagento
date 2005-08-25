@@ -1,8 +1,8 @@
 <?php
-class Elite_Vaf_Model_Level_FinderTests_ExceptionTest extends Elite_Vaf_TestCase
+class VF_Level_FinderTests_ExceptionTest extends Elite_Vaf_TestCase
 {
 	/**
-	* @expectedException Elite_Vaf_Model_Level_Finder_SchemaException
+	* @expectedException VF_Level_Finder_SchemaException
 	*/
 	function testRootLevel()
 	{

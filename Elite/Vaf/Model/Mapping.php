@@ -8,7 +8,7 @@ class Elite_Vaf_Model_Mapping implements Elite_Vaf_Configurable
     /** @var Zend_Config */
     protected $config;
 
-    function __construct($product_id, Elite_Vaf_Model_Vehicle $vehicle)
+    function __construct($product_id, VF_Vehicle $vehicle)
     {
         $this->product_id = $product_id;
         $this->vehicle = $vehicle;

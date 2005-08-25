@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_LevelsTests_ConformTests_MMYTest extends Elite_Vaf_TestCase
+class VF_LevelsTests_ConformTests_MMYTest extends Elite_Vaf_TestCase
 {
     protected function doSetUp()
     {
@@ -8,11 +8,11 @@ class Elite_Vaf_Model_LevelsTests_ConformTests_MMYTest extends Elite_Vaf_TestCas
     
     function testConformsLevelMake()
     {
-        $honda = new Elite_Vaf_Model_Level( 'make' );
+        $honda = new VF_Level( 'make' );
         $honda->setTitle('Honda');
         $honda->save();
         
-        $honda2 = new Elite_Vaf_Model_Level( 'make' );
+        $honda2 = new VF_Level( 'make' );
         $honda2->setTitle('Honda');
         $honda2->save();
         
@@ -21,15 +21,15 @@ class Elite_Vaf_Model_LevelsTests_ConformTests_MMYTest extends Elite_Vaf_TestCas
     
     function testConformsLevelModel()
     {
-        $honda = new Elite_Vaf_Model_Level( 'make' );
+        $honda = new VF_Level( 'make' );
         $honda->setTitle('Honda');
         $honda_make_id = $honda->save();
         
-        $civic = new Elite_Vaf_Model_Level( 'model' );
+        $civic = new VF_Level( 'model' );
         $civic->setTitle('Civic');
         $civic->save( $honda_make_id );
             
-        $civic2 = new Elite_Vaf_Model_Level( 'model' );
+        $civic2 = new VF_Level( 'model' );
         $civic2->setTitle('Civic');
         $civic2->save( $honda_make_id );
         
@@ -38,19 +38,19 @@ class Elite_Vaf_Model_LevelsTests_ConformTests_MMYTest extends Elite_Vaf_TestCas
     
     function testDoesntConformModelFromDiffrentMake()
     {
-        $honda = new Elite_Vaf_Model_Level( 'make' );
+        $honda = new VF_Level( 'make' );
         $honda->setTitle('Honda');
         $honda_make_id = $honda->save();
         
-        $civic = new Elite_Vaf_Model_Level( 'model' );
+        $civic = new VF_Level( 'model' );
         $civic->setTitle('Civic');
         $civic->save( $honda_make_id );
         
-        $ford = new Elite_Vaf_Model_Level( 'make' );
+        $ford = new VF_Level( 'make' );
         $ford->setTitle('Ford');
         $ford_make_id = $ford->save();
             
-        $civic2 = new Elite_Vaf_Model_Level( 'model' );
+        $civic2 = new VF_Level( 'model' );
         $civic2->setTitle('Civic');
         $civic2->save( $ford_make_id );
         

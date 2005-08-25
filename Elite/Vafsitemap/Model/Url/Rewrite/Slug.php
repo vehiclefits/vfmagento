@@ -16,7 +16,7 @@ class Vafsitemap_Model_Url_Rewrite_Slug
     
     /**
      * @param string vehicle slug string "honda~civic~2002"
-     * @return Elite_Vaf_Model_Vehicle
+     * @return VF_Vehicle
      */
     function slugToVehicle($vehicleSlug)
     {
@@ -26,7 +26,7 @@ class Vafsitemap_Model_Url_Rewrite_Slug
     function findVehicle($vehicleSlug)
     {
 	$levels = $this->levelsArray($vehicleSlug);
-	$vehicle = $this->finder()->findOneByLevels($levels, Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
+	$vehicle = $this->finder()->findOneByLevels($levels, VF_Vehicle_Finder::EXACT_ONLY);
 	return $vehicle;
     }
 
@@ -60,7 +60,7 @@ class Vafsitemap_Model_Url_Rewrite_Slug
 
     function finder()
     {
-	return new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema());
+	return new VF_Vehicle_Finder(new VF_Schema());
     }
 
 }

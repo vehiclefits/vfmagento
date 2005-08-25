@@ -12,7 +12,7 @@
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the conditions in license.txt are met
  */
-class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
+class VF_Vehicle_Finder implements Elite_Vaf_Configurable
 {
 
     protected $schema;
@@ -48,14 +48,14 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
 	$return = array();
 	while ($row = $r->fetchObject())
 	{
-	    array_push($return, new Elite_Vaf_Model_Vehicle($this->schema, $row->id, $row));
+	    array_push($return, new VF_Vehicle($this->schema, $row->id, $row));
 	}
 	return $return;
     }
 
     function findById($id)
     {
-	$identityMap = Elite_Vaf_Model_Vehicle_Finder_IdentityMap::getInstance();
+	$identityMap = VF_Vehicle_Finder_IdentityMap::getInstance();
 	if ($identityMap->has($id))
 	{
 	    return $identityMap->get($id);
@@ -77,7 +77,7 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
 	    throw new Exception('No such definition with id [' . $id . ']');
 	}
 
-	$vehicle = new Elite_Vaf_Model_Vehicle($this->schema, $id, $row);
+	$vehicle = new VF_Vehicle($this->schema, $id, $row);
 	$identityMap->add($vehicle);
 	return $vehicle;
     }
@@ -89,7 +89,7 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
 	    throw new Exception('must pass an level_id, [' . $id . '] given');
 	}
 
-	$identityMap = Elite_Vaf_Model_Vehicle_Finder_IdentityMapByLevel::getInstance();
+	$identityMap = VF_Vehicle_Finder_IdentityMapByLevel::getInstance();
 	if ($identityMap->has($level, $id))
 	{
 	    return $identityMap->get($level, $id);
@@ -107,7 +107,7 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
 	    throw new Elite_Vaf_Exception_DefinitionNotFound('No such definition with level [' . $level . '] and id [' . $id . ']');
 	}
 
-	$vehicle = new Elite_Vaf_Model_Vehicle($this->schema, null, $row, $level);
+	$vehicle = new VF_Vehicle($this->schema, null, $row, $level);
 	$identityMap->add($vehicle);
 	return $vehicle;
     }
@@ -183,7 +183,7 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
 	$return = array();
 	foreach ($result as $row)
 	{
-	    $vehicle = new Elite_Vaf_Model_Vehicle($this->schema, $row->id, $row);
+	    $vehicle = new VF_Vehicle($this->schema, $row->id, $row);
 	    array_push($return, $vehicle);
 	}
 	return $return;
@@ -272,7 +272,7 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
 			$row->{$level . '_id'} = 0;
 			$row->{$level} = '';
 		    }
-		    $vehicle = new Elite_Vaf_Model_Vehicle($this->schema, $row->id, $row);
+		    $vehicle = new VF_Vehicle($this->schema, $row->id, $row);
 		    return array($vehicle);
 		}
 
@@ -293,7 +293,7 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
 		}
 	    }
 
-	    $vehicle = new Elite_Vaf_Model_Vehicle($this->schema, $row->id, $row);
+	    $vehicle = new VF_Vehicle($this->schema, $row->id, $row);
 	    array_push($return, $vehicle);
 	}
 	return $return;
@@ -301,7 +301,7 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
 
     /**
      * @param array ('make'=>'honda','year'=>'2000') conjunction of critera
-     * @return Elite_Vaf_Model_Vehicle or false
+     * @return VF_Vehicle or false
      */
     function findOneByLevels($levels, $mode=false)
     {
@@ -311,7 +311,7 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
 
     /**
      * @param array ('make'=>1,'year'=>1) conjunction of critera
-     * @return Elite_Vaf_Model_Vehicle or false
+     * @return VF_Vehicle or false
      */
     function findOneByLevelIds($levelIds, $mode=false)
     {

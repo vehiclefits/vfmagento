@@ -170,7 +170,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
 
     function vehicleFinder()
     {
-	return new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
+	return new VF_Vehicle_Finder($this->getSchema());
     }
 
     /** @return boolean true only if all field names in the combination are blank */
@@ -188,7 +188,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
 
     /**
      * @param array $row
-     * @param Elite_Vaf_Model_Vehicle|boolean the vehicle, false if none (for example, when setting a product as universal)
+     * @param VF_Vehicle|boolean the vehicle, false if none (for example, when setting a product as universal)
      */
     function doImportRow($row, $vehicle)
     {

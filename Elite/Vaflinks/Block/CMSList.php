@@ -3,7 +3,7 @@ class Elite_Vaflinks_Block_Cmslist extends Elite_Vaflinks_Block_List
 {
 
     function getItems() {
-        $make = new Elite_Vaf_Model_Level('make');
+        $make = new VF_Level('make');
         return $make->listInUse();
     }
 

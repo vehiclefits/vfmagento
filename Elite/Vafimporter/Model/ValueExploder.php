@@ -20,7 +20,7 @@ class Elite_Vafimporter_Model_ValueExploder
         $this->replaceAllWithWildcard();
         
         $result = array();
-        $finder = new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
+        $finder = new VF_Vehicle_Finder($this->getSchema());
         foreach( $finder->findByLevels($this->input) as $vehicle )
         {
             array_push($result,$vehicle->toTitleArray());

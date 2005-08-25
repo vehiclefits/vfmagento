@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Vehicle_FinderTests_SaveTest extends Elite_Vaf_TestCase
+class VF_Vehicle_FinderTests_SaveTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {

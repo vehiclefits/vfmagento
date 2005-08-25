@@ -11,14 +11,14 @@
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the conditions in license.txt are met
 */
-class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
+class VF_Level_Finder extends VF_Level_Finder_Abstract
 {
     static function getInstance()
     {
         static $finder;
         if( is_null( $finder ) )
         {
-            $finder = new Elite_Vaf_Model_Level_Finder();
+            $finder = new VF_Level_Finder();
         }
         return $finder;
     }
@@ -28,7 +28,7 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
         return $this->selector()->find($level, $id);
     }
     
-    /** @return Elite_Vaf_Model_Level */
+    /** @return VF_Level */
     function findEntityByTitle( $type, $title, $parent_id = 0 )
     { 
         return $this->selector()->findEntityByTitle( $type, $title, $parent_id );
@@ -41,14 +41,14 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
     }
     
     /**
-    *  @param mixed Elite_Vaf_Model_Level|string name of level type
+    *  @param mixed VF_Level|string name of level type
     * @param mixed $parent_id
     */
     function listAll( $level, $parent_id = 0 )
     {
         if(is_string($level))
         {
-            $level = new Elite_Vaf_Model_Level($level);
+            $level = new VF_Level($level);
         }
         return $this->selector()->listAll( $level, $parent_id );
     }
@@ -60,7 +60,7 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
     
     function selector()
     {
-        return new Elite_Vaf_Model_Level_Finder_Selector;
+        return new VF_Level_Finder_Selector;
     }
     
 }

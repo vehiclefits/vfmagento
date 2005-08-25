@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Level_FinderTests_ListAllTests_YMMGlobalMakeTest extends Elite_Vaf_TestCase
+class VF_Level_FinderTests_ListAllTests_YMMGlobalMakeTest extends Elite_Vaf_TestCase
 {
     protected function doSetUp()
     {
@@ -14,7 +14,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListAllTests_YMMGlobalMakeTest extends E
     }
     
     /**
-    * @expectedException Elite_Vaf_Model_Level_Exception_InvalidLevel
+    * @expectedException VF_Level_Exception_InvalidLevel
     */
     function testShouldThrowExceptionForInvalidLevel()
     {
@@ -22,7 +22,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListAllTests_YMMGlobalMakeTest extends E
     }
     
     /**
-    * @expectedException Elite_Vaf_Model_Level_Exception_InvalidLevel
+    * @expectedException VF_Level_Exception_InvalidLevel
     */
     function testShouldThrowExceptionForInvalidLevel2()
     {

@@ -56,7 +56,7 @@ class Elite_Vaftire_Model_Catalog_Product
 
     function vehicle($leafId)
     {
-	$vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema());
+	$vehicleFinder = new VF_Vehicle_Finder(new VF_Schema());
 	return $vehicleFinder->findByLeaf($leafId);
     }
 

@@ -4,7 +4,7 @@ interface Vafimporter_Observer
     /**
     * @param array $fields
     * @param array $row
-    * @param Elite_Vaf_Model_Vehicle the vehicle
+    * @param VF_Vehicle the vehicle
     */
-    function doImportRow( $fields, $row, Elite_Vaf_Model_Vehicle $vehicle );
+    function doImportRow( $fields, $row, VF_Vehicle $vehicle );
 }

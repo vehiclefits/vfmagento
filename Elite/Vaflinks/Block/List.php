@@ -15,7 +15,7 @@ class Elite_Vaflinks_Block_List extends Elite_Vaf_Block_Search {
         }
 
         $vehicles = array();
-        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
+        $vehicleFinder = new VF_Vehicle_Finder($this->getSchema());
         foreach ($this->getItems() as $level) {
             array_push($vehicles, $vehicleFinder->findByLevel($level->getType(), $level->getId()));
         }
@@ -46,7 +46,7 @@ class Elite_Vaflinks_Block_List extends Elite_Vaf_Block_Search {
         return $this->getSchema()->getRootLevel();
     }
 
-    function vafUrl(Elite_Vaf_Model_Vehicle $vehicle) {
+    function vafUrl(VF_Vehicle $vehicle) {
         $params = http_build_query($vehicle->toValueArray());
         if ($vehicle->getLeafValue()) {
             if ('/' == $this->getRequest()->getBasePath()) {

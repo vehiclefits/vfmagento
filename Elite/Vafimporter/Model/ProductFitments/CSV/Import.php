@@ -264,10 +264,10 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
     
     /**
     * @var integer entity_id of the product row
-    * @var Elite_Vaf_Model_Vehicle to check for assocation with
+    * @var VF_Vehicle to check for assocation with
     * @return boolean true only if the mapping between the product+definition exists
     */
-    function hasMapping( $entity_id, Elite_Vaf_Model_Vehicle $vehicle )
+    function hasMapping( $entity_id, VF_Vehicle $vehicle )
     {
         $sql = sprintf(
             "SELECT count(*) FROM elite_mapping WHERE entity_id = %d AND %s = %d LIMIT 1",
@@ -281,7 +281,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
     
     /**
     * @var integer product id
-    * @var mixed boolean false for universal, or Elite_Vaf_Model_Vehicle to create a mapping for
+    * @var mixed boolean false for universal, or VF_Vehicle to create a mapping for
     */
     function insertMapping($row, $vehicle )
     {
@@ -360,7 +360,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
         return $columns;
     }
     
-    /** @param Elite_Vaf_Model_Vehicle */
+    /** @param VF_Vehicle */
     private static function getValues( $vehicle, VF_Schema $schema )
     {
         $values = '';

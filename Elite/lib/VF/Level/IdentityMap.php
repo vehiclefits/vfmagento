@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Level_IdentityMap
+class VF_Level_IdentityMap
 {
     protected $levels = array();
     
@@ -8,7 +8,7 @@ class Elite_Vaf_Model_Level_IdentityMap
         static $instance;
         if(is_null($instance))
         {
-            $instance = new Elite_Vaf_Model_Level_IdentityMap;
+            $instance = new VF_Level_IdentityMap;
         }
         return $instance;
     }

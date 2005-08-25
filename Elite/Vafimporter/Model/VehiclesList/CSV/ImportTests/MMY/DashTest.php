@@ -15,7 +15,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_DashTest extends 
         $this->importVehiclesList('make, model, year
 honda, ci-vic, 2000
 honda, ci-vic, 2001');
-        $finder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema());
+        $finder = new VF_Vehicle_Finder(new VF_Schema());
         $vehicles = $finder->findByLevels(array('make'=>'honda', 'model'=>'ci-vic', 'year'=>'2000' ));
         $this->assertEquals(1,count($vehicles));
     }
@@ -25,7 +25,7 @@ honda, ci-vic, 2001');
         $this->importVehiclesList('make, model, year
 honda, ci-vic, 2000
 honda, ci-vic, 2001');
-		$finder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema());
+		$finder = new VF_Vehicle_Finder(new VF_Schema());
         $vehicles = $finder->findByLevels(array('make'=>'honda', 'model'=>'ci-vic', 'year'=>'2001' ));
         $this->assertEquals(1,count($vehicles));
     }
@@ -35,7 +35,7 @@ honda, ci-vic, 2001');
         $this->importVehiclesList('make, model, year
 honda, ci-vic, 2000
 honda, ci-vic, 2001');
-		$finder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema());
+		$finder = new VF_Vehicle_Finder(new VF_Schema());
         $result = $this->query('select count(*) from elite_definition;');
         $this->assertEquals(2,$result->fetchColumn());
     }
@@ -45,7 +45,7 @@ honda, ci-vic, 2001');
         $this->importVehiclesList('make, model, year
 honda, ci-vic, 2000
 honda, civi-c, 2000');
-		$finder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema());
+		$finder = new VF_Vehicle_Finder(new VF_Schema());
         $result = $this->query('select count(*) from elite_definition;');
         $this->assertEquals(2,$result->fetchColumn());
     }

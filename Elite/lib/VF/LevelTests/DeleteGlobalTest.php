@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_LevelTests_DeleteGlobalTest extends Elite_Vaf_TestCase
+class VF_LevelTests_DeleteGlobalTest extends Elite_Vaf_TestCase
 {
 	function doSetUp()
     {
@@ -36,7 +36,7 @@ class Elite_Vaf_Model_LevelTests_DeleteGlobalTest extends Elite_Vaf_TestCase
     }
        
     /**
-    * @expectedException Elite_Vaf_Model_Level_Exception_NotFound
+    * @expectedException VF_Level_Exception_NotFound
     */
     function testWhenDeleteMakeShouldDeleteMake()
     {
@@ -67,7 +67,7 @@ class Elite_Vaf_Model_LevelTests_DeleteGlobalTest extends Elite_Vaf_TestCase
     }
     
     /**
-    * @expectedException Elite_Vaf_Model_Level_Exception_NotFound
+    * @expectedException VF_Level_Exception_NotFound
     */
     function testWhenDeleteYearShouldNotHaveChildren()
     {

@@ -28,7 +28,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_UniversalTest 
         $this->mappingsImport('sku, make, model, year, universal
 "sku","","","","1"');
         
-        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema());
+        $vehicleFinder = new VF_Vehicle_Finder(new VF_Schema());
         $vehicles = $vehicleFinder->findAll();
         $this->assertEquals( 0, count($vehicles));
     }
@@ -38,7 +38,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_UniversalTest 
         $this->mappingsImport('sku, make, model, year, universal
 "sku","","","","1"');
         
-        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new VF_Schema());
+        $vehicleFinder = new VF_Vehicle_Finder(new VF_Schema());
         $count = $this->getReadAdapter()->query('select count(*) from elite_definition')->fetchColumn();
         $this->assertEquals( 0, $count);
     }

@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_LevelTests_PartialTest extends Elite_Vaf_TestCase
+class VF_LevelTests_PartialTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {
@@ -8,7 +8,7 @@ class Elite_Vaf_Model_LevelTests_PartialTest extends Elite_Vaf_TestCase
     
     function testInsertMakeCreatesPartialVehicle()
     {
-        $level = new Elite_Vaf_Model_Level('make');
+        $level = new VF_Level('make');
         $level->setTitle('Honda');
         $level->save();
         
@@ -18,11 +18,11 @@ class Elite_Vaf_Model_LevelTests_PartialTest extends Elite_Vaf_TestCase
     
     function testInsertModelCreatesPartialVehicle()
     {
-        $honda = new Elite_Vaf_Model_Level('make');
+        $honda = new VF_Level('make');
         $honda->setTitle('Honda');
         $honda->save();
         
-        $civic = new Elite_Vaf_Model_Level('model');
+        $civic = new VF_Level('model');
         $civic->setTitle('Civic');
         $civic->save($honda->getId());
         

@@ -170,7 +170,7 @@ class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf extends Mage_Adminh
     
     function listEntities( $type, $parent_id = 0 )
     {
-        $entity = new Elite_Vaf_Model_Level( $type );
+        $entity = new VF_Level( $type );
         return $entity->listAll( $parent_id );              
     }
     

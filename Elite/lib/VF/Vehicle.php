@@ -11,7 +11,7 @@
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the conditions in license.txt are met
 */
-class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
+class VF_Vehicle implements Elite_Vaf_Configurable
 {
     protected $row;
     
@@ -33,7 +33,7 @@ class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
     static function create( VF_Schema $schema, $titles = array() )
     {
         $row = new stdClass();
-        return new Elite_Vaf_Model_Vehicle( $schema, 0, $row, false, $titles );   
+        return new VF_Vehicle( $schema, 0, $row, false, $titles );   
     }
     
     function __construct( VF_Schema $schema, $id, $row, $lastFlexibleLevel = false, $titles = array() )
@@ -70,15 +70,15 @@ class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
         }
         if( $this->levelIsOutsideFlexibleSelection( $level ) )
         {
-            return new Elite_Vaf_Model_Level($level);
+            return new VF_Level($level);
         }
         $id = $this->getValue( $level );
         
-        $levelFinder = new Elite_Vaf_Model_Level_Finder();
+        $levelFinder = new VF_Level_Finder();
         $object = $levelFinder->find($level,$id);
         if(false == $object)
         {
-            $object = new Elite_Vaf_Model_Level( $level, $id );
+            $object = new VF_Level( $level, $id );
             if( false == $id )
             {
                 $title = isset( $this->titles[$level] ) ? $this->titles[$level] : '';
@@ -226,7 +226,7 @@ class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
             $bind[$level->getType().'_id'] = $level->getId();
         }
 
-        $finder = new Elite_Vaf_Model_Vehicle_Finder($this->schema);
+        $finder = new VF_Vehicle_Finder($this->schema);
         if( $finder->vehicleExists($this->toTitleArray()) )
         {
             $vehicle = $finder->findOneByLevels($this->toTitleArray());

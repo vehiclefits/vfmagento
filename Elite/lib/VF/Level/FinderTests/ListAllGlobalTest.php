@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Level_FinderTests_ListAllGlobalTest extends Elite_Vaf_TestCase
+class VF_Level_FinderTests_ListAllGlobalTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {
@@ -30,7 +30,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListAllGlobalTest extends Elite_Vaf_Test
         $y2001 = $this->newYear('2001');
         $y2001->save();
         
-        $make = new Elite_Vaf_Model_Level('make');
+        $make = new VF_Level('make');
         $this->assertEquals( 0, count($make->listAll($y2001->getId())), 'list all should not find items from different parent id even in global mode' ); 
     }
     
@@ -52,7 +52,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListAllGlobalTest extends Elite_Vaf_Test
         $civic->save($honda->getId());
         
         
-        $model = new Elite_Vaf_Model_Level('model');
+        $model = new VF_Level('model');
         $models = $model->listAll(array('year'=>$y2000->getId(), 'make'=>$honda->getId()));
         $this->assertEquals( 0, count($models), 'list all should not find items from different parent id even in global mode' ); 
     }

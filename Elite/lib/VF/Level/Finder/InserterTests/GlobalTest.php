@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Level_Finder_InserterTests_GlobalTest extends Elite_Vaf_TestCase
+class VF_Level_Finder_InserterTests_GlobalTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {

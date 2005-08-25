@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Vehicle_Finder_IdentityMapByLevel
+class VF_Vehicle_Finder_IdentityMapByLevel
 {
     protected $vehicles = array();
     
@@ -8,7 +8,7 @@ class Elite_Vaf_Model_Vehicle_Finder_IdentityMapByLevel
         static $instance;
         if(is_null($instance))
         {
-            $instance = new Elite_Vaf_Model_Vehicle_Finder_IdentityMapByLevel;
+            $instance = new VF_Vehicle_Finder_IdentityMapByLevel;
         }
         return $instance;
     }

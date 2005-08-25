@@ -11,11 +11,11 @@
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the conditions in license.txt are met
 */
-interface Elite_Vaf_Model_Level_Finder_Interface
+interface VF_Level_Finder_Interface
 {  
-    function getChildren( Elite_Vaf_Model_Level $entity );    
-    function getChildCount( Elite_Vaf_Model_Level $entity );    
+    function getChildren( VF_Level $entity );    
+    function getChildCount( VF_Level $entity );    
     function query( $sql );    
-    function listAll( Elite_Vaf_Model_Level $entity, $parent_id = 0 );
-    function listInUse( Elite_Vaf_Model_Level $entity, $parents = array(), $product_id = 0 );
+    function listAll( VF_Level $entity, $parent_id = 0 );
+    function listInUse( VF_Level $entity, $parents = array(), $product_id = 0 );
 }

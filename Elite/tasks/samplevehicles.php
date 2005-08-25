@@ -12,7 +12,7 @@ class SampleData
         
         for($i=2000; $i<=2010; $i++ )
         {
-        	$vehicle = Elite_Vaf_Model_Vehicle::create( $schema, array('make'=>'Honda','model'=>'Civic','year'=>$i) );
+        	$vehicle = VF_Vehicle::create( $schema, array('make'=>'Honda','model'=>'Civic','year'=>$i) );
         	$vehicle->save();
 		}
     }

@@ -11,9 +11,9 @@
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the conditions in license.txt are met
 */
-class Elite_Vaf_Model_Level_Finder_Abstract implements Elite_Vaf_Configurable
+class VF_Level_Finder_Abstract implements Elite_Vaf_Configurable
 {
-    /** @var Elite_Vaf_Model_Level_IdentityMap */
+    /** @var VF_Level_IdentityMap */
     protected $identityMap;
     
     /** @var Zend_Config */
@@ -45,7 +45,7 @@ class Elite_Vaf_Model_Level_Finder_Abstract implements Elite_Vaf_Configurable
     {
         if(is_null($this->identityMap))
         {
-            $this->identityMap = new Elite_Vaf_Model_Level_IdentityMap;
+            $this->identityMap = new VF_Level_IdentityMap;
         }
         return $this->identityMap;
     }

@@ -33,8 +33,8 @@ acura, integra, 2000';
             "makeA,modelA,2000\n" .
             "makeB,modelA,2000");
         
-        $makeA = new Elite_Vaf_Model_Level( 'make', $this->levelFinder()->findEntityIdByTitle( 'make', 'makeA' ) );
-        $makeB = new Elite_Vaf_Model_Level( 'make', $this->levelFinder()->findEntityIdByTitle( 'make', 'makeB' ) );
+        $makeA = new VF_Level( 'make', $this->levelFinder()->findEntityIdByTitle( 'make', 'makeA' ) );
+        $makeB = new VF_Level( 'make', $this->levelFinder()->findEntityIdByTitle( 'make', 'makeB' ) );
         
         $this->assertEquals( 1, count($makeA->getChildren()), 'when a model name is not unique, should be stored under the proper parent' );
         $this->assertEquals( 1, count($makeB->getChildren()), 'when a model name is not unique, should be stored under the proper parent' );

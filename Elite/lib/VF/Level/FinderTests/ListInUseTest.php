@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
+class VF_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {
@@ -15,7 +15,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $this->insertMappingMMY( $vehicle1 );
         $this->insertMappingMMY( $vehicle2 );
 
-        $model = new Elite_Vaf_Model_Level('model');
+        $model = new VF_Level('model');
         $actual = $model->listInUse();
         $this->assertEquals( 'A', $actual[0]->getTitle() );
         $this->assertEquals( 'B', $actual[1]->getTitle() );
@@ -26,7 +26,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
     {        
         $vehicle = $this->createMMY( 'A', 'A', '1' );
 
-        $model = new Elite_Vaf_Model_Level('model');
+        $model = new VF_Level('model');
         $actual = $model->listInUse();
         $this->assertEquals(0,count($actual), 'when no fitments, should not list anything');
     }
@@ -42,7 +42,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $this->insertMappingMMY( $vehicle2 );
         $this->insertMappingMMY( $vehicle3 );
         
-        $model = new Elite_Vaf_Model_Level('model');
+        $model = new VF_Level('model');
         $actual = $model->listInUse();
         $this->assertEquals( 'A', $actual[0]->getTitle(), 'should sort items' );
         $this->assertEquals( 'B', $actual[1]->getTitle(), 'should sort items' );
@@ -60,7 +60,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $this->insertMappingMMY( $vehicle3 );
         
         $parents = array('make' => $vehicle1->getLevel('make')->getId(), 'model' => $vehicle1->getLevel('model')->getId(), 'year' => '-please select-');
-        $model = new Elite_Vaf_Model_Level('model');
+        $model = new VF_Level('model');
         $actual = $model->listInUse( $parents );
         $this->assertEquals( 'A', $actual[0]->getTitle(), 'should sort items when flexible selection is made' );
         $this->assertEquals( 'B', $actual[1]->getTitle(), 'should sort items when flexible selection is made' );
@@ -79,7 +79,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         
         $parents = array('make'=>$vehicle1->getLevel('make')->getId(),'model'=>$vehicle1->getLevel('model')->getId(), 'year'=>$vehicle1->getLevel('year')->getId());
 
-        $year = new Elite_Vaf_Model_Level('year');
+        $year = new VF_Level('year');
         $actual = $year->listInUse( $parents );
         $this->assertEquals( '2001', $actual[0]->getTitle(), 'If a year is selected (and thus in the parents array), all years should still be listed as available options' );
         $this->assertEquals( '2002', $actual[1]->getTitle(), 'If a year is selected (and thus in the parents array), all years should still be listed as available options' );
@@ -98,18 +98,18 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $this->insertMappingMMY( $vehicle2 );
         $this->insertMappingMMY( $vehicle3 );
         
-        $model = new Elite_Vaf_Model_Level('model');
+        $model = new VF_Level('model');
         $actual = $model->listInUse( array(), $product_id );
         $this->assertEquals( 1, count($actual), 'should only return 1 model' );
         $this->assertEquals( $vehicle1->getLevel('model')->getId(), $actual[0]->getId(), 'should only return models for which there are fits, and those fits are for this product_id' );
     }  
     
     /**
-    * @expectedException Elite_Vaf_Model_Level_Exception
+    * @expectedException VF_Level_Exception
     */
     function testWithInvalidLevelThorwsException()
     {
-        $model = new Elite_Vaf_Model_Level('model');
+        $model = new VF_Level('model');
         $actual = $model->listInUse( array( 'foo' => 0 ) );
     }  
     
@@ -123,7 +123,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $this->insertMappingMMY( $vehicle2 );
         $this->insertMappingMMY( $vehicle3 );
         
-        $model = new Elite_Vaf_Model_Level('model');
+        $model = new VF_Level('model');
         $actual = $model->listInUse( array( 'make' => $vehicle2->getLevel('make')->getId() ) );
         $this->assertEquals( 2, count($actual ) );
         $this->assertEquals( $vehicle2->getLevel('model')->getId(), $actual[0]->getId() );
@@ -135,7 +135,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $vehicle = $this->createMMY( 'Acura', 'Integra', '2002' ); 
         $this->insertMappingMMY( $vehicle );
         
-        $model = new Elite_Vaf_Model_Level('model');
+        $model = new VF_Level('model');
         $actual = $model->listInUse( array( 'year' => $vehicle->getLevel('year')->getId() ) );
         $this->assertEquals( $vehicle->getLevel('model')->getId(), $actual[0]->getId() );
     }
@@ -150,7 +150,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $this->insertMappingMMY( $vehicle2 );
         $this->insertMappingMMY( $vehicle3 );
         
-        $model = new Elite_Vaf_Model_Level('model');
+        $model = new VF_Level('model');
         $actual = $model->listInUse( array( 'make' => $vehicle1->getLevel('make')->getId() ) );
         
         $this->assertEquals( 3, count($actual ) );
@@ -175,7 +175,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $this->insertMappingMMY( $vehicle2 );
         $this->insertMappingMMY( $vehicle3 );
         
-        $make = new Elite_Vaf_Model_Level( 'make' );
+        $make = new VF_Level( 'make' );
         $actual = $make->listInUse();
         
         $this->assertEquals( "C", $actual[0]->getTitle(), 'should return makes, in DESC order' );
@@ -199,7 +199,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $this->insertMappingMMY( $vehicle2 );
         $this->insertMappingMMY( $vehicle3 );
         
-        $make = new Elite_Vaf_Model_Level( 'make' );
+        $make = new VF_Level( 'make' );
         $actual = $make->listInUse();
         
         $this->assertEquals( "A", $actual[0]->getTitle(), 'should return makes, in ASC order' );
@@ -223,7 +223,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $this->insertMappingMMY( $vehicle2 );
         $this->insertMappingMMY( $vehicle3 );
         
-        $year = new Elite_Vaf_Model_Level( 'year' );
+        $year = new VF_Level( 'year' );
         $actual = $year->listInUse( array( 'model' => $vehicle1->getLevel('model')->getId() ) );
         
         $this->assertEquals( "2001", $actual[0]->getTitle(), 'should return years, in DESC order' );
@@ -247,7 +247,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $this->insertMappingMMY( $vehicle2 );
         $this->insertMappingMMY( $vehicle3 );
         
-        $year = new Elite_Vaf_Model_Level( 'year' );
+        $year = new VF_Level( 'year' );
         $actual = $year->listInUse( array( 'model' => $vehicle1->getLevel('model')->getId() ) );
         
         $this->assertEquals( "1999", $actual[0]->getTitle(), 'should return years, in ASC order' );

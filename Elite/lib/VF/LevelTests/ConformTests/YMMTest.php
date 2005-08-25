@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_LevelsTests_ConformTests_YMMTest extends Elite_Vaf_TestCase
+class VF_LevelsTests_ConformTests_YMMTest extends Elite_Vaf_TestCase
 {
     protected function doSetUp()
     {
@@ -10,11 +10,11 @@ class Elite_Vaf_Model_LevelsTests_ConformTests_YMMTest extends Elite_Vaf_TestCas
     {
         return $this->markTestIncomplete();
         
-        $honda = new Elite_Vaf_Model_Level( 'make' );
+        $honda = new VF_Level( 'make' );
         $honda->setTitle('Honda');
         $honda->save();
         
-        $honda2 = new Elite_Vaf_Model_Level( 'make' );
+        $honda2 = new VF_Level( 'make' );
         $honda2->setTitle('Honda');
         $honda2->save();
         

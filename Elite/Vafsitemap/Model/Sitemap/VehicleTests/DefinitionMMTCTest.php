@@ -15,7 +15,7 @@ class Elite_Vafsitemap_Model_Sitemap_VehicleTests_DefinitionMMTCTest extends Eli
         $this->insertMappingMMTC( $vehicle );
 
         $vehicles = $sitemap->getDefinitions();
-        $this->assertTrue( $vehicles[0] instanceof Elite_Vaf_Model_Vehicle );
+        $this->assertTrue( $vehicles[0] instanceof VF_Vehicle );
         $this->assertNotEquals( 0, (int)$vehicles[0]->getLevel('chassis')->getId() );
     }
 

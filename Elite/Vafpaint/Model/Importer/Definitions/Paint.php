@@ -9,7 +9,7 @@ class Elite_Vafpaint_Model_Importer_Definitions_Paint extends Elite_Vafimporter_
     
     /**
     * @param array $row
-    * @param Elite_Vaf_Model_Vehicle|boolean the vehicle, false if none (for example, when setting a product as universal)
+    * @param VF_Vehicle|boolean the vehicle, false if none (for example, when setting a product as universal)
     */
     function doImportRow( $row, $vehicle )
     {
@@ -17,7 +17,7 @@ class Elite_Vafpaint_Model_Importer_Definitions_Paint extends Elite_Vafimporter_
          $this->addPaintCode( $vehicle, $paint );
     }
     
-    function addPaintCode( Elite_Vaf_Model_Vehicle $vehicle, Elite_Vafpaint_Model_Paint $paint )
+    function addPaintCode( VF_Vehicle $vehicle, Elite_Vafpaint_Model_Paint $paint )
     {
         $schema = new VF_Schema();
         $sql = sprintf(

@@ -8,7 +8,7 @@ foreach( $levels as $level )
 function vafDoLevel( $level, $parent_id = 0 )
 {    
     $schema = new VF_Schema();
-    $finder = new Elite_Vaf_Model_Level( $level );
+    $finder = new VF_Level( $level );
     $parentLevel = $schema->getPrevLevel( $level );
     if( $parentLevel )
     {

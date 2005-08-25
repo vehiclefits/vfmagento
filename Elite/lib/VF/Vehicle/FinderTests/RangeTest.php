@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Vehicle_FinderTests_RangeTest extends Elite_Vaf_Model_Vehicle_FinderTests_TestCase
+class VF_Vehicle_FinderTests_RangeTest extends VF_Vehicle_FinderTests_TestCase
 {
     function testShouldFindAllYearsINRange()
     {

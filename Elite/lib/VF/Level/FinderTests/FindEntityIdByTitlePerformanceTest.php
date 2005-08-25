@@ -1,12 +1,12 @@
 <?php
-class Elite_Vaf_Model_Level_FinderTests_FindEntityIdByTitlePerformanceTest extends Elite_Vaf_TestCase
+class VF_Level_FinderTests_FindEntityIdByTitlePerformanceTest extends Elite_Vaf_TestCase
 {
 	function testRootLevel()
 	{
 		$originalVehicle = $this->createMMY('Honda');
 		$this->startProfiling();
 		
-		$finder = new Elite_Vaf_Model_Level_Finder;
+		$finder = new VF_Level_Finder;
 		$makeId = $finder->findEntityIdByTitle('make','Honda');
 		$makeId = $finder->findEntityIdByTitle('make','Honda');
 		$this->assertEquals(1,$this->getQueryCount());
@@ -17,7 +17,7 @@ class Elite_Vaf_Model_Level_FinderTests_FindEntityIdByTitlePerformanceTest exten
 		$originalVehicle = $this->createMMY('Honda','Civic');
 		$this->startProfiling();
         
-		$finder = new Elite_Vaf_Model_Level_Finder;
+		$finder = new VF_Level_Finder;
 		$modelId = $finder->findEntityIdByTitle('model','Civic',$originalVehicle->getValue('make'));
 		$modelId = $finder->findEntityIdByTitle('model','Civic',$originalVehicle->getValue('make'));
         $this->assertEquals(1,$this->getQueryCount());

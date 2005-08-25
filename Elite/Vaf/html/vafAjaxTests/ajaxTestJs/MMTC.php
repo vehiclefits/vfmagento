@@ -7,7 +7,7 @@ $schemaGenerator->execute( array('make','model','chassis','trim'));
 
 $schema = new VF_Schema();
 
-$vehicle = Elite_Vaf_Model_Vehicle::create( $schema, array('make'=>'Honda_Unique'.uniqid(), 'model'=>'Civic', 'chassis'=>'chassis', 'trim'=>'trim') );
+$vehicle = VF_Vehicle::create( $schema, array('make'=>'Honda_Unique'.uniqid(), 'model'=>'Civic', 'chassis'=>'chassis', 'trim'=>'trim') );
 $vehicle->save();
 
 $mapping = new Elite_Vaf_Model_Mapping( 1, $vehicle );

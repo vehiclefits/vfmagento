@@ -1,6 +1,6 @@
 <?php
 
-class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelsTest extends Elite_Vaf_Model_Vehicle_FinderTests_TestCase
+class VF_Vehicle_FinderTests_ByLevelsTest extends VF_Vehicle_FinderTests_TestCase
 {
 	function testShouldThrowExceptionForInvalidLevel()
     {
@@ -63,7 +63,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelsTest extends Elite_Vaf_Model_V
     
     function testShouldFindPartialVehicleMake()
     {
-        $make = new Elite_Vaf_Model_Level('make');
+        $make = new VF_Level('make');
         $make->setTitle('Honda');
         $make->save();
         
@@ -73,7 +73,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelsTest extends Elite_Vaf_Model_V
 
     function testPartialVehicleShouldHaveMakeID()
     {
-        $make = new Elite_Vaf_Model_Level('make');
+        $make = new VF_Level('make');
         $make->setTitle('Honda');
         $make->save();
         
@@ -84,7 +84,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelsTest extends Elite_Vaf_Model_V
     
     function testShouldEscapeRegex()
     {
-        $make = new Elite_Vaf_Model_Level('make');
+        $make = new VF_Level('make');
         $make->setTitle('.\+');
         $make->save();
         
@@ -95,7 +95,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelsTest extends Elite_Vaf_Model_V
     
     function testShouldEscapeRegex2()
     {
-        $make = new Elite_Vaf_Model_Level('make');
+        $make = new VF_Level('make');
         $make->setTitle('?[^]$');
         $make->save();
         
@@ -105,7 +105,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelsTest extends Elite_Vaf_Model_V
     
     function testShouldEscapeRegex3()
     {
-        $make = new Elite_Vaf_Model_Level('make');
+        $make = new VF_Level('make');
         $make->setTitle('(){}=!');
         $make->save();
         
@@ -115,7 +115,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelsTest extends Elite_Vaf_Model_V
     
     function testShouldEscapeRegex4()
     {
-        $make = new Elite_Vaf_Model_Level('make');
+        $make = new VF_Level('make');
         $make->setTitle(':-');
         $make->save();
         
@@ -125,7 +125,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelsTest extends Elite_Vaf_Model_V
     
     function testShouldEscapeRegex5()
     {
-        $make = new Elite_Vaf_Model_Level('make');
+        $make = new VF_Level('make');
         $make->setTitle('.\+*?[^]$(){}=!<>|:-');
         $make->save();
         

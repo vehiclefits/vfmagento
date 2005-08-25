@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Vehicle_Finder_IdentityMapByLevelTest extends Elite_Vaf_TestCase
+class VF_Vehicle_Finder_IdentityMapByLevelTest extends Elite_Vaf_TestCase
 {
     function testWhenHasNoVehicles()
     {
@@ -8,6 +8,6 @@ class Elite_Vaf_Model_Vehicle_Finder_IdentityMapByLevelTest extends Elite_Vaf_Te
     
     function identityMap()
     {
-        return new Elite_Vaf_Model_Vehicle_Finder_IdentityMapByLevel();
+        return new VF_Vehicle_Finder_IdentityMapByLevel();
     }
 }

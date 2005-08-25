@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Level_FinderTests_ListInUsePerformanceTest extends Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase
+class VF_Level_FinderTests_ListInUsePerformanceTest extends Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase
 {
     function doSetUp()
     {
@@ -14,7 +14,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUsePerformanceTest extends Elite_V
         $this->insertProduct('sku1');
         $startTime = microtime();
         
-        $year = new Elite_Vaf_Model_Level('year');
+        $year = new VF_Level('year');
         $year->listInUse();
         
         $endTime = microtime();

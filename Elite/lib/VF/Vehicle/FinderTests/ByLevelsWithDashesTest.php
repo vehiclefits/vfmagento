@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelsWithDashesTest extends Elite_Vaf_Model_Vehicle_FinderTests_TestCase
+class VF_Vehicle_FinderTests_ByLevelsWithDashesTest extends VF_Vehicle_FinderTests_TestCase
 {
 	function testWithoutDash()
     {

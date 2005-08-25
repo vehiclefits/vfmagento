@@ -33,7 +33,7 @@ abstract class Elite_Vaf_Model_Base
     
     function vehicleFinder()
     {
-        return new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
+        return new VF_Vehicle_Finder($this->getSchema());
     }
     
     function getSchema()

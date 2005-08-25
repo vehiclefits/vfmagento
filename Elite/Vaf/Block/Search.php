@@ -304,7 +304,7 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements
     {
         if(!in_array($level,$this->getSchema()->getLevels()))
         {
-            throw new Elite_Vaf_Model_Level_Exception_InvalidLevel('Invalid level ['.$level.']');
+            throw new VF_Level_Exception_InvalidLevel('Invalid level ['.$level.']');
         }
         
         $parent_id = 0;
@@ -314,7 +314,7 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements
         {
             $parent_id = $this->getSelected( $parentLevel );
         }
-        $levelObject = new Elite_Vaf_Model_Level( $level );
+        $levelObject = new VF_Level( $level );
         
         if( $this->isNotRootAndHasNoParent( $level, $parent_id ) )
         {

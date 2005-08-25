@@ -4,7 +4,7 @@ class Elite_Vafsitemap_Model_Sitemap_Product_Html extends Elite_Vafsitemap_Model
 	/** for test only */
     public $filtered = false;
     
-    /** @return Elite_Vaf_Model_Vehicle */
+    /** @return VF_Vehicle */
     function getSelectedDefinition()
     {
         return Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();

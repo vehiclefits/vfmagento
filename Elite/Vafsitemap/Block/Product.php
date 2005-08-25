@@ -1,7 +1,7 @@
 <?php
 class Elite_Vafsitemap_Block_Product extends Mage_Catalog_Block_Seo_Sitemap_Product
 {
-    /** @return Elite_Vaf_Model_Vehicle */
+    /** @return VF_Vehicle */
     function getSelectedDefinition()
     {
         return $this->sitemap()->getSelectedDefinition();

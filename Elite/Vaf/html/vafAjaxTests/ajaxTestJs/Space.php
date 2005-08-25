@@ -7,7 +7,7 @@ $schemaGenerator->execute(array('make','model type','year'));
 
 $schema = new VF_Schema();
 
-$vehicle = Elite_Vaf_Model_Vehicle::create( $schema, array(
+$vehicle = VF_Vehicle::create( $schema, array(
     'make' => 'Honda_Unique'.uniqid(),
     'model type' => 'Civic',
     'year' => '2002'

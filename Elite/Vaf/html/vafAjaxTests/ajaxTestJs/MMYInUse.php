@@ -7,14 +7,14 @@ $schemaGenerator->execute(array('make','model','year'));
 
 $schema = new VF_Schema();
 
-$vehicle = Elite_Vaf_Model_Vehicle::create( $schema, array(
+$vehicle = VF_Vehicle::create( $schema, array(
     'make' => 'Honda',
     'model' => 'Civic',
     'year' => '2001'
 ));
 $vehicle->save();
 
-$vehicle = Elite_Vaf_Model_Vehicle::create( $schema, array(
+$vehicle = VF_Vehicle::create( $schema, array(
     'make' => 'Honda',
     'model' => 'Civic',
     'year' => '2002'

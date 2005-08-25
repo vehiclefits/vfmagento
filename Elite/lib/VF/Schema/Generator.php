@@ -17,7 +17,7 @@ class VF_Schema_Generator
     {
         if( 1 >= count($levels) )
         {
-            throw new Elite_Vaf_Model_Level_Exception('Schema requires at least two levels');
+            throw new VF_Level_Exception('Schema requires at least two levels');
         }
         
         $sql = $this->generator( $levels );

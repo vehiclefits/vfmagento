@@ -69,7 +69,7 @@ class Elite_Vafimporter_Model_VehiclesList_XML_ImportTests_EngineTest extends El
 //    {
 //        $importer = $this->vehiclesListImporter( $this->csvFile );
 //        $importer->import();
-//        $level = new Elite_Vaf_Model_Level('make',4);
+//        $level = new VF_Level('make',4);
 //        $this->assertTrue( $level->getTitle() == 'Honda', 'imports the makeID #' );
 //    }
 //    
@@ -77,7 +77,7 @@ class Elite_Vafimporter_Model_VehiclesList_XML_ImportTests_EngineTest extends El
 //    {
 //        $importer = $this->vehiclesListImporter( $this->csvFile );
 //        $importer->import();
-//        $level = new Elite_Vaf_Model_Level('model',5);
+//        $level = new VF_Level('model',5);
 //        $this->assertTrue( $level->getTitle() == 'Civic', 'imports the modelID #' );
 //    }
 //    
@@ -86,7 +86,7 @@ class Elite_Vafimporter_Model_VehiclesList_XML_ImportTests_EngineTest extends El
 //    {
 //        $importer = $this->vehiclesListImporter( $this->csvFile );
 //        $importer->import();
-//        $level = new Elite_Vaf_Model_Level('year',8);
+//        $level = new VF_Level('year',8);
 //        $this->assertTrue( $level->getTitle() == '2000', 'imports the yearID #' );
 //    }
 

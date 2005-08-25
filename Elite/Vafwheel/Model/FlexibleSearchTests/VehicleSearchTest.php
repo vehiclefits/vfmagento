@@ -3,7 +3,7 @@
 class Elite_Vafwheel_Model_FlexibleSearchTests_VehicleSearchTest extends Elite_Vaf_TestCase
 {
 
-    /** @var Elite_Vaf_Model_Vehicle */
+    /** @var VF_Vehicle */
     protected $vehicle;
 
     function doSetUp()

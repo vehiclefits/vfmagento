@@ -9,19 +9,19 @@ class Elite_Vafnote_Model_Catalog_Product
         $this->wrappedProduct = $productToWrap;
     }
     
-    function addNote( Elite_Vaf_Model_Vehicle $vehicle, $noteCode )
+    function addNote( VF_Vehicle $vehicle, $noteCode )
     {
         $mappingId = $this->getMappingId($vehicle);
         $note = $this->noteFinder()->findByCode($noteCode);
         $this->noteFinder()->insertNoteRelationship($mappingId,$note->id);
     }
     
-    function numberOfNotes(Elite_Vaf_Model_Vehicle $vehicle)
+    function numberOfNotes(VF_Vehicle $vehicle)
     {
         return count($this->notes($vehicle));
     }
     
-    function notesCodes(Elite_Vaf_Model_Vehicle $vehicle)
+    function notesCodes(VF_Vehicle $vehicle)
     {
         $codes = array();
         foreach($this->notes($vehicle) as $note)
@@ -32,7 +32,7 @@ class Elite_Vafnote_Model_Catalog_Product
     }
     
     
-    function notes(Elite_Vaf_Model_Vehicle $vehicle)
+    function notes(VF_Vehicle $vehicle)
     {
         $mappingId = $this->getMappingId($vehicle);
         return $this->noteFinder()->getNotes($mappingId);

@@ -110,10 +110,10 @@ class VF_FlexibleSearch implements VF_FlexibleSearch_Interface
         if($this->shouldClear())
         {
             $this->clearSelection();
-            return new Elite_Vaf_Model_Vehicle_Selection(array());
+            return new VF_Vehicle_Selection(array());
         }
         
-        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder($this->schema);
+        $vehicleFinder = new VF_Vehicle_Finder($this->schema);
         
         // Multi-tree (admin panel) integration
         if($this->request->getParam('fit'))
@@ -128,7 +128,7 @@ class VF_FlexibleSearch implements VF_FlexibleSearch_Interface
         
         if(!$this->hasGETRequest() && !$this->hasSESSIONRequest())
         {
-            return new Elite_Vaf_Model_Vehicle_Selection(array());
+            return new VF_Vehicle_Selection(array());
         }
 
         // front-end lookup
@@ -142,9 +142,9 @@ class VF_FlexibleSearch implements VF_FlexibleSearch_Interface
             }
             else
             {
-                $vehicles = $vehicleFinder->findByLevelIds($params, Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
+                $vehicles = $vehicleFinder->findByLevelIds($params, VF_Vehicle_Finder::EXACT_ONLY);
             }
-            $selection = new Elite_Vaf_Model_Vehicle_Selection($vehicles);
+            $selection = new VF_Vehicle_Selection($vehicles);
             return $selection;
 	} catch (Elite_Vaf_Exception_DefinitionNotFound $e)
 	{
@@ -385,7 +385,7 @@ class VF_FlexibleSearch implements VF_FlexibleSearch_Interface
 		return false;
 	    }
 
-	    $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder($this->schema());
+	    $vehicleFinder = new VF_Vehicle_Finder($this->schema());
 	    $vehicle = $vehicleFinder->findByLevel($level, $levelObj->getId());
 	} catch (Elite_Vaf_Exception_DefinitionNotFound $e)
 	{

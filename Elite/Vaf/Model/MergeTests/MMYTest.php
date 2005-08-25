@@ -9,7 +9,7 @@ class Elite_Vaf_Model_MergeTests_MMYTest extends Elite_Vaf_TestCase
     // @todo what about a way to merge a make with a model, or year (by traversing the level closest to the root level, and "blowing out" all applicable vehicles).
     
     /**
-    * @expectedException Elite_Vaf_Model_Vehicle_Finder_Exception_DifferingGrain 
+    * @expectedException VF_Vehicle_Finder_Exception_DifferingGrain 
     */
     function testShouldNotAllowDifferingSlaveLevels()
     {
@@ -26,7 +26,7 @@ class Elite_Vaf_Model_MergeTests_MMYTest extends Elite_Vaf_TestCase
     }
     
     /**
-    * @expectedException Elite_Vaf_Model_Vehicle_Finder_Exception_DifferingGrain 
+    * @expectedException VF_Vehicle_Finder_Exception_DifferingGrain 
     */
     function testShouldNotAllowDifferingMasterLevel()
     {

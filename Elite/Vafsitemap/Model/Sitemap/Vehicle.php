@@ -16,11 +16,11 @@ class Elite_Vafsitemap_Model_Sitemap_Vehicle extends VF_Import_Abstract
     function getDefinitions($perPage=false, $offset=false, $productId = null)
     {
 	$return = array();
-	$vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
+	$vehicleFinder = new VF_Vehicle_Finder($this->getSchema());
 	$vehicles = $this->doGetDefinitions($perPage, $offset, $productId);
 	foreach ($vehicles as $vehicleStdClass)
 	{
-	    $vehicle = $vehicleFinder->findOneByLevelIds($vehicleStdClass, Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
+	    $vehicle = $vehicleFinder->findOneByLevelIds($vehicleStdClass, VF_Vehicle_Finder::EXACT_ONLY);
 	    array_push($return, $vehicle);
 	}
 	return $return;

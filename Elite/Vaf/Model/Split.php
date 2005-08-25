@@ -1,7 +1,7 @@
 <?php
 class Elite_Vaf_Model_Split extends Elite_Vaf_Model_Base
 {
-    /** @var Elite_Vaf_Model_Vehicle */
+    /** @var VF_Vehicle */
     protected $vehicle;
     protected $vehicleObj;
     protected $grain, $newTitles;
@@ -46,7 +46,7 @@ class Elite_Vaf_Model_Split extends Elite_Vaf_Model_Base
     	return !in_array( $oldVehiclesTitleForCurrentOperatingLevel, $this->newTitles );
     }
     
-    function apply(Elite_Vaf_Model_Vehicle $descendant)
+    function apply(VF_Vehicle $descendant)
     {
         $titles = $descendant->toTitleArray();
         
@@ -60,7 +60,7 @@ class Elite_Vaf_Model_Split extends Elite_Vaf_Model_Base
         foreach($this->newTitles as $replacementTitle)
         {
             $titles[$this->grain] = $replacementTitle;
-            $new_vehicle = Elite_Vaf_Model_Vehicle::create($this->getSchema(), $titles);
+            $new_vehicle = VF_Vehicle::create($this->getSchema(), $titles);
             $new_vehicle->save();
             $this->mergeFitments($descendant, $new_vehicle);
         }
@@ -71,7 +71,7 @@ class Elite_Vaf_Model_Split extends Elite_Vaf_Model_Base
     {
         if(!isset($this->vehicleObj))
         {
-            $this->vehicleObj = $this->vehicleFinder()->findOneByLevelIds( $this->vehicleParams(), Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY );
+            $this->vehicleObj = $this->vehicleFinder()->findOneByLevelIds( $this->vehicleParams(), VF_Vehicle_Finder::EXACT_ONLY );
         }
         return $this->vehicleObj;        
     }

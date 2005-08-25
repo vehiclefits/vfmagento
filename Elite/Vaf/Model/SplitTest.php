@@ -63,7 +63,7 @@ class Elite_Vaf_Model_SplitTest extends Elite_Vaf_TestCase
         $level = $this->newMake('Ford/Ford2');
         $level->save();
         
-        $vehicle = $this->vehicleFinder()->findOneByLevelIds(array('make'=>$level->getId()), Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
+        $vehicle = $this->vehicleFinder()->findOneByLevelIds(array('make'=>$level->getId()), VF_Vehicle_Finder::EXACT_ONLY);
         
         $this->split($vehicle, 'make', array('Ford','Ford 2'));
         
@@ -83,7 +83,7 @@ class Elite_Vaf_Model_SplitTest extends Elite_Vaf_TestCase
         $year = $this->newYear('2000');
         $year->save(array('make'=>$make->getId(), 'model'=>$model->getId()));
         
-        $vehicle = $this->vehicleFinder()->findOneByLevelIds(array('make'=>$make->getId()), Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
+        $vehicle = $this->vehicleFinder()->findOneByLevelIds(array('make'=>$make->getId()), VF_Vehicle_Finder::EXACT_ONLY);
         $this->split($vehicle, 'make', array('Ford','Ford 2'));
         
         $this->assertTrue( $this->vehicleExists(array('make'=>'Ford') ) );
@@ -96,7 +96,7 @@ class Elite_Vaf_Model_SplitTest extends Elite_Vaf_TestCase
         $vehicle = $this->createMMY('Ford/Ford2','F-150','2001');
         $this->insertMappingMMY($vehicle, 1);
         
-        $vehicle = $this->vehicleFinder()->findOneByLevelIds(array('make'=>$vehicle->getValue('make')), Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
+        $vehicle = $this->vehicleFinder()->findOneByLevelIds(array('make'=>$vehicle->getValue('make')), VF_Vehicle_Finder::EXACT_ONLY);
         $this->split($vehicle, 'make', array('Ford','Ford 2'));
         
         $product = $this->newProduct(1);

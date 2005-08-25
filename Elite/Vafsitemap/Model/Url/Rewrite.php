@@ -90,7 +90,7 @@ class Elite_Vafsitemap_Model_Url_Rewrite extends Mage_Core_Model_Url_Rewrite
 
     /**
      * @param string ymm string "honda~civic~2002"
-     * @return Elite_Vaf_Model_Vehicle
+     * @return VF_Vehicle
      */
     function slugToVehicle($vehicleSlug)
     {

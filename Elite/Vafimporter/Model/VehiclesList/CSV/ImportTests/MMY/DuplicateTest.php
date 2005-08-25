@@ -17,15 +17,15 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_DuplicateTest ext
     
     function testShouldSkipDuplicateVehicles()
     {
-        $make = new Elite_Vaf_Model_Level('make');
+        $make = new VF_Level('make');
         $make->setTitle('STIHL');
         $make->save();
         
-        $model = new Elite_Vaf_Model_Level('model');
+        $model = new VF_Level('model');
         $model->setTitle('39');
         $model->save($make->getId());
         
-        $year = new Elite_Vaf_Model_Level('year');
+        $year = new VF_Level('year');
         $year->setTitle('1997');
         $year->save($model->getId(),null,false);
         

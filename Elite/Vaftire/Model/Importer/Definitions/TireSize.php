@@ -9,7 +9,7 @@ class Elite_Vaftire_Model_Importer_Definitions_TireSize extends Elite_Vafimporte
     
     /**
     * @param array $row
-    * @param Elite_Vaf_Model_Vehicle|boolean the vehicle, false if none (for example, when setting a product as universal)
+    * @param VF_Vehicle|boolean the vehicle, false if none (for example, when setting a product as universal)
     */
     function doImportRow( $row, $vehicle )
     {

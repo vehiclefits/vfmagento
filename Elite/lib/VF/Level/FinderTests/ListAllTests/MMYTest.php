@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Level_FinderTests_ListAllTests_MMYTest extends Elite_Vaf_TestCase
+class VF_Level_FinderTests_ListAllTests_MMYTest extends Elite_Vaf_TestCase
 {
     
     protected function doSetUp()
@@ -17,7 +17,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListAllTests_MMYTest extends Elite_Vaf_T
         $this->insertMappingMMY( $vehicle2 );
         $this->insertMappingMMY( $vehicle3 );
         
-        $model = new Elite_Vaf_Model_Level('model');
+        $model = new VF_Level('model');
         $actual = $model->listAll();
         $this->assertEquals( 'A', $actual[0]->getTitle(), 'should sort items' );
         $this->assertEquals( 'B', $actual[1]->getTitle(), 'should sort items' );
@@ -50,7 +50,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListAllTests_MMYTest extends Elite_Vaf_T
         $this->insertMappingMMY( $vehicle2 );
         $this->insertMappingMMY( $vehicle3 );
         
-        $model = new Elite_Vaf_Model_Level('model');
+        $model = new VF_Level('model');
         $actual = $model->listAll();
         $actual = $model->listAll();
         $this->assertEquals( 'A', $actual[0]->getTitle(), 'should sort items' );
@@ -68,7 +68,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListAllTests_MMYTest extends Elite_Vaf_T
         $this->insertMappingMMY( $vehicle2 );
         $this->insertMappingMMY( $vehicle3 );
         
-        $model = new Elite_Vaf_Model_Level('model');
+        $model = new VF_Level('model');
         $actual = $model->listAll($vehicle1->getLevel('make')->getId());
         $this->assertEquals( 'A', $actual[0]->getTitle(), 'should sort items' );
         $this->assertEquals( 'B', $actual[1]->getTitle(), 'should sort items' );

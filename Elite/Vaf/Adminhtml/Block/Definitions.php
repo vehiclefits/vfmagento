@@ -152,7 +152,7 @@ class Elite_Vaf_Adminhtml_Block_Definitions extends Elite_Vaf_Block_Abstract imp
         {
             $entity = $this->getDefaultLevel();
         }
-        return new Elite_Vaf_Model_Level( $entity );
+        return new VF_Level( $entity );
     }
     
     protected function getNextLevel()
