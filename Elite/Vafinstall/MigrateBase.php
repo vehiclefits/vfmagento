@@ -3,7 +3,7 @@
 * This source file is subject to the new BSD license that is bundled
 * with this package in the file LICENSE.txt.
 * 
-* @copyright Copyright (c) 2008-2009 Ne8, LLC <josh.ribakoff@gmail.com>
+* @copyright Copyright (c) 2008-2009 Vehicle Fits, LLC <josh.ribakoff@gmail.com>
 * @license New BSD License
 */
 abstract class Shuffler_DB_Refactor

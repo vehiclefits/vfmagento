@@ -1,11 +1,11 @@
 jQuery.noConflict();
 <?php
 /**
-* Vehicle Fits Free Edition - Copyright (c) 2008-2010 by Ne8, LLC
+* Vehicle Fits Free Edition - Copyright (c) 2008-2010 by Vehicle Fits, LLC
 * PROFESSIONAL IDENTIFICATION:
 * "www.vehiclefits.com"
 * PROMOTIONAL SLOGAN FOR AUTHOR'S PROFESSIONAL PRACTICE:
-* "Automotive Ecommerce Provided By Ne8 llc"
+* "Automotive Ecommerce Provided By Vehicle Fits llc"
 *
 * All Rights Reserved
 * VEHICLE FITS ATTRIBUTION ASSURANCE LICENSE (adapted from the original OSI license)
