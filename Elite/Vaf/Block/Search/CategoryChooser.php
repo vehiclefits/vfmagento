@@ -11,7 +11,7 @@
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the conditions in license.txt are met
 */
-class Elite_Vaf_Block_Search_CategoryChooser implements Elite_Vaf_Configurable
+class Elite_Vaf_Block_Search_CategoryChooser implements VF_Configurable
 {
     /** @var Zend_Config */
     protected $config;

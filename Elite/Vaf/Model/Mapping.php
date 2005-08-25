@@ -1,7 +1,7 @@
 <?php
 
 /** The association between a product ID and a definition */
-class Elite_Vaf_Model_Mapping implements Elite_Vaf_Configurable
+class Elite_Vaf_Model_Mapping implements VF_Configurable
 {
 
     protected $product_id, $vehicle;

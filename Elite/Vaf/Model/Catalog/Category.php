@@ -12,7 +12,7 @@
 * modification, are permitted provided that the conditions in license.txt are met
 */
 class Elite_Vaf_Model_Catalog_Category extends Mage_Catalog_Model_Category implements
-    Elite_Vaf_Configurable,
+    VF_Configurable,
     Elite_Vaf_Filterable
 {
     // test only

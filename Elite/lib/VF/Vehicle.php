@@ -11,7 +11,7 @@
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the conditions in license.txt are met
 */
-class VF_Vehicle implements Elite_Vaf_Configurable
+class VF_Vehicle implements VF_Configurable
 {
     protected $row;
     

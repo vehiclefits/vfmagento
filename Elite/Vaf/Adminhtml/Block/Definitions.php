@@ -11,7 +11,7 @@
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the conditions in license.txt are met
 */
-class Elite_Vaf_Adminhtml_Block_Definitions extends Elite_Vaf_Block_Abstract implements Elite_Vaf_Configurable
+class Elite_Vaf_Adminhtml_Block_Definitions extends Elite_Vaf_Block_Abstract implements VF_Configurable
 {
     /** @var Zend_Config */
     protected $config;

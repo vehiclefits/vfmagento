@@ -1,6 +1,6 @@
 <?php
 
-class Elite_Vafsitemap_Block_Vehicles extends Mage_Core_Block_Template implements Elite_Vaf_Configurable
+class Elite_Vafsitemap_Block_Vehicles extends Mage_Core_Block_Template implements VF_Configurable
 {
 
     protected $perpage = 50;

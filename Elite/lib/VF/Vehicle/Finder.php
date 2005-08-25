@@ -12,7 +12,7 @@
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the conditions in license.txt are met
  */
-class VF_Vehicle_Finder implements Elite_Vaf_Configurable
+class VF_Vehicle_Finder implements VF_Configurable
 {
 
     protected $schema;

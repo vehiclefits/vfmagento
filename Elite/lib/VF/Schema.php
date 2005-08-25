@@ -13,7 +13,7 @@
 */
 class VF_Schema implements
     VF_Schema_Interface,
-    Elite_Vaf_Configurable
+    VF_Configurable
 {
     /** @var Zend_Config */
     protected $config;

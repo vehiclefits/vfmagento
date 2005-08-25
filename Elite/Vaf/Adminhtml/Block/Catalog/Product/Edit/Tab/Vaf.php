@@ -1,6 +1,6 @@
 <?php
 class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf extends Mage_Adminhtml_Block_Template 
-    implements Elite_Vaf_Configurable
+    implements VF_Configurable
 {
     protected $config;
     

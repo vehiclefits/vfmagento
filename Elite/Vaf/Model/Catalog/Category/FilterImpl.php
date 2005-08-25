@@ -1,6 +1,6 @@
 <?php
 class Elite_Vaf_Model_Catalog_Category_FilterImpl implements
-    Elite_Vaf_Configurable,
+    VF_Configurable,
     Elite_Vaf_Model_Catalog_Category_Filter
 {
     /**

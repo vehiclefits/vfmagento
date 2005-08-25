@@ -12,7 +12,7 @@
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the conditions in license.txt are met
  */
-class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_Vaf_Configurable
+class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements VF_Configurable
 {
 
     /**  @var Zend_Config */

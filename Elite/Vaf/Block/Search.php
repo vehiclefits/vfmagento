@@ -12,7 +12,7 @@
 * modification, are permitted provided that the conditions in license.txt are met
 */
 class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements
-    Elite_Vaf_Configurable,
+    VF_Configurable,
     Elite_Vaf_Filterable
 {
     /** @var array of category ids we are searching */
