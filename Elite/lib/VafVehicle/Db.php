@@ -1,5 +1,5 @@
 <?php
-interface Ne8Vehicle_Db 
+interface VafVehicle_Db 
 {
     function getReadAdapter();
     

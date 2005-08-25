@@ -1,5 +1,5 @@
 <?php
-abstract class Ne8Vehicle_Import_Abstract
+abstract class VafVehicle_Import_Abstract
 {
 	protected $entityIds = array(); 
 	

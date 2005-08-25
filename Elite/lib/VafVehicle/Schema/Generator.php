@@ -1,5 +1,5 @@
 <?php
-abstract class Ne8Vehicle_Schema_Generator
+abstract class VafVehicle_Schema_Generator
 {
     public $levels = array();
     public $level_options = array();

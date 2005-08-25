@@ -1,5 +1,5 @@
 <?php
-class Ne8Vehicle_Year_Range extends Ne8Vehicle_Year_Abstract
+class VafVehicle_Year_Range extends VafVehicle_Year_Abstract
 {
     protected $range;
     
@@ -70,7 +70,7 @@ class Ne8Vehicle_Year_Range extends Ne8Vehicle_Year_Abstract
     
     function year($input)
     {
-        $year = new Ne8Vehicle_Year($input);
+        $year = new VafVehicle_Year($input);
         $year->setY2KMode($this->Y2KMode);
         $year->setThreshold($this->threshold);
         return $year;

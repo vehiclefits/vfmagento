@@ -1,5 +1,5 @@
 <?php
-class Ne8Vehicle_Year extends Ne8Vehicle_Year_Abstract
+class VafVehicle_Year extends VafVehicle_Year_Abstract
 {
     protected $year;
     
@@ -25,7 +25,7 @@ class Ne8Vehicle_Year extends Ne8Vehicle_Year_Abstract
     {
         if(!$this->isValid())
         {
-            throw new Ne8Vehicle_Year_Exception('Trying to work with invalid year [' . $this->year . ']');
+            throw new VafVehicle_Year_Exception('Trying to work with invalid year [' . $this->year . ']');
         }
         
         if(strlen($this->year) != 2 || !$this->Y2KMode )

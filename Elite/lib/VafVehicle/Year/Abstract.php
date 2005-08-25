@@ -1,5 +1,5 @@
 <?php
-abstract class Ne8Vehicle_Year_Abstract
+abstract class VafVehicle_Year_Abstract
 {
     protected $threshold = 25;
     protected $Y2KMode = true;

@@ -1,5 +1,5 @@
 <?php
-class Ne8Vehicle_Import_AbstractTest extends Elite_Vaf_TestCase
+class VafVehicle_Import_AbstractTest extends Elite_Vaf_TestCase
 {
 	protected function doSetUp()
     {
@@ -9,21 +9,21 @@ class Ne8Vehicle_Import_AbstractTest extends Elite_Vaf_TestCase
     
     function testShouldGetProductId()
 	{
-		$import = new Ne8Vehicle_Import_AbstractTestSubClass;
+		$import = new VafVehicle_Import_AbstractTestSubClass;
 		$expectedProductId = $this->insertProduct('sku');
 		$this->assertEquals( $expectedProductId, $import->productId('sku') );
 	}
 	
     function testRegression()
 	{
-		$import = new Ne8Vehicle_Import_AbstractTestSubClass;
+		$import = new VafVehicle_Import_AbstractTestSubClass;
 		$this->getReadAdapter()->query('update test_catalog_product_entity set sku=\'\' where 0');
 		$expectedProductId = $this->insertProduct('sku');
 		$this->assertEquals( $expectedProductId, $import->productId('sku') );
 	}
 }
 
-class Ne8Vehicle_Import_AbstractTestSubClass extends Ne8Vehicle_Import_Abstract
+class VafVehicle_Import_AbstractTestSubClass extends VafVehicle_Import_Abstract
 {
 	function __construct()
 	{
