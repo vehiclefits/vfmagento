@@ -1,6 +1,6 @@
 <?php
 
-class Elite_Vafwheel_Model_Catalog_Product_Import extends Ne8Vehicle_Import_Abstract
+class Elite_Vafwheel_Model_Catalog_Product_Import extends VafVehicle_Import_Abstract
 {
 
     function import()

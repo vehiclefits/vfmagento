@@ -1,6 +1,6 @@
 <?php
 
-class Elite_Vafsitemap_Model_Sitemap_Vehicle extends Ne8Vehicle_Import_Abstract
+class Elite_Vafsitemap_Model_Sitemap_Vehicle extends VafVehicle_Import_Abstract
 {
 
     protected $config;

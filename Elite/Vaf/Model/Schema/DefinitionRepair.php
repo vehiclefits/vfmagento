@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Schema_DefinitionRepair extends Ne8Vehicle_Schema_Generator
+class Elite_Vaf_Model_Schema_DefinitionRepair extends VafVehicle_Schema_Generator
 {
     function repair()
     {

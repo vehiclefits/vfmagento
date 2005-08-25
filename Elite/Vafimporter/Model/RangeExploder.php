@@ -90,7 +90,7 @@ class Elite_Vafimporter_Model_RangeExploder
     
     function year($value)
     {
-        $year = new Ne8Vehicle_Year($value);
+        $year = new VafVehicle_Year($value);
         if(isset($this->getConfig()->importer->Y2KMode) && false === $this->getConfig()->importer->Y2KMode)
         {
             $year->setY2KMode(false);
@@ -104,7 +104,7 @@ class Elite_Vafimporter_Model_RangeExploder
     
     function yearRange($value)
     {
-        $range = new Ne8Vehicle_Year_Range($value);
+        $range = new VafVehicle_Year_Range($value);
         if(isset($this->getConfig()->importer->Y2KMode) && false === $this->getConfig()->importer->Y2KMode)
         {
             $range->setY2KMode(false);

@@ -1,6 +1,6 @@
 <?php
 
-class Elite_Vafdiagram_Model_ProductServiceCodeImporter extends Ne8Vehicle_Import_Abstract
+class Elite_Vafdiagram_Model_ProductServiceCodeImporter extends VafVehicle_Import_Abstract
 {
 
     function import()

@@ -1,6 +1,6 @@
 <?php
 
-abstract class Elite_Vafimporter_Model extends Ne8Vehicle_Import_Abstract implements Elite_Vaf_Configurable
+abstract class Elite_Vafimporter_Model extends VafVehicle_Import_Abstract implements Elite_Vaf_Configurable
 {
     const E_WARNING = 1;
 

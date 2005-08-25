@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafgarage_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
+class Elite_Vafgarage_Model_Schema_Generator extends VafVehicle_Schema_Generator
 {
     function generator()
     {
