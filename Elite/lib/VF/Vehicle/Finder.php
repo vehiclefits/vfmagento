@@ -148,7 +148,7 @@ class VF_Vehicle_Finder implements VF_Configurable
      */
     function findByLevels($levels, $includePartials = false)
     {
-	$select = new Elite_Vaf_Select($this->getReadAdapter());
+	$select = new VF_Select($this->getReadAdapter());
 	$select
 		->from('elite_definition')
 		->addLevelTitles('elite_definition');
@@ -229,7 +229,7 @@ class VF_Vehicle_Finder implements VF_Configurable
 	    array_push($levelsToSelect, $level);
 	}
 
-	$select = new Elite_Vaf_Select($this->getReadAdapter());
+	$select = new VF_Select($this->getReadAdapter());
 	$select
 		->from('elite_definition')
 		->addLevelTitles('elite_definition', $levelsToSelect);

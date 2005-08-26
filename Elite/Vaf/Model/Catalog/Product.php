@@ -447,7 +447,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 
     protected function doGetFits($productId)
     {
-	$select = new Elite_Vaf_Select($this->getReadAdapter());
+	$select = new VF_Select($this->getReadAdapter());
 	$select->from('elite_mapping')
 		->addLevelTitles()
 		->where('entity_id=?', $productId);

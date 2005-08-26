@@ -183,7 +183,7 @@ class Elite_Vaf_Model_MergeTests_MMYTest extends Elite_Vaf_TestCase
                                                               // it deletes the year from Ford, but not ford itself
         $this->merge($slaveLevels, $masterLevel);
         
-        $select = new Elite_Vaf_Select($this->getReadAdapter());
+        $select = new VF_Select($this->getReadAdapter());
         
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'F-150','year'=>2001)) );
@@ -206,7 +206,7 @@ class Elite_Vaf_Model_MergeTests_MMYTest extends Elite_Vaf_TestCase
 
         $this->merge($slaveLevels, $masterLevel);
         
-        $select = new Elite_Vaf_Select($this->getReadAdapter());
+        $select = new VF_Select($this->getReadAdapter());
         
         $this->assertFalse( $this->vehicleExists(array('make'=>'Honda')) );
         $this->assertTrue( $this->vehicleExists(array('make'=>'Ford'), true ));

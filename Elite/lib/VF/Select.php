@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Select extends Zend_Db_Select
+class VF_Select extends Zend_Db_Select
 {
     function addLevelTitles($fromTable='elite_mapping', $levels=array())
     {   
