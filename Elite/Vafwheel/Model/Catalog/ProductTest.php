@@ -52,5 +52,36 @@ class Elite_Vafwheel_Model_Catalog_ProductTest extends Elite_Vaf_TestCase
         $this->assertEquals( 5, $boltPatterns[1]->getLugCount() );
         $this->assertEquals( 114.3, $boltPatterns[1]->getDistance() );
     }
+
+    function testShouldImport()
+    {
+	$this->csvData = '"sku","lug_count","bolt_distance"
+"sku","4","144.3"';
+        $this->csvFile = TESTFILES . '/product-wheel-sizes.csv';
+        file_put_contents( $this->csvFile, $this->csvData );
+
+
+        $this->insertProduct('sku');
+	$importer = new Elite_Vafwheel_Model_Catalog_Product_ImportTests_TestSubClass($this->csvFile);
+	$importer->import();
+
+	$product = $this->getProductForSku('sku');
+        $product = new Elite_Vafwheel_Model_Catalog_Product($product);
+        $boltPatterns = $product->getBoltPatterns();
+
+        $this->assertEquals( 4, $boltPatterns[0]->getLugCount(), 'should set lug_count' );
+        $this->assertEquals( 144.3, $boltPatterns[0]->getDistance(), 'should set bolt distance' );
+    }
     
+}
+
+
+class Elite_Vafwheel_Model_Catalog_Product_ImportTests_TestSubClass extends Elite_Vafwheel_Model_Catalog_Product_Import
+{
+
+    function getProductTable()
+    {
+	return 'test_catalog_product_entity';
+    }
+
 }
