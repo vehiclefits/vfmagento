@@ -56,7 +56,7 @@
 
 	$product = Mage::getModel('catalog/product')->load(current($productIds));
 	$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
-	$illustrationId = $product->illustrationId(array(
+	$illustrationIds = $finder->listIllustrationIds(array(
 		    'category1' => $category1,
 		    'category2' => $category2,
 		    'category3' => $category3,
@@ -64,8 +64,12 @@
 		    'service_code' => $serviceCode
 		));
 
-	echo '<img src="/illustrations/' . $this->htmlEscape($illustrationId) . '.jpg" style="width:100%" />';
-	echo $this->htmlEscape('Please upload ' . $this->htmlEscape($illustrationId) . '.jpg!');
+	foreach($illustrationIds as $illustrationId)
+	{
+	    echo '<img src="/illustrations/' . $this->htmlEscape($illustrationId) . '.jpg" style="width:100%" />';
+	    echo $this->htmlEscape('Please upload ' . $this->htmlEscape($illustrationId) . '.jpg!');
+	}
+	
 ?>
 <style type="text/css">
     .vafdiagram
