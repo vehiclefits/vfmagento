@@ -8,10 +8,6 @@ $storeId = 1;
 
 // DO NOT EDIT BELOW HERE
 
-$db = Zend_Db::factory('pdo_mysql', $params);
-$db->getConnection();
-Zend_Registry::set('db',$db);
-
 $sitemap = new Elite_Vafsitemap_Model_Sitemap_Product_XML();
 $size = $sitemap->getCollectionSize();
 $files = array();

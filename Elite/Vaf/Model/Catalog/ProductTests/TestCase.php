@@ -1,6 +1,8 @@
 <?php
 abstract class Elite_Vaf_Model_Catalog_ProductTests_TestCase extends Elite_Vaf_TestCase
 {
+    const PRODUCT_ID = 1;
+    const PRODUCT_NAME = 'Widget';
     
     /**
     * creates a product that inherits a stubbed out abstract class to "break" Magento's inheritence hierarchy
@@ -26,5 +28,25 @@ abstract class Elite_Vaf_Model_Catalog_ProductTests_TestCase extends Elite_Vaf_T
         $r = $this->query( $query ) or die( mysql_error() );
         $row = $r->fetch( Zend_Db::FETCH_ASSOC );
         return $row;
+    }
+
+    function add100Fitments($product, $amount=100)
+    {
+        for($i=1; $i<=$amount; $i++)
+        {
+            $vehicle = $this->createMMY('Honda'.$i,'Civic'.$i,rand(2000,2010));
+            $product->addVafFit($vehicle->toValueArray());
+        }
+
+        $this->setRequestParams($vehicle->toValueArray());
+        $product->setCurrentlySelectedFit( $vehicle);
+    }
+
+    function getProduct2($config)
+    {
+        $product = $this->getProduct(self::PRODUCT_ID);
+        $product->setName( self::PRODUCT_NAME );
+        $product->setConfig($config);
+        return $product;
     }
 }

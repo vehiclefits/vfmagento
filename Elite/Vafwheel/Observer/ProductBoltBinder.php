@@ -18,7 +18,7 @@ class Elite_Vafwheel_Observer_ProductBoltBinder
         /** @todo get under test */
         if( isset($_FILES['boltpatterncsv']) && $_FILES['boltpatterncsv']['tmp_name'] && $_FILES['boltpatterncsv']['error'] == 0 )
         {
-            $importer = new Elite_Vafwheel_Model_Importer_Bolts( $_FILES['boltpatterncsv']['tmp_name'] ); 
+            $importer = new Elite_Vafwheel_Model_Catalog_Product_Import( $_FILES['boltpatterncsv']['tmp_name'] );
             $importer->import();
         }
             

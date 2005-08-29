@@ -42,10 +42,38 @@
     <br />
     <p>Vehicles will be loaded as encountered, the bolt pattern must be formatted as shown.</p>
 
-    <h2>Add Bolt Pattern to Wheel</h2>
+    <h2>Add 'Bolt Pattern to Wheel'</h2>
     <br />
     When editing a product add one or more bolt patterns and press save. This sets the wheel specification of your product and simultaneously will add all the applicable vehicle applications. This allows your customer to search for wheels by vehicle.
-    
+
+    <h2>Import 'bolt pattern to wheel'</h2>
+    <br />
+    <br />
+    <img src="wheel/wheel-bolts.jpg" />
+    <br />
+    <br />
+    Use the format above, one field for sku, bolt distance, &amp; lug count each. Column order is not important.
+    <br />
+    <img src="wheel/wheel-bolts-load-gui.jpg" />
+    <br />
+    <br />
+    Load it on the product edit page, under the vehicle fits tab as shown here. It may take some time. Select the file and press save product. It will associate bolts to all products who's SKUs you specified (the fact you do it on an individual product's page is just a quirk).
+
+    <!-- import wheel size (CLI) -->
+    <h2 id="import_product_wheelsizesCLI">Import Product Wheel Sizes (Command Line Interface)</h2>
+    <div>
+        Navigate to Elite/Vafwheel/cron
+        <br />
+
+        To <strong>import</strong>, create a file called product-wheel-sizes-import.csv with the above format, then use this command:
+        <br />
+        <pre>php product-wheel-sizes-import.csv.php</pre>
+        Or as a background process:
+        <pre>nohup php product-wheel-sizes-import.csv.php > error_log &amp;</pre>
+        <br />
+
+    </div>
+
     <h2>Activate Wheel Search</h2>
     <br />
     In your theme's path, under the layout folder open 'vafwheel.xml'. Uncomment the layout XML to activate the wheel search on the front-end. This allows a customer to search by bolt pattern (search by wheel size). Next in the template path open vafwheel/search.phtml and edit in the URL of your wheel category to the form action.
