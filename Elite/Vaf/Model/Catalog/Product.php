@@ -337,9 +337,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     protected function createFitFromRow($row)
     {
 	$schema = new Elite_Vaf_Model_Schema();
-	$leaf = $schema->getLeafLevel() . '_id';
-	$fit = $this->findDefinitionByLeafId($row->$leaf);
-	return $fit;
+	return new Elite_Vaf_Model_Vehicle($schema, $row->id, $row);
     }
 
     protected function doGetFits($productId)
