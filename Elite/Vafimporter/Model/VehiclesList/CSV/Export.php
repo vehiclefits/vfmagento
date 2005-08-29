@@ -1,54 +1,52 @@
 <?php
+
 class Elite_Vafimporter_Model_VehiclesList_CSV_Export extends Elite_Vafimporter_Model_VehiclesList_BaseExport
 {
-	function export()
+
+    function export($stream)
+    {
+	$this->schema = $this->schema();
+
+	fwrite($stream, $this->cols());
+	fwrite($stream, "\n");
+	$this->rows($stream);
+    }
+
+    protected function cols()
+    {
+	$return = '';
+	foreach ($this->schema->getLevels() as $level)
 	{
-		$this->schema = $this->schema();
-		
-		$return = $this->cols();
-		$return .= "\n";
-		$return .= $this->rows();
-		
-		return $return;
+	    $insertComma = $level != $this->schema->getLeafLevel();
+	    $return .= $this->col($level, $insertComma);
 	}
-	
-	protected function cols()
+	return $return;
+    }
+
+    protected function col($name, $insertComma = true)
+    {
+	return $name . ( $insertComma ? "," : "" );
+    }
+
+    protected function rows($stream)
+    {
+	$rowResult = $this->rowResult();
+	while ($row = $rowResult->fetch(Zend_Db::FETCH_OBJ))
 	{
-		$return = '';
-		foreach( $this->schema->getLevels() as $level )
-		{
-			$insertComma = $level != $this->schema->getLeafLevel();
-			$return .= $this->col( $level, $insertComma );
-		}
-		return $return;
+	    fwrite($stream, $this->definitionCells($row));
+	    fwrite($stream, "\n");
 	}
-	
-	protected function col( $name, $insertComma = true )
+    }
+
+    protected function definitionCells($row)
+    {
+	$return = '';
+	foreach ($this->schema->getLevels() as $level)
 	{
-		return $name . ( $insertComma ? "," : "" );
+	    $insertComma = $level != $this->schema->getLeafLevel();
+	    $return .= $this->col($row->$level, $insertComma);
 	}
-	
-	protected function rows()
-	{
-		$return = '';
-		$rowResult = $this->rowResult();
-		while( $row = $rowResult->fetch(Zend_Db::FETCH_OBJ) )
-		{
-			$return .= $this->definitionCells($row);
-			$return .= "\n";
-		}
-		return $return;
-	}
-	
-	protected function definitionCells($row)
-	{
-		$return = '';
-		foreach( $this->schema->getLevels() as $level )
-		{
-			$insertComma = $level != $this->schema->getLeafLevel();
-			$return .= $this->col( $row->$level, $insertComma );
-		}
-		return $return;
-	}
+	return $return;
+    }
 
 }

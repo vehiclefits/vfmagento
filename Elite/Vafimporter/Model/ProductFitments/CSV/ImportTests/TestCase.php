@@ -80,6 +80,18 @@ abstract class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase 
         
         return $id;
     }
+
+    function exportProductFitments()
+    {
+	$stream = fopen("php://temp", 'w');
+
+	$exporter = new Elite_Vafimporter_Model_ProductFitments_CSV_ExportTests_TestSub();
+	$exporter->export($stream);
+	rewind($stream);
+
+	$data = stream_get_contents($stream);
+	return $data;
+    }
 }
 
 class Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass extends Elite_Vafimporter_Model_ProductFitments_CSV_Import

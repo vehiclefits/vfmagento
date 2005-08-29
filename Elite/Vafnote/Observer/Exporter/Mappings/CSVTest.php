@@ -13,17 +13,13 @@ sku, honda, civic, 2000, "code1,code2"';
         $this->insertProduct('sku');
     }
     
-    /**
-    
-    *  Elite_Vafimporter_Model
-    */
     function testNotes()
     {       
         $importer = new Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
         $importer->import();
         
-        $exporter = new Elite_Vafimporter_Model_ProductFitmentsExport_TestStub();
-        $string = explode("\n",$exporter->export());
+        $data = $this->exportProductFitments();
+        $string = explode("\n",$data);
         $this->assertEquals( "sku,universal,make,model,year,notes", $string[0] );
         $this->assertEquals( "sku,0,honda,civic,2000,\"code1,code2\"", $string[1] );
     }

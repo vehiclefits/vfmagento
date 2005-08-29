@@ -2,33 +2,40 @@
 
 class Elite_Vafsitemap_Model_Sitemap_Product_GoogleBase extends Elite_Vafsitemap_Model_Sitemap_Product
 {
-
-    function csv($storeId, $output=false)
+    protected $stream;
+    
+    function csv($storeId, $stream)
     {
+	$this->stream = $stream;
 	$this->storeId = $storeId;
-	$products = $this->getCollection();
 
-	$return = $this->fieldNames();
+	fwrite($stream, $this->fieldNames());
 
-	foreach ($products as $product)
+	$query = Elite_Vaf_Helper_Data::getInstance()->getReadAdapter()->select()
+		->from($this->getProductTable(), array('entity_id'));
+	$rs = $query->query();
+	while($productRow = $rs->fetch())
 	{
 	    $product = Mage::getModel('catalog/product')
 			    ->setStoreId($this->storeId)
-			    ->load($product->getId());
-
-	    echo 'product - ' . $product->getId() . "\n";
-
-	    $sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle(Elite_Vaf_Helper_Data::getInstance()->getConfig());
-	    $vehicles = $sitemap->getDefinitions(null,null,$product->getId());
-	    foreach ($vehicles as $vehicle)
+			    ->load($productId);
+	    if( !in_array($product->getStoreIds(), $storeId) )
 	    {
-		echo '    definition - ' . implode('-', $vehicle->toTitleArray()) . "\n";
-		$product->setCurrentlySelectedFit($vehicle);
-		$return .= $this->row($product, $vehicle);
+		continue;
 	    }
+	    $this->doProduct($product);
 	}
+    }
 
-	return $return;
+    function doProduct($product)
+    {
+	$sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle(Elite_Vaf_Helper_Data::getInstance()->getConfig());
+	$vehicles = $sitemap->getDefinitions(null,null,$product->getId());
+	foreach ($vehicles as $vehicle)
+	{
+	    $product->setCurrentlySelectedFit($vehicle);
+	    fwrite($this->stream, $this->row($product, $vehicle));
+	}
     }
 
     function fieldNames()

@@ -1,6 +1,6 @@
 <?php
 
-class Elite_Vafsitemap_Model_Sitemap_Vehicle
+class Elite_Vafsitemap_Model_Sitemap_Vehicle extends Ne8Vehicle_Import_Abstract
 {
 
     protected $config;
@@ -78,18 +78,6 @@ class Elite_Vafsitemap_Model_Sitemap_Vehicle
 	$result = $select->query();
 	$count = $result->fetchColumn();
 	return $count;
-    }
-
-    /** @return Zend_Db_Statement_Interface */
-    protected function query($sql, $bind = array())
-    {
-	return $this->getReadAdapter()->query($sql, $bind);
-    }
-
-    /** @return Zend_Db_Adapter_Abstract */
-    protected function getReadAdapter()
-    {
-	return Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
     }
 
     protected function getSchema()

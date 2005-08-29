@@ -20,8 +20,8 @@ sku123,  ,  ,  ,1';
     
     function testExportUniversal()
     {
-        $exporter = new Elite_Vafimporter_Model_ProductFitments_CSV_ExportTests_TestSub();
-        $output = explode( "\n", $exporter->export() );
+        $data = $this->exportProductFitments();
+        $output = explode( "\n", $data );
         $this->assertEquals( 'sku,universal,make,model,year,notes', $output[0] );
         $this->assertEquals( 'sku123,1,,,,""', $output[1] );
     }

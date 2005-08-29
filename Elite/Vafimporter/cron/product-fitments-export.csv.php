@@ -1,6 +1,6 @@
 <?php
 require_once('config.php');
 
-$file = 'product-fitments-export.csv';
+$stream = fopen("php://output", 'w');
 $exporter = new Elite_Vafimporter_Model_ProductFitments_CSV_Export();
-file_put_contents($file, $exporter->export());
+$exporter->export($stream);

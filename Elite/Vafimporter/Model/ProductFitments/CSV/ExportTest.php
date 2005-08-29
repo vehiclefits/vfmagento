@@ -25,8 +25,8 @@ sku123,acura,test,2002
     
     function testExport()
     {
-        $exporter = new Elite_Vafimporter_Model_ProductFitments_CSV_ExportTests_TestSub();
-        $output = explode( "\n", $exporter->export() );
+        $data = $this->exportProductFitments();
+        $output = explode( "\n", $data );
         
         $this->assertEquals( 'sku,universal,make,model,year,notes', $output[0] );
         $this->assertEquals( 'sku123,0,honda,civic,2001,""', $output[1] );
@@ -38,8 +38,8 @@ sku123,acura,test,2002
     
     function testExportUniversal()
     {
-        $exporter = new Elite_Vafimporter_Model_ProductFitments_CSV_ExportTests_TestSub();
-        $output = explode( "\n", $exporter->export() );
+        $data = $this->exportProductFitments();
+        $output = explode( "\n", $data );
         $this->assertEquals( 'sku,universal,make,model,year,notes', $output[0] );
     }
        
