@@ -39,7 +39,7 @@ class Elite_Vaf_Admin_SchemaController extends Mage_Adminhtml_Controller_Action
         if( count($levels)>1 && $levels && isset($_REQUEST['submit']) )
         {
             $this->generator()->dropExistingTables();
-            $sql = $this->generator()->generator($levels);
+            $sql = trim($this->generator()->generator($levels));
             foreach( explode(';',$sql) as $statement )
             {
                 if(!empty($statement))
