@@ -71,9 +71,9 @@ class Elite_Vafsitemap_Model_Url_Rewrite extends Mage_Core_Model_Url_Rewrite
 	{
 	    return false;
 	}
-	$vehilceSlug = $matches[1];
+	$vehicleSlug = $matches[1];
 	$productSlug = $matches[2];
-	$vehicle = $this->slugToVehicle($vehilceSlug);
+	$vehicle = $this->slugToVehicle($vehicleSlug);
 	if (!$vehicle)
 	{
 	    return false;
