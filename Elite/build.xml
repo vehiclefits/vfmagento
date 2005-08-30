@@ -323,8 +323,8 @@
              </fileset>
         </zip>
         
-        <!-- vaf module -->
-        <zip destfile="${modulepath}/vaf-${version}.zip">
+        <!-- lite package -->
+        <zip destfile="${modulepath}/vaf-lite-${version}.zip">
               <fileset dir="${modulepath}/build/vaf">
                 <include name="**/**" />
             </fileset>
@@ -464,10 +464,10 @@
 
     <target name="upload" depends="dist">
         <!-- documentation -->
-        <exec command="rsync -r ${modulepath}/build/vaf/Elite/documentation/ vehiclefits.com:&quot;/var/www/vehiclefits.com/public_html/documentation/&quot;" />
+        <exec command="rsync -r ${modulepath}/build/vaf/Elite/documentation/ ne8.net:&quot;/var/www/vehiclefits.com/public_html/documentation/&quot;" />
         
         <!-- change log -->
-        <exec command="scp ${modulepath}/build/vaf/Elite/Vaf/changelog.txt vehiclefits.com:&quot;/var/www/vehiclefits.com/views/changelog_data.phtml&quot;" />
+        <exec command="scp ${modulepath}/build/vaf/Elite/Vaf/changelog.txt ne8.net:&quot;/var/www/vehiclefits.com/views/changelog_data.phtml&quot;" />
     
 	<!-- lite -->
         <exec command="scp ${modulepath}/vaf-lite-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Lite/&quot;" />
