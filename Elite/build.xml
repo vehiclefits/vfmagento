@@ -469,8 +469,8 @@
         <!-- change log -->
         <exec command="scp ${modulepath}/build/vaf/Elite/Vaf/changelog.txt vehiclefits.com:&quot;/var/www/vehiclefits.com/views/changelog_data.phtml&quot;" />
     
-	    <!-- free -->
-        <exec command="scp ${modulepath}/vaf-${version}.zip ne8.net:&quot;/var/www/vehiclefits.com/public_html/free/vaf-free-${version}.zip&quot;" />
+	<!-- lite -->
+        <exec command="scp ${modulepath}/vaf-lite-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Lite/&quot;" />
         
         <!-- 'old' starter -->
         <exec command="scp ${packagepath}/vaf-old-starter-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Old\ Starter/&quot;" />
