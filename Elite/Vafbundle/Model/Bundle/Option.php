@@ -3,6 +3,8 @@ class Elite_Vafbundle_Model_Bundle_Option extends Mage_Bundle_Model_Option
 {
     function getSelections()
     {
+	$startTime = time();
+
         $vehicle = Elite_Vaf_Helper_Data::getInstance()->getFit();
         
         if( !$this->superProductFits($vehicle) )
@@ -16,20 +18,23 @@ class Elite_Vafbundle_Model_Bundle_Option extends Mage_Bundle_Model_Option
 			return;
         }
         
-        
         if( $vehicle && $vehicle->getLeafValue() )
         {
-            $return = array();
+	    $productIds = Elite_Vaf_Helper_Data::getInstance()->getProductIds();
+
+	    $return = array();
             foreach( $selections as $product )
             {
-                if( $this->productFits($product,$vehicle) )
-                {
-                    array_push( $return, $product );
-                }
+                if(in_array($product->getId(),$productIds))
+		{
+		    array_push($return,$product);
+		}
             }
             return $return;
         }
-        
+
+	$endTime = time();
+	var_dump($endTime-$startTime); exit();
         return $selections;        
     }
     

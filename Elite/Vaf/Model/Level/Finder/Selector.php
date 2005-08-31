@@ -144,7 +144,7 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         $select = $this->getReadAdapter()->select()
             ->from(array('l'=>$entity->getTable()))
             ->order('title')
-            ->group('l.id');
+            ->group('l.title');
             
         if( is_numeric($parent_id) && $parent_id > 0 && $entity->getPrevLevel() )
         {
@@ -165,8 +165,6 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
                 $select->where('d.' . $level . '_id = ?', $each_parent_id );
             }
         }
-        
-        $select->group('l.id');
         
         $result = $select->query();
         
