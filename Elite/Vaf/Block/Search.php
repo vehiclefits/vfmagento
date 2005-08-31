@@ -210,15 +210,19 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements
 
     function categoryAction($categoryId)
     {
+        if(!$categoryId)
+        {
+            return;
+        }
         $categoryIdsHomepage = explode(',', $this->getConfig()->search->categoriesThatSubmitToHomepage);
         $categoryIdsRefresh = explode(',', $this->getConfig()->search->categoriesThatRefresh);
         if(in_array($categoryId, $categoryIdsHomepage))
         {
-            return 'homepage';
+            return $this->url('vaf/product/list');
         }
         if(in_array($categoryId, $categoryIdsRefresh))
         {
-            return 'refresh';
+            return '?';
         }
     }
 
@@ -377,6 +381,10 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements
 
     function currentCategoryId()
     {
+        if(!$this->isCategoryPage())
+        {
+            return 0;
+        }
         if(isset($this->current_category_id))
         {
             return $this->current_category_id;
