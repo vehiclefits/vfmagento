@@ -35,6 +35,10 @@ class Elite_Vaf_Block_Category_View extends Mage_Catalog_Block_Category_View
     /** @return boolean */
     function shouldShowSplash()
     {
+        if($this->isWildcard())
+        {
+            return true;
+        }
         if($this->vehicleIsSelected())
         {
             return false;
@@ -52,6 +56,11 @@ class Elite_Vaf_Block_Category_View extends Mage_Catalog_Block_Category_View
         $ids = trim($this->getConfig()->category->requireVehicle);
         $ids = explode(",",$ids);
         return $ids;
+    }
+
+    function isWildcard()
+    {
+        return $this->getConfig()->category->requireVehicle == 'all';
     }
     
     /** @return boolean */

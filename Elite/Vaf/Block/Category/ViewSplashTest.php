@@ -16,6 +16,15 @@ class Elite_Vaf_Block_Category_ViewSplashTest extends Elite_Vaf_TestCase
         $categoryView->setCategoryId(1);
         $this->assertShouldShowSplash( $categoryView, 'when category requires a vehicle & no vehicle is selected, should show the splash page' );
     }
+
+    function testWhenWildcardAndNoVehicleSelectedShouldShowSplash()
+    {
+        $config = new Zend_Config( array('category'=>array('requireVehicle'=>'all')) );
+        $categoryView = new Elite_Vaf_Block_Category_View;
+        $categoryView->setConfig($config);
+        $categoryView->setCategoryId(1);
+        $this->assertShouldShowSplash( $categoryView, 'when category requires a vehicle & no vehicle is selected, should show the splash page' );
+    }
     
     function testWhenCategoryDoesntRequireVehicleAndNoVehicleSelectedShouldNotShowSplash()
     {
