@@ -86,7 +86,7 @@ class Elite_Vaf_Block_Category_View extends Mage_Catalog_Block_Category_View
     /** @return boolean */
     function vehicleIsSelected()
     {
-        return Elite_Vaf_Helper_Data::getInstance()->getFit() ? true : false;
+        return Elite_Vaf_Helper_Data::getInstance()->vehicleSelection() ? true : false;
     }
     
     function setConfig($config)

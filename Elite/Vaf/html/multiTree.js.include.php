@@ -302,7 +302,7 @@
         * Select click event
         */
         $(element).find( 'select' ).click( function() {
-            $(this).parents( '.' + classes.multiTree ).find( '.' + classes.multiTreeAdd ).attr( 'disabled', '' );
+            $(this).parents( '.' + classes.multiTree ).find( '.' + classes.multiTreeAdd ).removeAttr( 'disabled' );
             collapseChildrenOf( $( this ) );
             // if clicking on node already expanded
             if( element.last === $(this).val() )

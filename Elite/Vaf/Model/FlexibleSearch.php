@@ -327,7 +327,7 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
 
     function getSelectedDefinition()
     {
-	return Elite_Vaf_Helper_Data::getInstance()->getFit();
+	return Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
     }
 
     /** @return Zend_Db_Adapter_Abstract */

@@ -45,7 +45,7 @@ class Elite_Vaflogo_Block_Logo extends Mage_Core_Block_Abstract
 
     function selectionPart()
     {
-	$vehicle = Elite_Vaf_Helper_Data::getInstance()->getFit();
+	$vehicle = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
 	if (!$vehicle)
 	{
 	    return false;

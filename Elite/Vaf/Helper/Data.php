@@ -137,7 +137,7 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
     }
 
     /** @todo rename to getSelectedDefinition() */
-    function getFit()
+    function vehicleSelection()
     {
 	$this->storeFitInSession();
 	$search = $this->flexibleSearch();
@@ -159,7 +159,7 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
     {
 	$this->storeFitInSession();
 	$productIds = $this->flexibleSearch()->doGetProductIds();
-	return $productIds;
+        return $productIds;
     }
 
     /** Get the option loading text for the ajax */

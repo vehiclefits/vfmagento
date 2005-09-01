@@ -30,7 +30,7 @@ class Elite_Vaf_Block_Product_Result extends Elite_Vaf_Block_Product_List
 
     function getHeaderText()
     {
-        $fit = Elite_Vaf_Helper_Data::getInstance()->getFit();
+        $fit = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
         if( $fit )
         {            
             return Elite_Vaf_Helper_Data::getInstance()->__("Products for %s", $this->htmlEscape( $fit->__toString() ) );        

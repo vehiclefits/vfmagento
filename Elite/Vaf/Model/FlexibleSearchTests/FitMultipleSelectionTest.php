@@ -18,7 +18,8 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitMultipleSelectionTest extends Elite
             'year_end' => $civic2001->getValue('year')
         );
         $helper = $this->getHelper( array(), $requestParams );
-//        $this->assertEquals( $vehicle->getLevel('year')->getId(), $helper->getFit()->getLeafValue() );
+        
+        return $this->markTestIncomplete();
     }
 
 }

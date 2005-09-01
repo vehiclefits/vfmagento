@@ -16,9 +16,9 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitPartialSelectionTest extends Elite_
         );
         $helper = $this->getHelper( array(), $requestParams );
         
-        $this->assertEquals( $vehicle->getLevel('make')->getId(), $helper->getFit()->getValue('make') );
-        $this->assertEquals( 0, $helper->getFit()->getValue('model') );
-        $this->assertEquals( 0, $helper->getFit()->getValue('year') );
+        $this->assertEquals( $vehicle->getLevel('make')->getId(), $helper->vehicleSelection()->getValue('make') );
+        $this->assertEquals( 0, $helper->vehicleSelection()->getValue('model') );
+        $this->assertEquals( 0, $helper->vehicleSelection()->getValue('year') );
     }
     
     function testShouldStoreInSession()
@@ -78,6 +78,6 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitPartialSelectionTest extends Elite_
     {
         $vehicle = $this->createMMY();
         $helper = $this->getHelper( array(), array('make'=>'loading', 'model'=>'loading', 'year'=>$vehicle->getLevel('year')->getId()) );
-        $this->assertFalse( $helper->getFit() );
+        $this->assertFalse( $helper->vehicleSelection() );
     }
 }

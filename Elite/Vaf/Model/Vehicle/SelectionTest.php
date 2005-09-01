@@ -17,7 +17,6 @@ class Elite_Vaf_Model_Vehicle_SelectionTest extends Elite_Vaf_Helper_DataTestCas
         $this->assertTrue($selection->contains($vehicle) );
     }
 
-
     function testShouldContainMultipleVehicles()
     {
         $vehicle1 = $this->createVehicle(array('make'=>'Honda','model'=>'civic','year'=>2000));
@@ -25,6 +24,20 @@ class Elite_Vaf_Model_Vehicle_SelectionTest extends Elite_Vaf_Helper_DataTestCas
         $selection = new Elite_Vaf_Model_Vehicle_Selection(array($vehicle1,$vehicle2));
         $this->assertTrue($selection->contains($vehicle1) );
         $this->assertTrue($selection->contains($vehicle2) );
+    }
+    
+    function testSelectionShouldContainYearRange()
+    {
+        return $this->markTestIncomplete();
+        /*
+        $vehicle1 = $this->createVehicle(array('make'=>'Honda','model'=>'civic','year'=>2000));
+        $vehicle2 = $this->createVehicle(array('make'=>'Honda','model'=>'civic','year'=>2001));
+        $vehicle3 = $this->createVehicle(array('make'=>'Honda','model'=>'civic','year'=>2002));
+        $selection = Elite_Vaf_Model_Vehicle_Selection::yearRange(array('make'=>'Honda','model'=>'civic','year_start'=>2000,'year_end'=>'2002'));
+        $this->assertTrue($selection->contains($vehicle1) );
+        $this->assertTrue($selection->contains($vehicle2) );
+        $this->assertTrue($selection->contains($vehicle3) );
+*/
     }
 
 }

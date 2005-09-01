@@ -29,7 +29,7 @@ class Elite_Vafsitemap_Helper_SeoName
     
     protected function getFit()
     {
-        return Elite_Vaf_Helper_Data::getInstance()->getFit();
+        return Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
     }
     
     protected function getFitId()

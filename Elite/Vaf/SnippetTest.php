@@ -14,7 +14,7 @@ class Elite_Vaf_SnippetTest extends Elite_Vaf_TestCase
         $request = $this->getRequest( $vehicle->toValueArray() );
         $helper = new Elite_Vaf_Helper_Data();
         $helper->setRequest( $request );
-        $vehicle = $helper->getFit();                                                              
+        $vehicle = $helper->vehicleSelection();                                                              
         $this->assertMMYTitlesEquals( self::MAKE, self::MODEL, self::YEAR, $vehicle );
     }
     

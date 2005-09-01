@@ -21,7 +21,7 @@ class Elite_Vaf_ProductController extends Mage_Catalog_ProductController
         $helper->setRequest( $this->getRequest() );
         $helper->storeFitInSession();
         
-        if(!$helper->getFit() || !$helper->getProductIds() )
+        if(!$helper->vehicleSelection() || !$helper->getProductIds() )
         {
             return $this->redirectToHomePage();
         }

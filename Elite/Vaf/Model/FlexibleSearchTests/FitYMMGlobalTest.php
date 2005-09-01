@@ -28,6 +28,6 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitYMMGlobalTest extends Elite_Vaf_Tes
         $this->insertMappingMMY($vehicle2, 1);
         
         $this->setRequestParams($vehicle1->toValueArray());
-        $this->assertEquals( $vehicle1->toValueArray(), Elite_Vaf_Helper_Data::getInstance()->getFit()->toValueArray() );
+        $this->assertEquals( $vehicle1->toValueArray(), Elite_Vaf_Helper_Data::getInstance()->vehicleSelection()->toValueArray() );
     }
 }

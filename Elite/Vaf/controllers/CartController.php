@@ -77,7 +77,7 @@ class Elite_Vaf_CartController extends Mage_Checkout_CartController
     /** @return Elite_Vaf_Model_Vehicle */
     protected function getFit()
     {
-        return Elite_Vaf_Helper_Data::getInstance()->getFit();
+        return Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
     }
     
     protected function getProductId()

@@ -5,7 +5,7 @@ class Elite_Vafbundle_Model_Bundle_Option extends Mage_Bundle_Model_Option
     {
 	$startTime = time();
 
-        $vehicle = Elite_Vaf_Helper_Data::getInstance()->getFit();
+        $vehicle = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
         
         if( Mage::app()->getStore()->isAdmin() )
         {

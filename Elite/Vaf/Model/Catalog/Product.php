@@ -288,7 +288,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     
     function setFitFromGlobalIfNoLocalFitment()
     {
-        $globalFit = Elite_Vaf_Helper_Data::getInstance()->getFit();
+        $globalFit = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
 	if (!$this->fit && $globalFit)
 	{
 	    $this->setCurrentlySelectedFit($globalFit);

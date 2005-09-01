@@ -72,7 +72,7 @@ class Elite_Vaf_View_Helper_SearchLevel
         {
             return (bool)( $entity->getId() == $this->block->getSelected( $this->level ) );
         }
-        $fit = Elite_Vaf_Helper_Data::getInstance()->getFit();
+        $fit = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
         if( false !== $fit )
         {
             $level = $fit->getLevel( $this->leafLevel() );

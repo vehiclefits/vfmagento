@@ -14,7 +14,7 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitMMYTest extends Elite_Vaf_Helper_Da
                 'model'=>$vehicle->getLevel('model')->getId(),
                 'year'=>$vehicle->getLevel('year')->getId()
         ) );
-        $this->assertEquals( $vehicle->getLevel('year')->getId(), $helper->getFit()->getLeafValue() );
+        $this->assertEquals( $vehicle->getLevel('year')->getId(), $helper->vehicleSelection()->getLeafValue() );
     }
     
     function testGetFitId2()
@@ -25,21 +25,21 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitMMYTest extends Elite_Vaf_Helper_Da
                 'model'=>$vehicle->getLevel('model')->getId(),
                 'year'=>$vehicle->getLevel('year')->getId()
         ) );
-        $this->assertEquals( $vehicle->getLevel('year')->getId(), $helper->getFit()->getLeafValue() );
+        $this->assertEquals( $vehicle->getLevel('year')->getId(), $helper->vehicleSelection()->getLeafValue() );
     }
     
     function testGetFitIdMultiTree()
     {
         $vehicle = $this->createMMY();
         $helper = $this->getHelper( array(), array('fit'=>$vehicle->getLevel('year')->getId()) );
-        $this->assertEquals( $vehicle->getLevel('year')->getId(), $helper->getFit()->getLeafValue() );
+        $this->assertEquals( $vehicle->getLevel('year')->getId(), $helper->vehicleSelection()->getLeafValue() );
     }
     
     function testClearsWhenPassed0ForEachValue()
     {
         $_SESSION = array('make'=>1, 'model'=>1, 'year'=>1);
         $helper = $this->getHelper( array(), array('make'=>0, 'model'=>0, 'year'=>0) );
-        $this->assertFalse( $helper->getFit(), 'request values should take precedence over session value' );
+        $this->assertFalse( $helper->vehicleSelection(), 'request values should take precedence over session value' );
         $this->assertFalse( isset( $_SESSION['make'] ), 'passing 0 in request should reset session value' );
     }
     
@@ -81,7 +81,7 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitMMYTest extends Elite_Vaf_Helper_Da
         $vehicle = $this->createMMY();
         $_SESSION = $vehicle->toValueArray();
         $helper = $this->getHelper( array(), array() );
-        $this->assertEquals( $vehicle->getLevel('year')->getId(), $helper->getFit()->getLeafValue(), 'gets fit id from session if there is no request' );
+        $this->assertEquals( $vehicle->getLevel('year')->getId(), $helper->vehicleSelection()->getLeafValue(), 'gets fit id from session if there is no request' );
         $this->assertEquals( $vehicle->getLevel('year')->getId(), $helper->storeFitInSession(), 'gets fit id from session if there is no request' );
     }
     
