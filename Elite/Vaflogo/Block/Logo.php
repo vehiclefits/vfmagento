@@ -45,8 +45,8 @@ class Elite_Vaflogo_Block_Logo extends Mage_Core_Block_Abstract
 
     function selectionPart()
     {
-	$vehicle = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
-	if (!$vehicle)
+	$vehicleSelection = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
+	if ($vehicleSelection->isEmpty())
 	{
 	    return false;
 	}
@@ -54,13 +54,13 @@ class Elite_Vaflogo_Block_Logo extends Mage_Core_Block_Abstract
 	if($this->getConfig()->logo->level)
 	{
 	    $level = $this->getConfig()->logo->level;
-	    return $vehicle->getLevel($level)->__toString();
+	    return $vehicleSelection->getLevel($level)->__toString();
 	}
 
 	$schema = new Elite_Vaf_Model_Schema;
 	if(in_array('make', $schema->getLevels()))
 	{
-	    $make = $vehicle->getLevel('make');
+	    $make = $vehicleSelection->getLevel('make');
 	    if (!$make)
 	    {
 		return false;
@@ -69,7 +69,7 @@ class Elite_Vaflogo_Block_Logo extends Mage_Core_Block_Abstract
 	}
 
 	$rootLevel = $schema->getRootLevel();
-	return $vehicle->getLevel($rootLevel)->__toString();
+	return $vehicleSelection->getLevel($rootLevel)->__toString();
     }
 
     function selectionToken()

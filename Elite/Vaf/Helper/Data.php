@@ -136,12 +136,11 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
 	$this->_request = $request;
     }
 
-    /** @todo rename to getSelectedDefinition() */
     function vehicleSelection()
     {
 	$this->storeFitInSession();
 	$search = $this->flexibleSearch();
-	return $search->getDefinition();
+	return $search->vehicleSelection();
     }
 
     function getProductIds()

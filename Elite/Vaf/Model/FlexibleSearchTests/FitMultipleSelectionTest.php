@@ -8,6 +8,7 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitMultipleSelectionTest extends Elite
       
     function testMultipleSelections()
     {
+        return $this->markTestIncomplete();
         $civic2000 = $this->createMMY('Honda','Civic','2000');
         $civic2001 = $this->createMMY('Honda','Civic','2001');
        
@@ -19,7 +20,8 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitMultipleSelectionTest extends Elite
         );
         $helper = $this->getHelper( array(), $requestParams );
         
-        return $this->markTestIncomplete();
+        $this->assertTrue( $helper->vehicleSelection()->contains($civic2000) );
+        $this->assertTrue( $helper->vehicleSelection()->contains($civic2001) );
     }
 
 }

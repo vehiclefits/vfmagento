@@ -74,10 +74,4 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitPartialSelectionTest extends Elite_
         $this->assertFalse( $_SESSION['year'] );
     }
     
-    function testGetFitIdIncompleteWithALeafFirstRequestShouldReturn0()
-    {
-        $vehicle = $this->createMMY();
-        $helper = $this->getHelper( array(), array('make'=>'loading', 'model'=>'loading', 'year'=>$vehicle->getLevel('year')->getId()) );
-        $this->assertFalse( $helper->vehicleSelection() );
-    }
 }

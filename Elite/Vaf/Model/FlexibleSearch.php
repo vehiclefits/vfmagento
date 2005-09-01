@@ -105,33 +105,65 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
 	}
     }
 
-    function getDefinition()
+    function vehicleSelection()
     {
-	if (!$this->getId())
-	{
-	    return false;
-	}
-	$vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder($this->schema);
-	if ($this->schema->getLeafLevel() == $this->getLevel())
-	{
-	    $id = $this->getValueForSelectedLevel($this->getLevel());
-	} else
-	{
-	    $id = $this->getId();
-	}
+        if($this->shouldClear())
+        {
+            $this->clearSelection();
+            return new Elite_Vaf_Model_Vehicle_Selection(array());
+        }
+        
+        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder($this->schema);
+        
+        // Multi-tree (admin panel) integration
+        if($this->request->getParam('fit'))
+        {
+            $id = $this->getId();
+            if (!$id)
+            {
+                return false;
+            }
+            return $vehicleFinder->findByLevel($this->getLevel(), $id);
+        }
+        
+        if(!$this->hasGETRequest() && !$this->hasSESSIONRequest())
+        {
+            return new Elite_Vaf_Model_Vehicle_Selection(array());
+        }
 
-	if (!$id)
+        // front-end lookup
+        try
 	{
-	    return false;
-	}
-
-	try
-	{
-	    return $vehicleFinder->findByLevel($this->getLevel(), $id);
+	    $vehicles = $vehicleFinder->findByLevelIds($this->vehicleRequestParams(), Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
+            $selection = new Elite_Vaf_Model_Vehicle_Selection($vehicles);
+            return $selection;
 	} catch (Elite_Vaf_Exception_DefinitionNotFound $e)
 	{
 	    return false;
 	}
+    }
+    
+    function vehicleRequestParams()
+    {
+        $requestParams = $this->request->getParams();
+        $return = array();
+        foreach($this->schema->getLevels() as $level)
+        {
+            if(isset($_SESSION[$level]) && (int)$_SESSION[$level])
+            {
+                $return[$level] = $_SESSION[$level];
+            }
+            else if(isset($requestParams[$level]) && (int)$requestParams[$level])
+            {
+                $return[$level] = $requestParams[$level];
+            }
+            else
+            {
+                $return[$level] = 0;
+            }
+        }
+        
+        return $return;
     }
 
     function requestingLevel($level)
@@ -206,7 +238,7 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
 
     function doGetProductIds()
     {
-	if (false === $this->getSelectedDefinition())
+	if ($this->vehicleSelection()->isEmpty())
 	{
 	    return array();
 	}
@@ -216,7 +248,7 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
 	$where .= 'OR (';
 	foreach ($this->schema()->getLevels() as $level_type)
 	{
-	    $id = (int) $this->getSelectedDefinition()->getLevel($level_type)->getId();
+	    $id = (int) $this->vehicleSelection()->getLevel($level_type)->getId();
 	    if (!$id)
 	    {
 		continue;
@@ -229,6 +261,7 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
 	    $where .= sprintf(' `%s_id` = %d  ', $level_type, $id);
 	}
 	$where .= ')';
+        
 	$rows = $this->getReadAdapter()->fetchAll("SELECT distinct( entity_id ) FROM elite_mapping WHERE  $where");
 
 	if (count($rows) == 0)
@@ -293,7 +326,7 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
 	try
 	{
 	    $level = $this->getLevel();
-	    $vehicle = $this->getDefinition();
+	    $vehicle = $this->vehicleSelection();
 	    if (!$vehicle)
 	    {
 		return false;
@@ -323,11 +356,6 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
 		unset($_SESSION[$level]);
 	    }
 	}
-    }
-
-    function getSelectedDefinition()
-    {
-	return Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
     }
 
     /** @return Zend_Db_Adapter_Abstract */

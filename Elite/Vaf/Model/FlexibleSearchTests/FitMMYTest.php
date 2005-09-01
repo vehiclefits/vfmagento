@@ -39,7 +39,7 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitMMYTest extends Elite_Vaf_Helper_Da
     {
         $_SESSION = array('make'=>1, 'model'=>1, 'year'=>1);
         $helper = $this->getHelper( array(), array('make'=>0, 'model'=>0, 'year'=>0) );
-        $this->assertFalse( $helper->vehicleSelection(), 'request values should take precedence over session value' );
+        $this->assertTrue( $helper->vehicleSelection()->isEmpty(), 'request values should take precedence over session value' );
         $this->assertFalse( isset( $_SESSION['make'] ), 'passing 0 in request should reset session value' );
     }
     

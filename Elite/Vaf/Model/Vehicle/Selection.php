@@ -3,7 +3,7 @@ class Elite_Vaf_Model_Vehicle_Selection
 {
     public $vehicles;
     
-    function __construct($vehicles)
+    function __construct($vehicles=array())
     {
         if(is_array($vehicles))
         {
@@ -12,6 +12,14 @@ class Elite_Vaf_Model_Vehicle_Selection
         else
         {
             $this->vehicles = array($vehicles);
+        }
+    }
+    
+    function getFirstVehicle()
+    {
+        if(isset($this->vehicles[0]))
+        {
+            return $this->vehicles[0];
         }
     }
     
@@ -27,4 +35,28 @@ class Elite_Vaf_Model_Vehicle_Selection
         return false;
     }
     
+    function __call($methodName,$arguments)
+    {
+        if($this->isEmpty())
+        {
+            return;
+        }
+        
+        $method = array($this->getFirstVehicle(),$methodName);
+        return call_user_func_array( $method, $arguments );
+    }
+    
+    function __toString()
+    {
+        if($this->isEmpty())
+        {
+            return '';
+        }
+        return $this->getFirstVehicle()->__toString();
+    }
+    
+    function isEmpty()
+    {
+        return 0 == count($this->vehicles);
+    }
 }

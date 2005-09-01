@@ -8,10 +8,13 @@ class Elite_Vaf_Model_Catalog_ProductTests_PriceChangerTest extends Elite_Vafimp
 	$this->mappingsImport('sku, make, model, year, price
 sku, honda, civic, 2000, 222.22
 sku, honda, civic, 2001');
-
+        
 	$product = $this->getProductForSku('sku');
-	$product->setCurrentlySelectedFit($this->vehicleFinder()->findOneByLevels(array('make'=>'honda', 'model'=>'civic', 'year'=>2001)));
-	$this->assertEquals( null, $product->getPrice(), 'should not change price');
+        $vehicle1 = $this->vehicleFinder()->findOneByLevels(array('make'=>'honda', 'model'=>'civic', 'year'=>2000));
+        $vehicle2 = $this->vehicleFinder()->findOneByLevels(array('make'=>'honda', 'model'=>'civic', 'year'=>2001));
+
+	$product->setCurrentlySelectedFit($vehicle2);
+	$this->assertNull( $product->getPrice(), 'should not change price');
 
     }
 

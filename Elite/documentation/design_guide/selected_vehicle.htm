@@ -30,9 +30,10 @@
 <p>The vehicle object returned by the getFit() method implements a PHP magic method, allowing it to be treated a string or an object. To display the name of a vehicle, simply echo the object.</p>
 <pre class="kodify php"> 
 // Showing products for your: 2009 Honda Civic
-$vehicle = Elite_Vaf_Helper_Data::getInstance()-&gt;getFit();
-if( false != $vehicle)
+$vehicleSelection = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
+if( !$vehicleSelection->isEmpty() )
 {
+    $vehicle = $vehicleSelection->getFirstVehicle();
     echo 'Showing products for your: ';
     echo $this->htmlEscape($vehicle); // 2009 Honda Civic
 }
@@ -42,15 +43,16 @@ if( false != $vehicle)
 <p>You can fetch each 'level' of the vehicle separately, and form your own custom formats.</p>
 <pre class="kodify php"> 
 // Showing products for your: 2009 Honda Civic
-$vehicle = Elite_Vaf_Helper_Data::getInstance()-&gt;getFit();
-if( false != $vehicle)
+$vehicleSelection = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
+if( !$vehicleSelection->isEmpty() )
 {
+    $vehicle = $vehicleSelection->getFirstVehicle();
     echo 'Showing products for your: ';
-    echo $this->htmlEscape($vehicle-&gt;getLevel('year')-&gt;getTitle());  // 2009
+    echo $this->htmlEscape($vehicle->getLevel('year')->getTitle());  // 2009
     echo ' ';
-    echo $this->htmlEscape($vehicle-&gt;getLevel('make')-&gt;getTitle());  // Honda
+    echo $this->htmlEscape($vehicle->getLevel('make')->getTitle());  // Honda
     echo ' ';
-    echo $this->htmlEscape($vehicle-&gt;getLevel('model')-&gt;getTitle());  // Civic
+    echo $this->htmlEscape($vehicle->getLevel('model')->getTitle());  // Civic
 }
 </pre>
     

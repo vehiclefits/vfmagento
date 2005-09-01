@@ -86,11 +86,13 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     function getPrice()
     {
         $this->setFitFromGlobalIfNoLocalFitment();
-	if( $this->currentlySelectedFit() && $customPrice = $this->customPrice($this->currentlySelectedFit()))
+	if( $this->currentlySelectedFit()->isEmpty())
 	{
-	    return $customPrice;
+            return parent::getPrice();
 	}
-	return parent::getPrice();
+        
+        $vehicle = $this->currentlySelectedFit()->getFirstVehicle();
+        return $this->customPrice($vehicle);	
     }
 
     function getFormatedPrice()
@@ -121,8 +123,9 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
         }
         
 	$select->where( '`entity_id` = ?', $this->getId() );
-        
-        return $this->query( $select )->fetchColumn();
+
+        $price = $this->query( $select )->fetchColumn();
+        return (!$price) ? null : $price;
     }
 
     function getOrderBy()
@@ -282,16 +285,16 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 	}
 
 	$find = array('_product_', '_vehicle_');
-	$replace = array($name, (string) $this->currentlySelectedFit());
+	$replace = array($name, (string) $this->currentlySelectedFit()->getFirstVehicle());
 	return str_replace($find, $replace, $template);
     }
     
     function setFitFromGlobalIfNoLocalFitment()
     {
-        $globalFit = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
-	if (!$this->fit && $globalFit)
+        $selection = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
+	if (!$this->fit && !$selection->isEmpty())
 	{
-	    $this->setCurrentlySelectedFit($globalFit);
+	    $this->fit = $selection;
 	}
     }
 
@@ -307,23 +310,31 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 
     function setCurrentlySelectedFit($fit)
     {
-	$this->fit = $fit;
+	$this->fit = new Elite_Vaf_Model_Vehicle_Selection(array($fit));
     }
 
     function currentlySelectedFit()
     {
         $this->setFitFromGlobalIfNoLocalFitment();
-	return $this->fit;
+        if($this->fit)
+        {
+            return $this->fit;
+        }
+        else
+        {
+            return new Elite_Vaf_Model_Vehicle_Selection();
+        }
     }
 
     function fitsSelection()
     {
 	$currentVehicleSelection = $this->currentlySelectedFit();
-	if (!$currentVehicleSelection)
+        if ($currentVehicleSelection->isEmpty())
 	{
 	    return false;
 	}
-        return $this->fitsVehicle($currentVehicleSelection);
+        $vehicle = $currentVehicleSelection->getFirstVehicle();
+        return $this->fitsVehicle($vehicle);
     }
 
     function fitsVehicle($vehicle)

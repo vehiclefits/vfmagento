@@ -56,7 +56,7 @@ class Elite_Vaftire_Model_FlexibleSearch extends Elite_Vaf_Model_FlexibleSearch_
 
     function sectionWidth()
     {
-	if ($this->getDefinition())
+	if ($this->vehicleSelection())
 	{
 	    $this->setSizeFromVehicle();
 	}
@@ -65,7 +65,7 @@ class Elite_Vaftire_Model_FlexibleSearch extends Elite_Vaf_Model_FlexibleSearch_
 
     function aspectRatio()
     {
-	if ($this->getDefinition())
+	if ($this->vehicleSelection())
 	{
 	    $this->setSizeFromVehicle();
 	}
@@ -74,7 +74,7 @@ class Elite_Vaftire_Model_FlexibleSearch extends Elite_Vaf_Model_FlexibleSearch_
 
     function diameter()
     {
-	if ($this->getDefinition())
+	if ($this->vehicleSelection())
 	{
 	    $this->setSizeFromVehicle();
 	}
@@ -97,7 +97,7 @@ class Elite_Vaftire_Model_FlexibleSearch extends Elite_Vaf_Model_FlexibleSearch_
 	{
 	    return;
 	}
-	$vehicle = $this->getDefinition();
+	$vehicle = $this->vehicleSelection();
 	$select = $this->getReadAdapter()->select()
 			->from('elite_vehicle_tire', array('section_width', 'diameter', 'aspect_ratio'))
 			->where('leaf_id = ?', $vehicle->getLeafValue())
