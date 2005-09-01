@@ -111,6 +111,17 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
 	$identityMap->add($vehicle);
 	return $vehicle;
     }
+    
+    function findByRange($levels)
+    {
+        $vehicles = array();
+        for($year=$levels['year_start']; $year<=$levels['year_end']; $year++ )
+        {
+            $theseVehicles = $this->findByLevels($levels+array('year'=>$year));
+            $vehicles = array_merge($vehicles,$theseVehicles);
+        }
+        return $vehicles;
+    }
 
     /**
      * @param array conjunction of critera Ex: ('make'=>'honda','year'=>'2000')

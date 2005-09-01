@@ -9,14 +9,22 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitMMYTest extends Elite_Vaf_Helper_Da
     function testGetFitId()
     {
         $vehicle = $this->createMMY();
-        $helper = $this->getHelper( array(), $vehicle->toValueArray() );
+        $helper = $this->getHelper( array(), array(
+                'make'=>$vehicle->getLevel('make')->getId(),
+                'model'=>$vehicle->getLevel('model')->getId(),
+                'year'=>$vehicle->getLevel('year')->getId()
+        ) );
         $this->assertEquals( $vehicle->getLevel('year')->getId(), $helper->getFit()->getLeafValue() );
     }
     
     function testGetFitId2()
     {
         $vehicle = $this->createMMY();
-        $helper = $this->getHelper( array(), $vehicle->toValueArray() );
+        $helper = $this->getHelper( array(), array(
+                'make'=>$vehicle->getLevel('make')->getId(),
+                'model'=>$vehicle->getLevel('model')->getId(),
+                'year'=>$vehicle->getLevel('year')->getId()
+        ) );
         $this->assertEquals( $vehicle->getLevel('year')->getId(), $helper->getFit()->getLeafValue() );
     }
     

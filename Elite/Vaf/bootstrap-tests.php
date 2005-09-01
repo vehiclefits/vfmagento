@@ -184,4 +184,9 @@ class Mage
     {
         self::$_registry = array();
     }
+
+    static function getResourceSingleton()
+    {
+        
+    }
 }
