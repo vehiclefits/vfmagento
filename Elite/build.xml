@@ -25,6 +25,8 @@
         <include name="Elite/Vaf/*/**" />
         <include name="Elite/Vafinstall/*" />
         <include name="Elite/Vafinstall/*/**" />
+        <include name="Elite/Vafgarage/*" />
+        <include name="Elite/Vafgarage/*/**" />
 	    <include name="Elite/skin/**" />
         <include name="Elite/skin/**" />
         <include name="Elite/install-vaf.php" />
