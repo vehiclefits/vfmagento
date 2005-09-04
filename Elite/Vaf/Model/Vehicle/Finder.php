@@ -112,6 +112,17 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
 	return $vehicle;
     }
     
+    function findByRangeIds($levelIds)
+    {
+        $vehicles = array();
+        for($year=$levelIds['year_start']; $year<=$levelIds['year_end']; $year++ )
+        {
+            $theseVehicles = $this->findByLevelIds($levelIds+array('year'=>$year));
+            $vehicles = array_merge($vehicles,$theseVehicles);
+        }
+        return $vehicles;
+    }
+    
     function findByRange($levels)
     {
         $vehicles = array();

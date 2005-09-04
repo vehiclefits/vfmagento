@@ -6,9 +6,8 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitMultipleSelectionTest extends Elite
         $this->switchSchema('make,model,year');
     }
       
-    function testMultipleSelections()
+    function testShouldFitInsideRange()
     {
-        return $this->markTestIncomplete();
         $civic2000 = $this->createMMY('Honda','Civic','2000');
         $civic2001 = $this->createMMY('Honda','Civic','2001');
        
@@ -22,6 +21,22 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitMultipleSelectionTest extends Elite
         
         $this->assertTrue( $helper->vehicleSelection()->contains($civic2000) );
         $this->assertTrue( $helper->vehicleSelection()->contains($civic2001) );
+    }
+    
+    function testShouldNotFitOutsideRange()
+    {
+        $civic2000 = $this->createMMY('Honda','Civic','2000');
+        $civic2001 = $this->createMMY('Honda','Civic','2001');
+       
+        $requestParams = array(
+            'make' => $civic2000->getValue('make'),
+            'model' => $civic2000->getValue('model'),
+            'year_start' => $civic2001->getValue('year'),
+            'year_end' => $civic2001->getValue('year')
+        );
+        $helper = $this->getHelper( array(), $requestParams );
+        
+        $this->assertFalse( $helper->vehicleSelection()->contains($civic2000) );
     }
 
 }

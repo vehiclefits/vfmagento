@@ -134,7 +134,15 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
         // front-end lookup
         try
 	{
-	    $vehicles = $vehicleFinder->findByLevelIds($this->vehicleRequestParams(), Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
+            $params = $this->vehicleRequestParams();
+            if(isset($params['year_start']) && isset($params['year_end']))
+            {
+                $vehicles = $vehicleFinder->findByRangeIds($params);
+            }
+            else
+            {
+                $vehicles = $vehicleFinder->findByLevelIds($params, Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
+            }
             $selection = new Elite_Vaf_Model_Vehicle_Selection($vehicles);
             return $selection;
 	} catch (Elite_Vaf_Exception_DefinitionNotFound $e)
@@ -149,9 +157,19 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
         $return = array();
         foreach($this->schema->getLevels() as $level)
         {
-            if(isset($_SESSION[$level]) && (int)$_SESSION[$level])
+            if(isset($_SESSION[$level.'_start']) && isset($_SESSION[$level.'_end']))
+            {
+                $return[$level.'_start'] = $_SESSION[$level.'_start'];
+                $return[$level.'_end'] = $_SESSION[$level.'_end'];
+            }
+            else if(isset($_SESSION[$level]) && (int)$_SESSION[$level])
             {
                 $return[$level] = $_SESSION[$level];
+            }
+            else if(isset($requestParams[$level.'_start']) && isset($requestParams[$level.'_end']))
+            {
+                $return[$level.'_start'] = $requestParams[$level.'_start'];
+                $return[$level.'_end'] = $requestParams[$level.'_end'];
             }
             else if(isset($requestParams[$level]) && (int)$requestParams[$level])
             {
