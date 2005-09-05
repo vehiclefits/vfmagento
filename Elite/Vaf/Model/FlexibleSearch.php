@@ -304,12 +304,20 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
 	{
 	    return;
 	}
-
+        
 	if ($this->hasGETRequest())
 	{
 	    foreach ($this->schema()->getLevels() as $level)
 	    {
-		$_SESSION[$level] = $this->getValueForSelectedLevel($level);
+                if($this->getValueForSelectedLevel($level.'_start'))
+                {
+                    $_SESSION[$level.'_start'] = $this->getValueForSelectedLevel($level.'_start');
+                    $_SESSION[$level.'_end'] = $this->getValueForSelectedLevel($level.'_end');
+                }
+                else
+                {
+                    $_SESSION[$level] = $this->getValueForSelectedLevel($level);
+                }
 	    }
 
 	    if (!isset($_SESSION['garage']))
