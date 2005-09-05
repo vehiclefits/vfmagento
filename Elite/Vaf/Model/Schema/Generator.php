@@ -13,7 +13,7 @@
 */
 class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
 {
-    const VERSION = 22;
+    const VERSION = 23;
     
     function __construct()
     {
