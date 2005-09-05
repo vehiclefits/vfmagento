@@ -11,8 +11,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_MemoryTest ext
     
     function testPerformance()
     {
-	return $this->markTestIncomplete();
-        ini_set('memory_limit','20M');
+        ini_set('memory_limit','12M');
         $this->mappingsImportFromFile($this->csvFile());
     }
 
@@ -23,7 +22,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_MemoryTest ext
     
     function csvFile()
     {
-        return dirname(__FILE__).'/MemoryTest.csv';
+        return dirname(__FILE__).'/PerformanceTest.csv';
     }
 
 }

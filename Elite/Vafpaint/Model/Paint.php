@@ -34,7 +34,7 @@ class Elite_Vafpaint_Model_Paint
     */
     function getCode()
     {
-        return $this->code;
+        return trim($this->code);
     }
     
     /**
@@ -42,7 +42,7 @@ class Elite_Vafpaint_Model_Paint
     */
     function getColor()
     {
-        return $this->color;
+        return trim($this->color);
     }
     
     /**
@@ -50,7 +50,7 @@ class Elite_Vafpaint_Model_Paint
     */
     function getName()
     {
-        return $this->name;
+        return trim($this->name);
     }
     
     /**

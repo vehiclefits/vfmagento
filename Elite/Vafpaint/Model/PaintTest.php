@@ -3,7 +3,7 @@ class Elite_Vafpaint_Model_PaintTest extends Elite_Vaf_TestCase
 {
     const CODE = 'B-27MZ';
     const COLOR = '#9CBBCC';
-    const NAME = ' Avignon Blue Metallic Clearcoat';
+    const NAME = 'Avignon Blue Metallic Clearcoat';
     
     function testCode()
     {
