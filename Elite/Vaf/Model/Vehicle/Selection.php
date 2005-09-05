@@ -15,6 +15,33 @@ class Elite_Vaf_Model_Vehicle_Selection
         }
     }
     
+    function earliestYear()
+    {
+        $earliestYear = null;
+        foreach($this->vehicles as $vehicle)
+        {
+            if(is_null($earliestYear) || $vehicle->getLevel('year')->getTitle() < $earliestYear)
+            {
+                $earliestYear = $vehicle->getLevel('year')->getTitle();
+            }
+        }
+        return $earliestYear;
+    }
+    
+    
+    function latestYear()
+    {
+        $latestYear = null;
+        foreach($this->vehicles as $vehicle)
+        {
+            if(is_null($latestYear) || $vehicle->getLevel('year')->getTitle() > $latestYear)
+            {
+                $latestYear = $vehicle->getLevel('year')->getTitle();
+            }
+        }
+        return $latestYear;
+    }
+    
     function getFirstVehicle()
     {
         if(isset($this->vehicles[0]))
