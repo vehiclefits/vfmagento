@@ -155,7 +155,8 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
             $return .= '`id` int(255) NOT NULL AUTO_INCREMENT,' . self::NEWLINE;
             $return .= '`title` varchar(255) NOT NULL,' . self::NEWLINE;
             $return .= $this->createForeignKeyIntoPreviousLevel($i);
-            $return .= 'PRIMARY KEY (`id`)' . self::NEWLINE;
+            $return .= 'PRIMARY KEY (`id`),' . self::NEWLINE;
+            $return .= 'KEY `title` (`title`)' . self::NEWLINE;
         $return .= ') ENGINE=InnoDB DEFAULT CHARSET=utf8;' . self::NEWLINE;
         $return .= $this->indexForeignKeyIntoPreviousLevel($i);
         

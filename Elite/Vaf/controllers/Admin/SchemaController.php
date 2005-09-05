@@ -58,9 +58,9 @@ class Elite_Vaf_Admin_SchemaController extends Mage_Adminhtml_Controller_Action
         $return = array();
         foreach($levels as $index=>$level)
         {
-            if($this->getRequest()->getParam($level.'Global'))
+            if(false)//$this->getRequest()->getParam($level.'Global'))
             {
-                $return[$level] = array('global'=> (bool)($this->getRequest()->getParam($level.'Global') == 'global'));
+                //$return[$level] = array('global'=> (bool)($this->getRequest()->getParam($level.'Global') == 'global'));
             }
             else
             {

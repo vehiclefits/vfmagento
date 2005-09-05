@@ -27,8 +27,9 @@ $levels = isset( $_REQUEST['levels'] ) ? $_REQUEST['levels'] : implode(',',$sche
     </fieldset>
 </form>
 
-<form action="?" class="vafSchemaForm">
+<!--<form action="?" class="vafSchemaForm">
     <input type="hidden" name="levels" value="<?=$levels?>" />
+    
     <fieldset>
         <legend>Change Settings</legend>
     
@@ -51,12 +52,14 @@ $levels = isset( $_REQUEST['levels'] ) ? $_REQUEST['levels'] : implode(',',$sche
             <?php
         }
         ?>
-        <br />
-        <strong>Warning:</strong> pressing submit will clear out any & all loaded data. Back up mappings+definitions files first.
-        <br />
-        <input name="submit" type="submit" value="Save" />
+        
     </fieldset>
-</form> 
+    
+    <br />
+    <strong>Warning:</strong> pressing submit will clear out any & all loaded data. Back up mappings+definitions files first.
+    <br />
+    <input name="submit" type="submit" value="Save" />
+</form> -->
 
 <form action="?" class="vafSchemaForm">
     <fieldset>
