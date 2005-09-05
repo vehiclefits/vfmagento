@@ -18,12 +18,13 @@ class Elite_Vaf_View_Helper_SearchLevel
     protected $prevLevel;
     protected $displayBrTag;
     
-    function display( Elite_Vaf_Block_Search $block, $level, $prevLevel = false, $displayBrTag = null )
+    function display( Elite_Vaf_Block_Search $block, $level, $prevLevel = false, $displayBrTag = null, $yearRangeAlias = null )
     {
         $this->displayBrTag = $displayBrTag;
         $this->block = $block;
         $this->level = $level;
         $this->prevLevel = $prevLevel;
+        $this->yearRangeAlias = $yearRangeAlias;
         return $this->_display();
     }
     
@@ -40,7 +41,7 @@ class Elite_Vaf_View_Helper_SearchLevel
         $prevLevelsIncluding = $this->schema()->getPrevLevelsIncluding($this->level);
         $prevLevelsIncluding = implode(',', $prevLevelsIncluding);
         ?>
-        <select name="<?=str_replace(' ','_',$this->level)?>" class="<?=str_replace(' ','_',$this->level)?>Select {prevLevelsIncluding: '<?=$prevLevelsIncluding?>'}">
+        <select name="<?=$this->selectName()?>" class="<?=$this->selectName()?>Select {prevLevelsIncluding: '<?=$prevLevelsIncluding?>'}">
             <option value="0"><?=$this->__($this->helper()->getDefaultSearchOptionText($this->level))?></option>  
             <?php
             foreach( $this->getEntities() as $entity )
@@ -59,6 +60,15 @@ class Elite_Vaf_View_Helper_SearchLevel
         return ob_get_clean();
     }
     
+    function selectName()
+    {
+        if($this->yearRangeAlias)
+        {
+            return $this->yearRangeAlias;
+        }
+        return str_replace(' ','_',$this->level);
+    }
+    
     function schema()
     {
         return new Elite_Vaf_Model_Schema();
@@ -72,16 +82,28 @@ class Elite_Vaf_View_Helper_SearchLevel
         {
             return (bool)( $entity->getId() == $this->block->getSelected( $this->level ) );
         }
+        
         $fit = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
-        if( false !== $fit )
+        if( false === $fit )
         {
-            $level = $fit->getLevel( $this->leafLevel() );
-            if( $level )
-            {
-                return (bool)( $entity->getTitle() == $level->getTitle() );
-            }
+            return false;
         }
-        return false;
+        
+        
+        if('year_start' == $this->yearRangeAlias)
+        {
+            return (bool) ($entity->getTitle() == $fit->earliestYear());
+        }
+        else if ('year_end' == $this->yearRangeAlias)
+        {
+            return (bool) ($entity->getTitle() == $fit->latestYear());
+        }
+        
+        $level = $fit->getLevel( $this->leafLevel() );
+        if( $level )
+        {
+            return (bool)( $entity->getTitle() == $level->getTitle() );
+        }
     }
     
     protected function getEntities()

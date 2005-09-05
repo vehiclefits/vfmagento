@@ -63,12 +63,16 @@
             $displayLevels = $this->getLevels();
             $c = count( $displayLevels );
             
-            for( $i = 0; $i < $c; $i++ )
-            {
-                $level = $displayLevels[ $i ];
-                $prevLevel = ( $i > 0 ) ? $displayLevels[ $i - 1 ] : false;
-                echo $helper->display( $this, $level, $prevLevel );
-            }
+//            for( $i = 0; $i < $c; $i++ )
+//            {
+//                $level = $displayLevels[ $i ];
+//                $prevLevel = ( $i > 0 ) ? $displayLevels[ $i - 1 ] : false;
+//                echo $helper->display( $this, $level, $prevLevel );
+//            }
+            echo $helper->display( $this, 'make', '' );
+            echo $helper->display( $this, 'model', 'make' );
+            echo $helper->display( $this, 'year', 'model', null, 'year_start' );
+            echo $helper->display( $this, 'year', 'model', null, 'year_end' );
             
             if( $this->showSearchButton() )
             {
