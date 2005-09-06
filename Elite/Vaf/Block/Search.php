@@ -79,10 +79,9 @@ class VF_Search_Mage extends VF_Search
          $this->chooser = new Elite_Vaf_Block_Search_CategoryChooser();
     }
     
-    function translate()
+    function translate($text)
     {
-        $args = func_get_args();
-        return Elite_Vaf_Helper_Data::getInstance()->__( $args[0] );
+        return Elite_Vaf_Helper_Data::getInstance()->__($text);
     }
     
     function currentCategoryId()
