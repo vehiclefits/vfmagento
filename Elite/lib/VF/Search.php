@@ -2,7 +2,7 @@
 class VF_Search implements VF_Configurable
 {
     
-    /** @var Mage_Core_Controller_Request_Http */
+    /** @var Zend_Controller_Request_Http */
     protected $_request;
     
     /** @var Zend_Config */
@@ -13,19 +13,9 @@ class VF_Search implements VF_Configurable
         return 0;
     }
     
-    /**
-     * Retrieve request object
-     *
-     * @return Mage_Core_Controller_Request_Http
-     */
     function getRequest()
     {
-        if( $this->_request instanceof Zend_Controller_Request_Abstract || $this->_request instanceof Mage_Core_Controller_Request_Http )
-        {
-            return $this->_request;
-        }
-        $this->_request = Elite_Vaf_Helper_Data::getInstance()->getRequest();
-        return $this->_request;
+        return new Zend_Controller_Request_Http;
     }
     
     /** for testability */
@@ -317,18 +307,7 @@ class VF_Search implements VF_Configurable
 
     function currentCategoryId()
     {
-        if(!$this->isCategoryPage())
-        {
-            return 0;
-        }
-        if(isset($this->current_category_id))
-        {
-            return $this->current_category_id;
-        }
-        $category = Mage::registry('current_category');
-        $categoryId = is_object($category) ? $category->getId() : 0;
-        $this->setCurrentCategoryId($categoryId);
-        return $categoryId;
+        return $this->current_category_id;
     }
 
     function setCurrentCategoryId($id)
@@ -342,7 +321,7 @@ class VF_Search implements VF_Configurable
         {
             return false;
         }
-        if( Mage::helper( 'vaf')->getConfig()->category->disable && !$this->isHomepage() && !$this->isVafPage() )
+        if( Elite_Vaf_Helper_Data::getInstance()->getConfig()->category->disable && !$this->isHomepage() && !$this->isVafPage() )
         {
             return false;
         }

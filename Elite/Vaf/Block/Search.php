@@ -82,4 +82,35 @@ class VF_Search_Mage extends VF_Search
         $args = func_get_args();
         return Elite_Vaf_Helper_Data::getInstance()->__( $args[0] );
     }
+    
+    function currentCategoryId()
+    {
+        if(!$this->isCategoryPage())
+        {
+            return 0;
+        }
+        if(isset($this->current_category_id))
+        {
+            return $this->current_category_id;
+        }
+        $category = Mage::registry('current_category');
+        $categoryId = is_object($category) ? $category->getId() : 0;
+        $this->setCurrentCategoryId($categoryId);
+        return $categoryId;
+    }
+    
+    /**
+     * Retrieve request object
+     *
+     * @return Mage_Core_Controller_Request_Http
+     */
+    function getRequest()
+    {
+        if( $this->_request instanceof Zend_Controller_Request_Abstract || $this->_request instanceof Mage_Core_Controller_Request_Http )
+        {
+            return $this->_request;
+        }
+        $this->_request = Elite_Vaf_Helper_Data::getInstance()->getRequest();
+        return $this->_request;
+    }
 }
