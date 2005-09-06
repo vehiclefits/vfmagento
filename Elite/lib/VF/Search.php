@@ -447,13 +447,12 @@ class VF_Search implements VF_Configurable
     
     function getClearText()
     {
-        return $this->__('Clear');
+        return $this->translate('Clear');
     }
     
-    function __()
+    function translate($text)
     {
-        $args = func_get_args();
-        return $args[0];
+        return $text;
     }
     
     function getFlexible()
@@ -530,5 +529,10 @@ class VF_Search implements VF_Configurable
     function url($url)
     {
         return $url;
+    }
+    
+    function htmlEscape($text)
+    {
+        return htmlentities($text);
     }
 }
