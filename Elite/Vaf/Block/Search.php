@@ -11,9 +11,7 @@
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the conditions in license.txt are met
 */
-class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements
-    VF_Configurable,
-    Elite_Vaf_Filterable
+class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements VF_Configurable
 {
     protected $search;
     
@@ -60,6 +58,25 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements
 
 class VF_Search_Mage extends VF_Search
 {
+    /** @var array of category ids we are searching */
+    protected $categories;
+    
+    /** @var Elite_Vaf_Block_Search_CategoryChooser */
+    protected $chooser;
+    
+    /** @var Elite_Vaf_Model_Catalog_Category_Filter */
+    protected $filter;
+    
+    function __construct()
+    {
+         $this->categories = ( isset( $_GET['category'] ) && is_array( $_GET['category'] ) ) ? $_GET['category'] : array( 3 );
+         foreach( $this->categories as $index => $id )
+         {
+             $this->categories[ $index ] = (int)$id; // allow integers only
+         }
+         $this->chooser = new Elite_Vaf_Block_Search_CategoryChooser();
+    }
+    
     function translate()
     {
         $args = func_get_args();

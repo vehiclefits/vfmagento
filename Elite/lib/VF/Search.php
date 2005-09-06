@@ -1,31 +1,12 @@
 <?php
-class VF_Search implements VF_Configurable, Elite_Vaf_Filterable
+class VF_Search implements VF_Configurable
 {
-
-    /** @var array of category ids we are searching */
-    protected $categories;
-    
-    /** @var Elite_Vaf_Block_Search_CategoryChooser */
-    protected $chooser;
-    
-    /** @var Elite_Vaf_Model_Catalog_Category_Filter */
-    protected $filter;
     
     /** @var Mage_Core_Controller_Request_Http */
     protected $_request;
     
     /** @var Zend_Config */
     protected $config;
-        
-    function __construct()
-    {
-         $this->categories = ( isset( $_GET['category'] ) && is_array( $_GET['category'] ) ) ? $_GET['category'] : array( 3 );
-         foreach( $this->categories as $index => $id )
-         {
-             $this->categories[ $index ] = (int)$id; // allow integers only
-         }
-         $this->chooser = new Elite_Vaf_Block_Search_CategoryChooser();
-    }
     
     function getProductId()
     {
