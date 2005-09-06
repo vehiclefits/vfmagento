@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_View_Helper_SearchLevelTest extends Elite_Vaf_TestCase
+class VF_SearchLevelTest extends Elite_Vaf_TestCase
 {
     const MAKE = 'Honda';
     const MODEL = 'Civic';
@@ -9,7 +9,7 @@ class Elite_Vaf_View_Helper_SearchLevelTest extends Elite_Vaf_TestCase
     {
         $vehicle = $this->createMMY( self::MAKE, self::MODEL, self::YEAR );
         
-        $searchlevel = new Elite_Vaf_View_Helper_SearchLevel_TestSub();
+        $searchlevel = new VF_SearchLevel_TestSub();
         $searchlevel->display( new Elite_Vaf_Block_Search, 'make' );
         
         Elite_Vaf_Helper_Data::getInstance()->getRequest()->setParam('make', $vehicle->getLevel('make')->getId() );
@@ -23,7 +23,7 @@ class Elite_Vaf_View_Helper_SearchLevelTest extends Elite_Vaf_TestCase
     {
         $vehicle = $this->createMMY( self::MAKE, self::MODEL, self::YEAR );
         
-        $searchlevel = new Elite_Vaf_View_Helper_SearchLevel_TestSub();
+        $searchlevel = new VF_SearchLevel_TestSub();
         $searchlevel->display( new Elite_Vaf_Block_Search, 'year' );
         
         Elite_Vaf_Helper_Data::getInstance()->getRequest()->setParam('make', $vehicle->getLevel('make')->getId() );
@@ -35,7 +35,7 @@ class Elite_Vaf_View_Helper_SearchLevelTest extends Elite_Vaf_TestCase
     
 }
 
-class Elite_Vaf_View_Helper_SearchLevel_TestSub extends Elite_Vaf_View_Helper_SearchLevel
+class VF_SearchLevel_TestSub extends VF_SearchLevel
 {
     function __($arg)
     {

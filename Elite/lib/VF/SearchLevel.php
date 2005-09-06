@@ -11,7 +11,7 @@
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the conditions in license.txt are met
 */
-class Elite_Vaf_View_Helper_SearchLevel
+class VF_SearchLevel
 {
     protected $block;
     protected $level;
@@ -117,16 +117,16 @@ class Elite_Vaf_View_Helper_SearchLevel
     
     protected function leafLevel()
     {
-		return Elite_Vaf_Helper_Data::getInstance()->getLeafLevel();
+        return Elite_Vaf_Helper_Data::getInstance()->getLeafLevel();
     }
     
     protected function displayBrTag()
     {
     	if( is_bool($this->displayBrTag))
     	{
-			return $this->displayBrTag;
+            return $this->displayBrTag;
     	}
-		return Elite_Vaf_Helper_Data::getInstance()->displayBrTag();
+        return Elite_Vaf_Helper_Data::getInstance()->displayBrTag();
     }
     
     protected function __( $text )

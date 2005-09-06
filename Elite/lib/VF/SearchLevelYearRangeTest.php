@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_View_Helper_SearchLevelYearRangeTest extends Elite_Vaf_TestCase
+class VF_SearchLevelYearRangeTest extends Elite_Vaf_TestCase
 {
 
     function testYearSelected()
@@ -7,7 +7,7 @@ class Elite_Vaf_View_Helper_SearchLevelYearRangeTest extends Elite_Vaf_TestCase
         $civic2000 = $this->createMMY('Honda','Civic','2000');
         $civic2001 = $this->createMMY('Honda','Civic','2001');
         
-        $searchlevel = new Elite_Vaf_View_Helper_SearchLevel_TestSub2();
+        $searchlevel = new VF_SearchLevel_TestSub2();
         $searchlevel->display( new Elite_Vaf_Block_Search, 'year', null, null, 'year_start' );
         
         Elite_Vaf_Helper_Data::getInstance()->getRequest()->setParams(array(
@@ -26,7 +26,7 @@ class Elite_Vaf_View_Helper_SearchLevelYearRangeTest extends Elite_Vaf_TestCase
         $civic2000 = $this->createMMY('Honda','Civic','2000');
         $civic2001 = $this->createMMY('Honda','Civic','2001');
         
-        $searchlevel = new Elite_Vaf_View_Helper_SearchLevel_TestSub2();
+        $searchlevel = new VF_SearchLevel_TestSub2();
         $searchlevel->display( new Elite_Vaf_Block_Search, 'year', null, null, 'year_start' );
         
         Elite_Vaf_Helper_Data::getInstance()->getRequest()->setParams(array(
@@ -45,7 +45,7 @@ class Elite_Vaf_View_Helper_SearchLevelYearRangeTest extends Elite_Vaf_TestCase
         $civic2000 = $this->createMMY('Honda','Civic','2000');
         $civic2001 = $this->createMMY('Honda','Civic','2001');
         
-        $searchlevel = new Elite_Vaf_View_Helper_SearchLevel_TestSub2();
+        $searchlevel = new VF_SearchLevel_TestSub2();
         $searchlevel->display( new Elite_Vaf_Block_Search, 'year', null, null, 'year_start' );
         
         Elite_Vaf_Helper_Data::getInstance()->getRequest()->setParams(array(
@@ -64,7 +64,7 @@ class Elite_Vaf_View_Helper_SearchLevelYearRangeTest extends Elite_Vaf_TestCase
         $civic2000 = $this->createMMY('Honda','Civic','2000');
         $civic2001 = $this->createMMY('Honda','Civic','2001');
         
-        $searchlevel = new Elite_Vaf_View_Helper_SearchLevel_TestSub2();
+        $searchlevel = new VF_SearchLevel_TestSub2();
         $searchlevel->display( new Elite_Vaf_Block_Search, 'year', null, null, 'year_end' );
         
         Elite_Vaf_Helper_Data::getInstance()->getRequest()->setParams(array(
@@ -80,7 +80,7 @@ class Elite_Vaf_View_Helper_SearchLevelYearRangeTest extends Elite_Vaf_TestCase
     
 }
 
-class Elite_Vaf_View_Helper_SearchLevel_TestSub2 extends Elite_Vaf_View_Helper_SearchLevel
+class VF_SearchLevel_TestSub2 extends VF_SearchLevel
 {
     function __($arg)
     {
