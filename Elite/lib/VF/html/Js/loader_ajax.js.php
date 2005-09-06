@@ -8,7 +8,7 @@ var getUrl = function( form, requestLevel ) {
     var value = select.val();
     
     var product = jQuery('#vafProduct').val();
-    var url = '<?=Elite_Vaf_Helper_Data::getBaseUrl(isset($_SERVER['HTTPS']) )?>vaf/ajax/process?';
+    var url = '<?=Elite_Vaf_Helper_Data::getInstance()->getBaseUrl(isset($_SERVER['HTTPS']) )?>vaf/ajax/process?';
     
     var levels = select.metadata().prevLevelsIncluding.split(',');
     

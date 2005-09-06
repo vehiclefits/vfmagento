@@ -321,6 +321,11 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements VF_Conf
 
 	return $search;
     }
+    
+    function getBaseUrl($https=null)
+    {
+         return Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK, $https);
+    }
 
 }
 
@@ -382,5 +387,4 @@ class My_Adapter extends Zend_Db_Adapter_Pdo_Mysql
 	$method = array($this->wrapped, $methodName);
 	return call_user_func_array($method, $arguments);
     }
-
 }
