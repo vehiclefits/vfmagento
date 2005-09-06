@@ -25,6 +25,18 @@ class Elite_Vaflinks_Block_CMSListTest extends Elite_Vaf_TestCase {
         $this->assertRegExp('#<a href="/vaflinks/cms\?make=[0-9]+">Honda</a>#', $html, 'should list out makes');
     }
 
+    function testShouldNotListModels()
+    {
+        $vehicle = $this->createMMY('Honda', 'Civic', '2000');
+        $this->insertMappingMMY($vehicle, 1);
+
+        $_GET['make'] = $vehicle->getValue('make');
+        $block = new Elite_Vaflinks_Block_CMSListTestSub;
+        $block->setConfig( new Zend_Config(array('directory'=>array('cmsEnable'=>true))) );
+        $html = $block->toHtml();
+        $this->assertNotRegExp('#<a href="/vaflinks/cms\?make=[0-9]+#', $html, 'should list out models');
+    }
+
 
 }
 

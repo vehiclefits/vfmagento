@@ -18,9 +18,6 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements
     /** @var array of category ids we are searching */
     protected $categories;
     
-    /** @var Zend_Config */
-    protected $config;
-    
     /** @var Elite_Vaf_Block_Search_CategoryChooser */
     protected $chooser;
     
@@ -44,21 +41,6 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements
     protected function getProductId()
     {
         return 0;
-    }
-    
-    function getConfig()
-    {
-        if( !$this->config instanceof Zend_Config )
-        {
-            
-            $this->config = Elite_Vaf_Helper_Data::getInstance()->getConfig();
-        }    
-        return $this->config;
-    }
-    
-    function setConfig( Zend_Config $config )
-    {
-        $this->config = $config;
     }
     
     /**

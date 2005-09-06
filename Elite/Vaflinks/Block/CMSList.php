@@ -15,4 +15,8 @@ class Elite_Vaflinks_Block_CMSList extends Elite_Vaflinks_Block_List
     {
         return (bool)$this->getConfig()->directory->cmsEnable;
     }
+
+    protected function lastLevelAlreadySelected() {
+        return $this->getFlexible()->getLevel() == $this->getSchema()->getRootLevel();
+    }
 }
