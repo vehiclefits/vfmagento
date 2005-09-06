@@ -212,7 +212,7 @@ class VF_Search implements VF_Configurable
         
         if( '' == $submitAction && '' == $submitOnProductAction && '' == $submitOnHomepageAction )
         {
-            return $this->url('vaf/product/list');
+            return Elite_Vaf_Helper_Data::getInstance()->homepageSearchURL();
         }
         
         if( $this->isProductPage() )
@@ -229,7 +229,7 @@ class VF_Search implements VF_Configurable
             
             if ( 'homepagesearch' == $submitOnProductAction )
             {
-                return $this->url('vaf/product/list');
+                return Elite_Vaf_Helper_Data::getInstance()->homepageSearchURL();
             }
             
             return $submitOnProductAction;
@@ -249,7 +249,7 @@ class VF_Search implements VF_Configurable
             
             if ( 'homepagesearch' == $submitOnHomepageAction )
             {
-                return $this->url('vaf/product/list');
+                return Elite_Vaf_Helper_Data::getInstance()->homepageSearchURL();
             }
             
             return $submitOnHomepageAction;
