@@ -242,7 +242,7 @@
             $.each( selects, function( i, select ) {
                 hideSelect( $( select ) );
                 // null out last value so a subsequent click will load children
-                last = null;
+                element.last = null;
             });
         };
         
