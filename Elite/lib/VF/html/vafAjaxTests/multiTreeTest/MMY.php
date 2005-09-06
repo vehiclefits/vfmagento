@@ -54,9 +54,11 @@ $values = $vehicle->toValueArray();
                 expect(1);
                 
                 jQuery(".modelSelect").bind( 'vafLevelLoaded', function() {
-                    start();
+                    
                     jQuery(".modelSelect").unbind('vafLevelLoaded');
                     firstOptionTextEquals( jQuery(".modelSelect"), "Civic" );
+                    
+                    start();
                 });
                 
                 multiTreeClick( 'make', <?=$values['make']?> );
@@ -67,12 +69,14 @@ $values = $vehicle->toValueArray();
                 expect(3);
                 jQuery('.vafQuickAdd_make').val('Acura');
                 jQuery('.makeSelect').bind('vafLevelQuickAdd', function() {
-                    start();
+                    
                     jQuery('.makeSelect').unbind('vafLevelQuickAdd');
                     
                     equals( jQuery('.makeSelect option:last').text(), 'Acura', "Should add option with title Acura" );
                     ok( jQuery('.makeSelect option:last').val() != 0, "Added option should have an id" );
                     equals( jQuery('.vafQuickAdd_make').val(), "", "should clear quick add box afterwards" );
+                    
+                    start();
                     
                 });
                 jQuery('.vafQuickAddSubmit_make').click();
@@ -83,9 +87,11 @@ $values = $vehicle->toValueArray();
                 expect(1);
                 
                 jQuery(".multiTree").bind( 'vafMultiTreeAdded', function() {
-                    start();
+                    
                     equals( 'make:1;', jQuery('.multiTree-selection').find('.vafcheck').val() );
                     jQuery(".multiTree").unbind( 'vafMultiTreeAdded');
+                    
+                    start();
                 });
                 
                 jQuery('.multiTree-Add').click();

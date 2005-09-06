@@ -52,17 +52,17 @@ $values = $vehicle->toValueArray();
 
             test("Make should be shown by default", function() {
                 expect(1);
-                equals( jQuery( '.makeSelect').css('display'), "inline" );
+                equals( jQuery( '.makeSelect').css('display'), "inline-block" );
             });
 
             test("Model should be shown by default", function() {
                 expect(1);
-                equals( jQuery( '.modelSelect').css('display'), "inline" );
+                equals( jQuery( '.modelSelect').css('display'), "inline-block" );
             });
 
             test("Year should be shown by default", function() {
                 expect(1);
-                equals( jQuery( '.yearSelect').css('display'), "inline" );
+                equals( jQuery( '.yearSelect').css('display'), "inline-block" );
             });
         });
     </script>

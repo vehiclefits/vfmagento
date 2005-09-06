@@ -45,7 +45,7 @@ $mapping->save();
             
             test("Make should be shown by default", function() {
                 expect(1);
-                equals( jQuery( '.makeSelect').css('display'), "inline" );
+                equals( jQuery( '.makeSelect').css('display'), "inline-block" );
             });
             
             test("Model should be hidden by default", function() {
@@ -65,7 +65,7 @@ $mapping->save();
                 jQuery(".modelSelect").bind( 'vafLevelLoaded', function() {
                     start();
                     jQuery(".modelSelect").unbind('vafLevelLoaded');
-                    equals( jQuery( '.modelSelect').css('display'), "inline" );
+                    equals( jQuery( '.modelSelect').css('display'), "inline-block" );
                 });
                 
                 click( 'make', <?=$vehicle->getLevel('make')->getId()?> );
@@ -78,7 +78,7 @@ $mapping->save();
                 jQuery(".yearSelect").bind( 'vafLevelLoaded', function() {
                     start();
                     jQuery(".yearSelect").unbind('vafLevelLoaded');
-                    equals( jQuery( '.yearSelect').css('display'), "inline" );
+                    equals( jQuery( '.yearSelect').css('display'), "inline-block" );
                 });
                 
                 click( 'model', <?=$vehicle->getLevel('make')->getId()?> );
