@@ -10,6 +10,8 @@ class VF_Search implements VF_Configurable
     
     protected $current_category_id;
     
+    protected $template;
+    
     function getProductId()
     {
         return 0;
@@ -534,5 +536,15 @@ class VF_Search implements VF_Configurable
     function htmlEscape($text)
     {
         return htmlentities($text);
+    }
+    
+    function setTemplate($template)
+    {
+        $this->template = $template;
+    }
+    
+    function getTemplate()
+    {
+        return $this->template;
     }
 }

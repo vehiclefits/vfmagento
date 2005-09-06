@@ -22,7 +22,7 @@ class Elite_Vaflinks_Block_List extends Elite_Vaf_Block_Search {
         return $vehicles;
     }
 
-    protected function lastLevelAlreadySelected() {
+    function lastLevelAlreadySelected() {
         return $this->getFlexible()->getLevel() == $this->getSchema()->getLeafLevel();
     }
 
@@ -57,15 +57,15 @@ class Elite_Vaflinks_Block_List extends Elite_Vaf_Block_Search {
         return '?' . $params;
     }
 
-    protected function getFlexible() {
+    function getFlexible() {
         return new VF_FlexibleSearch($this->getSchema(), $this->getRequest());
     }
 
-    protected function getSchema() {
+    function getSchema() {
         return new VF_Schema;
     }
 
-    protected function _toHtml() {
+    function _toHtml() {
         if (!$this->isEnabled()) {
             return;
         }

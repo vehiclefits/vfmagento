@@ -20,9 +20,16 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements VF_Conf
         $this->search = new VF_Search_Mage;
     }
     
-    function __call($name, $arguments)
+    function __call($method, $arguments)
     {
-        return call_user_func_array(array($this->search,$name), $arguments);
+        if(method_exists($this->search,$method))
+        {
+            return call_user_func_array(array($this->search,$method), $arguments);
+        }
+        else
+        {
+            return parent::__call($method, $arguments);
+        }
     }
     
     function getFilter()
@@ -53,6 +60,12 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements VF_Conf
         }
         $html = $this->renderView();
         return $html;
+    }
+    
+    function setTemplate($template)
+    {
+        $this->search->setTemplate($template);
+        parent::setTemplate($template);
     }
 }
 
