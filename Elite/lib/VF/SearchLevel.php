@@ -18,7 +18,7 @@ class VF_SearchLevel
     protected $prevLevel;
     protected $displayBrTag;
     
-    function display( Elite_Vaf_Block_Search $block, $level, $prevLevel = false, $displayBrTag = null, $yearRangeAlias = null )
+    function display( $block, $level, $prevLevel = false, $displayBrTag = null, $yearRangeAlias = null )
     {
         $this->displayBrTag = $displayBrTag;
         $this->block = $block;
@@ -108,16 +108,17 @@ class VF_SearchLevel
     
     protected function getEntities()
     {
+        $search = new VF_Search;
         if( $this->prevLevel )
         {
-            return $this->block->listEntities( $this->level );
+            return $search->listEntities( $this->level );
         }
-        return $this->block->listEntities( $this->level );
+        return $search->listEntities( $this->level );
     }
     
     protected function leafLevel()
     {
-        return Elite_Vaf_Helper_Data::getInstance()->getLeafLevel();
+        return $this->schema()->getLeafLevel();
     }
     
     protected function displayBrTag()
@@ -131,7 +132,7 @@ class VF_SearchLevel
     
     protected function __( $text )
     {
-        return $this->block->__( $text );
+        return $this->block->translate( $text );
     }
     
     protected function helper()
