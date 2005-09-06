@@ -14,7 +14,7 @@
 ini_set('display_errors',1);
 error_reporting(E_ALL | E_STRICT);
 require_once( 'app/Mage.php' );
-require_once( 'app/code/local/Elite/Vaf/Model/Schema/Generator.php' );
+require_once( 'app/code/local/Elite/lib/Vf/Schema/Generator.php' );
 Mage::app();
 $helper = Elite_Vaf_Helper_Data::getInstance();
 ?>

@@ -21,113 +21,6 @@ class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf extends Mage_Adminh
         return $product;
     }
     
-    function renderSelections()
-    {
-        ob_start();
-        ?>
-        <div class="multiTree-selections" style="height:500px; overflow:auto;">
-            <?php
-            foreach( $this->getFits() as $fit )
-            {
-                $leafLevel = Elite_Vaf_Helper_Data::getInstance()->getLeafLevel();
-                ?>
-                <div class="multiTree-selection">
-                    <input type="checkbox" name="vafcheck[]" class="vafcheck" value="<?=$leafLevel?>-<?=$fit->id?>" />
-                    <div class="multiTree-value" style="display:none"><?=$leafLevel?>-<?=$fit->id?></div>
-                    <a class="multiTree-closeLink" href="#">[ x ]</a>
-                    <?php
-                    $label = array();
-                    $schema = new VF_Schema();
-                    foreach( $schema->getLevels() as $level )
-                    {
-                        $label[] = $this->htmlEscape( $fit->$level );
-                    }
-                    echo implode( '<span class="multiTree-selection-seperator">&raquo;</span>', $label );
-                    ?>
-                    
-                </div>
-                <?php
-            }
-            ?>
-        </div>
-        <div class="multiTree-new-selections"></div>
-        <div class="multiTree-deleted-selections"></div>
-        <br  clear="all" />
-        <?php
-        return ob_get_clean();
-    }
-    
-    function renderMultiTree()
-    {
-        ob_start();
-        
-        $metaData = '{';
-            $metaData .= "'ajaxUrl':'" . $this->getUrl('*/vafajax/process') . "',";
-            $metaData .= "'quickAddUrl':'" . $this->getUrl('*/definitions/save') . "',";
-            $metaData .= "'elementName':'vaf'";
-            $metaData .= ", 'initialSelections':[{'level':'3','id':'0','node':{},'path':['','','']}]";
-        $metaData .= "}";
-        
-        ?>
-        <div class="field">
-            <div class="multiTree <?=$metaData?>">
-                <?=$this->renderAvailable()?>
-                <br  clear="all" />
-                <input type="checkbox" class="vafCheckAll" />  Select All
-                <br />
-                <a href="#" class="vafDeleteSelected">Delete Selected</a>
-                <?=$this->renderSelections()?>
-                
-            </div>
-        </div>
-        <?php
-        return ob_get_clean();
-    }
-    
-    function renderAvailable()
-    {
-        ob_start();
-        ?>
-        <?php
-        $schema = new VF_Schema();
-        $levels = $schema->getLevels();
-        foreach( $levels as $level )
-        {
-            ?>
-            <div class="multiTree-selectContainer" >
-                <?=ucfirst($this->htmlEscape($level))?>:<br />
-                <?php
-                $metadata = "{level:'$level', parent:'" . $schema->getPrevLevel($level) . "', parents:'" . implode(',',$schema->getPrevLevels($level)) . "',  parents_including:'" . implode(',',$schema->getPrevLevelsIncluding($level)) . "' }";
-                ?>
-                <select class="multiTree-select <?=$level?>Select <?=$metadata?>" size="10">
-                    <?php
-                    if( $schema->getRootLevel() == $level )
-                    {
-                        foreach( $this->listEntities($schema->getRootLevel()) as $entity )
-                        {
-                            ?>
-                            <option value="<?=$entity->getId()?>"><?=$entity->getTitle()?></option>
-                            <?php
-                        }
-                    }
-                    ?>
-                </select>
-                <br />
-                Quick Add:
-                <br />
-                <input type="text" class="vafQuickAdd vafQuickAdd_<?=$level?> {level:'<?=$level?>'}" name="vafQuickAdd_<?=$level?>" />
-                <input type="button" class="vafQuickAddSubmit vafQuickAddSubmit_<?=$level?> {level:'<?=$level?>'}" name="vafQuickAddSubmit_<?=$level?>" value="+" />
-                <br />
-                <span class="multiTree-levelName" style="display:none;"><?=$level?></span>
-            </div>
-            <?php
-        }
-        ?>
-        <input class="multiTree-Add" type="button" value="Add +" />
-        <?php
-        return ob_get_clean();
-    }
-    
     function renderConfigurations()
     {
         $return = '';
@@ -166,12 +59,6 @@ class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf extends Mage_Adminh
         }
         $templateName = Mage::getDesign()->getTemplateFilename($file, $params);
         return $templateName;
-    }
-    
-    function listEntities( $type, $parent_id = 0 )
-    {
-        $entity = new VF_Level( $type );
-        return $entity->listAll( $parent_id );              
     }
     
     function getConfig()
