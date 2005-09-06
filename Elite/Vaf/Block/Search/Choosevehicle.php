@@ -17,16 +17,16 @@ class Elite_Vaf_Block_Search_Choosevehicle extends Elite_Vaf_Block_Search
     
     function __construct()
     {
-         parent::__construct();
-         $this->setTemplate('vaf/search.phtml');
-	}
+        parent::__construct();
+        $this->setTemplate('vaf/search.phtml');
+    }
 	
     function action()
     {
         return '?';
     }
     
-    protected function _toHtml()
+    function _toHtml()
     {
         if (!$this->getTemplate()) {
             return '';
@@ -35,7 +35,7 @@ class Elite_Vaf_Block_Search_Choosevehicle extends Elite_Vaf_Block_Search
         return $html;
     }
     
-    protected function getHeaderText()
+    function getHeaderText()
     {
         return 'Choose your Vehicle';
     }
