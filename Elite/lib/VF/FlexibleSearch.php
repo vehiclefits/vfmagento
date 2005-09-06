@@ -321,11 +321,11 @@ class VF_FlexibleSearch implements VF_FlexibleSearch_Interface
                 }
 	    }
 
-	    if (!isset($_SESSION['garage']))
-	    {
-		$_SESSION['garage'] = new Elite_Vafgarage_Model_Garage;
-	    }
-	    $_SESSION['garage']->addVehicle($this->getRequestValues());
+//	    if (!isset($_SESSION['garage']))
+//	    {
+//		$_SESSION['garage'] = new Elite_Vafgarage_Model_Garage;
+//	    }
+//	    $_SESSION['garage']->addVehicle($this->getRequestValues());
 
 	    $leafVal = $this->getValueForSelectedLevel($this->schema()->getLeafLevel());
 	    if ($leafVal)

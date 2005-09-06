@@ -17,14 +17,14 @@ $command = $front ? 'getLevels' : 'getLevels';
 $schema = new VF_Schema;
 
 
-$CONFIG['unavailableSelections'] = isset( $_GET['unavailableSelections'] ) ? $_GET['unavailableSelections'] : Mage::helper('vaf')->getConfig()->search->unavailableSelections;
-$CONFIG['loadingStrategy'] = isset( $_GET['loadingStrategy'] ) ? $_GET['loadingStrategy'] : Mage::helper('vaf')->getConfig()->search->loadingStrategy;
+$CONFIG['unavailableSelections'] = isset( $_GET['unavailableSelections'] ) ? $_GET['unavailableSelections'] : Elite_Vaf_Helper_Data::getInstance()->getConfig()->search->unavailableSelections;
+$CONFIG['loadingStrategy'] = isset( $_GET['loadingStrategy'] ) ? $_GET['loadingStrategy'] : Elite_Vaf_Helper_Data::getInstance()->getConfig()->search->loadingStrategy;
 
 if( $front )
 {
     function shouldAutoSubmit()
     {
-        return !Mage::helper('vaf')->showSearchButton();
+        return !Elite_Vaf_Helper_Data::getInstance()->showSearchButton();
     }
 }
 else
@@ -222,7 +222,8 @@ class VafJs_Default implements VafJs_Decorator
     
     protected function leafLevel()
     {
-        return Elite_Vaf_Helper_Data::getInstance()->getLeafLevel();
+        $schema = new Vf_Schema;
+        return $schema->getLeafLevel();
     }
 }
 
