@@ -8,6 +8,8 @@ class VF_Search implements VF_Configurable
     /** @var Zend_Config */
     protected $config;
     
+    protected $current_category_id;
+    
     function getProductId()
     {
         return 0;

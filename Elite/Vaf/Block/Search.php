@@ -67,6 +67,8 @@ class VF_Search_Mage extends VF_Search
     /** @var Elite_Vaf_Model_Catalog_Category_Filter */
     protected $filter;
     
+    protected $current_category_id;
+    
     function __construct()
     {
          $this->categories = ( isset( $_GET['category'] ) && is_array( $_GET['category'] ) ) ? $_GET['category'] : array( 3 );
