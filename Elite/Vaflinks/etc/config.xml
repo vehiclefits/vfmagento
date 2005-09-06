@@ -17,6 +17,15 @@
      </global>
      
      <frontend>
+        <routers>
+            <vaflinks>
+                <use>standard</use>
+                <args>
+                    <module>Elite_Vaflinks</module>
+                    <frontName>vaflinks</frontName>
+                </args>
+            </vaflinks>
+        </routers>
         <layout>
             <updates>
                 <Elite_Vaflinks>

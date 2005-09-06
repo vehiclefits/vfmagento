@@ -1,0 +1,5 @@
+The current car is:
+<?php
+$makeFinder = new Elite_Vaf_Model_Level_Finder('make');
+$make = $makeFinder->find($_GET['make']);
+echo $make;
