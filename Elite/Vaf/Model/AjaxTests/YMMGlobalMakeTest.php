@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_AjaxTests_YMMGlobalMakeTest extends Elite_Vaf_TestCase
+class Vf_AjaxTests_YMMGlobalMakeTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {

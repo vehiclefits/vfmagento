@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_AjaxTests_FilterByProductTest extends Elite_Vaf_TestCase
+class Vf_AjaxTests_FilterByProductTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {
@@ -29,10 +29,10 @@ class Elite_Vaf_Model_AjaxTests_FilterByProductTest extends Elite_Vaf_TestCase
         return ob_get_clean();
     }
     
-    /** @return Elite_Vaf_Model_Ajax */
+    /** @return Vf_Ajax */
     function getAjax()
     {
-        return new Elite_Vaf_Model_Ajax();
+        return new Vf_Ajax();
     }
     
     /** @return VF_Schema */
