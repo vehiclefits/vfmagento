@@ -1,4 +1,3 @@
-jQuery.noConflict();
 <?php
 /**
 * Vehicle Fits Free Edition - Copyright (c) 2008-2010 by Vehicle Fits, LLC
