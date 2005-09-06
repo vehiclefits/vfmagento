@@ -12,8 +12,13 @@ class Elite_Vaf_Block_Search_Choosevehicle_AjaxTestSub extends Elite_Vaf_Block_S
         return $args[0];
     }
 
-    protected function url( $url )
+    function url( $url )
     {
+    }
+    
+    function translate($text)
+    {
+        return $text;
     }
     
 }
