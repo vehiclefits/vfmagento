@@ -21,4 +21,15 @@ class Elite_Vaf_Block_Search_AjaxTestSub extends Elite_Vaf_Block_Search
         return ('Search');
     }
     
+    function getClearText()
+    {
+        return ('Clear');
+    }
+    
+    function translate($text)
+    {
+        return $text;
+    }
+    
+    
 }
