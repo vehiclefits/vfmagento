@@ -15,7 +15,7 @@ class vafAjaxInclude
 {
     function execute()
     {
-        $schema = new VF_Schema();$leafLevel = Elite_Vaf_Helper_Data::getInstance()->getLeafLevel();
+        $schema = new VF_Schema();
         $ajax = new Elite_Vaf_Model_Ajax();
         return $ajax->execute( $schema );   
     }
