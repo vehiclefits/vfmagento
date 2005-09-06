@@ -7,14 +7,18 @@ class Elite_Vaf_Block_Search_AjaxTestSub extends Elite_Vaf_Block_Search
         require('F:\dev\vaf\app\code\local\Elite\Vaf\design\frontend\default\default\template\vaf\search.phtml');
     }
 
-    function __()
+    function url( $url )
     {
-        $args = func_get_args();
-        return $args[0];
     }
-
-    protected function url( $url )
+    
+    function getHeaderText()
     {
+        return ('Search By Vehicle');
+    }
+    
+    function getSubmitText()
+    {
+        return ('Search');
     }
     
 }
