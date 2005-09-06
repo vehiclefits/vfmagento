@@ -273,7 +273,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
     /** @return integer the created fit's ID */
     protected function insertMappingMMY($vehicle, $product_id = 1)
     {
-	$mapping = new Elite_Vaf_Model_Mapping($product_id, $vehicle);
+	$mapping = new VF_Mapping($product_id, $vehicle);
 	return $mapping->save();
     }
 
@@ -288,7 +288,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
     /** @return integer the created fit's ID */
     protected function insertMappingMMTC($vehicle, $product_id = 1)
     {
-	$mapping = new Elite_Vaf_Model_Mapping($product_id, $vehicle);
+	$mapping = new VF_Mapping($product_id, $vehicle);
 	return $mapping->save();
     }
 

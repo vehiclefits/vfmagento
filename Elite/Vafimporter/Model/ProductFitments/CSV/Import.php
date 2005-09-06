@@ -308,7 +308,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
             return;
         }
         
-        $mapping = new Elite_Vaf_Model_Mapping($productId,$vehicle);
+        $mapping = new VF_Mapping($productId,$vehicle);
         
         if($this->hasMapping($productId,$vehicle))
         {

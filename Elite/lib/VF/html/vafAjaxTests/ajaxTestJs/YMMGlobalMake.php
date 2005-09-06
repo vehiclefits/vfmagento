@@ -17,7 +17,7 @@ $vehicle = VF_Vehicle::create( $schema, array(
     'year' => '2002'
 ));
 $vehicle->save();
-$mapping = new Elite_Vaf_Model_Mapping( 1, $vehicle );
+$mapping = new VF_Mapping( 1, $vehicle );
 $mapping->save();
 
 $vehicle2 = VF_Vehicle::create( $schema, array(
@@ -26,7 +26,7 @@ $vehicle2 = VF_Vehicle::create( $schema, array(
     'year' => '2006'
 ));
 $vehicle2->save();
-$mapping = new Elite_Vaf_Model_Mapping( 1, $vehicle2 );
+$mapping = new VF_Mapping( 1, $vehicle2 );
 $mapping->save();
 
 $values = $vehicle->toValueArray();

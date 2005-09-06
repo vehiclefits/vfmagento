@@ -225,7 +225,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 
     function insertMapping(VF_Vehicle $vehicle)
     {
-	$mapping = new Elite_Vaf_Model_Mapping($this->getId(), $vehicle);
+	$mapping = new VF_Mapping($this->getId(), $vehicle);
 	return $mapping->save();
     }
 

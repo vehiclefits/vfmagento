@@ -10,7 +10,7 @@ $schema = new VF_Schema();
 $vehicle = VF_Vehicle::create( $schema, array('make'=>'Honda_Unique'.uniqid(), 'model'=>'Civic', 'year'=>'2002') );
 $vehicle->save();
 
-$mapping = new Elite_Vaf_Model_Mapping( 1, $vehicle );
+$mapping = new VF_Mapping( 1, $vehicle );
 $mapping->save();
 
 ?>

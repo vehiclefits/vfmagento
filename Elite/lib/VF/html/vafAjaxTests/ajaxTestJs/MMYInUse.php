@@ -23,7 +23,7 @@ $vehicle->save();
 
 $values = $vehicle->toValueArray();
 
-$mapping = new Elite_Vaf_Model_Mapping( 1, $vehicle );
+$mapping = new VF_Mapping( 1, $vehicle );
 $mapping->save();
 
 ?>
