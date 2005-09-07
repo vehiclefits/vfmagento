@@ -18,12 +18,12 @@ class Elite_Vaf_Admin_VafajaxController extends Mage_Core_Controller_Front_Actio
     {
         header('Content-Type:application/x-javascript');
         echo 'jQuery.noConflict();';
-        require_once('app/code/local/Elite/lib/Vf/html/vafAjax.js.include.php'); 
+        require_once('app/code/local/Elite/lib/VF/html/vafAjax.js.include.php'); 
     }
     
     function processAction()
     {
-        require_once('app/code/local/Elite/lib/Vf/html/vafAjax.include.php');
+        require_once('app/code/local/Elite/lib/VF/html/vafAjax.include.php');
     }
 
 }
