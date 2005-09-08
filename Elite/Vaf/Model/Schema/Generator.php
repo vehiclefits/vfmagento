@@ -13,7 +13,7 @@
 */
 class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
 {
-    const VERSION = 24;
+    const VERSION = 25;
     
     function __construct()
     {
@@ -214,7 +214,9 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
             $return .= $this->keys();
         $return .= ') ENGINE=InnoDB CHARSET=utf8;
 
-	ALTER TABLE `elite_mapping` ADD `price` FLOAT NOT NULL ;';
+	ALTER TABLE `elite_mapping` ADD `price` FLOAT NOT NULL ;
+        ALTER TABLE `elite_mapping` ADD INDEX ( `entity_id` ) ;
+        ';
         
         return $return;
     }
