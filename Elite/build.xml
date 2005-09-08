@@ -466,40 +466,40 @@
 
     <target name="upload" depends="dist">
         <!-- documentation -->
-        <exec command="rsync -r ${modulepath}/build/vaf/Elite/documentation/ ne8.net:&quot;/var/www/vehiclefits.com/public_html/documentation/&quot;" />
+        <exec command="rsync -r ${modulepath}/build/vaf/Elite/documentation/ ne8.net:&quot;/nfs/c09/h02/mnt/130563/domains/vehiclefits.com/public_html/documentation/&quot;" />
         
         <!-- change log -->
-        <exec command="scp ${modulepath}/build/vaf/Elite/Vaf/changelog.txt ne8.net:&quot;/var/www/vehiclefits.com/views/changelog_data.phtml&quot;" />
+        <exec command="scp ${modulepath}/build/vaf/Elite/Vaf/changelog.txt ne8.net:&quot;/nfs/c09/h02/mnt/130563/domains/vehiclefits.com/views/changelog_data.phtml&quot;" />
     
 	<!-- lite -->
-        <exec command="scp ${modulepath}/vaf-lite-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Lite/&quot;" />
+        <exec command="scp ${modulepath}/vaf-lite-${version}.zip ne8.net:&quot;/nfs/c09/h02/mnt/130563/domains/vehiclefits.com/downloads/Vaf\ Lite/&quot;" />
         
         <!-- 'old' starter -->
-        <exec command="scp ${packagepath}/vaf-old-starter-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Old\ Starter/&quot;" />
+        <exec command="scp ${packagepath}/vaf-old-starter-${version}.zip ne8.net:&quot;/nfs/c09/h02/mnt/130563/domains/vehiclefits.com/downloads/Vaf\ Old\ Starter/&quot;" />
 
         <!-- 'new' starter -->
-	    <exec command="scp ${packagepath}/vaf-starter-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Starter/&quot;" />
+	    <exec command="scp ${packagepath}/vaf-starter-${version}.zip ne8.net:&quot;/nfs/c09/h02/mnt/130563/domains/vehiclefits.com/downloads/Vaf\ Starter/&quot;" />
 
         <!-- professional -->
-        <exec command="scp ${packagepath}/vaf-professional-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Professional/&quot;" />
+        <exec command="scp ${packagepath}/vaf-professional-${version}.zip ne8.net:&quot;/nfs/c09/h02/mnt/130563/domains/vehiclefits.com/downloads/Vaf\ Professional/&quot;" />
 
         <!-- enterprise -->
-        <exec command="scp ${packagepath}/vaf-enterprise-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Enterprise/&quot;" />
+        <exec command="scp ${packagepath}/vaf-enterprise-${version}.zip ne8.net:&quot;/nfs/c09/h02/mnt/130563/domains/vehiclefits.com/downloads/Vaf\ Enterprise/&quot;" />
 
         <!-- wheel -->
-        <exec command="scp ${modulepath}/vaf-wheel-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Wheel/&quot;" />
+        <exec command="scp ${modulepath}/vaf-wheel-${version}.zip ne8.net:&quot;/nfs/c09/h02/mnt/130563/domains/vehiclefits.com/downloads/Vaf\ Wheel/&quot;" />
 
         <!-- tire -->
-        <exec command="scp ${modulepath}/vaf-tire-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Tire/&quot;" />
+        <exec command="scp ${modulepath}/vaf-tire-${version}.zip ne8.net:&quot;/nfs/c09/h02/mnt/130563/domains/vehiclefits.com/downloads/Vaf\ Tire/&quot;" />
 
         <!-- logo -->
-        <exec command="scp ${modulepath}/vaf-logo-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Logo/&quot;" />
+        <exec command="scp ${modulepath}/vaf-logo-${version}.zip ne8.net:&quot;/nfs/c09/h02/mnt/130563/domains/vehiclefits.com/downloads/Vaf\ Logo/&quot;" />
 
         <!-- note -->
-        <exec command="scp ${modulepath}/vaf-note-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Adapter\ \(notes\)/&quot;" />
+        <exec command="scp ${modulepath}/vaf-note-${version}.zip ne8.net:&quot;/nfs/c09/h02/mnt/130563/domains/vehiclefits.com/downloads/Vaf\ Adapter\ \(notes\)/&quot;" />
 
 	    <!-- paint -->
-	    <exec command="scp ${modulepath}/vaf-paint-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Paint/&quot;" />
+	    <exec command="scp ${modulepath}/vaf-paint-${version}.zip ne8.net:&quot;/nfs/c09/h02/mnt/130563/domains/vehiclefits.com/downloads/Vaf\ Paint/&quot;" />
 
     </target>
 </project>
