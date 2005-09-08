@@ -619,9 +619,9 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
 	return new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema());
     }
 
-    function boltPattern($boltPatternString)
+    function boltPattern($boltPatternString,$offset=null)
     {
-	return Elite_Vafwheel_Model_BoltPattern::create($boltPatternString);
+	return Elite_Vafwheel_Model_BoltPattern::create($boltPatternString,$offset);
     }
 
     function wheelAdapterFinder()
