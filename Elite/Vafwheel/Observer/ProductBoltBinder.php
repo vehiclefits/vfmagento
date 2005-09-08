@@ -22,7 +22,7 @@ class Elite_Vafwheel_Observer_ProductBoltBinder
             $importer->import();
         }
             
-        $patterns = $controller->getRequest()->getParam( 'wheel_side_pattern' );
+        $patterns = $controller->getRequest()->getParam( 'wheel_side_pattern' ) ? $controller->getRequest()->getParam( 'wheel_side_pattern' ) : $controller->getRequest()->getParam( 'multipatterns' );
         $patterns = explode( "\n", $patterns );
         foreach( $patterns as $k => $pattern )
         {

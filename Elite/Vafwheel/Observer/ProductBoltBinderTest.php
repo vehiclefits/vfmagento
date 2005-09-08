@@ -3,7 +3,7 @@ class Elite_Vafwheel_Observer_ProductBoltBinderTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {
-		$this->switchSchema('make,model,year');
+        $this->switchSchema('make,model,year');
     }
     
     function testIsSilentWhenNoBoltDataPassed()
@@ -15,7 +15,7 @@ class Elite_Vafwheel_Observer_ProductBoltBinderTest extends Elite_Vaf_TestCase
     
     function testAddsBoltPatternToProduct()
     {
-        $this->setRequestParams(array('wheel_side_pattern'=>'4x114.3'));
+        $this->setRequestParams(array('multipatterns'=>'4x114.3'));
         
         $binder = new Elite_Vafwheel_Observer_ProductBoltBinder;
         $product = new Elite_Vaf_Model_Catalog_Product();
@@ -29,7 +29,7 @@ class Elite_Vafwheel_Observer_ProductBoltBinderTest extends Elite_Vaf_TestCase
     
     function testAddsMultipleBoltPatternsToProduct()
     {
-        $this->setRequestParams(array('wheel_side_pattern'=>"4x114.3\n5x114.3"));
+        $this->setRequestParams(array('multipatterns'=>"4x114.3\n5x114.3"));
         
         $binder = new Elite_Vafwheel_Observer_ProductBoltBinder;
         $product = new Elite_Vaf_Model_Catalog_Product();
@@ -43,7 +43,7 @@ class Elite_Vafwheel_Observer_ProductBoltBinderTest extends Elite_Vaf_TestCase
     
     function testAddsAndRemovesBoltPattern()
     {
-        $this->setRequestParams(array('wheel_side_pattern'=>"4x114.3\n5x114.3"));
+        $this->setRequestParams(array('multipatterns'=>"4x114.3\n5x114.3"));
         
         $binder = new Elite_Vafwheel_Observer_ProductBoltBinder;
         $product = new Elite_Vaf_Model_Catalog_Product();
