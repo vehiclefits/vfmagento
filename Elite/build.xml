@@ -412,6 +412,12 @@
              <fileset dir="${modulepath}/build/vaf">
                  <include name="**" />
              </fileset>
+             <fileset dir="${modulepath}/build/note">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/logo">
+                <include name="**" />
+            </fileset>
              <fileset dir="${modulepath}/build/importer">
                 <include name="**" />
             </fileset>
