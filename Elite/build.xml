@@ -58,26 +58,7 @@
 
     <fileset dir="../" id="vaftests">
         
-        <include name="**/*TestJs.php" />
-        <include name="**/*AjaxTests" />
-        <include name="**/bootstrap-tests.php" />
-        <include name="**/config.ini" />
-        <include name="**/version.*" />
-        <include name="tasks/**" />
-        
-        <include name="*TestCase.php" />
-        <include name="**/*TestCase.php" />
-        
-        <include name="*Test.php" />
-        <include name="**/*Test.php" />  
-              
-        <include name="Test*.php" />
-        <include name="**/Test*.php" />
-        
-        <include name="*/Suite.php" />
-        <include name="**/*Suite.php" />
-        
-        <include name="**/build.*" />
+        <include name="Elite/**" />
     </fileset>
     
     <fileset dir="../" id="paint">
