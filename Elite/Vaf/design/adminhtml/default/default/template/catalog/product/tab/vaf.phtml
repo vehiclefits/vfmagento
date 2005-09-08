@@ -7,10 +7,15 @@
         Universal Product
         <br />
 	<?php
-	$relatedProduct = new Elite_Vafrelated_Model_Catalog_Product($this->getProduct());
-	?>
-	<input type="checkbox" id="related" name="related" <?= $relatedProduct->showInRelated() ? ' checked="checked"' : '' ?> value="1" />
-        Show In Automotive Related Products
+        if( file_exists(ELITE_PATH.'/Vafrelated') )
+        {
+            $relatedProduct = new Elite_Vafrelated_Model_Catalog_Product($this->getProduct());
+            ?>
+            <input type="checkbox" id="related" name="related" <?= $relatedProduct->showInRelated() ? ' checked="checked"' : '' ?> value="1" />
+            Show In Automotive Related Products
+            <?php
+        }
+        ?>
     </fieldset>
 </div>
 
