@@ -488,7 +488,6 @@
             <fileset dir="${modulepath}/build/directory">
                 <include name="**" />
             </fileset>
-            </fileset>
             <fileset dir="${modulepath}/build/vaftests">
                 <include name="**" />
             </fileset>
