@@ -55,6 +55,30 @@
         
         <exclude name="**/build.*" />
     </fileset>
+
+    <fileset dir="../" id="vaftests">
+        
+        <include name="**/*TestJs.php" />
+        <include name="**/*AjaxTests" />
+        <include name="**/bootstrap-tests.php" />
+        <include name="**/config.ini" />
+        <include name="**/version.*" />
+        <include name="tasks/**" />
+        
+        <include name="*TestCase.php" />
+        <include name="**/*TestCase.php" />
+        
+        <include name="*Test.php" />
+        <include name="**/*Test.php" />  
+              
+        <include name="Test*.php" />
+        <include name="**/Test*.php" />
+        
+        <include name="*/Suite.php" />
+        <include name="**/*Suite.php" />
+        
+        <include name="**/build.*" />
+    </fileset>
     
     <fileset dir="../" id="paint">
         <include name="Elite/Vafpaint/**" />
@@ -462,6 +486,10 @@
                 <include name="**" />
             </fileset>
             <fileset dir="${modulepath}/build/directory">
+                <include name="**" />
+            </fileset>
+            </fileset>
+            <fileset dir="${modulepath}/build/vaftests">
                 <include name="**" />
             </fileset>
         </zip>
