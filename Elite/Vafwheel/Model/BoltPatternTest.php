@@ -19,4 +19,10 @@ class Elite_Vafwheel_Model_BoltPatternTest extends Elite_Vaf_TestCase
         $bolt = Elite_Vafwheel_Model_BoltPattern::create('4x114.3');
         $this->assertEquals( 114.3, $bolt->getDistance() );
     }
+    
+    function testOffset()
+    {
+        $bolt = Elite_Vafwheel_Model_BoltPattern::create('4x114.3', 38.5);
+        $this->assertEquals( 38.5, $bolt->getOffset() );
+    }
 }

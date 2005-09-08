@@ -15,7 +15,7 @@ class Elite_Vafwheel_Model_BoltPattern
     * 
     * All distances in mm
     */
-    public static function create( $formattedString )
+    public static function create( $formattedString, $offset=null )
     {
         if( strpos( $formattedString, '/' ) )
         {
@@ -24,7 +24,7 @@ class Elite_Vafwheel_Model_BoltPattern
         }
         else
         {
-            return new Elite_Vafwheel_Model_BoltPattern_Single( $formattedString );
+            return new Elite_Vafwheel_Model_BoltPattern_Single( $formattedString, $offset );
         }        
         
     }

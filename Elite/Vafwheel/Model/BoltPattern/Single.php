@@ -7,13 +7,16 @@ class Elite_Vafwheel_Model_BoltPattern_Single  extends Elite_Vafwheel_Model_Bolt
     /** @var float ( in millimeters ) */
     protected $bolt_distance;
     
+    /** @var float OE offset */
+    protected $offset;
+    
     /**
     * SINGLE FORMAT
     * Lug Count x Bolt Distance 
     * ex. 5 x 135
     * 5 lug nuts, 135mm distance
     */
-    function __construct( $formattedString )
+    function __construct( $formattedString, $offset=null )
     {
         $array = preg_split( '#x#i', $formattedString, 2 );        
         if( count( $array ) != 2 )
@@ -26,6 +29,7 @@ class Elite_Vafwheel_Model_BoltPattern_Single  extends Elite_Vafwheel_Model_Bolt
         }
         $this->lug_count = $array[ 0 ];
         $this->bolt_distance = $array[ 1];
+        $this->offset = $offset;
     }
     
     function getDistance()
@@ -36,6 +40,11 @@ class Elite_Vafwheel_Model_BoltPattern_Single  extends Elite_Vafwheel_Model_Bolt
     function getLugCount()
     {
         return $this->lug_count;
+    }
+    
+    function getOffset()
+    {
+        return $this->offset;
     }
     
     function __toString()
