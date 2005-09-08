@@ -329,6 +329,9 @@
         <copy todir="${modulepath}/build/logo">
             <fileset refid="logo" />
         </copy>
+        <copy todir="${modulepath}/build/vaftests">
+            <fileset refid="vaftests" />
+        </copy>
 
     </target>
 
