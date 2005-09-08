@@ -85,6 +85,16 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 
     function getPrice()
     {
+        $this->setFitFromGlobalIfNoLocalFitment();
+	if( $this->currentlySelectedFit() && $customPrice = $this->customPrice($this->currentlySelectedFit()))
+	{
+	    return $customPrice;
+	}
+	return parent::getPrice();
+    }
+
+    function getFormatedPrice()
+    {
 	if( $this->currentlySelectedFit() && $customPrice = $this->customPrice($this->currentlySelectedFit()))
 	{
 	    return $customPrice;
@@ -279,7 +289,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     function setFitFromGlobalIfNoLocalFitment()
     {
         $globalFit = Elite_Vaf_Helper_Data::getInstance()->getFit();
-	if ($this->globalRewritesOn() && $this->rewritesOn() && !$this->fit && $globalFit)
+	if (!$this->fit && $globalFit)
 	{
 	    $this->setCurrentlySelectedFit($globalFit);
 	}
@@ -302,6 +312,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 
     function currentlySelectedFit()
     {
+        $this->setFitFromGlobalIfNoLocalFitment();
 	return $this->fit;
     }
 

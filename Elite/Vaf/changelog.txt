@@ -1,3 +1,34 @@
+1.33 February 16, 2012
+===================================================================
+ISSUES
+- 0000900: [Wheels Module] wheel & wheel adapter module fields should work interchangably 
+- 0000898: [Search Filter] missing `title` index on elite_level_year 
+- 0000886: [Automotive SEO] When global rewrites is set to true, google base doesn't add vehicle name to export 
+- 0000788: [Catalog / Category] Category / Group view only showing product in 1 category if it is in multiple 
+- 0000825: [Documentation] Write programmer documentation for Vehicle, Level, & Vehicle_Finder 
+- 0000879: [Vehicles List Import/Export] Issue importing XML that references existing make/model ID 
+- 0000857: [Other] Using Vaflink module adds random cars to the garage 
+- 0000864: [Automotive SEO] Amperstand in product title (URL) breaks google sitemap 
+- 0000861: [Color Module] Can't checkout (paint codes module only) 
+- 0000828: [Product Application Fitments] Can't import if a schema level starts with a capital letter 
+- 0000840: [Vehicles List Import/Export] Single column comma separated entries not trimming whitespace 
+- 0000839: [Product Application Fitments] Character set issue on import 
+
+IMPROVEMENTS
+- 0000880: [Catalog / Products] Should be able to have group view on regular category pages. 
+- 0000876: [Automotive SEO] Automatic CMS pages for each 'make' 
+- 0000865: [Application Fitments Import/export] Need a way to escape commas in a field 
+- 0000866: [Search Filter] Should be able to customize submit actions on a page by page basis 
+- 0000843: [Catalog / Products] Create related products engine 
+- 0000844: [Search Filter] Add option to not store vehicle in session 
+- 0000847: [Logos Module] Should have a "list" of logos (block) 
+- 0000845: [Search Filter] Should have configurable template for outputing vehicle name 
+- 0000882: [Documentation] exclude_categories clarification on documentation 
+- 0000838: [Application Fitments Import/export] Import should not require FILE permissions 
+- 0000842: [Catalog / Products] Should be able to override product's price based on selected vehicle 
+- 0000846: [Logos Module] Should be able to specify file extension for logo 
+- 0000830: [Logos Module] Logo module doesn't work if don't have level called "make" 
+
 1.32 February 8, 2011
 =======================================================
 ISSUES
