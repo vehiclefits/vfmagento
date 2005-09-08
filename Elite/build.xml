@@ -9,6 +9,7 @@
     
     
     <property name="version" value="" />
+    <property name="repopath" value="/var/www/vaf" />
 
     <target name="prepare">
        <!-- <mkdir dir="${buildpath}/acceptance_tests" />   -->
@@ -19,7 +20,7 @@
         <mkdir dir="${packagepath}" />
     </target>
 
-    <fileset dir="../" id="vaf">
+    <fileset dir="${repopath}/" id="vaf">
         <include name="Elite/lib/**" />
         <include name="Elite/Vaf/*" />
         <include name="Elite/Vaf/*/**" />
@@ -56,12 +57,13 @@
         <exclude name="**/build.*" />
     </fileset>
 
-    <fileset dir="../" id="vaftests">
+    <fileset dir="${repopath}/" id="vaftests">
         
+        <include name="Elite/*" />
         <include name="Elite/**" />
     </fileset>
     
-    <fileset dir="../" id="paint">
+    <fileset dir="${repopath}/" id="paint">
         <include name="Elite/Vafpaint/**" />
         
         <exclude name="**/bootstrap.php" />
@@ -85,7 +87,7 @@
         <exclude name="**/build.*" />
     </fileset>
     
-    <fileset dir="../" id="note">
+    <fileset dir="${repopath}/" id="note">
         <include name="Elite/Vafnote/**" />
         
         <exclude name="**/bootstrap.php" />
@@ -109,7 +111,7 @@
         <exclude name="**/build.*" />
     </fileset>
     
-    <fileset dir="../" id="wheel">
+    <fileset dir="${repopath}/" id="wheel">
         <include name="Elite/Vafwheel/**" />
         
         <exclude name="**/bootstrap.php" />
@@ -133,7 +135,7 @@
         <exclude name="**/build.*" />
     </fileset>
     
-    <fileset dir="../" id="tire">
+    <fileset dir="${repopath}/" id="tire">
         <include name="Elite/Vaftire/**" />
         
         <exclude name="**/bootstrap.php" />
@@ -157,7 +159,7 @@
         <exclude name="**/build.*" />
     </fileset>
     
-    <fileset dir="../" id="sitemap">
+    <fileset dir="${repopath}/" id="sitemap">
         <include name="Elite/Vafsitemap/**" />
         
         <exclude name="**/bootstrap.php" />
@@ -181,7 +183,7 @@
         <exclude name="**/build.*" />
     </fileset>
     
-    <fileset dir="../" id="directory">
+    <fileset dir="${repopath}/" id="directory">
         <include name="Elite/Vaflinks/**" />
         
         <exclude name="**/bootstrap.php" />
@@ -205,7 +207,7 @@
         <exclude name="**/build.*" />
     </fileset>
               
-    <fileset dir="../" id="importer">
+    <fileset dir="${repopath}/" id="importer">
         <include name="Elite/Vafimporter/**" />
         <include name="Elite/Csv/**" />
         
@@ -230,7 +232,7 @@
         <exclude name="**/build.*" />
     </fileset>
                       
-    <fileset dir="../" id="bundle">
+    <fileset dir="${repopath}/" id="bundle">
         <include name="Elite/Vafbundle/**" />
         
         <exclude name="**/bootstrap.php" />
@@ -254,7 +256,7 @@
         <exclude name="**/build.*" />
     </fileset>
                           
-    <fileset dir="../" id="logo">
+    <fileset dir="${repopath}/" id="logo">
         <include name="Elite/Vaflogo/**" />
         
         <exclude name="**/bootstrap.php" />
