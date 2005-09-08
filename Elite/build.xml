@@ -495,6 +495,43 @@
                 <include name="**" />
             </fileset>
         </zip>
+        
+        <!-- enterprise package  (includes ALL - vaf, importer, sitemap, bundle, directory, logos, wheels, paint, adapter modules) -->
+        <zip destfile="${packagepath}/vaf-enterprise-nightly.zip">
+             <fileset dir="${modulepath}/build/vaf">
+                 <include name="**" />
+             </fileset>
+             <fileset dir="${modulepath}/build/importer">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/sitemap">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/bundle">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/paint">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/note">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/wheel">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/tire">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/logo">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/directory">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/vaftests">
+                <include name="**" />
+            </fileset>
+        </zip>
 
 
         <echo msg="Files copied and compressed in build directory OK!" />
@@ -537,5 +574,10 @@
 	    <!-- paint -->
 	    <exec command="scp ${modulepath}/vaf-paint-${version}.zip vehiclefits.com@vehiclefits.com:&quot;/nfs/c09/h02/mnt/130563/domains/vehiclefits.com/downloads/Vaf\ Paint/&quot;" />
 
+    </target>
+    
+    <target name="nightly" depends="dist">
+        <!-- enterprise -->
+        <exec command="scp ${packagepath}/vaf-enterprise-nightly.zip vehiclefits.com@vehiclefits.com:&quot;/nfs/c09/h02/mnt/130563/domains/vehiclefits.com/downloads/Vaf\ Enterprise/&quot;" />
     </target>
 </project>
