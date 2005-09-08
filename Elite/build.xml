@@ -8,7 +8,7 @@
     <property name="packagepath" value="${buildpath}/packages" override="true" />
     
     
-    <propertyprompt propertyName="version" defaultValue="" promptText="Enter Version" />
+    <property propertyName="version" />
 
     <target name="prepare">
        <!-- <mkdir dir="${buildpath}/acceptance_tests" />   -->
