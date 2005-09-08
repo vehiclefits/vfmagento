@@ -18,10 +18,11 @@ class Elite_Vafwheel_Model_Vehicle
     function addBoltPattern( Elite_Vafwheel_Model_BoltPattern_Single $boltPattern )
     {
         $this->query( sprintf(
-            "REPLACE INTO `elite_definition_wheel` ( `leaf_id`, `lug_count`, `bolt_distance` ) VALUES ( %d, %d, %s )",
+            "REPLACE INTO `elite_definition_wheel` ( `leaf_id`, `lug_count`, `bolt_distance`, `offset` ) VALUES ( %d, %d, %s, %s )",
             $this->getLeafValue(),
             (int)$boltPattern->getLugCount(),
-            (float)$boltPattern->getDistance()
+            (float)$boltPattern->getDistance(),
+            (float)$boltPattern->getOffset()
         ));
     }
     

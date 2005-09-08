@@ -47,6 +47,16 @@ class Elite_Vafwheel_Model_BoltPattern_Single  extends Elite_Vafwheel_Model_Bolt
         return $this->offset;
     }
     
+    function offsetMin()
+    {
+        return $this->getOffset();
+    }
+    
+    function offsetMax()
+    {
+        return $this->getOffset();
+    }
+    
     function __toString()
     {
         return $this->getLugCount().'x'.$this->getDistance();

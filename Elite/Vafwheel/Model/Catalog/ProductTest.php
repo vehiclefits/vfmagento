@@ -80,4 +80,30 @@ class Elite_Vafwheel_Model_Catalog_ProductTest extends Elite_Vaf_TestCase
         $this->assertEquals( 144.3, $boltPatterns[0]->getDistance(), 'should set bolt distance' );
     }
     
+    function testShouldAddWhenOffsetFits()
+    {
+        $wheelVehicle = new Elite_Vafwheel_Model_Vehicle($this->createMMY());
+        $wheelVehicle->save();
+        $wheelVehicle->addBoltPattern( $this->boltPattern('4x114.3', 38.5) );
+        
+        $wheelProduct = $this->newWheelProduct();
+        $wheelProduct->setId(1);
+        $wheelProduct->addBoltPattern( $this->boltPattern('4x114.3', 38.5) );
+
+        $this->assertEquals( 1, count($wheelProduct->getFits()), 'should add when offset matches' );
+    }
+    
+    function testShouldNotAddWhenOffsetDoesntFit()
+    {
+        $wheelVehicle = new Elite_Vafwheel_Model_Vehicle($this->createMMY());
+        $wheelVehicle->save();
+        $wheelVehicle->addBoltPattern( $this->boltPattern('4x114.3', 20) );
+        
+        $wheelProduct = $this->newWheelProduct();
+        $wheelProduct->setId(1);
+        $wheelProduct->addBoltPattern( $this->boltPattern('4x114.3', 42) );
+
+        $this->assertEquals( 0, count($wheelProduct->getFits()), 'should not add when offset does not matche' );
+    }
+    
 }

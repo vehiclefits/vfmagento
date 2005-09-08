@@ -56,10 +56,15 @@ class Elite_Vafwheel_Model_Catalog_Product
             FROM `elite_definition_wheel`
             WHERE `bolt_distance` = %s
             AND `lug_count` = %d
+            AND `offset` >= %s
+            AND `offset` <= %s
             ",
             (float)$boltPattern->getDistance(),
-            (float)$boltPattern->getLugCount()
+            (float)$boltPattern->getLugCount(),
+            (float)$boltPattern->offsetMin(),
+            (float)$boltPattern->offsetMax()
         );
+        
         $result = $this->query( $q );
         
         $years = array();
