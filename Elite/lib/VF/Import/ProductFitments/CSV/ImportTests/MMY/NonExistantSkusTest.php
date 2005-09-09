@@ -15,6 +15,16 @@ class VF_Import_ProductFitments_CSV_ImportTests_MMY_NonExistantSkusTest extends 
         $this->assertEquals( array( 'nonexistantsku' ), $importer->nonExistantSkus(), 'should report a single missing SKU' );
     }
     
+    function testShouldNotCreateFitmentForMissingSKU()
+    {
+        $importer = $this->mappingsImporterFromData(
+            'sku, make, model, year' . "\n" .
+            'nonexistantsku, honda, civic, 2000');
+        $importer->import();
+        $count = $this->getReadAdapter()->query('select count(*) from elite_mapping where entity_id=0')->fetchColumn();
+        $this->assertEquals(0,$count);
+    }
+    
     function testWhenUsingYearRanges_ShouldReportSingleMissingSKU()
     {
         return $this->markTestIncomplete();
