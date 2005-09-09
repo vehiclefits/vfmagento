@@ -51,7 +51,7 @@ class Elite_Vafimporter_Admin_VafdefinitionsimporterController extends Mage_Admi
     
     function myIndexAction()
     {        
-		if( isset($_FILES['file']['error']) && $_FILES['file']['error'])
+        if( isset($_FILES['file']['error']) && $_FILES['file']['error'])
         {
             $errNo = $_FILES['file']['error'];
             $this->formatMessage($this->error_types[$errNo]);
@@ -61,17 +61,17 @@ class Elite_Vafimporter_Admin_VafdefinitionsimporterController extends Mage_Admi
         {
             try
             {
-				$this->importer = $this->importer();
+                $this->importer = $this->importer();
                 $writer = new Zend_Log_Writer_Stream(Mage::getBaseDir() . '/var/vaf-import.log');
                 $logger = new Zend_Log($writer);
                 
                 $this->importer->setLog($logger);
-				$this->import();
-			}
-			catch( Exception $e )
-			{
-				$this->messages .= '<br />' . $e->getMessage();
-			}
+                $this->import();
+            }
+            catch( Exception $e )
+            {
+                    $this->messages .= '<br />' . $e->getMessage();
+            }
         }
     }
     

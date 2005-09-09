@@ -1,6 +1,6 @@
 <?php
 
-abstract class Elite_Vafimporter_Model extends VF_Import_Abstract implements VF_Configurable
+abstract class VF_Import extends VF_Import_Abstract implements VF_Configurable
 {
     const E_WARNING = 1;
 
@@ -109,7 +109,7 @@ abstract class Elite_Vafimporter_Model extends VF_Import_Abstract implements VF_
 	parent::getFieldPositions();
 	if (false == $this->fieldPositions)
 	{
-	    throw new Elite_Vafimporter_Model_VehiclesList_CSV_Exception_FieldHeaders('Field headers missing');
+	    throw new VF_Import_VehiclesList_CSV_Exception_FieldHeaders('Field headers missing');
 	}
 	
 	foreach ($this->schema()->getLevels() as $level)
@@ -120,7 +120,7 @@ abstract class Elite_Vafimporter_Model extends VF_Import_Abstract implements VF_
 		    !isset($this->fieldPositions[$level . '_range'])
 	    )
 	    {
-		throw new Elite_Vafimporter_Model_VehiclesList_CSV_Exception_FieldHeaders('Unable to locate field header for [' . $level . '], perhaps not using comma delimiter' . print_r($this->fieldPositions,1));
+		throw new VF_Import_VehiclesList_CSV_Exception_FieldHeaders('Unable to locate field header for [' . $level . '], perhaps not using comma delimiter' . print_r($this->fieldPositions,1));
 	    }
 	}
 	return $this->fieldPositions;
