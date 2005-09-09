@@ -16,7 +16,7 @@ class vafAjaxInclude
     function execute()
     {
         $schema = new VF_Schema();
-        $ajax = new Vf_Ajax();
+        $ajax = new VF_Ajax();
         return $ajax->execute( $schema );   
     }
 }
