@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_CountAddedGlobalTest extends Elite_Vafimporter_TestCase
+class VF_Import_VehiclesList_CSV_ImportTests_MMY_CountAddedGlobalTest extends VF_Import_TestCase
 {    
     function doSetUp()
     {

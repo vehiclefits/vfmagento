@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_ValueExploderMMTEYTest extends Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase
+class VF_Import_ValueExploderMMTEYTest extends VF_Import_ProductFitments_CSV_ImportTests_TestCase
 {
     protected function doSetUp()
     {
@@ -11,7 +11,7 @@ class Elite_Vafimporter_Model_ValueExploderMMTEYTest extends Elite_Vafimporter_M
     function testExplodeValues()
     {
         
-        $valueExploder = new Elite_Vafimporter_Model_ValueExploder;
+        $valueExploder = new VF_Import_ValueExploder;
         $this->importDefinitions();
         
         $result = $valueExploder->explode( array('make'=>'honda','model'=>'civic','trim'=>'{{all}}','engine'=>'{{all}}','year'=>2000) );
@@ -36,7 +36,7 @@ not honda, civic, lx, b, 2000';
         $csvFile = TESTFILES . '/definitions.csv';
         file_put_contents( $csvFile, $csvData );
         
-        $importer = new Elite_Vafimporter_Model_VehiclesList_CSV_Import( $csvFile );
+        $importer = new VF_Import_VehiclesList_CSV_Import( $csvFile );
         $importer->import();
     }
 }

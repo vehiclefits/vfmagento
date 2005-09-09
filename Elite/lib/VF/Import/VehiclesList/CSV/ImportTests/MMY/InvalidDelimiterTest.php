@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_InvalidDelimiterTest extends Elite_Vafimporter_TestCase
+class VF_Import_VehiclesList_CSV_ImportTests_MMY_InvalidDelimiterTest extends VF_Import_TestCase
 {    
     protected $product_id;
     

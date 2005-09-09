@@ -6,7 +6,7 @@
                  
         <legend><?php echo Mage::helper('catalog')->__('Import/Export Settings') ?></legend>
         <?php
-        $form = new Elite_Vafimporter_Model_Settings;
+        $form = new VF_Import_Settings;
         $form->populate($_POST);
         $form->setAction('?');
         $form->addElement('hidden','form_key',array('value'=>Mage::getSingleton('core/session')->getFormKey()));

@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafnote_Observer_Exporter_Mappings_CSVTest extends Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase
+class Elite_Vafnote_Observer_Exporter_Mappings_CSVTest extends VF_Import_ProductFitments_CSV_ImportTests_TestCase
 {    
     function doSetUp()
     {
@@ -17,7 +17,7 @@ sku, honda, civic, 2000, "code1,code2"';
     
     function testNotes()
     {       
-        $importer = new Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
+        $importer = new VF_Import_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
         $importer->import();
         $data = $this->exportProductFitments();
         $string = explode("\n",$data);
@@ -27,7 +27,7 @@ sku, honda, civic, 2000, "code1,code2"';
     
 }
 
-class Elite_Vafimporter_Model_ProductFitmentsExport_TestStub extends Elite_Vafimporter_Model_ProductFitments_CSV_Export
+class VF_Import_ProductFitmentsExport_TestStub extends VF_Import_ProductFitments_CSV_Export
 {
     protected function getProductTable()
     {

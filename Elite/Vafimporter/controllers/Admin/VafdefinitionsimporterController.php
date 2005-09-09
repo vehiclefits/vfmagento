@@ -7,7 +7,7 @@ class Elite_Vafimporter_Admin_VafdefinitionsimporterController extends Mage_Admi
     /** @var string */
     protected $messages = '';
     
-    /** @var Elite_Vafimporter_Model_VehiclesList */
+    /** @var VF_Import_VehiclesList */
     protected $importer;
     
     /** @var string class name of importer to be used */
@@ -79,11 +79,11 @@ class Elite_Vafimporter_Admin_VafdefinitionsimporterController extends Mage_Admi
     {
         if( 'XML' == $_REQUEST['format'] )
         {
-            $class = 'Elite_Vafimporter_Model_VehiclesList_XML_Import';
+            $class = 'VF_Import_VehiclesList_XML_Import';
         }
         else
         {
-            $class = 'Elite_Vafimporter_Model_VehiclesList_CSV_Import';
+            $class = 'VF_Import_VehiclesList_CSV_Import';
         }
         return new $class( $_FILES['file']['tmp_name'] ); 
     }

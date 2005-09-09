@@ -1,5 +1,5 @@
 <?php
-class Elite_FitmentsImportTest extends Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase
+class Elite_FitmentsImportTest extends VF_Import_ProductFitments_CSV_ImportTests_TestCase
 {
     function doSetUp()
     {

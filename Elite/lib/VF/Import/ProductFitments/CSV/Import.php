@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimporter_Model_VehiclesList_CSV_Import
+class VF_Import_ProductFitments_CSV_Import extends VF_Import_VehiclesList_CSV_Import
 {
     /** @var array of sku strings that were skipped becuase they did not match any product */
     protected $skipped_skus = array(); 
@@ -399,7 +399,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
         $this->fieldPositions = parent::getFieldPositions();
         if( !isset($this->fieldPositions['sku']) )
         {
-            throw new Elite_Vafimporter_Model_VehiclesList_CSV_Exception_FieldHeaders('Unable to locate field header for [sku], perhaps not using comma delimiter');
+            throw new VF_Import_VehiclesList_CSV_Exception_FieldHeaders('Unable to locate field header for [sku], perhaps not using comma delimiter');
         }
         return $this->fieldPositions;
     }

@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_ValueExploder
+class VF_Import_ValueExploder
 {
     protected $i;
     protected $input;

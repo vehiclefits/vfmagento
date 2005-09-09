@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_VehiclesList_XML_MMYTest extends Elite_Vafimporter_Model_VehiclesList_XML_TestCase
+class VF_Import_VehiclesList_XML_MMYTest extends VF_Import_VehiclesList_XML_TestCase
 {
     protected $csvData;
     protected $csvFile;
@@ -25,7 +25,7 @@ class Elite_Vafimporter_Model_VehiclesList_XML_MMYTest extends Elite_Vafimporter
     
     function testImportsMakeTitle()
     {
-        $exporter = new Elite_Vafimporter_Model_VehiclesList_XML_Export;
+        $exporter = new VF_Import_VehiclesList_XML_Export;
 
         $this->assertEquals( '<?xml version="1.0"?>
 <vehicles version="1.0">

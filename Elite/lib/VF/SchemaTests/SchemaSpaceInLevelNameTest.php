@@ -1,5 +1,5 @@
 <?php
-class VF_SchemaTests_SchemaSpaceInLevelNameTest extends Elite_Vafimporter_TestCase
+class VF_SchemaTests_SchemaSpaceInLevelNameTest extends VF_Import_TestCase
 {
     function doSetUp()
     {

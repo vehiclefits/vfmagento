@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_CommaTest extends Elite_Vafimporter_TestCase
+class VF_Import_VehiclesList_CSV_ImportTests_MMY_CommaTest extends VF_Import_TestCase
 {    
     protected $product_id;
     

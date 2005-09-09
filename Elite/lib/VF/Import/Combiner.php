@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_Combiner
+class VF_Import_Combiner
 {
     protected $error;
     protected $schema;
@@ -59,7 +59,7 @@ class Elite_Vafimporter_Model_Combiner
 
     function getPowerSetCombinations($values)
     {
-        $combiner = new Elite_Vafimporter_Model_ArrayCombiner();
+        $combiner = new VF_Import_ArrayCombiner();
         $combiner->setTraits($values);
         $combinations = $combiner->getCombinations();
         
@@ -81,7 +81,7 @@ class Elite_Vafimporter_Model_Combiner
         foreach($combinations as $key => $combination)
         {
             // blow out {{all}} tokens
-            $valueExploder = new Elite_Vafimporter_Model_ValueExploder();
+            $valueExploder = new VF_Import_ValueExploder();
             $result = array_merge( $result, $valueExploder->explode($combination) );
         }
         return $result;
@@ -120,7 +120,7 @@ class Elite_Vafimporter_Model_Combiner
     
     function explodeRanges($values,$level)
     {
-        $exploder = new Elite_Vafimporter_Model_RangeExploder($this->getConfig());
+        $exploder = new VF_Import_RangeExploder($this->getConfig());
         $values = $exploder->explodeRanges($values,$level);
         if($exploder->getError())
         {

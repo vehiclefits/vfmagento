@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_AllWildcardTest extends Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase
+class VF_Import_ProductFitments_CSV_ImportTests_MMY_AllWildcardTest extends VF_Import_ProductFitments_CSV_ImportTests_TestCase
 {    
     protected $product_id;
     

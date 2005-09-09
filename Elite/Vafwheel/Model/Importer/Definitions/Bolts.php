@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafwheel_Model_Importer_Definitions_Bolts extends Elite_Vafimporter_Model_VehiclesList_CSV_Import
+class Elite_Vafwheel_Model_Importer_Definitions_Bolts extends VF_Import_VehiclesList_CSV_Import
 {
     function importRow($row)
     {   

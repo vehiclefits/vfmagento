@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_ProductFitments_CSV_ExportTests_TestSub extends Elite_Vafimporter_Model_ProductFitments_CSV_Export
+class VF_Import_ProductFitments_CSV_ExportTests_TestSub extends VF_Import_ProductFitments_CSV_Export
 {
     protected function getProductTable()
     {

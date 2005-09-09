@@ -1,6 +1,6 @@
 <?php
 /** - 0000371: [Administrator / Product Edit / Assigning Fits] Importer is inserting values into universal incorrectly - confirmed. */
-class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_NoUniversalRegressionTest extends Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase
+class VF_Import_ProductFitments_CSV_ImportTests_MMY_NoUniversalRegressionTest extends VF_Import_ProductFitments_CSV_ImportTests_TestCase
 {    
     protected function doSetUp()
     {

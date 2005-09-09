@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_VehiclesList_XML_Export extends Elite_Vafimporter_Model_VehiclesList_BaseExport
+class VF_Import_VehiclesList_XML_Export extends VF_Import_VehiclesList_BaseExport
 {
     const EOL = "\n";
     

@@ -1,6 +1,6 @@
 <?php
 
-class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_Model
+class VF_Import_VehiclesList_CSV_Import extends VF_Import
 {
 
     /** @var array keyed by level name Ex. $count_added_by_level['make'] */
@@ -329,7 +329,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
 
     function getCombinations($values, $row)
     {       
-        $combiner = new Elite_Vafimporter_Model_Combiner($this->getSchema(), $this->getConfig());
+        $combiner = new VF_Import_Combiner($this->getSchema(), $this->getConfig());
 	$combinations = $combiner->getCombinations($values);
 	if ($combiner->getError())
 	{

@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_ArrayCombiner
+class VF_Import_ArrayCombiner
 {
     protected $traits;         
     protected $allCombinations = array(array());         

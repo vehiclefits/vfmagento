@@ -1,5 +1,5 @@
 <?php
-class VF_Level_FinderTests_ListInUsePerformanceTest extends Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase
+class VF_Level_FinderTests_ListInUsePerformanceTest extends VF_Import_ProductFitments_CSV_ImportTests_TestCase
 {
     function doSetUp()
     {

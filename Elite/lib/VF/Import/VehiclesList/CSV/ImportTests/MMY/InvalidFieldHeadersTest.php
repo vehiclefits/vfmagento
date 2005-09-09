@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_InvalidFieldHeadersTest extends Elite_Vafimporter_TestCase
+class VF_Import_VehiclesList_CSV_ImportTests_MMY_InvalidFieldHeadersTest extends VF_Import_TestCase
 {
     function doSetUp()
     {
@@ -7,7 +7,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_InvalidFieldHeade
     }
     
     /**
-    * @expectedException Elite_Vafimporter_Model_VehiclesList_CSV_Exception_FieldHeaders
+    * @expectedException VF_Import_VehiclesList_CSV_Exception_FieldHeaders
     */
     function testShouldThrowExceptionIfNoFieldHeaders()
     {
@@ -15,7 +15,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_InvalidFieldHeade
     }
     
     /**
-    * @expectedException Elite_Vafimporter_Model_VehiclesList_CSV_Exception_FieldHeaders
+    * @expectedException VF_Import_VehiclesList_CSV_Exception_FieldHeaders
     */
     function testShouldThrowExceptionIfMakeMissing()
     {
@@ -23,7 +23,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_InvalidFieldHeade
     }
     
     /**
-    * @expectedException Elite_Vafimporter_Model_VehiclesList_CSV_Exception_FieldHeaders
+    * @expectedException VF_Import_VehiclesList_CSV_Exception_FieldHeaders
     */
     function testShouldThrowExceptionIfModelMissing()
     {
@@ -31,7 +31,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_InvalidFieldHeade
     }
     
     /**
-    * @expectedException Elite_Vafimporter_Model_VehiclesList_CSV_Exception_FieldHeaders
+    * @expectedException VF_Import_VehiclesList_CSV_Exception_FieldHeaders
     */
     function testShouldThrowExceptionIfYearMissing()
     {

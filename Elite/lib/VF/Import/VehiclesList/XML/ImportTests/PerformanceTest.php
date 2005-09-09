@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_VehiclesList_XML_ImportTests_MMY_PerformanceTest extends Elite_Vafimporter_Model_VehiclesList_XML_TestCase
+class VF_Import_VehiclesList_XML_ImportTests_MMY_PerformanceTest extends VF_Import_VehiclesList_XML_TestCase
 {
     protected $xmlFile;
 

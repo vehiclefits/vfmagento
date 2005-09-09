@@ -1,5 +1,5 @@
 <?php
-class VF_Vehicle_FinderTests_SpecialCharactersTest extends Elite_Vafimporter_TestCase
+class VF_Vehicle_FinderTests_SpecialCharactersTest extends VF_Import_TestCase
 {
     function doSetUp()
     {

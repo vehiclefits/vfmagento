@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_YMM_YearRangeTest extends Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase
+class VF_Import_ProductFitments_CSV_ImportTests_YMM_YearRangeTest extends VF_Import_ProductFitments_CSV_ImportTests_TestCase
 {    
     protected function doSetUp()
     {

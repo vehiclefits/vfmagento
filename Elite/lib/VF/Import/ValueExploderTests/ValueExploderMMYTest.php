@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_ValueExploderMMYTest extends Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase
+class VF_Import_ValueExploderMMYTest extends VF_Import_ProductFitments_CSV_ImportTests_TestCase
 {
     protected function doSetUp()
     {
@@ -11,7 +11,7 @@ class Elite_Vafimporter_Model_ValueExploderMMYTest extends Elite_Vafimporter_Mod
     function testExplodeValues()
     {
         
-        $valueExploder = new Elite_Vafimporter_Model_ValueExploder;
+        $valueExploder = new VF_Import_ValueExploder;
         $this->importDefinitions();
         
         $result = $valueExploder->explode( array('make'=>'honda','model'=>'{{all}}','year'=>2000) );
@@ -24,7 +24,7 @@ class Elite_Vafimporter_Model_ValueExploderMMYTest extends Elite_Vafimporter_Mod
     function testExplodeValuesMultiple()
     {
         
-        $valueExploder = new Elite_Vafimporter_Model_ValueExploder;
+        $valueExploder = new VF_Import_ValueExploder;
         $this->importDefinitions();
         
         $result = $valueExploder->explode( array('make'=>'honda','model'=>'{{all}}','year'=>'{{all}}') );

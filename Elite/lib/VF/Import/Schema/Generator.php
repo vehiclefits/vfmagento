@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_Schema_Generator extends VF_Schema_Generator
+class VF_Import_Schema_Generator extends VF_Schema_Generator
 {
     function generator($levels)
     {

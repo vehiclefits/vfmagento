@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafpaint_Model_Importer_Definitions_Paint extends Elite_Vafimporter_Model_VehiclesList_CSV_Import
+class Elite_Vafpaint_Model_Importer_Definitions_Paint extends VF_Import_VehiclesList_CSV_Import
 {
     function importRow($row)
     {   

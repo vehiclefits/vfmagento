@@ -1,5 +1,5 @@
 <?php
-abstract class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase extends Elite_Vafimporter_TestCase
+abstract class VF_Import_ProductFitments_CSV_ImportTests_TestCase extends VF_Import_TestCase
 {
     protected $csvData;
     protected $csvFile;
@@ -25,7 +25,7 @@ abstract class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase 
     
     function mappingsImporterFromFile($csvFile)
     {
-        return new Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass($csvFile);
+        return new VF_Import_ProductFitments_CSV_Import_TestSubClass($csvFile);
     }
     
     function getFitForSku( $sku, $schema = null )
@@ -85,7 +85,7 @@ abstract class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase 
     {
 	$stream = fopen("php://temp", 'w');
 
-	$exporter = new Elite_Vafimporter_Model_ProductFitments_CSV_ExportTests_TestSub();
+	$exporter = new VF_Import_ProductFitments_CSV_ExportTests_TestSub();
 	$exporter->export($stream);
 	rewind($stream);
 
@@ -94,7 +94,7 @@ abstract class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase 
     }
 }
 
-class Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass extends Elite_Vafimporter_Model_ProductFitments_CSV_Import
+class VF_Import_ProductFitments_CSV_Import_TestSubClass extends VF_Import_ProductFitments_CSV_Import
 {
     function getProductTable()
     {

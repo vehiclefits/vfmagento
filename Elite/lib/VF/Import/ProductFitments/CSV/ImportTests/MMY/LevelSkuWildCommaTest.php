@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_LevelSkuWildCommaTest extends Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase
+class VF_Import_ProductFitments_CSV_ImportTests_MMY_LevelSkuWildCommaTest extends VF_Import_ProductFitments_CSV_ImportTests_TestCase
 {    
     protected $f150, $f250, $foo;
     protected $product_1, $product_2, $product_3;

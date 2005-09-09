@@ -1,6 +1,6 @@
 <?php
 
-class Elite_Vafdiagram_Model_ProductFitments_CSV_Import extends Elite_Vafimporter_Model_ProductFitments_CSV_Import
+class Elite_Vafdiagram_Model_ProductFitments_CSV_Import extends VF_Import_ProductFitments_CSV_Import
 {
 
     function __construct( $file )

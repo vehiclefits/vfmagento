@@ -1,6 +1,6 @@
 <?php
 
-class Elite_Vafimporter_Model_ProductFitments_CSV_Export extends Elite_Vafimporter_Model_VehiclesList_CSV_Export
+class VF_Import_ProductFitments_CSV_Export extends VF_Import_VehiclesList_CSV_Export
 {
 
     /** @var VF_Schema */

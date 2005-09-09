@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_ProductFitments_CSV_ExportTests_UniversalTest extends Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase
+class VF_Import_ProductFitments_CSV_ExportTests_UniversalTest extends VF_Import_ProductFitments_CSV_ImportTests_TestCase
 {    
     protected function doSetUp()
     {
@@ -14,7 +14,7 @@ sku123,  ,  ,  ,1';
         $this->insertProduct( 'sku123' );
         $this->insertProduct( 'sku456' );
         
-        $importer = new Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
+        $importer = new VF_Import_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
         $importer->import();
     }
     

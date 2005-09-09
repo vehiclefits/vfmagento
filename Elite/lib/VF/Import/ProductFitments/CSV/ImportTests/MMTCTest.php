@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMTCTest extends Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase
+class VF_Import_ProductFitments_CSV_ImportTests_MMTCTest extends VF_Import_ProductFitments_CSV_ImportTests_TestCase
 {    
     protected function doSetUp()
     {
@@ -26,7 +26,7 @@ sku, honda, civic, the_trim, the_chassis';
     function testMake()
     {
         return $this->markTestIncomplete();
-//        $importer = new Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
+//        $importer = new VF_Import_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
 //        $importer->import();
 //        $this->assertTrue( $this->entityTitleExists( 'make', 'honda' ), 'importer should be able to load makes (root levels) properly' );
     }
@@ -38,7 +38,7 @@ sku, honda, civic, the_trim, the_chassis';
 //nonexistantsku, honda, civic, the_trim, the_chassis';
 //        $file = TESTFILES . '/mappings-skipped.csv';
 //        file_put_contents( $file, $data );
-//        $importer = new Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass( $file );
+//        $importer = new VF_Import_ProductFitments_CSV_Import_TestSubClass( $file );
 //        $importer->import();
 //        $this->assertEquals( array( 'nonexistantsku' ), $importer->getSkippedSkus() );
     }
@@ -46,7 +46,7 @@ sku, honda, civic, the_trim, the_chassis';
     function testErrorCountIs0AfterSuccess()
     {
         return $this->markTestIncomplete();
-//        $importer = new Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
+//        $importer = new VF_Import_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
 //        $importer->import();
 //        $this->assertEquals( array(), $importer->getErrors() );
     }
@@ -54,7 +54,7 @@ sku, honda, civic, the_trim, the_chassis';
     function testSkippedCountIs0AfterSuccess()
     {
         return $this->markTestIncomplete();
-//        $importer = new Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
+//        $importer = new VF_Import_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
 //        $importer->import();
 //        $this->assertEquals( 0, $importer->getCountSkippedMappings() );
     }
@@ -62,7 +62,7 @@ sku, honda, civic, the_trim, the_chassis';
     function testCountMappingsIs1AfterSuccess()
     {
         return $this->markTestIncomplete();
-//        $importer = new Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
+//        $importer = new VF_Import_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
 //        $importer->import();
 //        $this->assertEquals( 1, $importer->getCountMappings() );
     }
@@ -70,10 +70,10 @@ sku, honda, civic, the_trim, the_chassis';
     function testSkippedCountIs1IfFitAlreadyExists()
     {
         return $this->markTestIncomplete();
-//        $importer = new Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
+//        $importer = new VF_Import_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
 //        $importer->import();
         // execise ( again)
-//        $importer = new Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
+//        $importer = new VF_Import_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
 //        $importer->import();
 //        $this->assertEquals( 1, $importer->getCountSkippedMappings() );
     }

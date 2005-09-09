@@ -2,7 +2,7 @@
 require_once('VafdefinitionsimporterController.php');
 class Elite_Vafimporter_Admin_VafmappingsimporterController extends Elite_Vafimporter_Admin_VafdefinitionsimporterController
 { 
-    /** @var Elite_Vafimporter_Model_ProductFitments */
+    /** @var VF_Import_ProductFitments */
     protected $importer;
     
     function indexAction()
@@ -23,7 +23,7 @@ class Elite_Vafimporter_Admin_VafmappingsimporterController extends Elite_Vafimp
     
     function importer()
     {
-        return new Elite_Vafimporter_Model_ProductFitments_CSV_Import( $_FILES['file']['tmp_name'] );
+        return new VF_Import_ProductFitments_CSV_Import( $_FILES['file']['tmp_name'] );
     }
     
     protected function doFormatMessages()

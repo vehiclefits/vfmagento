@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_VehiclesList_Xml_Import extends Elite_Vafimporter_Model
+class VF_Import_VehiclesList_Xml_Import extends VF_Import
 {
     protected $file;
     

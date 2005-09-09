@@ -87,7 +87,7 @@ class VF_Schema_Generator
         }
         if( file_exists(ELITE_PATH.'/Vafimporter') )
         {
-            $generator = new Elite_Vafimporter_Model_Schema_Generator();
+            $generator = new VF_Import_Schema_Generator();
             $return .= $generator->generator($levels);
         }
         if( file_exists(ELITE_PATH.'/Vafgarage') )

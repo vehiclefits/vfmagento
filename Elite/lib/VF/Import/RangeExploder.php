@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_RangeExploder
+class VF_Import_RangeExploder
 {
     protected $config;
     protected $error;

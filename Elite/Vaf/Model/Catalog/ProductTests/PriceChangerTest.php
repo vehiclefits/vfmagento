@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Catalog_ProductTests_PriceChangerTest extends Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase
+class Elite_Vaf_Model_Catalog_ProductTests_PriceChangerTest extends VF_Import_ProductFitments_CSV_ImportTests_TestCase
 {
     function testShouldNotChangePrice()
     {

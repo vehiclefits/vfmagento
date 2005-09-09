@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_ArrayCombinerTest extends Elite_Vaf_TestCase
+class VF_Import_ArrayCombinerTest extends Elite_Vaf_TestCase
 {
     function test()
     {
@@ -9,7 +9,7 @@ class Elite_Vafimporter_Model_ArrayCombinerTest extends Elite_Vaf_TestCase
             'year' => array(1,2)
         );
 
-        $combiner = new Elite_Vafimporter_Model_ArrayCombiner();
+        $combiner = new VF_Import_ArrayCombiner();
         
         $combiner->setTraits($traits);
         $r = $combiner->getCombinations();   

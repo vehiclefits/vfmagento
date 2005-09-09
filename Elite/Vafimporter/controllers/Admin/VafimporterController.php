@@ -22,11 +22,11 @@ class Elite_Vafimporter_Admin_VafimporterController extends Mage_Adminhtml_Contr
 	    if ('CSV' == $_REQUEST['format'])
 	    {
 		$stream = fopen("php://output", 'w');
-		$exporter = new Elite_Vafimporter_Model_VehiclesList_CSV_Export();
+		$exporter = new VF_Import_VehiclesList_CSV_Export();
 		$exporter->export($stream);
 	    } else
 	    {
-		$exporter = new Elite_Vafimporter_Model_VehiclesList_XML_Export();
+		$exporter = new VF_Import_VehiclesList_XML_Export();
 		echo $exporter->export();
 	    }
 
@@ -52,7 +52,7 @@ class Elite_Vafimporter_Admin_VafimporterController extends Mage_Adminhtml_Contr
 	    header('Content-Type: text/csv');
 
 	    $stream = fopen("php://output", 'w');
-	    $exporter = new Elite_Vafimporter_Model_ProductFitments_CSV_Export();
+	    $exporter = new VF_Import_ProductFitments_CSV_Export();
 	    $exporter->export($stream);
 
 	    exit();

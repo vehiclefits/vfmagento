@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaftire_Model_Importer_Definitions_TireSize extends Elite_Vafimporter_Model_VehiclesList_CSV_Import
+class Elite_Vaftire_Model_Importer_Definitions_TireSize extends VF_Import_VehiclesList_CSV_Import
 {
     function importRow($row)
     {   

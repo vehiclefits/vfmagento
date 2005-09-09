@@ -22,7 +22,7 @@ class Elite_Vafimporter_Admin_VafimportexportsettingsController extends Mage_Adm
     {
         if($_SERVER['REQUEST_METHOD'])
         {
-            $form = new Elite_Vafimporter_Model_Settings;
+            $form = new VF_Import_Settings;
             $form->populate($_POST);
             
             $config = $form->getConfig();
