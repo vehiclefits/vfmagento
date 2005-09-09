@@ -85,6 +85,48 @@ class VF_FlexibleSearchTests_FitMMYTest extends Elite_Vaf_Helper_DataTestCase
         unset($_SESSION['garage']);
         $this->assertNotEquals( $vehicle->toValueArray(), $_SESSION, 'should get global configuration' );
     }
+    
+    function testShouldNotHaveRequest()
+    {
+        $helper = $this->getHelper( array(), array() );
+        $this->assertFalse($helper->flexibleSearch()->hasRequest());
+    }
+    
+    function testShouldNotHaveGETRequest()
+    {
+        $helper = $this->getHelper( array(), array() );
+        $this->assertFalse($helper->flexibleSearch()->hasGETRequest());
+    }
+    
+    function testShouldNotHaveSESSIONRequest()
+    {
+        $helper = $this->getHelper( array(), array() );
+        $this->assertFalse($helper->flexibleSearch()->hasSESSIONRequest());
+    }
+    
+    function testShouldHaveSESSIONRequest()
+    {
+        $vehicle = $this->createMMY();
+        $_SESSION = $vehicle->toValueArray();
+        $helper = $this->getHelper( array(), array() );
+        $this->assertTrue($helper->flexibleSearch()->hasSESSIONRequest());
+    }
+
+    function testGetsMakeIdFromSession()
+    {
+        $vehicle = $this->createMMY();
+        $_SESSION = $vehicle->toValueArray();
+        $helper = $this->getHelper( array(), array() );
+        $this->assertEquals( $vehicle->getLevel('make')->getId(), $helper->flexibleSearch()->getValueForSelectedLevel('make'));
+    }
+
+    function testGetsYearIdFromSession()
+    {
+        $vehicle = $this->createMMY();
+        $_SESSION = $vehicle->toValueArray();
+        $helper = $this->getHelper( array(), array() );
+        $this->assertEquals( $vehicle->getLevel('year')->getId(), $helper->flexibleSearch()->getValueForSelectedLevel('year'));
+    }
 
     function testGetsIdFromSession()
     {
@@ -92,7 +134,7 @@ class VF_FlexibleSearchTests_FitMMYTest extends Elite_Vaf_Helper_DataTestCase
         $_SESSION = $vehicle->toValueArray();
         $helper = $this->getHelper( array(), array() );
         $this->assertEquals( $vehicle->getLevel('year')->getId(), $helper->vehicleSelection()->getLeafValue(), 'gets fit id from session if there is no request' );
-        $this->assertEquals( $vehicle->getLevel('year')->getId(), $helper->storeFitInSession(), 'gets fit id from session if there is no request' );
+        $this->assertEquals( $vehicle->getLevel('year')->getId(), $helper->storeFitInSession(), 'storeFitInSession() should return leafID' );
     }
     
     function testShouldAutomaticallyClearInvalidSession()

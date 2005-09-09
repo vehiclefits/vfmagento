@@ -6,6 +6,47 @@ class VF_FlexibleSearchTests_FitPartialSelectionTest extends Elite_Vaf_Helper_Da
         $this->switchSchema('make,model,year');
     }
     
+    function testShouldIgnoreLoadingModel()
+    {
+        $vehicle = $this->createMMY();
+        $requestParams = array(
+        	'make'=>$vehicle->getLevel('make')->getId(),
+        	'model'=>'loading',
+        	'year'=>'loading'
+        );
+        $helper = $this->getHelper( array(), $requestParams );
+        
+        $this->assertFalse($helper->flexibleSearch()->getValueForSelectedLevel('model'));
+    }
+    
+    
+    function testShouldBeNumericWhenLoading()
+    {
+        $vehicle = $this->createMMY();
+        $requestParams = array(
+        	'make'=>$vehicle->getLevel('make')->getId(),
+        	'model'=>'loading',
+        	'year'=>'loading'
+        );
+        $helper = $this->getHelper( array(), $requestParams );
+        
+        $this->assertTrue($helper->flexibleSearch()->isNumericRequest());
+    }
+    
+    function testShouldReadMakeWhenModelLoading()
+    {
+        $vehicle = $this->createMMY();
+        $requestParams = array(
+        	'make'=>$vehicle->getLevel('make')->getId(),
+        	'model'=>'loading',
+        	'year'=>'loading'
+        );
+        $helper = $this->getHelper( array(), $requestParams );
+        
+        $this->assertEquals($vehicle->getValue('make'),$helper->flexibleSearch()->getValueForSelectedLevel('make'));
+    }
+    
+    
     function testShouldReturnDefinition()
     {
         $vehicle = $this->createMMY();
@@ -33,7 +74,7 @@ class VF_FlexibleSearchTests_FitPartialSelectionTest extends Elite_Vaf_Helper_Da
         $helper = $this->getHelper( array(), $requestParams );
         $helper->storeFitInSession();
         
-        $this->assertEquals( $vehicle->getLevel('make')->getId(), $_SESSION['make'] );
+        $this->assertEquals( $vehicle->getLevel('make')->getId(), $_SESSION['make'], 'should store make in session' );
         $this->assertFalse( $_SESSION['model'] );
         $this->assertFalse( $_SESSION['year'] );
     }

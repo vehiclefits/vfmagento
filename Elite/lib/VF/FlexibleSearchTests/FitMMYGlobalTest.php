@@ -19,6 +19,14 @@ class VF_FlexibleSearchTests_FitMMYGlobalTest extends Elite_Vaf_TestCase
         $schemaGenerator->dropExistingTables();
     }
     
+    function testShouldNotByAlnum()
+    {
+        $vehicle1 = $this->createMMY('Honda', 'Civic', '2000');
+        $this->insertMappingMMY($vehicle1, 1);
+        $this->setRequestParams($vehicle1->toValueArray());
+        $this->assertTrue( Elite_Vaf_Helper_Data::getInstance()->flexibleSearch()->isNumericRequest());
+    }
+    
     function testTest()
     {
         $vehicle1 = $this->createMMY('Honda', 'Civic', '2000');

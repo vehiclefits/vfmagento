@@ -125,7 +125,6 @@ class VF_FlexibleSearch implements VF_FlexibleSearch_Interface
             }
             return $vehicleFinder->findByLevel($this->getLevel(), $id);
         }
-        
         if(!$this->hasGETRequest() && !$this->hasSESSIONRequest())
         {
             return new VF_Vehicle_Selection(array());
@@ -138,7 +137,6 @@ class VF_FlexibleSearch implements VF_FlexibleSearch_Interface
             if(isset($params['year_start']) && isset($params['year_end']))
             {
                 $vehicles = $vehicleFinder->findByRangeIds($params);
-                //print_r($vehicles); exit();
             }
             else
             {
@@ -150,6 +148,19 @@ class VF_FlexibleSearch implements VF_FlexibleSearch_Interface
 	{
 	    return false;
 	}
+    }
+    
+    function isNumericRequest()
+    {
+        $return = true;
+        foreach($this->getRequestValues() as $val)
+        {
+            if( !is_int($val) && !ctype_digit($val))
+            {
+                $return = false;
+            }
+        }
+        return $return;
     }
     
     function vehicleRequestParams()
@@ -202,7 +213,7 @@ class VF_FlexibleSearch implements VF_FlexibleSearch_Interface
 	{
 	    return false;
 	}
-	return is_numeric($val);
+	return (bool)($val);
     }
 
     function requestingSESSIONLevel($level)
@@ -225,7 +236,19 @@ class VF_FlexibleSearch implements VF_FlexibleSearch_Interface
 	$values = array();
 	foreach ($this->schema->getLevels() as $level)
 	{
-	    $values[$level] = $this->getRequest()->getParam($level);
+            if($this->getRequest()->getParam($level.'_start')&&$this->getRequest()->getParam($level.'_end'))
+            {
+                $values[$level.'_start'] = $this->getRequest()->getParam($level.'_start');
+                $values[$level.'_end'] = $this->getRequest()->getParam($level.'_end');
+            }
+            elseif('loading' == $this->getRequest()->getParam($level))
+            {
+                continue;
+            }
+            else
+            {
+                $values[$level] = $this->getRequest()->getParam($level);
+            }
 	}
 	return $values;
     }
@@ -243,15 +266,39 @@ class VF_FlexibleSearch implements VF_FlexibleSearch_Interface
 	{
 	    return $fit;
 	}
-
-	if (is_numeric($this->getRequest()->getParam($level)))
-	{
-	    return $this->getRequest()->getParam($level);
-	}
-	if (!$this->hasGETRequest() && isset($_SESSION[$level]))
+        
+        if (!$this->hasGETRequest() && isset($_SESSION[$level]))
 	{
 	    return $_SESSION[$level];
 	}
+        
+        if(!$this->getRequest()->getParam($level) || 'loading' == $this->getRequest()->getParam($level) )
+        {
+            return false;
+        }
+        
+	if ($this->isNumericRequest())
+	{
+	    return $this->getRequest()->getParam($level);
+	}
+        else
+        {
+            $levelStringValue = $this->getRequest()->getParam($level);
+            $levelFinder = new VF_Level_Finder();
+            $parentLevel = $this->schema()->getPrevLevel($level);
+
+            if($parentLevel)
+            {
+                $parentValue = $this->getValueForSelectedLevel($parentLevel);
+            }
+            else
+            {
+                $parentValue = null;
+            }
+            
+            return $levelFinder->findEntityIdByTitle($level, $levelStringValue, isset($parentValue)?$parentValue:null);
+        }
+	
 	return false;
     }
 
@@ -321,11 +368,11 @@ class VF_FlexibleSearch implements VF_FlexibleSearch_Interface
                 }
 	    }
 
-//	    if (!isset($_SESSION['garage']))
-//	    {
-//		$_SESSION['garage'] = new Elite_Vafgarage_Model_Garage;
-//	    }
-//	    $_SESSION['garage']->addVehicle($this->getRequestValues());
+	    if (!isset($_SESSION['garage']))
+	    {
+		$_SESSION['garage'] = new Elite_Vafgarage_Model_Garage;
+	    }
+	    $_SESSION['garage']->addVehicle($this->getRequestValues());
 
 	    $leafVal = $this->getValueForSelectedLevel($this->schema()->getLeafLevel());
 	    if ($leafVal)

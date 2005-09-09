@@ -272,7 +272,7 @@ class VF_Level_Finder_Selector extends VF_Level_Finder_Abstract implements VF_Le
         
         if( !$this->getSchema()->isGlobal($type) && !$parent_id )
         {
-            throw new VF_Level_Finder_SchemaException('Please specify parent level to search under. If you want all possible matches use the vehicle finder, not the level finder.');
+            throw new VF_Level_Finder_SchemaException('Please specify parent level to search under. If you want all possible matches use the vehicle finder, not the level finder. Level requested was '.$type);
         }
 
         $inflectedType = $this->inflect($type);

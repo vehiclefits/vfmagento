@@ -5,7 +5,37 @@ class VF_FlexibleSearchTests_FitMultipleSelectionTest extends Elite_Vaf_Helper_D
     {
         $this->switchSchema('make,model,year');
     }
-      
+    
+    function testShouldDetectNumericRequest()
+    {
+        $civic2000 = $this->createMMY('Honda','Civic','2000');
+        $civic2001 = $this->createMMY('Honda','Civic','2001');
+       
+        $requestParams = array(
+            'make' => $civic2000->getValue('make'),
+            'model' => $civic2000->getValue('model'),
+            'year_start' => $civic2000->getValue('year'),
+            'year_end' => $civic2001->getValue('year')
+        );
+        $helper = $this->getHelper( array(), $requestParams );
+        $this->assertTrue( $helper->flexibleSearch()->isNumericRequest());
+    }
+    
+    function testShouldHaveMake()
+    {
+        $civic2000 = $this->createMMY('Honda','Civic','2000');
+        $civic2001 = $this->createMMY('Honda','Civic','2001');
+       
+        $requestParams = array(
+            'make' => $civic2000->getValue('make'),
+            'model' => $civic2000->getValue('model'),
+            'year_start' => $civic2000->getValue('year'),
+            'year_end' => $civic2001->getValue('year')
+        );
+        $helper = $this->getHelper( array(), $requestParams );
+        $this->assertEquals($civic2000->getValue('make'), $helper->flexibleSearch()->getValueForSelectedLevel('make'));
+    }
+    
     function testShouldFitInsideRange()
     {
         $civic2000 = $this->createMMY('Honda','Civic','2000');
