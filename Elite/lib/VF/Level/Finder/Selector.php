@@ -181,7 +181,16 @@ class VF_Level_Finder_Selector extends VF_Level_Finder_Abstract implements VF_Le
     {
         foreach($parents as $level=>$title)
         {
-            $parent = $this->findEntityByTitle($level, $title);
+            $parentLevel = $this->getSchema()->getPrevLevel($level);
+            if($parentLevel)
+            {
+                $parentId = $parents[$parentLevel];
+                $parent = $this->findEntityByTitle($level, $title, $parentId);
+            }
+            else
+            {
+                $parent = $this->findEntityByTitle($level, $title);
+            }
             $parents[$level] = $parent->getId();
         }
         return $this->listInUse( $entity, $parents, $product_id );
