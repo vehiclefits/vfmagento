@@ -19,7 +19,7 @@ class VF_Search implements VF_Configurable
     
     function getRequest()
     {
-        return new Zend_Controller_Request_Http;
+        return $this->_request;
     }
     
     /** for testability */
