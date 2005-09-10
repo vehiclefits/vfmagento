@@ -91,7 +91,7 @@ class VF_SearchLevel
     
     protected function getEntities()
     {
-        $search = new VF_Search;
+        $search = $this->block;
         if( $this->prevLevel )
         {
             return $search->listEntities( $this->level );
