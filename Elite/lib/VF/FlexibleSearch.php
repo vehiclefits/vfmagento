@@ -155,6 +155,10 @@ class VF_FlexibleSearch implements VF_FlexibleSearch_Interface
         $return = true;
         foreach($this->getRequestValues() as $val)
         {
+            if(!$val)
+            {
+                continue;
+            }
             if( !is_int($val) && !ctype_digit($val))
             {
                 $return = false;
@@ -276,7 +280,7 @@ class VF_FlexibleSearch implements VF_FlexibleSearch_Interface
         {
             return false;
         }
-        
+
 	if ($this->isNumericRequest())
 	{
 	    return $this->getRequest()->getParam($level);

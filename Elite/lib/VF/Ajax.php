@@ -13,13 +13,15 @@
 */
 class Vf_Ajax implements VF_Configurable
 {
+    protected $alphaNumeric;
     protected $schema;
     
     /** @var Zend_Config */
     protected $config;
     
-    function execute( VF_Schema $schema )
+    function execute( VF_Schema $schema, $alphaNumeric=true )
     {
+        $this->alphaNumeric = $alphaNumeric;
         $this->schema = $schema;
         
         $levels = $schema->getLevels();
@@ -29,7 +31,14 @@ class Vf_Ajax implements VF_Configurable
         if( isset( $_GET['front'] ) )
         {
             $product = isset($_GET['product']) ? $_GET['product'] : null;
-            $children = $levelFinder->listInUseByTitle( new VF_Level($this->requestLevel()), $this->requestLevels(), $product );
+            if($alphaNumeric)
+            {
+                $children = $levelFinder->listInUseByTitle( new VF_Level($this->requestLevel()), $this->requestLevels(), $product );
+            }
+            else
+            {
+                $children = $levelFinder->listInUse( new VF_Level($this->requestLevel()), $this->requestLevels(), $product );
+            }
         }
         else
         {
@@ -65,12 +74,19 @@ class Vf_Ajax implements VF_Configurable
         $label = $this->getDefaultSearchOptionText($this->requestLevel());
         if( count( $children ) > 1 && $label )
         {
-            echo '<option value="">' . $label . '</option>';
+            echo '<option value="0">' . $label . '</option>';
         }
         
         foreach( $children as $child )
         {
-            echo '<option value="' . $child->getTitle() . '">' . htmlentities( $child->getTitle(), ENT_QUOTES, 'UTF-8' ) . '</option>';
+            if($this->alphaNumeric)
+            {
+                echo '<option value="' . $child->getTitle() . '">' . htmlentities( $child->getTitle(), ENT_QUOTES, 'UTF-8' ) . '</option>';
+            }
+            else
+            {
+                echo '<option value="' . $child->getId() . '">' . htmlentities( $child->getTitle(), ENT_QUOTES, 'UTF-8' ) . '</option>';
+            }
         }
         return ob_get_clean();
     }

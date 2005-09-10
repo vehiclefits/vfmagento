@@ -1,5 +1,5 @@
 <?php
-class Vf_AjaxTests_FilterByProductTest extends Elite_Vaf_TestCase
+class Vf_AjaxTests_FilterByProductAlnumTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {
@@ -16,8 +16,8 @@ class Vf_AjaxTests_FilterByProductTest extends Elite_Vaf_TestCase
         
         $_GET['requestLevel'] = 'model';
         $_GET['product'] = 1;
-        $_GET['make'] = $vehicle1->getValue('make');
-        $this->assertEquals( '<option value="' . $vehicle1->getValue('model') . '">Civic</option>', $this->execute(), 'should list model for correct product only' );
+        $_GET['make'] = $vehicle1->getLevel('make');
+        $this->assertEquals( '<option value="' . $vehicle1->getLevel('model') . '">Civic</option>', $this->execute(), 'should list model for correct product only' );
     }
     
     
@@ -25,7 +25,7 @@ class Vf_AjaxTests_FilterByProductTest extends Elite_Vaf_TestCase
     {
         ob_start();
         $_GET['front']=1;
-        $this->getAjax()->execute( $this->getSchema(), false );
+        $this->getAjax()->execute( $this->getSchema(), true );
         return ob_get_clean();
     }
     
