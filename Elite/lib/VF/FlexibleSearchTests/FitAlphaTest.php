@@ -67,4 +67,14 @@ class VF_FlexibleSearchTests_FitAlphaTest extends Elite_Vaf_Helper_DataTestCase
         $this->setRequestParams($vehicle2->toTitleArray());
         $this->assertEquals( array(2), Elite_Vaf_Helper_Data::getInstance()->getProductIds() );
     }
+    
+    function testShouldStoreInSession()
+    {
+        $_SESSION = array('make'=>null, 'model'=>null, 'year'=>null);
+        $vehicle = $this->createMMY('Honda','Civic','2000');
+        $helper = $this->getHelper( array(), $vehicle->toTitleArray() );
+        $helper->storeFitInSession();
+        unset($_SESSION['garage']);
+        $this->assertEquals( $vehicle->toValueArray(), $_SESSION, 'should store vehicle in session' );
+    }
 }

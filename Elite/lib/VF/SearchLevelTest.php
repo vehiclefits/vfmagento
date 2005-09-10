@@ -33,6 +33,36 @@ class VF_SearchLevelTest extends Elite_Vaf_TestCase
         $this->assertFalse( $searchlevel->getSelected($entity) );
     }
     
+    function testYearSelected()
+    {
+        $vehicle = $this->createMMY( self::MAKE, self::MODEL, self::YEAR );
+        
+        $searchlevel = new VF_SearchLevel_TestSub();
+        $searchlevel->display( new Elite_Vaf_Block_Search, 'year' );
+        
+        Elite_Vaf_Helper_Data::getInstance()->getRequest()->setParam('make', $vehicle->getLevel('make')->getId() );
+        Elite_Vaf_Helper_Data::getInstance()->getRequest()->setParam('model', $vehicle->getLevel('model')->getId() );
+        Elite_Vaf_Helper_Data::getInstance()->getRequest()->setParam('year', $vehicle->getLevel('year')->getId() );
+        
+        $entity = $this->levelFinder()->find('year',$vehicle->getValue('year'));
+        $this->assertTrue( $searchlevel->getSelected($entity));
+    }
+    
+    function testYearAlnumSelected()
+    {
+        $vehicle = $this->createMMY('Honda','Civic','2000');
+        
+        $searchlevel = new VF_SearchLevel_TestSub();
+        $searchlevel->display( new Elite_Vaf_Block_Search, 'year' );
+        
+        Elite_Vaf_Helper_Data::getInstance()->getRequest()->setParam('make', $vehicle->getLevel('make')->getTitle() );
+        Elite_Vaf_Helper_Data::getInstance()->getRequest()->setParam('model', $vehicle->getLevel('model')->getTitle() );
+        Elite_Vaf_Helper_Data::getInstance()->getRequest()->setParam('year', $vehicle->getLevel('year')->getTitle() );
+        
+        $entity = $vehicle->getLevel('year');
+        $this->assertTrue( $searchlevel->getSelected($entity));
+    }
+    
 }
 
 class VF_SearchLevel_TestSub extends VF_SearchLevel
