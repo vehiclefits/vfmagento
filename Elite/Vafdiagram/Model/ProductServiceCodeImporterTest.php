@@ -8,6 +8,14 @@ class Elite_Vafdiagram_Model_ProductServiceCodeImporterTest extends Elite_Vafdia
 	$this->switchSchema('make,model,year');
     }
 
+    function testShouldIgnoreUnknownSKUs()
+    {
+	$this->importProductServiceCodes('sku,service_code' . "\n" .
+		'sku2,123' . "\n" .
+		'sku1,456' . "\n" .
+		'sku1,456');
+    }
+
     function testShouldImportServiceCodes()
     {
 	$productId = $this->insertProduct('sku1');
@@ -17,6 +25,17 @@ class Elite_Vafdiagram_Model_ProductServiceCodeImporterTest extends Elite_Vafdia
 		'sku1,456');
 	$product = $this->product($productId);
 	$this->assertEquals(array(123, 456), $product->serviceCodes(), 'should import multiple service codes for product');
+    }
+
+    function testShouldSkipDuplicates()
+    {
+	$productId = $this->insertProduct('sku1');
+
+	$this->importProductServiceCodes('sku,service_code' . "\n" .
+		'sku1,123' . "\n" .
+		'sku1,123');
+	$product = $this->product($productId);
+	$this->assertEquals(array(123), $product->serviceCodes(), 'should skip duplicates');
     }
 
     function testShouldImportCallout()
