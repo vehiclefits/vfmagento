@@ -177,6 +177,16 @@ class VF_Level_Finder_Selector extends VF_Level_Finder_Abstract implements VF_Le
         return $this->objs[ $entity->getType() ][ $entity->getId() ];
     }
     
+    function listInUseByTitle( VF_Level $entity, $parents = array(), $product_id = 0)
+    {
+        foreach($parents as $level=>$title)
+        {
+            $parent = $this->findEntityByTitle($level, $title);
+            $parents[$level] = $parent->getId();
+        }
+        return $this->listInUse( $entity, $parents, $product_id );
+    }
+              
     function listInUse( VF_Level $entity, $parents = array(), $product_id = 0 )
     {
         unset( $parents[ $entity->getType() ] );
@@ -222,6 +232,7 @@ class VF_Level_Finder_Selector extends VF_Level_Finder_Abstract implements VF_Le
                 continue;
             }
             $subQuery->where( sprintf( 'fitment.`%s_id` = ?', $parentType ), $parentId );
+            
         }
         $subQuery->group($entity->getType() .'_id');
         

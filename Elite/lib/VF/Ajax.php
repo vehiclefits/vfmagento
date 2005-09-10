@@ -29,7 +29,7 @@ class Vf_Ajax implements VF_Configurable
         if( isset( $_GET['front'] ) )
         {
             $product = isset($_GET['product']) ? $_GET['product'] : null;
-            $children = $levelFinder->listInUse( new VF_Level($this->requestLevel()), $this->requestLevels(), $product );
+            $children = $levelFinder->listInUseByTitle( new VF_Level($this->requestLevel()), $this->requestLevels(), $product );
         }
         else
         {
@@ -65,12 +65,12 @@ class Vf_Ajax implements VF_Configurable
         $label = $this->getDefaultSearchOptionText($this->requestLevel());
         if( count( $children ) > 1 && $label )
         {
-            echo '<option value="0">' . $label . '</option>';
+            echo '<option value="">' . $label . '</option>';
         }
         
         foreach( $children as $child )
         {
-            echo '<option value="' . $child->getId() . '">' . htmlentities( $child->getTitle(), ENT_QUOTES, 'UTF-8' ) . '</option>';
+            echo '<option value="' . $child->getTitle() . '">' . htmlentities( $child->getTitle(), ENT_QUOTES, 'UTF-8' ) . '</option>';
         }
         return ob_get_clean();
     }

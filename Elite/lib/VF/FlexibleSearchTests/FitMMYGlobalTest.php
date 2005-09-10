@@ -27,7 +27,7 @@ class VF_FlexibleSearchTests_FitMMYGlobalTest extends Elite_Vaf_TestCase
         $this->assertTrue( Elite_Vaf_Helper_Data::getInstance()->flexibleSearch()->isNumericRequest());
     }
     
-    function testTest()
+    function testGetProductIDs()
     {
         $vehicle1 = $this->createMMY('Honda', 'Civic', '2000');
         $vehicle2 = $this->createMMY('Ford', 'F-150', '2000');

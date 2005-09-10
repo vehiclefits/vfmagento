@@ -400,6 +400,11 @@ class VF_Level implements VF_Configurable
         return $this->getFinder()->listInUse($this, $parents, $product_id);
     }
 
+    function listInUseByTitle($parents = array(), $product_id = 0)
+    {
+        return $this->getFinder()->listInUseByTitle($this, $parents, $product_id);
+    }
+
     function getTable()
     {
         return 'elite_level_' . $this->getType();

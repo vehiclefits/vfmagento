@@ -47,7 +47,7 @@ class VF_SearchLevel
             foreach( $this->getEntities() as $entity )
             {   
                 ?>
-                <option value="<?=$entity->getId()?>" <?=( $this->getSelected( $entity ) ? ' selected="selected"' : '' )?>><?=$entity->getTitle()?></option>
+                <option value="<?=$entity->getTitle()?>" <?=( $this->getSelected( $entity ) ? ' selected="selected"' : '' )?>><?=$entity->getTitle()?></option>
                 <?php
             }
             ?>
