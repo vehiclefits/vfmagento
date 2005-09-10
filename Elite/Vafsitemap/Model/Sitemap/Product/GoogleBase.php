@@ -18,8 +18,8 @@ class Elite_Vafsitemap_Model_Sitemap_Product_GoogleBase extends Elite_Vafsitemap
 	{
 	    $product = Mage::getModel('catalog/product')
 			    ->setStoreId($this->storeId)
-			    ->load($productId);
-	    if( !in_array($product->getStoreIds(), $storeId) )
+			    ->load($productRow['entity_id']);
+	    if( !in_array($storeId, $product->getStoreIds()) )
 	    {
 		continue;
 	    }

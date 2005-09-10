@@ -9,20 +9,17 @@ $storeId = 1;
 // DO NOT EDIT BELOW HERE
 
 $sitemap = new Elite_Vafsitemap_Model_Sitemap_Product_XML();
-$size = $sitemap->getCollectionSize();
+$size = $sitemap->productCount($storeId);
 $files = array();
 $chunkSize = 50000;
-//$basePath = Mage::getBaseDir() . '/var/vaf-sitemap-xml';
-$basePath = 'vaf-sitemap-xml';
-if(file_exists($basePath))
-{
-    $this->recursiveDelete($basePath);
-}
-mkdir($basePath);
+
+$basePath = Mage::getBaseDir() . '/var/vaf-sitemap-xml';
+
+@mkdir($basePath);
 
 for( $i=0; $i<=$size; $i+=$chunkSize )
 {
-    $xml = $sitemap->xml($_GET['store'], $i==0?0:$i+1, $i+$chunkSize );
+    $xml = $sitemap->xml($storeId, $i==0?0:$i+1, $i+$chunkSize );
     $file = $basePath.'/'.floor($i/$chunkSize).'.xml';
     array_push($files,basename($file));
     file_put_contents($file, $xml);
