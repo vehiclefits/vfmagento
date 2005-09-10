@@ -82,17 +82,28 @@ class Elite_Vaf_Admin_DefinitionsController extends Mage_Adminhtml_Controller_Ac
         }
         
         $vehicle = $this->vehicleFinder()->findByLevelIds($params, true);
+	if(!count($vehicle))
+	{
+	    $this->redirectAfterDelete();
+            exit();
+	}
+	
         $vehicle = $vehicle[0];
         
         if( $this->getRequest()->getParam( 'confirm' ) )
         {
             $vehicle->unlink();
-            header( 'Location:' . $this->getListUrl2($this->getEntity()->getType()) . '?' . http_build_query($this->requestLevels()));
+	    $this->redirectAfterDelete();
             exit();
         }
         
         $this->block->model = $vehicle->getLevel($this->getEntity()->getType());
         $this->block->setTemplate( 'vaf/delete.phtml' );  
+    }
+
+    function redirectAfterDelete()
+    {
+	header( 'Location:' . $this->getListUrl2($this->getEntity()->getType()) . '?' . http_build_query($this->requestLevels()));
     }
     
     function saveAction()
