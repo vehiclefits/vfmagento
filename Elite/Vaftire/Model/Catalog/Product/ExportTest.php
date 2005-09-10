@@ -11,20 +11,19 @@ class Elite_Vaftire_Model_Catalog_Product_ExportTest extends Elite_Vaf_TestCase
 	    $product->setId($id);
 	    $product->setTireSize($tireSize);
 
-	    //$stream = fopen("php://temp", 'w');
+	    $stream = fopen("php://temp", 'w');
 	    $export = new Elite_Vaftire_Model_Catalog_Product_ExportTestSub;
-//	    $export->export($stream);
-	    $csv = $export->export();
+	    $export->export($stream);
 
-	    //rewind($stream);
+	    rewind($stream);
 
-	    //$data = stream_get_contents($stream);
+	    $data = stream_get_contents($stream);
 
 	    $expected = '"sku","section_width","aspect_ratio","diameter"
 "sku123","205","55","16"
 ';
 
-	    $this->assertEquals( $expected, $csv );
+	    $this->assertEquals( $expected, $data );
 	}
 }
 

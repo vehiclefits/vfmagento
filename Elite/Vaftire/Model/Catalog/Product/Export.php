@@ -3,10 +3,10 @@
 class Elite_Vaftire_Model_Catalog_Product_Export
 {
 
-    function export()
+    function export($stream)
     {
-	$csv = '"sku","section_width","aspect_ratio","diameter"';
-	$csv .= "\n";
+	fwrite($stream, '"sku","section_width","aspect_ratio","diameter"');
+	fwrite($stream,  "\n");
 
 	foreach ($this->getProductRows() as $productRow)
 	{
@@ -18,15 +18,13 @@ class Elite_Vaftire_Model_Catalog_Product_Export
 	    {
 		$tireSize = $product->getTireSize();
 
-		$csv .= '"' . $productRow['sku'] . '",';
-		$csv .= '"' . $tireSize->sectionWidth() . '",';
-		$csv .= '"' . $tireSize->aspectRatio() . '",';
-		$csv .= '"' . $tireSize->diameter() . '"';
-		$csv .= "\n";
+		fwrite($stream, '"' . $productRow['sku'] . '",');
+		fwrite($stream, '"' . $tireSize->sectionWidth() . '",');
+		fwrite($stream, '"' . $tireSize->aspectRatio() . '",');
+		fwrite($stream, '"' . $tireSize->diameter() . '"');
+		fwrite($stream, "\n" );
 	    }
 	}
-
-	return $csv;
     }
 
     function getProductRows()
