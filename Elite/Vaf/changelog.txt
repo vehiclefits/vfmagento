@@ -1,3 +1,24 @@
+1.32 February 8, 2011
+=======================================================
+ISSUES
+- 0000776: [Other] Going 'back' after deleting vehicle causes an error.
+- 0000814: [Other] Memory leak on export
+- 0000823: [Search Filter] Shows all levels, even if "not in use"
+- 0000816: [Automotive SEO] variable typo
+- 0000819: [Product Application Fitments] Performance bottleneck when calling getFitModels() on product
+- 0000802: [Search Filter] Scaling issue above 5 million fitments mark
+- 0000805: [Automotive SEO] Issue clearing vehicle on SEO product page
+
+IMPROVEMENTS
+- 0000796: [Other] Parts explosion diagram module
+- 0000820: [Tires] Should have option to not pre-populate tire size when selecting vehicle
+- 0000817: [Documentation] Should have documentation for product wheel size import
+- 0000737: [Wheels Module] Should be able to import product wheel sizes via command line
+- 0000687: [Catalog / Products] Duplicating Product Marked as Universal
+- 0000664: [Other] Automatically clear one search when executing another
+- 0000739: [Automotive SEO] Customize SEO urls
+- 0000069: [Other] My garage persist vehicles in session
+
 1.31 January 2, 2011
 ======================================================
 - 0000778: [Other] Merge & Split should have documented behavior with fitment notes, paint codes, tires, wheels, wheel adapters (all modules)
