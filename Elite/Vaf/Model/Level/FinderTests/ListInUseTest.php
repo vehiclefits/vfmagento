@@ -2,6 +2,23 @@
 class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
 {
 
+    function testShouldNotIncludeOptionsNotInUse()
+    {
+        $vehicle1 = $this->createMMY( 'A', 'A', '1' );
+        $vehicle2 = $this->createMMY( 'A', 'B', '1' );
+        $vehicle3 = $this->createMMY( 'A', 'C', '1' );
+
+        $this->insertMappingMMY( $vehicle1 );
+        $this->insertMappingMMY( $vehicle2 );
+
+        $model = new Elite_Vaf_Model_Level('model');
+        $actual = $model->listInUse();
+        $this->assertEquals( 'A', $actual[0]->getTitle() );
+        $this->assertEquals( 'B', $actual[1]->getTitle() );
+        $this->assertFalse( isset($actual[2]) );
+    }
+
+
     function testShouldSort()
     {                   
         $vehicle1 = $this->createMMY( 'A', 'A', '1' ); 

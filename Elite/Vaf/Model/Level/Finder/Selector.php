@@ -208,7 +208,7 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         $select = $this->getReadAdapter()->select();
         $select
         	->from( array('m'=>'elite_level_' . $entity->getType() ), array('id', 'title') )
-        	->joinLeft(array('fitment'=>'elite_mapping'), 'fitment.' . $entity->getType() . '_id = m.id', array())
+        	->joinInner(array('fitment'=>'elite_mapping'), 'fitment.' . $entity->getType() . '_id = m.id', array())
         	->group('m.title');
         
         foreach( $parents as $parentType => $parentId )
