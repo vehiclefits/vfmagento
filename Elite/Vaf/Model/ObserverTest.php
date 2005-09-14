@@ -9,27 +9,15 @@ class Elite_Vaf_Model_ObserverTest extends Elite_Vaf_TestCase
 
     function testShouldAddFitment()
     {
-        $observer = new Elite_Vaf_Model_Observer();
-
-
-        $productId = $this->insertProduct('sku');
-        $product = new Elite_Vaf_Model_Catalog_Product();
-        $product->setId($productId);
-        Mage::register( 'current_product', $product );
-
-
+        $product = $this->product();
         $vehicle = $this->createVehicle(array('make'=>'Honda', 'model'=>'Civic', 'year'=>2000));
 
-        // request to add a vehicle based upon it's level name (year) and ID.
-        $request = new Zend_Controller_Request_HttpTestCase;
-        $request->setParams(array('vaf'=>array(
-            'year-'.$vehicle->getValue('year')
-        )));
+        // request to add a vehicle based upon it's 'formatted string' (level name [year] and ID).
+        $formattedString = 'year-'.$vehicle->getValue('year');
+        $request = $this->getRequest();
+        $request->setParam('vaf', array($formattedString));
 
-        $event = new Elite_Vaf_Model_Observer_eventStub();
-        $event->getControllerAction()->setRequest($request);
-        
-        $observer->catalogProductEditAction( $event );
+        $this->observer($request);
 
         $product->setCurrentlySelectedFit($vehicle);
         $this->assertTrue($product->fitsSelection(), 'should have added the vehicle');
@@ -46,6 +34,29 @@ class Elite_Vaf_Model_ObserverTest extends Elite_Vaf_TestCase
         $event = new Elite_Vaf_Model_Observer_eventStub();
         $event->object = $product;
         $observer->deleteModelBefore( $event );
+    }
+
+    function observer($request)
+    {
+        $event = $this->event($request);
+        $observer = new Elite_Vaf_Model_Observer();
+        $observer->catalogProductEditAction( $event );
+    }
+
+    function event($request)
+    {
+        $event = new Elite_Vaf_Model_Observer_eventStub();
+        $event->getControllerAction()->setRequest($request);
+        return $event;
+    }
+
+    function product()
+    {
+        $productId = $this->insertProduct('sku');
+        $product = new Elite_Vaf_Model_Catalog_Product();
+        $product->setId($productId);
+        Mage::register( 'current_product', $product );
+        return $product;
     }
     
 }
