@@ -22,8 +22,6 @@ class Elite_Vaf_Model_ObserverTests_MMYGlobalTest extends Elite_Vaf_Model_Observ
 
     function testShouldAddFitment()
     {
-        return $this->markTestIncomplete();
-        
         $product = $this->product();
         $vehicle1 = $this->createVehicle(array('make'=>'Honda', 'model'=>'Civic', 'year'=>2000));
         $vehicle2 = $this->createVehicle(array('make'=>'Ford', 'model'=>'F-150', 'year'=>2000));

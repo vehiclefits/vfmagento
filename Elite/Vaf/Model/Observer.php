@@ -15,7 +15,6 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
 {
     function catalogProductEditAction( $event )
     {
-        
         $product = Mage::registry( 'current_product' );
         if( !is_object( $product ) )
         {
@@ -28,7 +27,6 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
         $this->updateUniversal($product);
         $this->updateRelated($product);
         $this->addNewFitments($request,$product);
-        
         
         $this->dispatchProductEditEvent( $controller, $product );
     }
@@ -85,10 +83,29 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
         {
             foreach( $request->getParam( 'vaf' ) as $fit )
             {
-                $fit = explode( '-', $fit );
-                $level = $fit[0];
-                $fit = $fit[1];
-                $product->addVafFit( array( $level=> $fit ) );
+                if( strpos($fit,':') && strpos($fit,';') )
+                {
+                    // new logic
+                    $params = explode(';', $fit);
+                    $newParams = array();
+                    foreach($params as $key => $value)
+                    {
+                        $data = explode(':', $value);
+                        if(count($data)<=1) continue;
+                         
+                        $newParams[$data[0]] = $data[1];
+                    }
+                    $product->addVafFit($newParams);
+                }
+                else
+                {
+                    //legacy logic
+
+                    $fit = explode( '-', $fit );
+                    $level = $fit[0];
+                    $fit = $fit[1];
+                    $product->addVafFit( array( $level=> $fit ) );
+                }
             }
         }
     }
