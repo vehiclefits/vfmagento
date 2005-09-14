@@ -1,6 +1,4 @@
-
 <?php
-
 class Elite_Vaflinks_Block_CMSListTest extends Elite_Vaf_TestCase {
 
     function testShouldDisableOutput()
@@ -8,7 +6,7 @@ class Elite_Vaflinks_Block_CMSListTest extends Elite_Vaf_TestCase {
         $vehicle = $this->createMMY('Honda', 'Civic', '2000');
         $this->insertMappingMMY($vehicle, 1);
 
-        $block = new Elite_Vaflinks_Block_CMSListTestSub;
+        $block = new Elite_Vaflinks_Block_CMSListTests_TestSub;
         $block->setConfig( new Zend_Config(array('directory'=>array('cmsEnable'=>false))) );
         $html = $block->toHtml();
         $this->assertEquals('', $html, 'should disable output');
@@ -19,7 +17,7 @@ class Elite_Vaflinks_Block_CMSListTest extends Elite_Vaf_TestCase {
         $vehicle = $this->createMMY('Honda', 'Civic', '2000');
         $this->insertMappingMMY($vehicle, 1);
 
-        $block = new Elite_Vaflinks_Block_CMSListTestSub;
+        $block = new Elite_Vaflinks_Block_CMSListTests_TestSub;
         $block->setConfig( new Zend_Config(array('directory'=>array('cmsEnable'=>true))) );
         $html = $block->toHtml();
         $this->assertRegExp('#<a href="/vaflinks/cms\?make=[0-9]+">Honda</a>#', $html, 'should list out makes');
@@ -31,32 +29,10 @@ class Elite_Vaflinks_Block_CMSListTest extends Elite_Vaf_TestCase {
         $this->insertMappingMMY($vehicle, 1);
 
         $_GET['make'] = $vehicle->getValue('make');
-        $block = new Elite_Vaflinks_Block_CMSListTestSub;
+        $block = new Elite_Vaflinks_Block_CMSListTests_TestSub;
         $block->setConfig( new Zend_Config(array('directory'=>array('cmsEnable'=>true))) );
         $html = $block->toHtml();
-        $this->assertNotRegExp('#<a href="/vaflinks/cms\?make=[0-9]+#', $html, 'should list out models');
-    }
-
-
-}
-
-class Elite_Vaflinks_Block_CMSListTestSub extends Elite_Vaflinks_Block_CMSList {
-
-    function toHtml() {
-        return $this->_toHtml();
-    }
-
-    protected function _toHtml() {
-        if (!$this->isEnabled()) {
-            return;
-        }
-        ob_start();
-        include(ELITE_PATH . '/Vaflinks/design/frontend/default/default/template/vaflinks/cms-list.phtml');
-        return ob_get_clean();
-    }
-
-    function htmlEscape($text) {
-        return $text;
+        $this->assertRegExp('#<a href="/vaflinks/cms\?make=[0-9]+#', $html, 'should NOT list out models');
     }
 
 }

@@ -11,8 +11,8 @@
             echo $this->htmlEscape($selection) . '<br />';
         }
 
-        foreach ($this->getDefinitions() as $vehicle) {
-            echo '&raquo; <a href="' . $this->vafUrl($vehicle) . '">' . (string) $vehicle . '</a><br />';
+        foreach ($this->getItems() as $level) {
+            echo '&raquo; <a href="/vaflinks/cms?make=' . $level->getId() . '">' . (string) $level . '</a><br />';
         }
         ?>
         <br />
