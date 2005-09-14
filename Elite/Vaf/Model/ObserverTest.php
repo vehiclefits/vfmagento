@@ -2,6 +2,11 @@
 class Elite_Vaf_Model_ObserverTest extends Elite_Vaf_TestCase
 {
 
+    function doSetUp()
+    {
+        $this->switchSchema('make,model,year');
+    }
+
     function testShouldAddFitment()
     {
         $observer = new Elite_Vaf_Model_Observer();
@@ -15,6 +20,7 @@ class Elite_Vaf_Model_ObserverTest extends Elite_Vaf_TestCase
 
         $vehicle = $this->createVehicle(array('make'=>'Honda', 'model'=>'Civic', 'year'=>2000));
 
+        // request to add a vehicle based upon it's level name (year) and ID.
         $request = new Zend_Controller_Request_HttpTestCase;
         $request->setParams(array('vaf'=>array(
             'year-'.$vehicle->getValue('year')
@@ -26,7 +32,7 @@ class Elite_Vaf_Model_ObserverTest extends Elite_Vaf_TestCase
         $observer->catalogProductEditAction( $event );
 
         $product->setCurrentlySelectedFit($vehicle);
-        $this->assertTrue($product->fitsSelection());
+        $this->assertTrue($product->fitsSelection(), 'should have added the vehicle');
     }
     
     /** @todo get working */

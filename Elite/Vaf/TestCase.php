@@ -27,6 +27,8 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
 	$this->truncateTables();
 	$this->dropAndRecreateMockProductTable();
 
+        Mage::resetRegistry();
+
 	$this->doSetUp();
     }
 

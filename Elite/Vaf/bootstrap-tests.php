@@ -179,8 +179,9 @@ class Mage
     {
         return true;
     }
-}
 
-//$schemaGenerator = new Elite_Vaf_Model_Schema_Generator();
-//$schemaGenerator->dropExistingTables();
-//$schemaGenerator->execute('make,model,year');
+    public static function resetRegistry()
+    {
+        self::$_registry = array();
+    }
+}
