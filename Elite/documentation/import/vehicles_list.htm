@@ -100,7 +100,8 @@
 
 <h2 id="enumeration">Enumeration</h2>
 <div>
-    <p>You may seperate Makes or Models by comma if you are adding the same years. Separating by comma will cause each Make,Model, or Year to be "multiplied" or blown out. In other words it will enumerate over all possible combinations. You may enumerate multiple values within any 'level' field (Make/Model/Year field). All possible combinations will be multiplied out, or in other words the system will derive the power set.</p>
+    <p>You may separate Makes or Models by comma if you are adding the same years. Separating by comma will cause each Make,Model, or Year to be "multiplied" or blown out. In other words it will enumerate over all possible combinations. You may enumerate multiple values within any 'level' field (Make/Model/Year field). All possible combinations will be multiplied out, or in other words the system will derive the power set.</p>
+    <p><b>Note:</b> If you want an actual comma, escape it with another comma. For example "test1, test2" is regarded as 2 individual models, if you mean it as one type "test1,, test2" to show you actually want the comma in there. The double comma will be replaced with a single comma. </p>
         
     <strong>Example #1 - Comma Enumeration:</strong>
     <br />

@@ -97,9 +97,16 @@ class Elite_Vafimporter_Model_Combiner
         return array($val);
     }
     
-    function convertValuesListToArray( $val )
+    function convertValuesListToArray( $inputString )
     {
-        return explode( ',', $val);
+        $token = '#~#comma#~#';
+        $string = str_replace(',,', $token, $inputString);
+        $array = explode(',', $string);
+        foreach($array as $key => $val)
+        {
+            $array[$key] = str_replace($token, ',', $val);
+        }
+        return $array;
     }
     
     function isStartEndRange($values,$level)

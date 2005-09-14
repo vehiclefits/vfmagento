@@ -34,5 +34,15 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_CommaTest extends
         $this->assertTrue($this->vehicleExists(array('make'=>'honda', 'model'=>'civic','year'=>'2000')));
     }
 
+    function testShouldEscapeComma()
+    {
+        $importer = $this->vehiclesListImporter('"make", "model", "year"
+"honda", "accord,, test, civic", "2000,2003"');
+        $importer->import();
+
+        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new Elite_Vaf_Model_Schema );
+        $this->assertTrue($this->vehicleExists(array('make'=>'honda', 'model'=>'accord, test','year'=>'2000')));
+    }
+
     
 }
