@@ -15,18 +15,30 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
 {
     function catalogProductEditAction( $event )
     {
-        $schema = new Elite_Vaf_Model_Schema();
+        
         $product = Mage::registry( 'current_product' );
         if( !is_object( $product ) )
         {
             return;
         }
         $controller = $event->getControllerAction();
+        $request = $controller->getRequest();
+
+        $this->removeFitments($request,$product);
+        $this->updateUniversal($product);
+        $this->updateRelated($product);
+        $this->addNewFitments($request,$product);
         
-        // iterate checked fits and remove them
-        if( is_array( $controller->getRequest()->getParam( 'vaf-delete' ) ) && count( $controller->getRequest()->getParam( 'vaf-delete' ) ) >= 1 )
+        
+        $this->dispatchProductEditEvent( $controller, $product );
+    }
+
+    function removeFitments($request,$product)
+    {
+        $schema = new Elite_Vaf_Model_Schema();
+        if( is_array( $request->getParam( 'vaf-delete' ) ) && count( $request->getParam( 'vaf-delete' ) ) >= 1 )
         {
-            foreach( $controller->getRequest()->getParam( 'vaf-delete', array() ) as $fit )
+            foreach( $request->getParam( 'vaf-delete', array() ) as $fit )
             {
                 $fit = explode( '-', $fit );
                 $level = $fit[0];
@@ -37,7 +49,10 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
                 }
             }
         }
-        
+    }
+
+    function updateUniversal($product)
+    {
         if( isset( $_POST['universal'] ) && $_POST['universal'] )
         {
             $product->setUniversal( true );
@@ -46,8 +61,11 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
         {
             $product->setUniversal( false );
         }
+    }
 
-	if (file_exists(ELITE_PATH . '/Vafrelated'))
+    function updateRelated($product)
+    {
+        if (file_exists(ELITE_PATH . '/Vafrelated'))
 	{
 	    $relatedProduct = new Elite_Vafrelated_Model_Catalog_Product($product);
 	    if( isset( $_POST['related'] ) && $_POST['related'] )
@@ -59,19 +77,20 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
 		$relatedProduct->setShowInRelated( false );
 	    }
 	}
+    }
 
-        // add new fit(s)
-        if( is_array( $controller->getRequest()->getParam( 'vaf' ) ) && count( $controller->getRequest()->getParam( 'vaf' ) ) >= 1 )
+    function addNewFitments($request,$product)
+    {
+        if( is_array( $request->getParam( 'vaf' ) ) && count( $request->getParam( 'vaf' ) ) >= 1 )
         {
-            foreach( $controller->getRequest()->getParam( 'vaf' ) as $fit )
+            foreach( $request->getParam( 'vaf' ) as $fit )
             {
                 $fit = explode( '-', $fit );
                 $level = $fit[0];
                 $fit = $fit[1];
-                $product->addVafFit( array( $level=> $fit ) );   
+                $product->addVafFit( array( $level=> $fit ) );
             }
         }
-        $this->dispatchProductEditEvent( $controller, $product );
     }
     
     function doTabs( $event )

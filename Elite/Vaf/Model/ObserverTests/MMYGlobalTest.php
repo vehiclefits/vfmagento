@@ -29,7 +29,7 @@ class Elite_Vaf_Model_ObserverTests_MMYGlobalTest extends Elite_Vaf_Model_Observ
         $vehicle2 = $this->createVehicle(array('make'=>'Ford', 'model'=>'F-150', 'year'=>2000));
 
         // request to add a vehicle based upon it's 'formatted string' (level name [year] and ID).
-        $formattedString = 'year-'.$vehicle2->getValue('year');
+        $formattedString = 'make:'.$vehicle2->getValue('make').';model:' . $vehicle2->getValue('model') . ';year:'.$vehicle2->getValue('year').';';
         $request = $this->getRequest();
         $request->setParam('vaf', array($formattedString));
 
