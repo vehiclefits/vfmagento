@@ -165,10 +165,10 @@ class Mage
 //        debugbreak();
 //    }
 //    
-//    public static function dispatchEvent()
-//    {
-//        debugbreak();
-//    }
+    public static function dispatchEvent()
+    {
+        return false;
+    }
 //    
     public static function getStoreConfig()
     {
