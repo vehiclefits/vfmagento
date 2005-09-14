@@ -19,7 +19,7 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_GlobalTest e
         $schemaGenerator->dropExistingTables();
     }
     
-    function testTest()
+    function testWhenSameYearShouldAddCorrectFitment()
     {
         $vehicle1 = $this->createMMY('Honda', 'Civic', '2000');
         $vehicle2 = $this->createMMY('Ford', 'F-150', '2000');
@@ -29,9 +29,21 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_GlobalTest e
         
         $product->setCurrentlySelectedFit($vehicle1);
         $this->assertTrue($product->fitsSelection());
+    }    
+
+    function testWhenSameYearShouldAddCorrectFitment2()
+    {
+        $vehicle1 = $this->createMMY('Honda', 'Civic', '2000');
+        $vehicle2 = $this->createMMY('Ford', 'F-150', '2000');
+
+        $product = $this->getProduct(1);
+        $product->addVafFit($vehicle2->toValueArray());
+
+        $product->setCurrentlySelectedFit($vehicle2);
+        $this->assertTrue($product->fitsSelection());
     }
-    
-    function testTest2()
+
+    function testWhenSameYearShouldNotAddIncorrectFitment()
     {
         $vehicle1 = $this->createMMY('Honda', 'Civic', '2000');
         $vehicle2 = $this->createMMY('Ford', 'F-150', '2000');
