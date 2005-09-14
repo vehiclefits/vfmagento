@@ -306,12 +306,16 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 	{
 	    return false;
 	}
-	$params = $currentVehicleSelection->toValueArray();
+        return $this->fitsVehicle($currentVehicleSelection);
+    }
 
+    function fitsVehicle($vehicle)
+    {
 	$select = $this->getReadAdapter()->select()
 			->from('elite_mapping', array('count(*)'))
 			->where('entity_id = ?', $this->getId());
-	foreach ($params as $param => $value)
+	$params = $vehicle->toValueArray();
+        foreach ($params as $param => $value)
 	{
 	    $select->where($param .= '_id = ?', $value);
 	}

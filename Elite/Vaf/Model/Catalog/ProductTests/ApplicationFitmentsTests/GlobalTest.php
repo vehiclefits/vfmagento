@@ -27,8 +27,7 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_GlobalTest e
         $product = $this->getProduct(1);
         $product->addVafFit($vehicle1->toValueArray());
         
-        $product->setCurrentlySelectedFit($vehicle1);
-        $this->assertTrue($product->fitsSelection());
+        $this->assertTrue($product->fitsVehicle($vehicle1));
     }    
 
     function testWhenSameYearShouldAddCorrectFitment2()
@@ -39,8 +38,7 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_GlobalTest e
         $product = $this->getProduct(1);
         $product->addVafFit($vehicle2->toValueArray());
 
-        $product->setCurrentlySelectedFit($vehicle2);
-        $this->assertTrue($product->fitsSelection());
+        $this->assertTrue($product->fitsVehicle($vehicle2));
     }
 
     function testWhenSameYearShouldNotAddIncorrectFitment()
@@ -53,7 +51,6 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_GlobalTest e
         $product = $this->getProduct(1);
         $product->addVafFit($vehicle1->toValueArray());
         
-        $product->setCurrentlySelectedFit($vehicle2);
-        $this->assertFalse($product->fitsSelection());
+        $this->assertFalse($product->fitsVehicle($vehicle2));
     }
 }

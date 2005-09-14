@@ -19,8 +19,7 @@ class Elite_Vaf_Model_ObserverTest extends Elite_Vaf_TestCase
 
         $this->observer($request);
 
-        $product->setCurrentlySelectedFit($vehicle);
-        $this->assertTrue($product->fitsSelection(), 'should have added the vehicle');
+        $this->assertTrue($product->fitsVehicle($vehicle), 'should have added the vehicle');
     }
     
     /** @todo get working */

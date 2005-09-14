@@ -1,6 +1,14 @@
 <?php
 class Elite_Vaf_Model_Catalog_ProductTests_FitsSelectionTest extends Elite_Vaf_Model_Catalog_ProductTests_TestCase
 {
+    function testFits()
+    {
+        $product = $this->getProduct(1);
+        $vehicle = $this->createMMY();
+        $this->insertMappingMMY($vehicle,1);
+        $this->assertTrue($product->fitsVehicle($vehicle), 'product should fit vehicle');
+    }
+
     function testFitsSelection()
     {
         $product = $this->getProduct(1);
