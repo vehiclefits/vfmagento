@@ -104,4 +104,33 @@ class Elite_Vafimporter_Model_VehiclesList_XML_ImportTests_MMYTest extends Elite
         $importer->import();
     }
 
+    function testMultipleRecordsForSameMake_SplitParts()
+    {
+        $importer = $this->getDefinitionsData('<?xml version="1.0" encoding="UTF-8"?>
+<vehicles>
+    <definition id="31737">
+        <make id="72">FMC</make>
+        <model id="9576">HPSC-156 (PEAS)</model>
+        <trim id="12712">Base</trim>
+        <year>1994</year>
+    </definition>
+
+</vehicles>');
+        $importer->import();
+
+        $importer = $this->getDefinitionsData('<?xml version="1.0" encoding="UTF-8"?>
+<vehicles>
+    <definition id="31738">
+        <make id="72">FMC2</make>
+        <model id="9576">HPSC-156 (PEAS)</model>
+        <trim id="12712">Base</trim>
+        <year>1995</year>
+    </definition>
+
+</vehicles>');
+        $importer->import();
+        $this->assertEquals( 72, $this->levelFinder()->find('make',72)->getId(), 'imports the make #' );
+        $this->assertEquals( 'FMC2', $this->levelFinder()->find('make',72)->getTitle(), 'changes the makes title' );
+    }
+
 }

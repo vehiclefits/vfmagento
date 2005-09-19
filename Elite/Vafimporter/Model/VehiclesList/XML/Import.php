@@ -64,16 +64,19 @@ class Elite_Vafimporter_Model_VehiclesList_Xml_Import extends Elite_Vafimporter_
     {
         if( !$this->getSchema()->hasParent($level))
         {
-            $sql = sprintf('INSERT INTO elite_level_%1$s (`id`, `title`) SELECT DISTINCT `%1$s_id`, `%1$s` FROM elite_import WHERE universal != 1',$level);
+            $sql = "INSERT INTO elite_level_{$level} (`id`, `title`) ";
+            $sql .= "SELECT DISTINCT `{$level}_id`, `{$level}` ";
+            $sql .= "FROM elite_import i WHERE universal != 1 ";
+            $sql .= "ON DUPLICATE KEY UPDATE title=VALUES(title);)";
             $this->query($sql);
         }
         else
         {
-            $sql = sprintf(
-                'INSERT INTO `elite_level_%1$s` (`id`, `title`, `%2$s_id`) SELECT DISTINCT `%1$s_id`, `%1$s`, `%2$s_id` FROM `elite_import` WHERE universal != 1',
-                $level,
-                $this->getSchema()->getPrevLevel($level)
-            );
+            $pevLevel = $this->getSchema()->getPrevLevel($level);
+            $sql = "INSERT INTO `elite_level_{$level}` (`id`, `title`, `{$pevLevel}_id`)";
+            $sql .= "SELECT DISTINCT `{$level}_id`, `{$level}`, `{$pevLevel}_id`";
+            $sql .= "FROM `elite_import` i WHERE universal != 1 ";
+            $sql .= "ON DUPLICATE KEY UPDATE title=VALUES(title);)";
             $this->query($sql);
         }
     }
