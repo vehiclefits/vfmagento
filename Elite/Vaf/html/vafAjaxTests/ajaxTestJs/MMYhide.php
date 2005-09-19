@@ -33,7 +33,7 @@ $mapping->save();
             
             test("Make should be shown by default", function() {
                 expect(1);
-                equals( jQuery( '.makeSelect').css('display'), "inline-block" );
+                equals( jQuery( '.makeSelect').css('display'), "inline" );
             });
             
             test("Model should be hidden by default", function() {
@@ -53,7 +53,7 @@ $mapping->save();
                 $(".modelSelect").bind( 'vafLevelLoaded', function() {
                     start();
                     $(".modelSelect").unbind('vafLevelLoaded');
-                    equals( jQuery( '.modelSelect').css('display'), "inline-block" );
+                    equals( jQuery( '.modelSelect').css('display'), "inline" );
                 });
             });
             
@@ -64,7 +64,7 @@ $mapping->save();
                 $(".yearSelect").bind( 'vafLevelLoaded', function() {
                     start();
                     $(".yearSelect").unbind('vafLevelLoaded');
-                    equals( jQuery( '.yearSelect').css('display'), "inline-block" );
+                    equals( jQuery( '.yearSelect').css('display'), "inline" );
                 });
             });
 

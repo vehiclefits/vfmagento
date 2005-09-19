@@ -38,7 +38,7 @@ $values = $vehicle->toValueArray();
         jQuery(document).ready(function($){
             
             QUnit.done = function (failures, total) {
-                top.testPageComplete( 'multiTreeTest/MMY.php', failures, total );
+                top.testPageComplete( 'multiTreeTest/YMMGlobalMake.php', failures, total );
             };
 
             module("Mutli Tree");
@@ -108,6 +108,19 @@ $values = $vehicle->toValueArray();
                     });
                     $('.vafQuickAddSubmit_make').click();
                 });
+            });
+
+            test("Clicking add Should add make selection", function() {
+                stop();
+                expect(1);
+
+                $(".multiTree").bind( 'vafMultiTreeAdded', function() {
+                    start();
+                    equals( 'year:2;make:1;', $('.multiTree-selection').find('.vafcheck').val() );
+                    $(".multiTree").unbind( 'vafMultiTreeAdded');
+                });
+
+                $('.multiTree-Add').click();
             });
             
         });

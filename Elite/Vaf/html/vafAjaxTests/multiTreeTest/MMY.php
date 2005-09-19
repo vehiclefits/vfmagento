@@ -72,7 +72,7 @@ $values = $vehicle->toValueArray();
                 
                 $(".multiTree").bind( 'vafMultiTreeAdded', function() {
                     start();
-                    equals( 'make-1', $('.multiTree-selection').find('.vafcheck').val() );
+                    equals( 'make:1;', $('.multiTree-selection').find('.vafcheck').val() );
                     $(".multiTree").unbind( 'vafMultiTreeAdded');
                 });
                 
@@ -129,7 +129,7 @@ $values = $vehicle->toValueArray();
                 multiTreeClick( 'model', <?=$values['model']?> );
                 $(".multiTree").bind( 'vafMultiTreeAdded', function() {
                     start();
-                    equals( 'model-1', $('.multiTree-selection').find('.vafcheck').val() );
+                    equals( 'make:1;model:1;', $('.multiTree-selection').find('.vafcheck').val() );
                     $(".multiTree").unbind( 'vafMultiTreeAdded');
                 });
                 
