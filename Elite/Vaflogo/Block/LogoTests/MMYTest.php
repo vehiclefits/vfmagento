@@ -1,34 +1,41 @@
 <?php
 
-class Elite_Vaflogo_Block_LogoTests_MMYTest extends Elite_Vaf_TestCase {
+class Elite_Vaflogo_Block_LogoTests_MMYTest extends Elite_Vaf_TestCase
+{
 
-    function doSetUp() {
+    function doSetUp()
+    {
         $this->switchSchema('make,model,year');
     }
 
-    function testShouldGetSelectionPart() {
+    function testShouldGetSelectionPart()
+    {
         $vehicle = $this->createMMY('Honda', 'Civic', '2000');
         $block = new Elite_Vaflogo_Block_Logo;
         $this->setRequestParams($vehicle->toValueArray());
         $this->assertEquals('Honda', $block->selectionPart(), 'should get selection part from selection');
     }
 
-    function testShouldActivateOnPartialSelection() {
+    function testShouldActivateOnPartialSelection()
+    {
         return $this->markTestIncomplete();
     }
 
-    function testSelectionTokenShouldBeInUpperCase() {
+    function testSelectionTokenShouldBeInUpperCase()
+    {
         $vehicle = $this->createMMY('Honda', 'Civic', '2000');
         $block = new Elite_Vaflogo_Block_Logo;
         $this->setRequestParams($vehicle->toValueArray());
         $this->assertEquals('HONDA', $block->selectionToken(), 'selection token should be in UPPER CASE');
     }
 
-    function testShouldDisable() {
+    function testShouldDisable()
+    {
         return $this->markTestIncomplete();
     }
 
-    function testShouldReturnImageTag() {
+    function testShouldReturnImageTag()
+    {
         $vehicle = $this->createMMY('Honda', 'Civic', '2000');
         $block = new Elite_Vaflogo_Block_Logo;
         $this->setRequestParams($vehicle->toValueArray());

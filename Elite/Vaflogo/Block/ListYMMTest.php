@@ -24,6 +24,7 @@ class Elite_Vaflogo_Block_ListYMMTest extends Elite_Vaf_TestCase
     {
 	$vehicle1 = $this->createVehicle(array('make'=>'Acura', 'model'=>'Integra', 'year'=>2000));
 	$vehicle2 = $this->createVehicle(array('make'=>'Acura', 'model'=>'Integra', 'year'=>2001));
+        $this->assertNotEquals($vehicle1->getValue('make'), $vehicle2->getValue('make'));
 
 	$block = new Elite_Vaflogo_Block_List;
 
