@@ -60,7 +60,7 @@ class Elite_Vafdiagram_Model_ProductFitments_CSV_Import extends Elite_Vafimporte
     {
 	$row = $this->current_row;
 	
-	$streamFile = sys_get_temp_dir() . 'import' . md5(uniqid());
+	$streamFile = sys_get_temp_dir() . '/vaf-import-' . md5(uniqid());
 	$stream = fopen($streamFile, 'w');
 
 	$values = $this->getLevelsArray($row);
