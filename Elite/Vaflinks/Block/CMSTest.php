@@ -1,6 +1,7 @@
 <?php
 
-class Elite_Vaflinks_Block_CMSTest extends Elite_Vaf_TestCase {
+class Elite_Vaflinks_Block_CMSTest extends Elite_Vaf_TestCase
+{
 
     function testShouldDisableOutput()
     {
@@ -8,7 +9,7 @@ class Elite_Vaflinks_Block_CMSTest extends Elite_Vaf_TestCase {
         $this->insertMappingMMY($vehicle, 1);
 
         $block = new Elite_Vaflinks_Block_CMSTestSub;
-        $block->setConfig( new Zend_Config(array('directory'=>array('cmsEnable'=>false))) );
+        $block->setConfig(new Zend_Config(array('directory' => array('cmsEnable' => false))));
         $html = $block->toHtml();
         $this->assertEquals('', $html, 'should disable output');
     }
@@ -20,20 +21,25 @@ class Elite_Vaflinks_Block_CMSTest extends Elite_Vaf_TestCase {
 
         $_GET['make'] = $vehicle->getValue('make');
         $block = new Elite_Vaflinks_Block_CMSTestSub;
-        $block->setConfig( new Zend_Config(array('directory'=>array('cmsEnable'=>true))) );
+        $block->setConfig(new Zend_Config(array('directory' => array('cmsEnable' => true))));
         $html = $block->toHtml();
         $this->assertEquals('The current vehicle is: Honda', $html, 'should show make');
     }
+
 }
 
-class Elite_Vaflinks_Block_CMSTestSub extends Elite_Vaflinks_Block_CMS {
+class Elite_Vaflinks_Block_CMSTestSub extends Elite_Vaflinks_Block_CMS
+{
 
-    function toHtml() {
+    function toHtml()
+    {
         return $this->_toHtml();
     }
 
-    protected function _toHtml() {
-        if (!$this->isEnabled()) {
+    protected function _toHtml()
+    {
+        if (!$this->isEnabled())
+        {
             return;
         }
         ob_start();
@@ -41,7 +47,8 @@ class Elite_Vaflinks_Block_CMSTestSub extends Elite_Vaflinks_Block_CMS {
         return ob_get_clean();
     }
 
-    function htmlEscape($text) {
+    function htmlEscape($text)
+    {
         return $text;
     }
 
