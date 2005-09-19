@@ -35,13 +35,13 @@ class Elite_Vaf_Block_Category_View extends Mage_Catalog_Block_Category_View
     /** @return boolean */
     function shouldShowSplash()
     {
-        if($this->isWildcard())
-        {
-            return true;
-        }
         if($this->vehicleIsSelected())
         {
             return false;
+        }
+        if($this->isWildcard())
+        {
+            return true;
         }
         if( in_array($this->getCategoryId(), $this->categoryIdsThatRequireVehicleSelection() ) )
         {

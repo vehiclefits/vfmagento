@@ -49,6 +49,21 @@ class Elite_Vaf_Block_Category_ViewSplashTest extends Elite_Vaf_TestCase
         $this->assertShouldNotShowSplash( $categoryView, 'when vehicle is selected, should not show the splash page' );
     }
     
+
+    function testWhenVehicleSelected_AndISWildcard_ShouldNotShowSplash()
+    {
+        $vehicle = $this->createMMY();
+        $_SESSION[ 'make' ] = $vehicle->getLevel('make')->getId();
+        $_SESSION[ 'model' ] = $vehicle->getLevel('model')->getId();
+        $_SESSION[ 'year' ] = $vehicle->getLevel('year')->getId();
+
+        $config = new Zend_Config( array('category'=>array('requireVehicle'=>'all')) );
+        $categoryView = new Elite_Vaf_Block_Category_View;
+        $categoryView->setConfig($config);
+        $categoryView->setCategoryId(1);
+        $this->assertShouldNotShowSplash( $categoryView, 'when vehicle is selected (and "is wildcard"), should not show the splash page' );
+    }
+
     function assertShouldShowSplash($categoryView,$message)
     {
         $this->assertTrue( $categoryView->shouldShowSplash(), $message );
