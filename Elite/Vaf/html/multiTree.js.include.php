@@ -275,8 +275,16 @@
                 var newSelections = parent.find( '.' + classes.newSelections ); 
                               
                 var append = '';
-                var hiddenVal = selected.level + '-' + selected.id;
-                
+                var hiddenVal = '';
+
+                $.each(selects, function(number,select){
+                    select = jQuery(select);
+                    var level = select.metadata().level;
+                    if( select.val()) {
+                        hiddenVal += level + ':' + select.val()+ ';';
+                    }
+                });
+
                 append += '<div class="' + classes.selection + '">';
                     append += '<input type="checkbox" name="vafcheck[]" class="vafcheck" value="' + hiddenVal + '" /> ';
                     append += '<div style="display:none" class="multiTree-value">' + hiddenVal + '</div>';

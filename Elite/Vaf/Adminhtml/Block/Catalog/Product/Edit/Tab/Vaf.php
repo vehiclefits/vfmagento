@@ -94,7 +94,7 @@ class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf extends Mage_Adminh
             <div class="multiTree-selectContainer" >
                 <?=ucfirst($this->htmlEscape($level))?>:<br />
                 <?php
-                $metadata = "{parent:'" . $schema->getPrevLevel($level) . "', parents:'" . implode(',',$schema->getPrevLevels($level)) . "',  parents_including:'" . implode(',',$schema->getPrevLevelsIncluding($level)) . "' }";
+                $metadata = "{level:'$level', parent:'" . $schema->getPrevLevel($level) . "', parents:'" . implode(',',$schema->getPrevLevels($level)) . "',  parents_including:'" . implode(',',$schema->getPrevLevelsIncluding($level)) . "' }";
                 ?>
                 <select class="multiTree-select <?=$level?>Select <?=$metadata?>" multiple="multiple">
                     <?php
