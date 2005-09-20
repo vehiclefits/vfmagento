@@ -127,6 +127,11 @@ print_r($vehicle->toTitleArray());
 
     </pre>
 
-
+    <strong>Example 8 - Find unique models that fit a particular make &amp; year</strong>
+<pre class="kodify php">
+$model = new Elite_Vaf_Model_Level('model');
+$models = $model->listAll(array('year'=>1, 'make'=>5));
+</pre>
+    
 </body>
 </html>
