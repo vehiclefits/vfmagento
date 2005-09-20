@@ -118,7 +118,7 @@ print_r($vehicle->toTitleArray());
     <pre class="kodify php">
 $schema = new Elite_Vaf_Model_Schema;
 $finder = new Elite_Vaf_Model_Vehicle_Finder( $schema );
-$vehicle = $finder->findOneByLevels(array('make'=>5, 'model'=>3, 'year'=>8 ));
+$vehicle = $finder->findOneByLevelIds(array('make'=>5, 'model'=>3, 'year'=>8 ));
 
 echo $vehicle;
 print_r($vehicle->toValueArray());
