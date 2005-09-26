@@ -23,7 +23,7 @@ class Elite_Vaf_Block_Category_View extends Mage_Catalog_Block_Category_View
             $otherBlock = new Elite_Vaf_Block_Product_Result_Group;
             $otherBlock->setLayout($this->getLayout());
             $otherBlock->setTemplate('vaf/group/result.phtml');
-            return 'start'.$otherBlock->_toHtml().'end';
+            return $otherBlock->_toHtml();
         }
         return parent::_toHtml();
     }

@@ -97,18 +97,6 @@ class Elite_Vaf_Block_Product_Result extends Elite_Vaf_Block_Product_List
         return Elite_Vaf_Helper_Data::getInstance()->__('No matches found.');
     }
     
-    function getProductCollection() 
-    {
-        if( Elite_Vaf_Helper_Data::getInstance()->getConfig()->homepagesearch->mode == 'group' )
-        {
-            return $this->_getProductCollection();
-        }
-        else
-        {
-            return $this->_getProductCollection();
-        }
-    }
-    
     function getProductCollectionGroupedByCategory()
     {
         $exclude = $this->getExcludeCategories();
@@ -118,14 +106,22 @@ class Elite_Vaf_Block_Product_Result extends Elite_Vaf_Block_Product_List
         foreach( $collection as $product )
         {
             $categoryIds = $this->removeRootCat( $product->getCategoryIds() );
-            $categoryId = current( $categoryIds );
-            if( !in_array( $categoryId, $exclude ) )
+            foreach( $categoryIds as $categoryId)
             {
+                if( in_array( $categoryId, $exclude ) )
+                {
+                    continue;
+                }
                 $return[ $categoryId ][] = $product;
             }
         }
         return $return;
     }   
+
+    function getProductCollection()
+    {
+        return $this->_getProductCollection();
+    }
     
     protected function removeRootCat( $categoryIds )
     {
