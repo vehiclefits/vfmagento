@@ -156,7 +156,7 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
             $return .= '`title` varchar(255) NOT NULL,' . self::NEWLINE;
             $return .= $this->createForeignKeyIntoPreviousLevel($i);
             $return .= 'PRIMARY KEY (`id`)' . self::NEWLINE;
-        $return .= ') ENGINE=InnoDB;' . self::NEWLINE;
+        $return .= ') ENGINE=InnoDB DEFAULT CHARSET=utf8;' . self::NEWLINE;
         $return .= $this->indexForeignKeyIntoPreviousLevel($i);
         return $return;
     }
@@ -209,7 +209,7 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
             $return .= 'PRIMARY KEY (`id`),';
             $return .= 'KEY `universal` (`universal`),';
             $return .= $this->keys();
-        $return .= ') ENGINE=InnoDB;';
+        $return .= ') ENGINE=InnoDB CHARSET=utf8;;';
         
         return $return;
     }
@@ -221,7 +221,7 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
         $return .= $this->columns();
         $return .= "PRIMARY KEY (`id`),";
         $return .= $this->keys();
-        $return .= ") ENGINE=InnoDB; ";
+        $return .= ") ENGINE=InnoDB CHARSET=utf8;; ";
         return $return;
     }
 
@@ -251,7 +251,7 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
     
     function createSchemaTable()
     {
-        $return = "CREATE TABLE `elite_schema` (`key` VARCHAR( 25 ) NOT NULL , `value` VARCHAR( 255 ) NOT NULL ) ENGINE = InnoDB;";
+        $return = "CREATE TABLE `elite_schema` (`key` VARCHAR( 25 ) NOT NULL , `value` VARCHAR( 255 ) NOT NULL ) ENGINE = InnoDB CHARSET=utf8;;";
         $return .= sprintf(
             "INSERT INTO `elite_schema` ( `key`, `value` ) VALUES ( 'levels', %s );",
             $this->getReadAdapter()->quote( $this->levelsDelimByComma() )

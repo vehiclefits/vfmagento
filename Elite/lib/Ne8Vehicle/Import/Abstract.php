@@ -25,7 +25,7 @@ abstract class Ne8Vehicle_Import_Abstract
         $positions = $this->getFieldPositions();
         return isset( $positions[ $fieldName ] ) ? $positions[ $fieldName ] : false;
     }
-    
+
     /** @return array Field positions keyed by the field's names */
     function getFieldPositions()
     {
@@ -33,7 +33,7 @@ abstract class Ne8Vehicle_Import_Abstract
         {
             return $this->fieldPositions;
         }
-        $row = $this->getReader()->getRow();
+        $row = $this->doGetFieldPositions();
         if(false == $row)
         {
             return false;
@@ -44,8 +44,13 @@ abstract class Ne8Vehicle_Import_Abstract
             unset( $this->fieldPositions[ $label ] );
             $this->fieldPositions[ str_replace( ' ', '_', strtolower( trim($label) ) ) ] = $position;
         }
-        
+
         return $this->fieldPositions;
+    }
+
+    function doGetFieldPositions()
+    {
+        return $this->getReader()->getRow();
     }
     
     function schema()

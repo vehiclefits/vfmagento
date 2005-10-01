@@ -48,7 +48,17 @@ class Elite_Vaf_Model_Schema implements
         $levels = $this->getLevels();
         $root = $levels[ 0 ];
         return $root;
-    } 
+    }
+
+    function getLevelsString()
+    {
+	$levelsString = array();
+	foreach($this->getLevels() as $level)
+	{
+	    $levelsString[] = '`' . $level . '`';
+	}
+	return implode(',',$levelsString);
+    }
     
     function getLevels()
     {

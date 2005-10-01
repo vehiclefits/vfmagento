@@ -19,7 +19,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     {
         $this->log('Import Started',Zend_Log::INFO);
         $this->getReadAdapter()->beginTransaction();
-        
+	
         try
         {
             $this->startCountingAdded();
@@ -42,6 +42,10 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     function insertRowsIntoTempTable()
     {
         $this->cleanupTempTable();
+
+	$streamFile = sys_get_temp_dir().'/import'.md5(uniqid());
+	$stream = fopen($streamFile, 'w');
+	
         while( $row = $this->getReader()->getRow() )
         {
             $this->row_number++;
@@ -56,9 +60,22 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
             
             foreach( $combinations as $combination )
             {
-                $this->insertIntoTempTable($row,$combination);
+                $this->insertIntoTempTable($stream,$row,$combination);
             }
         }
+
+	$this->importFromTempStream($streamFile);
+	
+    }
+
+    function importFromTempStream($streamFile)
+    {
+	$this->getReadAdapter()->query('
+	    LOAD DATA INFILE ' .$this->getReadAdapter()->quote($streamFile) . '
+	    INTO TABLE elite_import
+		FIELDS TERMINATED BY \',\'  ENCLOSED BY \'"\'
+	    (' . $this->getSchema()->getLevelsString() . ',sku,universal,line,note_message,notes)
+	');
     }
     
     function runDeprecatedImports()
@@ -73,13 +90,14 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         }
     }
     
-    function insertIntoTempTable($row,$combination)
+    function insertIntoTempTable($stream,$row,$combination)
     {
         $combination['line'] = $this->row_number;
         $combination['note_message'] = $this->getFieldValue('note_message', $row);
         $combination['notes'] = $this->getFieldValue('notes', $row);
         $combination['universal'] = $this->getFieldValue('universal', $row);
-        $this->getReadAdapter()->insert('elite_import',$combination);
+        
+	fputcsv($stream,$combination);
     }
     
     function importRow($row)

@@ -109,7 +109,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
         $select = 'SELECT count(`sku`) FROM elite_import WHERE `sku` NOT IN (select `sku` from '. $this->getProductTable() . ')';
         $this->nonexistant_sku_count = $this->getReadAdapter()->query($select)->fetchColumn();
         
-        $select = 'SELECT DISTINCT(`sku`) FROM elite_import WHERE `sku` NOT IN (select `sku` from '. $this->getProductTable() . ')';
+        $select = 'SELECT DISTINCT(`sku`) FROM elite_import WHERE `sku` NOT IN (select `sku` from '. $this->getProductTable() . ') LIMIT 10';
         foreach( $this->getReadAdapter()->query($select)->fetchAll() as $row )
         {
             array_push($this->nonexistant_skus, $row['sku']);
@@ -186,34 +186,6 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
         }
         return $cols;
     }
-    
-    /**
-    * @param array $row
-    * @param Elite_Vaf_Model_Vehicle|boolean the vehicle, false if none (for example, when setting a product as universal)
-    */
-//    function doImportRow( $row, $vehicle )
-//    {
-//        foreach( $this->skus($row) as $sku)
-//        {
-//            $entity_id = $this->productId($sku);
-//            $row[$this->getFieldPosition('sku')] = $sku;
-//            
-//            if( $entity_id == false )
-//            {
-//                $this->rows_with_invalid_sku[$this->row_number] = true;
-//                $this->makeNoteOfInvalidSku($row);
-//            }
-//            
-//            if( false === $vehicle )
-//            {
-//                return $this->insertMapping($row, false);
-//            }
-//            
-//            $mapping_id = $this->insertMapping($row,$vehicle);
-//            $row['id'] = $mapping_id;
-//            $this->dispatchMappingImportEvent( $row, $vehicle );
-//        }
-//    }
     
     /**
     * @return array of all possible SKUs, exploded by wild card, enumerated by comma, any combination therein
