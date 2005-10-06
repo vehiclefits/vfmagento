@@ -7,7 +7,7 @@ class Elite_Vafbundle_Model_Bundle_Option extends Mage_Bundle_Model_Option
 
         $vehicle = Elite_Vaf_Helper_Data::getInstance()->getFit();
         
-        if( Mage::app()->getStore()->isAdmin()) )
+        if( Mage::app()->getStore()->isAdmin() )
         {
             return $this->getData('selections');
         }
