@@ -7,8 +7,8 @@
 	    $garage = $_SESSION['garage'];
 	    foreach ($garage->vehicles() as $vehicle)
 	    {
-		$vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema);
-		$vehicle = $vehicleFinder->findOneByLevelIds($vehicle, Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
+		$vehicleFinder = new VF_Vehicle_Finder(new VF_Schema);
+		$vehicle = $vehicleFinder->findOneByLevelIds($vehicle, VF_Vehicle_Finder::EXACT_ONLY);
 		if ($vehicle)
 		{
 		    echo '<a href="' . $this->getUrl('vafgarage/remove/remove/vehicle/' . implode('-', $vehicle->toValueArray())) . '">[x]</a>';
