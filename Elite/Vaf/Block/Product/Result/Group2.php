@@ -19,6 +19,11 @@ class Elite_Vaf_Block_Product_Result_Group2 extends Elite_Vaf_Block_Product_Resu
         $this->setTemplate('vaf/group2/result.phtml');
     }
     
+    // this is to null out functionality that adds 'group by' on the `product_id` field. SInce we only care about category IDs in group2, this is less rows.
+    function doProductCategoryHashMap($select)
+    {
+    }
+    
     function drawItem($category, $level=0, $last=false)
     {
         $html = '';

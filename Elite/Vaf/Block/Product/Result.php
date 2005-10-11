@@ -14,6 +14,7 @@
 class Elite_Vaf_Block_Product_Result extends Elite_Vaf_Block_Product_List
 {
     protected $_productCollection;
+    static $productCollectionGroupedByCategory;
     
     protected function _beforeToHtml()
     {
@@ -99,24 +100,64 @@ class Elite_Vaf_Block_Product_Result extends Elite_Vaf_Block_Product_List
     
     function getProductCollectionGroupedByCategory()
     {
+        if(isset(self::$productCollectionGroupedByCategory))
+        {
+            return self::$productCollectionGroupedByCategory;
+        }
         $exclude = $this->getExcludeCategories();
 
         $collection = $this->getProductCollection();
         $return = array();
+        
+        // get product's Ids
+        $ids = array();
         foreach( $collection as $product )
         {
-            $categoryIds = $this->removeRootCat( $product->getCategoryIds() );
-            foreach( $categoryIds as $categoryId)
-            {
-                if( in_array( $categoryId, $exclude ) )
-                {
-                    continue;
-                }
-                $return[ $categoryId ][] = $product;
-            }
+            $ids[] = $product->getId();
+            $products[$product->getId()] = $product;
         }
+
+        $productCategories = $this->productCategoryHashMap($ids);
+        
+        //// loop over products building formatted array
+        foreach( $productCategories as $row )
+        {
+            $product = $products[$row['product_id']];
+            $category = $row['category_id'];
+
+            if(!isset($return[$category]))
+            {
+                $return[$category] = array();
+            }
+                
+            if( in_array($product, $return[$category]))
+            {
+                continue;
+            }
+            $return[ $category ][] = $product;
+        }
+        
+        self::$productCollectionGroupedByCategory = $return;
         return $return;
     }   
+    
+    function productCategoryHashMap($ids)
+    {
+        // get product ID <-> category ID array
+        $select = Elite_Vaf_Helper_Data::getInstance()->getReadAdapter()
+                    ->select()
+                    ->from('catalog_category_product_index', array('category_id','product_id'))
+                    ->where('product_id IN (' . implode(',',$ids) .')')
+                    ->where('category_id != ' . Mage::app()->getStore()->getRootCategoryId())
+                    ->group('category_id');
+        $this->doProductCategoryHashMap($select);
+        return $select->query()->fetchAll();
+    }
+    
+    function doProductCategoryHashMap($select)
+    {
+        $select->group('product_id');
+    }
 
     function getProductCollection()
     {
@@ -144,13 +185,8 @@ class Elite_Vaf_Block_Product_Result extends Elite_Vaf_Block_Product_List
     
     function getTotalProductCount()
     {
-        $collection = $this->getProductCollectionGroupedByCategory();
-        $count = 0;
-        foreach( $collection as $categoryProducts )
-        {
-            $count += count( $categoryProducts );
-        }
-        return $count;
+        $collection = $this->getProductCollection();
+        return $collection->getSize();
     }
     
     protected function getExcludeCategories()
