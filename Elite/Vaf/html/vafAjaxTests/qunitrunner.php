@@ -11,6 +11,7 @@
         <script type="text/javascript">
             var testPages = new Array(
                 'ajaxTestJs/MMY.php',
+                'ajaxTestJs/Space.php',
                 'ajaxTestJs/MMYMultiple.php',
                 'ajaxTestJs/MMYLoadNextLevelAuto.php',
                 'ajaxTestJs/MMYNonAjax.php',
