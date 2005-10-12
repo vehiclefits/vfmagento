@@ -1,444 +1,435 @@
 <?php
+
 /**
-* Vehicle Fits Free Edition - Copyright (c) 2008-2010 by Ne8, LLC
-* PROFESSIONAL IDENTIFICATION:
-* "www.vehiclefits.com"
-* PROMOTIONAL SLOGAN FOR AUTHOR'S PROFESSIONAL PRACTICE:
-* "Automotive Ecommerce Provided By Ne8 llc"
-*
-* All Rights Reserved
-* VEHICLE FITS ATTRIBUTION ASSURANCE LICENSE (adapted from the original OSI license)
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the conditions in license.txt are met
-*/
+ * Vehicle Fits Free Edition - Copyright (c) 2008-2010 by Ne8, LLC
+ * PROFESSIONAL IDENTIFICATION:
+ * "www.vehiclefits.com"
+ * PROMOTIONAL SLOGAN FOR AUTHOR'S PROFESSIONAL PRACTICE:
+ * "Automotive Ecommerce Provided By Ne8 llc"
+ *
+ * All Rights Reserved
+ * VEHICLE FITS ATTRIBUTION ASSURANCE LICENSE (adapted from the original OSI license)
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the conditions in license.txt are met
+ */
 class Elite_Vaf_Model_Level implements Elite_Vaf_Configurable
 {
+
     protected $id;
     protected $title;
-
     protected $type;
-    
     /** @var Elite_Vaf_Model_Level_Finder */
     protected $finder;
-    
     /** @var Elite_Vaf_Model_Schema */
     protected $schema;
-    
     /** @var Zend_Config */
-    protected $config;   
-    
+    protected $config;
+
     /**
-    * @param mixed $type
-    * @param mixed $id
-    * @return Elite_Vaf_Model_Abstract
-    */
-    function __construct( $type, $id = 0 )
+     * @param mixed $type
+     * @param mixed $id
+     * @return Elite_Vaf_Model_Abstract
+     */
+    function __construct($type, $id = 0)
     {
-        if( $id && !in_array($type, $this->getSchema()->getLevels()) )
+        if ($id && !in_array($type, $this->getSchema()->getLevels()))
         {
             throw new Elite_Vaf_Model_Level_Exception_InvalidLevel('[' . $type . '] is an invalid level');
         }
         $this->type = $type;
         $this->id = $id;
     }
-    
+
     function identityMap()
     {
         return Elite_Vaf_Model_Level_IdentityMap::getInstance();
     }
-    
+
     function getConfig()
     {
-        if( !$this->config instanceof Zend_Config )
+        if (!$this->config instanceof Zend_Config)
         {
             $this->config = Elite_Vaf_Helper_Data::getInstance()->getConfig();
-        }    
+        }
         return $this->config;
     }
-    
-    function setConfig( Zend_Config $config )
+
+    function setConfig(Zend_Config $config)
     {
         $this->config = $config;
     }
-    
+
     /** @return Elite_Vaf_Model_Level_Finder */
     function getFinder()
     {
-        if( !( $this->finder instanceof Elite_Vaf_Model_Level_Finder ) )
+        if (!( $this->finder instanceof Elite_Vaf_Model_Level_Finder ))
         {
             $this->finder = new Elite_Vaf_Model_Level_Finder();
         }
-        $this->finder->setConfig( $this->getConfig() );
+        $this->finder->setConfig($this->getConfig());
         return $this->finder;
     }
-    
+
     function getId()
     {
         return $this->id;
     }
-    
-    function setId( $id )
+
+    function setId($id)
     {
-        if( 0 == $this->id )
+        if (0 == $this->id)
         {
             $this->id = $id;
-        }
-        else
+        } else
         {
             throw new Exception('cannot set id if its previously already set');
         }
     }
-    
-    function setTitle( $title )
+
+    function setTitle($title)
     {
         $this->title = trim($title);
         return $this;
     }
-    
+
     function getTitle()
     {
-        return (string)$this->title;
+        return (string) $this->title;
     }
-    
+
     function getLabel()
     {
         return $this->getType();
     }
-    
+
     function getNextLevel()
     {
-        return $this->getSchema()->getNextLevel( $this->getType() );
+        return $this->getSchema()->getNextLevel($this->getType());
     }
-    
+
     function getPrevLevel()
     {
-        return $this->getSchema()->getPrevLevel( $this->getType() );
+        return $this->getSchema()->getPrevLevel($this->getType());
     }
-    
-    function createEntity( $level, $id = 0 )
+
+    function createEntity($level, $id = 0)
     {
-        return new Elite_Vaf_Model_Level( $level, $id );
+        return new Elite_Vaf_Model_Level($level, $id);
     }
-    
+
     function getType()
     {
         return $this->type;
     }
-    
-    function getChildCount( )
+
+    function getChildCount()
     {
-        return $this->getFinder()->getChildCount( $this );
-    }   
-    
+        return $this->getFinder()->getChildCount($this);
+    }
+
     function getChildren()
     {
-        return $this->getFinder()->getChildren( $this );
+        return $this->getFinder()->getChildren($this);
     }
-    
+
     /**
-    * Save the model
-    * 
-    * @param mixed $parent_id optional parent_id this model is being saved under
-    * @return int primary key id of created entity
-    */
-    function save( $parent_id = 0, $requestedSaveId = null, $createDefinition = true )
+     * Save the model
+     *
+     * @param mixed $parent_id optional parent_id this model is being saved under
+     * @return int primary key id of created entity
+     */
+    function save($parent_id = 0, $requestedSaveId = null, $createDefinition = true)
     {
-        if( '' == trim($this->getTitle()) )
+        if ('' == trim($this->getTitle()))
         {
-			throw new Exception('Must have a non blank title to save ' . $this->getType() );
+            throw new Exception('Must have a non blank title to save ' . $this->getType());
         }
-        
-        $levelId = $this->findEntityIdByTitle( $parent_id );
-        if( $levelId )
+
+        $levelId = $this->findEntityIdByTitle($parent_id);
+        if ($levelId)
         {
             $this->id = $levelId;
-            if( $createDefinition )
+            if ($createDefinition)
             {
                 $this->createDefinition($parent_id);
             }
             return $levelId;
         }
-        
-        if( $requestedSaveId && $this->requestedIdCorrespondsToExistingRecord($requestedSaveId) )
+
+        if ($requestedSaveId && $this->requestedIdCorrespondsToExistingRecord($requestedSaveId))
         {
             $this->id = $requestedSaveId;
         }
-        
-        if( $this->getId() )
+
+        if ($this->getId())
         {
-            $saver = new Elite_Vaf_Model_Level_Finder_Updater( $this, $parent_id );
+            $saver = new Elite_Vaf_Model_Level_Finder_Updater($this, $parent_id);
             return $saver->save();
-        }   
-        
-        $saver = new Elite_Vaf_Model_Level_Finder_Inserter( $this, $parent_id );
-        $saver->setConfig( $this->getConfig() );
+        }
+
+        $saver = new Elite_Vaf_Model_Level_Finder_Inserter($this, $parent_id);
+        $saver->setConfig($this->getConfig());
         $levelId = $saver->save($requestedSaveId);
-        
-        if( $this->getSchema()->hasGlobalLevel() && $createDefinition )
+
+        if ($this->getSchema()->hasGlobalLevel() && $createDefinition)
         {
             $this->createDefinition($parent_id);
         }
 
         return $levelId;
     }
-    
+
     function createDefinition($parent_id)
     {
-        if( $this->getType() == $this->getSchema()->getLeafLevel() )
+        if ($this->getType() == $this->getSchema()->getLeafLevel())
         {
             $this->createFullDefinition($parent_id);
-        }
-        else if( $this->getType() == $this->getSchema()->getRootLevel() )
+        } else if ($this->getType() == $this->getSchema()->getRootLevel())
         {
             $this->createPartialDefinitionForRootLevel();
-        }
-        else
+        } else
         {
             $this->createPartialDefinition($parent_id);
         }
     }
-    
+
     function createPartialDefinitionForRootLevel()
     {
-        $titles = array( $this->getType() => $this->getTitle() );
-        $bind = array( $this->getSchema()->getRootLevel() . '_id' => $this->getId() );
-        if(!count($this->vehicleFinder()->findByLevelIds($bind,true)))
+        $titles = array($this->getType() => $this->getTitle());
+        $bind = array($this->getSchema()->getRootLevel() . '_id' => $this->getId());
+        if (!count($this->vehicleFinder()->findByLevelIds($bind, true)))
         {
             $this->getReadAdapter()->insert('elite_definition', $bind);
         }
     }
-    
+
     function createPartialDefinition($parent_id)
     {
         $params = array();
-        if(is_array($parent_id))
+        if (is_array($parent_id))
         {
             $params = array_merge($params, $parent_id);
-        }
-        else
+        } else
         {
-            $params[ $this->getPrevLevel() ] = $parent_id;
+            $params[$this->getPrevLevel()] = $parent_id;
         }
-        foreach($this->getSchema()->getNextLevels($this->getPrevLevel()) as $level )
+        foreach ($this->getSchema()->getNextLevels($this->getPrevLevel()) as $level)
         {
             $params[$level] = 0;
         }
-        
-        $vehicles = $this->vehicleFinder()->findByLevelIds($params,true);
-        foreach($vehicles as $vehicle)
+
+        $vehicles = $this->vehicleFinder()->findByLevelIds($params, true);
+        foreach ($vehicles as $vehicle)
         {
             $values = $vehicle->toValueArray();
             $values[$this->getType()] = $this->getId();
-            
+
             $bind = array();
-            foreach($this->getSchema()->getLevels() as $level )
+            foreach ($this->getSchema()->getLevels() as $level)
             {
-                $bind[$level.'_id'] = $values[$level];
+                $bind[$level . '_id'] = $values[$level];
             }
-            
+
             $titles = $vehicle->toTitleArray();
             $titles[$this->getType()] = $this->getTitle();
-            if(!count($this->vehicleFinder()->findByLevelIds($bind,true)))
+            if (!count($this->vehicleFinder()->findByLevelIds($bind, true)))
             {
                 $this->getReadAdapter()->insert('elite_definition', $bind);
             }
         }
     }
-    
+
     function createFullDefinition($parent_id)
     {
-        if(is_array($parent_id))
+        if (is_array($parent_id))
         {
-            foreach($this->getSchema()->getLevels() as $level)
+            foreach ($this->getSchema()->getLevels() as $level)
             {
-                $row[$level.'_id'] = isset($parent_id[$level]) ? $parent_id[$level] : false;
+                $row[$level . '_id'] = isset($parent_id[$level]) ? $parent_id[$level] : false;
             }
-        }
-        else
+        } else
         {
             $select = $this->getReadAdapter()->select()
-                ->from('elite_level_'.$this->getSchema()->getRootLevel(), $this->vehicleFinder()->getColumns() );
+                            ->from('elite_level_' . $this->getSchema()->getRootLevel(), $this->vehicleFinder()->getColumns());
             $select .= $this->getJoinsNoDefinition();
-            $select .= sprintf(" WHERE `elite_level_%s`.`id` = %d", $this->getSchema()->getLeafLevel(), $this->getId() );
-                 
+            $select .= sprintf(" WHERE `elite_level_%s`.`id` = %d", $this->getSchema()->getLeafLevel(), $this->getId());
+
             $row = $this->query($select)->fetch(Zend_Db::FETCH_ASSOC);
         }
-        if(!$row)
+        if (!$row)
         {
             return;
         }
-        
+
         $bind = array();
-        foreach($this->getSchema()->getLevels() as $level )
+        foreach ($this->getSchema()->getLevels() as $level)
         {
-            $bind[$level.'_id'] = $row[$level.'_id'];
+            $bind[$level . '_id'] = $row[$level . '_id'];
         }
-        
-        if( count($this->vehicleFinder()->findByLevelIds($bind)) == 0 )
+
+        if (count($this->vehicleFinder()->findByLevelIds($bind)) == 0)
         {
             $this->getReadAdapter()->insert('elite_definition', $bind);
         }
     }
-    
+
     function vehicleFinder()
     {
         return new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
     }
-    
+
     function getJoinsNoDefinition()
     {
         $joins = '';
-        $levels = $this->getSchema()->getLevels(); 
-        
-        foreach( $levels as $level )
+        $levels = $this->getSchema()->getLevels();
+
+        foreach ($levels as $level)
         {
-            if($level == $this->getSchema()->getRootLevel())
+            if ($level == $this->getSchema()->getRootLevel())
             {
                 continue;
             }
             $joins .= sprintf(
-                '
+                            '
                 LEFT JOIN
                     `elite_level_%1$s`
                 ON
                     `elite_level_%1$s`.`%2$s_id` = `elite_level_%2$s`.`id`
                 ',
-                $level,
-                $this->getSchema()->getPrevLevel($level)
-            ); 
-            
+                            $level,
+                            $this->getSchema()->getPrevLevel($level)
+            );
         }
         return $joins;
     }
-    
+
     function requestedIdCorrespondsToExistingRecord($requestedSaveId)
     {
         $select = $this->getReadAdapter()->select()
-            ->from($this->getTable(),'count(*)')
-            ->where('id=?',(int)$requestedSaveId);
+                        ->from($this->getTable(), 'count(*)')
+                        ->where('id=?', (int) $requestedSaveId);
         $result = $this->getReadAdapter()->query($select);
-        return (bool)$result->fetchColumn();
+        return (bool) $result->fetchColumn();
     }
-    
+
     function delete()
     {
-        if( !(int)$this->getId() )
+        if (!(int) $this->getId())
         {
             throw new Exception();
         }
-        
-        $identityMap = Elite_Vaf_Model_Level_IdentityMap_ByTitle::getInstance();
-        $identityMap->remove($this->getType(),$this->getId());
-        
-        $this->deleteFits();
-        
-        $this->deleteChildren();
-        
-        $query = sprintf( "DELETE FROM `" . $this->getTable() . "` WHERE   `id` = %d", $this->getId() );
-        $this->query( $query );
-        
-        $query = sprintf( "DELETE FROM `elite_definition` WHERE `".$this->getType()."_id` = %d", $this->getId() );
-        $this->query( $query );
-        
-        if( $this->getType() == $this->getSchema()->getLeafLevel() && file_exists(ELITE_PATH.'/Vafwheel'))
-        {
-			$query = sprintf( "DELETE FROM `elite_definition_wheel` WHERE `leaf_id` = %d", $this->getId() );
-        	$this->query( $query );
-        }
 
+        $identityMap = Elite_Vaf_Model_Level_IdentityMap_ByTitle::getInstance();
+        $identityMap->remove($this->getType(), $this->getId());
+
+        $this->deleteFits();
+
+        $this->deleteChildren();
+
+        $query = sprintf("DELETE FROM `" . $this->getTable() . "` WHERE   `id` = %d", $this->getId());
+        $this->query($query);
+
+        $query = sprintf("DELETE FROM `elite_definition` WHERE `" . $this->getType() . "_id` = %d", $this->getId());
+        $this->query($query);
+
+        if ($this->getType() == $this->getSchema()->getLeafLevel() && file_exists(ELITE_PATH . '/Vafwheel'))
+        {
+            $query = sprintf("DELETE FROM `elite_definition_wheel` WHERE `leaf_id` = %d", $this->getId());
+            $this->query($query);
+        }
     }
-    
+
     function deleteChildren()
     {
-		if( $this->getNextLevel() != '' )
+        if ($this->getNextLevel() != '')
         {
-        	foreach( $this->getChildren() as $child )
-	        {
-	            $child->delete();
-	        }
-		}
+            foreach ($this->getChildren() as $child)
+            {
+                $child->delete();
+            }
+        }
     }
-    
+
     /** Recurse this object's hierarchy until we arrive at the year, and then delete all of it's fits */
     function deleteFits()
     {
-        if( $this->getNextLevel() != '' )
+        if ($this->getNextLevel() != '')
         {
-            foreach( $this->getChildren() as $child )
+            foreach ($this->getChildren() as $child)
             {
                 $child->deleteFits();
             }
             return;
         }
-        
+
         $mappingsQuery = sprintf(
-            "SELECT `id` FROM `elite_mapping` WHERE %s = %d",
-            $this->getReadAdapter()->quoteIdentifier( $this->getType() . '_id' ),
-            (int)$this->getId()
+                        "SELECT `id` FROM `elite_mapping` WHERE %s = %d",
+                        $this->getReadAdapter()->quoteIdentifier($this->getType() . '_id'),
+                        (int) $this->getId()
         );
         $mappingsResult = $this->query($mappingsQuery);
-        foreach( $mappingsResult->fetchAll() as $mappingsRow )
+        foreach ($mappingsResult->fetchAll() as $mappingsRow)
         {
-            if( file_exists(ELITE_PATH.'/Vafnote'))
-	        {
-	        	$deleteQuery = sprintf( "DELETE FROM `elite_mapping_notes` WHERE `fit_id` = %d", $mappingsRow['id'] );
-        		$this->query($deleteQuery);
-	        }
-	        
-	        $deleteQuery = sprintf( "DELETE FROM `elite_mapping` WHERE `id` = %d LIMIT 1", $mappingsRow['id'] );
-        	$this->query($deleteQuery);
-		}
+            if (file_exists(ELITE_PATH . '/Vafnote'))
+            {
+                $deleteQuery = sprintf("DELETE FROM `elite_mapping_notes` WHERE `fit_id` = %d", $mappingsRow['id']);
+                $this->query($deleteQuery);
+            }
+
+            $deleteQuery = sprintf("DELETE FROM `elite_mapping` WHERE `id` = %d LIMIT 1", $mappingsRow['id']);
+            $this->query($deleteQuery);
+        }
     }
-    
-    function listAll( $parent_id = 0 )
+
+    function listAll($parent_id = 0)
     {
-        return $this->getFinder()->listAll( $this, $parent_id );
+        return $this->getFinder()->listAll($this, $parent_id);
     }
-    
+
     function getSortOrder()
     {
-        if( $sort = $this->getSchema()->getSorting($this->getType()) )
+        if ($sort = $this->getSchema()->getSorting($this->getType()))
         {
             return $sort;
         }
         return "ASC";
     }
-    
-    function listInUse( $parents = array(), $product_id = 0 )
+
+    function listInUse($parents = array(), $product_id = 0)
     {
-        return $this->getFinder()->listInUse( $this, $parents, $product_id );
+        return $this->getFinder()->listInUse($this, $parents, $product_id);
     }
 
     function getTable()
     {
         return 'elite_level_' . $this->getType();
     }
- 
+
     function getLevels()
     {
         return $this->getSchema()->getLevels();
     }
-    
+
     function getLeafLevel()
     {
         return $this->getSchema()->getLeafLevel();
-    } 
-    
+    }
+
     function getRootLevel()
     {
         return $this->getSchema()->getRootLevel();
-    }   
- 
-    /** @return integer ID */
-    function findEntityIdByTitle( $parent_id = 0 )
-    {
-        return $this->getFinder()->findEntityIdByTitle( $this->getType(), $this->getTitle(), $parent_id );
     }
-    
+
+    /** @return integer ID */
+    function findEntityIdByTitle($parent_id = 0)
+    {
+        return $this->getFinder()->findEntityIdByTitle($this->getType(), $this->getTitle(), $parent_id);
+    }
+
     function getSchema()
     {
         $schema = new Elite_Vaf_Model_Schema();
-        $schema->setConfig( $this->getConfig() );
+        $schema->setConfig($this->getConfig());
         return $schema;
     }
 
@@ -446,13 +437,13 @@ class Elite_Vaf_Model_Level implements Elite_Vaf_Configurable
     {
         return $this->getTitle();
     }
-     
+
     /** @return Zend_Db_Statement_Interface */
-    function query( $sql )
+    function query($sql)
     {
-        return $this->getReadAdapter()->query( $sql );
+        return $this->getReadAdapter()->query($sql);
     }
-    
+
     /** @return Zend_Db_Adapter_Abstract */
     function getReadAdapter()
     {

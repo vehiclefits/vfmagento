@@ -61,7 +61,7 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
         $return .= $this->createMappingsTable();
         $return .= $this->addUniqueOnMappingsTable();
         
-        $return .= $this->createdefinitionTable();
+        $return .= $this->createDefinitionTable();
         $return .= $this->addUniqueOnDefinitionsTable();
         
         $return .= $this->createSchemaTable();
@@ -158,6 +158,7 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
             $return .= 'PRIMARY KEY (`id`)' . self::NEWLINE;
         $return .= ') ENGINE=InnoDB DEFAULT CHARSET=utf8;' . self::NEWLINE;
         $return .= $this->indexForeignKeyIntoPreviousLevel($i);
+        
         return $return;
     }
     
@@ -217,7 +218,7 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
         return $return;
     }
     
-    protected function createdefinitionTable()
+    protected function createDefinitionTable()
     {
         $return = "CREATE TABLE IF NOT EXISTS `elite_definition` (
           `id` int(50) NOT NULL AUTO_INCREMENT,";
@@ -233,6 +234,7 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
         $levels = array();
         foreach( $this->levels() as $level )
         {
+            $level = str_replace(' ', '_', $level);
             $levels[] = sprintf( '`%s_id`', $level );
         }
         $levels = implode( ',', $levels );
@@ -244,6 +246,7 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
         $levels = array();
         foreach( $this->levels() as $level )
         {
+            $level = str_replace(' ', '_', $level);
             $levels[] = sprintf( '`%s_id`', $level );
         }
         $levels[] = 'universal';
@@ -314,6 +317,7 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
     
     protected function key( $level )
     {
+        $level = str_replace(' ', '_', $level);
         return sprintf( 'KEY `%s_id` (`%s_id`)', $level, $level );
     }
     
@@ -322,6 +326,7 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
         $return = '';
         foreach( $this->levels() as $level )
         {
+            $level = str_replace(' ', '_', $level);
             $return .= sprintf( '`%s_id` int(15) NOT NULL,', $level );
         }
         return $return;

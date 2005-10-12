@@ -14,8 +14,8 @@ class Elite_Vafimporter_Model_Schema_Generator extends Ne8Vehicle_Schema_Generat
             $query .= ' `id` int(255) NOT NULL AUTO_INCREMENT, ';
             foreach($this->levels() as $level)
             {
-                $query .= sprintf("`%s` VARCHAR(255) NOT NULL,", $level);
-                $query .= sprintf("`%s_id` INTEGER(50) NOT NULL,", $level);
+                $query .= sprintf("`%s` VARCHAR(255) NOT NULL,", str_replace(' ', '_', $level));
+                $query .= sprintf("`%s_id` INTEGER(50) NOT NULL,", str_replace(' ', '_', $level));
             }
             $query .= ' `sku` varchar(255) NULL,';
             $query .= '`product_id` int(255) NULL,';

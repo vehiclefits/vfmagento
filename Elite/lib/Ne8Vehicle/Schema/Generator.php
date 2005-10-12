@@ -14,6 +14,7 @@ abstract class Ne8Vehicle_Schema_Generator
     {
         $levels = $this->levels();
         $level = isset( $levels[ $i ] ) ? $levels[ $i ] : false;
+        $level = str_replace(' ', '_', $level);
         return $level;
     }
     
@@ -43,7 +44,6 @@ abstract class Ne8Vehicle_Schema_Generator
             {
                 $levelString = $level;
             }
-            
             array_push($levels, $levelString);
         }
         return $levels;

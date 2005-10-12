@@ -9,8 +9,9 @@ class Elite_Vaf_Select extends Zend_Db_Select
         }
         foreach($levels as $level )
         {
+            $level = str_replace(' ', '_', $level);
             $table = 'elite_level_'.$level;
-            $condition = $table.'.id = '.$fromTable.'.'.$level.'_id';
+            $condition = "{$table}.id = {$fromTable}.{$level}_id";
             $this->joinLeft($table, $condition, array($level=>'title', $level.'_id'=>'id') );
         }
         return $this;

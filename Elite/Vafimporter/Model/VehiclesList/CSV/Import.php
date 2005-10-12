@@ -129,7 +129,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
 
     function insertIntoTempTable($row)
     {
-	$this->getReadAdapter()->insert('elite_import', $row);
+	$this->getReadAdapter()->insert('elite_import', $this->columns($row));
     }
 
     function importRow($row)
@@ -223,7 +223,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     {
 	foreach ($this->getSchema()->getLevels() as $level)
 	{
-	    $select = $this->getReadAdapter()->select()->from('elite_level_' . $level, 'count(*)');
+	    $select = $this->getReadAdapter()->select()->from('elite_level_' . str_replace(' ', '_', $level), 'count(*)');
 	    $result = $select->query()->fetchColumn();
 	    $this->start_count_added_by_level[$level] = $result;
 	}
@@ -253,7 +253,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     {
 	foreach ($this->getSchema()->getLevels() as $level)
 	{
-	    $select = $this->getReadAdapter()->select()->from('elite_level_' . $level, 'count(*)');
+	    $select = $this->getReadAdapter()->select()->from('elite_level_' . str_replace(' ', '_', $level), 'count(*)');
 	    $result = $select->query()->fetchColumn();
 	    $this->stop_count_added_by_level[$level] = $result;
 	    $this->count_added_by_level[$level] = $this->stop_count_added_by_level[$level] - $this->start_count_added_by_level[$level];

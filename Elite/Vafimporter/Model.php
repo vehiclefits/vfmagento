@@ -45,14 +45,14 @@ abstract class Elite_Vafimporter_Model extends Ne8Vehicle_Import_Abstract implem
     {
 	if (!$this->getSchema()->hasParent($level))
 	{
-	    $sql = sprintf('INSERT INTO elite_level_%1$s (title) SELECT DISTINCT %1$s FROM elite_import WHERE universal != 1 && %1$s_id = 0', $level);
+	    $sql = sprintf('INSERT INTO elite_level_%1$s (title) SELECT DISTINCT %1$s FROM elite_import WHERE universal != 1 && %1$s_id = 0', str_replace(' ', '_', $level));
 	    $this->query($sql);
 	} else
 	{
 	    $sql = sprintf(
 			    'INSERT INTO `elite_level_%1$s` (`title`, `%2$s_id`) SELECT DISTINCT `%1$s`, `%2$s_id` FROM `elite_import` WHERE universal != 1 && `%1$s_id` = 0',
-			    $level,
-			    $this->getSchema()->getPrevLevel($level)
+			    str_replace(' ', '_', $level ),
+			    str_replace(' ', '_', $this->getSchema()->getPrevLevel($level))
 	    );
 	    $this->query($sql);
 	}
@@ -62,15 +62,15 @@ abstract class Elite_Vafimporter_Model extends Ne8Vehicle_Import_Abstract implem
     {
 	if (!$this->getSchema()->hasParent($level))
 	{
-	    $this->query(sprintf('UPDATE elite_import i, elite_level_%1$s l SET i.%1$s_id = l.id WHERE l.title = i.%1$s', $level));
+	    $this->query(sprintf('UPDATE elite_import i, elite_level_%1$s l SET i.%1$s_id = l.id WHERE l.title = i.%1$s', str_replace(' ', '_', $level)));
 	} else
 	{
 	    $sql = sprintf(
 			    'UPDATE elite_import i, `elite_level_%1$s` l
                 SET i.`%1$s_id` = l.id
                 WHERE i.`%1$s` = l.title AND i.`%2$s_id` = l.`%2$s_id`',
-			    $level,
-			    $this->getSchema()->getPrevLevel($level)
+			    str_replace(' ', '_', $level),
+			    str_replace(' ', '_', $this->getSchema()->getPrevLevel($level))
 	    );
 	    $this->query($sql);
 	}
@@ -81,11 +81,21 @@ abstract class Elite_Vafimporter_Model extends Ne8Vehicle_Import_Abstract implem
 	$cols = $this->getSchema()->getLevels();
 	foreach ($cols as $i => $col)
 	{
-	    $cols[$i] = $this->getReadAdapter()->quoteIdentifier($col . '_id');
+	    $cols[$i] = $this->getReadAdapter()->quoteIdentifier(str_replace(' ','_',$col) . '_id');
 	}
 	$query = 'REPLACE INTO elite_definition (' . implode(',', $cols) . ')';
 	$query .= ' SELECT DISTINCT ' . implode(',', $cols) . ' FROM elite_import WHERE universal != 1';
 	$this->query($query);
+    }
+
+    function columns($row)
+    {
+        $newRow = array();
+        foreach($row as $key=>$value)
+        {
+            $newRow[str_replace(' ','_',$key)] = $value;
+        }
+        return $newRow;
     }
 
     function insertFitmentsFromTempTable()
@@ -104,7 +114,6 @@ abstract class Elite_Vafimporter_Model extends Ne8Vehicle_Import_Abstract implem
 	
 	foreach ($this->schema()->getLevels() as $level)
 	{
-
 	    if (!$this->allowMissingFields() &&
 		    !isset($this->fieldPositions[$level]) && (
 		    !isset($this->fieldPositions[$level . '_start']) && !isset($this->fieldPositions[$level . '_end']) ) &&

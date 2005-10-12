@@ -3,7 +3,7 @@ class Elite_Vaf_Model_SchemaTests_SchemaSpaceInLevelNameTest extends Elite_Vafim
 {
     function doSetUp()
     {
-	$this->switchSchema('make,model type,year');
+	$this->switchSchema('make,model type,year',true);
     }
     
     function testLevels()
@@ -14,9 +14,19 @@ class Elite_Vaf_Model_SchemaTests_SchemaSpaceInLevelNameTest extends Elite_Vafim
 
     function testImport()
     {
-	return $this->markTestIncomplete();
-	
 	$this->importVehiclesList('make,model type, year' . "\n" .
 		'Honda, Civic EX, 2000' );
+    }
+
+    function testGetFits()
+    {
+        $product = $this->newProduct(1);
+        $vehicle = $this->createVehicle(array('make'=>'Honda', 'model type'=>'Civic', 'year'=>2000));
+        $product->addVafFit( $vehicle->toValueArray() );
+
+        $actual = $product->getFits();
+        $this->assertEquals( 1, count($actual) );
+        $fit = $actual[0];
+        $this->assertEquals( $vehicle->toValueArray(), array('make'=>$fit->make_id,'model type'=>$fit->model_type_id,'year'=>$fit->year_id), 'should get fitment' );
     }
 }

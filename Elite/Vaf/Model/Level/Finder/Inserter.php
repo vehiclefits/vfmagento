@@ -66,7 +66,7 @@ class Elite_Vaf_Model_Level_Finder_Inserter extends Elite_Vaf_Model_Level_Finder
 	    $existingId = $this->levelFinder()->findEntityIdByTitle($this->entity->getType(), $this->entity->getTitle(), $parent_id);
 	    if (!$existingId)
 	    {
-		$this->getReadAdapter()->insert($this->entity->getTable(), $this->getBind());
+		$this->getReadAdapter()->insert($this->inflect($this->entity->getTable()), $this->getBind());
 	    }
 	}
 
@@ -109,12 +109,12 @@ class Elite_Vaf_Model_Level_Finder_Inserter extends Elite_Vaf_Model_Level_Finder
 	    $parentKey = $this->entity->getPrevLevel() . '_id';
 	    if (is_numeric($this->parent_id) && $this->parent_id)
 	    {
-		$bind[$parentKey] = $this->parent_id;
+		$bind[$this->inflect($parentKey)] = $this->parent_id;
 	    }
 
 	    if (is_array($this->parent_id))
 	    {
-		$bind[$parentKey] = $this->parent_id[$this->entity->getPrevLevel()];
+		$bind[$this->inflect($parentKey)] = $this->parent_id[$this->entity->getPrevLevel()];
 	    }
 	}
 
@@ -127,10 +127,15 @@ class Elite_Vaf_Model_Level_Finder_Inserter extends Elite_Vaf_Model_Level_Finder
 	$bind = array();
 	foreach ($this->parent_id as $level => $val)
 	{
-	    $bind[$level . '_id'] = $val;
+	    $bind[$this->inflect($level . '_id')] = $val;
 	}
-	$bind[$this->entity->getType() . '_id'] = $this->entity->getId();
+	$bind[$this->inflect($this->entity->getType() . '_id')] = $this->entity->getId();
 	return $bind;
+    }
+
+    function inflect($identifier)
+    {
+        return str_replace(' ', '_', $identifier);
     }
 
     function levelFinder()

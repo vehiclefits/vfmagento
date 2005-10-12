@@ -23,7 +23,19 @@ abstract class Ne8Vehicle_Import_Abstract
     function getFieldPosition( $fieldName )
     {
         $positions = $this->getFieldPositions();
-        return isset( $positions[ $fieldName ] ) ? $positions[ $fieldName ] : false;
+        if(isset($positions[$fieldName]))
+        {
+            return $positions[$fieldName];
+        }
+        if(isset($positions[str_replace(' ','_',$fieldName)]))
+        {
+            return $positions[str_replace(' ','_',$fieldName)];
+        }
+        if(isset($positions[str_replace('_',' ',$fieldName)]))
+        {
+            return $positions[str_replace('_',' ',$fieldName)];
+        }
+        return false;
     }
 
     /** @return array Field positions keyed by the field's names */
@@ -42,7 +54,7 @@ abstract class Ne8Vehicle_Import_Abstract
         foreach( $this->fieldPositions as $label => $position )
         {
             unset( $this->fieldPositions[ $label ] );
-            $this->fieldPositions[ str_replace( ' ', '_', trim($label) ) ] = $position;
+            $this->fieldPositions[ trim($label) ] = $position;
         }
 
         return $this->fieldPositions;

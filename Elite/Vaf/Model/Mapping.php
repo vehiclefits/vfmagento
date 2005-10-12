@@ -44,10 +44,10 @@ class Elite_Vaf_Model_Mapping implements Elite_Vaf_Configurable
         $levels = $schema->getLevels();
 
         $select = $this->getReadAdapter()->select()
-               ->from('elite_mapping', array('id'));
-        foreach($this->vehicle->toValueArray() as $level => $id )
+                        ->from('elite_mapping', array('id'));
+        foreach ($this->vehicle->toValueArray() as $level => $id)
         {
-            $select->where($level.'_id = ?', $id);
+            $select->where($this->inflect($level) . '_id = ?', $id);
         }
         $select->where('entity_id = ?', $this->product_id);
 
@@ -61,8 +61,9 @@ class Elite_Vaf_Model_Mapping implements Elite_Vaf_Configurable
         $values = '';
         foreach ($levels as $level)
         {
-            $columns .= '`' . $level . '_id`,';
-            $values .= sprintf('%d,', $this->vehicle->getLevel($level)->getId());
+            $columns .= '`' . $this->inflect($level) . '_id`,';
+            $values .= $this->inflect($this->vehicle->getLevel($level)->getId());
+            $values .= ',';
         }
         $query = sprintf(
                         '
@@ -78,7 +79,7 @@ class Elite_Vaf_Model_Mapping implements Elite_Vaf_Configurable
                 %d
             )
             ',
-                        (int) $this->product_id
+            (int) $this->product_id
         );
         $r = $this->query($query);
         return $this->getReadAdapter()->lastInsertId();
@@ -94,6 +95,11 @@ class Elite_Vaf_Model_Mapping implements Elite_Vaf_Configurable
     protected function getReadAdapter()
     {
         return Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
+    }
+
+    function inflect($identifier)
+    {
+        return str_replace(' ', '_', $identifier);
     }
 
 }
