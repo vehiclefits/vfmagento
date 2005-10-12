@@ -28,8 +28,8 @@ $c = count( $levels );
 for( $i = 0; $i < $c - 1; $i++ )
 {
     ?>
-    var callback = load<?=ucfirst( $levels[ $i + 1 ] )?>s;
-    jQuery('.<?=$levels[ $i ]?>Select').change( callback );    
+    var callback = load<?=str_replace(' ','_',ucfirst( $levels[ $i + 1 ] ))?>s;
+    jQuery('.<?=str_replace(' ','_',$levels[ $i ])?>Select').change( callback );    
     <?php
 }
 ?>

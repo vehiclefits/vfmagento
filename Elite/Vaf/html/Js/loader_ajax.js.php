@@ -1,5 +1,5 @@
 var getUrl = function( form, requestLevel ) {
-    var select = form.find('.' + requestLevel + 'Select');
+    var select = form.find('.' + requestLevel.replace(' ','_') + 'Select');
     var value = select.val();
     
     var product = jQuery('#vafProduct').val();
@@ -33,7 +33,7 @@ for( $i = 0; $i < $c - 1; $i++ )
     echo "\n";
     ?>
     
-    var load<?=ucfirst( $levels[ $i + 1 ] )?>s = function() {
+    var load<?=str_replace(' ','_',ucfirst( $levels[ $i + 1 ] ))?>s = function() {
         
         var callbackFunc = function(){
         
@@ -42,7 +42,7 @@ for( $i = 0; $i < $c - 1; $i++ )
             if( isset( $levels[ $i + 2 ] ) )
             {
                 ?>
-                loadNextSelectIfOneOption( '<?=$levels[ $i + 1 ]?>', '<?=$levels[ $i + 2 ]?>' );
+                loadNextSelectIfOneOption( '<?=str_replace(' ','_',$levels[ $i + 1 ])?>', '<?=str_replace(' ','_',$levels[ $i + 2 ])?>' );
                 <?php
             } 
             if( shouldAutoSubmit() && isLastLevel( $i, $c ) )
@@ -58,19 +58,20 @@ for( $i = 0; $i < $c - 1; $i++ )
         
         decorateUnavailableSelections();
                 
-        var url = getUrl( jQuery(this).parent('form'), '<?=$levels[ $i + 1 ]?>' );
+        var url = getUrl( jQuery(this).parent('form'), '<?=str_replace(' ','_',$levels[ $i + 1 ])?>' );
         var loadingText = '<option value="0"><?=htmlentities( addslashes( $this->loadingText() ) )?></option>';
         
-        jQuery(this).nextAll('.<?=$levels[ $i + 1 ]?>Select').html( loadingText );
+        jQuery(this).nextAll('.<?=str_replace(' ','_',$levels[ $i + 1 ])?>Select').html( loadingText );
         
-        jQuery(this).nextAll('.<?=$levels[ $i + 1 ]?>Select').load( url, {}, function() {
+        jQuery(this).nextAll('.<?=str_replace(' ','_',$levels[ $i + 1 ])?>Select').load( url, {}, function(responseText) {
+            jQuery(this).html(responseText);
             callbackFunc.apply( this );
         });  
         <?php
         for( $j = $i + 2; $j < $c; $j++ )
         {
             ?>
-            jQuery('.<?=$levels[ $j ]?>Select').html('<option></option>');
+            jQuery('.<?=str_replace(' ','_',$levels[ $j ])?>Select').html('<option></option>');
             <?php
         } 
         ?>

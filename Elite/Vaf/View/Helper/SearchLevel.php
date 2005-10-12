@@ -40,7 +40,7 @@ class Elite_Vaf_View_Helper_SearchLevel
         $prevLevelsIncluding = $this->schema()->getPrevLevelsIncluding($this->level);
         $prevLevelsIncluding = implode(',', $prevLevelsIncluding);
         ?>
-        <select name="<?=$this->level?>" class="<?=$this->level?>Select {prevLevelsIncluding: '<?=$prevLevelsIncluding?>'}">
+        <select name="<?=str_replace(' ','_',$this->level)?>" class="<?=str_replace(' ','_',$this->level)?>Select {prevLevelsIncluding: '<?=$prevLevelsIncluding?>'}">
             <option value="0"><?=$this->helper()->getDefaultSearchOptionText($this->level)?></option>  
             <?php
             foreach( $this->getEntities() as $entity )
