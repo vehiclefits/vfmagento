@@ -1,6 +1,10 @@
 var getUrl = function( form, requestLevel ) {
     var requestLevel = requestLevel.replace(' ','_');
-    var select = form.find('.' + requestLevel + 'Select');
+    if( form.find('.' + requestLevel + 'Select').size() ) {
+        var select = form.find('.' + requestLevel + 'Select');
+    } else {
+        var select = form.find('.' + requestLevel + '_startSelect');
+    }
     var value = select.val();
     
     var product = jQuery('#vafProduct').val();
@@ -59,16 +63,30 @@ for( $i = 0; $i < $c - 1; $i++ )
         };
         
         decorateUnavailableSelections();
-                
-        var url = getUrl( jQuery(this).parent('form'), '<?=str_replace(' ','_',$levels[ $i + 1 ])?>' );
+        
         var loadingText = '<option value="0"><?=htmlentities( addslashes( $this->loadingText() ) )?></option>';
         
-        jQuery(this).nextAll('.<?=str_replace(' ','_',$levels[ $i + 1 ])?>Select').html( loadingText );
+        if(jQuery('.<?=str_replace(' ','_',$levels[ $i + 1 ])?>_startSelect').size()) {
+            var url = getUrl( jQuery(this).parent('form'), '<?=str_replace(' ','_',$levels[ $i + 1 ])?>' );
+            jQuery(this).nextAll('.<?=str_replace(' ','_',$levels[ $i + 1 ])?>_startSelect').html( loadingText );
+            jQuery(this).nextAll('.<?=str_replace(' ','_',$levels[ $i + 1 ])?>_endSelect').html( loadingText );
+            jQuery(this).nextAll('.<?=str_replace(' ','_',$levels[ $i + 1 ])?>_startSelect').load( url, {}, function(responseText) {
+                jQuery(this).html(responseText);
+                callbackFunc.apply( this );
+            });  
+            jQuery(this).nextAll('.<?=str_replace(' ','_',$levels[ $i + 1 ])?>_endSelect').load( url, {}, function(responseText) {
+                jQuery(this).html(responseText);
+                callbackFunc.apply( this );
+            });  
+        } else {
+            var url = getUrl( jQuery(this).parent('form'), '<?=str_replace(' ','_',$levels[ $i + 1 ])?>' );
+            jQuery(this).nextAll('.<?=str_replace(' ','_',$levels[ $i + 1 ])?>Select').html( loadingText );
+            jQuery(this).nextAll('.<?=str_replace(' ','_',$levels[ $i + 1 ])?>Select').load( url, {}, function(responseText) {
+                jQuery(this).html(responseText);
+                callbackFunc.apply( this );
+            });  
+        }
         
-        jQuery(this).nextAll('.<?=str_replace(' ','_',$levels[ $i + 1 ])?>Select').load( url, {}, function(responseText) {
-            jQuery(this).html(responseText);
-            callbackFunc.apply( this );
-        });  
         <?php
         for( $j = $i + 2; $j < $c; $j++ )
         {

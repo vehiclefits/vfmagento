@@ -51,4 +51,19 @@ class Elite_Vaf_Model_Vehicle_FinderTests_RangeTest extends Elite_Vaf_Model_Vehi
         
         $this->assertEquals(4, count($vehicles));
     }
+    
+    function testShouldFindAllYearsINRange_Numeric2()
+    {
+        $vehicle0 = $this->createMMY( 'Honda', 'Civic', '2000' );
+        $vehicle1 = $this->createMMY( 'Honda', 'Civic', '2001' );
+        
+        $vehicles = $this->getFinder()->findByRangeIds(array(
+                'make'=>$vehicle0->getValue('make'),
+                'model'=>$vehicle0->getValue('model'),
+                'year_start'=>$vehicle1->getValue('year'),
+                'year_end'=>$vehicle0->getValue('year')
+        ));
+        
+        $this->assertEquals(2, count($vehicles));
+    }
 }

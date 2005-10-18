@@ -211,7 +211,6 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
             $subQuery->where( '`entity_id` = ?', $product_id );
         }
         
-        
         foreach( $parents as $parentType => $parentId )
         {
             if( !in_array( $parentType, $this->getSchema()->getLevels() ) )
@@ -242,7 +241,6 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         }
         
         $select->order('m.title ' . $entity->getSortOrder());
-        
         return $this->query( $select );
     }
     

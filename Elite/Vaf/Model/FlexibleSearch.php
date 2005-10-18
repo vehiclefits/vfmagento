@@ -138,6 +138,7 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
             if(isset($params['year_start']) && isset($params['year_end']))
             {
                 $vehicles = $vehicleFinder->findByRangeIds($params);
+                //print_r($vehicles); exit();
             }
             else
             {
