@@ -1,4 +1,4 @@
-1.33 February 16, 2012
+1.34 August 7, 2012
 ===================================================================
 IMPROVEMENTS
 - 0000885: [Documentation] Location has changed for design files
