@@ -1,5 +1,14 @@
 1.33 February 16, 2012
 ===================================================================
+IMPROVEMENTS
+- 0000885: [Documentation] Location has changed for design files
+- 0000902: [Search Filter] Group view / category view performance increase [ripple loading of product's category IDs]
+- 0000901: [Catalog / Products] Slow query on listing fitments for a product
+- 0000000: Upgraded JQuery
+
+
+1.33 February 16, 2012
+===================================================================
 ISSUES
 - 0000900: [Wheels Module] wheel & wheel adapter module fields should work interchangably 
 - 0000898: [Search Filter] missing `title` index on elite_level_year 
