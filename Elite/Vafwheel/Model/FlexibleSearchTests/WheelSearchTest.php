@@ -46,7 +46,7 @@ class Elite_Vafwheel_Model_FlexibleSearchTests_WheelSearchTest extends Elite_Vaf
 
 	$this->setRequestParams(array('lug_count' => '5', 'stud_spread' => '114.3'));
 	Elite_Vaf_Helper_Data::getInstance()->flexibleSearch()->doGetProductIds();
-	$this->assertFalse(Elite_Vaf_Helper_Data::getInstance()->vehicleSelection(), 'should clear vehicle when searching on a wheel size');
+	$this->assertNull(Elite_Vaf_Helper_Data::getInstance()->vehicleSelection()->getFirstVehicle(), 'should clear vehicle when searching on a wheel size');
     }
 
 }

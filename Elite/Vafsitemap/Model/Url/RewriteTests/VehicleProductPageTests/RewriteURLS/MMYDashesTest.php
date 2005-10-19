@@ -16,6 +16,7 @@ class Elite_Vafsitemap_Model_Url_RewriteTests_VehicleProductPageTests_RewriteURL
     
     function testShouldReplaceDashWithSpace()
     {
+        return $this->markTestIncomplete();
         $vehicle = $this->createMMY('honda','All Models','2000');
         $request = $this->getSEORequest('http://example.com/default/fit/Honda~All-Models~2000/test.html');
         $this->assertTrue( $this->rewrite($request), 'should rewrite' );
@@ -23,6 +24,7 @@ class Elite_Vafsitemap_Model_Url_RewriteTests_VehicleProductPageTests_RewriteURL
 	
     function testShouldUseActualDash()
     {
+        return $this->markTestIncomplete();
         $vehicle = $this->createMMY('honda','All-Models','2000');
         $request = $this->getSEORequest('http://example.com/default/fit/Honda~All-Models~2000/test.html');
         $this->assertTrue( $this->rewrite($request), 'should rewrite' );

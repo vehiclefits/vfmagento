@@ -48,7 +48,7 @@ class Elite_Vaftire_Model_FlexibleSearchTests_FilterBySizeTest extends Elite_Vaf
 
 	$this->setRequestParams(array('section_width' => '205', 'aspect_ratio' => '55', 'diameter' => '16'));
 	Elite_Vaf_Helper_Data::getInstance()->flexibleSearch()->doGetProductIds();
-	$this->assertFalse(Elite_Vaf_Helper_Data::getInstance()->vehicleSelection(), 'should clear vehicle when searching on a tire size');
+	$this->assertNull(Elite_Vaf_Helper_Data::getInstance()->vehicleSelection()->getFirstVehicle(), 'should clear vehicle when searching on a tire size');
     }
 
 }
