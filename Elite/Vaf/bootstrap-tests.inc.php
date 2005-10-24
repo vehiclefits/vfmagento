@@ -6,7 +6,7 @@ require_once('bootstrap.php');
 
 # set up paths specific to test environment
 define( 'MAGE_PATH', dirname( __FILE__ ) . '/../../../../../' );
-define( 'TESTFILES', dirname( __FILE__ ) . '/../../tests/files/' );
+define( 'TESTFILES', 'C:/Temp' );
 
 # database details for test server
 define( 'VAF_DB_USERNAME', 'root' );
