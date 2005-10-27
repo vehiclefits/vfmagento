@@ -1,5 +1,6 @@
 var getUrl = function( form, requestLevel ) {
-    var select = form.find('.' + requestLevel.replace(' ','_') + 'Select');
+    var requestLevel = requestLevel.replace(' ','_');
+    var select = form.find('.' + requestLevel + 'Select');
     var value = select.val();
     
     var product = jQuery('#vafProduct').val();
@@ -12,6 +13,7 @@ var getUrl = function( form, requestLevel ) {
     url = url + '&requestLevel=' + requestLevel;
     
     $.each(levels, function(index,level){
+        var level = level.replace(' ','_');
         if(level==requestLevel) {
             return;
         }
