@@ -260,10 +260,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     function getName()
     {
 	$name = parent::getName();
-	if ($this->globalRewritesOn() && $this->rewritesOn())
-	{
-	    $this->setCurrentlySelectedFit(Elite_Vaf_Helper_Data::getInstance()->getFit());
-	}
+        $this->setFitFromGlobalIfNoLocalFitment();
 	if (!$this->rewritesOn() || !$this->fitsSelection())
 	{
 	    return $name;
@@ -277,6 +274,15 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 	$find = array('_product_', '_vehicle_');
 	$replace = array($name, (string) $this->currentlySelectedFit());
 	return str_replace($find, $replace, $template);
+    }
+    
+    function setFitFromGlobalIfNoLocalFitment()
+    {
+        $globalFit = Elite_Vaf_Helper_Data::getInstance()->getFit();
+	if ($this->globalRewritesOn() && $this->rewritesOn() && !$this->fit && $globalFit)
+	{
+	    $this->setCurrentlySelectedFit($globalFit);
+	}
     }
 
     function rewritesOn()
