@@ -203,11 +203,14 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
      */
     protected function doListInUse( $entity, $parents, $product_id = 0 )
     {
-        $select = $this->getReadAdapter()->select();
-        $select
-        	->from( array('m'=>'elite_level_' . $entity->getType() ), array('id', 'title') )
-        	->joinInner(array('fitment'=>'elite_mapping'), 'fitment.' . $entity->getType() . '_id = m.id', array())
-        	->group('m.title');
+        $subQuery = $this->getReadAdapter()->select();
+        $subQuery->from('elite_mapping as fitment', array($entity->getType() .'_id'));
+
+        if( $product_id )
+        {
+            $subQuery->where( '`entity_id` = ?', $product_id );
+        }
+        
         
         foreach( $parents as $parentType => $parentId )
         {
@@ -219,13 +222,27 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
             {
                 continue;
             }
-            $select->where( sprintf( 'fitment.`%s_id` = ?', $parentType ), $parentId );
+            $subQuery->where( sprintf( 'fitment.`%s_id` = ?', $parentType ), $parentId );
         }
-        if( $product_id )
+        $subQuery->group($entity->getType() .'_id');
+        
+        $idSet = array();
+        foreach( $subQuery->query()->fetchAll() as $id )
         {
-            $select->where( '`entity_id` = ?', $product_id );
+            array_push($idSet,$id[$entity->getType() .'_id']);
         }
+        
+        $select = $this->getReadAdapter()->select();
+        $select
+        	->from( array('m'=>'elite_level_' . $entity->getType() ), array('id', 'title') )
+        	->group('m.title');
+        if(count($idSet))
+        {
+            $select->where('m.id IN (' . implode(',', $idSet) . ')');
+        }
+        
         $select->order('m.title ' . $entity->getSortOrder());
+        
         return $this->query( $select );
     }
     

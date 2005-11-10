@@ -4,9 +4,11 @@ class Elite_Vafsitemap_Model_Sitemap_Vehicle extends Ne8Vehicle_Import_Abstract
 {
 
     protected $config;
+    protected $schema;
 
     function __construct($config)
     {
+        $this->schema = new Elite_Vaf_Model_Schema;
 	$this->config = $config;
     }
 
