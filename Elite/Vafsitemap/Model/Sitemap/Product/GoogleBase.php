@@ -56,11 +56,11 @@ class Elite_Vafsitemap_Model_Sitemap_Product_GoogleBase extends Elite_Vafsitemap
 	$return .= 'image_link';
 	$return .= "\t";
 	$return .= 'product type';
-        foreach($this->schema->getLevels() as $level )
-        {
-            $return .= "\t";
-            $return .= $level;
-        }
+//        foreach($this->schema->getLevels() as $level )
+//        {
+//            $return .= "\t";
+//            $return .= $level;
+//        }
 	$return .= "\n";
 	return $return;
     }
@@ -75,18 +75,18 @@ class Elite_Vafsitemap_Model_Sitemap_Product_GoogleBase extends Elite_Vafsitemap
 	$return .= "\t";
 	$return .= number_format($this->price($product), 2);
 	$return .= "\t";
-	$return .= $this->productUrl($product);
+	$return .= urlencode($this->productUrl($product));
 	$return .= "\t";
 	$return .= 'new';
 	$return .= "\t";
 	$return .= $this->productImageUrl($product);
 	$return .= "\t";
 	$return .= $this->categoryPath($product);
-        foreach($this->schema->getLevels() as $level )
-        {
-            $return .= "\t";
-            $return .= $vehicle->getLevel($level)->getTitle();
-        }
+//        foreach($this->schema->getLevels() as $level )
+//        {
+//            $return .= "\t";
+//            $return .= urlencode($vehicle->getLevel($level)->getTitle());
+//        }
 	$return .= "\n";
 	return $return;
     }
