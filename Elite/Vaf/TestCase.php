@@ -66,7 +66,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
 
     function tearDown()
     {
-	$this->rollbackTransaction();
+        $this->rollbackTransaction();
 	$this->doTearDown();
     }
 
@@ -349,7 +349,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
 
     protected function rollbackTransaction()
     {
-	$this->getReadAdapter()->rollBack();
+	$this->getReadAdapter()->commit();
 	if ($this->getReadAdapter()->_transaction_depth !== -1)
 	{
 	    throw new Exception('invalid transaction nesting');

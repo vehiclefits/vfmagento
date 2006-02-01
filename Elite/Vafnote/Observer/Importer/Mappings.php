@@ -41,7 +41,9 @@ class Elite_Vafnote_Observer_Importer_Mappings
         $notes = explode( ',', $notes );
         foreach( $notes as $noteCode )
         {
-            $this->noteFinder()->insertNoteRelationship( $this->row['mapping_id'], $noteCode );
+            $note = $this->noteFinder()->findByCode($noteCode);
+            if(!$note) continue;
+            $this->noteFinder()->insertNoteRelationship( $this->row['mapping_id'], $note->id );
         }
     }
     
@@ -59,7 +61,7 @@ class Elite_Vafnote_Observer_Importer_Mappings
         }
         $noteId = $this->noteFinder()->insert(null,$message);
         $note = $this->noteFinder()->find($noteId);
-        $this->noteFinder()->insertNoteRelationship($this->row['mapping_id'], $note->code );
+        $this->noteFinder()->insertNoteRelationship($this->row['mapping_id'], $note->id );
     }
     
     function hasNotesColumn()

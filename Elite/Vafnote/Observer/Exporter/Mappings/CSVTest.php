@@ -5,6 +5,8 @@ class Elite_Vafnote_Observer_Exporter_Mappings_CSVTest extends Elite_Vafimporter
     {
         $this->switchSchema('make,model,year');
         
+        $this->createNoteDefinition('code1','foo');
+        $this->createNoteDefinition('code2','bar');
         $this->csvData = 'sku, make, model, year, notes
 sku, honda, civic, 2000, "code1,code2"';
         $this->csvFile = TESTFILES . '/mappings-single.csv';
@@ -17,7 +19,6 @@ sku, honda, civic, 2000, "code1,code2"';
     {       
         $importer = new Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
         $importer->import();
-        
         $data = $this->exportProductFitments();
         $string = explode("\n",$data);
         $this->assertEquals( "sku,universal,make,model,year,notes", $string[0] );

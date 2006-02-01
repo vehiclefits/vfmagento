@@ -34,11 +34,21 @@ class Elite_Vafnote_Model_Finder
     */
     function getNotes( $mapping_id = 0 )
     {
+        if(!$mapping_id)
+        {
+            return array();
+        }
+        $notes = $this->getAllNotes($mapping_id);
+        return $notes;
+    }
+    
+    function getAllNotes($mapping_id=0)
+    {
         $sql = "SELECT * FROM elite_note";
         
         if( $mapping_id )
         {
-            $sql .=  sprintf( " INNER JOIN elite_mapping_notes on elite_mapping_notes.note_id = elite_note.code AND elite_mapping_notes.fit_id = %d", $mapping_id );
+            $sql .=  sprintf( " INNER JOIN elite_mapping_notes on elite_mapping_notes.note_id = elite_note.id AND elite_mapping_notes.fit_id = %d", $mapping_id );
         }
         $result = $this->query( $sql );
 
@@ -75,6 +85,7 @@ class Elite_Vafnote_Model_Finder
         	$this->getReadAdapter()->quote($code),
         	$this->getReadAdapter()->quote($message)
         );
+        
         $this->query($sql);
         return $this->getReadAdapter()->lastInsertId();
     }

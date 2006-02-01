@@ -7,7 +7,7 @@ class Elite_Vafnote_Model_Export
 		
 		$result = '"id","code","message"';
 		$result .= "\n";
-		foreach( $finder->getNotes() as $note )
+		foreach( $finder->getAllNotes() as $note )
 		{
 			$result .= '"' . $note->id . '"';
 			$result .= ',';

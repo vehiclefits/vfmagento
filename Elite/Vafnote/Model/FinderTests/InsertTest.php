@@ -45,10 +45,10 @@ class Elite_Vafnote_Model_FinderTests_InsertTest extends Elite_Vaf_TestCase
     function testShouldInsertNoteRelationship()
     {
         $vehicle = $this->createMMY();
-        $this->noteFinder()->insert('code',null);
+        $noteId = $this->noteFinder()->insert('code',null);
         $product_id = $this->insertProduct('sku');
         $fitmentId = $this->insertMappingMMY($vehicle,$product_id);
-        $this->noteFinder()->insertNoteRelationship( $fitmentId, 'code' );
+        $this->noteFinder()->insertNoteRelationship( $fitmentId, $noteId );
         
         $this->assertEquals( 1, count($this->noteFinder()->getNotes($fitmentId)), 'should insert note relationship for a fitment' );
     }
