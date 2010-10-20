@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xml:lang="en">
+<head>
+
+    <link id="theme" rel="stylesheet" type="text/css" href="kodify/themes/cheery.css" />
+    <link id="theme" rel="stylesheet" type="text/css" href="style.css" />
+
+    <script type="text/javascript" src="kodify/js/lx_analyzer.js"></script>
+    <script type="text/javascript" src="kodify/js/kodify.js"></script>
+    <script type="text/javascript" src="kodify/js/lang/js.js"></script>
+
+    <script type="text/javascript" src="kodify/js/lang/php.js"></script>
+    <script type="text/javascript" src="kodify/js/lang/html.js"></script>
+    <script type="text/javascript" src="kodify/js/lang/css.js"></script>
+
+</head>
+<body>
+    
+
+<p>You must follow "First Steps", then either "Run Installer" or "Manual Installation" (we recommend the installer). Lastly you must follow the instructions under ""Include" JS & CSS".</p>
+
+<strong>DISABLE your Magento cache before installing any new modules.</strong>
+<br />
+- Paths in <b class="path">Orange</b> refer to the path in your version of Magento, "your files"
+
+    <br />
+    - Paths in <b class="path source">green</b> refer to the path relative to the extension, "my files".
+    <br />
+    
+    - Unzip the <b class="path source">Elite/</b> folder to <b class="path">app/code/local/</b></li>, so you will have app/code/local/Elite.
+        
+    
+<h1>First Steps (Required)</h1>
+<div id="firststeps">
+        See Also: <a href="configuration.htm">Configuration Guide</a>
+        
+        <ul>
+            <li>
+                Open <b class="path">app/code/local/Elite/Vaf/</b>
+                <br />
+                Rename <b class="source path">config.default.ini</b> to <b>config.ini</b>
+            </li>
+           
+            <li>       
+                Open <b class="path">app/Mage.php</b> and paste the following ( right at the beginning of the file after the &lt;?php tag )
+                 <pre class="kodify php"> require_once( 'code/local/Elite/Vaf/bootstrap.php' ); </pre>
+                 <i>Note: This needs to be repeated whenever you upgrade Magento. Just refer to the "upgrading magento" link on the table of contents.</i> 
+            </li>                                                                                                                                      
+        </ul>
+        
+ </div>
+         
+    <hr />
+    
+    <h1>Run Installer</h1>
+<div id="installer">
+    Copy <b class="source path">Elite/install-vaf.php</b> to Magento's web root. Load it in your browser. Press GO to have the database created and the design files copied. The check boxes allow you to choose which actions to omit if any. The red/green boxes show you if your file permissions are sufficient for installation.
+</div>
+<hr />
+    <h1>"Include" JS &amp; CSS (Required)</h1>
+    <strong>Front End</strong>
+<div id="includes_front">
+    
+        Paste in some script tags to call in the javascript files from the templates.
+        <br />
+        <i>Front-end</i>
+
+         Open up <b class="path">app/design/frontend/default/default/template/page/html/head.phtml</b>, copy the following, place _before_ the &lt;title&gt; tag. [1]
+                <pre class="kodify html">
+&lt;!-- start VAF --&gt;
+&lt;script src="/skin/adminhtml/default/default/jquery-1.4.2.min.js" type="text/javascript" language="javascript"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" language="javascript"&gt;
+ jQuery.noConflict();
+&lt;/script&gt;
+&lt;script src="/skin/adminhtml/default/default/jquery.metadata.pack.js" type="text/javascript" language="javascript"&gt;&lt;/script&gt;
+&lt;script src="/skin/adminhtml/default/default/jquery.simplemodal-1.3.min.js" type="text/javascript" language="javascript"&gt;&lt;/script&gt;
+&lt;script src="&lt;?=Mage::getBaseUrl( Mage_Core_Model_Store::URL_TYPE_LINK, isset($_SERVER['HTTPS']) )?&gt;vaf/ajax/js?front=1" type="text/javascript" language="javascript"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" type="text/css" href="/vafStyle.css.php" media="all" /&gt;
+&lt;!-- end VAF --&gt;
+                
+                </pre>
+                * You may need to edit some of these paths depending on where you installed Magento.
+</div>
+
+<strong>Back End</strong>
+<div id="includes_front">
+
+
+        <i>Backend Admin Panel.</i>
+
+ Open up <b class="path">app/design/adminhtml/default/default/template/page/head.phtml</b>, copy &amp; paste the following, place _before_ the &lt;title&gt; tag. 
+                <pre class="kodify html">
+&lt;!-- start VAF --&gt;
+&lt;script src="&lt;?=$this-&gt;getSkinUrl()?&gt;jquery-1.4.2.min.js" type="text/javascript" language="javascript"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" language="javascript"&gt;
+ jQuery.noConflict();
+&lt;/script&gt;
+&lt;script src="&lt;?=Mage::getBaseUrl()?&gt;vaf/ajax/js" type="text/javascript" language="javascript"&gt;&lt;/script&gt;
+&lt;script src="&lt;?=$this-&gt;getSkinUrl()?&gt;jquery.metadata.pack.js" type="text/javascript" language="javascript"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" type="text/css" href="&lt;?=$this-&gt;getSkinUrl()?&gt;multiTree.css" /&gt;
+&lt;!-- end VAF --&gt;
+                </pre>
+
+</div>
+    
+</body>
+</html>

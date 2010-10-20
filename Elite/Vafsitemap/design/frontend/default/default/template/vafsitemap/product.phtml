@@ -1,0 +1,21 @@
+<?php
+$vehicle =$this->getSelectedDefinition();
+?>
+<h3>Products for <?=$this->htmlEscape( $vehicle )?></h3>
+<?php $_items = $this->getCollection(); ?>
+<?php if($_items->getSize()): ?>
+    <div class="content">
+        <ul class="bare-list">
+            <?php foreach ($_items as $_item): ?>
+                <?php
+                $_item->setCurrentlySelectedFit( $vehicle );
+                ?>
+                <li><a href="<?php echo Mage::getBaseUrl() . $this->getItemUrl($_item) ?>"><?php echo $_item->getName() ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php else: ?>
+    <div class="note-msg">
+        <?php echo $this->__('There are no %s available.', $this->getItemsTitle()); ?>
+    </div>
+<?php endif ?>

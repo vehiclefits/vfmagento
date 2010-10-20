@@ -1,0 +1,36 @@
+<div class="page-head">
+    <h3><?php echo $this->getHeaderText() ?></h3>
+</div>
+
+<?php
+if( !$this->getTotalCategoryCount() || !$this->getResultCount() )
+{
+    ?>
+    <div class="note-msg">
+        <?php echo ($this->getNoResultText()) ? $this->getNoResultText() : $this->__('Your search returns no results.') ?>
+        <?php
+        if ($messages = $this->getNoteMessages())
+        {
+            ?>
+            <?php foreach ($messages as $message):?>
+            <br /><?php echo $message?>
+            <?php endforeach;?>
+            <?php
+        }
+        ?>
+    </div>
+    <?php
+    return;
+}
+
+echo number_format( $this->getTotalProductCount() ) . ' product' . ($this->getTotalProductCount() > 1 ? 's' : '' );
+echo ' found in ' . number_format( $this->getTotalCategoryCount() ) . ( $this->getTotalCategoryCount() > 1 ? ' categories' : ' category' );
+echo '<br /><br />';
+
+$categories = $this->getCategories();
+foreach( $categories as $category )
+{
+    ?>
+    <?=$this->drawItem( $category )?>
+    <?php
+}

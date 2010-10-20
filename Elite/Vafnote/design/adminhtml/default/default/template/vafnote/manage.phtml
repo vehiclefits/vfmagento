@@ -1,0 +1,32 @@
+<form action="<?=$this->getUrl('*/*/*')?>">
+    Code: <input type="code" name="code" />
+    <br />
+    Message: <input type="text" name="message" />
+    <input type="submit"  value="Add" />
+</form>
+
+<table border="1">
+    <tr>
+        <td></td>
+        <td>Id</td>
+        <td>Code</td>
+        <td>Message</td>
+    </tr>
+    <?php
+    foreach( $this->notes() as $note )
+    {
+        ?>
+        <tr>
+            <td>
+                <a href="<?=$this->getUrl('*/*/edit', array( 'id' => $this->htmlEscape($note->id) ) )?>">Edit</a>
+                |
+                <a href="<?=$this->getUrl('*/*/*', array( 'delete'=>1, 'id' => $this->htmlEscape($note->id) ) )?>">Delete</a>
+            </td>
+            <td><?=$this->htmlEscape($note->id)?></td>
+            <td><?=$this->htmlEscape($note->code)?></td>
+            <td><?=$this->htmlEscape($note->message)?></td>
+        </tr>
+        <?php
+    }
+    ?>
+</table>

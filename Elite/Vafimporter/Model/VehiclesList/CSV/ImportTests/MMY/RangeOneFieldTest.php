@@ -1,0 +1,37 @@
+<?php
+class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_RangeOneFieldTest extends Elite_Vafimporter_Model_VehiclesList_CSV_TestCase
+{
+    function doSetUp()
+    {
+        $this->switchSchema('make,model,year');
+    }
+    
+    function testYearRange()
+    {
+        $this->importVehiclesList('make, model, year_range' . "\n" .
+                                  'honda, civic, 2000-2002');
+        
+        $this->assertTrue( $this->vehicleExists(array('make'=>'honda', 'model'=>'civic', 'year'=>'2000')) );
+        $this->assertTrue( $this->vehicleExists(array('make'=>'honda', 'model'=>'civic', 'year'=>'2002')) );
+    }
+    
+    function testYearRange2Digit()
+    {
+        $this->importVehiclesList('make, model, year_range' . "\n" .
+                                  'honda, accord, 03-06');
+                                  
+        $this->assertTrue( $this->vehicleExists(array('make'=>'honda', 'model'=>'accord', 'year'=>'2003')) );
+        $this->assertTrue( $this->vehicleExists(array('make'=>'honda', 'model'=>'accord', 'year'=>'2006')) );
+    }
+    
+    function testShouldReverseYears()
+    {
+        $this->importVehiclesList('make, model, year_range' . "\n" .
+                                  'honda, accord, 06-03');
+                                  
+        $this->assertTrue( $this->vehicleExists(array('make'=>'honda', 'model'=>'accord', 'year'=>'2003')) );
+        $this->assertTrue( $this->vehicleExists(array('make'=>'honda', 'model'=>'accord', 'year'=>'2006')) );
+    }
+    
+    
+}

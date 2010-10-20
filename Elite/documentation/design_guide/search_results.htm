@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xml:lang="en">
+<head>
+
+    <link id="theme" rel="stylesheet" type="text/css" href="../kodify/themes/cheery.css" />
+    <link id="theme" rel="stylesheet" type="text/css" href="../style.css" />
+
+    <script type="text/javascript" src="../kodify/js/lx_analyzer.js"></script>
+    <script type="text/javascript" src="../kodify/js/kodify.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/js.js"></script>
+
+    <script type="text/javascript" src="../kodify/js/lang/php.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/html.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/css.js"></script>
+
+</head>
+<body>
+    
+    <h1>Design Guide - Search Results</h1>
+    
+    <!-- Display Grouped Product Result -->
+    <h2 id="grouped_products">Grouped Products</h2>
+    <div id="groupedResults">
+        
+        <i>If using group view, copy icons to public directory</i>
+        <ul>
+            <li>In <b class="source path">Elite/Vaf/</b> copy <b class="source path">plus.jpg</b> and <b class="source path">minus.jpg</b> to your Magento's index.php path ( usually document root )  - This adds icons on the 'group' mode homepage vaf search   </b></li>
+        </ul>
+    </div>
+
+    <!-- Category Result -->
+    <a name="category"></a>
+    <h2 id="categoryResults">Category Results</h2>
+    <div>
+        In the <a href="configuration.htm">configuration</a> under the [homepagesearch] section set mode to "category" to get the category view.
+        <br />
+        In your Magento install path (web root) create a folder called "category-images". In it place a jpg for each category. Example: to display an image for the "Automotive Lights" category create automotive-lights.jpg
+    </div>
+    
+</body>
+</html>

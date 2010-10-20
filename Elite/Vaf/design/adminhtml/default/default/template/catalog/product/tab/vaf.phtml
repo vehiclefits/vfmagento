@@ -1,0 +1,21 @@
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Fitment Settings') ?></h4>
+    </div>
+    <fieldset>
+        <input type="checkbox" id="universal" name="universal" <?= $this->getProduct()->isUniversal() ? ' checked="checked"' : '' ?> value="1" />
+        Universal Product
+    </fieldset>
+</div>
+
+<?=$this->renderConfigurations()?>
+
+<div id="vaf-toggle">    
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Add New Vehicle Fit') ?></h4>
+        </div>
+         <?=$this->renderMultiTree()?>
+    </div>
+
+</div>

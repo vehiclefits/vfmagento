@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Elite_Vaf>
+            <version>1.18-beta4</version>
+        </Elite_Vaf>
+    </modules>
+    <global>
+
+
+        <models>
+
+            <bundle>
+                <rewrite>
+                    <option>Elite_Vafbundle_Model_Bundle_Option</option>
+                </rewrite>
+            </bundle>
+
+        </models>
+    </global>
+
+</config>

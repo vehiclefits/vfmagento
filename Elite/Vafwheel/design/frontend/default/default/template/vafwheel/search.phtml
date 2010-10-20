@@ -1,0 +1,40 @@
+<div class="box base-mini mini-vaf">
+    <div class="head"><h4>Search By Wheel Size:</h4></div>
+    <div class="content">                            
+    
+    <?php
+    $finder = new Elite_Vafwheel_Model_Finder();
+    
+    $flexibleSearch = new Elite_Vaf_Model_FlexibleSearch(new Elite_Vaf_Model_Schema(),$this->getRequest());
+    $flexibleSearch = new Elite_Vafwheel_Model_FlexibleSearch($flexibleSearch);
+    
+    $helper = new Zend_View_Helper_FormSelect();
+    $helper->setView(new Zend_View);
+    ?>
+
+    <form action="?">
+        Lug Count:
+        <?php
+        $options = array('');
+        $options = $options + $finder->listLugCounts();
+        echo $helper->formSelect('lug_count', $flexibleSearch->getParam('lug_count'), array(), $options );
+        ?>
+        <br />
+        
+        Stud Spread:
+        <?php
+        $options = array('');
+        $options = $options + $finder->listSpread();
+        echo $helper->formSelect('stud_spread', $flexibleSearch->getParam('stud_spread'), array(), $options);
+        ?>
+        (Millimeters)
+        <br />
+        
+        <div align="center">
+        	<input type="button" name="clear" value="Clear" onclick="window.location = '?lug_count=0&stud_spread=0';" />
+        	<input type="submit" name="search" value="Search" />
+        </div>
+    </form>
+
+    </div>
+</div>

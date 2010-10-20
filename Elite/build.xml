@@ -1,0 +1,600 @@
+<?xml version="1.0"?>
+
+<project name="VAF" default="dist" basedir=".">
+
+	<property name="buildpath" value="" override="true" />
+    
+    <property name="modulepath" value="${buildpath}/modules" override="true" />
+    <property name="packagepath" value="${buildpath}/packages" override="true" />
+    
+    
+    <propertyprompt propertyName="version" defaultValue="" promptText="Enter Version" />
+
+    <target name="prepare">
+       <!-- <mkdir dir="${buildpath}/acceptance_tests" />   -->
+        <delete dir="${modulepath}"  includeemptydirs="true" failonerror="false" />
+        <mkdir dir="${modulepath}" />
+        <mkdir dir="${modulepath}/build" />
+        <delete dir="${packagepath}"  includeemptydirs="true" failonerror="false" />
+        <mkdir dir="${packagepath}" />
+    </target>
+
+    <fileset dir="../" id="vaf">
+        <include name="Elite/lib/**" />
+        <include name="Elite/Vaf/*" />
+        <include name="Elite/Vaf/*/**" />
+        <include name="Elite/Vafinstall/*" />
+        <include name="Elite/Vafinstall/*/**" />
+	    <include name="Elite/skin/**" />
+        <include name="Elite/skin/**" />
+        <include name="Elite/install-vaf.php" />
+        <include name="Elite/upgrade-vaf.php" />
+        <include name="Elite/documentation/**" />
+        <include name="Elite/cron/**" />
+        
+        <exclude name="**/*TestJs.php" />
+        <exclude name="**/*AjaxTests" />
+        <exclude name="**/bootstrap-tests.php" />
+        <exclude name="**/config.ini" />
+        <exclude name="**/version.*" />
+        <exclude name="tasks/**" />
+        
+        <exclude name="*TestCase.php" />
+        <exclude name="**/*TestCase.php" />
+        
+        <exclude name="*Test.php" />
+        <exclude name="**/*Test.php" />  
+              
+        <exclude name="Test*.php" />
+        <exclude name="**/Test*.php" />
+        
+        <exclude name="*/Suite.php" />
+        <exclude name="**/*Suite.php" />
+        
+        <exclude name="**/build.*" />
+    </fileset>
+    
+    <fileset dir="../" id="paint">
+        <include name="Elite/Vafpaint/**" />
+        
+        <exclude name="**/bootstrap.php" />
+        <exclude name="**/bootstrap-tests.php" />
+        <exclude name="**/config.ini" />
+        <exclude name="**/version.*" />
+        <exclude name="tasks/**" />
+        
+        <exclude name="*TestCase.php" />
+        <exclude name="**/*TestCase.php" />
+        
+        <exclude name="*Test.php" />
+        <exclude name="**/*Test.php" />  
+              
+        <exclude name="Test*.php" />
+        <exclude name="**/Test*.php" />
+        
+        <exclude name="*/Suite.php" />
+        <exclude name="**/*Suite.php" />
+        
+        <exclude name="**/build.*" />
+    </fileset>
+    
+    <fileset dir="../" id="note">
+        <include name="Elite/Vafnote/**" />
+        
+        <exclude name="**/bootstrap.php" />
+        <exclude name="**/bootstrap-tests.php" />
+        <exclude name="**/config.ini" />
+        <exclude name="**/version.*" />
+        <exclude name="tasks/**" />
+        
+        <exclude name="*TestCase.php" />
+        <exclude name="**/*TestCase.php" />
+        
+        <exclude name="*Test.php" />
+        <exclude name="**/*Test.php" />  
+              
+        <exclude name="Test*.php" />
+        <exclude name="**/Test*.php" />
+        
+        <exclude name="*/Suite.php" />
+        <exclude name="**/*Suite.php" />
+        
+        <exclude name="**/build.*" />
+    </fileset>
+    
+    <fileset dir="../" id="wheel">
+        <include name="Elite/Vafwheel/**" />
+        
+        <exclude name="**/bootstrap.php" />
+        <exclude name="**/bootstrap-tests.php" />
+        <exclude name="**/config.ini" />
+        <exclude name="**/version.*" />
+        <exclude name="tasks/**" />
+        
+        <exclude name="*TestCase.php" />
+        <exclude name="**/*TestCase.php" />
+        
+        <exclude name="*Test.php" />
+        <exclude name="**/*Test.php" />  
+              
+        <exclude name="Test*.php" />
+        <exclude name="**/Test*.php" />
+        
+        <exclude name="*/Suite.php" />
+        <exclude name="**/*Suite.php" />
+        
+        <exclude name="**/build.*" />
+    </fileset>
+    
+    <fileset dir="../" id="tire">
+        <include name="Elite/Vaftire/**" />
+        
+        <exclude name="**/bootstrap.php" />
+        <exclude name="**/bootstrap-tests.php" />
+        <exclude name="**/config.ini" />
+        <exclude name="**/version.*" />
+        <exclude name="tasks/**" />
+        
+        <exclude name="*TestCase.php" />
+        <exclude name="**/*TestCase.php" />
+        
+        <exclude name="*Test.php" />
+        <exclude name="**/*Test.php" />  
+              
+        <exclude name="Test*.php" />
+        <exclude name="**/Test*.php" />
+        
+        <exclude name="*/Suite.php" />
+        <exclude name="**/*Suite.php" />
+        
+        <exclude name="**/build.*" />
+    </fileset>
+    
+    <fileset dir="../" id="sitemap">
+        <include name="Elite/Vafsitemap/**" />
+        
+        <exclude name="**/bootstrap.php" />
+        <exclude name="**/bootstrap-tests.php" />
+        <exclude name="**/config.ini" />
+        <exclude name="**/version.*" />
+        <exclude name="tasks/**" />
+        
+        <exclude name="*TestCase.php" />
+        <exclude name="**/*TestCase.php" />
+        
+        <exclude name="*Test.php" />
+        <exclude name="**/*Test.php" />  
+              
+        <exclude name="Test*.php" />
+        <exclude name="**/Test*.php" />
+        
+        <exclude name="*/Suite.php" />
+        <exclude name="**/*Suite.php" />
+        
+        <exclude name="**/build.*" />
+    </fileset>
+    
+    <fileset dir="../" id="directory">
+        <include name="Elite/Vaflinks/**" />
+        
+        <exclude name="**/bootstrap.php" />
+        <exclude name="**/bootstrap-tests.php" />
+        <exclude name="**/config.ini" />
+        <exclude name="**/version.*" />
+        <exclude name="tasks/**" />
+        
+        <exclude name="*TestCase.php" />
+        <exclude name="**/*TestCase.php" />
+        
+        <exclude name="*Test.php" />
+        <exclude name="**/*Test.php" />  
+              
+        <exclude name="Test*.php" />
+        <exclude name="**/Test*.php" />
+        
+        <exclude name="*/Suite.php" />
+        <exclude name="**/*Suite.php" />
+        
+        <exclude name="**/build.*" />
+    </fileset>
+              
+    <fileset dir="../" id="importer">
+        <include name="Elite/Vafimporter/**" />
+        <include name="Elite/Csv/**" />
+        
+        <exclude name="**/bootstrap.php" />
+        <exclude name="**/bootstrap-tests.php" />
+        <exclude name="**/config.ini" />
+        <exclude name="**/version.*" />
+        <exclude name="tasks/**" />
+        
+        <exclude name="*TestCase.php" />
+        <exclude name="**/*TestCase.php" />
+        
+        <exclude name="*Test.php" />
+        <exclude name="**/*Test.php" />  
+              
+        <exclude name="Test*.php" />
+        <exclude name="**/Test*.php" />
+        
+        <exclude name="*/Suite.php" />
+        <exclude name="**/*Suite.php" />
+        
+        <exclude name="**/build.*" />
+    </fileset>
+                      
+    <fileset dir="../" id="bundle">
+        <include name="Elite/Vafbundle/**" />
+        
+        <exclude name="**/bootstrap.php" />
+        <exclude name="**/bootstrap-tests.php" />
+        <exclude name="**/config.ini" />
+        <exclude name="**/version.*" />
+        <exclude name="tasks/**" />
+        
+        <exclude name="*TestCase.php" />
+        <exclude name="**/*TestCase.php" />
+        
+        <exclude name="*Test.php" />
+        <exclude name="**/*Test.php" />  
+              
+        <exclude name="Test*.php" />
+        <exclude name="**/Test*.php" />
+        
+        <exclude name="*/Suite.php" />
+        <exclude name="**/*Suite.php" />
+        
+        <exclude name="**/build.*" />
+    </fileset>
+                          
+    <fileset dir="../" id="logo">
+        <include name="Elite/Vaflogo/**" />
+        
+        <exclude name="**/bootstrap.php" />
+        <exclude name="**/bootstrap-tests.php" />
+        <exclude name="**/config.ini" />
+        <exclude name="**/version.*" />
+        <exclude name="tasks/**" />
+        
+        <exclude name="*TestCase.php" />
+        <exclude name="**/*TestCase.php" />
+        
+        <exclude name="*Test.php" />
+        <exclude name="**/*Test.php" />  
+              
+        <exclude name="Test*.php" />
+        <exclude name="**/Test*.php" />
+        
+        <exclude name="*/Suite.php" />
+        <exclude name="**/*Suite.php" />
+        
+        <exclude name="**/build.*" />
+    </fileset>
+        
+    <target name="build" depends="prepare">
+                
+        <copy todir="${modulepath}/build/vaf" mode="0777">
+            <fileset refid="vaf" />
+        </copy>
+        <copy todir="${modulepath}/build/paint"  mode="0777">
+            <fileset refid="paint" />
+        </copy>
+        <copy todir="${modulepath}/build/note">
+            <fileset refid="note" />
+        </copy>
+        <copy todir="${modulepath}/build/wheel">
+            <fileset refid="wheel" />
+        </copy>
+        <copy todir="${modulepath}/build/tire">
+            <fileset refid="tire" />
+        </copy>
+        <copy todir="${modulepath}/build/sitemap">
+            <fileset refid="sitemap" />
+        </copy>
+        <copy todir="${modulepath}/build/importer">
+            <fileset refid="importer" />
+        </copy>
+        <copy todir="${modulepath}/build/bundle">
+            <fileset refid="bundle" />
+        </copy>
+        <copy todir="${modulepath}/build/directory">
+            <fileset refid="directory" />
+        </copy>
+        <copy todir="${modulepath}/build/logo">
+            <fileset refid="logo" />
+        </copy>
+
+    </target>
+
+    <target name="dist" depends="build">
+        <echo msg="Creating archives..." />
+
+        <!-- importer module -->
+        <tar destfile="${modulepath}/vaf-importer-${version}.tar.gz" compression="gzip">
+            <fileset dir="${modulepath}/build/importer">
+                <include name="**" />
+            </fileset>
+        </tar>
+        <zip destfile="${modulepath}/vaf-importer-${version}.zip">
+             <fileset dir="${modulepath}/build/importer">
+                 <include name="**" />
+             </fileset>
+        </zip>
+        
+        <!-- directory module -->
+        <tar destfile="${modulepath}/vaf-directory-${version}.tar.gz" compression="gzip">
+            <fileset dir="${modulepath}/build/directory">
+                <include name="**" />
+            </fileset>
+        </tar>
+        <zip destfile="${modulepath}/vaf-directory-${version}.zip">
+             <fileset dir="${modulepath}/build/directory">
+                 <include name="**" />
+             </fileset>
+        </zip>
+        
+        <!-- vaf module -->
+        <tar destfile="${modulepath}/vaf-${version}.tar.gz" compression="gzip">
+            <fileset dir="${modulepath}/build/vaf">
+                <include name="**" />
+            </fileset>
+        </tar>
+        <zip destfile="${modulepath}/vaf-${version}.zip">
+              <fileset dir="${modulepath}/build/vaf">
+                <include name="**/**" />
+            </fileset>
+        </zip>
+        
+        <!-- sitemap module -->
+        <tar destfile="${modulepath}/vaf-sitemap-${version}.tar.gz" compression="gzip">
+            <fileset dir="${modulepath}/build/sitemap">
+                <include name="**" />
+            </fileset>
+        </tar>
+        <zip destfile="${modulepath}/vaf-sitemap-${version}.zip">
+             <fileset dir="${modulepath}/build/sitemap">
+                 <include name="**" />
+             </fileset>
+        </zip>
+        
+        <!-- notes module -->
+        <tar destfile="${modulepath}/vaf-note-${version}.tar.gz" compression="gzip">
+            <fileset dir="${modulepath}/build/note">
+                <include name="**" />
+            </fileset>
+        </tar>
+        <zip destfile="${modulepath}/vaf-note-${version}.zip">
+             <fileset dir="${modulepath}/build/note">
+                 <include name="**" />
+             </fileset>
+        </zip>
+
+        <!-- paint module -->
+        <tar destfile="${modulepath}/vaf-paint-${version}.tar.gz" compression="gzip">
+            <fileset dir="${modulepath}/build/paint">
+                <include name="**" />
+            </fileset>
+        </tar>
+        <zip destfile="${modulepath}/vaf-paint-${version}.zip">
+             <fileset dir="${modulepath}/build/paint">
+                 <include name="**" />
+             </fileset>
+        </zip>
+        
+        <!-- wheel module -->
+        <tar destfile="${modulepath}/vaf-wheel-${version}.tar.gz" compression="gzip">
+            <fileset dir="${modulepath}/build/wheel">
+                <include name="**" />
+            </fileset>
+        </tar>
+        <zip destfile="${modulepath}/vaf-wheel-${version}.zip">
+             <fileset dir="${modulepath}/build/wheel">
+                 <include name="**" />
+             </fileset>
+        </zip>
+        
+        <!-- tire module -->
+        <tar destfile="${modulepath}/vaf-tire-${version}.tar.gz" compression="gzip">
+            <fileset dir="${modulepath}/build/tire">
+                <include name="**" />
+            </fileset>
+        </tar>
+        <zip destfile="${modulepath}/vaf-tire-${version}.zip">
+             <fileset dir="${modulepath}/build/tire">
+                 <include name="**" />
+             </fileset>
+        </zip>
+        
+        <!-- logo module -->
+        <tar destfile="${modulepath}/vaf-logo-${version}.tar.gz" compression="gzip">
+            <fileset dir="${modulepath}/build/logo">
+                <include name="**" />
+            </fileset>
+        </tar>
+        <zip destfile="${modulepath}/vaf-logo-${version}.zip">
+             <fileset dir="${modulepath}/build/logo">
+                 <include name="**" />
+             </fileset>
+        </zip>
+        
+        <!-- bundle module -->
+        <tar destfile="${modulepath}/vaf-bundle-${version}.tar.gz" compression="gzip">
+            <fileset dir="${modulepath}/build/bundle">
+                <include name="**" />
+            </fileset>
+        </tar>
+        <zip destfile="${modulepath}/vaf-bundle-${version}.zip">
+             <fileset dir="${modulepath}/build/bundle">
+                 <include name="**" />
+             </fileset>
+        </zip>
+        
+        <!-- starter package  (includes vaf & importer modules) -->
+        <tar destfile="${packagepath}/vaf-starter-${version}.tar.gz" compression="gzip">
+            <fileset dir="${modulepath}/build/vaf">
+                 <include name="**" />
+             </fileset>
+             <fileset dir="${modulepath}/build/importer">
+                <include name="**" />
+            </fileset>
+        </tar>
+        <zip destfile="${packagepath}/vaf-starter-${version}.zip">
+             <fileset dir="${modulepath}/build/vaf">
+                 <include name="**" />
+             </fileset>
+             <fileset dir="${modulepath}/build/importer">
+                <include name="**" />
+            </fileset>
+        </zip>
+        
+        <!-- professional package  (includes vaf, importer, sitemap, bundle, & directory modules) -->
+        <tar destfile="${packagepath}/vaf-professional-${version}.tar.gz" compression="gzip">
+            <fileset dir="${modulepath}/build/vaf">
+                 <include name="**" />
+             </fileset>
+             <fileset dir="${modulepath}/build/importer">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/sitemap">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/bundle">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/directory">
+                <include name="**" />
+            </fileset>
+        </tar>
+        <zip destfile="${packagepath}/vaf-professional-${version}.zip">
+             <fileset dir="${modulepath}/build/vaf">
+                 <include name="**" />
+             </fileset>
+             <fileset dir="${modulepath}/build/importer">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/sitemap">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/bundle">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/directory">
+                <include name="**" />
+            </fileset>
+        </zip>
+        
+        <!-- enterprise package  (includes ALL - vaf, importer, sitemap, bundle, directory, logos, wheels, paint, adapter modules) -->
+        <tar destfile="${packagepath}/vaf-enterprise-${version}.tar.gz" compression="gzip">
+            <fileset dir="${modulepath}/build/vaf">
+                 <include name="**" />
+             </fileset>
+             <fileset dir="${modulepath}/build/importer">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/sitemap">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/bundle">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/paint">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/note">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/wheel">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/tire">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/logo">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/directory">
+                <include name="**" />
+            </fileset>
+        </tar>
+        <zip destfile="${packagepath}/vaf-enterprise-${version}.zip">
+             <fileset dir="${modulepath}/build/vaf">
+                 <include name="**" />
+             </fileset>
+             <fileset dir="${modulepath}/build/importer">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/sitemap">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/bundle">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/paint">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/note">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/wheel">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/tire">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/logo">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/directory">
+                <include name="**" />
+            </fileset>
+        </zip>
+
+
+        <echo msg="Files copied and compressed in build directory OK!" />
+    </target>
+
+    <target name="upload" depends="dist">
+        <!-- documentation -->
+        <exec command="rsync -r ${modulepath}/build/vaf/Elite/documentation/ vehiclefits.com:&quot;/var/www/vaf/public_html/documentation-1.4/&quot;" />
+        
+        <!-- change log -->
+        <exec command="scp ${modulepath}/build/vaf/Elite/Vaf/changelog.txt vehiclefits.com:&quot;/var/www/vaf/views/changelog_data.phtml&quot;" />
+    
+	    <!-- free -->
+        <exec command="scp ${modulepath}/vaf-${version}.tar.gz ne8.net:&quot;/var/www/vaf/public_html/free/vaf-free-${version}.tar.gz&quot;" />
+        <exec command="scp ${modulepath}/vaf-${version}.zip ne8.net:&quot;/var/www/vaf/public_html/free/vaf-free-${version}.zip&quot;" />
+        
+        <!-- starter -->
+	    <exec command="scp ${packagepath}/vaf-starter-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Starter/&quot;" />
+	    <exec command="scp ${packagepath}/vaf-starter-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Starter/&quot;" />
+
+        <!-- professional -->
+        <exec command="scp ${packagepath}/vaf-professional-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Professional/&quot;" />
+        <exec command="scp ${packagepath}/vaf-professional-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Professional/&quot;" />
+
+        <!-- enterprise -->
+        <exec command="scp ${packagepath}/vaf-enterprise-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Enterprise/&quot;" />
+        <exec command="scp ${packagepath}/vaf-enterprise-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Enterprise/&quot;" />
+
+        <!-- wheel -->
+        <exec command="scp ${modulepath}/vaf-wheel-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Wheel/&quot;" />
+        <exec command="scp ${modulepath}/vaf-wheel-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Wheel/&quot;" />
+
+        <!-- tire -->
+        <exec command="scp ${modulepath}/vaf-tire-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Tire/&quot;" />
+        <exec command="scp ${modulepath}/vaf-tire-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Tire/&quot;" />
+
+        <!-- logo -->
+        <exec command="scp ${modulepath}/vaf-logo-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Logo/&quot;" />
+        <exec command="scp ${modulepath}/vaf-logo-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Logo/&quot;" />
+
+        <!-- note -->
+        <exec command="scp ${modulepath}/vaf-note-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Adapter\ \(notes\)/&quot;" />
+        <exec command="scp ${modulepath}/vaf-note-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Adapter\ \(notes\)/&quot;" />
+
+	    <!-- paint -->
+	    <exec command="scp ${modulepath}/vaf-paint-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Paint/&quot;" />
+	    <exec command="scp ${modulepath}/vaf-paint-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Paint/&quot;" />
+
+    </target>
+</project>

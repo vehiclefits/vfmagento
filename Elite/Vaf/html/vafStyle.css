@@ -1,0 +1,101 @@
+/**
+* Vehicle Fits Free Edition - Copyright (c) 2008-2010 by Ne8, LLC
+* PROFESSIONAL IDENTIFICATION:
+* "www.vehiclefits.com"
+* PROMOTIONAL SLOGAN FOR AUTHOR'S PROFESSIONAL PRACTICE:
+* "Automotive Ecommerce Provided By Ne8 llc"
+*
+* All Rights Reserved
+* VEHICLE FITS ATTRIBUTION ASSURANCE LICENSE (adapted from the original OSI license)
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the conditions in license.txt are met
+*/
+.vaf-cat
+{
+    display:inline-table;
+}
+
+.vaf-product-list-item
+{
+    border-bottom:1px #DDD solid;
+    margin-bottom:20px;
+}
+
+.vaf-product-list-item > .product-shop
+{
+    width:400px !important;
+}
+
+.vaf_product_ul .vaf-cat-toggler
+{
+    background-color:#CCC;
+    padding:5px;
+    margin:0;
+    height:20px;
+    font-size:17px;
+}
+
+.vaf_product_ul > li,
+.vaf_product_ul ul > li
+{
+    border:1px black solid;
+    margin-bottom:15px;
+}
+
+.vaf-toggle
+{
+    padding:20px;
+}
+
+.vaf-cat-toggler
+{
+    cursor:pointer;
+}
+
+.vaf-toggle-icon 
+{
+    width:11px;
+    height:12px;
+    float:right;
+    margin-bottom:5px;
+    background-repeat:no-repeat;
+}
+
+.vaf-toggle-icon-plus
+{  
+    background-image:url(plus.jpg);
+}
+
+.vaf-toggle-icon-minus
+{  
+    background-image:url(minus.jpg);
+}
+
+#simplemodal-container a.modalCloseImg {
+    background:url(/x.png) no-repeat; /* adjust url as required */
+    width:25px;
+    height:29px;
+    display:inline;
+    z-index:3200;
+    position:absolute;
+    top:-15px;
+    right:-18px;
+    cursor:pointer;
+}
+#simplemodal-container
+{
+    background-color:#FFF;
+    border:1px #000 solid;
+    width:80%;
+    height:500px;
+}
+
+.simplemodal-wrap
+{
+    overflow:auto;
+}
+
+.simplemodal-data
+{
+    height:98%;
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+Vehicle SEO Site Map
+-->
+<layout version="0.1.0">
+
+
+    <vafsitemap_vehicle_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        
+        <reference name="content">
+            <block type="vafsitemap/vehicles" name="vafsitemap_vehicles" template="vafsitemap/vehicles.phtml">
+            </block>
+        </reference>
+        
+    </vafsitemap_vehicle_index>
+    
+    <vafsitemap_product_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+    </vafsitemap_product_index>
+    
+</layout>
+        

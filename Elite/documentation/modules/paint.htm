@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <style>
+        div.figure, pre {
+            background-color:#EEE;
+            border:1px #000 solid;
+        }
+        pre {
+            padding:5px;
+        }
+        div.figure {
+            text-align: center;
+        }
+        div.figure i {
+            display: block;
+        }
+        </style>
+        
+            <link id="theme" rel="stylesheet" type="text/css" href="../kodify/themes/cheery.css" />
+    <link id="theme" rel="stylesheet" type="text/css" href="../style.css" />
+
+    <script type="text/javascript" src="../kodify/js/lx_analyzer.js"></script>
+    <script type="text/javascript" src="../kodify/js/kodify.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/js.js"></script>
+
+    <script type="text/javascript" src="../kodify/js/lang/php.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/html.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/css.js"></script>
+
+    </head>
+<body>
+<a name="top"></a>
+<h1>Paint Module Installation &amp; User Guide</h1>
+<h2>Table of Contents</h2>
+<ul>
+    <li><a href="#preface">Preface</a></li>
+    <li><a href="#javascript">Link-in Javascript</a></li>
+    <li><a href="#definitions">Load Vehicle & Paint Code Definitions Database</a></li>
+    <li><a href="#product">Create a Paintable Product, Assign Pricing Rules & Vehicle Fitments</a></li>
+</ul>
+
+
+<a name="preface"></a>
+<h2>Preface</h2>
+When you run the installer for the extension itself it should modify your tables. If you installed manually, please use the install-paint.php tool in the module. After installing (via any method), you must delete your var/cache folder. Flushing or clearing the cache doesn't work. Magento caches some things even when the cache is set to disable.
+<br />
+
+<a name="javascript"></a>
+<h2>Link-in Javascript</h2>
+Copy Vafpaint/vafPaint.js.php to your Magento installation path (usually the web root). Link to it in your front-end theme's page/html/head.phtml like this:
+<br />
+<pre class="kodify html">
+&lt;script src="&lt;?=Mage::getBaseUrl()?&gt;/vafPaint.js.php" type="text/javascript" language="javascript"&gt;&lt;/script&gt;
+</pre>
+
+
+<a name="definitions"></a>
+<h2>Load Vehicle & Paint Code Definitions Database</h2>
+
+<pre>
+    Navigate to:
+    Vehicles > Paint Codes > Import
+</pre>
+
+<p>Click browse and load the paint code csv data </p>
+
+<pre>
+    Example format:
+    Make	Model	Year	Code	Name	Color(hex)
+    Acura	Integra	1986	 B-26MZ	 Avignon Blue Metallic Clearcoat	#9CBBCC
+    Acura	Integra	1986	 B-38	 Capitol Blue	#061D72
+</pre>
+<p>Load your file and press import.</p>
+
+[<a href="#top">Return To Table Of Contents</a>] <hr />
+
+<a name="product"></a>
+<h2>Create a Paintable Product, Assign Pricing Rules &amp; Vehicle Fitments</h2>
+
+<pre>
+    Head over to:
+    Catalog > Manage Products 
+</pre>
+
+<p>Press 'Add Product'</p>
+
+Choose:
+<pre>
+    
+    Attribute Set: default
+    Product type:simple product
+    
+</pre>
+Press 'continue'.
+
+
+<p>Fill out all product required fields. Create a custom option of type 'dropdown' called "Painted" with values yes/no.</p>
+
+
+<p>You may now assign fitments to your super product. When that is done it will be searchable on the front-end. If the user chooses a vehicle that has paint code data, and chooses 'Yes' in the paintable drop-down, he will be presented with a paint selection menu. Fig4:</p>
+
+<div class="figure">
+    <img src="paint/fig4.jpg" />
+    <i>Fig 4</i>
+</div>
+[<a href="#top">Return To Table Of Contents</a>] 
+</body>
+</html>

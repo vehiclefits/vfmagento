@@ -1,0 +1,2 @@
+Paint codes not showing up
+	make sure inventory is set on super product & on each product being used for attributes

@@ -1,0 +1,19 @@
+<?php
+$note = $this->finder()->find($this->id);
+?>
+<form action="?">
+    <label>Note ID:</label>
+    <i><?=$this->htmlEscape($note->id)?></i>
+    
+    <br />
+    
+    <label>Code:</label>
+    <i><?=$this->htmlEscape($note->code)?></i>
+    
+    <br />
+    
+    <label>Note Message:</label>
+    <input type="text" name="message" value="<?=$this->htmlEscape($note->message)?>" />
+
+    <input type="submit" value="Save" />
+</form>

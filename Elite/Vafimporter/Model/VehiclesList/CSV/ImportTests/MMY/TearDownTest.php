@@ -1,0 +1,34 @@
+<?php
+class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_TearDownTest extends Elite_Vafimporter_Model_VehiclesList_CSV_TestCase
+{
+
+    protected $csvData;
+    protected $csvFile;
+
+    function doSetUp()
+    {
+        $this->switchSchema('make,model,year');
+        
+        $this->csvData = 'make, model, year
+honda, civic, 2000
+honda, civic, 2001
+honda, civic, 2002
+acura, integra, 2000';
+    }
+    
+    function testShouldCleanupImportTable()
+    {
+        $this->import($this->csvData);
+        $count = $this->getReadAdapter()->select()->from('elite_import','count(*)')->query();
+        $this->assertEquals( 0, $count->fetchColumn(), 'should cleanup import table' );
+    }
+    
+    function import($stringData)
+    {
+        $file = TESTFILES . '/vehicles.csv';
+        file_put_contents( $file, $stringData );
+        
+        $importer = $this->getDefinitions($file);
+        $importer->import();
+    }
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <!-- add wheel adapter vehicle side bolt pattern -->
+	<default>
+        <reference name="right">
+            <!--<block type="core/template" name="vafwheeladapter_search" template="vafwheeladapter/search.phtml" after="vaf_search"></block>-->
+        </reference>
+    </default>
+    
+</layout>
+        

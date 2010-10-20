@@ -1,0 +1,110 @@
+<div class="box base-mini mini-vaf">
+    <div class="head"><h4><?=$this->getHeaderText()?></h4></div>
+    <div class="content">                            
+    	<?php
+		Elite_Vaf_Helper_Data::getInstance()->storeFitInSession();
+		?>
+    	<?=$this->renderBefore()?>
+    	
+        <!-- start "My Garage" -->
+        <?php
+        if( $this->shouldShowMyGarageActive()  )
+        {
+            $vehicle = $this->getFlexibleDefinition()
+            ?>
+            <div class="vafMyGarageActive">
+                <strong>My Vehicle:</strong> <?=$this->htmlEscape( $vehicle->__toString() )?>
+                <br />
+                <a href="#" class="vafMyGarageChange">Change</a>
+                <?php
+                if( $this->showClearButton() )
+                {
+                    ?>
+                    <a href="#" class="vafClear"><?=$this->getClearText()?></a>
+                    <?php
+                }
+                ?>
+            </div>
+            <?php
+        }
+        ?>
+        <!-- end "My Garage" -->
+        
+        <form action="<?=$this->action()?>" method="<?=$this->getMethod()?>" id="<?=$this->formId()?>" name="<?=$this->formId()?>">
+            <input type="hidden" id="vafProduct" value="<?=$this->getProductId()?>" />
+            <?=$this->proxyValues();?>
+            <!-- start "category chooser" --> 
+            <?php
+            if( $this->showCategoryChooser() )
+            {
+                ?>
+                <label>Category:</label>
+                <select name="category" id="categorySelect" style="width:160px"> 
+                    <?=$this->renderCategoryOptions()?>
+                </select>
+                <?php
+                if(Elite_Vaf_Helper_Data::getInstance()->displayBrTag())
+                {
+					echo '<br />';
+                }
+            }
+            else
+            { 
+                echo '<input type="hidden" name="category" id="categorySelect" value="?" />'; 
+            }
+            ?>
+            <!-- end "category chooser" --> 
+            
+            <?php
+            $levels = $this->getLevels();
+            
+            $helper = new Elite_Vaf_View_Helper_SearchLevel();
+            
+            $displayLevels = $this->getLevels();
+            $c = count( $displayLevels );
+            
+            for( $i = 0; $i < $c; $i++ )
+            {
+                $level = $displayLevels[ $i ];
+                $prevLevel = ( $i > 0 ) ? $displayLevels[ $i - 1 ] : false;
+                echo $helper->display( $this, $level, $prevLevel );
+            }
+            
+            if( $this->showSearchButton() )
+            {
+                ?>
+                <div align="center">
+                    <?php
+                    // clear button
+                    if( $this->showClearButton()  )
+                    {
+                        if( 'link' == $this->clearButton() )
+                        {
+                            ?><a href="#" id="vafClear"><?=$this->getClearText()?></a><?php
+                        }
+                        else
+                        {
+                            ?><input type="button" id="vafClear" value="<?=$this->getClearText()?>" /><?php
+                        }
+                    }
+                    
+                    echo ' ';
+                    
+                    // search button
+                    if( 'link' == $this->searchButton() )
+                    {
+                        ?><a href="#" class="vafSubmit"><?=$this->getSubmitText()?></a><?php
+                    }
+                    else
+                    {
+                        ?><input type="button" value="<?=$this->getSubmitText()?>" class="vafSubmit" /><?php
+                    }
+                    ?>
+                    
+                </div>
+                <?php
+            }
+            ?>
+        </form>
+    </div>
+</div>

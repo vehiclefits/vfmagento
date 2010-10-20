@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Elite_Vaftire>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Elite_Vaftire>
+    </modules>
+</config> 

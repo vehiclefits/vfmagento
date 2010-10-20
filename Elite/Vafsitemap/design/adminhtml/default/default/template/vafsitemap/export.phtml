@@ -1,0 +1,38 @@
+<style type="text/css">
+.eliteForm legend {display:block;}
+.eliteForm fieldset {border:1px black solid; padding:5px;}
+</style>
+
+<form action="<?=$this->getUrl('*/*/*')?>" method="GET" class="eliteForm">
+	<input type="hidden" name="go" value="1" />   
+	<fieldset>
+        <legend>Store &amp; Website</legend>
+	    <table border="1">
+		    <?php
+		    $groups = Mage::getModel('core/website')
+                ->getCollection()
+                ->joinGroupAndStore();
+                
+            foreach( $groups as $group )
+		    {
+			    $store =  Mage::getModel('core/store')->load($group->getStoreId());
+			    $website =  Mage::getModel('core/website')->load($group->getWebsiteId());
+			    ?>
+			    <tr>
+				    <td><input type="radio" name="store" value="<?=$store->getId()?>" /></td>   
+				    <td><?=$website->getName()?></td>
+				    <td><?=$store->getName()?></td>
+				    <td><?=$store->getBaseUrl()?></td>
+			    </tr>
+			    <?php
+		    }
+		    ?>
+	    </table>
+    </fieldset>
+    <fieldset>
+        <legend>Format</legend>
+        <input type="radio" name="format" value="csv" /> Google Base CSV
+        <input type="radio" name="format" value="xml" /> Sitemaps XML (Google,Yahoo,etc.)
+    </fieldset>
+	<input type="submit" name="submit" value="Export" />
+</form>

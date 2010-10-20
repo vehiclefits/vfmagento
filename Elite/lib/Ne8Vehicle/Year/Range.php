@@ -1,0 +1,94 @@
+<?php
+class Ne8Vehicle_Year_Range
+{
+    protected $range;
+    
+    function __construct($range)
+    {
+        $this->range = $range;
+    }
+    
+    function isValid()
+    {
+        $array = $this->asArray();
+        if(2!=count($array))
+        {
+            return false;
+        }
+        if( !$this->startIsValid() && !$this->endIsValid())
+        {
+            return false;
+        }
+        if(
+            ( $this->startInput() && !$this->startYear()->isValid() ) ||
+            ( $this->endInput() && !$this->endYear()->isValid() )
+        )
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    function startIsValid()
+    {
+         if( strlen($this->startInput()) == 4 || strlen($this->startInput()) == 2 )
+         {
+             return true;
+         }
+         return false;
+    }
+        
+    function endIsValid()
+    {
+         if( strlen($this->endInput()) == 4 || strlen($this->endInput()) == 2 )
+         {
+             return true;
+         }
+         return false;
+    }
+    
+    function start()
+    {
+        if(!$this->startYear()->isValid() && $this->endYear()->isValid())
+        {
+            return $this->end();
+        }
+        return $this->startYear()->value();
+    }
+    
+    function end()
+    {
+        if(!$this->endYear()->isValid() && $this->startYear()->isValid())
+        {
+            return $this->start();
+        }
+        return $this->endYear()->value();
+    }
+    
+    function startYear()
+    {
+        return new Ne8Vehicle_Year($this->startInput());
+    }
+    
+    function endYear()
+    {
+        return new Ne8Vehicle_Year($this->endInput());
+    }
+    
+    function startInput()
+    {
+        $array = $this->asArray();
+        return $array[0];
+    }
+    
+    function endInput()
+    {
+        $array = $this->asArray();
+        return $array[1];
+    }
+    
+    function asArray()
+    {
+        return explode('-',$this->range);
+    }
+}

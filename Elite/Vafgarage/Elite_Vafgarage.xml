@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Elite_Vafgarage>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Elite_Vafgarage>
+    </modules>
+</config> 

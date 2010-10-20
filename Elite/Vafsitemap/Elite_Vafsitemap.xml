@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Elite_Vafsitemap>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Elite_Vafsitemap>
+    </modules>
+</config> 

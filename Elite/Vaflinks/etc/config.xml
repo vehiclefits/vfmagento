@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Elite_Vaflinks>
+            <version>1.18-beta4</version>
+        </Elite_Vaflinks>
+    </modules>
+    <global>
+
+        <blocks>
+            <vaflinks>
+                <class>Elite_Vaflinks_Block</class>
+            </vaflinks> 
+        </blocks>
+      
+     </global>
+     
+     <frontend>
+        <layout>
+            <updates>
+                <Elite_Vaflinks>
+                    <file>vaflinks.xml</file>
+                </Elite_Vaflinks>
+            </updates>
+        </layout>
+     </frontend>
+     
+</config>

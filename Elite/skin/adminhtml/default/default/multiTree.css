@@ -1,0 +1,50 @@
+/* Multi Tree **/
+.multiTree
+{
+    background-color:#F8F8F8;
+    border:1px black solid;
+    padding:5px;
+}
+
+.multiTree
+{
+    width:100%;
+}
+.multiTree-selectContainer  
+{
+    margin-right:10px; 
+    float:left;
+}
+.multiTree-selectContainer select
+{
+    width:160px;
+    height:180px;
+    font-size:11px;
+}
+.multiTree-selections
+{
+    margin-top:5px;
+    overflow:auto;
+    padding:5px;
+    background-color:#FFF;
+    border:1px black solid;
+}
+.multiTree-selection
+{
+    padding:5px;
+    border:1px black solid;
+    margin-bottom:5px;
+}
+.multiTree-selection-seperator
+{
+    margin-left:10px;
+    margin-right:10px;
+}
+.multiTree-selectContainer select option.more
+{
+    background:transparent url(multiTree/arrow2.gif) no-repeat scroll 135px 7px;
+}
+.multiTree-closeLink
+{
+    float:right;
+}
