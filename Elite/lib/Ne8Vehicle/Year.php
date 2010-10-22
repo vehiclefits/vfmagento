@@ -3,6 +3,7 @@ class Ne8Vehicle_Year
 {
     protected $threshold = 25;
     protected $year;
+    protected $Y2KMode = true;
     
     function __construct($year)
     {
@@ -21,7 +22,7 @@ class Ne8Vehicle_Year
             throw new Ne8Vehicle_Year_Exception('Trying to work with invalid year [' . $this->year . ']');
         }
         
-        if(strlen($this->year) <= 2 )
+        if(strlen($this->year) == 2 && $this->Y2KMode )
         {
             if( $this->year < $this->threshold)
             {
@@ -38,5 +39,10 @@ class Ne8Vehicle_Year
     function setThreshold($threshold)
     {
         $this->threshold = $threshold;
+    }
+    
+    function setY2KMode($bool)
+    {
+        $this->Y2KMode = $bool;
     }
 }

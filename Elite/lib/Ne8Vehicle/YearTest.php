@@ -37,6 +37,13 @@ class Ne8Vehicle_YearTest extends Elite_Vaf_TestCase
         $this->assertTrue( $year->isValid(), 'four digit year should be valid');
     }
     
+    function testShouldDisableY2kMode()
+    {
+        $year = new Ne8Vehicle_Year(24);
+        $year->setY2KMode(false);
+        $this->assertEquals( 24, $year->value(), 'should disable Y2k Mode' );
+    }
+    
     function testWhen2DigitYearLowerThan25ShouldCastTo21stCentury()
     {
         $year = new Ne8Vehicle_Year(24);
