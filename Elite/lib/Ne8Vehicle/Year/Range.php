@@ -19,11 +19,11 @@ class Ne8Vehicle_Year_Range extends Ne8Vehicle_Year_Abstract
         {
             return false;
         }
-        if( $this->startInput() && !$this->startYear()->isValid() )
+        if( $this->startInput() && !$this->startIsValid() )
         {
             return false;
         }
-        if( $this->endInput() && !$this->endYear()->isValid() )
+        if( $this->endInput() && !$this->endIsValid() )
         {
             return false;
         }

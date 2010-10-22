@@ -40,6 +40,6 @@ class Ne8Vehicle_Year extends Ne8Vehicle_Year_Abstract
         {
             $this->year = '19' . $this->year;
         }
-        return $this->year;        
+        return $this->year;
     }
 }
