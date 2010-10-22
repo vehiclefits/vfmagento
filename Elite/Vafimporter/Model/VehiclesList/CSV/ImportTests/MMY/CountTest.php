@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_CountTest extends Elite_Vafimporter_Model_VehiclesList_CSV_TestCase
+class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_CountTest extends Elite_Vafimporter_TestCase
 {    
     const MAKES = 2;
     const MODELS = 3;

@@ -1,5 +1,5 @@
 <?php
-abstract class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase extends Elite_Vafimporter_Model_VehiclesList_CSV_TestCase
+abstract class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase extends Elite_Vafimporter_TestCase
 {
     protected $csvData;
     protected $csvFile;
