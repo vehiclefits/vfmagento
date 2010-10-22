@@ -1,6 +1,7 @@
 <?php
 class Ne8Vehicle_Year
 {
+    protected $threshold = 25;
     protected $year;
     
     function __construct($year)
@@ -22,7 +23,7 @@ class Ne8Vehicle_Year
         
         if(strlen($this->year) <= 2 )
         {
-            if( $this->year <= 24)
+            if( $this->year < $this->threshold)
             {
                 $this->year = '20' . $this->year;
             }
@@ -32,5 +33,10 @@ class Ne8Vehicle_Year
             }
         }
         return $this->year;
+    }
+    
+    function setThreshold($threshold)
+    {
+        $this->threshold = $threshold;
     }
 }

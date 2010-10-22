@@ -49,6 +49,20 @@ class Ne8Vehicle_YearTest extends Elite_Vaf_TestCase
         $this->assertEquals( 1925, $year->value(), 'when two digit year is 25 or greater, should cast to 20th century' );
     }
     
+    function testWhen2DigitYearLowerThan60ShouldCastTo21stCentury()
+    {
+        $year = new Ne8Vehicle_Year(55);
+        $year->setThreshold(60);
+        $this->assertEquals( 2055, $year->value(), 'when 2digit year is 59 or less, should cast to 21st century' );
+    }
+    
+    function testWhen2DigitYear60OrGreaterShouldCastTo20thCentury()
+    {
+        $year = new Ne8Vehicle_Year(60);
+        $year->setThreshold(60);
+        $this->assertEquals( 1960, $year->value(), 'when two digit year is 60 or greater, should cast to 20th century' );
+    }
+    
     /**
     * @expectedException Ne8Vehicle_Year_Exception
     */
