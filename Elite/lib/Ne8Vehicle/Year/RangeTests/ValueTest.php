@@ -1,6 +1,20 @@
 <?php
 class Ne8Vehicle_Year_RangeTests_ValueTest extends PHPUnit_Extensions_PerformanceTestCase
 {
+    function testShouldDisableY2kModeForStartYear()
+    {
+        $range = new Ne8Vehicle_Year_Range('24-56');
+        $range->setY2KMode(false);
+        $this->assertEquals( 24, $range->start(), 'should disable Y2k Mode for start year' );
+    }
+    
+    function testShouldDisableY2kModeForEndYear()
+    {
+        $range = new Ne8Vehicle_Year_Range('24-56');
+        $range->setY2KMode(false);
+        $this->assertEquals( 56, $range->end(), 'should disable Y2k Mode for end year' );
+    }
+    
     function testShouldUseSingle4DigitYearForStartValue()
     {
         $range = new Ne8Vehicle_Year_Range('2004');

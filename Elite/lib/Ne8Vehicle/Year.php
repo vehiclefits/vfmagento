@@ -1,9 +1,7 @@
 <?php
-class Ne8Vehicle_Year
+class Ne8Vehicle_Year extends Ne8Vehicle_Year_Abstract
 {
-    protected $threshold = 25;
     protected $year;
-    protected $Y2KMode = true;
     
     function __construct($year)
     {
@@ -34,15 +32,5 @@ class Ne8Vehicle_Year
             }
         }
         return $this->year;
-    }
-    
-    function setThreshold($threshold)
-    {
-        $this->threshold = $threshold;
-    }
-    
-    function setY2KMode($bool)
-    {
-        $this->Y2KMode = $bool;
     }
 }
