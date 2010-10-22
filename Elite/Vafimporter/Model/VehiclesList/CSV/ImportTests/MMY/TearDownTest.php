@@ -1,9 +1,7 @@
 <?php
 class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_TearDownTest extends Elite_Vafimporter_Model_VehiclesList_CSV_TestCase
 {
-
     protected $csvData;
-    protected $csvFile;
 
     function doSetUp()
     {
@@ -18,7 +16,7 @@ acura, integra, 2000';
     
     function testShouldCleanupImportTable()
     {
-        $this->import($this->csvData);
+        $this->importVehiclesList($this->csvData);
         $count = $this->getReadAdapter()->select()->from('elite_import','count(*)')->query();
         $this->assertEquals( 0, $count->fetchColumn(), 'should cleanup import table' );
     }

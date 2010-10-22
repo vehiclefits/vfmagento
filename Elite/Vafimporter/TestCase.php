@@ -10,6 +10,7 @@ class Elite_Vafimporter_TestCase extends Elite_Vaf_TestCase
     {
         $importer = $this->vehiclesListImporter($csvData);
         $importer->import();
+        return $importer;
     }
     
     function vehiclesListImporter($csvData)

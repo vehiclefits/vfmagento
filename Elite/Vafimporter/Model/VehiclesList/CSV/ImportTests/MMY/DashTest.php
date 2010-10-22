@@ -12,7 +12,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_DashTest extends 
     
     function test1()
     {
-        $this->import('make, model, year
+        $this->importVehiclesList('make, model, year
 honda, ci-vic, 2000
 honda, ci-vic, 2001');
         $finder = new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema());
@@ -22,7 +22,7 @@ honda, ci-vic, 2001');
     
     function test2()
     {
-        $this->import('make, model, year
+        $this->importVehiclesList('make, model, year
 honda, ci-vic, 2000
 honda, ci-vic, 2001');
 		$finder = new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema());
@@ -32,7 +32,7 @@ honda, ci-vic, 2001');
     
     function test3()
     {
-        $this->import('make, model, year
+        $this->importVehiclesList('make, model, year
 honda, ci-vic, 2000
 honda, ci-vic, 2001');
 		$finder = new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema());
@@ -42,19 +42,12 @@ honda, ci-vic, 2001');
     
     function test4()
     {
-        $this->import('make, model, year
+        $this->importVehiclesList('make, model, year
 honda, ci-vic, 2000
 honda, civi-c, 2000');
 		$finder = new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema());
         $result = $this->query('select count(*) from elite_definition;');
         $this->assertEquals(2,$result->fetchColumn());
     }
-    
-    function import($csvData)
-    {
-        $importer = $this->vehiclesListImporter( $csvData );
-        $importer->import();
-    }
-    
 
 }
