@@ -6,7 +6,6 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_CountTest extends
     const YEARS = 11;
 
     protected $csvData;
-    protected $csvFile;   
 
     function doSetUp()
     {
@@ -23,49 +22,47 @@ acura, integra, 2000
 acura, integra, 2001
 acura, integra, 2002
 acura, integra, 2003';
-        $this->csvFile = TESTFILES . '/definitions-single.csv';
-        file_put_contents( $this->csvFile, $this->csvData );
     }
     
     function testCountAddedDefaults0()
     {
-        $importer = $this->import( $this->csvFile );
+        $importer = $this->import( $this->csvData );
         $this->assertEquals( 0, $importer->getCountAddedByLevel('foobar'), 'countAdded should always return 0, even if the level was not part of the imported data' );
     }
     
     function testWhenImportingWillAddMakes()
     {
-        $importer = $this->import( $this->csvFile );
+        $importer = $this->import( $this->csvData );
         $this->assertEquals( self::MAKES, $importer->getCountAddedByLevel('make'), 'When importing Makes not yet import, WILL count them as added' );
     }
 
     function testWhenImportingWillAddModels()
     {
-        $importer = $this->import( $this->csvFile );
+        $importer = $this->import( $this->csvData );
         $this->assertEquals( self::MODELS, $importer->getCountAddedByLevel('model'), 'When importing Models not yet import, WILL count them as added' );
     }
     
     function testWhenImportingWillAddYears()
     {
-        $importer = $this->import( $this->csvFile );
+        $importer = $this->import( $this->csvData );
         $this->assertEquals( self::YEARS, $importer->getCountAddedByLevel('year'), 'When importing Years not yet import, WILL count them as added' );
     }
     
     function testWhenNoMakesWillAdd0()
     {
-        $importer = $this->importTwice( $this->csvFile );
+        $importer = $this->importTwice( $this->csvData );
         $this->assertEquals( 0, $importer->getCountAddedByLevel('make'), 'Importing data we already have WILL NOT count the Make as added' );
     }
     
     function testWhenNoModelsWillAdd0()
     {
-        $importer = $this->importTwice( $this->csvFile );
+        $importer = $this->importTwice( $this->csvData );
         $this->assertEquals( 0, $importer->getCountAddedByLevel('model'), 'Importing data we already have WILL NOT count the Model as added' );
     }
     
     function testWhenNoYearsWillAdd0()
     {
-        $importer = $this->importTwice( $this->csvFile );
+        $importer = $this->importTwice( $this->csvData );
         $this->assertEquals( 0, $importer->getCountAddedByLevel('year'), 'Importing data we already have WILL NOT count the Year as added' );
     }
     
@@ -75,9 +72,9 @@ acura, integra, 2003';
         return $this->import( $file );
     }
     
-    protected function import( $file)
+    protected function import( $data)
     {
-        $importer = $this->getDefinitions( $file );
+        $importer = $this->vehiclesListImporter( $data );
         $importer->import();
         return $importer;
     }

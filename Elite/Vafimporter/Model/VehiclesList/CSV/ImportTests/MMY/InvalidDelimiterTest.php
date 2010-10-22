@@ -18,7 +18,7 @@ honda\tcivic\t2002";
         $csvFile = TESTFILES . '/definitions.csv';
         file_put_contents( $csvFile, $csvData );
         
-        $importer = $this->getDefinitions( $csvFile );
+        $importer = $this->vehiclesListImporter( $csvFile );
         $importer->import();
     }
  

@@ -23,12 +23,8 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_CommaTest extends
   
     protected function importDefinitions()
     {
-        $csvData = '"make", "model", "year"
-"honda", "accord,civic", "2000,2003"';
-        $csvFile = TESTFILES . '/definitions.csv';
-        file_put_contents( $csvFile, $csvData );
-        
-        $importer = $this->getDefinitions( $csvFile );
+        $importer = $this->vehiclesListImporter('"make", "model", "year"
+"honda", "accord,civic", "2000,2003"');
         $importer->import();
     }
     

@@ -24,42 +24,42 @@ class Elite_Vafimporter_Model_VehiclesList_XML_ImportTests_EngineTest extends El
     
     function testDoesntImportBlank()
     {
-        $importer = $this->getDefinitions( $this->csvFile );
+        $importer = $this->vehiclesListImporter( $this->csvFile );
         $importer->import();
         $this->assertFalse( $this->vehicleExists(array('make'=>'')), 'should not import a blank make' );
     }
 
     function testImportsYearTitle()
     {
-        $importer = $this->getDefinitions( $this->csvFile );
+        $importer = $this->vehiclesListImporter( $this->csvFile );
         $importer->import();
         $this->assertTrue( $this->vehicleExists(array('year'=>'2000')), 'should import a year title' );
     }
     
     function testImportsMakeTitle()
     {
-        $importer = $this->getDefinitions( $this->csvFile );
+        $importer = $this->vehiclesListImporter( $this->csvFile );
         $importer->import();
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda')), 'should import a make title' );
     }
     
     function testImportsModelTitle()
     {
-        $importer = $this->getDefinitions( $this->csvFile );
+        $importer = $this->vehiclesListImporter( $this->csvFile );
         $importer->import();
         $this->assertTrue( $this->vehicleExists(array('model'=>'Civic')), 'should import a model title' );
     }
     
     function testImportsSubmodelTitle()
     {
-        $importer = $this->getDefinitions( $this->csvFile );
+        $importer = $this->vehiclesListImporter( $this->csvFile );
         $importer->import();
         $this->assertTrue( $this->vehicleExists(array('submodel'=>'EX')), 'should import a submodel title' );
     }
     
     function testImportsEngineTitle()
     {
-        $importer = $this->getDefinitions( $this->csvFile );
+        $importer = $this->vehiclesListImporter( $this->csvFile );
         $importer->import();
         $this->assertTrue( $this->vehicleExists(array('engine'=>'4 Cylinder')), 'should import a engine title' );
     }
@@ -67,7 +67,7 @@ class Elite_Vafimporter_Model_VehiclesList_XML_ImportTests_EngineTest extends El
     
 //    function testImportsMakeId()
 //    {
-//        $importer = $this->getDefinitions( $this->csvFile );
+//        $importer = $this->vehiclesListImporter( $this->csvFile );
 //        $importer->import();
 //        $level = new Elite_Vaf_Model_Level('make',4);
 //        $this->assertTrue( $level->getTitle() == 'Honda', 'imports the makeID #' );
@@ -75,7 +75,7 @@ class Elite_Vafimporter_Model_VehiclesList_XML_ImportTests_EngineTest extends El
 //    
 //    function testImportsModelId()
 //    {
-//        $importer = $this->getDefinitions( $this->csvFile );
+//        $importer = $this->vehiclesListImporter( $this->csvFile );
 //        $importer->import();
 //        $level = new Elite_Vaf_Model_Level('model',5);
 //        $this->assertTrue( $level->getTitle() == 'Civic', 'imports the modelID #' );
@@ -84,7 +84,7 @@ class Elite_Vafimporter_Model_VehiclesList_XML_ImportTests_EngineTest extends El
 //        
 //    function testImportsYearId()
 //    {
-//        $importer = $this->getDefinitions( $this->csvFile );
+//        $importer = $this->vehiclesListImporter( $this->csvFile );
 //        $importer->import();
 //        $level = new Elite_Vaf_Model_Level('year',8);
 //        $this->assertTrue( $level->getTitle() == '2000', 'imports the yearID #' );

@@ -13,7 +13,7 @@ acura,integra,2004');
     
     function testExport()
     {
-        $exporter = $this->getDefinitionsExport();
+        $exporter = $this->getVehiclesListExport();
         $output = explode( "\n", $exporter->export() );
         $this->assertEquals( 'make,model,year', $output[0] );
         

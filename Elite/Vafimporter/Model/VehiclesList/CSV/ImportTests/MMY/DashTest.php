@@ -52,9 +52,7 @@ honda, civi-c, 2000');
     
     function import($csvData)
     {
-        $file = TESTFILES . '/dashtest.csv';  
-        file_put_contents( $file, $csvData );
-        $importer = $this->getDefinitions( $file );
+        $importer = $this->vehiclesListImporter( $csvData );
         $importer->import();
     }
     

@@ -20,7 +20,7 @@ class Elite_Vafimporter_Model_VehiclesList_XML_ImportTests_MMYRenameTest extends
         $this->csvFile = TESTFILES . '/definitions.xml';
         file_put_contents( $this->csvFile, $this->csvData );
 
-        $importer = $this->getDefinitions( $this->csvFile );
+        $importer = $this->vehiclesListImporter( $this->csvFile );
         $importer->import();  
         
            
@@ -36,7 +36,7 @@ class Elite_Vafimporter_Model_VehiclesList_XML_ImportTests_MMYRenameTest extends
         $this->csvFile = TESTFILES . '/definitions.xml';
         file_put_contents( $this->csvFile, $this->csvData );
 
-        $importer = $this->getDefinitions( $this->csvFile );
+        $importer = $this->vehiclesListImporter( $this->csvFile );
         $importer->import();
     }
     

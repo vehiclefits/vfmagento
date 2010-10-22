@@ -19,7 +19,7 @@ class Elite_Vafimporter_Model_VehiclesList_XML_MMYTest extends Elite_Vafimporter
         
         $this->switchSchema('make,model,year');
         
-        $importer = $this->getDefinitions( $this->csvFile );
+        $importer = $this->vehiclesListImporter( $this->csvFile );
         $importer->import();
     }
     

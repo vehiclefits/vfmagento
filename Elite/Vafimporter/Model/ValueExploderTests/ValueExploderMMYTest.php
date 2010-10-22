@@ -37,15 +37,11 @@ class Elite_Vafimporter_Model_ValueExploderMMYTest extends Elite_Vafimporter_Mod
     
     protected function importDefinitions()
     {
-        $csvData = 'make, model, year
+        $importer = $this->vehiclesListImporter( 'make, model, year
 honda, civic, 2000
 honda, accord, 2000
 honda, civic, 2001.
-not honda, whatev, 2000';
-        $csvFile = TESTFILES . '/definitions.csv';
-        file_put_contents( $csvFile, $csvData );
-        
-        $importer = $this->getDefinitionsCsv( $csvFile );
+not honda, whatev, 2000' );
         $importer->import();
     }
 }

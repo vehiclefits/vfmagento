@@ -25,10 +25,7 @@ acura, integra, 2000';
     
     function import($stringData)
     {
-        $file = TESTFILES . '/vehicles.csv';
-        file_put_contents( $file, $stringData );
-        
-        $importer = $this->getDefinitions($file);
+        $importer = $this->vehiclesListImporter($stringData);
         $importer->import();
     }
 }

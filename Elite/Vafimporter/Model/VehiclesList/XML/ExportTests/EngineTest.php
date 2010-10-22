@@ -21,7 +21,7 @@ class Elite_Vafimporter_Model_VehiclesList_XML_ExportTests_EngineTest extends El
         
         $this->switchSchema('year,make,model,submodel,engine');
         
-        $importer = $this->getDefinitions( $this->csvFile );
+        $importer = $this->vehiclesListImporter( $this->csvFile );
         $importer->import();
     }
     
