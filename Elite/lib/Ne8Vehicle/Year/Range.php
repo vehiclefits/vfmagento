@@ -11,7 +11,7 @@ class Ne8Vehicle_Year_Range extends Ne8Vehicle_Year_Abstract
     function isValid()
     {
         $array = $this->asArray();
-        if(1!=count($array) && 2!=count($array))
+        if(1 != count($array) && 2 != count($array))
         {
             return false;
         }
@@ -19,10 +19,11 @@ class Ne8Vehicle_Year_Range extends Ne8Vehicle_Year_Abstract
         {
             return false;
         }
-        if(
-            ( $this->startInput() && !$this->startYear()->isValid() ) ||
-            ( $this->endInput() && !$this->endYear()->isValid() )
-        )
+        if( $this->startInput() && !$this->startYear()->isValid() )
+        {
+            return false;
+        }
+        if( $this->endInput() && !$this->endYear()->isValid() )
         {
             return false;
         }
@@ -67,15 +68,17 @@ class Ne8Vehicle_Year_Range extends Ne8Vehicle_Year_Abstract
     
     function startYear()
     {
-        $year = new Ne8Vehicle_Year($this->startInput());
-        $year->setY2KMode($this->Y2KMode);
-        $year->setThreshold($this->threshold);
-        return $year;
+        return $this->year($this->startInput());
     }
     
     function endYear()
     {
-        $year = new Ne8Vehicle_Year($this->endInput());
+        return $this->year($this->endInput());
+    }
+    
+    function year($input)
+    {
+        $year = new Ne8Vehicle_Year($input);
         $year->setY2KMode($this->Y2KMode);
         $year->setThreshold($this->threshold);
         return $year;
