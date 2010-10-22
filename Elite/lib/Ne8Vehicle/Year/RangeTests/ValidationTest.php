@@ -1,5 +1,5 @@
 <?php
-class Ne8Vehicle_Year_RangeTests_ValidationTest extends Elite_Vaf_TestCase
+class Ne8Vehicle_Year_RangeTests_ValidationTest extends PHPUnit_Extensions_PerformanceTestCase
 {
     function testShouldBeInvalid_BlankString()
     {

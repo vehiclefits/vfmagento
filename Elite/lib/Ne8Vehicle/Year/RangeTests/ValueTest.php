@@ -1,5 +1,5 @@
 <?php
-class Ne8Vehicle_Year_RangeTest extends Elite_Vaf_TestCase
+class Ne8Vehicle_Year_RangeTests_ValueTest extends PHPUnit_Extensions_PerformanceTestCase
 {
     function testShouldUseSingle4DigitYearForStartValue()
     {
