@@ -13,6 +13,12 @@ class Ne8Vehicle_Year_RangeTests_ValidationTest extends PHPUnit_Extensions_Perfo
         $this->assertFalse( $range->isValid(), 'should be invalid when string is passed' );
     }
     
+    function testShouldBeInvalid_StringWithDash()
+    {
+        $range = new Ne8Vehicle_Year_Range('foo-bar');
+        $this->assertFalse( $range->isValid(), 'should be invalid when string is passed with dash' );
+    }
+    
     function testSingle2DigitYearShouldBeValid()
     {
         $range = new Ne8Vehicle_Year_Range('04');

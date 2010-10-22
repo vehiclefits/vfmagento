@@ -32,25 +32,17 @@ class Ne8Vehicle_Year_Range extends Ne8Vehicle_Year_Abstract
     
     function startIsValid()
     {
-         if( strlen($this->startInput()) == 4 || strlen($this->startInput()) == 2 )
-         {
-             return true;
-         }
-         return false;
+         return $this->startYear()->isValid();
     }
         
     function endIsValid()
     {
-         if( strlen($this->endInput()) == 4 || strlen($this->endInput()) == 2 )
-         {
-             return true;
-         }
-         return false;
+         return $this->endYear()->isValid();
     }
     
     function start()
     {
-        if(!$this->startYear()->isValid() && $this->endYear()->isValid())
+        if(!$this->startIsValid() && $this->endIsValid())
         {
             return $this->end();
         }
@@ -59,7 +51,7 @@ class Ne8Vehicle_Year_Range extends Ne8Vehicle_Year_Abstract
     
     function end()
     {
-        if(!$this->endYear()->isValid() && $this->startYear()->isValid())
+        if(!$this->endIsValid() && $this->startIsValid())
         {
             return $this->start();
         }
