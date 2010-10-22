@@ -37,7 +37,7 @@ class Ne8Vehicle_Year_RangeTest extends Elite_Vaf_TestCase
         $this->assertEquals( 2004, $range->end(), 'should use single 4 digit year as end year' );
     }
     
-    function testShouldSingle2DigitYearShouldBeValid()
+    function testSingle2DigitYearShouldBeValid()
     {
         $range = new Ne8Vehicle_Year_Range('04');
         $this->assertTrue($range->isValid(), 'single 2 digit year should be valid');
