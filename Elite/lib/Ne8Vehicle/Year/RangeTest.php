@@ -138,4 +138,18 @@ class Ne8Vehicle_Year_RangeTest extends Elite_Vaf_TestCase
         $range = new Ne8Vehicle_Year_Range('-04');
         $this->assertEquals( 2004, $range->start(), 'should use end when start is blank' );
     }
+    
+    function testShouldUseCenturyThreshold_EndYear()
+    {
+        $range = new Ne8Vehicle_Year_Range('20-40');
+        $range->setThreshold(41);
+        $this->assertEquals( 2040, $range->end(), 'should use century threshold on end year' );
+    }
+    
+    function testShouldUseCenturyThreshold_StartYear()
+    {
+        $range = new Ne8Vehicle_Year_Range('20-40');
+        $range->setThreshold(21);
+        $this->assertEquals( 2020, $range->start(), 'should use century threshold on start year' );
+    }
 }

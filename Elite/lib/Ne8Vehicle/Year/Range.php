@@ -2,6 +2,7 @@
 class Ne8Vehicle_Year_Range
 {
     protected $range;
+    protected $threshold = 25;
     
     function __construct($range)
     {
@@ -67,12 +68,16 @@ class Ne8Vehicle_Year_Range
     
     function startYear()
     {
-        return new Ne8Vehicle_Year($this->startInput());
+        $year = new Ne8Vehicle_Year($this->startInput());
+        $year->setThreshold($this->threshold);
+        return $year;
     }
     
     function endYear()
     {
-        return new Ne8Vehicle_Year($this->endInput());
+        $year = new Ne8Vehicle_Year($this->endInput());
+        $year->setThreshold($this->threshold);
+        return $year;
     }
     
     function startInput()
@@ -90,5 +95,10 @@ class Ne8Vehicle_Year_Range
     function asArray()
     {
         return explode('-',$this->range);
+    }
+    
+    function setThreshold($threshold)
+    {
+        $this->threshold = $threshold;
     }
 }
