@@ -1,5 +1,5 @@
 <?php
-class Ne8Vehicle_YearTest extends PHPUnit_Extensions_PerformanceTestCase
+class Ne8Vehicle_YearTests_ValueTest extends PHPUnit_Extensions_PerformanceTestCase
 {
     /**
     * @expectedException Ne8Vehicle_Year_Exception
@@ -42,5 +42,4 @@ class Ne8Vehicle_YearTest extends PHPUnit_Extensions_PerformanceTestCase
         $year->setThreshold(60);
         $this->assertEquals( 1960, $year->value(), 'when two digit year is 60 or greater, should cast to 20th century' );
     }
-       
 }
