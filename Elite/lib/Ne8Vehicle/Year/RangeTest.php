@@ -13,25 +13,43 @@ class Ne8Vehicle_Year_RangeTest extends Elite_Vaf_TestCase
         $this->assertFalse( $range->isValid(), 'should be invalid when string is passed' );
     }
     
-    function shouldUseSingle4DigitYearForStartValue()
+    function testShouldSingle4DigitYearShouldBeValid()
+    {
+        $range = new Ne8Vehicle_Year_Range('2004');
+        $this->assertTrue($range->isValid(), 'single 4 digit year should be valid');
+    }
+    
+    function testShouldSingle4DigitYearShouldBeValid_TrimSpace()
+    {
+        $range = new Ne8Vehicle_Year_Range('2004 ');
+        $this->assertTrue($range->isValid(), 'single 4 digit year should be valid (with trailing space)');
+    }
+    
+    function testShouldUseSingle4DigitYearForStartValue()
     {
         $range = new Ne8Vehicle_Year_Range('2004');
         $this->assertEquals( 2004, $range->start(), 'should use single 4 digit year as start year' );
     }
     
-    function shouldUseSingle4DigitYearForSEndValue()
+    function testShouldUseSingle4DigitYearForSEndValue()
     {
         $range = new Ne8Vehicle_Year_Range('2004');
         $this->assertEquals( 2004, $range->end(), 'should use single 4 digit year as end year' );
     }
     
-    function shouldUseSingle2DigitYearForStartValue()
+    function testShouldSingle2DigitYearShouldBeValid()
+    {
+        $range = new Ne8Vehicle_Year_Range('04');
+        $this->assertTrue($range->isValid(), 'single 2 digit year should be valid');
+    }
+    
+    function testShouldUseSingle2DigitYearForStartValue()
     {
         $range = new Ne8Vehicle_Year_Range('04');
         $this->assertEquals( 2004, $range->start(), 'should use single 2 digit year as start year' );
     }
     
-    function shouldUseSingle2DigitYearForSEndValue()
+    function testShouldUseSingle2DigitYearForSEndValue()
     {
         $range = new Ne8Vehicle_Year_Range('04');
         $this->assertEquals( 2004, $range->end(), 'should use single 2 digit year as end year' );
@@ -41,6 +59,24 @@ class Ne8Vehicle_Year_RangeTest extends Elite_Vaf_TestCase
     {
         $range = new Ne8Vehicle_Year_Range('02-03');
         $this->assertTrue( $range->isValid(), 'should be valid with 2 digit years' );
+    }
+    
+    function testShouldBeValidWithWhiteSpaces()
+    {
+        $range = new Ne8Vehicle_Year_Range(' 02 - 03 ');
+        $this->assertTrue( $range->isValid(), 'should trim spaces' );
+    }
+    
+    function testShouldBeTrimSpacesOnStartYear()
+    {
+        $range = new Ne8Vehicle_Year_Range(' 02 - 03 ');
+        $this->assertEquals( '02', $range->startInput(), 'should trim spaces on start year' );
+    }
+    
+    function testShouldBeTrimSpacesOnEndYear()
+    {
+        $range = new Ne8Vehicle_Year_Range(' 02 - 03 ');
+        $this->assertEquals( '03', $range->endInput(), 'should trim spaces on end year' );
     }
     
     function testShouldBeValid_1DigitEndYear()

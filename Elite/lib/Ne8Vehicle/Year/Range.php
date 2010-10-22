@@ -11,7 +11,7 @@ class Ne8Vehicle_Year_Range
     function isValid()
     {
         $array = $this->asArray();
-        if(2!=count($array))
+        if(1!=count($array) && 2!=count($array))
         {
             return false;
         }
@@ -78,13 +78,13 @@ class Ne8Vehicle_Year_Range
     function startInput()
     {
         $array = $this->asArray();
-        return $array[0];
+        return isset($array[0]) ? trim($array[0]) : null;
     }
     
     function endInput()
     {
         $array = $this->asArray();
-        return $array[1];
+        return isset($array[1]) ? trim($array[1]) : null;
     }
     
     function asArray()
