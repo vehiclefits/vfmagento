@@ -1,40 +1,13 @@
 <?php
-class Ne8Vehicle_YearTest extends Elite_Vaf_TestCase
+class Ne8Vehicle_YearTest extends PHPUnit_Extensions_PerformanceTestCase
 {
-    function testShouldNotBeValid()
+    /**
+    * @expectedException Ne8Vehicle_Year_Exception
+    */
+    function testShouldThrowExceptionWhenParsingInvalid()
     {
-        $year = new Ne8Vehicle_Year('foo');
-        $this->assertFalse( $year->isValid(), 'should not be valid');
-    }
-    
-    function test1DigitYearShouldNotBeValid()
-    {
-        $year = new Ne8Vehicle_Year('9');
-        $this->assertFalse( $year->isValid(), 'one digit year should not be valid');
-    }
-    
-    function test2DigitYearShouldNotBeValidWithWhitespace()
-    {
-        $year = new Ne8Vehicle_Year('9 ');
-        $this->assertFalse( $year->isValid(), 'two digit year should not be valid when one of those "digits" is white space');
-    }
-    
-    function test2DigitYearShouldBeValid()
-    {
-        $year = new Ne8Vehicle_Year('99');
-        $this->assertTrue( $year->isValid(), 'two digit year should be valid');
-    }
-    
-    function test3DigitYearShouldNotBeValid()
-    {
-        $year = new Ne8Vehicle_Year('999');
-        $this->assertFalse( $year->isValid(), 'three digit year should not be valid');
-    }
-    
-    function test4DigitYearShouldBeValid()
-    {
-        $year = new Ne8Vehicle_Year('1999');
-        $this->assertTrue( $year->isValid(), 'four digit year should be valid');
+        $year = new Ne8Vehicle_Year('invalid');
+        $year->value();
     }
     
     function testShouldDisableY2kMode()
@@ -69,13 +42,5 @@ class Ne8Vehicle_YearTest extends Elite_Vaf_TestCase
         $year->setThreshold(60);
         $this->assertEquals( 1960, $year->value(), 'when two digit year is 60 or greater, should cast to 20th century' );
     }
-    
-    /**
-    * @expectedException Ne8Vehicle_Year_Exception
-    */
-    function testShouldThrowExceptionWhenParsingInvalid()
-    {
-        $year = new Ne8Vehicle_Year('invalid');
-        $year->value();
-    }
+       
 }
