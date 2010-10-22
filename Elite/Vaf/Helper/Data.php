@@ -237,7 +237,7 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
         {
             if( is_null( self::$dbAdapter ))
             {
-                self::$dbAdapter = new My_Adapter( array('dbname'=>'vaf', 'username'=>'root', 'password'=>'' ));
+                self::$dbAdapter = new My_Adapter( array('dbname'=>VAF_DB_NAME, 'username'=>VAF_DB_USERNAME, 'password'=>VAF_DB_PASSWORD ));
                 self::$dbAdapter->getConnection()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false );
             }
             return self::$dbAdapter;
