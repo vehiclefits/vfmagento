@@ -428,18 +428,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         {
             $start_value = $values[$level.'_start'];
             $end_value = $values[$level.'_end'];
-            
-            $startYear = $this->year($start_value);
-            $endYear = $this->year($end_value);
-            
-            $start = $this->yearValue($startYear);
-            $end = $this->yearValue($endYear);
-            
-            if( !$startYear->isValid() && !$endYear->isValid() )
-            {
-                $this->log('Line(' . $this->row_number . ') Invalid Year Range: [' . $start_value . '] & [' . $end_value . ']', Zend_Log::NOTICE);
-                return false;
-            }
+            list($start,$end) = $this->explodeRangesTwoColumns($start_value, $end_value);
         }
         
         if( $start > $end )
@@ -480,9 +469,26 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
             $this->log('Line(' . $this->row_number . ') Invalid Year Range: [' . $val . ']', Zend_Log::NOTICE);
             return false;
         }
+        
         $start = $range->start();
         $end = $range->end();
         return array($start,$end);
+    }
+    
+    function explodeRangesTwoColumns($start_value,$end_value)
+    {
+        $startYear = $this->year($start_value);
+        $endYear = $this->year($end_value);
+        
+        if( !$startYear->isValid() && !$endYear->isValid() )
+        {
+            $this->log('Line(' . $this->row_number . ') Invalid Year Range: [' . $start_value . '] & [' . $end_value . ']', Zend_Log::NOTICE);
+            return false;
+        }
+        
+        $start = $this->yearValue($startYear);
+        $end = $this->yearValue($endYear);
+        return array($start, $end);
     }
     
     function year($value)
