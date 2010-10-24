@@ -444,41 +444,12 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
             $start_value = $values[$level.'_start'];
             $end_value = $values[$level.'_end'];
             
-            $startYear = new Ne8Vehicle_Year($start_value);
-            if(isset($this->getConfig()->importer->Y2KMode) && false === $this->getConfig()->importer->Y2KMode)
-            {
-                $startYear->setY2KMode(false);
-            }
-            if($this->getConfig()->importer->Y2KThreshold)
-            {
-                $startYear->setThreshold($this->getConfig()->importer->Y2KThreshold);
-            }
-            if($startYear->isValid())
-            {
-                $start = $startYear->value();
-            }
-            else
-            {
-                $start = null;
-            }
+            $startYear = $this->year($start_value);
+            $endYear = $this->year($end_value);
             
-            $endYear = new Ne8Vehicle_Year($end_value);
-            if(isset($this->getConfig()->importer->Y2KMode) && false === $this->getConfig()->importer->Y2KMode)
-            {
-                $endYear->setY2KMode(false);
-            }
-            if($this->getConfig()->importer->Y2KThreshold)
-            {
-                $endYear->setThreshold($this->getConfig()->importer->Y2KThreshold);
-            }
-            if($endYear->isValid())
-            {
-                $end = $endYear->value();
-            }
-            else
-            {
-                $end = null;
-            }
+            $start = $this->yearValue($startYear);
+            $end = $this->yearValue($endYear);
+            
             if( !$startYear->isValid() && !$endYear->isValid() )
             {
                 $this->log('Line(' . $this->row_number . ') Invalid Year Range: [' . $start_value . '] & [' . $end_value . ']', Zend_Log::NOTICE);
@@ -513,6 +484,29 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         unset($values[$level.'_end']);
         unset($values[$level.'_range']);
         return $values;
+    }
+    
+    function year($value)
+    {
+        $year = new Ne8Vehicle_Year($value);
+        if(isset($this->getConfig()->importer->Y2KMode) && false === $this->getConfig()->importer->Y2KMode)
+        {
+            $year->setY2KMode(false);
+        }
+        if($this->getConfig()->importer->Y2KThreshold)
+        {
+            $year->setThreshold($this->getConfig()->importer->Y2KThreshold);
+        }
+        return $year;
+    }
+    
+    function yearValue($year)
+    {
+        if($year->isValid())
+        {
+            return $year->value();
+        }
+        return null;
     }
     
     function getSchema()
