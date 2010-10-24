@@ -422,15 +422,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         if( isset($values[$level.'_range']))
         {
             $val = $values[$level.'_range'];
-            $range = $this->yearRange($val);
-            
-            if( !$range->isValid() )
-            {
-                $this->log('Line(' . $this->row_number . ') Invalid Year Range: [' . $val . ']', Zend_Log::NOTICE);
-                return false;
-            }
-            $start = $range->start();
-            $end = $range->end();
+            list($start,$end) = $this->explodeRangesOneColumn($val);
         }
         else
         {
@@ -477,6 +469,20 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         unset($values[$level.'_end']);
         unset($values[$level.'_range']);
         return $values;
+    }
+    
+    function explodeRangesOneColumn($val)
+    {
+        $range = $this->yearRange($val);
+            
+        if( !$range->isValid() )
+        {
+            $this->log('Line(' . $this->row_number . ') Invalid Year Range: [' . $val . ']', Zend_Log::NOTICE);
+            return false;
+        }
+        $start = $range->start();
+        $end = $range->end();
+        return array($start,$end);
     }
     
     function year($value)
