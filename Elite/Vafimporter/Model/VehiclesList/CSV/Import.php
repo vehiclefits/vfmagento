@@ -25,7 +25,6 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         $this->resetCountAdded();
         $this->startCountingAdded();
         
-        $this->getFieldPositions();
         while( $row = $this->getReader()->getRow() )
         {
             $values = $this->getLevelsArray( $row ); 
