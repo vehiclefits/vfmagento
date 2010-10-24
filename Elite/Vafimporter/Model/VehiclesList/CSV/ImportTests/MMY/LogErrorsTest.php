@@ -25,24 +25,19 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_LogErrorsTest ext
     
     function testShouldLogInvalidYear_TwoFieldRange()
     {
-        return $this->markTestIncomplete();
-      //  $importer = $this->vehiclesListImporter('make,model,year_start,year_end' . "\n" . 
-//                                                'honda,civic,foo,2000');
-//        
-//        $writer = new Zend_Log_Writer_Mock();
-//        $logger = new Zend_Log($writer);
-//        
-//        $importer->setLog($logger);
-//        
-//        $importer->import();
-//        
-//        $event = $writer->events[0];
-//        $this->assertEquals( 'Invalid Year: [foo]', $event['message'] );
-//        $this->assertEquals( Zend_Log::NOTICE, $event['priority'] );
+        $importer = $this->vehiclesListImporter('make,model,year_start,year_end' . "\n" . 
+                                                'honda,civic,foo,bar');
+        
+        $writer = new Zend_Log_Writer_Mock();
+        $logger = new Zend_Log($writer);
+        
+        $importer->setLog($logger);
+        
+        $importer->import();
+        
+        $event = $writer->events[0];
+        $this->assertEquals( 'Line(1) Invalid Year Range: [foo] & [bar]', $event['message'] );
+        $this->assertEquals( Zend_Log::NOTICE, $event['priority'] );
     }
-    
-    function testShouldNotLogPrevioluslyExistingVehicles()
-    {
-        return $this->markTestIncomplete();
-    }
+
 }

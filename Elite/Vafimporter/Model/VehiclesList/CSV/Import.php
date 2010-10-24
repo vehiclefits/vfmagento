@@ -479,6 +479,11 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
             {
                 $end = null;
             }
+            if( !$startYear->isValid() && !$endYear->isValid() )
+            {
+                $this->log('Line(' . $this->row_number . ') Invalid Year Range: [' . $start_value . '] & [' . $end_value . ']', Zend_Log::NOTICE);
+                return false;
+            }
         }
         
         if( $start > $end )
