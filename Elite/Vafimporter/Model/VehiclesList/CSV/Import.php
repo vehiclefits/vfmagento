@@ -385,6 +385,10 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         {
             $val = $values[$level.'_range'];
             $range = new Ne8Vehicle_Year_Range($val);
+            if(isset($this->getConfig()->importer->Y2KMode) && false === $this->getConfig()->importer->Y2KMode)
+            {
+                $range->setY2KMode(false);
+            }
             if( !$range->isValid() )
             {
                 $this->log('Line(' . $this->row_number . ') Invalid Year Range: [' . $val . ']', Zend_Log::NOTICE);
@@ -440,7 +444,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
 
         for( $currentValue = $start; $currentValue <= $end; $currentValue++ )
         {
-            $values[$level][] = $currentValue;
+            $values[$level][] = str_pad($currentValue,2,'0',STR_PAD_LEFT);
         }
         unset($values[$level.'_start']);
         unset($values[$level.'_end']);

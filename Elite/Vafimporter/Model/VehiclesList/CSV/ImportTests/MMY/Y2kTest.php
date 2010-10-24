@@ -17,8 +17,12 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_Y2kTest extends E
     
     function testShouldReverseYears()
     {
-        $this->importVehiclesList('make, model, year_range' . "\n" .
+        $config = new Zend_Config(array('importer'=>array('Y2KMode'=>true)));
+        $importer = $this->vehiclesListImporter('make, model, year_range' . "\n" .
                                   'honda, accord, 06-03');
+                                  
+        $importer->setConfig($config);
+        $importer->import();
                                   
         $this->assertTrue( $this->vehicleExists(array('make'=>'honda', 'model'=>'accord', 'year'=>'2003')) );
         $this->assertTrue( $this->vehicleExists(array('make'=>'honda', 'model'=>'accord', 'year'=>'2006')) );
@@ -26,11 +30,14 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_Y2kTest extends E
     
     function testShouldDisableY2kMode()
     {
-        return $this->markTestIncomplete();
-        $this->importVehiclesList('make, model, year_range' . "\n" .
-                                  'honda, accord, 06-03');
+        $config = new Zend_Config(array('importer'=>array('Y2KMode'=>false)));
+        $importer = $this->vehiclesListImporter('make, model, year_range' . "\n" .
+                                  'honda, accord, 03-06');
                                   
-        $this->assertTrue( $this->vehicleExists(array('make'=>'honda', 'model'=>'accord', 'year'=>'2003')) );
-        $this->assertTrue( $this->vehicleExists(array('make'=>'honda', 'model'=>'accord', 'year'=>'2006')) );
+        $importer->setConfig($config);
+        $importer->import();
+                                  
+        $this->assertTrue( $this->vehicleExists(array('make'=>'honda', 'model'=>'accord', 'year'=>'03')) );
+        $this->assertTrue( $this->vehicleExists(array('make'=>'honda', 'model'=>'accord', 'year'=>'06')) );
     }
 }
