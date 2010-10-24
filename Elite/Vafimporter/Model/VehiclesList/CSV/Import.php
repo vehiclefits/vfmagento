@@ -389,6 +389,10 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
             {
                 $range->setY2KMode(false);
             }
+            if($this->getConfig()->importer->Y2KThreshold)
+            {
+                $range->setThreshold($this->getConfig()->importer->Y2KThreshold);
+            }
             if( !$range->isValid() )
             {
                 $this->log('Line(' . $this->row_number . ') Invalid Year Range: [' . $val . ']', Zend_Log::NOTICE);
@@ -403,6 +407,14 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
             $end_value = $values[$level.'_end'];
             
             $startYear = new Ne8Vehicle_Year($start_value);
+            if(isset($this->getConfig()->importer->Y2KMode) && false === $this->getConfig()->importer->Y2KMode)
+            {
+                $startYear->setY2KMode(false);
+            }
+            if($this->getConfig()->importer->Y2KThreshold)
+            {
+                $startYear->setThreshold($this->getConfig()->importer->Y2KThreshold);
+            }
             if($startYear->isValid())
             {
                 $start = $startYear->value();
@@ -413,6 +425,14 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
             }
             
             $endYear = new Ne8Vehicle_Year($end_value);
+            if(isset($this->getConfig()->importer->Y2KMode) && false === $this->getConfig()->importer->Y2KMode)
+            {
+                $endYear->setY2KMode(false);
+            }
+            if($this->getConfig()->importer->Y2KThreshold)
+            {
+                $endYear->setThreshold($this->getConfig()->importer->Y2KThreshold);
+            }
             if($endYear->isValid())
             {
                 $end = $endYear->value();
