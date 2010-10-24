@@ -219,8 +219,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     {
         foreach($this->getSchema()->getLevels() as $level )
         {
-            $select = $this->getReadAdapter()->select()
-                ->from('elite_'.$level,'count(*)');
+            $select = $this->getReadAdapter()->select()->from('elite_'.$level,'count(*)');
             $result = $select->query()->fetchColumn();
             $this->start_count_added_by_level[$level] = $result;
         }
@@ -228,8 +227,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     
     function startCountingAddedVehicles()
     {
-        $select = $this->getReadAdapter()->select()
-            ->from('elite_definition','count(*)');
+        $select = $this->getReadAdapter()->select()->from('elite_definition','count(*)');
         $result = $select->query()->fetchColumn();
         $this->start_count_vehicles = $result;
     }
@@ -245,8 +243,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     {
         foreach($this->getSchema()->getLevels() as $level )
         {
-            $select = $this->getReadAdapter()->select()
-                ->from('elite_'.$level,'count(*)');
+            $select = $this->getReadAdapter()->select()->from('elite_'.$level,'count(*)');
             $result = $select->query()->fetchColumn();
             $this->stop_count_added_by_level[$level] = $result;
             $this->count_added_by_level[$level] = $this->stop_count_added_by_level[$level] - $this->start_count_added_by_level[$level];
@@ -255,8 +252,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     
     function stopCountingAddedVehicles()
     {
-        $select = $this->getReadAdapter()->select()
-            ->from('elite_definition','count(*)');
+        $select = $this->getReadAdapter()->select()->from('elite_definition','count(*)');
         $result = $select->query()->fetchColumn();
         $this->stop_count_vehicles = $result;
     }
@@ -307,6 +303,10 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
             elseif( isset($fieldPositions[$level]) )
             {
                 $levels[$level] = $this->getFieldValue( $level, $row );
+                if(!$levels[$level])
+                {
+                    $this->log('Line(' . $this->row_number . ') Blank ' . ucfirst($level), Zend_Log::NOTICE);
+                }
             }
             else
             {
