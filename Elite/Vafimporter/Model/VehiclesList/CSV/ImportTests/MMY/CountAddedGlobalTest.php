@@ -45,4 +45,22 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_CountAddedGlobalT
         $this->assertEquals( 1, $importer->getCountAddedByLevel('year'), 'should count unique years' );
     }
     
+    function testShouldCountVehiclesAdded()
+    {
+        $importer = $this->importVehiclesList('make, model, year' . "\n" .
+                                              'honda, civic, 2000' . "\n" .
+                                              'acura, integra, 2000');
+                                              
+        $this->assertEquals( 2, $importer->getCountAddedVehicles(), 'should count added vehicles' );
+    }
+    
+    function testShouldCount0Added()
+    {
+        $importer = $this->importVehiclesListTwice('make, model, year' . "\n" .
+                                              'honda, civic, 2000' . "\n" .
+                                              'acura, integra, 2000');
+                                              
+        $this->assertEquals( 0, $importer->getCountAddedVehicles(), 'should count 0 added (should not count something we already had)' );
+    }
+    
 }

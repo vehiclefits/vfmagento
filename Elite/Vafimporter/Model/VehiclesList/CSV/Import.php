@@ -5,6 +5,9 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     protected $count_added_by_level = array();
     protected $start_count_added_by_level = array();
     protected $stop_count_added_by_level = array();
+    
+    /** @var integer */
+    protected $start_count_vehicles, $stop_count_vehicles;
       
     /** @var integer */
     protected $skipped_definitions = 0;
@@ -107,13 +110,11 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
                 $this->getSchema()->getPrevLevel($level)
             );
             $this->query($sql);
-        }
-                
+        }       
     }
     
     function insertVehicleRecords()
     {
-        
         $cols = $this->getSchema()->getLevels();
         foreach($cols as $i=>$col)
         {
@@ -190,9 +191,12 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     {
     }
     
-    /** Reset # of added Make,Model,Year each to Zero */
+    /** Reset # of added Vehicles, Makes, Years, etc. each to Zero */
     function resetCountAdded()
     {
+        $this->start_count_vehicles = 0;
+        $this->stop_count_vehicles = 0;
+        
         $this->count_added_by_level = array();
         $this->start_count_added_by_level = array();
         $this->stop_count_added_by_level = array();
@@ -207,6 +211,13 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     /** Probe how many Make,Model,Year there are before the import */
     function startCountingAdded()
     {
+        $this->startCountingAddedLevels();
+        $this->startCountingAddedVehicles();
+    }
+    
+    /** Probe how many Make,Model,Year there are before the import */
+    function startCountingAddedLevels()
+    {
         foreach($this->getSchema()->getLevels() as $level )
         {
             $select = $this->getReadAdapter()->select()
@@ -216,8 +227,22 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         }
     }
     
+    function startCountingAddedVehicles()
+    {
+        $select = $this->getReadAdapter()->select()
+            ->from('elite_definition','count(*)');
+        $result = $select->query()->fetchColumn();
+        $this->start_count_vehicles = $result;
+    }
+    
     /** Probe how many Make,Model,Year there are after the import */
     function stopCountingAdded()
+    {
+        $this->stopCountingAddedLevels();
+        $this->stopCountingAddedVehicles();
+    }
+    
+    function stopCountingAddedLevels()
     {
         foreach($this->getSchema()->getLevels() as $level )
         {
@@ -227,6 +252,14 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
             $this->stop_count_added_by_level[$level] = $result;
             $this->count_added_by_level[$level] = $this->stop_count_added_by_level[$level] - $this->start_count_added_by_level[$level];
         }
+    }
+    
+    function stopCountingAddedVehicles()
+    {
+        $select = $this->getReadAdapter()->select()
+            ->from('elite_definition','count(*)');
+        $result = $select->query()->fetchColumn();
+        $this->stop_count_vehicles = $result;
     }
     
     /**
@@ -240,6 +273,11 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
             return 0;
         }
         return (int)$this->count_added_by_level[ $level ];
+    }
+    
+    function getCountAddedVehicles()
+    {
+        return $this->stop_count_vehicles - $this->start_count_vehicles;
     }
     
     /** @return integer */

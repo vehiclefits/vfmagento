@@ -112,13 +112,14 @@ class Elite_Vafimporter_Admin_VafdefinitionsimporterController extends Mage_Admi
         $schema = new Elite_Vaf_Model_Schema();
             
         $this->formatMessage( '<strong>Vehicles List Import Results</strong>' );
+        $this->formatMessage( number_format($this->importer->getCountAddedVehicles()) . ' Vehicles Added' );
         foreach( $schema->getLevels() as $level )
         {
-            $this->formatMessage( number_format($this->importer->getCountAddedByLevel($level)) . ' ' . $level . 's discovered' );
+            $this->formatMessage( number_format($this->importer->getCountAddedByLevel($level)) . ' ' . $level . 's Added' );
         }
         if( $this->importer->getCountSkippedDefinitions() > 0 )
         {
-            $this->formatMessage( number_format( $this->importer->getCountSkippedDefinitions() ) . ' vehicles skipped because they already existed, your csv contained overlapping ranges or duplicate definitions.' );
+            $this->formatMessage( number_format( $this->importer->getCountSkippedDefinitions() ) . ' vehicles skipped because they already existed, your csv contained overlapping ranges or duplicate vehicles.' );
         }
         $this->doFormatMessages();
     }
