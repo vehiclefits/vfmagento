@@ -319,114 +319,13 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     
     function getCombinations( $values )
     {
-        $values = $this->trimSpaces($values);
-        
-        foreach( $this->getSchema()->getLevels() as $level )
+        $combiner = new Elite_Vafimporter_Model_Combiner($this->getSchema(), $this->getConfig());
+        $combinations = $combiner->getCombinations($values);
+        if($combiner->getError())
         {
-            $values = $this->explodeRangesAndEnumerations($level,$values);
-            if(false === $values)
-            {
-                return array();
-            }
-        }
-        
-        $combinations = $this->getPowerSetCombinations($values);
-        $combinations = $this->explodeWildcardCombinations($combinations);
-                    
-        return $combinations;
-    }
-    
-    function explodeRangesAndEnumerations($level, $values)
-    {
-        if( $this->isStartEndRange($values,$level) )
-        {
-            $values = $this->explodeRanges($values, $level);
-        }
-        else if( $this->isCommaList($values,$level))
-        {
-            $values[$level] = $this->convertValuesListToArray( $values[$level] );
-        }
-        else
-        {
-            $values[$level] = $this->convertValueToArray( $values[$level] );
-        }
-        
-        return $values;
-    }
-    
-    function trimSpaces($values)
-    {
-        foreach($values as $key => $value)
-        {
-            $values[$key] = trim($value);
-        }
-        return $values;
-    }
-
-    function getPowerSetCombinations($values)
-    {
-        $combiner = new Elite_Vafimporter_Model_ArrayCombiner();
-        $combiner->setTraits($values);
-        $combinations = $combiner->getCombinations();
-        
-        // put them back in correct order (root through leaf level)
-        foreach($combinations as $key => $combination)
-        {
-            $combinations[$key] = array();
-            foreach( $this->getSchema()->getLevels()  as $level )
-            {
-                $combinations[$key][$level] = $combination[$level];
-            }
+            $this->log( 'Line(' . $this->row_number . ') ' . $combiner->getError(), Zend_Log::NOTICE );
         }
         return $combinations;
-    }
-    
-    function explodeWildcardCombinations($combinations)
-    {
-        $result = array();
-        foreach($combinations as $key => $combination)
-        {
-            // blow out {{all}} tokens
-            $valueExploder = new Elite_Vafimporter_Model_ValueExploder();
-            $result = array_merge( $result, $valueExploder->explode($combination) );
-        }
-        return $result;
-    }
-    
-    function isCommaList($values,$level)
-    {
-        return preg_match('#,#',$values[$level]);
-    }
-    
-    function convertValueToArray( $val )
-    {
-        return array($val);
-    }
-    
-    function convertValuesListToArray( $val )
-    {
-        return explode( ',', $val);
-    }
-    
-    function isStartEndRange($values,$level)
-    {
-        if(isset($values[$level.'_range']))
-        {
-            return true;
-        }
-        return isset($values[$level.'_start']) && isset($values[$level.'_end']);
-    }
-    
-    function explodeRanges($values,$level)
-    {
-        $exploder = new Elite_Vafimporter_Model_RangeExploder($this->getConfig());
-        $values = $exploder->explodeRanges($values,$level);
-        if($exploder->getError())
-        {
-            $this->log( 'Line(' . $this->row_number . ') ' . $exploder->getError(), Zend_Log::NOTICE );
-            return false;
-        }
-        return $values;
     }
     
     function getSchema()
