@@ -13,6 +13,12 @@ class Elite_Vafimporter_TestCase extends Elite_Vaf_TestCase
         return $importer;
     }
     
+    function importVehiclesListTwice( $file )
+    {
+        $this->importVehiclesList( $file );
+        return $this->importVehiclesList( $file );
+    }
+    
     function vehiclesListImporter($csvData)
     {
         $file = TESTFILES . '/vehicles-list.csv';  
