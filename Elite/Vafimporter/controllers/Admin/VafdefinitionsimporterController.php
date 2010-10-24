@@ -13,6 +13,16 @@ class Elite_Vafimporter_Admin_VafdefinitionsimporterController extends Mage_Admi
     /** @var string class name of importer to be used */
     protected $importerClass = '';
     
+    protected $error_types = array(
+        1 => 'The uploaded file exceeds the upload_max_filesize directive in php.ini.',
+        'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.',
+        'The uploaded file was only partially uploaded.',
+        'No file was uploaded.',
+        6 => 'Missing a temporary folder.',
+        'Failed to write file to disk.',
+        'A PHP extension stopped the file upload.'
+    ); 
+    
     function indexAction()
     {
         $this->checkVersion();
@@ -31,7 +41,13 @@ class Elite_Vafimporter_Admin_VafdefinitionsimporterController extends Mage_Admi
     
     function myIndexAction()
     {        
-		if( isset( $_FILES['file']['error'] ) && $_FILES['file']['error'] === 0 )
+		if( isset($_FILES['file']['error']))
+        {
+            $errNo = $_FILES['file']['error'];
+            $this->formatMessage($this->error_types[$errNo]);
+            return;
+        }
+        if( isset( $_FILES['file']['error'] ) && $_FILES['file']['error'] === 0 )
         {
             try
             {
