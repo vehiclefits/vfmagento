@@ -422,15 +422,29 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         if( isset($values[$level.'_range']))
         {
             $val = $values[$level.'_range'];
+            unset($values[$level.'_range']);
             list($start,$end) = $this->explodeRangesOneColumn($val);
         }
         else
         {
             $start_value = $values[$level.'_start'];
             $end_value = $values[$level.'_end'];
+            unset($values[$level.'_start']);
+            unset($values[$level.'_end']);
             list($start,$end) = $this->explodeRangesTwoColumns($start_value, $end_value);
         }
         
+        $this->fixYears($start,$end);
+        for( $currentValue = $start; $currentValue <= $end; $currentValue++ )
+        {
+            $values[$level][] = str_pad($currentValue,2,'0',STR_PAD_LEFT);
+        }
+        
+        return $values;
+    }
+    
+    function fixYears( &$start, &$end )
+    {
         if( $start > $end )
         {
             $newStart = $start;
@@ -449,15 +463,6 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         {
             $start = $end;
         }
-
-        for( $currentValue = $start; $currentValue <= $end; $currentValue++ )
-        {
-            $values[$level][] = str_pad($currentValue,2,'0',STR_PAD_LEFT);
-        }
-        unset($values[$level.'_start']);
-        unset($values[$level.'_end']);
-        unset($values[$level.'_range']);
-        return $values;
     }
     
     function explodeRangesOneColumn($val)
