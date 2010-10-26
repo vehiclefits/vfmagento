@@ -18,6 +18,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     /** Import the file */
     function import()
     {
+        //$this->log('Import Started',Zend_Log::NOTICE);
         $this->getFieldPositions();
         $this->getReadAdapter()->beginTransaction();
         $this->cleanupTempTable();
@@ -29,6 +30,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         {
             $values = $this->getLevelsArray( $row ); 
             $combinations = $this->getCombinations($values);
+            $this->row_number++;
             foreach( $combinations as $combination )
             {
                 $this->insertIntoTempTable($row,$combination);
@@ -38,6 +40,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         $this->getReader()->rewind();
         
         $this->getReader()->getRow(); // pop fields
+        $this->row_number = 0;
         while( $row = $this->getReader()->getRow() )
         {
             $this->importRow($row);
@@ -45,6 +48,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         $this->stopCountingAdded();
         
         $this->getReadAdapter()->commit();
+        $this->log('Import Completed',Zend_Log::NOTICE);
     }
     
     function insertIntoTempTable($row,$combination)
@@ -127,16 +131,17 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     
     function logVehicleRecords()
     {
-        $cols = $this->getSchema()->getLevels();
-        foreach($cols as $i=>$col)
-        {
-            $cols[$i] = $this->getReadAdapter()->quoteIdentifier($col);
-        }
-        $result = $this->getReadAdapter()->query('SELECT DISTINCT ' . implode(',', $cols) . ' FROM elite_import');
-        while($row = $result->fetch() )
-        {
-            $this->log('Vehicle added: ' . implode(' ',$row), Zend_Log::INFO );
-        }
+        return;
+        //$cols = $this->getSchema()->getLevels();
+//        foreach($cols as $i=>$col)
+//        {
+//            $cols[$i] = $this->getReadAdapter()->quoteIdentifier($col);
+//        }
+//        $result = $this->getReadAdapter()->query('SELECT DISTINCT ' . implode(',', $cols) . ' FROM elite_import');
+//        while($row = $result->fetch() )
+//        {
+//            $this->log('Vehicle added: ' . implode(' ',$row), Zend_Log::INFO );
+//        }
     }
     
     /** Import a row from the file */

@@ -69,4 +69,21 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_LogErrorsTest ext
         $this->assertEquals(0, $importer->getCountAddedByLevel('model'));
     }
 
+    function testShouldLogCorrectLineNumber()
+    {
+        $importer = $this->vehiclesListImporter('make,model,year' . "\n" . 
+                                                'honda,civic,2000' . "\n" .
+                                                'honda,,2000');
+        
+        $writer = new Zend_Log_Writer_Mock();
+        $logger = new Zend_Log($writer);
+        
+        $importer->setLog($logger);
+        
+        $importer->import();
+        
+        $event = $writer->events[0];
+        $this->assertEquals( 'Line(2) Blank Model', $event['message'] );
+    }
+
 }

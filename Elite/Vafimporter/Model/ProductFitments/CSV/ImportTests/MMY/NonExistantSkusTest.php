@@ -44,5 +44,40 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_NonExistantSku
         $importer->import();
         $this->assertEquals( 2, $importer->nonExistantSkusCount(), 'should count the errors not the SKUs' );
     }
+    
+    function testShouldLogMissingSku()
+    {
+        $importer = $this->mappingsImporterFromData(
+            'sku,make,model,year' . "\n" . 
+            'sku1,honda,civic,2000');
+        
+        $writer = new Zend_Log_Writer_Mock();
+        $logger = new Zend_Log($writer);
+        
+        $importer->setLog($logger);
+        
+        $importer->import();
+        
+        $event = $writer->events[0];
+        $this->assertEquals( 'Line(1) Non Existant SKU \'sku1\'', $event['message'] );
+    }
+
+    function testShouldLogMissingSku_CorrectLineNumber()
+    {
+        $importer = $this->mappingsImporterFromData(
+            'sku,make,model,year' . "\n" . 
+            'sku1,honda,civic,2000' . "\n" .
+            'sku2,honda,civic,2000');
+        
+        $writer = new Zend_Log_Writer_Mock();
+        $logger = new Zend_Log($writer);
+        
+        $importer->setLog($logger);
+        
+        $importer->import();
+        
+        $event = $writer->events[1];
+        $this->assertEquals( 'Line(2) Non Existant SKU \'sku2\'', $event['message'] );
+    }
 
 }
