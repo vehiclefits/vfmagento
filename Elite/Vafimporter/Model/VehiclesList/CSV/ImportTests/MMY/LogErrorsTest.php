@@ -13,7 +13,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_LogErrorsTest ext
         
         $writer = new Zend_Log_Writer_Mock();
         $logger = new Zend_Log($writer);
-        
+        $logger->addFilter(new Zend_Log_Filter_Priority(Zend_Log::NOTICE));
         $importer->setLog($logger);
         
         $importer->import();
@@ -34,7 +34,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_LogErrorsTest ext
         
         $writer = new Zend_Log_Writer_Mock();
         $logger = new Zend_Log($writer);
-        
+        $logger->addFilter(new Zend_Log_Filter_Priority(Zend_Log::NOTICE));
         $importer->setLog($logger);
         
         $importer->import();
@@ -55,7 +55,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_LogErrorsTest ext
         
         $writer = new Zend_Log_Writer_Mock();
         $logger = new Zend_Log($writer);
-        
+        $logger->addFilter(new Zend_Log_Filter_Priority(Zend_Log::NOTICE));
         $importer->setLog($logger);
         
         $importer->import();
@@ -77,7 +77,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_LogErrorsTest ext
         
         $writer = new Zend_Log_Writer_Mock();
         $logger = new Zend_Log($writer);
-        
+        $logger->addFilter(new Zend_Log_Filter_Priority(Zend_Log::NOTICE));
         $importer->setLog($logger);
         
         $importer->import();

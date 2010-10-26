@@ -148,7 +148,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
         if(!in_array($sku, $this->nonexistant_skus))
         {
             array_push( $this->nonexistant_skus, $sku );
-            $this->log('Line(' . $this->row_number . ') Non Existant SKU \'' . $sku . '\'');
+            $this->log('Line(' . $this->row_number . ') Non Existant SKU \'' . $sku . '\'', Zend_Log::NOTICE);
         }
     }
     

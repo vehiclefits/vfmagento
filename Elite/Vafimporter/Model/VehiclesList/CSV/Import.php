@@ -18,7 +18,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     /** Import the file */
     function import()
     {
-        //$this->log('Import Started',Zend_Log::NOTICE);
+        $this->log('Import Started',Zend_Log::INFO);
         $this->getFieldPositions();
         $this->getReadAdapter()->beginTransaction();
         $this->cleanupTempTable();
@@ -48,7 +48,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         $this->stopCountingAdded();
         
         $this->getReadAdapter()->commit();
-        $this->log('Import Completed',Zend_Log::NOTICE);
+        $this->log('Import Completed',Zend_Log::INFO);
     }
     
     function insertIntoTempTable($row,$combination)
