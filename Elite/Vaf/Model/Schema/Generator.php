@@ -144,7 +144,7 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
     protected function createLevel( $i )
     {
         $return = sprintf(
-            'CREATE TABLE IF NOT EXISTS `elite_%s` (',
+            'CREATE TABLE IF NOT EXISTS `elite_level_%s` (',
             $this->getLevel($i)
         ) . self::NEWLINE;
             $return .= '`id` int(255) NOT NULL AUTO_INCREMENT,' . self::NEWLINE;
@@ -171,7 +171,7 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
     protected function enforceUniquenessOnLevel( $i )
     {
         return sprintf(
-            'ALTER TABLE `elite_%s` ADD UNIQUE (`title`);',
+            'ALTER TABLE `elite_level_%s` ADD UNIQUE (`title`);',
             $this->getLevel( $i )
         ) . self::NEWLINE;
     }
@@ -183,7 +183,7 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
             return '';
         }
         return sprintf(
-            'ALTER TABLE `elite_%s` ADD INDEX ( `%s_id` );',
+            'ALTER TABLE `elite_level_%s` ADD INDEX ( `%s_id` );',
             $this->getLevel($i),
             $this->getPreviousLevel($i)
         ) . self::NEWLINE;

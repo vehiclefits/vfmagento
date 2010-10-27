@@ -36,8 +36,8 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Export extends Elite_Vafimport
 			->from( 'elite_mapping', array( 'id','universal' ) );	
 		foreach( $this->schema->getLevels() as $level )
 		{
-			$table = 'elite_'.$level;
-			$condition = sprintf('%s.id=elite_mapping.%s_id', $table, $level );
+			$table = 'elite_level_'.$level;
+			$condition = sprintf('%s.id = elite_mapping.%s_id', $table, $level );
 			$select->joinLeft( $table, $condition, array($level=>'title') );
 		}
 		$select->joinLeft( array('p'=>$this->getProductTable()), 'p.entity_id = elite_mapping.entity_id', array('sku') );

@@ -64,6 +64,6 @@ class Elite_Vaf_Model_Level_Finder_Abstract implements Elite_Vaf_Configurable
     
     function getTable($table)
     {
-        return 'elite_' . $table;
+        return 'elite_level_' . $table;
     }
 }

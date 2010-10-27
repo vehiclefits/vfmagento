@@ -227,7 +227,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
     {
         $result = $this->query( sprintf(
             "SELECT `id` FROM %s WHERE `title` = %s",
-            $this->getReadAdapter()->quoteIdentifier( 'elite_' . $type ),
+            $this->getReadAdapter()->quoteIdentifier( 'elite_level_' . $type ),
             $this->getReadAdapter()->quote( $title )
         ));
         $id = $result->fetchColumn(0);
@@ -368,19 +368,19 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
         $sql = sprintf(
             "
             SELECT
-                elite_year.*
+                elite_level_year.*
             FROM   
-                elite_make
+                elite_level_make
             LEFT JOIN
-                elite_model on elite_model.make_id = elite_make.id
+                elite_level_model on elite_level_model.make_id = elite_level_make.id
             LEFT JOIN
-                elite_year on elite_year.model_id = elite_model.id
+                elite_level_year on elite_level_year.model_id = elite_level_model.id
             WHERE
-                elite_make.title = %s
+                elite_level_make.title = %s
             AND
-                elite_model.title = %s
+                elite_level_model.title = %s
             AND
-                elite_year.title = %s
+                elite_level_year.title = %s
             ",
             $this->getReadAdapter()->quote( $make ),
             $this->getReadAdapter()->quote( $model ),
@@ -402,19 +402,19 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
         $sql = sprintf(
             "
             SELECT
-                elite_model.*
+                elite_level_model.*
             FROM   
-                elite_year
+                elite_level_year
             LEFT JOIN
-                elite_make on elite_make.year_id = elite_year.id
+                elite_level_make on elite_level_make.year_id = elite_level_year.id
             LEFT JOIN
-                elite_model on elite_model.make_id = elite_make.id
+                elite_level_model on elite_level_model.make_id = elite_level_make.id
             WHERE
-                elite_year.title = %s
+                elite_level_year.title = %s
             AND
-                elite_make.title = %s
+                elite_level_make.title = %s
             AND
-                elite_model.title = %s
+                elite_level_model.title = %s
             ",
             $this->getReadAdapter()->quote( $year ),
             $this->getReadAdapter()->quote( $make ),
@@ -429,45 +429,6 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
 			return false;
         }
         return new Elite_Vaf_Model_Level( 'model', $row->id );
-    }
-    
-    protected function findEntityFromFullPathMMOY( $make, $model, $option, $year )
-    {
-        $sql = sprintf(
-            "
-            SELECT
-                elite_year.*
-            FROM   
-                elite_make
-            LEFT JOIN
-                elite_model on elite_model.make_id = elite_make.id
-            LEFT JOIN
-                elite_option on elite_option.model_id = elite_model.id
-            LEFT JOIN
-                elite_year on elite_year.option_id = elite_option.id
-            WHERE
-                elite_make.title = %s
-            AND
-                elite_model.title = %s
-            AND
-                elite_option.title = %s
-            AND
-                elite_year.title = %s
-            ",
-            $this->getReadAdapter()->quote( $make ),
-            $this->getReadAdapter()->quote( $model ),
-            $this->getReadAdapter()->quote( $option ),
-            $this->getReadAdapter()->quote( $year )
-        );
-        $result = $this->query( $sql );
-        $row = $result->fetchObject();
-        $result->closeCursor();
-        
-        if(!$row)
-        {
-			return;
-        }
-        return new Elite_Vaf_Model_Level( 'year', $row->id );
     }
     
     protected function findEntityByTitle( $type, $title, $parent_id = 0 )

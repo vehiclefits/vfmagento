@@ -6,10 +6,10 @@ class Elite_Vaf_Model_SchemaTests_MMY_SchemaTest extends Elite_Vaf_TestCase
         $this->switchSchema('make,model,year');
     }
     
-    function testLevelsMMY()
+    function testLevels()
     {
         $schema = new Elite_Vaf_Model_Schema();
-        $this->assertEquals( array( 'make','model','year'), $schema->getLevels(), 'should get levels MMY' );
+        $this->assertEquals( array( 'make','model','year'), $schema->getLevels(), 'should get levels' );
     }
     
     function testGetRootLevel()

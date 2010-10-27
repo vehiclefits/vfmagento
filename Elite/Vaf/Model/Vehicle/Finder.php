@@ -124,12 +124,12 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
         	if(strpos($value,'-') || false !== strpos($value,'*'))
         	{
                 $value = $this->regexifyValue($value);
-                $where = $this->getReadAdapter()->quoteInto('elite_'.$level.'.title RLIKE ?', '^' . $value . '$' );
+                $where = $this->getReadAdapter()->quoteInto('elite_level_' . $level . '.title RLIKE ?', '^' . $value . '$' );
                 $select->where($where);
 			}
             else
 			{
-                $select->where('elite_'.$level.'.title = ?',$value);
+                $select->where('elite_level_' . $level . '.title = ?',$value);
 			}
         }
           
@@ -244,8 +244,8 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
         
         foreach( $levels as $level )
         {
-            $columns[ $level.'_id' ] = 'elite_'.$level . '.id';
-            $columns[ $level ]		 = 'elite_'.$level . '.title';
+            $columns[ $level.'_id' ] = 'elite_level_'.$level . '.id';
+            $columns[ $level ]		 = 'elite_level_'.$level . '.title';
         }
         return $columns;
     }
@@ -257,8 +257,8 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
         
         foreach( $levels as $level )
         {
-        	$condition = sprintf( '`elite_%1$s`.`id` = `elite_definition`.`%1$s_id`', $level );
-            $select->joinLeft('elite_'.$level, $condition ); 
+        	$condition = sprintf( '`elite_level_%1$s`.`id` = `elite_definition`.`%1$s_id`', $level );
+            $select->joinLeft('elite_level_'.$level, $condition ); 
         }
     }
     

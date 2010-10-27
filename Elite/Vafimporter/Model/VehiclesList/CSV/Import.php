@@ -83,13 +83,13 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     {
         if( $this->getSchema()->getRootLevel() == $level || $this->getSchema()->isGlobal($level))
         {
-            $sql = sprintf('INSERT INTO elite_%1$s (title) SELECT DISTINCT %1$s FROM elite_import WHERE %1$s_id = 0',$level);
+            $sql = sprintf('INSERT INTO elite_level_%1$s (title) SELECT DISTINCT %1$s FROM elite_import WHERE %1$s_id = 0',$level);
             $this->query($sql);
         }
         else
         {
             $sql = sprintf(
-                'INSERT INTO `elite_%1$s` (`title`, `%2$s_id`) SELECT DISTINCT `%1$s`, `%2$s_id` FROM `elite_import` WHERE `%1$s_id` = 0',
+                'INSERT INTO `elite_level_%1$s` (`title`, `%2$s_id`) SELECT DISTINCT `%1$s`, `%2$s_id` FROM `elite_import` WHERE `%1$s_id` = 0',
                 $level,
                 $this->getSchema()->getPrevLevel($level)
             );
@@ -101,12 +101,12 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     {
         if( $this->getSchema()->getRootLevel() == $level || $this->getSchema()->isGlobal($level))
         {
-            $this->query(sprintf('UPDATE elite_import i, elite_%1$s l SET i.%1$s_id = l.id WHERE l.title = i.%1$s',$level));
+            $this->query(sprintf('UPDATE elite_import i, elite_level_%1$s l SET i.%1$s_id = l.id WHERE l.title = i.%1$s',$level));
         }
         else
         {        
             $sql = sprintf(
-                'UPDATE elite_import i, `elite_%1$s` l
+                'UPDATE elite_import i, `elite_level_%1$s` l
                 SET i.`%1$s_id` = l.id
                 WHERE i.`%1$s` = l.title AND i.`%2$s_id` = l.`%2$s_id`',
                 $level,
@@ -224,7 +224,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     {
         foreach($this->getSchema()->getLevels() as $level )
         {
-            $select = $this->getReadAdapter()->select()->from('elite_'.$level,'count(*)');
+            $select = $this->getReadAdapter()->select()->from('elite_level_'.$level,'count(*)');
             $result = $select->query()->fetchColumn();
             $this->start_count_added_by_level[$level] = $result;
         }
@@ -248,7 +248,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     {
         foreach($this->getSchema()->getLevels() as $level )
         {
-            $select = $this->getReadAdapter()->select()->from('elite_'.$level,'count(*)');
+            $select = $this->getReadAdapter()->select()->from('elite_level_'.$level,'count(*)');
             $result = $select->query()->fetchColumn();
             $this->stop_count_added_by_level[$level] = $result;
             $this->count_added_by_level[$level] = $this->stop_count_added_by_level[$level] - $this->start_count_added_by_level[$level];

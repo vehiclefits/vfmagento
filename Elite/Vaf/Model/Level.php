@@ -257,10 +257,10 @@ class Elite_Vaf_Model_Level implements Elite_Vaf_Configurable
         else
         {
             $select = $this->getReadAdapter()->select()
-                ->from('elite_'.$this->getSchema()->getRootLevel(), $this->vehicleFinder()->getColumns() );
+                ->from('elite_level_'.$this->getSchema()->getRootLevel(), $this->vehicleFinder()->getColumns() );
             $select .= $this->getJoinsNoDefinition();
-            $select .= sprintf(" WHERE `elite_%s`.`id` = %d", $this->getSchema()->getLeafLevel(), $this->getId() );
-                    
+            $select .= sprintf(" WHERE `elite_level_%s`.`id` = %d", $this->getSchema()->getLeafLevel(), $this->getId() );
+                 
             $row = $this->query($select)->fetch(Zend_Db::FETCH_ASSOC);
         }
         if(!$row)
@@ -299,9 +299,9 @@ class Elite_Vaf_Model_Level implements Elite_Vaf_Configurable
             $joins .= sprintf(
                 '
                 LEFT JOIN
-                    `elite_%1$s`
+                    `elite_level_%1$s`
                 ON
-                    `elite_%1$s`.`%2$s_id` = `elite_%2$s`.`id`
+                    `elite_level_%1$s`.`%2$s_id` = `elite_level_%2$s`.`id`
                 ',
                 $level,
                 $this->getSchema()->getPrevLevel($level)
@@ -314,7 +314,7 @@ class Elite_Vaf_Model_Level implements Elite_Vaf_Configurable
     function requestedIdCorrespondsToExistingRecord($requestedSaveId)
     {
         $select = $this->getReadAdapter()->select()
-            ->from('elite_'.$this->getType(),'count(*)')
+            ->from($this->getTable(),'count(*)')
             ->where('id=?',(int)$requestedSaveId);
         $result = $this->getReadAdapter()->query($select);
         return (bool)$result->fetchColumn();
@@ -411,7 +411,7 @@ class Elite_Vaf_Model_Level implements Elite_Vaf_Configurable
 
     function getTable()
     {
-        return 'elite_' . $this->getType();
+        return 'elite_level_' . $this->getType();
     }
  
     function getLevels()

@@ -71,7 +71,7 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         }
         
         $q = $this->getReadAdapter()->select()
-            ->from(array('l'=>'elite_' . $entity->getNextLevel()))
+            ->from(array('l'=>'elite_level_' . $entity->getNextLevel()))
             ->joinLeft(array('d'=>'elite_definition'), 'l.id = d.' . $entity->getNextLevel() . '_id', array())
             ->where('d.' . $entity->getType() . '_id = ?', $entity->getId() )
             ->order('title')
@@ -112,7 +112,7 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         }
         
         $q = $this->getReadAdapter()->select()
-            ->from('elite_' . $entity->getNextLevel(), array(new Zend_Db_Expr('count(*)')))
+            ->from('elite_level_' . $entity->getNextLevel(), array(new Zend_Db_Expr('count(*)')))
             ->where( $entity->getType() . '_id = ?', $entity->getId() );
         
         $r = $this->query( $q );
@@ -247,7 +247,7 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         }
         
         $query = $this->getReadAdapter()->select()
-            ->from(array('l'=>'elite_'.$type))
+            ->from(array('l'=>'elite_level_'.$type))
             ->where('`title` LIKE binary ?', $title );
         
         if( !$this->getSchema()->isGlobal($type) && is_numeric($parent_id) && $parent_id )

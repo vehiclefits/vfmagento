@@ -12,7 +12,7 @@ class Elite_Vafimporter_Model_VehiclesList_BaseExport
             ->from( array('d' => 'elite_definition') );    
         foreach( $this->schema()->getLevels() as $level )
         {
-            $table = 'elite_'.$level;
+            $table = 'elite_level_' . $level;
             $condition = sprintf('%s.id = d.%s_id', $table, $level );
             $select
                 ->joinLeft( $table, $condition, array($level=>'title') )
