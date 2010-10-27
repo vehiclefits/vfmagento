@@ -32,9 +32,6 @@
 $noteFinder = new Elite_Vafnote_Model_Finder();
 $vehicle = Elite_Vaf_Helper_Data::getInstance()->getFit();
 
-$_product = new Elite_Vaf_Model_Catalog_Product();
-$_product->setId( $_product_id );
-
 if( null == $vehicle )
 {
     echo 'Select a vehicle to view fitment notes';
