@@ -555,7 +555,7 @@
 
     <target name="upload" depends="dist">
         <!-- documentation -->
-        <exec command="rsync -r ${modulepath}/build/vaf/Elite/documentation/ vehiclefits.com:&quot;/var/www/vehiclefits.com/public_html/documentation-1.4/&quot;" />
+        <exec command="rsync -r ${modulepath}/build/vaf/Elite/documentation/ vehiclefits.com:&quot;/var/www/vehiclefits.com/public_html/documentation/&quot;" />
         
         <!-- change log -->
         <exec command="scp ${modulepath}/build/vaf/Elite/Vaf/changelog.txt vehiclefits.com:&quot;/var/www/vehiclefits.com/views/changelog_data.phtml&quot;" />
