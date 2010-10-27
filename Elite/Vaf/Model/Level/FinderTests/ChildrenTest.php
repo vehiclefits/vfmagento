@@ -40,10 +40,16 @@ class Elite_Vaf_Model_Level_FinderTests_ChildrenTest extends Elite_Vaf_TestCase
         $this->assertEquals( 1, count($children), 'gets back only the right make' );
     }
     
+    function testGetChildrenModel()
+    {
+        $vehicle = $this->createMMY();
+        $this->assertEquals( 1, count($vehicle->getLevel('make')->getChildren()), 'get child count should count the model we just inserted' );
+    }
+    
     function testGetChildCount()
     {
         $vehicle = $this->createMMY();
-        $this->assertSame( 1, $vehicle->getLevel('make')->getChildCount(), 'get child count should count the model we just inserted' );
+        $this->assertEquals( 1, $vehicle->getLevel('make')->getChildCount(), 'get child count should count the model we just inserted' );
     }
     
     function testShouldReturn0AfterDeletingChildren()

@@ -112,9 +112,11 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         }
         
         $q = $this->getReadAdapter()->select()
-            ->from('elite_level_' . $entity->getNextLevel(), array(new Zend_Db_Expr('count(*)')))
-            ->where( $entity->getType() . '_id = ?', $entity->getId() );
-        
+            ->from(array('l'=>'elite_level_' . $entity->getNextLevel()), 'count(distinct(l.id))')
+            ->joinLeft(array('d'=>'elite_definition'), 'l.id = d.' . $entity->getNextLevel() . '_id', array())
+            ->where('d.' . $entity->getType() . '_id = ?', $entity->getId() )
+            ->where('d.' . $entity->getNextLevel() . '_id != 0' );
+                              
         $r = $this->query( $q );
         return (int)$r->fetchColumn();
     }

@@ -73,8 +73,6 @@ class Elite_Vaf_Model_Level_FinderTests_ChildrenGlobalTest extends Elite_Vaf_Tes
     
     function testShouldSearchUnderMultipleParentId2()
     {
-        return $this->markTestIncomplete();
-        
         $y2000 = $this->newYear('2000');
         $y2000->save();
         
