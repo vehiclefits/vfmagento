@@ -178,7 +178,7 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
             $value = false;
             $value = isset($levelIds[$level]) ? $levelIds[$level] : $value;
             $value = isset($levelIds[$level . '_id']) ? $levelIds[$level . '_id'] : $value;
-            if( $value !== false )
+            if( $value != false )
             {
                 $select->where('`elite_definition`.`' . $level . '_id` = ?',$value);
             }
@@ -197,6 +197,16 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
         $return = array();
         foreach( $result as $row )
         {
+            
+            foreach($this->schema->getLevels() as $level)
+            {
+                if(isset($levelIds[$level]) && $levelIds[$level] === 0)
+                {
+                    $row->{$level . '_id'} = 0;
+                    $row->{$level} = '';
+                }
+            }
+            
             $vehicle = new Elite_Vaf_Model_Vehicle( $this->schema, $row->id, $row );
             array_push($return, $vehicle);
         }

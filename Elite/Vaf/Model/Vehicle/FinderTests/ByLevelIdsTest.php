@@ -32,6 +32,15 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelsIdsTest extends Elite_Vaf_Mode
         $this->assertEquals(1,count($vehicles),'should find partial vehicle by make');
     }
     
+    function testShouldFindPartialVehicleMake2()
+    {
+        $vehicle = $this->createMMY('Honda','Civic','2000');
+        $make = $vehicle->getLevel('make');
+        
+        $vehicles = $this->getFinder()->findByLevelIds( array('make'=>$make->getId()), true );
+        $this->assertEquals(3,count($vehicles),'should find partial vehicle by make');
+    }
+    
     function testPartialVehicleShouldHaveMakeID()
     {
         $make = new Elite_Vaf_Model_Level('make');

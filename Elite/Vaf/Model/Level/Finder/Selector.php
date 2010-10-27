@@ -44,7 +44,7 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
         $row = $select->query()->fetchObject();
         if( !is_object( $row ) )
         {
-            throw new Exception( 'error initializing model with level [' . $level . '] and id [' . $id . ']' );
+            throw new Elite_Vaf_Model_Level_Exception_NotFound( 'error initializing model with level [' . $level . '] and id [' . $id . ']' );
         }
         
         $level = new Elite_Vaf_Model_Level($level,$id);

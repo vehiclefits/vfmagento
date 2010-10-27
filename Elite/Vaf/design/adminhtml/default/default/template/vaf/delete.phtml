@@ -18,10 +18,10 @@
             <br />
             <a href="<?=$this->getDeleteUrl( $this->model->getId(), 1 )?>">Yes</a> | 
             <?php
-            $url = Mage::helper('adminhtml')->getUrl('*/definitions/index', array(
-                'entity' => $this->entity,
-                'id' => $this->id
-            ));
+            $url = Mage::helper('adminhtml')->getUrl('*/definitions/index', array());
+            $url .= '?entity=' . $this->getEntity()->getType();
+            $params = $this->requestLevels();
+            $url .= '&' . http_build_query($params);
             ?>
             <a href="<?=$url?>">No</a>
         </div>
