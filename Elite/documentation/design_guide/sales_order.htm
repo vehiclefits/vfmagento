@@ -66,7 +66,7 @@
             }
             catch( Exception $e )
             {
-             echo 'Unable to access vehicle information. Vehicle deleted';
+             echo 'Unable to access vehicle information. Exception occured: ' . $e->getTraceAsString();
             }
         }
         ?&gt;

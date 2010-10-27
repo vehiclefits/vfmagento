@@ -9,7 +9,7 @@ class Vaf16
         foreach( $schema->getLevels() as $level )
         {
             $old = 'elite_' . $level;
-            $old = 'elite_level_' . $level;
+            $new = 'elite_level_' . $level;
             $db->query(sprintf("RENAME TABLE %s TO %s", $old, $new));  
         }
         

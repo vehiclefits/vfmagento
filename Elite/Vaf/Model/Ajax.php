@@ -26,7 +26,14 @@ class Elite_Vaf_Model_Ajax implements Elite_Vaf_Configurable
         $c = count( $levels );
         
         $levelFinder = new Elite_Vaf_Model_Level_Finder();
-        $children = $levelFinder->listAll( $this->requestLevel(), $this->requestLevels() );
+        if( isset( $_GET['front'] ) )
+        {
+            $children = $levelFinder->listInUse( new Elite_Vaf_Model_Level($this->requestLevel()), $this->requestLevels() );
+        }
+        else
+        {
+            $children = $levelFinder->listAll( $this->requestLevel(), $this->requestLevels() );
+        }
         
         echo $this->renderChildren($children);
     }
