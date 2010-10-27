@@ -64,9 +64,9 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelsIdsTest extends Elite_Vaf_Mode
     function testZeroShouldExcludeFullVehicle()
     {
         $vehicle = $this->createMMY('Honda','Civic','2000');
-        
+
         $vehicles = $this->getFinder()->findByLevelIds( array('make'=>$vehicle->getValue('make'), 'model'=>0, 'year'=>0) );
-        $this->assertEquals( 0, count($vehicles), 'zero should exclude full vehicles');
+        $this->assertEquals( 1, count($vehicles), 'zero should exclude full vehicles');
     }
     
 }

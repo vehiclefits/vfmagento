@@ -168,6 +168,15 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
     */
     function findByLevelIds($levelIds,$includePartials=false)
     {
+        foreach( $this->schema->getLevels() as $level )
+        {
+            $value = false;
+            $value = isset($levelIds[$level]) ? $levelIds[$level] : $value;
+            $value = isset($levelIds[$level . '_id']) ? $levelIds[$level . '_id'] : $value;
+            unset($levelIds[$level . '_id']);
+            $levelIds[$level] = $value;
+        }
+        
         $select = new Elite_Vaf_Select($this->getReadAdapter());
         $select
             ->from( 'elite_definition' )

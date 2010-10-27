@@ -1,3 +1,48 @@
+Vehicle Fits - 1.18 (Scheduled For Release 2010-10-31) [ View Issues ]
+======================================================
+- 0000181: [Vehicles List Import/Export] Add better error handling for import/export
+- 0000743: [Vehicles List Import/Export] Should report # of vehicles added on import
+- 0000742: [Configuration] Should be able to configure threshold for Y2k Mode
+- 0000741: [Configuration] Should be able to disable Y2k mode
+- 0000663: [Other] Should be able to set a level as "global" in the schema
+- 0000736: [Vehicles List Import/Export] Should convert 2 digit years to 4 digit years on year range
+- 0000735: [Vehicles List Import/Export] Should import year range in single column as alternate format
+- 0000535: [Fitment Notes] Be able to override a "full" mapping by later importing one for the same vehicle+product but with notes
+- 0000709: [Documentation] Should have documentation for SEO product title rewriting.
+- 0000700: [Automotive SEO] Should have option to globally rewrite product titles (to rewrite the page's title tag)
+- 0000733: [Other] Should trim white space from vehicle "levels" on import/save
+- 0000734: [Vehicles List Import/Export] Integrity constraint violation can sometimes occur
+- 0000722: [Application Fitments Import/export] Should show performance information on import status
+- 0000727: [Application Fitments Import/export] Should report # of errors separate from # of "rows with errors"
+- 0000726: [Automotive SEO] Google base should include id attribute
+- 0000724: [Application Fitments Import/export] Should list example of skus that were skipped
+- 0000725: [Application Fitments Import/export] Skipped count should show only unique skipped SKUs when reporting non-existing sku
+- 0000720: [Other] /vaf/js should send application/x-javascript header
+- 0000686: [Search Filter] Category view search results should have CSS class names
+- 0000561: [Catalog / Category] Splash page should automatically disable layered navigation
+- 0000710: [Product Application Fitments] Should be able to use wildcard within a make/model/year
+- 0000711: [Product Application Fitments] Should be able to separate SKUs by comma
+- 0000712: [Application Fitments Import/export] Should be able to use wildcard in sku
+- 0000635: [Wheels Module] wheel, tire sizes should be shown in admin regardless of universal setting
+- 0000569: [Other] fitment notes notes tweak message
+- 0000707: [Automotive SEO] should put id of product into google base
+- 0000706: [Fitment Notes] Should trim spaces on note messages when matching for existing message (import with no note code mode)
+- 0000690: [Catalog / Products] Quick add on product edit page
+- 0000697: [Automotive SEO] Google base export should strip HTML & newlines from descriptions
+- 0000689: [Vehicles List Import/Export] Should have ability to automatically put 'base' for ommited levels in import
+- 0000683: [Vehicles List Import/Export] Should take only ~15minutes or less to import 180k vehicles. Not 15hours.
+
+ISSUES
+- 0000666: [Search Filter] Label Template Is not used properly on ajax
+- 0000680: [Other] DB Upgrade script 14&15 not working
+- 0000716: [Automotive SEO] If vehicle has spaces & dashes, breaks SEO urls
+- 0000740: [Other] Issue creating level with reserved table names
+- 0000708: [Documentation] 'Selected vehicle' design snippet glitch when no vehicle selected
+- 0000693: [Automotive SEO] links module should work on page other than home page
+- 0000672: [Tires] Product Tire Size import crashes on non found sku
+- 0000703: [Other] When upgrading, config.php in cron/ folder gets overriden for sitemap, and importer modules
+- 0000688: [Fitment Notes] If Product is Universal or has no fit, all Fitment notes are displayed
+
 1.17 September 22, 2010  
 ======================================================
 - 0000677: [Vehicles List Import/Export] Should log vehicles list imports

@@ -3,7 +3,7 @@
 <config>
     <modules>
         <Elite_Vafsitemap>
-            <version>1.18-beta4</version>
+            <version>1.18</version>
         </Elite_Vafsitemap>
     </modules>
     <global>
