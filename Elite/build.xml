@@ -555,14 +555,14 @@
 
     <target name="upload" depends="dist">
         <!-- documentation -->
-        <exec command="rsync -r ${modulepath}/build/vaf/Elite/documentation/ vehiclefits.com:&quot;/var/www/vaf/public_html/documentation-1.4/&quot;" />
+        <exec command="rsync -r ${modulepath}/build/vaf/Elite/documentation/ vehiclefits.com:&quot;/var/www/vehiclefits.com/public_html/documentation-1.4/&quot;" />
         
         <!-- change log -->
-        <exec command="scp ${modulepath}/build/vaf/Elite/Vaf/changelog.txt vehiclefits.com:&quot;/var/www/vaf/views/changelog_data.phtml&quot;" />
+        <exec command="scp ${modulepath}/build/vaf/Elite/Vaf/changelog.txt vehiclefits.com:&quot;/var/www/vehiclefits.com/views/changelog_data.phtml&quot;" />
     
 	    <!-- free -->
-        <exec command="scp ${modulepath}/vaf-${version}.tar.gz ne8.net:&quot;/var/www/vaf/public_html/free/vaf-free-${version}.tar.gz&quot;" />
-        <exec command="scp ${modulepath}/vaf-${version}.zip ne8.net:&quot;/var/www/vaf/public_html/free/vaf-free-${version}.zip&quot;" />
+        <exec command="scp ${modulepath}/vaf-${version}.tar.gz ne8.net:&quot;/var/www/vehiclefits.com/public_html/free/vaf-free-${version}.tar.gz&quot;" />
+        <exec command="scp ${modulepath}/vaf-${version}.zip ne8.net:&quot;/var/www/vehiclefits.com/public_html/free/vaf-free-${version}.zip&quot;" />
         
         <!-- starter -->
 	    <exec command="scp ${packagepath}/vaf-starter-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Starter/&quot;" />
