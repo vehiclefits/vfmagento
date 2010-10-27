@@ -81,7 +81,7 @@ class Elite_Vaf_Admin_DefinitionsController extends Mage_Adminhtml_Controller_Ac
         if( $this->getRequest()->getParam( 'confirm' ) )
         {
             $vehicle->unlink();
-            header( 'Location:' . $this->getListUrl2($this->getEntity()->getType()) . '?' . http_build_query($vehicle->toValueArray()));
+            header( 'Location:' . $this->getListUrl2($this->getEntity()->getType()) . '?' . http_build_query($this->requestLevels()));
             exit();
         }
         
