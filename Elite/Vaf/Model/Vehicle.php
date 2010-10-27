@@ -233,6 +233,19 @@ class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
         }
         $where = implode(' && ', $where);
         $this->query('DELETE FROM elite_definition WHERE ' . $where);
+        
+        $this->deleteAfterUnlink();
+    }
+    
+    function deleteAfterUnlink()
+    {
+        foreach(array_reverse($this->getLevels()) as $level)
+        {
+            if($this->getLevel($level)->getId())
+            {
+                return $this->getLevel($level)->delete();
+            }
+        }
     }
     
     protected function getLevels()
