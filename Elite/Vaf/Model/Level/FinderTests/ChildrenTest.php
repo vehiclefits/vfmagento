@@ -1,6 +1,10 @@
 <?php
 class Elite_Vaf_Model_Level_FinderTests_ChildrenTest extends Elite_Vaf_TestCase
 {
+    protected function doSetUp()
+    {
+        $this->switchSchema('make,model,year');
+    }
     
     function testFindChildren()
     {
@@ -40,6 +44,13 @@ class Elite_Vaf_Model_Level_FinderTests_ChildrenTest extends Elite_Vaf_TestCase
     {
         $vehicle = $this->createMMY();
         $this->assertSame( 1, $vehicle->getLevel('make')->getChildCount(), 'get child count should count the model we just inserted' );
+    }
+    
+    function testShouldReturn0AfterDeletingChildren()
+    {
+        $vehicle = $this->createMMY();
+        $vehicle->getLevel('year')->delete();
+        $this->assertSame( 0, $vehicle->getLevel('model')->getChildCount(), 'should return 0 after deleting children' );
     }
     
 }

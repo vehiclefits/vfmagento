@@ -75,7 +75,7 @@ class Elite_Vaf_Admin_DefinitionsController extends Mage_Adminhtml_Controller_Ac
 
         $params = $this->requestLevels();
         $params[ $this->getEntity()->getType()] = $id;
-        $vehicle = $this->vehicleFinder()->findByLevelIds($params);
+        $vehicle = $this->vehicleFinder()->findByLevelIds($params, true);
         $vehicle = $vehicle[0];
         
         if( $this->getRequest()->getParam( 'confirm' ) )
