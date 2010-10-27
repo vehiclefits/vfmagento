@@ -1,4 +1,4 @@
-Vehicle Fits - 1.18 (Scheduled For Release 2010-10-31) [ View Issues ]
+Vehicle Fits - 1.18 Oct 27, 2010  
 ======================================================
 - 0000181: [Vehicles List Import/Export] Add better error handling for import/export
 - 0000743: [Vehicles List Import/Export] Should report # of vehicles added on import
