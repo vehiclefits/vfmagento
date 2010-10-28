@@ -1,4 +1,9 @@
-Vehicle Fits - 1.18 Oct 27, 2010  
+1.19 October 28, 2010
+======================================================
+ISSUES
+- 0000748: [Search Filter] Product cross-over when using 'global year' in MMY mode
+
+1.18 October 27, 2010  
 ======================================================
 - 0000181: [Vehicles List Import/Export] Add better error handling for import/export
 - 0000743: [Vehicles List Import/Export] Should report # of vehicles added on import
