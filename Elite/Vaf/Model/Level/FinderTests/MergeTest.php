@@ -7,6 +7,7 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
     }
     
     // @todo what about a way to merge a make with a model, or year (by traversing the level closest to the root level, and "blowing out" all applicable vehicles).
+    
     function testShouldMergeYear()
     {
         $vehicle1 = $this->createMMY('Honda','Civic','2000');
@@ -15,12 +16,44 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
         $year1 = $vehicle1->getLevel('year');
         $year2 = $vehicle2->getLevel('year');
         
-        $levelsToBeMerged = array('year'=>$year1,'year'=>$year2);
-        $levelToMergeInto = array('year'=>$year2);
+        $levelsToBeMerged = array(
+            'year'=>$year1,
+            'year'=>$year2
+        );
+        $levelToMergeInto = array(
+            'year'=>$year2
+        );
         $this->levelFinder()->merge( $levelsToBeMerged, $levelToMergeInto );
         
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );
         $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2001)) );
+    }
+    
+    function testShouldMergeModel()
+    {
+        $vehicle1 = $this->createMMY('Honda','Civic','2000');
+        $vehicle2 = $this->createMMY('Honda','Accord','2001');
+        
+        $model1 = $vehicle1->getLevel('model');
+        $model2 = $vehicle2->getLevel('model');
+        
+        $levelsToBeMerged = array(
+            'model'=>$model1,
+            'model'=>$model2
+        );
+        $levelToMergeInto = array(
+            'model'=>$model2
+        );
+        $this->levelFinder()->merge( $levelsToBeMerged, $levelToMergeInto );
+        
+        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );
+        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Accord','year'=>2001)) );
+    }
+    
+    
+    function testShouldMergeYears_WhenMergeModel()
+    {
+        return $this->markTestIncomplete();
     }
     
     function testShouldMergeProductApplications()
