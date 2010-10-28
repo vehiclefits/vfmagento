@@ -46,6 +46,7 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
     {
         $vehicle1 = $this->createMMY('Honda','Civic','2000');
         $vehicle2 = $this->createMMY('Honda','Accord','2001');
+        $vehicle3 = $this->createMMY('Honda','Civic','2002');
         
         $slaveLevels = array(
             array('model', $vehicle1 ),
@@ -56,6 +57,7 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
         
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Accord','year'=>2000)) );
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Accord','year'=>2001)) );
+        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Accord','year'=>2002)) );
         
         $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic')) );
     }
