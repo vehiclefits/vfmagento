@@ -17,11 +17,11 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
         $year2 = $vehicle2->getLevel('year');
         
         $levelsToBeMerged = array(
-            'year'=>$year1,
-            'year'=>$year2
+            'year'=>$vehicle1,
+            'year'=>$vehicle2
         );
         $levelToMergeInto = array(
-            'year'=>$year2
+            'year'=>$vehicle2
         );
         $this->levelFinder()->merge( $levelsToBeMerged, $levelToMergeInto );
         
@@ -38,11 +38,11 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
         $model2 = $vehicle2->getLevel('model');
         
         $levelsToBeMerged = array(
-            'model'=>$model1,
-            'model'=>$model2
+            'model'=>$vehicle1,
+            'model'=>$vehicle2
         );
         $levelToMergeInto = array(
-            'model'=>$model2
+            'model'=>$vehicle2
         );
         $this->levelFinder()->merge( $levelsToBeMerged, $levelToMergeInto );
         
