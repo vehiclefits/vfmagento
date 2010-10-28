@@ -54,15 +54,15 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
     }
     
     /**
-    * @param aray $levelsToBeMerged - Ex. array('year'=>$year1,'year'=>$year2);
-    * @param array $levelToMergeInto - Ex. array('year'=>$year2);
+    * @param aray $slaveLevels - Ex. array('year'=>$year1,'year'=>$year2);
+    * @param array $masterLevel - Ex. array('year'=>$year2);
     */
-    function merge( $levelsToBeMerged, $levelToMergeInto )
+    function merge( $slaveLevels, $masterLevel )
     {
-        $master_level_type = current($levelToMergeInto);
-        $master_vehicle = next($levelToMergeInto);
+        $master_level_type = current($masterLevel);
+        $master_vehicle = next($masterLevel);
         
-        foreach($levelsToBeMerged as $levelsToBeMergedArray)
+        foreach($slaveLevels as $levelsToBeMergedArray)
         {
             $level_type = current($levelsToBeMergedArray);
             $vehicle_object = next($levelsToBeMergedArray);

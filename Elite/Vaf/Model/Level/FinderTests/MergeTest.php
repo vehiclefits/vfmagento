@@ -13,13 +13,13 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
         $vehicle1 = $this->createMMY('Honda','Civic','2000');
         $vehicle2 = $this->createMMY('Honda','Civic','2001');
         
-        $levelsToBeMerged = array(
+        $slaveLevels = array(
             array('year', $vehicle1 ),
             array('year', $vehicle2 ),
         );
-        $levelToMergeInto = array('year', $vehicle2 );
+        $masterLevel = array('year', $vehicle2 );
         
-        $this->levelFinder()->merge( $levelsToBeMerged, $levelToMergeInto );
+        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
         
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2001)) );
         $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );
@@ -30,12 +30,12 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
         $vehicle1 = $this->createMMY('Honda','Civic','2000');
         $vehicle2 = $this->createMMY('Honda','Accord','2001');
         
-        $levelsToBeMerged = array(
+        $slaveLevels = array(
             array('model', $vehicle1 ),
             array('model', $vehicle2 ),
         );
-        $levelToMergeInto = array('model', $vehicle2 );
-        $this->levelFinder()->merge( $levelsToBeMerged, $levelToMergeInto );
+        $masterLevel = array('model', $vehicle2 );
+        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
         
         $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic')) );
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Accord')) );
@@ -47,12 +47,12 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
         $vehicle1 = $this->createMMY('Honda','Civic','2000');
         $vehicle2 = $this->createMMY('Honda','Accord','2001');
         
-        $levelsToBeMerged = array(
+        $slaveLevels = array(
             array('model', $vehicle1 ),
             array('model', $vehicle2 ),
         );
-        $levelToMergeInto = array('model', $vehicle2 );
-        $this->levelFinder()->merge( $levelsToBeMerged, $levelToMergeInto );
+        $masterLevel = array('model', $vehicle2 );
+        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
         
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Accord','year'=>2000)) );
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Accord','year'=>2001)) );
