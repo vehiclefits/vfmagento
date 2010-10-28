@@ -60,6 +60,25 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
         $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic')) );
     }
     
+    
+    function testShouldMergeModels_WhenMergeMakes()
+    {
+        $vehicle1 = $this->createMMY('Honda','Civic','2000');
+        $vehicle2 = $this->createMMY('Honda-oops','Civic','2000');
+        $vehicle3 = $this->createMMY('Honda-oops','Civic','2001');
+        
+        $slaveLevels = array(
+            array('make', $vehicle1 ),
+            array('make', $vehicle2 ),
+        );
+        $masterLevel = array('make', $vehicle1 );
+        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        
+        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );        
+        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2001)) );        
+        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda-oops')) );
+    }
+    
     function testShouldMergeProductApplications()
     {
         return $this->markTestIncomplete();
