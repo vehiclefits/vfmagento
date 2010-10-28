@@ -76,14 +76,19 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
             {
                 foreach($level->getChildren() as $child)
                 {
-                    $titles = $master_vehicle->toTitleArray();
-                    $titles[$child->getType()] = $child->getTitle();
-                    $new_vehicle = Elite_Vaf_Model_Vehicle::create($this->getSchema(), $titles);
-                    $new_vehicle->save();
+                    $this->merge_child_to_vehicle($child, $master_vehicle);
                 }
             }
             $level->delete();
         }
+    }
+    
+    function merge_child_to_vehicle($child, $master_vehicle)
+    {
+        $titles = $master_vehicle->toTitleArray();
+        $titles[$child->getType()] = $child->getTitle();
+        $new_vehicle = Elite_Vaf_Model_Vehicle::create($this->getSchema(), $titles);
+        $new_vehicle->save();
     }
     
     function __call($name, $arguments) {
