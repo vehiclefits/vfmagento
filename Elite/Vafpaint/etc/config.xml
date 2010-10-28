@@ -51,6 +51,30 @@
             </vaf>
 
         </menu>
+        
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <vaf>
+                            <children>
+                                <paintcodes translate="title">
+                                    <title>Paint Codes</title>
+                                    <sort_order>150</sort_order>
+                                    <children>
+                                        <paintcodes translate="title">
+                                            <title>Import</title>
+                                            <action>adminhtml/paintcodes/import</action> 
+                                            <sort_order>20</sort_order>
+                                        </paintcodes>
+                                    </children>
+                                </paintcodes>
+                            </children>
+                        </vaf>
+                    </children>
+               </admin>
+           </resources>
+        </acl>
     </adminhtml>
 
     <admin>

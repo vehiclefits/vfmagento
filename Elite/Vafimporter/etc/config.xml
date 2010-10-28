@@ -53,6 +53,45 @@
                 </children>
             </vaf>
         </menu>
+        
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <vaf>
+                            <children>
+                                <vehicleslist>
+                                    <children>
+                                        <import translate="title">
+                                            <title>Import</title>
+                                            <action>adminhtml/vafdefinitionsimporter/index</action>
+                                        </import>
+                                        <export translate="title">
+                                            <title>Export</title>
+                                            <action>adminhtml/vafimporter/definitionsexport</action>
+                                        </export>
+                                    </children>
+                                </vehicleslist>
+                                <mappings translate="title">
+                                    <title>Product Applications</title>
+                                    <children>
+                                        <import translate="title">
+                                            <title>Import</title>
+                                            <action>adminhtml/vafmappingsimporter/index</action>
+                                        </import>
+                                        <export translate="title">
+                                            <title>Export</title>
+                                            <action>adminhtml/vafimporter/mappingsexport</action>
+                                        </export>
+                                    </children>
+                                    <sort_order>20</sort_order>
+                                </mappings>
+                            </children>
+                       </vaf>
+                   </children>
+               </admin>
+           </resources>
+        </acl>
     </adminhtml>
 
     <admin>

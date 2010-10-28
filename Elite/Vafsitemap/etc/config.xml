@@ -60,6 +60,29 @@
                 </children>
             </vaf>
         </menu>
+        
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <vaf>
+                            <children>
+                                <seo translate="title">
+                                    <title>SEO</title>
+                                    <children>
+                                        <export translate="title">
+                                            <title>Export</title>
+                                            <action>adminhtml/vafsitemap/export</action>
+                                        </export>
+                                    </children>
+                                    <sort_order>80</sort_order>
+                                </seo>
+                            </children>
+                        </vaf>
+                    </children>
+               </admin>
+           </resources>
+        </acl>
     </adminhtml>
 
     <admin>

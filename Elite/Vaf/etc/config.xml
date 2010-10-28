@@ -6,6 +6,7 @@
             <version>1.19</version>
         </Elite_Vaf>
     </modules>
+    
     <global>
 
         <blocks>
@@ -134,6 +135,41 @@
                 </children>
             </vaf>
         </menu>
+        
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <vaf translate="title">
+                            <title>Vehicle Fits</title>
+                            <sort_order>0</sort_order>
+                            <children>
+                                <vehicleslist translate="title">
+                                    <title>Vehicle List</title>
+                                    <sort_order>10</sort_order>
+                                    <children>
+                                        <local translate="title">
+                                            <title>Manage</title>
+                                            <action>adminhtml/definitions</action>
+                                        </local>
+                                    </children>
+                                </vehicleslist>
+                                <schema translate="title">
+                                    <title>Schema</title>
+                                    <sort_order>200</sort_order>
+                                    <children>
+                                        <local translate="title">
+                                            <title>Manage</title>
+                                            <action>adminhtml/schema</action>
+                                        </local>
+                                    </children>
+                                </schema>
+                            </children>
+                       </vaf>
+                   </children>
+               </admin>
+           </resources>
+        </acl>
     </adminhtml>
 
      <admin>

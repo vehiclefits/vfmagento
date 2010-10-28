@@ -25,6 +25,11 @@ class Elite_Vafimporter_Admin_VafdefinitionsimporterController extends Mage_Admi
     
     function indexAction()
     {
+        if(!Mage::getSingleton('admin/session')->isAllowed('vaf/vehicleslist/import'))
+        {
+            return $this->_forward('denied');
+        }
+    
         $this->checkVersion();
         
         $this->loadLayout();
@@ -37,6 +42,11 @@ class Elite_Vafimporter_Admin_VafdefinitionsimporterController extends Mage_Admi
         
         $this->_addContent( $block );
         $this->renderLayout();
+    }
+    
+    protected function _isAllowedAction($action)
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('cms/page/' . $action);
     }
     
     function myIndexAction()
