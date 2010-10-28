@@ -1,6 +1,11 @@
 <?php
 class Elite_Vaf_Model_FlexibleSearchTests_FitMMYTest extends Elite_Vaf_Helper_DataTestCase
 {
+    protected function doSetUp()
+    {
+        $this->switchSchema('make,model,year');
+    }
+    
     function testGetFitId()
     {
         $vehicle = $this->createMMY();

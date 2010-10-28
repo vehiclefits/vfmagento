@@ -213,7 +213,16 @@ class Elite_Vaf_Model_FlexibleSearch implements Elite_Vaf_Model_FlexibleSearch_I
         
         $level = $this->getLevel();
         $where = ' `universal` = 1 '; 
-        $where .= sprintf( ' OR `%s_id` = %d  ', $level, (int)$this->getSelectedDefinition()->getLevel($level)->getId() );
+        $where .= 'OR (';
+            foreach($this->schema()->getLevels() as $level_type)
+            {
+                if($level_type != $this->schema()->getRootLevel())
+                {
+                    $where .= ' && ';
+                }
+                $where .= sprintf( ' `%s_id` = %d  ', $level_type, (int)$this->getSelectedDefinition()->getLevel($level_type)->getId() );
+            }
+        $where .= ')';
         $rows = $this->getReadAdapter()->fetchAll("SELECT distinct( entity_id ) FROM elite_mapping WHERE  $where");
         
         if( count( $rows ) == 0 )

@@ -82,9 +82,4 @@ class Elite_Vaf_Helper_DataTest_DataTest extends Elite_Vaf_Helper_DataTestCase
         $this->assertEquals( '', $helper->getLoadingText() );
     }
     
-    function storesPartialFitInSession()
-    {
-		return $this->fail();
-    }
-    
 }

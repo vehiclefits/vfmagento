@@ -72,9 +72,18 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
                 continue;
             }
             $level = $vehicle_object->getLevel($level_type);
+            $this->mergeFitments($vehicle_object,$master_vehicle);
             $this->doMerge($level,$master_vehicle);
             $level->delete();
         }
+    }
+    
+    function mergeFitments($vehicle_object, $master_vehicle)
+    {
+//        foreach($this->getProductsTha($vehicle_object) as $fitment)
+//        {
+//            $
+//        }
     }
     
     function doMerge($level, $master_vehicle)
