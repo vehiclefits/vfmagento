@@ -19,7 +19,6 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
         $levelToMergeInto = array('year'=>$year2);
         $this->levelFinder()->merge( $levelsToBeMerged, $levelToMergeInto );
         
-        return $this->markTestIncomplete();
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );
         $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2001)) );
     }

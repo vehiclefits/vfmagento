@@ -59,7 +59,10 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
     */
     function merge( $levelsToBeMerged, $levelToMergeInto )
     {
-        
+        foreach($levelsToBeMerged as $level_type => $level_object)
+        {
+            $level_object->delete();
+        }
     }
     
     function __call($name, $arguments) {

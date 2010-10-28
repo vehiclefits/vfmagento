@@ -458,4 +458,5 @@ class Elite_Vaf_Model_Level implements Elite_Vaf_Configurable
     {
         return Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
     }
+
 }
