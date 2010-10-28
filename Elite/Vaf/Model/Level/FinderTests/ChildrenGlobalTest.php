@@ -92,4 +92,32 @@ class Elite_Vaf_Model_Level_FinderTests_ChildrenGlobalTest extends Elite_Vaf_Tes
         $this->assertEquals( 1, $children, 'should search under multiple parent id' );
     }
     
+    /**
+    * @expectedException Exception
+    */
+    function testShouldThrowExceptionOnAmbiguousRequest()
+    {
+        $y2000 = $this->newYear('2000');
+        $y2000->save();
+        
+        $honda = $this->newMake('Honda');
+        $honda->save($y2000->getId());
+        
+        $children = $honda->getChildCount();
+    }
+    
+    /**
+    * @expectedException Exception
+    */
+    function testShouldThrowExceptionOnAmbiguousRequest2()
+    {
+        $y2000 = $this->newYear('2000');
+        $y2000->save();
+        
+        $honda = $this->newMake('Honda');
+        $honda->save($y2000->getId());
+        
+        $children = $honda->getChildren();
+    }
+    
 }

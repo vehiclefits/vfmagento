@@ -1,0 +1,20 @@
+<form action="?" method="POST">
+    <?php echo $this->getBlockHtml('formkey')?>
+    <input type="hidden" name="entity" value="<?=$this->level?>" />
+    <?php
+    foreach($_POST['selected'] as $selected)
+    {
+        ?>
+        <input type="hidden" name="selected[]" value="<?=$selected?>" />
+        <?php
+    }
+    
+    foreach($this->slaveLevels as $vehicle)
+    {
+        echo '<input name="master" type="radio" value="' . $vehicle[1]->getValue($this->level) . '" />';
+        echo $vehicle[0] . ': ' . $vehicle[1];
+        echo '<br />';
+    }
+    ?>
+    <input type="submit" value="Merge" />
+</form>

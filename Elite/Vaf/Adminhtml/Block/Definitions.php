@@ -92,6 +92,13 @@ class Elite_Vaf_Adminhtml_Block_Definitions extends Elite_Vaf_Block_Abstract imp
         return $url;
     }
     
+    function mergeUrl()
+    {
+        return Mage::helper('adminhtml')->getUrl('*/*/merge') .
+            '?' . http_build_query($this->requestLevels()) .
+            '&entity=' . $this->getEntity()->getType();
+    }
+    
     function requestLevels()
     {
         $params = array();

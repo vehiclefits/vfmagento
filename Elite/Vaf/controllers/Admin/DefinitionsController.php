@@ -112,6 +112,69 @@ class Elite_Vaf_Admin_DefinitionsController extends Mage_Adminhtml_Controller_Ac
         $this->doSave();
     }
     
+    function mergeAction()
+    {
+        $version = new Elite_Vafinstall_Migrate;
+        if( $version->needsUpgrade() )
+        {
+            echo 'Please run the upgrade-vaf.php script as per the documentation. Your database is out of date.';
+            exit();
+        }
+        
+        $this->loadLayout();
+        $this->_setActiveMenu('vaf');
+        
+        $this->block = $this->getLayout()->createBlock('adminhtml/vaf_definitions', 'vaf' );
+        $this->block->setTemplate( 'vaf/merge.phtml' );  
+        
+        if(isset($_POST['master']))
+        {
+            $master = $this->masterLevel();
+            $slave = $this->slaveLevels();
+            debugbreak();
+            $this->levelFinder()->merge($slave, $master);
+        }
+        
+        $this->block->level = $_REQUEST['entity'];
+        $this->block->slaveLevels = $this->slaveLevels();
+        
+        $this->_addContent( $this->block );
+        $this->renderLayout();
+        
+    }
+    
+    function levelFinder()
+    {
+        return new Elite_Vaf_Model_Level_Finder();
+    }
+    
+    function masterLevel()
+    {
+        $params = $this->requestLevels();
+        $params[$_REQUEST['entity']] = $_REQUEST['master'];
+        $vehicle = $this->vehicleFinder()->findByLevelIds($params,true);
+        $masterLevel = array($_REQUEST['entity'], $vehicle[0]);
+        
+        return $masterLevel;
+    }
+    
+    function slaveLevels()
+    {
+        $slaveLevels = array();
+        foreach($_POST['selected'] as $selected)
+        {
+            $params = $this->requestLevels();
+            $params[$_REQUEST['entity']] = $selected;
+            $vehicle = $this->vehicleFinder()->findByLevelIds($params,true);
+            if(!count($vehicle))
+            {
+                continue;
+            }
+            array_push($slaveLevels, array($_REQUEST['entity'], $vehicle[0]));
+        }
+        return $slaveLevels;
+    }
+    
     protected function doSave()
     {
         header( 'Location:' . $this->getListUrl( $this->getEntity()->getType(), $this->getId() ) );  

@@ -5,9 +5,9 @@
     <fieldset>
         <div align="center">
             Are you sure you want to delete the <?=ucfirst( $this->model->getLabel() )?>
-            <b><?=$this->htmlEscape( $this->model->getTitle() )?></b>
+            <b><?=$this->htmlEscape( $this->model->getTitle() )?></b>?
             <?php
-            if( $this->model->getChildCount() )
+            if( false && $this->model->getChildCount() )
             {
                 ?>
                 along with all <b><?=$this->model->getChildCount()?></b> of it's

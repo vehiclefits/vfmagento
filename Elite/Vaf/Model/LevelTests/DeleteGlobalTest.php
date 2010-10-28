@@ -21,26 +21,26 @@ class Elite_Vaf_Model_LevelTests_DeleteGlobalTest extends Elite_Vaf_TestCase
     
     function testShouldUnlinkYear()
     {
-        $acura = $this->createVehicle(array('make'=>'Acura', 'model'=>'Integra', 'year'=>2000));
+        $acura = $this->createVehicle(array('year'=>2000, 'make'=>'Acura', 'model'=>'Integra' ));
         $acura->unlink();
-        $this->assertFalse( $this->vehicleExists(array('make'=>'Acura', 'model'=>'Integra', 'year'=>2000)), 'should unlink year' );
+        $this->assertFalse( $this->vehicleExists(array('year'=>2000, 'make'=>'Acura', 'model'=>'Integra')), 'should unlink year' );
     }
     
     function testShouldNotUnlinkYearFromOtherMake()
     {
-        $honda = $this->createVehicle(array('make'=>'Honda', 'model'=>'Civic', 'year'=>2000));
-        $acura = $this->createVehicle(array('make'=>'Acura', 'model'=>'Integra', 'year'=>2000));
+        $honda = $this->createVehicle(array('year'=>2000, 'make'=>'Honda', 'model'=>'Civic'));
+        $acura = $this->createVehicle(array('year'=>2000, 'make'=>'Acura', 'model'=>'Integra'));
         
         $acura->unlink();
-        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda', 'model'=>'Civic', 'year'=>2000)), 'should not unlink honda/2000 when unlinking acura/2000' );
+        $this->assertTrue( $this->vehicleExists(array('year'=>2000, 'make'=>'Honda', 'model'=>'Civic')), 'should not unlink 2000/honda when unlinking 2000/acura' );
     }
        
     /**
     * @expectedException Elite_Vaf_Model_Level_Exception_NotFound
     */
-    function testWhenDeleteMakeShouldNotHaveChildren()
+    function testWhenDeleteMakeShouldDeleteMake()
     {
-        $originalHonda = $this->createMMY('Honda','Civic','2000');
+        $originalHonda = $this->createYMM('2000','Honda','Civic');
         $year = $originalHonda->getLevel('year');
         $make = $originalHonda->getLevel('make');
         $model = $originalHonda->getLevel('model');
@@ -66,13 +66,15 @@ class Elite_Vaf_Model_LevelTests_DeleteGlobalTest extends Elite_Vaf_TestCase
         $this->assertEquals($make->getId(), $make2->getId(), 'when deleting model, should retain make');
     }
     
+    /**
+    * @expectedException Elite_Vaf_Model_Level_Exception_NotFound
+    */
     function testWhenDeleteYearShouldNotHaveChildren()
     {
-        $honda = $this->createVehicle(array('make'=>'Honda', 'model'=>'Civic', 'year'=>2000));
+        $honda = $this->createVehicle(array( 'year'=>2000, 'make'=>'Honda', 'model'=>'Civic'));
         $honda->unlink();
         
-        $make = $this->levelFinder()->find('make',$honda->getValue('make'));
-        $this->assertEquals(0, $make->getChildCount());
+        $this->levelFinder()->find('model',$honda->getValue('model'));
     }
     
     function testShouldDeleteModel()
@@ -89,6 +91,21 @@ class Elite_Vaf_Model_LevelTests_DeleteGlobalTest extends Elite_Vaf_TestCase
         $honda->unlink();
         $r = $this->getReadAdapter()->query("select count(*) from elite_level_year where title = '2000';");
         $this->assertEquals(1, $r->fetchColumn(), 'should not delete year' );
+    }
+    
+    function testShouldDeleteMake_ShouldRetainModelsUnderDifferentYear()
+    {
+        $honda1 = $this->createVehicle(array('year'=>2000, 'make'=>'Honda', 'model'=>'Civic'));
+        $honda2 = $this->createVehicle(array('year'=>2001, 'make'=>'Honda', 'model'=>'Accord'));
+        
+        $year = $honda1->getLevel('year');
+        $make = $honda1->getLevel('make');
+        $model = $honda1->getLevel('model');
+        
+        $vehicles = $this->vehicleFinder()->findByLevelIds( array('year'=>$year->getId(), 'make'=>$make->getId(), 'model'=>0), true );
+        $vehicles[0]->unlink();
+        
+        $this->assertTrue($this->vehicleExists(array('year'=>2001, 'make'=>'Honda', 'model'=>'Accord')));
     }
 	
 }

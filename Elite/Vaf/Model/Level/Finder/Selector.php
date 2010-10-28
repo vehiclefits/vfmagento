@@ -65,6 +65,11 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
 
     function getChildren( Elite_Vaf_Model_Level $entity )
     {
+        if($this->getSchema()->isGlobal($entity->getType()) && $this->getSchema()->getRootLevel() != $entity->getType())
+        {
+            throw new Exception('ambiguous operation');
+        }
+        
         if( $entity->getNextLevel() == '' )
         {
             throw new Exception( 'this type doesnt have children' );
@@ -97,6 +102,10 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
     
     function getChildCount( Elite_Vaf_Model_Level $entity )
     {
+        if($this->getSchema()->isGlobal($entity->getType()) && $this->getSchema()->getRootLevel() != $entity->getType())
+        {
+            throw new Exception('ambiguous operation');
+        }
         if( !is_array( $this->child_count ) )
         {
             $this->child_count = $this->doGetChildCount( $entity );

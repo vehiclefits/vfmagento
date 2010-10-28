@@ -25,47 +25,57 @@
             <input type="hidden" name="entity" value="<?=$this->htmlEscape( $this->label )?>" />
             <?='<input type="text" name="title" value="" /><input type="submit" name="save" value="Add ' . ucfirst($this->label) . '" />'?>
         </form>
-        <table>
-            <tr>
-                <td width="100"></td>
-                <td><b>Title</b></td>
-            </tr>
-            <?php
-            foreach( $this->rs as $row )
-            {
-                echo '<tr>';
-                    echo '<td><a href="' . $this->getEditUrl( $row->getId() ) . '">Edit</a> | <a href="' . $this->getDeleteUrl(  $row->getId() ) . '">Delete</a></td>';
-                    echo '<td>';
-                        if( $this->editing(  $row->getId() ) )
-                        {
-                            ?>
-                            <form action="<?=$this->getSaveUrl(  $row->getId() )?>" method="GET">
+        
+        <form action="<?=$this->mergeUrl()?>" method="POST">
+            <?php echo $this->getBlockHtml('formkey')?>
+            <table>
+                <tr>
+                    <td width="100"></td>
+                    <td><b>Title</b></td>
+                </tr>
+                <?php
+                foreach( $this->rs as $row )
+                {
+                    echo '<tr>';
+                        echo '<td>
+                            <!--<input type="checkbox" name="selected[]" value="' . $row->getId() . '" />-->
+                            <a href="' . $this->getEditUrl( $row->getId() ) . '">Edit</a>
+                            |
+                            <a href="' . $this->getDeleteUrl(  $row->getId() ) . '">Delete</a>
+                        </td>';
+                        echo '<td>';
+                            if( $this->editing(  $row->getId() ) )
+                            {
+                                ?>
+                                <form action="<?=$this->getSaveUrl(  $row->getId() )?>" method="GET">
+                                    <?php
+                                    foreach($this->requestLevels() as $level=>$value)
+                                    {
+                                        $helper = new Zend_View_Helper_FormHidden();
+                                        $helper->setView(new Zend_View());
+                                        echo $helper->formHidden($level, $value);
+                                    }
+    ?>
+                                    <?='<input type="text" name="title" value="' .  $this->htmlEscape( $row->getTitle() ) . '" /><input type="submit" name="save" value="Save" />'?>
+                                </form>
                                 <?php
-                                foreach($this->requestLevels() as $level=>$value)
-                                {
-                                    $helper = new Zend_View_Helper_FormHidden();
-                                    $helper->setView(new Zend_View());
-                                    echo $helper->formHidden($level, $value);
-                                }
-?>
-                                <?='<input type="text" name="title" value="' .  $this->htmlEscape( $row->getTitle() ) . '" /><input type="submit" name="save" value="Save" />'?>
-                            </form>
-                            <?php
-                        }
-                        else
-                        {
-                            echo $this->htmlEscape( $row->getTitle() );
-                        }
-                    echo '</td>';
-                    echo '<td>';
-                        if( $this->getNextLevel() )
-                        {
-                            echo '<a href="' . $this->getListUrl( $this->getNextLevel(), $row->getId() )  . '">List ' . ucfirst( $this->getNextLevel() ) . 's &raquo;</a>';
-                        }
-                    echo '</td>';
-                echo '</tr>';
-            }
-            ?>
-        </table>
+                            }
+                            else
+                            {
+                                echo $this->htmlEscape( $row->getTitle() );
+                            }
+                        echo '</td>';
+                        echo '<td>';
+                            if( $this->getNextLevel() )
+                            {
+                                echo '<a href="' . $this->getListUrl( $this->getNextLevel(), $row->getId() )  . '">List ' . ucfirst( $this->getNextLevel() ) . 's &raquo;</a>';
+                            }
+                        echo '</td>';
+                    echo '</tr>';
+                }
+                ?>
+            </table>
+            <!--<input type="submit" name="merge" value="Merge Selected" />-->
+        </form>
     </fieldset>
 </div>

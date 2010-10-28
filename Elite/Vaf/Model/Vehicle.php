@@ -229,21 +229,41 @@ class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
         $where = array();
         foreach($this->getLevelObjs() as $level)
         {
-            $where[] = $this->getReadAdapter()->quoteInto($level->getType() . '_id = ?', $level->getId() );
+            if($level->getId())
+            {
+                $where[] = $this->getReadAdapter()->quoteInto($level->getType() . '_id = ?', $level->getId() );
+            }
         }
         $where = implode(' && ', $where);
-        $this->query('DELETE FROM elite_definition WHERE ' . $where);
         
-        $this->deleteAfterUnlink();
+        $result = $this->query('SELECT * FROM elite_definition WHERE ' . $where)->fetchAll();
+        foreach($result as $row)
+        {
+            $this->unlinkVehicle($row);
+        }
+        
     }
     
-    function deleteAfterUnlink()
+    function unlinkVehicle($vehicleRow)
     {
-        foreach(array_reverse($this->getLevels()) as $level)
+        $where = array();
+        foreach($this->getLevelObjs() as $level)
         {
-            if($this->getLevel($level)->getId())
+            if($level->getId())
             {
-                return $this->getLevel($level)->delete();
+                $where[] = $this->getReadAdapter()->quoteInto($level->getType() . '_id = ?', $level->getId() );
+            }
+        }
+        $where = implode(' && ', $where);
+        
+        $this->query('DELETE FROM elite_definition WHERE ' . $where);
+        
+        foreach(array_reverse($this->getLevelObjs()) as $level)
+        {
+            $countInUse = $this->query('SELECT count(*) from elite_definition WHERE ' . $level->getType() . '_id = ' . $vehicleRow[$level->getType().'_id'] )->fetchColumn();
+            if(!$countInUse)
+            {
+                $this->query('DELETE FROM elite_level_' . $level->getType() . ' WHERE id = ' . $vehicleRow[$level->getType().'_id'] );
             }
         }
     }
