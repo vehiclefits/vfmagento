@@ -100,7 +100,22 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
     
     function testShouldMergeProductApplications()
     {
-        return $this->markTestIncomplete();
+        $vehicle1 = $this->createMMY('Honda','Civic','2000');
+        $vehicle2 = $this->createMMY('Honda-oops','Civic','2001');
+        
+        $actual = $this->insertMappingMMY($vehicle2, 1);
+        
+        $slaveLevels = array(
+            array('make', $vehicle1 ),
+            array('make', $vehicle2 ),
+        );
+        $masterLevel = array('make', $vehicle1 );
+        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        
+        $product = $this->newProduct(1);
+        $product->setCurrentlySelectedFit($vehicle1);
+        $this->assertTrue( $product->fitsSelection() );
+        
     }
     
     function testShouldClearVehicleFinderIdentityMap()

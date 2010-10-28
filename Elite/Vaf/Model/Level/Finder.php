@@ -80,10 +80,30 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
     
     function mergeFitments($vehicle_object, $master_vehicle)
     {
-//        foreach($this->getProductsTha($vehicle_object) as $fitment)
-//        {
-//            $
-//        }
+        foreach($this->getProductsThatFit($vehicle_object) as $product)
+        {
+            $product->addVafFit($master_vehicle->toValueArray());
+        }
+    }
+    
+    function getProductsThatFit($vehicle_object)
+    {
+        $select = $this->getReadAdapter()->select()
+            ->from('elite_mapping');
+        foreach($vehicle_object->toValueArray() as $level => $id)
+        {
+            $select->where($level . '_id = ?', $id);
+        }
+        
+        $result = $select->query()->fetchAll();
+        $products = array();
+        foreach($result as $row)
+        {
+            $product = new Elite_Vaf_Model_Catalog_Product();
+            $product->setId($row['entity_id']);
+            array_push($products, $product);
+        }
+        return $products;
     }
     
     function doMerge($level, $master_vehicle)
