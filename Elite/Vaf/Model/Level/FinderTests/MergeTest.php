@@ -13,20 +13,16 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
         $vehicle1 = $this->createMMY('Honda','Civic','2000');
         $vehicle2 = $this->createMMY('Honda','Civic','2001');
         
-        $year1 = $vehicle1->getLevel('year');
-        $year2 = $vehicle2->getLevel('year');
-        
         $levelsToBeMerged = array(
-            'year'=>$vehicle1,
-            'year'=>$vehicle2
+            array('year', $vehicle1 ),
+            array('year', $vehicle2 ),
         );
-        $levelToMergeInto = array(
-            'year'=>$vehicle2
-        );
+        $levelToMergeInto = array('year', $vehicle2 );
+        
         $this->levelFinder()->merge( $levelsToBeMerged, $levelToMergeInto );
         
-        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );
-        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2001)) );
+        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2001)) );
+        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );
     }
     
     function testShouldMergeModel()
@@ -34,26 +30,34 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
         $vehicle1 = $this->createMMY('Honda','Civic','2000');
         $vehicle2 = $this->createMMY('Honda','Accord','2001');
         
-        $model1 = $vehicle1->getLevel('model');
-        $model2 = $vehicle2->getLevel('model');
-        
         $levelsToBeMerged = array(
-            'model'=>$vehicle1,
-            'model'=>$vehicle2
+            array('model', $vehicle1 ),
+            array('model', $vehicle2 ),
         );
-        $levelToMergeInto = array(
-            'model'=>$vehicle2
-        );
+        $levelToMergeInto = array('model', $vehicle2 );
         $this->levelFinder()->merge( $levelsToBeMerged, $levelToMergeInto );
         
-        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );
-        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Accord','year'=>2001)) );
+        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic')) );
+        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Accord')) );
     }
     
     
     function testShouldMergeYears_WhenMergeModel()
     {
-        return $this->markTestIncomplete();
+        $vehicle1 = $this->createMMY('Honda','Civic','2000');
+        $vehicle2 = $this->createMMY('Honda','Accord','2001');
+        
+        $levelsToBeMerged = array(
+            array('model', $vehicle1 ),
+            array('model', $vehicle2 ),
+        );
+        $levelToMergeInto = array('model', $vehicle2 );
+        $this->levelFinder()->merge( $levelsToBeMerged, $levelToMergeInto );
+        
+        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Accord','year'=>2000)) );
+        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Accord','year'=>2001)) );
+        
+        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic')) );
     }
     
     function testShouldMergeProductApplications()
