@@ -1,3 +1,8 @@
+1.10 October 28, 2010
+======================================================
+ISSUES
+- 0000749: [Other] delete bug with 'global levels'
+
 1.20 October 28, 2010
 ======================================================
 - 0000747: [Other] Module should be a permission for admin access
