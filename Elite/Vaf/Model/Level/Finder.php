@@ -126,7 +126,8 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
         $new_vehicle->save();
     }
     
-    function __call($name, $arguments) {
+    function __call($name, $arguments)
+    {
         return call_user_func_array(array($this->selector(),$name), $arguments);
     }
     
