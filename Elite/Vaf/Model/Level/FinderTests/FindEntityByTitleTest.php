@@ -1,7 +1,12 @@
 <?php
 class Elite_Vaf_Model_Level_FinderTests_FindEntityByTitleTest extends Elite_Vaf_TestCase
 {
-	function testNotFound()
+	function doSetUp()
+    {
+        $this->switchSchema('make,model,year');
+    }
+    
+    function testNotFound()
     {
         $make = $this->levelFinder()->findEntityByTitle('make','Honda');
         $this->assertFalse( $make, 'should return false when not found' );

@@ -21,7 +21,8 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_AddTest exte
         $this->assertEquals( $vehicle->getLevel('year')->getId(), $actualRow['year_id'] );
         $this->assertEquals( self::PRODUCT_ID, $actualRow['entity_id'] );
         
-        $this->assertTrue( $mapping_id > 0, 'when creating a mapping, should return the mapping id' );
+        $product->setCurrentlySelectedFit($vehicle);
+        $this->assertTrue( $product->fitsSelection() );
     }
     
     function testAddMultiple()
