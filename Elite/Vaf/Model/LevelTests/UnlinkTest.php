@@ -48,6 +48,24 @@ class Elite_Vaf_Model_LevelTests_UnlinkTest extends Elite_Vafimporter_TestCase
         $this->assertFalse( $this->levelExists('model', $modelId), 'when unlink make, should delete model');
     }
     
+    function testWhenUnlinkMake_ShouldDeleteMultipleModel()
+    {
+        $originalVehicle1 = $this->createMMY('Honda','Civic','2000');
+        $originalVehicle2 = $this->createMMY('Honda','Accord','2000');
+        $makeId = $originalVehicle1->getValue('make');
+        
+        $params = array(
+            'make' => $makeId
+        );
+        $this->vehicleFinder()->findOneByLevelIds( $params, Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY )->unlink();
+        
+        $modelId = $originalVehicle1->getValue('model');
+        $this->assertFalse( $this->levelExists('model', $modelId), 'when unlink make, should delete model');
+        
+        $modelId = $originalVehicle2->getValue('model');
+        $this->assertFalse( $this->levelExists('model', $modelId), 'when unlink make, should delete model');
+    }
+    
     function testWhenUnlinkMake_ShouldDeleteYear()
     {
         $originalVehicle = $this->createMMY('Honda','Civic','2000');
