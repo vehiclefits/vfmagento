@@ -1,3 +1,7 @@
+1.23 October 29, 2010
+======================================================
+- 0000751: [Product Application Fitments] Add fitments to products w/ global levels bug
+
 1.22 October 29, 2010
 ======================================================
 ISSUES
