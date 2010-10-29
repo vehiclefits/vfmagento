@@ -18,6 +18,9 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
     /** @var Zend_Config */
     protected $config;
     
+    const INCLUDE_PARTIALS = 1;
+    const EXACT_ONLY = 2;
+    
     function __construct( Elite_Vaf_Model_Schema $schema )
     {
         $this->schema = $schema;
@@ -166,11 +169,18 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
     * @param array conjunction of critera Ex: array('make'=>1'year'=>1) 
     * @return array of Vehicle that meet the critera
     */
-    function findByLevelIds($levelIds,$includePartials=false)
+    function findByLevelIds($levelIds, $mode=false)
     {
         foreach( $this->schema->getLevels() as $level )
         {
-            $value = false;
+            if( self::EXACT_ONLY == $mode )
+            {
+                $value = 0;
+            }
+            else
+            {
+                $value = false;
+            }
             $value = isset($levelIds[$level]) ? $levelIds[$level] : $value;
             $value = isset($levelIds[$level . '_id']) ? $levelIds[$level . '_id'] : $value;
             unset($levelIds[$level . '_id']);
@@ -193,7 +203,7 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
             }
         }
         
-        if(!$includePartials)
+        if( self::INCLUDE_PARTIALS != $mode)
         {
             foreach($this->schema->getLevels() as $level)
             {
@@ -236,9 +246,9 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
     * @param array ('make'=>1,'year'=>1) conjunction of critera
     * @return Elite_Vaf_Model_Vehicle or false
     */
-    function findOneByLevelIds($levelIds)
+    function findOneByLevelIds($levelIds, $mode=false)
     {
-		$vehicles = $this->findByLevelIds($levelIds);
+		$vehicles = $this->findByLevelIds($levelIds, $mode);
 		return isset($vehicles[0]) ? $vehicles[0] : false;
     }
     

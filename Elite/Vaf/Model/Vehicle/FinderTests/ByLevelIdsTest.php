@@ -29,6 +29,17 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelIdsTest extends Elite_Vaf_Model
         $this->assertEquals( $vehicle->toValueArray(), $vehicle2->toValueArray(), 'should find one by level ids' );
     }
     
+    function testShouldFindOneByLevelIds_Partial()
+    {
+        $vehicle = $this->createMMY( 'Honda', 'Civic', '2000' );
+        
+        $params = array('make'=>$vehicle->getValue('make'));
+        $vehicle2 = $this->getFinder()->findOneByLevelIds( $params, Elite_Vaf_Model_Vehicle_Finder::INCLUDE_PARTIALS );
+        
+        $params = array('make'=>$vehicle->getValue('make'), 'model'=>null, 'year'=>null);
+        $this->assertEquals( $params, $vehicle2->toValueArray(), 'should find one by level ids (partial)' );
+    }
+    
     function testShouldNotFindOneByLevelIds()
     {
         $vehicle2 = $this->getFinder()->findOneByLevelIds( array('make_id'=>1) );
@@ -41,7 +52,8 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelIdsTest extends Elite_Vaf_Model
         $make->setTitle('Honda');
         $make->save();
         
-        $vehicles = $this->getFinder()->findByLevelIds( array('make'=>$make->getId()), true );
+        $params = array('make'=>$make->getId());
+        $vehicles = $this->getFinder()->findByLevelIds( $params, Elite_Vaf_Model_Vehicle_Finder::INCLUDE_PARTIALS );
         $this->assertEquals(1,count($vehicles),'should find partial vehicle by make');
     }
     
@@ -50,7 +62,8 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelIdsTest extends Elite_Vaf_Model
         $vehicle = $this->createMMY('Honda','Civic','2000');
         $make = $vehicle->getLevel('make');
         
-        $vehicles = $this->getFinder()->findByLevelIds( array('make'=>$make->getId()), true );
+        $params = array('make'=>$make->getId());
+        $vehicles = $this->getFinder()->findByLevelIds( $params, Elite_Vaf_Model_Vehicle_Finder::INCLUDE_PARTIALS );
         $this->assertEquals(3,count($vehicles),'should find partial vehicle by make');
     }
     
@@ -60,7 +73,8 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelIdsTest extends Elite_Vaf_Model
         $make->setTitle('Honda');
         $make->save();
         
-        $vehicles = $this->getFinder()->findByLevelIds( array('make'=>$make->getId()), true );
+        $params = array('make'=>$make->getId());
+        $vehicles = $this->getFinder()->findByLevelIds($params, Elite_Vaf_Model_Vehicle_Finder::INCLUDE_PARTIALS );
         $this->assertEquals( $make->getId(), $vehicles[0]->getValue('make'), 'partial vehicle should have make ID');
     }
     
@@ -70,7 +84,8 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelIdsTest extends Elite_Vaf_Model
         $make->setTitle('Honda');
         $make->save();
         
-        $vehicles = $this->getFinder()->findByLevelIds( array('make'=>$make->getId(), 'model'=>0, 'year'=>0), true );
+        $params = array('make'=>$make->getId(), 'model'=>0, 'year'=>0);
+        $vehicles = $this->getFinder()->findByLevelIds( $params, Elite_Vaf_Model_Vehicle_Finder::INCLUDE_PARTIALS );
         $this->assertEquals( 1, count($vehicles), 'zero should match partial vehicle');
     }
     
@@ -78,7 +93,17 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelIdsTest extends Elite_Vaf_Model
     {
         $vehicle = $this->createMMY('Honda','Civic','2000');
 
-        $vehicles = $this->getFinder()->findByLevelIds( array('make'=>$vehicle->getValue('make'), 'model'=>0, 'year'=>0), false );
+        $params = array('make'=>$vehicle->getValue('make'), 'model'=>0, 'year'=>0);
+        $vehicles = $this->getFinder()->findByLevelIds( $params );
+        $this->assertEquals( 1, count($vehicles), 'zero should exclude full vehicles');
+    }
+    
+    function testShouldExcludeFullVehicle()
+    {
+        $vehicle = $this->createMMY('Honda','Civic','2000');
+
+        $params = array('make'=>$vehicle->getValue('make'));
+        $vehicles = $this->getFinder()->findByLevelIds( $params, Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY );
         $this->assertEquals( 1, count($vehicles), 'zero should exclude full vehicles');
     }
     
