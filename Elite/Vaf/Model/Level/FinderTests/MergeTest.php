@@ -41,7 +41,6 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Accord')) );
     }
     
-    
     function testShouldMergeYears_WhenMergeModel()
     {
         $vehicle1 = $this->createMMY('Honda','Civic','2000');

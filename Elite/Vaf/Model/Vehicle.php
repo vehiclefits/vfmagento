@@ -121,6 +121,16 @@ class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
         return implode( ' ', $string );
     }
     
+    function levelIdsTruncateAfter($level)
+    {
+        $ids = $this->toValueArray();
+        foreach($this->schema->getNextLevels($level) as $levelToDrop)
+        {
+            unset($ids[$levelToDrop]);
+        }
+        return $ids;
+    }
+    
     function toValueArray()
     {
         $array = array();

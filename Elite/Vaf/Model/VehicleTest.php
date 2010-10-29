@@ -33,4 +33,13 @@ class Elite_Vaf_Model_VehicleTest extends Elite_Vaf_TestCase
         $this->createMMY('FHIL',' 039 ','1999');
         $this->assertTrue($this->vehicleExists(array('make'=>'FHIL','model'=>'039', 'year'=>1999)));
     }
+    
+    function testLevelIdsTruncateAfter()
+    {
+        $vehicle = $this->createMMY('Honda','Civic','2000');
+        $truncateAfter = $vehicle->levelIdsTruncateAfter('model');
+        $this->assertEquals($vehicle->getValue('make'), $truncateAfter['make'] );
+        $this->assertEquals($vehicle->getValue('model'), $truncateAfter['model'] );
+        $this->assertFalse( isset($truncateAfter['year'] ) );
+    }
 }
