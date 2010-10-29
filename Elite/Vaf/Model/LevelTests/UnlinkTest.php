@@ -60,10 +60,13 @@ class Elite_Vaf_Model_LevelTests_UnlinkTest extends Elite_Vafimporter_TestCase
         $originalVehicle = $this->createMMY('Honda','Civic','2000');
         
         $makeId = $originalVehicle->getValue('make');
-        $modelId = $originalVehicle->getValue('model');
         $yearId = $originalVehicle->getValue('year');
         
-        $params = array( 'make'=>$makeId, 'model'=>0, 'year'=>0);
+        $params = array(
+            'make' => $makeId,
+            'model'=> 0,
+            'year' => 0
+        );
         $this->vehicleFinder()->findOneByLevelIds( $params, true )->unlink();
         
         $this->assertFalse( $this->levelExists('year', $yearId), 'when unlink make, should delete year');
@@ -75,10 +78,9 @@ class Elite_Vaf_Model_LevelTests_UnlinkTest extends Elite_Vafimporter_TestCase
         
         $make = $originalVehicle->getLevel('make');
         $model = $originalVehicle->getLevel('model');
-        $year = $originalVehicle->getLevel('year');
         
-        $vehicle = $this->vehicleFinder()->findOneByLevelIds( array( 'make'=>$make->getId(), 'model'=>$model->getId(), 'year'=>0), true );
-        $vehicle->unlink();
+        $params = array( 'make'=>$make->getId(), 'model'=>$model->getId(), 'year'=>0);
+        $this->vehicleFinder()->findOneByLevelIds( $params, true )->unlink();
         
         $this->assertTrue( $this->levelExists('make', $make->getId()), 'when unlink model, should retain make');
     }
@@ -90,8 +92,8 @@ class Elite_Vaf_Model_LevelTests_UnlinkTest extends Elite_Vafimporter_TestCase
         $make = $originalVehicle->getLevel('make');
         $model = $originalVehicle->getLevel('model');
         
-        $vehicle = $this->vehicleFinder()->findOneByLevelIds( array( 'make'=>$make->getId(), 'model'=>$model->getId(), 'year'=>0), true );
-        $vehicle->unlink();
+        $params = array( 'make'=>$make->getId(), 'model'=>$model->getId(), 'year'=>0);
+        $this->vehicleFinder()->findOneByLevelIds( $params, true )->unlink();
                 
         $this->assertFalse( $this->levelExists('model', $model->getId()) );
     }
@@ -104,8 +106,8 @@ class Elite_Vaf_Model_LevelTests_UnlinkTest extends Elite_Vafimporter_TestCase
         $model = $originalVehicle->getLevel('model');
         $year = $originalVehicle->getLevel('year');
         
-        $vehicle = $this->vehicleFinder()->findOneByLevelIds( array( 'make'=>$make->getId(), 'model'=>$model->getId(), 'year'=>0), true );
-        $vehicle->unlink();
+        $params = array( 'make'=>$make->getId(), 'model'=>$model->getId(), 'year'=>0);
+        $this->vehicleFinder()->findOneByLevelIds( $params, true )->unlink();
                 
         $this->assertFalse( $this->levelExists('year', $year->getId()), 'when unlink model, should delete year');
     }
@@ -118,8 +120,8 @@ class Elite_Vaf_Model_LevelTests_UnlinkTest extends Elite_Vafimporter_TestCase
         $model = $originalVehicle->getLevel('model');
         $year = $originalVehicle->getLevel('year');
         
-        $vehicle = $this->vehicleFinder()->findOneByLevelIds( array( 'make'=>$make->getId(), 'model'=>$model->getId(), 'year'=>$year->getId()), true );
-        $vehicle->unlink();
+        $params =array( 'make'=>$make->getId(), 'model'=>$model->getId(), 'year'=>$year->getId());
+        $this->vehicleFinder()->findOneByLevelIds( $params, true )->unlink();
         
         $this->assertTrue( $this->levelExists('make', $make->getId()), 'when unlink model, should retain make');
     }
@@ -132,8 +134,8 @@ class Elite_Vaf_Model_LevelTests_UnlinkTest extends Elite_Vafimporter_TestCase
         $model = $originalVehicle->getLevel('model');
         $year = $originalVehicle->getLevel('year');
         
-        $vehicle = $this->vehicleFinder()->findOneByLevelIds( array( 'make'=>$make->getId(), 'model'=>$model->getId(), 'year'=>$year->getId()), true );
-        $vehicle->unlink();
+        $params = array( 'make'=>$make->getId(), 'model'=>$model->getId(), 'year'=>$year->getId());
+        $this->vehicleFinder()->findOneByLevelIds( $params, true )->unlink();
         
         $this->assertTrue( $this->levelExists('model', $model->getId()), 'when unlink model, should retain model');
     }
@@ -146,8 +148,8 @@ class Elite_Vaf_Model_LevelTests_UnlinkTest extends Elite_Vafimporter_TestCase
         $model = $originalVehicle->getLevel('model');
         $year = $originalVehicle->getLevel('year');
         
-        $vehicle = $this->vehicleFinder()->findOneByLevelIds( array( 'make'=>$make->getId(), 'model'=>$model->getId(), 'year'=>$year->getId()), true );
-        $vehicle->unlink();
+        $params = array( 'make'=>$make->getId(), 'model'=>$model->getId(), 'year'=>$year->getId());
+        $this->vehicleFinder()->findOneByLevelIds( $params, true )->unlink();
         
         $this->assertFalse( $this->levelExists('year', $year->getId()), 'when unlink year should delete year');
     }
@@ -161,8 +163,8 @@ class Elite_Vaf_Model_LevelTests_UnlinkTest extends Elite_Vafimporter_TestCase
         $model = $originalVehicle->getLevel('model');
         $year = $originalVehicle->getLevel('year');
         
-        $vehicle = $this->vehicleFinder()->findOneByLevelIds( array( 'make'=>$make->getId(), 'model'=>$model->getId(), 'year'=>$year->getId()), true );
-        $vehicle->unlink();
+        $params = array( 'make'=>$make->getId(), 'model'=>$model->getId(), 'year'=>$year->getId());
+        $this->vehicleFinder()->findOneByLevelIds( $params, true )->unlink();
         
         $this->assertEquals(0,$this->getReadAdapter()->query('select count(*) from elite_mapping')->fetchColumn( ));
     }
