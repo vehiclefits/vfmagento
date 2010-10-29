@@ -1,4 +1,9 @@
-1.10 October 28, 2010
+1.22 October 29, 2010
+======================================================
+ISSUES
+0000750: Should delete fitments when deleting vehicle (regression)
+
+1.21 October 28, 2010
 ======================================================
 ISSUES
 - 0000749: [Other] delete bug with 'global levels'
