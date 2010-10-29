@@ -1,10 +1,7 @@
 <?php
-class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_DeleteTest extends Elite_Vaf_Model_Catalog_ProductTests_TestCase
+class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_DeleteTest_MMYTest extends Elite_Vaf_Model_Catalog_ProductTests_TestCase
 {
-	const PRODUCT_ID = 1;
-    const PRODUCT_NAME = 'Widget';
-    
-    function doSetUp()
+	function doSetUp()
     {
         $this->switchSchema('make,model,year');
     }
