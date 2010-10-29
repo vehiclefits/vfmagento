@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelsIdsTest extends Elite_Vaf_Model_Vehicle_FinderTests_TestCase
+class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelIdsTest extends Elite_Vaf_Model_Vehicle_FinderTests_TestCase
 {
 	function testShouldFindByAllLevels()
     {
@@ -20,6 +20,19 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelsIdsTest extends Elite_Vaf_Mode
         $vehicle = $this->createMMY( 'Honda', 'Civic', '2000' );
         $vehicles = $this->getFinder()->findByLevelIds( array('make_id'=>$vehicle->getValue('make')) );
         $this->assertEquals(1,count($vehicles),'should find by make w/ alternative paramater style (make_id)');
+    }
+    
+    function testShouldFindOneByLevelIds()
+    {
+        $vehicle = $this->createMMY( 'Honda', 'Civic', '2000' );
+        $vehicle2 = $this->getFinder()->findOneByLevelIds( array('make_id'=>$vehicle->getValue('make')) );
+        $this->assertEquals( $vehicle->toValueArray(), $vehicle2->toValueArray(), 'should find one by level ids' );
+    }
+    
+    function testShouldNotFindOneByLevelIds()
+    {
+        $vehicle2 = $this->getFinder()->findOneByLevelIds( array('make_id'=>1) );
+        $this->assertFalse( $vehicle2, 'should not find one by level ids' );
     }
     
     function testShouldFindPartialVehicleMake()

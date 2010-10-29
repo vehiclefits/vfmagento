@@ -101,24 +101,24 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
     function testShouldMergeMake()
     {
   return $this->markTestIncomplete();
-        $vehicle1 = $this->createMMY('Honda','Civic','2000');
-        $vehicle2 = $this->createMMY('Ford','F-150','2001');
-        
-        $slaveLevels = array(
-            array('make', $vehicle1 ),
-            array('make', $vehicle2 ),
-        );
-        $masterLevel = array('make', $vehicle1 );
+//        $vehicle1 = $this->createMMY('Honda','Civic','2000');
+//        $vehicle2 = $this->createMMY('Ford','F-150','2001');
+//        
+//        $slaveLevels = array(
+//            array('make', $vehicle1 ),
+//            array('make', $vehicle2 ),
+//        );
+//        $masterLevel = array('make', $vehicle1 );
 
-        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
-        
-        $select = new Elite_Vaf_Select($this->getReadAdapter());
+//        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+//        
+//        $select = new Elite_Vaf_Select($this->getReadAdapter());
 //        print_r($select->from('elite_definition')->addLevelTitles('elite_definition')->query()->fetchAll() );
-        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );
-        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'F-150','year'=>2001)) );
-        
-        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2001)) );
-        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'F-150','year'=>2000)) );
+//        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );
+//        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'F-150','year'=>2001)) );
+//        
+//        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2001)) );
+//        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'F-150','year'=>2000)) );
     }
     
     function testShouldMergeProductApplications()

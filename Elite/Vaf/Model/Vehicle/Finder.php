@@ -228,7 +228,17 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
     */
     function findOneByLevels($levels)
     {
-		$vehicles = $this->findByLevels($levels);
+        $vehicles = $this->findByLevels($levels);
+        return isset($vehicles[0]) ? $vehicles[0] : false;
+    }
+    
+    /**
+    * @param array ('make'=>1,'year'=>1) conjunction of critera
+    * @return Elite_Vaf_Model_Vehicle or false
+    */
+    function findOneByLevelIds($levelIds)
+    {
+		$vehicles = $this->findByLevelIds($levelIds);
 		return isset($vehicles[0]) ? $vehicles[0] : false;
     }
     
