@@ -226,15 +226,7 @@ class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
     
     function unlink()
     {
-        $where = array();
-        foreach($this->getLevelObjs() as $level)
-        {
-            if($level->getId())
-            {
-                $where[] = $this->getReadAdapter()->quoteInto($level->getType() . '_id = ?', $level->getId() );
-            }
-        }
-        $where = implode(' && ', $where);
+        $where = $this->whereForUnlink();
         
         $result = $this->query('SELECT * FROM elite_definition WHERE ' . $where)->fetchAll();
         foreach($result as $row)
@@ -246,16 +238,7 @@ class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
     
     function unlinkVehicle($vehicleRow)
     {
-        $where = array();
-        foreach($this->getLevelObjs() as $level)
-        {
-            if($level->getId())
-            {
-                $where[] = $this->getReadAdapter()->quoteInto($level->getType() . '_id = ?', $level->getId() );
-            }
-        }
-        $where = implode(' && ', $where);
-        
+        $where = $this->whereForUnlink();       
         $this->query('DELETE FROM elite_definition WHERE ' . $where);
         $this->query('DELETE FROM elite_mapping WHERE ' . $where);
         
@@ -267,6 +250,20 @@ class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
                 $this->query('DELETE FROM elite_level_' . $level->getType() . ' WHERE id = ' . $vehicleRow[$level->getType().'_id'] );
             }
         }
+    }
+    
+    function whereForUnlink()
+    {
+        $where = array();
+        foreach($this->getLevelObjs() as $level)
+        {
+            if($level->getId())
+            {
+                $where[] = $this->getReadAdapter()->quoteInto($level->getType() . '_id = ?', $level->getId() );
+            }
+        }
+        $where = implode(' && ', $where);
+        return $where;
     }
     
     protected function getLevels()
