@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_AddAndTraverseYMMTest extends Elite_Vaf_Model_Catalog_ProductTests_TestCase
+class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_AddAndTraverse_YMMTest extends Elite_Vaf_Model_Catalog_ProductTests_TestCase
 {
     function doSetUp()
     {
