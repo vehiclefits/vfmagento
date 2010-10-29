@@ -88,12 +88,10 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
     
     function getProductsThatFit($vehicle_object)
     {
-        $select = $this->getReadAdapter()->select()
-            ->from('elite_mapping');
-        foreach($vehicle_object->toValueArray() as $level => $id)
-        {
-            $select->where($level . '_id = ?', $id);
-        }
+        $select = new Elite_Vaf_Select($this->getReadAdapter());
+        $select
+            ->from('elite_mapping')
+            ->whereLevelIdsEqual($vehicle_object->toValueArray());
         
         $result = $select->query()->fetchAll();
         $products = array();

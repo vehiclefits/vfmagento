@@ -12,6 +12,15 @@ class Elite_Vaf_Select extends Zend_Db_Select
         return $this;
     }
     
+    function whereLevelIdsEqual($levelIds)
+    {
+        foreach($levelIds as $level => $id)
+        {
+            $this->where($level . '_id = ?', $id);
+        }
+        return $this;
+    }
+    
     function getSchema()
     {
         return new Elite_Vaf_Model_Schema();
