@@ -164,4 +164,19 @@ class Elite_Vaf_Model_LevelTests_UnlinkTest extends Elite_Vafimporter_TestCase
         
         $this->levelFinder()->find('year', $year->getId(), 'when unlink year should delete year');
     }
+
+    function testShouldDeleteFitments()
+    {
+        $originalHonda = $this->createMMY('Honda','Civic','2000');
+        $this->insertMappingMMY($originalHonda,1);
+        
+        $make = $originalHonda->getLevel('make');
+        $model = $originalHonda->getLevel('model');
+        $year = $originalHonda->getLevel('year');
+        
+        $vehicles = $this->vehicleFinder()->findByLevelIds( array( 'make'=>$make->getId(), 'model'=>$model->getId(), 'year'=>$year->getId()), true );
+        $vehicles[0]->unlink();
+        
+        $this->assertEquals(0,$this->getReadAdapter()->query('select count(*) from elite_mapping')->fetchColumn( ));
+    }
 }

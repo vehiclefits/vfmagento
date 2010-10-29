@@ -257,6 +257,7 @@ class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
         $where = implode(' && ', $where);
         
         $this->query('DELETE FROM elite_definition WHERE ' . $where);
+        $this->query('DELETE FROM elite_mapping WHERE ' . $where);
         
         foreach(array_reverse($this->getLevelObjs()) as $level)
         {
