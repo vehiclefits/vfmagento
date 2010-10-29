@@ -124,55 +124,18 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     */
     function addVafFit( array $fitToAdd )
     {       
-        foreach( $this->levelsBackwards() as $level )
+        $vehicles = $this->vehicleFinder()->findByLevelIds($fitToAdd);
+        foreach($vehicles as $vehicle)
         {
-            if(!$level_id = $this->levelId($fitToAdd,$level))
-            {
-				continue;
-            }
-            if( $level == $this->getSchema()->getLeafLevel() ) 
-            {
-                $vehicle = $this->findDefinitionByLeafId( $level_id );
-                return $this->insertMapping($vehicle);
-            }
-            
-            $levelFinder = new Elite_Vaf_Model_Level_Finder();
-            return $this->traverseAndAdd( $levelFinder->find( $level, $level_id ) );
-        } 
-    }
-    
-    function levelId($fitToAdd, $level)
-    {
-        if( !isset( $fitToAdd[ $level ] ) || !(int)$fitToAdd[ $level ] )
-        {
-            return false;
-        }
-        return $fitToAdd[ $level ];
-    }
-    
-    function levelsBackwards()
-    {
-        $levels = $this->getSchema()->getLevels();
-        $c = count( $levels );
-        $fits = array();
-        
-        $return = array();
-        for( $i = $c - 1; $i >= 0; $i-- )
-        {
-        	array_push($return,$levels[$i]);
-		}
-		return $return;
-    }
-    
-    protected function traverseAndAdd( $entity )
-    {
-        $vehicles = $this->doAddFit( $entity );
-        foreach( $vehicles as $vehicle )
-        {
-            $this->insertMapping( $vehicle );
+            $this->insertMapping($vehicle);
         }
     }
     
+    function vehicleFinder()
+    {
+        return new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
+    }
+
     function insertMapping( Elite_Vaf_Model_Vehicle $vehicle )
     {
         $mapping = new Elite_Vaf_Model_Mapping( $this->getId(), $vehicle );
@@ -361,6 +324,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     */
     function doAddFit( $entity )
     {
+        
         $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new Elite_Vaf_Model_Schema );
         $params = array( $entity->getType() => $entity->getTitle() );
         $vehicles = $vehicleFinder->findByLevels($params);
