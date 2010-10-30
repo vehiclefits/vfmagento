@@ -194,7 +194,7 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
 //            array('model', $vehicle2 ),
 //        );
 //        $masterLevel = array('model', $vehicle1 );
-//        DebugBreak();
+        //DebugBreak();
 //        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
 //        
 //        $product = $this->newProduct(1);
@@ -204,7 +204,7 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
 //        $product->setCurrentlySelectedFit($this->vehicleFinder()->findOneByLevels(array('year'=>'2001')));
 //        $this->assertTrue( $product->fitsSelection() );
 //    }
-    
+//    
     function testShouldNotCreatePartialFitments()
     {
         $vehicle1 = $this->createMMY('Honda','Civic','2000');
