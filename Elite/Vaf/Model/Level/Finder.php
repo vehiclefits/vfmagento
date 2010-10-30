@@ -62,20 +62,45 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
         $master_level_type = current($masterLevel);
         $master_vehicle = next($masterLevel);
         
+        $slaveVehicles = array();
         foreach($slaveLevels as $levelsToBeMergedArray)
         {
             $level_type = current($levelsToBeMergedArray);
             $vehicle_object = next($levelsToBeMergedArray);
             
-            if($vehicle_object->toValueArray() == $master_vehicle->toValueArray())
+            $levelIds = $vehicle_object->levelIdsTruncateAfter($level_type);
+            $slaveVehicles = array_merge($slaveVehicles, $this->vehicleFinder()->findByLevelIds($levelIds));
+        }
+            
+        foreach($slaveVehicles as $slaveVehicle)
+        {
+            if($slaveVehicle->toValueArray() == $master_vehicle->toValueArray())
             {
                 continue;
             }
-            $level = $vehicle_object->getLevel($level_type);
-            $this->mergeFitments($vehicle_object,$master_vehicle);
-            $this->doMerge($level,$master_vehicle);
-            $level->delete();
+            $this->merge_vehicle($slaveVehicle, $master_vehicle, $level_type);
+            $this->mergeFitments($slaveVehicle,$master_vehicle);
+            if( $slaveVehicle->levelIdsTruncateAfter($level_type) != $master_vehicle->levelIdsTruncateAfter($level_type))
+            {
+                $slaveVehicle->unlink();
+            }
         }
+    }
+    
+    function merge_vehicle($slave_vehicle, $master_vehicle, $level)
+    {
+        $titles = $slave_vehicle->toTitleArray();
+        foreach( $this->getSchema()->getPrevLevelsIncluding($level) as $levelToReplace )
+        {
+            $titles[$levelToReplace] = $master_vehicle->getLevel($levelToReplace)->getTitle();
+        }
+        $new_vehicle = Elite_Vaf_Model_Vehicle::create($this->getSchema(), $titles);
+        $new_vehicle->save();
+    }
+    
+    function vehicleFinder()
+    {
+        return new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
     }
     
     function mergeFitments($vehicle_object, $master_vehicle)
@@ -102,26 +127,6 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
             array_push($products, $product);
         }
         return $products;
-    }
-    
-    function doMerge($level, $master_vehicle)
-    {
-        if( $this->getSchema()->getLeafLevel() != $level->getType() )
-        {
-            foreach($level->getChildren() as $child)
-            {
-                $this->doMerge($child, $master_vehicle);
-                $this->merge_child_to_vehicle($child, $master_vehicle);
-            }
-        }
-    }
-    
-    function merge_child_to_vehicle($child, $master_vehicle)
-    {
-        $titles = $master_vehicle->toTitleArray();
-        $titles[$child->getType()] = $child->getTitle();
-        $new_vehicle = Elite_Vaf_Model_Vehicle::create($this->getSchema(), $titles);
-        $new_vehicle->save();
     }
     
     function __call($name, $arguments)

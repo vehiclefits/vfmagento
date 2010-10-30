@@ -22,7 +22,7 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
         $this->levelFinder()->merge( $slaveLevels, $masterLevel );
         
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2001)) );
-        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );
+        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)), 'should delete slave vehicle');
     }
     
     function testShouldMergeModel()
@@ -37,8 +37,8 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
         $masterLevel = array('model', $vehicle2 );
         $this->levelFinder()->merge( $slaveLevels, $masterLevel );
         
-        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic')) );
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Accord')) );
+        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic')), 'should delete slave vehicle' );
     }
     
     function testShouldMergeYears_WhenMergeModel()
@@ -71,7 +71,7 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
             array('make', $vehicle1 ),
             array('make', $vehicle2 ),
         );
-        $masterLevel = array('make', $vehicle1 );
+        $masterLevel = array('make', $vehicle1 );        
         $this->levelFinder()->merge( $slaveLevels, $masterLevel );
         
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );        
@@ -94,7 +94,7 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
         
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2001)) );
-        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2002)) );
+        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2002)), 'should add siblings of slaves' );
     }
     
     function testShouldMergeMake()
