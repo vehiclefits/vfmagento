@@ -72,7 +72,6 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
                 continue;
             }
             
-            $this->mergeFitments($slaveVehicle, $master_vehicle);
             $this->merge_vehicle($slaveVehicle, $master_vehicle, $level_type);
             $this->unlinkSlaves( $slaveVehicle, $master_vehicle, $level_type );
         }
@@ -119,6 +118,8 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
         }
         $new_vehicle = Elite_Vaf_Model_Vehicle::create($this->getSchema(), $titles);
         $new_vehicle->save();
+        
+        $this->mergeFitments($slave_vehicle, $new_vehicle, $level);
     }
     
     function vehicleFinder()
@@ -126,10 +127,12 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
         return new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
     }
     
-    function mergeFitments($vehicle_object, $master_vehicle)
+    function mergeFitments($vehicle_object, $master_vehicle, $level_type)
     {
         foreach($this->getProductsThatFit($vehicle_object) as $product)
         {
+            $params = $master_vehicle->levelIdsTruncateAfter($level_type);
+            $descendantsOfMaster = $this->vehicleFinder()->findOneByLevelIds($params);
             $product->addVafFit($master_vehicle->toValueArray());
         }
     }
