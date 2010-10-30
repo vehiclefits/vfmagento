@@ -19,6 +19,21 @@ class Elite_Vaf_Model_LevelTests_UnlinkTest extends Elite_Vafimporter_TestCase
         $this->assertFalse( $this->levelExists('make', $makeId), 'when unlink make should delete make');
     }
         
+    function testWhenUnlinkMake_ShouldDeletePartialVehicleRecord()
+    {
+        $originalVehicle = $this->createMMY('Honda','Civic','2000');
+        $makeId = $originalVehicle->getValue('make');
+        
+        $params = array(
+            'make' => $makeId
+        );
+        
+        $t =$this->vehicleFinder()->findOneByLevelIds( $params, Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY );
+        $t->unlink();
+        
+        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda')), 'when unlink make should delete partial vehicle record');
+    }
+        
     function testWhenUnlinkMake_ShouldDeleteMake_Imported()
     {
         $this->importVehiclesList('make,model,year' . "\n" . 
@@ -92,6 +107,7 @@ class Elite_Vaf_Model_LevelTests_UnlinkTest extends Elite_Vafimporter_TestCase
             'make'=>$makeId,
             'model'=>$modelId
         );
+
         $this->vehicleFinder()->findOneByLevelIds( $params, Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY )->unlink();
         
         $this->assertTrue( $this->levelExists('make', $makeId), 'when unlink model, should retain make');

@@ -237,7 +237,7 @@ class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
     function unlink()
     {
         $where = $this->whereForUnlink();
-        
+                                    
         $result = $this->query('SELECT * FROM elite_definition WHERE ' . $where)->fetchAll();
         foreach($result as $row)
         {
@@ -257,7 +257,12 @@ class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
             $countInUse = $this->query('SELECT count(*) from elite_definition WHERE ' . $level->getType() . '_id = ' . $vehicleRow[$level->getType().'_id'] )->fetchColumn();
             if(!$countInUse)
             {
-                $this->query('DELETE FROM elite_level_' . $level->getType() . ' WHERE id = ' . $vehicleRow[$level->getType().'_id'] );
+                $levelType = $level->getType();
+                $this->query('DELETE FROM elite_level_' . $level->getType() . ' WHERE id = ' . $vehicleRow[$levelType.'_id'] );
+                if($this->getValue($levelType))
+                {
+                    return;
+                }
             }
         }
     }

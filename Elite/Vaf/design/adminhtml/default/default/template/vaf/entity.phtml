@@ -38,7 +38,7 @@
                 {
                     echo '<tr>';
                         echo '<td>
-                            <!--<input type="checkbox" name="selected[]" value="' . $row->getId() . '" />-->
+                            <input type="checkbox" name="selected[]" value="' . $row->getId() . '" />
                             <a href="' . $this->getEditUrl( $row->getId() ) . '">Edit</a>
                             |
                             <a href="' . $this->getDeleteUrl(  $row->getId() ) . '">Delete</a>
@@ -55,7 +55,7 @@
                                         $helper->setView(new Zend_View());
                                         echo $helper->formHidden($level, $value);
                                     }
-    ?>
+                                    ?>
                                     <?='<input type="text" name="title" value="' .  $this->htmlEscape( $row->getTitle() ) . '" /><input type="submit" name="save" value="Save" />'?>
                                 </form>
                                 <?php
@@ -75,7 +75,7 @@
                 }
                 ?>
             </table>
-            <!--<input type="submit" name="merge" value="Merge Selected" />-->
+            <input type="submit" name="merge" value="Merge Selected" />
         </form>
     </fieldset>
 </div>

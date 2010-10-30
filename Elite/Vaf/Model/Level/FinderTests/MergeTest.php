@@ -52,6 +52,7 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
             array('model', $vehicle2 ),
         );
         $masterLevel = array('model', $vehicle2 );
+
         $this->levelFinder()->merge( $slaveLevels, $masterLevel );
         
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Accord','year'=>2000)) );
@@ -99,25 +100,66 @@ class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
     
     function testShouldMergeMake()
     {
-  return $this->markTestIncomplete();
-//        $vehicle1 = $this->createMMY('Honda','Civic','2000');
-//        $vehicle2 = $this->createMMY('Ford','F-150','2001');
-//        
-//        $slaveLevels = array(
-//            array('make', $vehicle1 ),
-//            array('make', $vehicle2 ),
-//        );
-//        $masterLevel = array('make', $vehicle1 );
+        $vehicle1 = $this->createMMY('Honda','Civic','2000');
+        $vehicle2 = $this->createMMY('Honda','Civic','2002');
+        $vehicle3 = $this->createMMY('Acura','Integra','2001');
+        
+        $slaveLevels = array(
+            array('make', $vehicle1 ),
+            array('make', $vehicle3 ),
+        );
+        $masterLevel = array('make', $vehicle1 );
 
-//        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
-//        
-//        $select = new Elite_Vaf_Select($this->getReadAdapter());
-//        print_r($select->from('elite_definition')->addLevelTitles('elite_definition')->query()->fetchAll() );
-//        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );
-//        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'F-150','year'=>2001)) );
-//        
-//        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2001)) );
-//        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'F-150','year'=>2000)) );
+        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        
+        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );
+        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2001)) );
+        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Integra','year'=>2001)) );
+        
+    }
+    
+    function testShouldMergeMake2()
+    {
+        $vehicle1 = $this->createMMY('Honda','Civic','2000');
+        $vehicle2 = $this->createMMY('Ford','F-150','2001');
+        
+        $slaveLevels = array(
+            array('make', $vehicle1 ),
+            array('make', $vehicle2 ),
+        );
+        $masterLevel = array('make', $vehicle1 );
+        
+        
+                                                              // it deletes the year from Ford, but not ford itself
+        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        
+        $select = new Elite_Vaf_Select($this->getReadAdapter());
+        
+        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );
+        $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'F-150','year'=>2001)) );
+        
+        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2001)) );
+        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'F-150','year'=>2000)) );
+        $this->assertFalse( $this->vehicleExists(array('make'=>'Ford'), true ));
+    }
+        
+    function testShouldMergeMake3()
+    {
+        $vehicle1 = $this->createMMY('Honda','Civic','2000');
+        $vehicle2 = $this->createMMY('Ford','F-150','2001');
+        
+        $slaveLevels = array(
+            array('make', $vehicle1 ),
+            array('make', $vehicle2 ),
+        );
+        $masterLevel = array('make', $vehicle2 );
+
+        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        
+        $select = new Elite_Vaf_Select($this->getReadAdapter());
+        
+        $this->assertFalse( $this->vehicleExists(array('make'=>'Honda')) );
+        $this->assertTrue( $this->vehicleExists(array('make'=>'Ford'), true ));
     }
     
     function testShouldMergeProductApplications()
