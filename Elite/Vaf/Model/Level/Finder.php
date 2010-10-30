@@ -62,6 +62,35 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
         $master_level_type = current($masterLevel);
         $master_vehicle = next($masterLevel);
         
+        $level_type = $master_level_type;
+        
+        $slaveVehicles = $this->slaveVehicles($slaveLevels);
+            
+        foreach($slaveVehicles as $slaveVehicle)
+        {
+        
+            if($slaveVehicle->levelIdsTruncateAfter($level_type) == $master_vehicle->levelIdsTruncateAfter($level_type))
+            {
+                continue;
+            }
+            
+            $this->merge_vehicle($slaveVehicle, $master_vehicle, $level_type);
+            $this->mergeFitments($slaveVehicle,$master_vehicle);
+            
+            if( $slaveVehicle->levelIdsTruncateAfter($level_type) != $master_vehicle->levelIdsTruncateAfter($level_type))
+            {
+                $params = $slaveVehicle->levelIdsTruncateAfter($level_type);
+                $unlinkTarget = $this->vehicleFinder()->findOneByLevelIds($params, Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
+                if($unlinkTarget)
+                {
+                    $unlinkTarget->unlink();
+                }
+            }
+        }
+    }
+    
+    function slaveVehicles($slaveLevels)
+    {
         $slaveVehicles = array();
         foreach($slaveLevels as $levelsToBeMergedArray)
         {
@@ -76,27 +105,7 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
         {
             $slaveVehicle->toValueArray();
         }
-            
-        foreach($slaveVehicles as $slaveVehicle)
-        {
-        
-            if($slaveVehicle->levelIdsTruncateAfter($level_type) == $master_vehicle->levelIdsTruncateAfter($level_type))
-            {
-                continue;
-            }
-            
-            $this->merge_vehicle($slaveVehicle, $master_vehicle, $level_type);
-            $this->mergeFitments($slaveVehicle,$master_vehicle);
-            if( $slaveVehicle->levelIdsTruncateAfter($level_type) != $master_vehicle->levelIdsTruncateAfter($level_type))
-            {
-                $params = $slaveVehicle->levelIdsTruncateAfter($level_type);
-                $unlinkTarget = $this->vehicleFinder()->findOneByLevelIds($params, Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
-                if($unlinkTarget)
-                {
-                    $unlinkTarget->unlink();
-                }
-            }
-        }
+        return $slaveVehicles;
     }
     
     function merge_vehicle($slave_vehicle, $master_vehicle, $level)
