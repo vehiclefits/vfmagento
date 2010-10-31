@@ -22,7 +22,7 @@ class Elite_Vaf_Model_Merge
         
         $level_type = $master_level_type;
         
-        $slaveVehicles = $this->slaveVehicles($this->slaveLevels);
+        $slaveVehicles = $this->slaveVehicles();
         foreach($slaveVehicles as $slaveVehicle)
         {
             if($slaveVehicle->levelIdsTruncateAfter($level_type) == $master_vehicle->levelIdsTruncateAfter($level_type))
@@ -35,12 +35,12 @@ class Elite_Vaf_Model_Merge
         }
     }
     
-    function slaveVehicles($slaveLevels)
+    function slaveVehicles()
     {
         $slaveVehicles = array();
-        $this->ensureSlavesSameGrain($slaveLevels);       
+        $this->ensureSlavesSameGrain();       
         
-        foreach($slaveLevels as $levelsToBeMergedArray)
+        foreach($this->slaveLevels as $levelsToBeMergedArray)
         {
             $level_type = current($levelsToBeMergedArray);
             $vehicle_object = next($levelsToBeMergedArray);
@@ -56,11 +56,11 @@ class Elite_Vaf_Model_Merge
         return $slaveVehicles;
     }
     
-    function ensureSlavesSameGrain($slaveLevels)
+    function ensureSlavesSameGrain()
     {
         $last_level_type = '';
         $i=0;
-        foreach($slaveLevels as $levelsToBeMergedArray)
+        foreach($this->slaveLevels as $levelsToBeMergedArray)
         {
             $level_type = current($levelsToBeMergedArray);
             if($last_level_type != $level_type && $i)
