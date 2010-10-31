@@ -19,7 +19,9 @@ class Elite_Vaf_Model_Merge
     function execute()
     {
         $master_level_type = current($this->masterLevel);
-        $master_vehicle = next($this->masterLevel);
+        
+        $this->setMasterVehicle();
+        $master_vehicle = $this->masterVehicle();
         
         $this->operating_grain = $master_level_type;
         
@@ -39,6 +41,16 @@ class Elite_Vaf_Model_Merge
     function operatingGrain()
     {
         return $this->operating_grain;
+    }
+    
+    function setMasterVehicle()
+    {
+        $this->master_vehicle = next($this->masterLevel);
+    }
+    
+    function masterVehicle()
+    {
+        return $this->master_vehicle;
     }
     
     function slaveVehicles()
