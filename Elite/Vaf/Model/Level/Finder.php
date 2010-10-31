@@ -59,8 +59,8 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
     */
     function merge( $slaveLevels, $masterLevel )
     {
-        $merge = new Elite_Vaf_Model_Merge();
-        $merge->merge($slaveLevels, $masterLevel);
+        $merge = new Elite_Vaf_Model_Merge($slaveLevels, $masterLevel);
+        $merge->execute();
     }
     
     function __call($name, $arguments)

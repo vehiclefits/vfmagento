@@ -2,19 +2,27 @@
 class Elite_Vaf_Model_Merge
 {
     protected $config;
+    protected $slaveLevels;
+    protected $masterLevel;
     
     /**
     * @param aray $slaveLevels - Ex. array('year'=>$year1,'year'=>$year2);
     * @param array $masterLevel - Ex. array('year'=>$year2);
     */
-    function merge( $slaveLevels, $masterLevel )
+    function __construct( $slaveLevels, $masterLevel )
     {
-        $master_level_type = current($masterLevel);
-        $master_vehicle = next($masterLevel);
+        $this->slaveLevels = $slaveLevels;
+        $this->masterLevel = $masterLevel;
+    }
+    
+    function execute()
+    {
+        $master_level_type = current($this->masterLevel);
+        $master_vehicle = next($this->masterLevel);
         
         $level_type = $master_level_type;
         
-        $slaveVehicles = $this->slaveVehicles($slaveLevels);
+        $slaveVehicles = $this->slaveVehicles($this->slaveLevels);
         foreach($slaveVehicles as $slaveVehicle)
         {
             if($slaveVehicle->levelIdsTruncateAfter($level_type) == $master_vehicle->levelIdsTruncateAfter($level_type))
