@@ -25,6 +25,8 @@ class Elite_Vaf_Model_Merge
         
         $this->operating_grain = $master_level_type;
         
+        $this->ensureSameGrain();
+        
         $slaveVehicles = $this->slaveVehicles();
         foreach($slaveVehicles as $slaveVehicle)
         {
@@ -56,7 +58,6 @@ class Elite_Vaf_Model_Merge
     function slaveVehicles()
     {
         $slaveVehicles = array();
-        $this->ensureSlavesSameGrain();       
         
         foreach($this->slaveLevels as $levelsToBeMergedArray)
         {
@@ -74,7 +75,7 @@ class Elite_Vaf_Model_Merge
         return $slaveVehicles;
     }
     
-    function ensureSlavesSameGrain()
+    function ensureSameGrain()
     {
         $last_level_type = '';
         $i=0;
@@ -87,6 +88,11 @@ class Elite_Vaf_Model_Merge
             }
             $last_level_type = $level_type;
             $i++;
+        }
+        
+        if( $last_level_type != $this->operatingGrain() )
+        {
+            throw new Elite_Vaf_Model_Vehicle_Finder_Exception_DifferingGrain('master level must be at same grain as slave levels');
         }
     }
     

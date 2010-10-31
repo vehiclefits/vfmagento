@@ -30,17 +30,16 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
     */
     function testShouldNotAllowDifferingMasterLevel()
     {
-return $this->markTestIncomplete();
-        //        $vehicle1 = $this->createMMY('Honda','Civic','2000');
-//        $vehicle2 = $this->createMMY('Honda','Civic','2001');
-//        
-//        $slaveLevels = array(
-//            array('model', $vehicle1 ),
-//            array('model', $vehicle2 ),
-//        );
-//        $masterLevel = array('year', $vehicle2 );
-//        
-//        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        $vehicle1 = $this->createMMY('Honda','Civic','2000');
+        $vehicle2 = $this->createMMY('Honda','Civic','2001');
+        
+        $slaveLevels = array(
+            array('model', $vehicle1 ),
+            array('model', $vehicle2 ),
+        );
+        $masterLevel = array('year', $vehicle2 );
+        
+        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
     }
     
     function testShouldMergeYear()
