@@ -8,6 +8,23 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
     
     // @todo what about a way to merge a make with a model, or year (by traversing the level closest to the root level, and "blowing out" all applicable vehicles).
     
+    /**
+    * @expectedException Elite_Vaf_Model_Vehicle_Finder_Exception_DifferingGrain 
+    */
+    function testShouldNotAllowDifferingLevels()
+    {
+        $vehicle1 = $this->createMMY('Honda','Civic','2000');
+        $vehicle2 = $this->createMMY('Honda','Civic','2001');
+        
+        $slaveLevels = array(
+            array('year', $vehicle1 ),
+            array('model', $vehicle2 ),
+        );
+        $masterLevel = array('year', $vehicle2 );
+        
+        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+    }
+    
     function testShouldMergeYear()
     {
         $vehicle1 = $this->createMMY('Honda','Civic','2000');

@@ -80,6 +80,8 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
     function slaveVehicles($slaveLevels)
     {
         $slaveVehicles = array();
+        $this->ensureSlavesSameGrain($slaveLevels);       
+        
         foreach($slaveLevels as $levelsToBeMergedArray)
         {
             $level_type = current($levelsToBeMergedArray);
@@ -94,6 +96,22 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
             $slaveVehicle->toValueArray();
         }
         return $slaveVehicles;
+    }
+    
+    function ensureSlavesSameGrain($slaveLevels)
+    {
+        $last_level_type = '';
+        $i=0;
+        foreach($slaveLevels as $levelsToBeMergedArray)
+        {
+            $level_type = current($levelsToBeMergedArray);
+            if($last_level_type != $level_type && $i)
+            {
+                throw new Elite_Vaf_Model_Vehicle_Finder_Exception_DifferingGrain('slave levels should all be at same grain to merge');
+            }
+            $last_level_type = $level_type;
+            $i++;
+        }
     }
     
     function unlinkSlaves($slaveVehicle, $master_vehicle, $level_type )
