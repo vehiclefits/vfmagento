@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_LevelTests_UnlinkTest extends Elite_Vafimporter_TestCase
+class Elite_Vaf_Model_Vehicle_FinderTests_UnlinkTest extends Elite_Vafimporter_TestCase
 {
     function doSetUp()
     {

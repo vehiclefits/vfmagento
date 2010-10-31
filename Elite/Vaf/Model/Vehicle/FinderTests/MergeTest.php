@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Level_FinderTests_MergeTest extends Elite_Vaf_TestCase
+class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {
