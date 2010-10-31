@@ -30,7 +30,7 @@ class Elite_Vaf_Model_Merge
         $slaveVehicles = $this->slaveVehicles();
         foreach($slaveVehicles as $slaveVehicle)
         {
-            if($slaveVehicle->levelIdsTruncateAfter($this->operatingGrain()) == $master_vehicle->levelIdsTruncateAfter($this->operatingGrain()))
+            if($this->equalsAboveOperatingGrain($slaveVehicle, $master_vehicle))
             {
                 continue;
             }
@@ -61,10 +61,9 @@ class Elite_Vaf_Model_Merge
         
         foreach($this->slaveLevels as $levelsToBeMergedArray)
         {
-            $level_type = current($levelsToBeMergedArray);
             $vehicle_object = next($levelsToBeMergedArray);
             
-            $levelIds = $vehicle_object->levelIdsTruncateAfter($level_type);
+            $levelIds = $vehicle_object->levelIdsTruncateAfter($this->operatingGrain());
             $slaveVehicles = array_merge($slaveVehicles, $this->vehicleFinder()->findByLevelIds($levelIds));
         }
         
@@ -98,7 +97,7 @@ class Elite_Vaf_Model_Merge
     
     function unlinkSlaves($slaveVehicle, $master_vehicle )
     {
-        if( $slaveVehicle->levelIdsTruncateAfter($this->operatingGrain()) != $master_vehicle->levelIdsTruncateAfter($this->operatingGrain()))
+        if( !$this->equalsAboveOperatingGrain($slaveVehicle, $master_vehicle))
         {
             $params = $slaveVehicle->levelIdsTruncateAfter($this->operatingGrain());
             $unlinkTarget = $this->vehicleFinder()->findOneByLevelIds($params, Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
@@ -107,6 +106,11 @@ class Elite_Vaf_Model_Merge
                 $unlinkTarget->unlink();
             }
         }
+    }
+    
+    function equalsAboveOperatingGrain($vehicle1, $vehicle2)
+    {
+        return $vehicle1->levelIdsTruncateAfter($this->operatingGrain()) == $vehicle2->levelIdsTruncateAfter($this->operatingGrain());
     }
     
     function merge_vehicle($slave_vehicle, $master_vehicle)
