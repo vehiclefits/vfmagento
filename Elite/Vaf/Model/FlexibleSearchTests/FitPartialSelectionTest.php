@@ -26,9 +26,9 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitPartialSelectionTest extends Elite_
         $_SESSION = array('make'=>null, 'model'=>null, 'year'=>null);
         $vehicle = $this->createMMY();
         $requestParams = array(
-        	'make'=>$vehicle->getLevel('make')->getId(),
-        	'model'=>'loading',
-        	'year'=>'loading'
+            'make'=>$vehicle->getLevel('make')->getId(),
+            'model'=>'loading',
+            'year'=>'loading'
         );
         $helper = $this->getHelper( array(), $requestParams );
         $helper->storeFitInSession();
@@ -36,6 +36,22 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitPartialSelectionTest extends Elite_
         $this->assertEquals( $vehicle->getLevel('make')->getId(), $_SESSION['make'] );
         $this->assertFalse( $_SESSION['model'] );
         $this->assertFalse( $_SESSION['year'] );
+    }
+       
+    function testShouldFindProducts()
+    {
+        $_SESSION = array('make'=>null, 'model'=>null, 'year'=>null);
+        $vehicle = $this->createMMY();
+        $this->insertMappingMMY($vehicle,1);
+        $requestParams = array(
+        	'make'=>$vehicle->getLevel('make')->getId(),
+        	'model'=>'loading',
+        	'year'=>'loading'
+        );
+        $helper = $this->getHelper( array(), $requestParams );
+        $helper->storeFitInSession();
+        
+        $this->assertEquals( array(1), $helper->getProductIds() );
     }
         
     function testShouldOverwriteAFullSelection()
