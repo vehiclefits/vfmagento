@@ -1,3 +1,11 @@
+1.23 November 1, 2010
+======================================================
+- 0000753: [Other] Should be able to see which products fit a vehicle from the backend
+- 0000260: [Vehicles List] Ability to merge 2 vehicle levels
+
+ISSUES
+- 0000754: [Search Filter] When making partial selection, products are not found
+
 1.23 October 29, 2010
 ======================================================
 - 0000751: [Product Application Fitments] Add fitments to products w/ global levels bug
