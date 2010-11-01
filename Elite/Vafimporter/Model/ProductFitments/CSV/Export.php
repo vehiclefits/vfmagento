@@ -33,14 +33,14 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Export extends Elite_Vafimport
 	protected function rowResult()
 	{
 		$select = $this->getReadAdapter()->select()
-			->from( 'elite_mapping', array( 'id','universal' ) );	
+			->from( 'elite_Fitment', array( 'id','universal' ) );	
 		foreach( $this->schema->getLevels() as $level )
 		{
 			$table = 'elite_level_'.$level;
-			$condition = sprintf('%s.id = elite_mapping.%s_id', $table, $level );
+			$condition = sprintf('%s.id = elite_Fitment.%s_id', $table, $level );
 			$select->joinLeft( $table, $condition, array($level=>'title') );
 		}
-		$select->joinLeft( array('p'=>$this->getProductTable()), 'p.entity_id = elite_mapping.entity_id', array('sku') );
+		$select->joinLeft( array('p'=>$this->getProductTable()), 'p.entity_id = elite_Fitment.entity_id', array('sku') );
 		return $this->query($select);
 	}
 	
@@ -53,18 +53,18 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Export extends Elite_Vafimport
     
     private function doCols()
     {
-        if( file_exists( ELITE_PATH  . '/Vafnote/Observer/Exporter/Mappings.php' ) )
+        if( file_exists( ELITE_PATH  . '/Vafnote/Observer/Exporter/Fitments.php' ) )
         {
-            $exporter = new Elite_Vafnote_Observer_Exporter_Mappings_CSV();
+            $exporter = new Elite_Vafnote_Observer_Exporter_Fitments_CSV();
             return $exporter->doCols();
         }
     }
     
     private function doRow($row)
     {
-        if( file_exists( ELITE_PATH  . '/Vafnote/Observer/Exporter/Mappings.php' ) )
+        if( file_exists( ELITE_PATH  . '/Vafnote/Observer/Exporter/Fitments.php' ) )
         {
-            $exporter = new Elite_Vafnote_Observer_Exporter_Mappings_CSV;
+            $exporter = new Elite_Vafnote_Observer_Exporter_Fitments_CSV;
             return $exporter->doRow($row);
         }
     }

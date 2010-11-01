@@ -203,7 +203,7 @@ class Elite_Vaf_Model_Level_Finder_Selector extends Elite_Vaf_Model_Level_Finder
     protected function doListInUse( $entity, $parents, $product_id = 0 )
     {
         $select = $this->getReadAdapter()->select();
-        $select->from( 'elite_mapping', sprintf( '%s_id', $entity->getType() ) );
+        $select->from( 'elite_Fitment', sprintf( '%s_id', $entity->getType() ) );
         foreach( $parents as $parentType => $parentId )
         {
             if( !in_array( $parentType, $this->getSchema()->getLevels() ) )

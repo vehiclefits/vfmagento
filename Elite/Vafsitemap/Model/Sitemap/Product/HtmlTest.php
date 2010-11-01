@@ -25,14 +25,14 @@ class Elite_Vafsitemap_Model_Sitemap_Product_HtmlTest extends Elite_Vaf_TestCase
     
     function testProductCollectionEmpty()
     {
-		$this->assertEquals( array(0), $this->sitemap->getCollection()->ids, 'when there are no mappings should find no products' );
+		$this->assertEquals( array(0), $this->sitemap->getCollection()->ids, 'when there are no Fitments should find no products' );
     }
     
     function testProducts()
     {
 		$productId = $this->insertProduct('sku');
-		$this->insertMappingMMY($this->expectedDefinition,$productId);
-		$this->assertEquals( array($productId), $this->sitemap->getCollection()->ids, 'when there are mappings should find products' );
+		$this->insertFitmentMMY($this->expectedDefinition,$productId);
+		$this->assertEquals( array($productId), $this->sitemap->getCollection()->ids, 'when there are Fitments should find products' );
     }
 }
 

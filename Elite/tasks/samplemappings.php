@@ -36,7 +36,7 @@ class SampleData
             
             $newCsv .= $line . "\n";
         }
-        $file = 'E:\dev\vaf\app\code\local\Elite\tasks\sampleMappings.csv';
+        $file = 'E:\dev\vaf\app\code\local\Elite\tasks\sampleFitments.csv';
         file_put_contents($file,$newCsv);
         $importer = new Elite_Vafimporter_Model_ProductFitments_CSV_Import($file);
         $importer->import();

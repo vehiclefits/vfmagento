@@ -88,7 +88,7 @@ class Elite_Vaf_Model_LevelTests_LevelTest extends Elite_Vaf_TestCase
     function testDeleteFits()
     {
         $vehicle = $this->createMMY();
-        $this->insertMappingMMY( $vehicle, 1 );
+        $this->insertFitmentMMY( $vehicle, 1 );
         $level = new Elite_Vaf_Model_Level( 'year', $vehicle->getLevel('year')->getId() );
         $level->deleteFits();
     }

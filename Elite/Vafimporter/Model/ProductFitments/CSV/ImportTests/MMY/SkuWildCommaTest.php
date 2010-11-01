@@ -16,28 +16,28 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_SkuWildCommaTe
     
     function testShouldMatchAAA1()
     {
-        $this->mappingsImport($this->csvData);
+        $this->FitmentsImport($this->csvData);
         $fit = $this->getFitForSku('aaa1');
         $this->assertEquals( 'honda', $fit->getLevel('make')->getTitle() );
     }
 
     function testShouldMatchAAA2()
     {
-        $this->mappingsImport($this->csvData);
+        $this->FitmentsImport($this->csvData);
         $fit = $this->getFitForSku('aaa1');
         $this->assertEquals( 'honda', $fit->getLevel('make')->getTitle() );
     }
 
     function testShouldMatchBBB1()
     {
-        $this->mappingsImport($this->csvData);
+        $this->FitmentsImport($this->csvData);
         $fit = $this->getFitForSku('aaa1');
         $this->assertEquals( 'honda', $fit->getLevel('make')->getTitle() );
     }
 
     function testShouldMatchBBB2()
     {
-        $this->mappingsImport($this->csvData);
+        $this->FitmentsImport($this->csvData);
         $fit = $this->getFitForSku('bbb2');
         $this->assertEquals( 'honda', $fit->getLevel('make')->getTitle() );
     }
@@ -46,7 +46,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_SkuWildCommaTe
   
     function testShouldNotMatchZZZ()
     {
-        $this->mappingsImport($this->csvData);
+        $this->FitmentsImport($this->csvData);
         $fit = $this->getFitForSku('ZZZ');
         $this->assertFalse( $fit );
     }

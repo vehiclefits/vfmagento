@@ -12,27 +12,27 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_AlreadyExistin
     
     function testNonExistantSku_ShouldNotAffectSkippedCount()
     {
-        $importer = $this->mappingsImporterFromData('sku, make, model, year' . "\n" .
+        $importer = $this->FitmentsImporterFromData('sku, make, model, year' . "\n" .
                                                     'nonexist, honda, civic, 2000');
         $importer->import();
-        $this->assertEquals( 0, $importer->getCountSkippedMappings(), 'non existant sku should NOT affect skipped count' );
+        $this->assertEquals( 0, $importer->getCountSkippedFitments(), 'non existant sku should NOT affect skipped count' );
     }
     
     function testSkippedCountIs0AfterSuccess()
     {
-        $importer = $this->mappingsImporterFromData($this->csvData);
+        $importer = $this->FitmentsImporterFromData($this->csvData);
         $importer->import();
-        $this->assertEquals( 0, $importer->getCountSkippedMappings() );
+        $this->assertEquals( 0, $importer->getCountSkippedFitments() );
     }
     
     function testSkippedCountIs1IfFitAlreadyExists()
     {
-        $importer = $this->mappingsImporterFromData($this->csvData);
+        $importer = $this->FitmentsImporterFromData($this->csvData);
         $importer->import();
         
-        $importer = $this->mappingsImporterFromData($this->csvData);
+        $importer = $this->FitmentsImporterFromData($this->csvData);
         $importer->import();
         
-        $this->assertEquals( 1, $importer->getCountSkippedMappings() );
+        $this->assertEquals( 1, $importer->getCountSkippedFitments() );
     }
 }

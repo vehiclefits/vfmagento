@@ -21,8 +21,8 @@ $vehicle2 = Elite_Vaf_Model_Vehicle::create( $schema, array(
 ));
 $vehicle2->save();
 
-$mapping = new Elite_Vaf_Model_Mapping( 1, $vehicle2 );
-$mapping->save();
+$Fitment = new Elite_Vaf_Model_Fitment( 1, $vehicle2 );
+$Fitment->save();
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"

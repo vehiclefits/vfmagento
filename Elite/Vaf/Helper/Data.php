@@ -58,7 +58,7 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
     function storeFitInSession()
     {
         $search = $this->flexibleSearch();
-        $mapping_id = $search->storeFitInSession();
+        $Fitment_id = $search->storeFitInSession();
         
         if( file_exists(ELITE_PATH.'/Vaftire') )
         {
@@ -75,7 +75,7 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
 	        $wheeladapterSearch = new Elite_Vafwheeladapter_Model_FlexibleSearch($search);
 	        $wheeladapterSearch->storeAdapterSizeInSession();
 		}
-        return $mapping_id;
+        return $Fitment_id;
     }
     
     function clearSelection()

@@ -58,8 +58,8 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
         {
             $return .= $this->createLevel( $i );
         }
-        $return .= $this->createMappingsTable();
-        $return .= $this->addUniqueOnMappingsTable();
+        $return .= $this->createFitmentsTable();
+        $return .= $this->addUniqueOnFitmentsTable();
         
         $return .= $this->createdefinitionTable();
         $return .= $this->addUniqueOnDefinitionsTable();
@@ -194,9 +194,9 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
         return $this->getLevel( $i - 1 );
     }
     
-    protected function createMappingsTable()
+    protected function createFitmentsTable()
     {
-        $return = 'CREATE TABLE IF NOT EXISTS `elite_mapping` (';
+        $return = 'CREATE TABLE IF NOT EXISTS `elite_Fitment` (';
             $return .= '`id` int(50) NOT NULL AUTO_INCREMENT,';
             $return .= $this->columns();
             $return .= '`entity_id` int(25) NOT NULL,';
@@ -231,7 +231,7 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
         return sprintf("ALTER TABLE `elite_definition` ADD UNIQUE ( %s );",$levels);
     }
     
-    function addUniqueOnMappingsTable()
+    function addUniqueOnFitmentsTable()
     {
         $levels = array();
         foreach( $this->levels() as $level )
@@ -241,7 +241,7 @@ class Elite_Vaf_Model_Schema_Generator extends Ne8Vehicle_Schema_Generator
         $levels[] = 'universal';
         $levels[] = 'entity_id';
         $levels = implode( ',', $levels );
-        return sprintf("ALTER TABLE `elite_mapping` ADD UNIQUE ( %s );",$levels);
+        return sprintf("ALTER TABLE `elite_Fitment` ADD UNIQUE ( %s );",$levels);
     }
     
     function createSchemaTable()

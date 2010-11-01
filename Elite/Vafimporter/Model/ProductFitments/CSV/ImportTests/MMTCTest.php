@@ -17,7 +17,7 @@ sku, honda, civic, the_trim, the_chassis';
     
     function testSku()
     {
-        $importer = $this->mappingsImport( $this->csvData );
+        $importer = $this->FitmentsImport( $this->csvData );
         $schema = new Elite_Vaf_Model_Schema();
         $fit = $this->getFitForSku( self::SKU, $schema );
         $this->assertEquals( 'honda', $fit->getLevel( 'make' )->getTitle() );
@@ -36,7 +36,7 @@ sku, honda, civic, the_trim, the_chassis';
         return $this->markTestIncomplete();
 //        $data = 'sku, make, model, trim, chassis
 //nonexistantsku, honda, civic, the_trim, the_chassis';
-//        $file = TESTFILES . '/mappings-skipped.csv';
+//        $file = TESTFILES . '/Fitments-skipped.csv';
 //        file_put_contents( $file, $data );
 //        $importer = new Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass( $file );
 //        $importer->import();
@@ -56,15 +56,15 @@ sku, honda, civic, the_trim, the_chassis';
         return $this->markTestIncomplete();
 //        $importer = new Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
 //        $importer->import();
-//        $this->assertEquals( 0, $importer->getCountSkippedMappings() );
+//        $this->assertEquals( 0, $importer->getCountSkippedFitments() );
     }
     
-    function testCountMappingsIs1AfterSuccess()
+    function testCountFitmentsIs1AfterSuccess()
     {
         return $this->markTestIncomplete();
 //        $importer = new Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
 //        $importer->import();
-//        $this->assertEquals( 1, $importer->getCountMappings() );
+//        $this->assertEquals( 1, $importer->getCountFitments() );
     }
     
     function testSkippedCountIs1IfFitAlreadyExists()
@@ -75,7 +75,7 @@ sku, honda, civic, the_trim, the_chassis';
         // execise ( again)
 //        $importer = new Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
 //        $importer->import();
-//        $this->assertEquals( 1, $importer->getCountSkippedMappings() );
+//        $this->assertEquals( 1, $importer->getCountSkippedFitments() );
     }
     
 }

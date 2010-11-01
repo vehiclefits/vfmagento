@@ -14,14 +14,14 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_SkuCommaTest e
     
     function testShouldMatchSku1()
     {
-        $this->mappingsImport($this->csvData);
+        $this->FitmentsImport($this->csvData);
         $fit = $this->getFitForSku('sku1');
         $this->assertEquals( 'honda', $fit->getLevel('make')->getTitle() );
     }
     
     function testShouldMatchSku2()
     {
-        $this->mappingsImport($this->csvData);
+        $this->FitmentsImport($this->csvData);
         $fit = $this->getFitForSku('sku2');
         $this->assertEquals( 'honda', $fit->getLevel('make')->getTitle() );
     }
@@ -29,7 +29,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_SkuCommaTest e
   
     function testShouldNotMatchZZZ()
     {
-        $this->mappingsImport($this->csvData);
+        $this->FitmentsImport($this->csvData);
         $fit = $this->getFitForSku('ZZZ');
         $this->assertFalse( $fit );
     }

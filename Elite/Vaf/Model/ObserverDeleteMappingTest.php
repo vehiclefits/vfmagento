@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_ObserverDeleteMappingTest extends Elite_Vaf_TestCase
+class Elite_Vaf_Model_ObserverDeleteFitmentTest extends Elite_Vaf_TestCase
 {
     const PRODUCT_ID = 1;
 
@@ -7,7 +7,7 @@ class Elite_Vaf_Model_ObserverDeleteMappingTest extends Elite_Vaf_TestCase
     {
         // create product & a fit
         $vehicle = $this->createMMY();
-        $fit_id = $this->insertMappingMMY( $vehicle, self::PRODUCT_ID );
+        $fit_id = $this->insertFitmentMMY( $vehicle, self::PRODUCT_ID );
         
         $product = $this->getProduct( self::PRODUCT_ID );
         

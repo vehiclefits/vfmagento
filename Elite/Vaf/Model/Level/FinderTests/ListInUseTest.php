@@ -8,9 +8,9 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $vehicle2 = $this->createMMY( 'A', 'B', '1' );
         $vehicle3 = $this->createMMY( 'A', 'C', '1' );
         
-        $this->insertMappingMMY( $vehicle1 );
-        $this->insertMappingMMY( $vehicle2 );
-        $this->insertMappingMMY( $vehicle3 );
+        $this->insertFitmentMMY( $vehicle1 );
+        $this->insertFitmentMMY( $vehicle2 );
+        $this->insertFitmentMMY( $vehicle3 );
         
         $model = new Elite_Vaf_Model_Level('model');
         $actual = $model->listInUse();
@@ -25,9 +25,9 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $vehicle2 = $this->createMMY( 'A', 'B', '2000' ); 
         $vehicle3 = $this->createMMY( 'A', 'C', '2000' );
         
-        $this->insertMappingMMY( $vehicle1 );
-        $this->insertMappingMMY( $vehicle2 );
-        $this->insertMappingMMY( $vehicle3 );
+        $this->insertFitmentMMY( $vehicle1 );
+        $this->insertFitmentMMY( $vehicle2 );
+        $this->insertFitmentMMY( $vehicle3 );
         
         $parents = array('make' => $vehicle1->getLevel('make')->getId(), 'model' => $vehicle1->getLevel('model')->getId(), 'year' => '-please select-');
         $model = new Elite_Vaf_Model_Level('model');
@@ -43,9 +43,9 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $vehicle2 = $this->createMMY( 'Honda', 'Civic', '2002' ); 
         $vehicle3 = $this->createMMY( 'Honda', 'Civic', '2003' ); 
         
-        $this->insertMappingMMY( $vehicle1 );
-        $this->insertMappingMMY( $vehicle2 );
-        $this->insertMappingMMY( $vehicle3 );
+        $this->insertFitmentMMY( $vehicle1 );
+        $this->insertFitmentMMY( $vehicle2 );
+        $this->insertFitmentMMY( $vehicle3 );
         
         $parents = array('make'=>$vehicle1->getLevel('make')->getId(),'model'=>$vehicle1->getLevel('model')->getId(), 'year'=>$vehicle1->getLevel('year')->getId());
 
@@ -64,9 +64,9 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         
         $product_id = 1;
         
-        $this->insertMappingMMY( $vehicle1, $product_id );
-        $this->insertMappingMMY( $vehicle2 );
-        $this->insertMappingMMY( $vehicle3 );
+        $this->insertFitmentMMY( $vehicle1, $product_id );
+        $this->insertFitmentMMY( $vehicle2 );
+        $this->insertFitmentMMY( $vehicle3 );
         
         $model = new Elite_Vaf_Model_Level('model');
         $actual = $model->listInUse( array(), $product_id );
@@ -89,9 +89,9 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $vehicle2 = $this->createMMY( 'Honda', 'Accord', '2002' ); 
         $vehicle3 = $this->createMMY( 'Honda', 'Civic', '2002' ); 
         
-        $this->insertMappingMMY( $vehicle1 );
-        $this->insertMappingMMY( $vehicle2 );
-        $this->insertMappingMMY( $vehicle3 );
+        $this->insertFitmentMMY( $vehicle1 );
+        $this->insertFitmentMMY( $vehicle2 );
+        $this->insertFitmentMMY( $vehicle3 );
         
         $model = new Elite_Vaf_Model_Level('model');
         $actual = $model->listInUse( array( 'make' => $vehicle2->getLevel('make')->getId() ) );
@@ -103,7 +103,7 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
     function testWithLeafAsParent()
     {
         $vehicle = $this->createMMY( 'Acura', 'Integra', '2002' ); 
-        $this->insertMappingMMY( $vehicle );
+        $this->insertFitmentMMY( $vehicle );
         
         $model = new Elite_Vaf_Model_Level('model');
         $actual = $model->listInUse( array( 'year' => $vehicle->getLevel('year')->getId() ) );
@@ -116,9 +116,9 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $vehicle2 = $this->createMMY( 'Honda', 'B', '2002' ); 
         $vehicle3 = $this->createMMY( 'Honda', 'C', '2002' ); 
         
-        $this->insertMappingMMY( $vehicle1 );
-        $this->insertMappingMMY( $vehicle2 );
-        $this->insertMappingMMY( $vehicle3 );
+        $this->insertFitmentMMY( $vehicle1 );
+        $this->insertFitmentMMY( $vehicle2 );
+        $this->insertFitmentMMY( $vehicle3 );
         
         $model = new Elite_Vaf_Model_Level('model');
         $actual = $model->listInUse( array( 'make' => $vehicle1->getLevel('make')->getId() ) );
@@ -141,9 +141,9 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $vehicle2 = $this->createMMY('B', 'Civic', '2000');
         $vehicle3 = $this->createMMY('C', 'Civic', '2000');
         
-        $this->insertMappingMMY( $vehicle1 );
-        $this->insertMappingMMY( $vehicle2 );
-        $this->insertMappingMMY( $vehicle3 );
+        $this->insertFitmentMMY( $vehicle1 );
+        $this->insertFitmentMMY( $vehicle2 );
+        $this->insertFitmentMMY( $vehicle3 );
         
         $make = new Elite_Vaf_Model_Level( 'make' );
         $actual = $make->listInUse();
@@ -165,9 +165,9 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $vehicle2 = $this->createMMY('B', 'Civic', '2000');
         $vehicle3 = $this->createMMY('C', 'Civic', '2000');
         
-        $this->insertMappingMMY( $vehicle1 );
-        $this->insertMappingMMY( $vehicle2 );
-        $this->insertMappingMMY( $vehicle3 );
+        $this->insertFitmentMMY( $vehicle1 );
+        $this->insertFitmentMMY( $vehicle2 );
+        $this->insertFitmentMMY( $vehicle3 );
         
         $make = new Elite_Vaf_Model_Level( 'make' );
         $actual = $make->listInUse();
@@ -189,9 +189,9 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $vehicle2 = $this->createMMY('Honda', 'Civic', '2000');
         $vehicle3 = $this->createMMY('Honda', 'Civic', '2001');
         
-        $this->insertMappingMMY( $vehicle1 );
-        $this->insertMappingMMY( $vehicle2 );
-        $this->insertMappingMMY( $vehicle3 );
+        $this->insertFitmentMMY( $vehicle1 );
+        $this->insertFitmentMMY( $vehicle2 );
+        $this->insertFitmentMMY( $vehicle3 );
         
         $year = new Elite_Vaf_Model_Level( 'year' );
         $actual = $year->listInUse( array( 'model' => $vehicle1->getLevel('model')->getId() ) );
@@ -213,9 +213,9 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
         $vehicle2 = $this->createMMY('Honda', 'Civic', '2000');
         $vehicle3 = $this->createMMY('Honda', 'Civic', '2001');
         
-        $this->insertMappingMMY( $vehicle1 );
-        $this->insertMappingMMY( $vehicle2 );
-        $this->insertMappingMMY( $vehicle3 );
+        $this->insertFitmentMMY( $vehicle1 );
+        $this->insertFitmentMMY( $vehicle2 );
+        $this->insertFitmentMMY( $vehicle3 );
         
         $year = new Elite_Vaf_Model_Level( 'year' );
         $actual = $year->listInUse( array( 'model' => $vehicle1->getLevel('model')->getId() ) );
@@ -228,15 +228,15 @@ class Elite_Vaf_Model_Level_FinderTests_ListInUseTest extends Elite_Vaf_TestCase
 //    protected function createDefinitionAndFit()
 //    {
 //        $vehicle = $this->createMMYWithAdditionalModels();
-//        $this->insertMappingMMY( $vehicle );
+//        $this->insertFitmentMMY( $vehicle );
 //        $this->insertAdditionalModelFits();
 //        return $vehicle;
 //    }
     
 //    protected function insertAdditionalModelFits( )
 //    {
-//        $this->insertMappingMMY( $this->make_id, $this->model1 );
-//        $this->insertMappingMMY( $this->make_id, $this->model2 );
+//        $this->insertFitmentMMY( $this->make_id, $this->model1 );
+//        $this->insertFitmentMMY( $this->make_id, $this->model2 );
 //    }
     
 }

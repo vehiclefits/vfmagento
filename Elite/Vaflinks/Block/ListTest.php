@@ -4,7 +4,7 @@ class Elite_Vaflinks_Block_ListTest extends Elite_Vaf_TestCase
 	function testShouldListMakes()
 	{
 		$vehicle = $this->createMMY('Honda','Civic','2000');
-		$this->insertMappingMMY($vehicle,1);
+		$this->insertFitmentMMY($vehicle,1);
 		
 		$block = new Elite_Vaflinks_Block_ListTestSub;
 		$html = $block->toHtml();
@@ -14,7 +14,7 @@ class Elite_Vaflinks_Block_ListTest extends Elite_Vaf_TestCase
     function testShouldListMakes_BaseUrl()
     {
         $vehicle = $this->createMMY('Honda','Civic','2000');
-        $this->insertMappingMMY($vehicle,1);
+        $this->insertFitmentMMY($vehicle,1);
         
         $request = $this->getRequest();
         $request->setBasePath('/foo/');
@@ -28,7 +28,7 @@ class Elite_Vaflinks_Block_ListTest extends Elite_Vaf_TestCase
     function testShouldListMakes_RequestUri()
     {
         $vehicle = $this->createMMY('Honda','Civic','2000');
-        $this->insertMappingMMY($vehicle,1);
+        $this->insertFitmentMMY($vehicle,1);
         
         $request = $this->getRequest();
         $request->setBasePath('/foo');
@@ -43,7 +43,7 @@ class Elite_Vaflinks_Block_ListTest extends Elite_Vaf_TestCase
 	function testShouldListModels()
 	{
 		$vehicle = $this->createMMY('Honda','Civic','2000');
-		$this->insertMappingMMY($vehicle,1);
+		$this->insertFitmentMMY($vehicle,1);
 		
 		$block = new Elite_Vaflinks_Block_ListTestSub;
 		$request = $this->getRequest(array('make'=>$vehicle->getValue('make')));
@@ -56,7 +56,7 @@ class Elite_Vaflinks_Block_ListTest extends Elite_Vaf_TestCase
 	function testShouldListYears()
 	{
 		$vehicle = $this->createMMY('Honda','Civic','2000');
-		$this->insertMappingMMY($vehicle,1);
+		$this->insertFitmentMMY($vehicle,1);
 		
 		$block = new Elite_Vaflinks_Block_ListTestSub;
 		$request = $this->getRequest(array( 'make'=>$vehicle->getValue('make'), 'model'=>$vehicle->getValue('model') ));
@@ -69,7 +69,7 @@ class Elite_Vaflinks_Block_ListTest extends Elite_Vaf_TestCase
 	function testShouldListYearsAfterListingModel()
 	{
 		$vehicle = $this->createMMY('Honda','Civic','2000');
-		$this->insertMappingMMY($vehicle,1);
+		$this->insertFitmentMMY($vehicle,1);
 		
 		// list models
 		$block = new Elite_Vaflinks_Block_ListTestSub;
@@ -94,7 +94,7 @@ class Elite_Vaflinks_Block_ListTest extends Elite_Vaf_TestCase
 	function testShouldListYearsAfterListingModel_BasePath()
 	{
 		$vehicle = $this->createMMY('Honda','Civic','2000');
-		$this->insertMappingMMY($vehicle,1);
+		$this->insertFitmentMMY($vehicle,1);
 		
 		// list models
 		$block = new Elite_Vaflinks_Block_ListTestSub;

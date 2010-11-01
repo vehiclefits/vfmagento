@@ -9,15 +9,15 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_NoVehicleest e
 
     function testShouldNotIncrementSkippedCount()
     {
-        $importer = $this->mappingsImporterFromData('sku,make,model,year' . "\n" .
+        $importer = $this->FitmentsImporterFromData('sku,make,model,year' . "\n" .
                                                     'sku,,,');
         $importer->import();
-        $this->assertEquals(0, $importer->getCountSkippedMappings(), 'should not increment skipped count');
+        $this->assertEquals(0, $importer->getCountSkippedFitments(), 'should not increment skipped count');
     }
     
     function testShouldIncrementInvalidVehicleCount()
     {
-        $importer = $this->mappingsImporterFromData('sku,make,model,year' . "\n" .
+        $importer = $this->FitmentsImporterFromData('sku,make,model,year' . "\n" .
                                                     'sku,,,');
         $importer->import();
         $this->assertEquals(1, $importer->invalidVehicleCount(), 'should increment invalid vehicle count');

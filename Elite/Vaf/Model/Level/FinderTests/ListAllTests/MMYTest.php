@@ -13,9 +13,9 @@ class Elite_Vaf_Model_Level_FinderTests_ListAllTests_MMYTest extends Elite_Vaf_T
         $vehicle2 = $this->createMMY( 'A', 'B', '1' );
         $vehicle3 = $this->createMMY( 'A', 'C', '1' );
         
-        $this->insertMappingMMY( $vehicle1 );
-        $this->insertMappingMMY( $vehicle2 );
-        $this->insertMappingMMY( $vehicle3 );
+        $this->insertFitmentMMY( $vehicle1 );
+        $this->insertFitmentMMY( $vehicle2 );
+        $this->insertFitmentMMY( $vehicle3 );
         
         $model = new Elite_Vaf_Model_Level('model');
         $actual = $model->listAll();
@@ -30,9 +30,9 @@ class Elite_Vaf_Model_Level_FinderTests_ListAllTests_MMYTest extends Elite_Vaf_T
         $vehicle2 = $this->createMMY( 'A', 'B', '1' );
         $vehicle3 = $this->createMMY( 'A', 'C', '1' );
         
-        $this->insertMappingMMY( $vehicle1 );
-        $this->insertMappingMMY( $vehicle2 );
-        $this->insertMappingMMY( $vehicle3 );
+        $this->insertFitmentMMY( $vehicle1 );
+        $this->insertFitmentMMY( $vehicle2 );
+        $this->insertFitmentMMY( $vehicle3 );
         
         $actual = $this->levelFinder()->listAll('model');
         $this->assertEquals( 'A', $actual[0]->getTitle(), 'should sort items' );
@@ -46,9 +46,9 @@ class Elite_Vaf_Model_Level_FinderTests_ListAllTests_MMYTest extends Elite_Vaf_T
         $vehicle2 = $this->createMMY( 'A', 'B', '1' );
         $vehicle3 = $this->createMMY( 'A', 'C', '1' );
         
-        $this->insertMappingMMY( $vehicle1 );
-        $this->insertMappingMMY( $vehicle2 );
-        $this->insertMappingMMY( $vehicle3 );
+        $this->insertFitmentMMY( $vehicle1 );
+        $this->insertFitmentMMY( $vehicle2 );
+        $this->insertFitmentMMY( $vehicle3 );
         
         $model = new Elite_Vaf_Model_Level('model');
         $actual = $model->listAll();
@@ -64,9 +64,9 @@ class Elite_Vaf_Model_Level_FinderTests_ListAllTests_MMYTest extends Elite_Vaf_T
         $vehicle2 = $this->createMMY( 'A', 'B', '1' );
         $vehicle3 = $this->createMMY( 'B', 'Z', 'Z' );
         
-        $this->insertMappingMMY( $vehicle1 );
-        $this->insertMappingMMY( $vehicle2 );
-        $this->insertMappingMMY( $vehicle3 );
+        $this->insertFitmentMMY( $vehicle1 );
+        $this->insertFitmentMMY( $vehicle2 );
+        $this->insertFitmentMMY( $vehicle3 );
         
         $model = new Elite_Vaf_Model_Level('model');
         $actual = $model->listAll($vehicle1->getLevel('make')->getId());

@@ -6,24 +6,24 @@ abstract class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase 
     
     const SKU = 'sku';
     
-    function mappingsImport($csvData)
+    function FitmentsImport($csvData)
     {
-        return $this->mappingsImporterFromData($csvData)->import();
+        return $this->FitmentsImporterFromData($csvData)->import();
     }
           
-    function mappingsImportFromFile($file)
+    function FitmentsImportFromFile($file)
     {
-        return $this->mappingsImporterFromFile($file)->import();
+        return $this->FitmentsImporterFromFile($file)->import();
     }    
     
-    function mappingsImporterFromData($csvData)
+    function FitmentsImporterFromData($csvData)
     {
-        $file = TESTFILES . '/mappings.csv';
+        $file = TESTFILES . '/Fitments.csv';
         file_put_contents( $file, $csvData );
-        return $this->mappingsImporterFromFile($file);
+        return $this->FitmentsImporterFromFile($file);
     }
     
-    function mappingsImporterFromFile($csvFile)
+    function FitmentsImporterFromFile($csvFile)
     {
         return new Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass($csvFile);
     }
@@ -44,7 +44,7 @@ abstract class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase 
         $r->closeCursor();
         
         $sql = sprintf(
-            "SELECT `%s_id` from `elite_mapping` WHERE `entity_id` = %d AND `universal` = 0",
+            "SELECT `%s_id` from `elite_Fitment` WHERE `entity_id` = %d AND `universal` = 0",
             $schema->getLeafLevel(),
             $product_id
         );
@@ -71,7 +71,7 @@ abstract class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase 
         $r->closeCursor();
         
         $sql = sprintf(
-            "SELECT `id` from `elite_mapping` WHERE `entity_id` = %d",
+            "SELECT `id` from `elite_Fitment` WHERE `entity_id` = %d",
             $product_id
         );
         $r = $this->query( $sql );

@@ -11,15 +11,15 @@ class Elite_Vafnote_Model_Catalog_Product
     
     function addNote( Elite_Vaf_Model_Vehicle $vehicle, $noteCode )
     {
-        $mappingId = $this->getMappingId($vehicle);
+        $FitmentId = $this->getFitmentId($vehicle);
         $note = $this->noteFinder()->findByCode($noteCode);
-        $this->noteFinder()->insertNoteRelationship($mappingId,$note->id);
+        $this->noteFinder()->insertNoteRelationship($FitmentId,$note->id);
     }
     
     function numberOfNotes(Elite_Vaf_Model_Vehicle $vehicle)
     {
-        $mappingId = $this->getMappingId($vehicle);
-        return count($this->noteFinder()->getNotes($mappingId));
+        $FitmentId = $this->getFitmentId($vehicle);
+        return count($this->noteFinder()->getNotes($FitmentId));
     }
     
     function noteFinder()

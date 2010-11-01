@@ -18,8 +18,8 @@ class Elite_Vafpaint_Model_Importer_Definitions_Paint extends Elite_Vafimporter_
         $sql = sprintf(
             "
             REPLACE INTO
-                `elite_mapping_paint`
-            ( `mapping_id`, `code`, `name`, `color` )
+                `elite_Fitment_paint`
+            ( `Fitment_id`, `code`, `name`, `color` )
                 VALUES
             ( %d, %s, %s, %s )
             ",

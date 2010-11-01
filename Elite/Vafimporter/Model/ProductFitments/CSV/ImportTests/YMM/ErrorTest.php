@@ -16,7 +16,7 @@ sku, honda, civic, 2000';
         $data = 'sku, make, model, year
 nonexistantsku, honda, civic, 2000';
         
-        $importer = $this->mappingsImporterFromData($data);
+        $importer = $this->FitmentsImporterFromData($data);
         $importer->import();
         $this->assertEquals( array('nonexistantsku'), $importer->nonExistantSkus() );
     }
@@ -26,7 +26,7 @@ nonexistantsku, honda, civic, 2000';
         $data = 'sku, make, model, year
 nonexistantsku, honda, civic, 2000';
         
-        $importer = $this->mappingsImporterFromData($data);
+        $importer = $this->FitmentsImporterFromData($data);
         $importer->import();
         $this->assertEquals( 1, $importer->rowsWithNonExistantSkus(), 'should count the number of rows with non-existant SKUs' );
     }
@@ -36,16 +36,16 @@ nonexistantsku, honda, civic, 2000';
         $data = 'sku, make, model, year_start,year_end
 nonexistantsku, honda, civic, 2000,2001';
         
-        $importer = $this->mappingsImporterFromData($data);
+        $importer = $this->FitmentsImporterFromData($data);
         $importer->import();
         $this->assertEquals( 1, $importer->rowsWithNonExistantSkus(), 'row count with invalid SKUs should be 1 even if multiple years' );
     }
     
     function testSkippedCountIs0AfterSuccess()
     {
-        $importer = $this->mappingsImporterFromData( $this->csvData );
+        $importer = $this->FitmentsImporterFromData( $this->csvData );
         $importer->import();
-        $this->assertEquals( 0, $importer->getCountSkippedMappings() );
+        $this->assertEquals( 0, $importer->getCountSkippedFitments() );
     }
 
 }

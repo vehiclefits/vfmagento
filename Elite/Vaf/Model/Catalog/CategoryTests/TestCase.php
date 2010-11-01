@@ -21,7 +21,7 @@ abstract class Elite_Vaf_Model_Catalog_CategoryTests_TestCase extends Elite_Vaf_
     protected function filterOnAMMY()
     {
         $vehicle = $this->createMMY();
-        $this->insertMappingMMY( $vehicle, self::PRODUCT_ID );
+        $this->insertFitmentMMY( $vehicle, self::PRODUCT_ID );
         Elite_Vaf_Helper_Data::getInstance()->getRequest()
             ->setParam('make',$vehicle->getLevel('make')->getId())
             ->setParam('model',$vehicle->getLevel('model')->getId())

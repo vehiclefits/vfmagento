@@ -146,7 +146,7 @@ class Elite_Vaf_Model_Merge
     {
         $select = new Elite_Vaf_Select($this->getReadAdapter());
         $select
-            ->from('elite_mapping')
+            ->from('elite_Fitment')
             ->whereLevelIdsEqual($vehicle_object->toValueArray());
         
         $result = $select->query()->fetchAll();

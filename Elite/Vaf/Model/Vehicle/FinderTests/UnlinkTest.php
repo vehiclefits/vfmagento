@@ -191,7 +191,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_UnlinkTest extends Elite_Vafimporter_T
     function testShouldDeleteFitments()
     {
         $originalVehicle = $this->createMMY('Honda','Civic','2000');
-        $this->insertMappingMMY($originalVehicle,1);
+        $this->insertFitmentMMY($originalVehicle,1);
         
         $make = $originalVehicle->getLevel('make');
         $model = $originalVehicle->getLevel('model');
@@ -200,7 +200,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_UnlinkTest extends Elite_Vafimporter_T
         $params = array( 'make'=>$make->getId(), 'model'=>$model->getId(), 'year'=>$year->getId());
         $this->vehicleFinder()->findOneByLevelIds( $params, Elite_Vaf_Model_Vehicle_Finder::INCLUDE_PARTIALS )->unlink();
         
-        $this->assertEquals(0,$this->getReadAdapter()->query('select count(*) from elite_mapping')->fetchColumn( ));
+        $this->assertEquals(0,$this->getReadAdapter()->query('select count(*) from elite_Fitment')->fetchColumn( ));
     }
     
     function levelExists($level,$id)

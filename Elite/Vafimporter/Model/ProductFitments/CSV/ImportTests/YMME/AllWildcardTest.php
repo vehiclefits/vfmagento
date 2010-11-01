@@ -17,7 +17,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_YMME_AllWildcardTe
         $this->createVehicle(array('year'=>2001, 'make'=>'Ford', 'model'=>'F-150', 'engine'=>'1.6L'));
         // there is no 2001/Ford/F-150 with a 1.8L in this example
         
-        $this->mappingsImport('sku, make, model, year, engine' . "\n" .
+        $this->FitmentsImport('sku, make, model, year, engine' . "\n" .
                               'sku,Ford,F-150,"2000,2001,2002",{{all}}');
         
         $product = new Elite_Vaf_Model_Catalog_Product();
