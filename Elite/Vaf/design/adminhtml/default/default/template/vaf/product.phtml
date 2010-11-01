@@ -1,0 +1,19 @@
+<table border="1">
+    <tr>
+        <td>SKU</td>    
+        <td>Name</td>    
+    </tr>
+    <?php
+    foreach($this->products as $product)
+    {
+        $productObj = Mage::getModel('catalog/product')->load($product);
+        ?>
+        <tr>
+            <td><a href="<?=$this->getUrl('*/catalog_product/edit', array('id'=>$product))?>"><?=$productObj->getSku()?></a></td>    
+            <td><?=$productObj->getName();?></td>    
+        </tr>
+        <?php
+    }
+    ?>
+    </tr>
+</table>

@@ -30,7 +30,7 @@
             <?php echo $this->getBlockHtml('formkey')?>
             <table>
                 <tr>
-                    <td width="100"></td>
+                    <td width="150"></td>
                     <td><b>Title</b></td>
                 </tr>
                 <?php
@@ -39,6 +39,8 @@
                     echo '<tr>';
                         echo '<td>
                             <input type="checkbox" name="selected[]" value="' . $row->getId() . '" />
+                            <a href="' . $this->productUrl( $row->getId() ) . '">Products</a>
+                            |
                             <a href="' . $this->getEditUrl( $row->getId() ) . '">Edit</a>
                             |
                             <a href="' . $this->getDeleteUrl(  $row->getId() ) . '">Delete</a>

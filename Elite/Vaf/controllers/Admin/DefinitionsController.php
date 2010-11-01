@@ -145,6 +145,20 @@ class Elite_Vaf_Admin_DefinitionsController extends Mage_Adminhtml_Controller_Ac
         
     }
     
+    function productAction()
+    {
+        $this->loadLayout();
+        $this->_setActiveMenu('vaf');
+        
+        $this->block = $this->getLayout()->createBlock('adminhtml/vaf_definitions', 'vaf' );
+        $this->block->setTemplate( 'vaf/product.phtml' ); 
+        
+        $this->block->products = Elite_Vaf_Helper_Data::getInstance()->getProductIds();
+        
+        $this->_addContent( $this->block );
+        $this->renderLayout();
+    }
+    
     function levelFinder()
     {
         return new Elite_Vaf_Model_Level_Finder();

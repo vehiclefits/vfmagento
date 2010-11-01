@@ -99,6 +99,15 @@ class Elite_Vaf_Adminhtml_Block_Definitions extends Elite_Vaf_Block_Abstract imp
             '&entity=' . $this->getEntity()->getType();
     }
     
+    function productUrl($id)
+    {
+        $params = $this->requestLevels();
+        $params[$this->getEntity()->getType()] = $id;
+        return Mage::helper('adminhtml')->getUrl('*/*/product', array(
+            'entity' => $this->getEntity()->getType()
+        )) . '?' . http_build_query($params);
+    }
+    
     function requestLevels()
     {
         $params = array();
