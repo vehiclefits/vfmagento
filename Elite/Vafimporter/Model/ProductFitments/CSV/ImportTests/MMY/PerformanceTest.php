@@ -12,7 +12,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_PerformanceTes
         
         // should import 1,000 product applications in <= 7 seconds
         $this->setMaxRunningTime(5);
-        $this->FitmentsImportFromFile($this->csvFile());
+        $this->mappingsImportFromFile($this->csvFile());
         
     }
     

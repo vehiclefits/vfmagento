@@ -10,8 +10,8 @@ class Elite_Vafpaint_Model_Paint_Mapper
     function findByFitId( $fit_id )
     {
         $select = $this->getReadAdapter()->select()
-        	->from( 'elite_Fitment_paint' )
-        	->where( 'Fitment_id = ?', (int)$fit_id );
+        	->from( 'elite_mapping_paint' )
+        	->where( 'mapping_id = ?', (int)$fit_id );
         $result = $select->query();
         $return = array();
         while( $code = $result->fetch( Zend_Db::FETCH_OBJ ) )
@@ -30,7 +30,7 @@ class Elite_Vafpaint_Model_Paint_Mapper
     function find( $paint_id )
     {
         $select = $this->getReadAdapter()->select()
-            ->from( 'elite_Fitment_paint' )
+            ->from( 'elite_mapping_paint' )
         	->where( 'id = ?', (int)$paint_id );
         $result = $select->query();
         $code = $result->fetch( Zend_Db::FETCH_OBJ );

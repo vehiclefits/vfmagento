@@ -12,8 +12,8 @@ class Elite_Vafpaint_Model_Paint_MapperTest extends Elite_Vaf_TestCase
         $this->switchSchema('make,model,year');
         
 		$this->definition = $this->createMMY();
-		$this->getReadAdapter()->insert( 'elite_Fitment_paint', array(
-			'Fitment_id' => $this->definition->getLevel('year')->getId(),
+		$this->getReadAdapter()->insert( 'elite_mapping_paint', array(
+			'mapping_id' => $this->definition->getLevel('year')->getId(),
 			'code' => self::CODE,
 			'name' => self::NAME,
 			'color' => self::COLOR

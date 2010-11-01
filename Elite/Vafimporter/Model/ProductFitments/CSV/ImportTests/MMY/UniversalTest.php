@@ -13,13 +13,13 @@ sku,,,,1';
     
     function testMakesProductUniversal()
     {
-        $this->FitmentsImport($this->csvData);
+        $this->mappingsImport($this->csvData);
         $this->assertTrue( $this->getProductForSku('sku')->isUniversal() );
     }
         
     function testDoesNotImportBlankDefinition()
     {
-        $this->FitmentsImport($this->csvData);
+        $this->mappingsImport($this->csvData);
         
         $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder(new Elite_Vaf_Model_Schema());
         $vehicles = $vehicleFinder->findAll();

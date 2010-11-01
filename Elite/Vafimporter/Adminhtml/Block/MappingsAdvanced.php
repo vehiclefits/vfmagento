@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Adminhtml_Block_FitmentsAdvanced extends Mage_Adminhtml_Block_Widget
+class Elite_Vafimporter_Adminhtml_Block_MappingsAdvanced extends Mage_Adminhtml_Block_Widget
 {
     protected $id;
     protected $entity;
@@ -21,8 +21,8 @@ class Elite_Vafimporter_Adminhtml_Block_FitmentsAdvanced extends Mage_Adminhtml_
         }  
 
         
-        $this->setTemplate( 'vafimporter/Fitments_advanced.phtml' );
-        $this->setId('vafimporter_Fitments'); 
+        $this->setTemplate( 'vafimporter/mappings_advanced.phtml' );
+        $this->setId('vafimporter_mappings'); 
     }
   
     /**

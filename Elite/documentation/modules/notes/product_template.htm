@@ -42,8 +42,8 @@ else if( $_product->isUniversal() )
 }
 else
 {
-    $Fitment_id = $_product->getFitmentId( $vehicle );   
-    $notes = $noteFinder->getNotes( $Fitment_id );
+    $mapping_id = $_product->getMappingId( $vehicle );   
+    $notes = $noteFinder->getNotes( $mapping_id );
     
     foreach( $notes as $note )
     {

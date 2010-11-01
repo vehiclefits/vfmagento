@@ -41,7 +41,7 @@ class Elite_Vafimporter_Admin_VafimporterController extends Mage_Adminhtml_Contr
         $this->renderLayout();
     }
     
-    function FitmentsexportAction()
+    function mappingsexportAction()
     {
     	$this->checkVersion();
         
@@ -59,7 +59,7 @@ class Elite_Vafimporter_Admin_VafimporterController extends Mage_Adminhtml_Contr
         $this->loadLayout();
         $this->_setActiveMenu('vaf/export');
         
-        $block = $this->getLayout()->createBlock('core/template')->setTemplate('vafimporter/Fitments_export.phtml');
+        $block = $this->getLayout()->createBlock('core/template')->setTemplate('vafimporter/mappings_export.phtml');
         $this->_addContent( $block );
         $this->renderLayout();
     }

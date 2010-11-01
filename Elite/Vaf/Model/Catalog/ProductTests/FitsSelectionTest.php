@@ -5,7 +5,7 @@ class Elite_Vaf_Model_Catalog_ProductTests_FitsSelectionTest extends Elite_Vaf_M
     {
         $product = $this->getProduct(1);
         $vehicle = $this->createMMY();
-        $this->insertFitmentMMY($vehicle,1);
+        $this->insertMappingMMY($vehicle,1);
         $this->setSelectedFit($vehicle);
         $product->setCurrentlySelectedFit($vehicle);
         $this->assertTrue($product->fitsSelection(), 'product should fit selection');
@@ -15,7 +15,7 @@ class Elite_Vaf_Model_Catalog_ProductTests_FitsSelectionTest extends Elite_Vaf_M
     {
         $product = $this->getProduct(1);
         $vehicle = $this->createMMY();
-        $this->insertFitmentMMY($vehicle,1);
+        $this->insertMappingMMY($vehicle,1);
         $this->assertFalse($product->fitsSelection(), 'when there is no selection, product should not fit selection');
     }
 
@@ -24,7 +24,7 @@ class Elite_Vaf_Model_Catalog_ProductTests_FitsSelectionTest extends Elite_Vaf_M
         $product = $this->getProduct(1);
         $vehicle = $this->createMMY('honda','civic','2001');
         $vehicle2 = $this->createMMY('honda','civic','2002');
-        $this->insertFitmentMMY($vehicle,1);
+        $this->insertMappingMMY($vehicle,1);
         $this->setSelectedFit($vehicle2);
         $product->setCurrentlySelectedFit($vehicle2);
         $this->assertFalse($product->fitsSelection(), 'product should not fit selection');

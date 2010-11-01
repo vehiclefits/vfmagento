@@ -18,7 +18,7 @@ class Elite_Vafwheel_Model_Catalog_Product
             (float)$boltPattern->getDistance()
         );
         $this->query($sql);
-        $this->insertFitments($boltPattern);
+        $this->insertMappings($boltPattern);
     }
     
     function getBoltPatterns()
@@ -44,7 +44,7 @@ class Elite_Vafwheel_Model_Catalog_Product
         $this->getReadAdapter()->query(sprintf("DELETE FROM `elite_product_wheel` WHERE `entity_id` = %d",$this->getId()));
     }
     
-    function insertFitments( Elite_Vafwheel_Model_BoltPattern $boltPattern )
+    function insertMappings( Elite_Vafwheel_Model_BoltPattern $boltPattern )
     {
         $q = sprintf(
             "
@@ -64,7 +64,7 @@ class Elite_Vafwheel_Model_Catalog_Product
         foreach($rows as $row)
         {
             $vehicle = $this->definition( $row->leaf_id );
-            $this->insertFitment($vehicle);
+            $this->insertMapping($vehicle);
         }
     }
     

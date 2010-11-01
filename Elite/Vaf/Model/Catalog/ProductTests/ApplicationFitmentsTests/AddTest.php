@@ -13,9 +13,9 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_AddTest exte
     {
         $product = $this->getProduct(self::PRODUCT_ID);
         $vehicle = $this->createMMY();
-        $Fitment_id = $product->addVafFit( $vehicle->toValueArray() );
+        $mapping_id = $product->addVafFit( $vehicle->toValueArray() );
         
-        $actualRow = $this->getFitmentRow( array('make_id'=>$vehicle->getLevel('make')->getId(),'model_id'=>$vehicle->getLevel('model')->getId(),'year_id'=>$vehicle->getLevel('year')->getId()));
+        $actualRow = $this->getMappingRow( array('make_id'=>$vehicle->getLevel('make')->getId(),'model_id'=>$vehicle->getLevel('model')->getId(),'year_id'=>$vehicle->getLevel('year')->getId()));
         $this->assertEquals( $vehicle->getLevel('make')->getId(), $actualRow['make_id'] );
         $this->assertEquals( $vehicle->getLevel('model')->getId(), $actualRow['model_id'] );
         $this->assertEquals( $vehicle->getLevel('year')->getId(), $actualRow['year_id'] );
@@ -32,7 +32,7 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_AddTest exte
         $vehicle1 = $this->createMMY('Make', 'Model1');
         $vehicle2 = $this->createMMY('Make', 'Model2');
 
-        $Fitment_id = $product->addVafFit( array('make'=>$vehicle1->getLevel('make')->getId()) );    
+        $mapping_id = $product->addVafFit( array('make'=>$vehicle1->getLevel('make')->getId()) );    
         
         $actual = $product->getFitModels();
         
@@ -49,13 +49,13 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_AddTest exte
 
         $vehicle1 = $this->createMMY('Make', 'Model1');
         
-        $Fitment_id1 = $product->addVafFit( $vehicle1->toValueArray() );    
-        $Fitment_id2 = $product->addVafFit( $vehicle1->toValueArray() );    
+        $mapping_id1 = $product->addVafFit( $vehicle1->toValueArray() );    
+        $mapping_id2 = $product->addVafFit( $vehicle1->toValueArray() );    
         
         $actual = $product->getFitModels();
         $this->assertEquals( 1, count($actual) );
         
-        $this->assertTrue($Fitment_id1 > 0, 'first time a Fitment is inserted it gets an id');
-        $this->assertEquals( $Fitment_id1, $Fitment_id2, 'if trying to insert duplicate Fitment return the existing Fitment id');
+        $this->assertTrue($mapping_id1 > 0, 'first time a mapping is inserted it gets an id');
+        $this->assertEquals( $mapping_id1, $mapping_id2, 'if trying to insert duplicate mapping return the existing mapping id');
     }
 }

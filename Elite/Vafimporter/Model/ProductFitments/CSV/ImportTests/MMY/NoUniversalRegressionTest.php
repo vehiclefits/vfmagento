@@ -10,7 +10,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_NoUniversalReg
     
     function test1()
     {
-        $this->FitmentsImport(
+        $this->mappingsImport(
             'year, sku, make, model' . "\n" .
             '2002,sku,honda,civic');
         

@@ -13,13 +13,13 @@ sku, honda, civic, 2000, 2001';
     
     function testYear2000()
     {
-        $this->FitmentsImport( $this->csvData );
+        $this->mappingsImport( $this->csvData );
         $this->assertTrue( $this->vehicleExists(array('year'=>'2000')), '' );
     }
 
     function testYear2001()
     {
-        $this->FitmentsImport( $this->csvData );
+        $this->mappingsImport( $this->csvData );
         $this->assertTrue( $this->vehicleExists(array('year'=>'2001')), '' );
     }
      

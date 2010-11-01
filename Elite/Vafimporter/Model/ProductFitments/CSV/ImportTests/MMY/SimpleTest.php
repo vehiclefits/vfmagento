@@ -12,33 +12,33 @@ sku, honda, civic, 2000';
     
     function testSku()
     {
-        $this->FitmentsImport($this->csvData);
+        $this->mappingsImport($this->csvData);
         $fit = $this->getFitForSku( self::SKU );
         $this->assertEquals( 'honda', $fit->getLevel( 'make' )->getTitle() );
     }
     
     function testMake()
     {
-        $this->FitmentsImport($this->csvData);
+        $this->mappingsImport($this->csvData);
         $this->assertTrue( $this->vehicleExists(array('make'=>'honda')), 'should import make' );
     }
     
-    function testCountFitmentsIs1AfterSuccess()
+    function testCountMappingsIs1AfterSuccess()
     {
-        $importer = $this->FitmentsImporterFromData($this->csvData);
+        $importer = $this->mappingsImporterFromData($this->csvData);
         $importer->import();
-        $this->assertEquals( 1, $importer->getCountFitments() );
+        $this->assertEquals( 1, $importer->getCountMappings() );
     }
     
     function testAddedCountIs0IfFitAlreadyExists()
     {
-        $importer = $this->FitmentsImporterFromData($this->csvData);
+        $importer = $this->mappingsImporterFromData($this->csvData);
         $importer->import();
         
-        $importer = $this->FitmentsImporterFromData($this->csvData);
+        $importer = $this->mappingsImporterFromData($this->csvData);
         $importer->import();
         
-        $this->assertEquals( 0, $importer->getCountFitments() );
+        $this->assertEquals( 0, $importer->getCountMappings() );
     }
     
 }

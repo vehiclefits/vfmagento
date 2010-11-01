@@ -56,7 +56,7 @@ class Elite_Vafsitemap_Block_Vehicles extends Mage_Core_Block_Template implement
         $db = $this->getReadAdapter();
         $leafId = $this->getSchema()->getLeafLevel() . '_id';
         $select = $db->select()
-            ->from( 'elite_Fitment', sprintf( 'distinct(%s)', $leafId ) )
+            ->from( 'elite_mapping', sprintf( 'distinct(%s)', $leafId ) )
             ->group( $leafId );
         
         if($perPage||$offset)

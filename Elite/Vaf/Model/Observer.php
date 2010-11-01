@@ -86,7 +86,7 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
         }
         $this->query(
             sprintf(
-                "DELETE FROM `elite_Fitment` WHERE `entity_id` = %d",
+                "DELETE FROM `elite_mapping` WHERE `entity_id` = %d",
                 (int)$product->getId()
             )
         );

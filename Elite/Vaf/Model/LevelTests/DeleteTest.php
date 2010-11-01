@@ -58,17 +58,17 @@ class Elite_Vaf_Model_LevelTests_DeleteTest extends Elite_Vaf_TestCase
 		$this->assertEquals( 0, $result->fetchColumn(), 'should delete wheel record when deleting a year' );
 	}
 	
-	/** @todo all these tests, should be able to have a Fitment object as a first class object. Need findEntityByTitle() method instead of passing the id */
+	/** @todo all these tests, should be able to have a mapping object as a first class object. Need findEntityByTitle() method instead of passing the id */
 	function testShouldDeleteFitmentNotes_WhenDeletingMake()
 	{
 		$vehicle = $this->createMMY('Honda','Civic','2000');
-		$Fitment_id = $this->insertFitmentMMY($vehicle,1);
+		$mapping_id = $this->insertMappingMMY($vehicle,1);
 		
-		$this->noteFinder()->insertNoteRelationship($Fitment_id,'code1');
+		$this->noteFinder()->insertNoteRelationship($mapping_id,'code1');
 		
 		$vehicle->getLevel('make')->delete();
 		
-		$result = $this->query('select count(*) from elite_Fitment_notes');
+		$result = $this->query('select count(*) from elite_mapping_notes');
 		$this->assertEquals( 0, $result->fetchColumn(), 'should delete fitment notes when deleting a make' );
 	}
 	

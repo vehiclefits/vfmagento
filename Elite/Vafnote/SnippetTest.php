@@ -9,28 +9,28 @@ class Elite_Vafnote_SnippetTest extends Elite_Vaf_TestCase
     function testNoVehicle()
     {
         $vehicle1 = $this->createMMY( '1', '1', '1' );
-        $Fitment_id1 = $this->insertFitmentMMY( $vehicle1, self::PRODUCT_ID );
+        $mapping_id1 = $this->insertMappingMMY( $vehicle1, self::PRODUCT_ID );
         $this->noteFinder()->insert( self::NOTE_CODE1, 'test message 1' );
-        $this->noteFinder()->insertNoteRelationship( $Fitment_id1, self::NOTE_CODE1 );
+        $this->noteFinder()->insertNoteRelationship( $mapping_id1, self::NOTE_CODE1 );
         $this->assertEquals( 'Select a vehicle to view fitment notes', $this->includeSnippet(self::PRODUCT_ID), 'when no vehicle selected, should prompt user to select vehicle' );
     }
     
     function testNoNotes()
     {
         $vehicle = $this->createMMY();
-        $this->insertFitmentMMY( $vehicle, 1 );
+        $this->insertMappingMMY( $vehicle, 1 );
         $this->setRequestParams( $vehicle->toValueArray() );        
         $this->assertEquals( 'There are no notes for your vehicle (test make test model test year)', $this->includeSnippet(2), 'when product id differ should not find notes' );
     }
     
-    function testShouldFindNotesForAFitment()
+    function testShouldFindNotesForAMapping()
     {
         $vehicle = $this->createMMY( '1', '1', '1'  );
         $this->setRequestParams( $vehicle->toValueArray() );
-        $Fitment_id = $this->insertFitmentMMY( $vehicle, self::PRODUCT_ID );
+        $mapping_id = $this->insertMappingMMY( $vehicle, self::PRODUCT_ID );
         $this->noteFinder()->insert( self::NOTE_CODE, 'test message' );
-        $this->noteFinder()->insertNoteRelationship( $Fitment_id, self::NOTE_CODE );
-        $this->assertEquals( 'test message <br />', $this->includeSnippet(self::PRODUCT_ID), 'should find notes for a Fitment' );
+        $this->noteFinder()->insertNoteRelationship( $mapping_id, self::NOTE_CODE );
+        $this->assertEquals( 'test message <br />', $this->includeSnippet(self::PRODUCT_ID), 'should find notes for a mapping' );
     }
     
     function testShouldOnlyFindNotesForSelectedVehicle()
@@ -38,12 +38,12 @@ class Elite_Vafnote_SnippetTest extends Elite_Vaf_TestCase
         $vehicle1 = $this->createMMY( '1', '1', '1' );
         $vehicle2 = $this->createMMY( '2', '2', '2' );
         $this->setRequestParams( $vehicle2->toValueArray() );
-        $Fitment_id1 = $this->insertFitmentMMY( $vehicle1, self::PRODUCT_ID );
-        $Fitment_id2 = $this->insertFitmentMMY( $vehicle2, self::PRODUCT_ID );
+        $mapping_id1 = $this->insertMappingMMY( $vehicle1, self::PRODUCT_ID );
+        $mapping_id2 = $this->insertMappingMMY( $vehicle2, self::PRODUCT_ID );
         $this->noteFinder()->insert( self::NOTE_CODE1, 'test message 1' );
         $this->noteFinder()->insert( self::NOTE_CODE2, 'test message 2' );
-        $this->noteFinder()->insertNoteRelationship( $Fitment_id1, self::NOTE_CODE1 );
-        $this->noteFinder()->insertNoteRelationship( $Fitment_id2, self::NOTE_CODE2 );
+        $this->noteFinder()->insertNoteRelationship( $mapping_id1, self::NOTE_CODE1 );
+        $this->noteFinder()->insertNoteRelationship( $mapping_id2, self::NOTE_CODE2 );
         $this->assertEquals( 'test message 2 <br />', $this->includeSnippet(self::PRODUCT_ID), 'should only find notes for the selected vehicle' );
     }
     
@@ -52,12 +52,12 @@ class Elite_Vafnote_SnippetTest extends Elite_Vaf_TestCase
         $vehicle1 = $this->createMMY( '1', '1', '1' );
         $vehicle2 = $this->createMMY( '2', '2', '2' );
         $this->setRequestParams( $vehicle1->toValueArray() );
-        $Fitment_id1 = $this->insertFitmentMMY( $vehicle1, self::PRODUCT_ID );
-        $Fitment_id2 = $this->insertFitmentMMY( $vehicle2, self::PRODUCT_ID );
+        $mapping_id1 = $this->insertMappingMMY( $vehicle1, self::PRODUCT_ID );
+        $mapping_id2 = $this->insertMappingMMY( $vehicle2, self::PRODUCT_ID );
         $this->noteFinder()->insert( self::NOTE_CODE1, 'test message 1' );
         $this->noteFinder()->insert( self::NOTE_CODE2, 'test message 2' );
-        $this->noteFinder()->insertNoteRelationship( $Fitment_id1, self::NOTE_CODE1 );
-        $this->noteFinder()->insertNoteRelationship( $Fitment_id2, self::NOTE_CODE2 );
+        $this->noteFinder()->insertNoteRelationship( $mapping_id1, self::NOTE_CODE1 );
+        $this->noteFinder()->insertNoteRelationship( $mapping_id2, self::NOTE_CODE2 );
         $this->assertNotEquals( 'test message 2 <br />', $this->includeSnippet(self::PRODUCT_ID), 'should not find notes for non selected vehicle' );
     }
     
@@ -65,9 +65,9 @@ class Elite_Vafnote_SnippetTest extends Elite_Vaf_TestCase
     {
         $vehicle = $this->createMMY();
         $this->newProduct(self::PRODUCT_ID)->setUniversal(true);
-        $Fitment_id = $this->insertFitmentMMY( $vehicle, self::PRODUCT_ID );
+        $mapping_id = $this->insertMappingMMY( $vehicle, self::PRODUCT_ID );
         $this->noteFinder()->insert( self::NOTE_CODE1, 'test message 1' );
-        $this->noteFinder()->insertNoteRelationship( $Fitment_id, self::NOTE_CODE1 );
+        $this->noteFinder()->insertNoteRelationship( $mapping_id, self::NOTE_CODE1 );
         $this->setRequestParams( $vehicle->toValueArray() );
         
         $this->assertEquals( 'Product is universal and has no fitment notes', $this->includeSnippet(self::PRODUCT_ID), 'universal product should have no notes' );
@@ -101,8 +101,8 @@ class Elite_Vafnote_SnippetTest extends Elite_Vaf_TestCase
         }
         else
         {
-            $Fitment_id = $product->getFitmentId( $vehicle );   
-            $notes = $noteFinder->getNotes( $Fitment_id );
+            $mapping_id = $product->getMappingId( $vehicle );   
+            $notes = $noteFinder->getNotes( $mapping_id );
             
             foreach( $notes as $note )
             {

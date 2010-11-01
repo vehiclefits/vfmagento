@@ -16,8 +16,8 @@ $vehicle->save();
 
 $values = $vehicle->toValueArray();
 
-$Fitment = new Elite_Vaf_Model_Fitment( 1, $vehicle );
-$Fitment->save();
+$mapping = new Elite_Vaf_Model_Mapping( 1, $vehicle );
+$mapping->save();
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"

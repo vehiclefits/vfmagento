@@ -12,7 +12,7 @@ sku, honda, 7.3L V8 Powerstroke Diesel W Dual Alternator Top Alternator, 2000';
     
     function testSku()
     {
-        $this->FitmentsImport($this->csvData);
+        $this->mappingsImport($this->csvData);
         $fit = $this->getFitForSku('sku');
         $this->assertEquals( '7.3L V8 Powerstroke Diesel W Dual Alternator Top Alternator', $fit->getLevel( 'model' )->getTitle() );
     }

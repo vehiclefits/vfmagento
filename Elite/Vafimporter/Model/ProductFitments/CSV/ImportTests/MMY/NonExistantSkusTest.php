@@ -13,7 +13,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_NonExistantSku
     
     function testWhenOneRow_ShouldReportSingleMissingSKU()
     {
-        $importer = $this->FitmentsImporterFromData(
+        $importer = $this->mappingsImporterFromData(
             'sku, make, model, year' . "\n" .
             'nonexistantsku, honda, civic, 2000');
         $importer->import();
@@ -27,7 +27,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_NonExistantSku
     
     function testWhenMultipleRowsSameSku_ShouldReportSingleSKU()
     {
-        $importer = $this->FitmentsImporterFromData(
+        $importer = $this->mappingsImporterFromData(
             'sku, make, model, year' . "\n" .
             'nonexistantsku, honda, civic, 2000' . "\n" .
             'nonexistantsku, honda, civic, 2001');
@@ -37,7 +37,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_NonExistantSku
 
     function testShouldCountErrorsNotSKUs()
     {
-        $importer = $this->FitmentsImporterFromData(
+        $importer = $this->mappingsImporterFromData(
             'sku, make, model, year' . "\n" .
             'nonexistantsku, honda, civic, 2000' . "\n" .
             'nonexistantsku, honda, civic, 2001');
@@ -47,7 +47,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_NonExistantSku
     
     function testShouldLogMissingSku()
     {
-        $importer = $this->FitmentsImporterFromData(
+        $importer = $this->mappingsImporterFromData(
             'sku,make,model,year' . "\n" . 
             'sku1,honda,civic,2000');
         
@@ -64,7 +64,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_NonExistantSku
 
     function testShouldLogMissingSku_CorrectLineNumber()
     {
-        $importer = $this->FitmentsImporterFromData(
+        $importer = $this->mappingsImporterFromData(
             'sku,make,model,year' . "\n" . 
             'sku1,honda,civic,2000' . "\n" .
             'sku2,honda,civic,2000');

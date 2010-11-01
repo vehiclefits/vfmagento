@@ -23,7 +23,7 @@ class Elite_Vafsitemap_design_frontend_VehiclesTest extends Elite_Vaf_TestCase
     
     function testShouldBe50PerPage()
     {
-        $this->createVehiclesWithFitments(75);
+        $this->createVehiclesWithMappings(75);
         
         $block = new Elite_Vafsitemap_Block_VehiclesTestSub;
         $output = $block->_toHtml();
@@ -32,12 +32,12 @@ class Elite_Vafsitemap_design_frontend_VehiclesTest extends Elite_Vaf_TestCase
     }
     
     
-    function createVehiclesWithFitments($amount)
+    function createVehiclesWithMappings($amount)
     {
 		for($i=0; $i<=$amount; $i++ )
 		{
 			$vehicle = $this->createMMY('Honda'.$i, 'Civic', '2000');
-			$this->insertFitmentMMY( $vehicle, 1 );
+			$this->insertMappingMMY( $vehicle, 1 );
 		}
     }
     

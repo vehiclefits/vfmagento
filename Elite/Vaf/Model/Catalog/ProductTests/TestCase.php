@@ -15,10 +15,10 @@ abstract class Elite_Vaf_Model_Catalog_ProductTests_TestCase extends Elite_Vaf_T
         return $product;
     }
         
-    protected function getFitmentRow( $expectedRow, $msg = '' )
+    protected function getMappingRow( $expectedRow, $msg = '' )
     {
         $query = sprintf(
-            "SELECT * FROM `elite_Fitment` WHERE `make_id` = %d AND `model_id` = %d AND `year_id` = %d",
+            "SELECT * FROM `elite_mapping` WHERE `make_id` = %d AND `model_id` = %d AND `year_id` = %d",
             $expectedRow['make_id'],
             $expectedRow['model_id'],
             $expectedRow['year_id']

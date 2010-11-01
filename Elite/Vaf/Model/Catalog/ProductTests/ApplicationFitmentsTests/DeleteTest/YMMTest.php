@@ -13,8 +13,8 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_DeleteTest_Y
         $this->assertEquals( 1, count($product->getFits()) );
         
         $product = $this->getProduct(1);
-        $Fitments = $product->getFits();
-        $product->deleteVafFit( $Fitments[0]->id );
+        $mappings = $product->getFits();
+        $product->deleteVafFit( $mappings[0]->id );
         
         $product = $this->getProduct(1);
         $this->assertEquals( 0, count($product->getFits()), 'should delete fitments' );
@@ -24,13 +24,13 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_DeleteTest_Y
 	{
 		$product = $this->getProduct(1);
 		$vehicle = $this->createYMM('2000','Honda','Civic');
-		$Fitment_id = $this->insertFitmentMMY( $vehicle, $product->getId() );
+		$mapping_id = $this->insertMappingMMY( $vehicle, $product->getId() );
 		
-		$this->noteFinder()->insertNoteRelationship($Fitment_id, 'code1');
+		$this->noteFinder()->insertNoteRelationship($mapping_id, 'code1');
 		
-		$product->deleteVafFit($Fitment_id);
+		$product->deleteVafFit($mapping_id);
 		
-		$result = $this->query('select count(*) from elite_Fitment_notes');
+		$result = $this->query('select count(*) from elite_mapping_notes');
 		$this->assertEquals( 0, $result->fetchColumn(), 'should delete fitment notes when deleting a fitment' );
 	}
 }

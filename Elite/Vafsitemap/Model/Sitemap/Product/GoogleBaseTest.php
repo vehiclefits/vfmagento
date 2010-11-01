@@ -7,7 +7,7 @@ class Elite_Vafsitemap_Model_Sitemap_Product_GoogleBaseTest extends Elite_Vaf_Te
     {
         $this->switchSchema('make,model,year');
         $this->definition = $this->createMMY();
-        $this->insertFitmentMMY( $this->definition );
+        $this->insertMappingMMY( $this->definition );
     }
     
     function testDefinitionsMMY()

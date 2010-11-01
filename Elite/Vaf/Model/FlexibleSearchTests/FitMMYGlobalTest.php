@@ -24,8 +24,8 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitMMYGlobalTest extends Elite_Vaf_Tes
         $vehicle1 = $this->createMMY('Honda', 'Civic', '2000');
         $vehicle2 = $this->createMMY('Ford', 'F-150', '2000');
         
-        $this->insertFitmentMMY($vehicle1, 1);
-        $this->insertFitmentMMY($vehicle2, 2);
+        $this->insertMappingMMY($vehicle1, 1);
+        $this->insertMappingMMY($vehicle2, 2);
         
         $this->setRequestParams($vehicle1->toValueArray());
         $this->assertEquals( array(1), Elite_Vaf_Helper_Data::getInstance()->getProductIds() );

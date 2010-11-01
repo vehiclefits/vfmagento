@@ -16,7 +16,7 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_ProductCross
 
         $vehicle1 = $this->createMMY('Make', 'Model1');
         
-        $Fitment_id = $product1->addVafFit( array('make'=>$vehicle1->getLevel('make')->getId()) );    
+        $mapping_id = $product1->addVafFit( array('make'=>$vehicle1->getLevel('make')->getId()) );    
         
         $actual = $product1->getFitModels();
         $this->assertEquals( 1, count($actual) );

@@ -11,7 +11,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_InvalidFieldHe
     */
     function testShouldThrowExceptionIfNoFieldHeaders()
     {
-        $this->FitmentsImport('');
+        $this->mappingsImport('');
     }
     
     /**
@@ -19,7 +19,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_InvalidFieldHe
     */
     function testShouldThrowExceptionIfMakeMissing()
     {
-        $this->FitmentsImport('model,year');
+        $this->mappingsImport('model,year');
     }
     
     /**
@@ -27,7 +27,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_InvalidFieldHe
     */
     function testShouldThrowExceptionIfModelMissing()
     {
-        $this->FitmentsImport('make,year');
+        $this->mappingsImport('make,year');
     }
     
     /**
@@ -35,7 +35,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_InvalidFieldHe
     */
     function testShouldThrowExceptionIfYearMissing()
     {
-        $this->FitmentsImport('make,model');
+        $this->mappingsImport('make,model');
     }
     
     /**
@@ -43,6 +43,6 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_InvalidFieldHe
     */
     function testShouldThrowExceptionIfSkuMissing()
     {
-        $this->FitmentsImport('make,model,year');
+        $this->mappingsImport('make,model,year');
     }
 }

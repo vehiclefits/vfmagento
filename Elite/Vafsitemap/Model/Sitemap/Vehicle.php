@@ -11,7 +11,7 @@ class Elite_Vafsitemap_Model_Sitemap_Vehicle
     function vehicleCount()
     {
         /** @todo move to definition finder */
-        $result = $this->query( "select count(distinct(`".$this->getSchema()->getLeafLevel()."_id`)) from `elite_Fitment`" );
+        $result = $this->query( "select count(distinct(`".$this->getSchema()->getLeafLevel()."_id`)) from `elite_mapping`" );
         $count = $result->fetchColumn();
         return $count;
     }

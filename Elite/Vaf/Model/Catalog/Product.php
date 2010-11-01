@@ -93,7 +93,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
                 LEFT JOIN
                     `elite_%1$s`
                 ON
-                    `elite_%1$s`.`id` = `elite_Fitment`.`%1$s_id`
+                    `elite_%1$s`.`id` = `elite_mapping`.`%1$s_id`
                 ',
                 $levels[ $i ]
             ); 
@@ -127,9 +127,9 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
         $vehicles = $this->vehicleFinder()->findByLevelIds($fitToAdd);
         foreach($vehicles as $vehicle)
         {
-            $Fitment_id = $this->insertFitment($vehicle);
+            $mapping_id = $this->insertMapping($vehicle);
         }
-        return $Fitment_id;
+        return $mapping_id;
     }
     
     function vehicleFinder()
@@ -137,20 +137,20 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
         return new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
     }
 
-    function insertFitment( Elite_Vaf_Model_Vehicle $vehicle )
+    function insertMapping( Elite_Vaf_Model_Vehicle $vehicle )
     {
-        $Fitment = new Elite_Vaf_Model_Fitment( $this->getId(), $vehicle );
-        return $Fitment->save();
+        $mapping = new Elite_Vaf_Model_Mapping( $this->getId(), $vehicle );
+        return $mapping->save();
     }
     
-    function deleteVafFit( $Fitment_id )
+    function deleteVafFit( $mapping_id )
     {
-        $sql = sprintf( "DELETE FROM `elite_Fitment` WHERE `id` = %d", (int)$Fitment_id );
+        $sql = sprintf( "DELETE FROM `elite_mapping` WHERE `id` = %d", (int)$mapping_id );
         $this->query( $sql );
         
         if(file_exists(ELITE_PATH.'/Vafnote'))
         {
-        	$sql = sprintf( "DELETE FROM `elite_Fitment_notes` WHERE `fit_id` = %d", (int)$Fitment_id );
+        	$sql = sprintf( "DELETE FROM `elite_mapping_notes` WHERE `fit_id` = %d", (int)$mapping_id );
         	$this->query( $sql );
 		}
     }
@@ -164,7 +164,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 		    SELECT
 		        count( * )
 		    FROM
-		        `elite_Fitment`
+		        `elite_mapping`
 		    WHERE
 		        `entity_id` = %d
 		    AND
@@ -182,7 +182,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     {
         if( !$universal )
         {
-            $query = sprintf( 'DELETE FROM elite_Fitment WHERE universal = 1 AND entity_id = %d', $this->getId() );
+            $query = sprintf( 'DELETE FROM elite_mapping WHERE universal = 1 AND entity_id = %d', $this->getId() );
             $r = $this->query( $query );
             return;
         }
@@ -191,7 +191,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
             sprintf(
                 "
                 REPLACE INTO
-                    `elite_Fitment`
+                    `elite_mapping`
                 (
                     `universal`,
                     `entity_id`
@@ -261,7 +261,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
         $params = $currentVehicleSelection->toValueArray();
         
         $select = $this->getReadAdapter()->select()
-            ->from('elite_Fitment', array('count(*)'))
+            ->from('elite_mapping', array('count(*)'))
             ->where('entity_id = ?', $this->getId());
         foreach($params as $param => $value)
         {
@@ -284,11 +284,11 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
         return false;
     }
     
-    function getFitmentId( Elite_Vaf_Model_Vehicle $vehicle )
+    function getMappingId( Elite_Vaf_Model_Vehicle $vehicle )
     {
         $schema = new Elite_Vaf_Model_Schema;
         $select = $this->getReadAdapter()->select()
-            ->from( 'elite_Fitment', 'id' )
+            ->from( 'elite_mapping', 'id' )
             ->where( $schema->getLeafLevel().'_id = ?', $vehicle->getLeafValue() )
             ->where( 'entity_id = ?', $this->getId() );
         return $select->query()->fetchColumn();
@@ -309,7 +309,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 		foreach( $this->getFits() as $fit )
 		{	
 			$vehicle = $vehicleFinder->findByLeaf($fit->$leaf);
-			$newProduct->insertFitment( $vehicle );
+			$newProduct->insertMapping( $vehicle );
 		}
 		return $newProduct;
 	}
@@ -343,7 +343,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     protected function doGetFits( $productId )
     {
         $select = new Elite_Vaf_Select($this->getReadAdapter());
-        $select->from('elite_Fitment')
+        $select->from('elite_mapping')
             ->addLevelTitles()
             ->where('entity_id=?',$productId);
         $result = $this->query( $select );

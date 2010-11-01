@@ -9,17 +9,17 @@ class Elite_Vafsitemap_Model_Sitemap_VehicleTests_CountTest extends Elite_Vaf_Te
         $this->definition = $this->createMMY();
     }
 
-    function testWhenThereIsAFitmentShouldCountTheDefinition()
+    function testWhenThereIsAMappingShouldCountTheDefinition()
     {
         $sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle();
-        $this->insertFitmentMMY( $this->definition );
-        $this->assertEquals( 1, $sitemap->vehicleCount(), 'when there is a Fitment should count the definition' );
+        $this->insertMappingMMY( $this->definition );
+        $this->assertEquals( 1, $sitemap->vehicleCount(), 'when there is a mapping should count the definition' );
     }
 
-    function testWhenThereIsNotAFitmentShouldNotCountTheDefinition()
+    function testWhenThereIsNotAMappingShouldNotCountTheDefinition()
     {
         $sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle;
-        $this->assertEquals( 0, $sitemap->vehicleCount(), 'when there is not a Fitment should not count the definition' );
+        $this->assertEquals( 0, $sitemap->vehicleCount(), 'when there is not a mapping should not count the definition' );
     }
 
 }

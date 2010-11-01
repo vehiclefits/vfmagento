@@ -201,7 +201,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
         $vehicle1 = $this->createMMY('Honda','Civic','2000');
         $vehicle2 = $this->createMMY('Honda-oops','Civic','2001');
         
-        $actual = $this->insertFitmentMMY($vehicle2, 1);
+        $actual = $this->insertMappingMMY($vehicle2, 1);
         
         $slaveLevels = array(
             array('make', $vehicle1 ),
@@ -220,8 +220,8 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
         $vehicle1 = $this->createMMY('Ford','F-150','2000');
         $vehicle2 = $this->createMMY('Ford','F150','2001');        
         
-        $this->insertFitmentMMY($vehicle1, 1);
-        $this->insertFitmentMMY($vehicle2, 1);
+        $this->insertMappingMMY($vehicle1, 1);
+        $this->insertMappingMMY($vehicle2, 1);
         
         $slaveLevels = array(
             array('model', $vehicle1 ),
@@ -243,7 +243,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
         $vehicle1 = $this->createMMY('Honda','Civic','2000');
         $vehicle2 = $this->createMMY('Honda-oops','Civic','2001');
         
-        $actual = $this->insertFitmentMMY($vehicle2, 1);
+        $actual = $this->insertMappingMMY($vehicle2, 1);
         
         $slaveLevels = array(
             array('make', $vehicle1 ),
@@ -252,7 +252,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
         $masterLevel = array('make', $vehicle1 );
         $this->levelFinder()->merge( $slaveLevels, $masterLevel );
         
-        $count = $this->getReadAdapter()->select()->from('elite_Fitment', array('count(*)'))->where('year_id = 0')->query()->fetchColumn();
+        $count = $this->getReadAdapter()->select()->from('elite_mapping', array('count(*)'))->where('year_id = 0')->query()->fetchColumn();
         $this->assertEquals( 0, $count );
     }
     

@@ -9,10 +9,10 @@ class Elite_Vaf_Model_Schema_Upgrader extends Ne8Vehicle_Schema_Generator
         $this->commentFitTable();
         $this->query($this->createdefinitionTable());
         $this->saveLeafLevels();
-        $this->query( "RENAME TABLE `elite_fit`  TO `elite_Fitment` ;" );
+        $this->query( "RENAME TABLE `elite_fit`  TO `elite_mapping` ;" );
         foreach( $this->levels as $level )
         {
-            $this->query( "ALTER TABLE `elite_Fitment` ADD INDEX ( `" . $level . "_id` ) ");
+            $this->query( "ALTER TABLE `elite_mapping` ADD INDEX ( `" . $level . "_id` ) ");
         }
         return '';
     }

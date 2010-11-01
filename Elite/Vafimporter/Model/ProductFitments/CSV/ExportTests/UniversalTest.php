@@ -7,7 +7,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ExportTests_UniversalTest exte
         
         $this->csvData = 'sku, make, model, year, universal
 sku123,  ,  ,  ,1';
-        $this->csvFile = TESTFILES . '/Fitments-single.csv';
+        $this->csvFile = TESTFILES . '/mappings-single.csv';
         file_put_contents( $this->csvFile, $this->csvData );
         
         

@@ -1,12 +1,12 @@
 <?php
-class Elite_Vafimporter_Adminhtml_Block_Fitments extends Elite_Vafimporter_Adminhtml_Block_Definitions_Import
+class Elite_Vafimporter_Adminhtml_Block_Mappings extends Elite_Vafimporter_Adminhtml_Block_Definitions_Import
 {
     
     /** @var string Magento's unique block identifier for this block */
-    protected $mageBlockId = 'vafimporter_Fitments';
+    protected $mageBlockId = 'vafimporter_mappings';
     
     /** @var string the name of the magento template to render with this block */
-    protected $template = 'vafimporter/Fitments_import.phtml';
+    protected $template = 'vafimporter/mappings_import.phtml';
     
     /** @var Elite_Vafimporter_Model_ProductFitments */
     protected $importer;

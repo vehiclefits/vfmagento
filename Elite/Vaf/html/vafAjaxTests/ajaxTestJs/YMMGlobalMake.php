@@ -17,8 +17,8 @@ $vehicle = Elite_Vaf_Model_Vehicle::create( $schema, array(
     'year' => '2002'
 ));
 $vehicle->save();
-$Fitment = new Elite_Vaf_Model_Fitment( 1, $vehicle );
-$Fitment->save();
+$mapping = new Elite_Vaf_Model_Mapping( 1, $vehicle );
+$mapping->save();
 
 $vehicle2 = Elite_Vaf_Model_Vehicle::create( $schema, array(
     'make' => 'Honda',
@@ -26,8 +26,8 @@ $vehicle2 = Elite_Vaf_Model_Vehicle::create( $schema, array(
     'year' => '2006'
 ));
 $vehicle2->save();
-$Fitment = new Elite_Vaf_Model_Fitment( 1, $vehicle2 );
-$Fitment->save();
+$mapping = new Elite_Vaf_Model_Mapping( 1, $vehicle2 );
+$mapping->save();
 
 $values = $vehicle->toValueArray();
 

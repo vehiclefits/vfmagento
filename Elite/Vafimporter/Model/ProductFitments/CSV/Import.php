@@ -9,13 +9,13 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
     
     protected $nonexistant_sku_count = 0;
     
-    /** @var integer number of Fitment rows that were skipped because the Fitment is already "known about" */
-    protected $skipped_Fitments = 0;
-    protected $already_existing_Fitments = 0;
+    /** @var integer number of mapping rows that were skipped because the mapping is already "known about" */
+    protected $skipped_mappings = 0;
+    protected $already_existing_mappings = 0;
     protected $invalid_vehicle_count = 0;
     
     /** @var integer */
-    protected $added_Fitments = 0;
+    protected $added_mappings = 0;
     
     protected $rows_with_invalid_sku = array();
     
@@ -39,14 +39,14 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
         return count($this->rows_with_invalid_sku);
     }
     
-    function getCountFitments()
+    function getCountMappings()
     {
-        return $this->added_Fitments;
+        return $this->added_mappings;
     }
     
-    function getCountSkippedFitments()
+    function getCountSkippedMappings()
     {
-        return $this->already_existing_Fitments;
+        return $this->already_existing_mappings;
     }
     
     function invalidVehicleCount()
@@ -73,12 +73,12 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
             
             if( false === $vehicle )
             {
-                return $this->insertFitment($row, false);
+                return $this->insertMapping($row, false);
             }
             
-            $Fitment_id = $this->insertFitment($row,$vehicle);
-            $row['id'] = $Fitment_id;
-            $this->dispatchFitmentImportEvent( $row, $vehicle );
+            $mapping_id = $this->insertMapping($row,$vehicle);
+            $row['id'] = $mapping_id;
+            $this->dispatchMappingImportEvent( $row, $vehicle );
         }
     }
     
@@ -141,7 +141,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
     
     function makeNoteOfInvalidSku( $row )
     {
-        $this->skipped_Fitments++;
+        $this->skipped_mappings++;
         $sku = $this->sku($row);
         
         $this->nonexistant_sku_count++;
@@ -160,12 +160,12 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
     /**
     * @var integer entity_id of the product row
     * @var Elite_Vaf_Model_Vehicle to check for assocation with
-    * @return boolean true only if the Fitment between the product+definition exists
+    * @return boolean true only if the mapping between the product+definition exists
     */
-    function hasFitment( $entity_id, Elite_Vaf_Model_Vehicle $vehicle )
+    function hasMapping( $entity_id, Elite_Vaf_Model_Vehicle $vehicle )
     {
         $sql = sprintf(
-            "SELECT count(*) FROM elite_Fitment WHERE entity_id = %d AND %s = %d LIMIT 1",
+            "SELECT count(*) FROM elite_mapping WHERE entity_id = %d AND %s = %d LIMIT 1",
             (int)$entity_id,
             $this->getReadAdapter()->quoteIdentifier( $this->getSchema()->getLeafLevel() . '_id' ),
             (int)$vehicle->getLeafValue()
@@ -176,15 +176,15 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
     
     /**
     * @var integer product id
-    * @var mixed boolean false for universal, or Elite_Vaf_Model_Vehicle to create a Fitment for
+    * @var mixed boolean false for universal, or Elite_Vaf_Model_Vehicle to create a mapping for
     */
-    function insertFitment($row, $vehicle )
+    function insertMapping($row, $vehicle )
     {
         $sku = $this->sku($row);
         $productId = $this->productId($sku);
         if(!$productId)
         {
-			$this->skipped_Fitments++;
+			$this->skipped_mappings++;
 			return;
         }
         
@@ -199,29 +199,29 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
         if(false === $vehicle)
         {
             $this->invalid_vehicle_count++;
-            $this->skipped_Fitments++;
+            $this->skipped_mappings++;
             return;
         }
         
-        $Fitment = new Elite_Vaf_Model_Fitment($productId,$vehicle);
+        $mapping = new Elite_Vaf_Model_Mapping($productId,$vehicle);
         
-        if($this->hasFitment($productId,$vehicle))
+        if($this->hasMapping($productId,$vehicle))
         {
-            $this->already_existing_Fitments++;
-            $this->skipped_Fitments++;
-            return $Fitment->save();
+            $this->already_existing_mappings++;
+            $this->skipped_mappings++;
+            return $mapping->save();
         }
         
-        $Fitment_id = $Fitment->save();
-        if(!$Fitment_id)
+        $mapping_id = $mapping->save();
+        if(!$mapping_id)
         {
-            $this->skipped_Fitments++;
+            $this->skipped_mappings++;
         }
         else
         {
-            $this->added_Fitments++;
+            $this->added_mappings++;
         }
-        return $Fitment_id;
+        return $mapping_id;
     }
     
     function isUniversal($row)
@@ -278,11 +278,11 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
         return $values;
     }
 
-    function dispatchFitmentImportEvent( $row, $vehicle )
+    function dispatchMappingImportEvent( $row, $vehicle )
     {
-        if( file_exists( ELITE_PATH  . '/Vafnote/Observer/Importer/Fitments.php' ) )
+        if( file_exists( ELITE_PATH  . '/Vafnote/Observer/Importer/Mappings.php' ) )
         {
-            $noteImporter = new Elite_Vafnote_Observer_Importer_Fitments;
+            $noteImporter = new Elite_Vafnote_Observer_Importer_Mappings;
             $noteImporter->doImportRow( $this->getFieldPositions(), $row, $vehicle );
         }
 

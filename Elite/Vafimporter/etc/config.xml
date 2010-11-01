@@ -12,9 +12,9 @@
                 <rewrite>
                     <vafimporter_definitions>Elite_Vafimporter_Adminhtml_Block_Definitions_Import</vafimporter_definitions>
                     <vafimporter_definitionsexport>Elite_Vafimporter_Adminhtml_Block_Definitionsexport</vafimporter_definitionsexport>
-                    <vafimporter_Fitments>Elite_Vafimporter_Adminhtml_Block_Fitments</vafimporter_Fitments>
-                    <vafimporter_Fitmentsexport>Elite_Vafimporter_Adminhtml_Block_Fitmentsexport</vafimporter_Fitmentsexport>
-                    <vafimporter_Fitmentsadvanced>Elite_Vafimporter_Adminhtml_Block_FitmentsAdvanced</vafimporter_Fitmentsadvanced>
+                    <vafimporter_mappings>Elite_Vafimporter_Adminhtml_Block_Mappings</vafimporter_mappings>
+                    <vafimporter_mappingsexport>Elite_Vafimporter_Adminhtml_Block_Mappingsexport</vafimporter_mappingsexport>
+                    <vafimporter_mappingsadvanced>Elite_Vafimporter_Adminhtml_Block_MappingsAdvanced</vafimporter_mappingsadvanced>
                 </rewrite>
             </adminhtml> 
         </blocks>
@@ -36,20 +36,20 @@
                             </export>
                         </children>
                     </vehicleslist>
-                    <Fitments translate="title">
+                    <mappings translate="title">
                         <title>Product Applications</title>
                         <children>
                             <import translate="title">
                                 <title>Import</title>
-                                <action>adminhtml/vafFitmentsimporter/index</action>
+                                <action>adminhtml/vafmappingsimporter/index</action>
                             </import>
                             <export translate="title">
                                 <title>Export</title>
-                                <action>adminhtml/vafimporter/Fitmentsexport</action>
+                                <action>adminhtml/vafimporter/mappingsexport</action>
                             </export>
                         </children>
                         <sort_order>20</sort_order>
-                    </Fitments>
+                    </mappings>
                 </children>
             </vaf>
         </menu>
@@ -72,20 +72,20 @@
                                         </export>
                                     </children>
                                 </vehicleslist>
-                                <Fitments translate="title">
+                                <mappings translate="title">
                                     <title>Product Applications</title>
                                     <children>
                                         <import translate="title">
                                             <title>Import</title>
-                                            <action>adminhtml/vafFitmentsimporter/index</action>
+                                            <action>adminhtml/vafmappingsimporter/index</action>
                                         </import>
                                         <export translate="title">
                                             <title>Export</title>
-                                            <action>adminhtml/vafimporter/Fitmentsexport</action>
+                                            <action>adminhtml/vafimporter/mappingsexport</action>
                                         </export>
                                     </children>
                                     <sort_order>20</sort_order>
-                                </Fitments>
+                                </mappings>
                             </children>
                        </vaf>
                    </children>

@@ -53,9 +53,9 @@ class Elite_Vafpaint_Model_Importer_Definitions_PaintYMMTest extends Elite_Vaf_T
                 SELECT
                     code,name,color
                 FROM
-                    elite_Fitment_paint
+                    elite_mapping_paint
                 WHERE
-                    Fitment_id = %d
+                    mapping_id = %d
                 ",
                 (int)$yearId
             )

@@ -45,10 +45,10 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
         $this->truncateTable( 'elite_model' );
         $this->truncateTable( 'elite_year' );
         $this->truncateTable( 'elite_definition' );
-        $this->truncateTable( 'elite_Fitment' );
-        $this->truncateTable( 'elite_Fitment_paint' );
+        $this->truncateTable( 'elite_mapping' );
+        $this->truncateTable( 'elite_mapping_paint' );
         $this->truncateTable( 'elite_note' );
-        $this->truncateTable( 'elite_Fitment_notes' );
+        $this->truncateTable( 'elite_mapping_notes' );
         $this->truncateTable( 'elite_import' );
     }
     
@@ -120,7 +120,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
     function createMMYWithFitment($makeTitle = 'test make', $modelTitle = 'test model', $yearTitle = 'test year')
     {
         $vehicle = $this->createMMY($makeTitle, $modelTitle, $yearTitle);
-        $this->insertFitmentMMY( $vehicle );
+        $this->insertMappingMMY( $vehicle );
         return $vehicle;
     }
     
@@ -247,30 +247,30 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
     }
     
     /** @return integer the created fit's ID */
-    protected function insertFitmentMMY( $vehicle, $product_id = 1 )
+    protected function insertMappingMMY( $vehicle, $product_id = 1 )
     {
-        $Fitment = new Elite_Vaf_Model_Fitment( $product_id, $vehicle );
-        return $Fitment->save();
+        $mapping = new Elite_Vaf_Model_Mapping( $product_id, $vehicle );
+        return $mapping->save();
     }
     
     /** @return integer the created fit's ID */
-    protected function insertFitmentYMM( $year_id, $make_id, $model_id = 0, $product_id = 0 )
+    protected function insertMappingYMM( $year_id, $make_id, $model_id = 0, $product_id = 0 )
     {
-        $sql = sprintf( "REPLACE INTO `elite_Fitment` ( `year_id`, `make_id`, `model_id`, `entity_id` ) VALUES ( %d, %d, %d, %d )", (int)$year_id, (int)$make_id, (int)$model_id, (int)$product_id );
+        $sql = sprintf( "REPLACE INTO `elite_mapping` ( `year_id`, `make_id`, `model_id`, `entity_id` ) VALUES ( %d, %d, %d, %d )", (int)$year_id, (int)$make_id, (int)$model_id, (int)$product_id );
         $this->query($sql);
         return $this->getReadAdapter()->lastInsertId();
     }
     
     /** @return integer the created fit's ID */
-    protected function insertFitmentMMTC( $vehicle, $product_id = 1 )
+    protected function insertMappingMMTC( $vehicle, $product_id = 1 )
     {
-        $Fitment = new Elite_Vaf_Model_Fitment( $product_id, $vehicle );
-        return $Fitment->save();
+        $mapping = new Elite_Vaf_Model_Mapping( $product_id, $vehicle );
+        return $mapping->save();
     }
     
     protected function insertUniversalFit( $product_id )
     {
-        $this->query( sprintf( "REPLACE INTO `elite_Fitment` ( `universal`, `entity_id` ) VALUES ( 1, %d )", (int)$product_id ) );
+        $this->query( sprintf( "REPLACE INTO `elite_mapping` ( `universal`, `entity_id` ) VALUES ( 1, %d )", (int)$product_id ) );
         return $this->getReadAdapter()->lastInsertId();
     }
     

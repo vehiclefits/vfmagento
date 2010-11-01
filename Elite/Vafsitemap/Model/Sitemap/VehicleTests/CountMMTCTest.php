@@ -18,7 +18,7 @@ class Elite_Vafsitemap_Model_Sitemap_VehicleTests_CountMMTCTest extends Elite_Va
     {
         $sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle;
         $vehicle = $this->createMMTC();
-        $this->insertFitmentMMTC( $vehicle );
+        $this->insertMappingMMTC( $vehicle );
         $this->assertEquals( 1, $sitemap->vehicleCount() );
     }
 

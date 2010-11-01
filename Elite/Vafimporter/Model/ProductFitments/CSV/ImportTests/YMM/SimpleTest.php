@@ -13,22 +13,22 @@ sku, honda, civic, 2000';
 
     function testSku()
     {
-        $this->FitmentsImport( $this->csvData );
+        $this->mappingsImport( $this->csvData );
         $fit = $this->getFitForSku( self::SKU );
         $this->assertEquals( 'honda', $fit->getLevel( 'make' )->getTitle() );
     }
     
     function testMake()
     {
-        $this->FitmentsImport( $this->csvData );
+        $this->mappingsImport( $this->csvData );
         $this->assertTrue( $this->vehicleExists(array('make'=>'honda')), 'importer should be able to load makes (root levels) properly' );
     }
     
-    function testCountFitmentsIs1AfterSuccess()
+    function testCountMappingsIs1AfterSuccess()
     {
-        $importer = $this->FitmentsImporterFromData( $this->csvData );
+        $importer = $this->mappingsImporterFromData( $this->csvData );
         $importer->import();
-        $this->assertEquals( 1, $importer->getCountFitments() );
+        $this->assertEquals( 1, $importer->getCountMappings() );
     }    
 
 //    function testSkippedCountIs1IfFitAlreadyExists()
@@ -38,7 +38,7 @@ sku, honda, civic, 2000';
         // execise ( again)
 //        $importer = new Elite_Vafimporter_Model_ProductFitments_CSV_Import_TestSubClass( $this->csvFile );
 //        $importer->import();
-//        $this->assertEquals( 1, $importer->getCountSkippedFitments() );
+//        $this->assertEquals( 1, $importer->getCountSkippedMappings() );
 //    }
     
 }

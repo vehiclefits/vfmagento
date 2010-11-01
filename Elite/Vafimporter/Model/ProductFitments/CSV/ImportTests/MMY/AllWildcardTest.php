@@ -17,7 +17,7 @@ honda, accord, 2001';
     function testBlowoutSingleColumn()
     {
         $this->importVehiclesList($this->vehiclesList);
-        $this->FitmentsImport('sku, make, model, year
+        $this->mappingsImport('sku, make, model, year
 sku, honda, {{all}}, 2000');
         
         $product = new Elite_Vaf_Model_Catalog_Product();
@@ -33,7 +33,7 @@ sku, honda, {{all}}, 2000');
     function testBlowoutMultipleColumn()
     {
         $this->importVehiclesList($this->vehiclesList);
-        $this->FitmentsImport('sku, make, model, year
+        $this->mappingsImport('sku, make, model, year
 sku, honda, {{all}}, {{all}}');
         
         $product = new Elite_Vaf_Model_Catalog_Product();

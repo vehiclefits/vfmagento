@@ -29,7 +29,7 @@ class Elite_Vafnote_Model_Schema_Generator
 		  UNIQUE KEY `code` (`code`)
 		) ENGINE=InnoDB;
 
-        CREATE TABLE IF NOT EXISTS `elite_Fitment_notes` (
+        CREATE TABLE IF NOT EXISTS `elite_mapping_notes` (
           `fit_id` int(50) NOT NULL,
           `note_id` varchar(50) NOT NULL,
           PRIMARY KEY (`fit_id`,`note_id`)

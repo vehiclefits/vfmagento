@@ -1,7 +1,7 @@
 <?php
 class Elite_Vaf_Select extends Zend_Db_Select
 {
-    function addLevelTitles($fromTable='elite_Fitment')
+    function addLevelTitles($fromTable='elite_mapping')
     {   
         foreach($this->getSchema()->getLevels() as $level )
         {

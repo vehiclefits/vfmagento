@@ -7,7 +7,7 @@ class Elite_Vafsitemap_Model_Sitemap_VehicleTests_DefinitionMMYTest extends Elit
     {
         $this->switchSchema( 'make,model,year' );
         $this->definition = $this->createMMY();
-        $this->insertFitmentMMY( $this->definition );
+        $this->insertMappingMMY( $this->definition );
     }
     
     function testDefinitionsMMY()

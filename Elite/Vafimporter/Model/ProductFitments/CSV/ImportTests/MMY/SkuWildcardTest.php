@@ -14,14 +14,14 @@ sku*, honda, civic, 2000';
     
     function testShouldMatchSku1()
     {
-        $this->FitmentsImport($this->csvData);
+        $this->mappingsImport($this->csvData);
         $fit = $this->getFitForSku('sku1');
         $this->assertEquals( 'honda', $fit->getLevel('make')->getTitle() );
     }
     
     function testShouldMatchSku2()
     {
-        $this->FitmentsImport($this->csvData);
+        $this->mappingsImport($this->csvData);
         $fit = $this->getFitForSku('sku2');
         $this->assertEquals( 'honda', $fit->getLevel('make')->getTitle() );
     }
@@ -29,7 +29,7 @@ sku*, honda, civic, 2000';
   
     function testShouldNotMatchZZZ()
     {
-        $this->FitmentsImport($this->csvData);
+        $this->mappingsImport($this->csvData);
         $fit = $this->getFitForSku('ZZZ');
         $this->assertFalse( $fit );
     }

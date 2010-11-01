@@ -371,21 +371,21 @@ class Elite_Vaf_Model_Level implements Elite_Vaf_Configurable
             return;
         }
         
-        $FitmentsQuery = sprintf(
-            "SELECT `id` FROM `elite_Fitment` WHERE %s = %d",
+        $mappingsQuery = sprintf(
+            "SELECT `id` FROM `elite_mapping` WHERE %s = %d",
             $this->getReadAdapter()->quoteIdentifier( $this->getType() . '_id' ),
             (int)$this->getId()
         );
-        $FitmentsResult = $this->query($FitmentsQuery);
-        foreach( $FitmentsResult->fetchAll() as $FitmentsRow )
+        $mappingsResult = $this->query($mappingsQuery);
+        foreach( $mappingsResult->fetchAll() as $mappingsRow )
         {
             if( file_exists(ELITE_PATH.'/Vafnote'))
 	        {
-	        	$deleteQuery = sprintf( "DELETE FROM `elite_Fitment_notes` WHERE `fit_id` = %d", $FitmentsRow['id'] );
+	        	$deleteQuery = sprintf( "DELETE FROM `elite_mapping_notes` WHERE `fit_id` = %d", $mappingsRow['id'] );
         		$this->query($deleteQuery);
 	        }
 	        
-	        $deleteQuery = sprintf( "DELETE FROM `elite_Fitment` WHERE `id` = %d LIMIT 1", $FitmentsRow['id'] );
+	        $deleteQuery = sprintf( "DELETE FROM `elite_mapping` WHERE `id` = %d LIMIT 1", $mappingsRow['id'] );
         	$this->query($deleteQuery);
 		}
     }

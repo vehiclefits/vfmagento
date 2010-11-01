@@ -29,16 +29,16 @@ class Elite_Vafnote_Model_Finder
     }
     
     /**
-    * @param integer $Fitment_id the Fitment/fitment id to get an array of notes for
+    * @param integer $mapping_id the mapping/fitment id to get an array of notes for
     * @return array of notes (stdClass objects)
     */
-    function getNotes( $Fitment_id = 0 )
+    function getNotes( $mapping_id = 0 )
     {
         $sql = "SELECT * FROM elite_note";
         
-        if( $Fitment_id )
+        if( $mapping_id )
         {
-            $sql .=  sprintf( " INNER JOIN elite_Fitment_notes on elite_Fitment_notes.note_id = elite_note.code AND elite_Fitment_notes.fit_id = %d", $Fitment_id );
+            $sql .=  sprintf( " INNER JOIN elite_mapping_notes on elite_mapping_notes.note_id = elite_note.code AND elite_mapping_notes.fit_id = %d", $mapping_id );
         }
         $result = $this->query( $sql );
 
@@ -98,19 +98,19 @@ class Elite_Vafnote_Model_Finder
     }
     
     /**
-    * @param integer $Fitment_id the Fitment/fitment id this note is for
+    * @param integer $mapping_id the mapping/fitment id this note is for
     * @param string $note_code the alpha-numeric note code
     */
-    function insertNoteRelationship( $Fitment_id, $note_code )
+    function insertNoteRelationship( $mapping_id, $note_code )
     {
         $sql = sprintf(
             "
-            REPLACE INTO `elite_Fitment_notes`
+            REPLACE INTO `elite_mapping_notes`
                 ( fit_id, note_id )
             VALUES
                 ( %d, %s )
             ",
-            $Fitment_id,
+            $mapping_id,
             $this->getReadAdapter()->quote($note_code)
         );
         $this->query($sql);   
