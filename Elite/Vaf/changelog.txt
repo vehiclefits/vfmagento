@@ -1,4 +1,8 @@
-1.23 November 1, 2010
+1.25 November 1, 2010
+======================================================
+- 0000755: [Vehicles List] List products for vehicle on backend with no products produces errror
+
+1.24 November 1, 2010
 ======================================================
 - 0000753: [Other] Should be able to see which products fit a vehicle from the backend
 - 0000260: [Vehicles List] Ability to merge 2 vehicle levels
