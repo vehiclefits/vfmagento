@@ -8,8 +8,8 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_GlobalRewrit
     
     function doSetUp()
     {
-        $this->vehicle = $this->createMMY('Honda','Civic','2002');
         $this->switchSchema('make,model,year');
+        $this->vehicle = $this->createMMY('Honda','Civic','2002');
     }
     
     function testWhenProductFitsSelection_ShouldRewriteTitle()

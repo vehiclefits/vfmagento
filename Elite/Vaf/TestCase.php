@@ -23,10 +23,9 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
         $_FILES = array();
         
         $this->resetIdentityMaps();
-        
+        $this->truncateTables();
         $this->dropAndRecreateMockProductTable();
         
-        $this->truncateTables();
         $this->doSetUp();
     }
     
@@ -54,7 +53,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
     
     protected function doSetUp()
     {
-		$this->switchSchema('make,model,year');
+        $this->switchSchema('make,model,year');
     }
     
     protected function doTearDown() {}
@@ -67,6 +66,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
     
     protected function switchSchema( $levels, $force = false )
     {
+        $this->truncateTables();
         if(!$force)
         {
             try

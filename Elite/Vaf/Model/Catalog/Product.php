@@ -125,6 +125,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     function addVafFit( array $fitToAdd )
     {       
         $vehicles = $this->vehicleFinder()->findByLevelIds($fitToAdd);
+        $mapping_id = null;
         foreach($vehicles as $vehicle)
         {
             $mapping_id = $this->insertMapping($vehicle);
