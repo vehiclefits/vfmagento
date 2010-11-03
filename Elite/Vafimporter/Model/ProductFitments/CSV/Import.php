@@ -54,6 +54,18 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
         return $this->invalid_vehicle_count;
     }
     
+    function doImport()
+    {
+        $this->getReader()->rewind();
+        
+        $this->getReader()->getRow(); // pop fields
+        $this->row_number = 0;
+        while( $row = $this->getReader()->getRow() )
+        {
+            $this->importRow($row);
+        }
+    }
+    
     /** Import a row from the file */
     function importRow($row)
     {   
