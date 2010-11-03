@@ -148,25 +148,6 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     function importRow($row)
     {   
         $this->row_number++;
-        /** @todo replace conditional with polymorphism */
-        if('Elite_Vafimporter_Model_VehiclesList_CSV_Import' == get_class($this))
-        {
-            return;
-        }
-        $values = $this->getLevelsArray( $row ); 
-        $combinations = $this->getCombinations($values);
-        
-        foreach( $combinations as $combination )
-        {
-            if( $this->fieldsAreBlank($combination) )
-            {
-                $this->doImportRow($row,false);
-                continue;
-            }
-            
-            $vehicle = $this->vehicleFinder()->findOneByLevels($combination);
-            $this->doImportRow($row,$vehicle);
-        }
     }
     
     function vehicleFinder()

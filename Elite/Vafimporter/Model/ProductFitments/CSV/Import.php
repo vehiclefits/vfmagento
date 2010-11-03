@@ -54,6 +54,27 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
         return $this->invalid_vehicle_count;
     }
     
+    /** Import a row from the file */
+    function importRow($row)
+    {   
+        $this->row_number++;
+
+        $values = $this->getLevelsArray( $row ); 
+        $combinations = $this->getCombinations($values);
+        
+        foreach( $combinations as $combination )
+        {
+            if( $this->fieldsAreBlank($combination) )
+            {
+                $this->doImportRow($row,false);
+                continue;
+            }
+            
+            $vehicle = $this->vehicleFinder()->findOneByLevels($combination);
+            $this->doImportRow($row,$vehicle);
+        }
+    }
+    
     /**
     * @param array $row
     * @param Elite_Vaf_Model_Vehicle|boolean the vehicle, false if none (for example, when setting a product as universal)
