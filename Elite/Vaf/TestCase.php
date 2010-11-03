@@ -343,6 +343,10 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
     protected function rollbackTransaction()
     {
         $this->getReadAdapter()->rollBack();
+        if($this->getReadAdapter()->_transaction_depth !== -1)
+        {
+            throw new Exception('invalid transaction nesting');
+        }
     }
     
     function findVehicleByLevelsMMY( $make, $model, $year )

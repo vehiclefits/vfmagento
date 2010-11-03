@@ -34,6 +34,15 @@ class Elite_Vaf_Model_VehicleTest extends Elite_Vaf_TestCase
         $this->assertTrue($this->vehicleExists(array('make'=>'FHIL','model'=>'039', 'year'=>1999)));
     }
     
+    function testShouldTrimWhitespaces2()
+    {
+        $this->createVehicle(array('make'=>'Honda ', 'model'=>'Civic', 'year'=>'2000'));
+        $this->createVehicle(array('make'=>'Honda', 'model'=>'Civic', 'year'=>'2000'));
+        
+        $vehicles = $this->vehicleFinder()->findByLevels(array('year'=>'2000'));
+        $this->assertEquals(1, count($vehicles));
+    }
+    
     function testLevelIdsTruncateAfter()
     {
         $vehicle = $this->createMMY('Honda','Civic','2000');

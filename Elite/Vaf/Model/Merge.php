@@ -18,26 +18,37 @@ class Elite_Vaf_Model_Merge
     
     function execute()
     {
-        $master_level_type = current($this->masterLevel);
+        $this->getReadAdapter()->beginTransaction();
         
-        $this->setMasterVehicle();
-        $master_vehicle = $this->masterVehicle();
-        
-        $this->operating_grain = $master_level_type;
-        
-        $this->ensureSameGrain();
-        
-        $slaveVehicles = $this->slaveVehicles();
-        foreach($slaveVehicles as $slaveVehicle)
+        try
         {
-            if($this->equalsAboveOperatingGrain($slaveVehicle, $master_vehicle))
-            {
-                continue;
-            }
+            $master_level_type = current($this->masterLevel);
             
-            $this->merge_vehicle($slaveVehicle, $master_vehicle);
-            $this->unlinkSlaves($slaveVehicle, $master_vehicle);
+            $this->setMasterVehicle();
+            $master_vehicle = $this->masterVehicle();
+            
+            $this->operating_grain = $master_level_type;
+            
+            $this->ensureSameGrain();
+            
+            $slaveVehicles = $this->slaveVehicles();
+            foreach($slaveVehicles as $slaveVehicle)
+            {
+                if($this->equalsAboveOperatingGrain($slaveVehicle, $master_vehicle))
+                {
+                    continue;
+                }
+                
+                $this->merge_vehicle($slaveVehicle, $master_vehicle);
+                $this->unlinkSlaves($slaveVehicle, $master_vehicle);
+            }
         }
+        catch(Exception $e)
+        {
+            $this->getReadAdapter()->rollback();
+            throw $e;
+        }
+        $this->getReadAdapter()->commit();
     }
     
     function operatingGrain()

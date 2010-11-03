@@ -256,6 +256,22 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
         $this->assertEquals( 0, $count );
     }
     
+    function testShouldMergeSpace()
+    {
+        $vehicle1 = $this->createMMY('Honda','Civic','2000');
+        $vehicle2 = $this->createMMY('Honda2','Civic','2000');
+        
+        $slaveLevels = array(
+            array('make', $vehicle1 ),
+            array('make', $vehicle2 ),
+        );
+        $masterLevel = array('make', $vehicle1 );
+        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        
+        $vehicles = $this->vehicleFinder()->findByLevels(array('year'=>'2000'));
+        $this->assertEquals(1, count($vehicles));
+    }
+    
     function testShouldClearVehicleFinderIdentityMap()
     {
         return $this->markTestIncomplete();

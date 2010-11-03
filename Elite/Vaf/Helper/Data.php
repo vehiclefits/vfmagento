@@ -305,7 +305,7 @@ class My_Adapter extends Zend_Db_Adapter_Pdo_Mysql
      * 
      * @var integer
      */
-    protected $_transaction_depth = -1;
+    public $_transaction_depth = -1;
     
     protected $_should_emulate_nesting = true;
     
