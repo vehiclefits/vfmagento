@@ -53,16 +53,6 @@ class Elite_Vaf_Model_Level_Finder extends Elite_Vaf_Model_Level_Finder_Abstract
         return $this->selector()->listAll( $level, $parent_id );
     }
     
-    /**
-    * @param aray $slaveLevels - Ex. array('year'=>$year1,'year'=>$year2);
-    * @param array $masterLevel - Ex. array('year'=>$year2);
-    */
-    function merge( $slaveLevels, $masterLevel )
-    {
-        $merge = new Elite_Vaf_Model_Merge($slaveLevels, $masterLevel);
-        $merge->execute();
-    }
-    
     function __call($name, $arguments)
     {
         return call_user_func_array(array($this->selector(),$name), $arguments);

@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
+class Elite_Vaf_Model_MergeTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {
@@ -22,7 +22,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
         );
         $masterLevel = array('year', $vehicle2 );
         
-        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        $this->merge($slaveLevels, $masterLevel);
     }
     
     /**
@@ -39,7 +39,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
         );
         $masterLevel = array('year', $vehicle2 );
         
-        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        $this->merge($slaveLevels, $masterLevel);
     }
     
     function testShouldMergeYear()
@@ -53,7 +53,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
         );
         $masterLevel = array('year', $vehicle2 );
         
-        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        $this->merge($slaveLevels, $masterLevel);
         
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2001)) );
         $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)), 'should delete slave vehicle');
@@ -69,7 +69,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
             array('model', $vehicle2 ),
         );
         $masterLevel = array('model', $vehicle2 );
-        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        $this->merge($slaveLevels, $masterLevel);
         
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Accord')) );
         $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic')), 'should delete slave vehicle' );
@@ -87,7 +87,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
         );
         $masterLevel = array('model', $vehicle2 );
 
-        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        $this->merge($slaveLevels, $masterLevel);
         
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Accord','year'=>2000)) );
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Accord','year'=>2001)) );
@@ -107,7 +107,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
             array('make', $vehicle2 ),
         );
         $masterLevel = array('make', $vehicle1 );        
-        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        $this->merge($slaveLevels, $masterLevel);
         
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );        
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2001)) );        
@@ -125,7 +125,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
             array('make', $vehicle2 ),
         );
         $masterLevel = array('make', $vehicle1 );
-        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        $this->merge($slaveLevels, $masterLevel);
         
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2001)) );
@@ -144,7 +144,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
         );
         $masterLevel = array('make', $vehicle1 );
 
-        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        $this->merge($slaveLevels, $masterLevel);
         
         $this->assertTrue( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2000)) );
         $this->assertFalse( $this->vehicleExists(array('make'=>'Honda','model'=>'Civic','year'=>2001)) );
@@ -165,7 +165,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
         
         
                                                               // it deletes the year from Ford, but not ford itself
-        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        $this->merge($slaveLevels, $masterLevel);
         
         $select = new Elite_Vaf_Select($this->getReadAdapter());
         
@@ -188,7 +188,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
         );
         $masterLevel = array('make', $vehicle2 );
 
-        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        $this->merge($slaveLevels, $masterLevel);
         
         $select = new Elite_Vaf_Select($this->getReadAdapter());
         
@@ -208,7 +208,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
             array('make', $vehicle2 ),
         );
         $masterLevel = array('make', $vehicle1 );
-        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        $this->merge($slaveLevels, $masterLevel);
         
         $product = $this->newProduct(1);
         $product->setCurrentlySelectedFit($vehicle1);
@@ -228,7 +228,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
             array('model', $vehicle2 ),
         );
         $masterLevel = array('model', $vehicle1 );
-        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        $this->merge($slaveLevels, $masterLevel);
         
         $product = $this->newProduct(1);
         $product->setCurrentlySelectedFit($this->vehicleFinder()->findOneByLevels(array('year'=>'2000')));
@@ -250,7 +250,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
             array('make', $vehicle2 ),
         );
         $masterLevel = array('make', $vehicle1 );
-        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        $this->merge($slaveLevels, $masterLevel);
         
         $count = $this->getReadAdapter()->select()->from('elite_mapping', array('count(*)'))->where('year_id = 0')->query()->fetchColumn();
         $this->assertEquals( 0, $count );
@@ -266,7 +266,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
             array('make', $vehicle2 ),
         );
         $masterLevel = array('make', $vehicle1 );
-        $this->levelFinder()->merge( $slaveLevels, $masterLevel );
+        $this->merge($slaveLevels, $masterLevel);
         
         $vehicles = $this->vehicleFinder()->findByLevels(array('year'=>'2000'));
         $this->assertEquals(1, count($vehicles));
@@ -280,6 +280,12 @@ class Elite_Vaf_Model_Vehicle_FinderTests_MergeTest extends Elite_Vaf_TestCase
     function testShouldClearLevelFinderIdentityMap()
     {
         return $this->markTestIncomplete();
+    }
+    
+    function merge($slaveLevels, $masterLevel)
+    {
+        $merge = new Elite_Vaf_Model_Merge($slaveLevels, $masterLevel);
+        $merge->execute();
     }
     
 }

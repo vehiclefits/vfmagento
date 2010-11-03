@@ -131,7 +131,9 @@ class Elite_Vaf_Admin_DefinitionsController extends Mage_Adminhtml_Controller_Ac
         {
             $master = $this->masterLevel();
             $slave = $this->slaveLevels();
-            $this->levelFinder()->merge($slave, $master);
+            
+            $merge = new Elite_Vaf_Model_Merge($slave, $master);
+            $merge->execute();
             
             header('location:' . $this->getListUrl2($_REQUEST['entity']) . http_build_query($this->requestLevels()) );
             exit();             
