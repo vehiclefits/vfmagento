@@ -107,5 +107,32 @@
 
 </div>
 
+<h2 id="cli">Command Line Interface (CLI) / Cron</h2>
+<div>
+    Navigate to <b class="path">Elite/Vafimporter/cron</b>. The file to be imported will be read from <b class="path">product-fitments-import.csv</b>. Export files will be named as <b class="path">product-fitments-export.csv</b>
+    <br />
+    <br />
+    
+    <h3>Import</h3>
+    To <strong>import</strong>, use this command:
+    <br />
+    <pre>php product-fitments-import.csv.php</pre>
+    Or as a background process:
+    <pre>nohup php product-fitments-import.csv.php > error_log &amp;</pre>
+    <br />
+    
+    <h3>Export</h3>
+    To <strong>export</strong>, use this command
+    <br />
+    <pre>php product-fitments-export.csv.php</pre>
+    Or as a background process:
+    <pre>nohup php product-fitments-export.csv.php > error_log &amp;</pre>
+    <br />
+    
+    <h3>Logging</h3>
+    Import logging will automatically be written to product-fitments-import.log, errors and notices will be logged.
+</div>
+
+
 </body>
 </html>

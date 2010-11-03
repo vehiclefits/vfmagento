@@ -119,18 +119,11 @@
 
 <h2 id="cli">Command Line Interface (CLI) / Cron</h2>
 <div>
-    Navigate to Elite/Vafimporter/cron
+    Navigate to <b class="path">Elite/Vafimporter/cron</b>. The file to be imported will be read from <b class="path">vehicles-list-import.csv</b>. Export files will be named as <b class="path">vehicles-list-export.csv</b>
     <br />
     <br />
     
-    Open config.php and set the path information &amp; database details.
-    <br />
-    <br />
-    
-    The file to be imported will be read from vehicles-list-import.csv Exported files will be named as vehicles-list-export.csv
-    <br />
-    <br />
-    
+    <h3>Import</h3>
     To <strong>import</strong>, use this command:
     <br />
     <pre>php vehicles-list-import.csv.php</pre>
@@ -138,18 +131,16 @@
     <pre>nohup php vehicles-list-import.csv.php > error_log &amp;</pre>
     <br />
     
+    <h3>Export</h3>
     To <strong>export</strong>, use this command
     <br />
     <pre>php vehicles-list-export.csv.php</pre>
     Or as a background process:
     <pre>nohup php vehicles-list-export.csv.php > error_log &amp;</pre>
     <br />
-    <strong>Logging</strong>
-    <br />
-    Import logging will automatically be written to vehicles-list-import.log in the following format:
-    <pre>2010-09-23T02:29:29+00:00 INFO (6): Vehicle added: Lamborghini PLUS 880 2006
-2010-09-23T02:29:30+00:00 INFO (6): Vehicle added: Lamborghini RACING 150 2006
-2010-09-23T02:29:30+00:00 INFO (6): Vehicle added: Lamborghini SPRINT 65 2WD 2006</pre>
+    
+    <h3>Logging</h3>
+    Import logging will automatically be written to vehicles-list-import.log, errors and notices will be logged.
 </div>
 
 
