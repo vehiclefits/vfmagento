@@ -1,3 +1,7 @@
+1.26 November 3, 2010
+======================================================
+- 0000500: [Application Fitments Import/export] Should be able to import/export product fitments via command line
+
 1.25 November 1, 2010
 ======================================================
 - 0000755: [Vehicles List] List products for vehicle on backend with no products produces errror

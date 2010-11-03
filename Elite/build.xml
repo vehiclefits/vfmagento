@@ -429,12 +429,36 @@
              </fileset>
         </zip>
         
-        <!-- starter package  (includes vaf & importer modules) -->
+        <!-- 'old' starter package  (includes vaf & importer modules) -->
+        <tar destfile="${packagepath}/vaf-old-starter-${version}.tar.gz" compression="gzip">
+            <fileset dir="${modulepath}/build/vaf">
+                 <include name="**" />
+             </fileset>
+             <fileset dir="${modulepath}/build/importer">
+                <include name="**" />
+            </fileset>
+        </tar>
+        <zip destfile="${packagepath}/vaf-old-starter-${version}.zip">
+             <fileset dir="${modulepath}/build/vaf">
+                 <include name="**" />
+             </fileset>
+             <fileset dir="${modulepath}/build/importer">
+                <include name="**" />
+            </fileset>
+        </zip>
+        
+        <!-- 'new' starter package  (includes notes module modules) -->
         <tar destfile="${packagepath}/vaf-starter-${version}.tar.gz" compression="gzip">
             <fileset dir="${modulepath}/build/vaf">
                  <include name="**" />
              </fileset>
              <fileset dir="${modulepath}/build/importer">
+                <include name="**" />
+            </fileset>
+             <fileset dir="${modulepath}/build/note">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/logo">
                 <include name="**" />
             </fileset>
         </tar>
@@ -443,6 +467,12 @@
                  <include name="**" />
              </fileset>
              <fileset dir="${modulepath}/build/importer">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/note">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${modulepath}/build/logo">
                 <include name="**" />
             </fileset>
         </zip>
@@ -565,8 +595,8 @@
         <exec command="scp ${modulepath}/vaf-${version}.zip ne8.net:&quot;/var/www/vehiclefits.com/public_html/free/vaf-free-${version}.zip&quot;" />
         
         <!-- starter -->
-	    <exec command="scp ${packagepath}/vaf-starter-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Starter/&quot;" />
-	    <exec command="scp ${packagepath}/vaf-starter-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Starter/&quot;" />
+	    <exec command="scp ${packagepath}/vaf-old-starter-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Old Starter/&quot;" />
+	    <exec command="scp ${packagepath}/vaf-old-starter-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Old Starter/&quot;" />
 
         <!-- professional -->
         <exec command="scp ${packagepath}/vaf-professional-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Professional/&quot;" />
