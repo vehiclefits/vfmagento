@@ -42,11 +42,11 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     {
         $this->insertRowsIntoTempTable();
         $this->insertLevelsFromTempTable();
-        //$this->insertFitmentsFromTempTable();
+        $this->insertFitmentsFromTempTable();
         $this->insertVehicleRecords();
         $this->cleanupTempTable();
         
-        $this->runDeprecatedImports();
+        //$this->runDeprecatedImports();
     }
     
     function insertFitmentsFromTempTable()
