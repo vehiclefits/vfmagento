@@ -70,7 +70,6 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         }
         
         $this->insertVehicleRecords();
-        $this->logVehicleRecords();
         $this->cleanupTempTable();
     }
     
@@ -127,21 +126,6 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         $query = 'REPLACE INTO elite_definition (' . implode(',', $cols) . ')';
         $query .= ' SELECT DISTINCT ' . implode(',', $cols) . ' FROM elite_import';
         $this->query($query);
-    }
-    
-    function logVehicleRecords()
-    {
-        return;
-        //$cols = $this->getSchema()->getLevels();
-//        foreach($cols as $i=>$col)
-//        {
-//            $cols[$i] = $this->getReadAdapter()->quoteIdentifier($col);
-//        }
-//        $result = $this->getReadAdapter()->query('SELECT DISTINCT ' . implode(',', $cols) . ' FROM elite_import');
-//        while($row = $result->fetch() )
-//        {
-//            $this->log('Vehicle added: ' . implode(' ',$row), Zend_Log::INFO );
-//        }
     }
     
     /** Import a row from the file */
