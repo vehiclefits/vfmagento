@@ -18,26 +18,36 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     function import()
     {
         $this->log('Import Started',Zend_Log::INFO);
-        $this->getFieldPositions();
         $this->getReadAdapter()->beginTransaction();
-        $this->cleanupTempTable();
         
-        $this->resetCountAdded();
-        $this->startCountingAdded();
-        
-        $this->insertRowsIntoTempTable();
-        $this->insertLevelsFromTempTable();
-        
-        $this->runAllOldImports();
-        
-        $this->stopCountingAdded();
+        try
+        {
+            $this->startCountingAdded();
+            $this->getFieldPositions();
+            $this->doImport();
+            $this->stopCountingAdded();
+        }
+        catch(Exception $e)
+        {
+            $this->getReadAdapter()->rollBack();
+            $this->log('Import Cancelled & Reverted Due To Critical Error: ' . $e->getMessage() . $e->getTraceAsString(), Zend_log::CRIT);
+            throw $e;
+        }
         
         $this->getReadAdapter()->commit();
         $this->log('Import Completed',Zend_Log::INFO);
     }
     
+    function doImport()
+    {
+        $this->insertRowsIntoTempTable();
+        $this->insertLevelsFromTempTable();
+        $this->runDeprecatedImports();
+    }
+    
     function insertRowsIntoTempTable()
     {
+        $this->cleanupTempTable();
         while( $row = $this->getReader()->getRow() )
         {
             $values = $this->getLevelsArray( $row ); 
@@ -51,7 +61,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         }
     }
     
-    function runAllOldImports()
+    function runDeprecatedImports()
     {
         $this->getReader()->rewind();
         
@@ -211,6 +221,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     /** Probe how many Make,Model,Year there are before the import */
     function startCountingAdded()
     {
+        $this->resetCountAdded();
         $this->startCountingAddedLevels();
         $this->startCountingAddedVehicles();
     }
