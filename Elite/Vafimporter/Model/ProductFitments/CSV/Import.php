@@ -19,6 +19,12 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
     
     protected $rows_with_invalid_sku = array();
     
+    function importRow($row)
+    {   
+        $this->row_number++;
+        $this->oldImportRow($row);
+    }
+    
     function getSkippedSkus()
     {
         return $this->skipped_skus;

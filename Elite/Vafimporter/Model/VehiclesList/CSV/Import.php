@@ -139,15 +139,14 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         $this->query($query);
     }
     
-    /** Import a row from the file */
     function importRow($row)
     {   
         $this->row_number++;
-        /** @todo replace conditional with polymorphism */
-        if('Elite_Vafimporter_Model_VehiclesList_CSV_Import' == get_class($this))
-        {
-            return;
-        }
+    }
+    
+    /** @deprecated */
+    function oldImportRow($row)
+    {
         $values = $this->getLevelsArray( $row ); 
         $combinations = $this->getCombinations($values);
         
