@@ -243,6 +243,11 @@ class Elite_Vaf_Model_Schema implements
         return self::$global_status[$level] = (bool)$this->readSchemaRegistryKey($key);
     }
     
+    function hasParent($level)
+    {
+        return !$this->isGlobal($level);
+    }
+    
     function getSorting($level)
     {
         $key = $level.'_sorting';

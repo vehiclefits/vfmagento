@@ -80,7 +80,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     
     function extractLevelsFromImportTable($level)
     {
-        if( $this->getSchema()->getRootLevel() == $level || $this->getSchema()->isGlobal($level))
+        if( !$this->getSchema()->hasParent($level))
         {
             $sql = sprintf('INSERT INTO elite_level_%1$s (title) SELECT DISTINCT %1$s FROM elite_import WHERE %1$s_id = 0',$level);
             $this->query($sql);
@@ -98,7 +98,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     
     function updateIdsInTempTable($level)
     {
-        if( $this->getSchema()->getRootLevel() == $level || $this->getSchema()->isGlobal($level))
+        if( !$this->getSchema()->hasParent($level) )
         {
             $this->query(sprintf('UPDATE elite_import i, elite_level_%1$s l SET i.%1$s_id = l.id WHERE l.title = i.%1$s',$level));
         }
