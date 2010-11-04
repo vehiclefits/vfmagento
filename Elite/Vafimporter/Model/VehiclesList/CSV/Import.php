@@ -10,10 +10,10 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     protected $start_count_vehicles, $stop_count_vehicles;
       
     /** @var integer */
-    protected $skipped_definitions = 0;
+    protected $invalid_vehicle_count = 0;
     
     /** @var integer corresponds to the row # in the CSV we are reading in */
-    protected $row_number = 1;
+    protected $row_number = 0;
     
     function import()
     {
@@ -42,7 +42,15 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     {
         $this->insertRowsIntoTempTable();
         $this->insertLevelsFromTempTable();
+        //$this->insertFitmentsFromTempTable();
+        $this->insertVehicleRecords();
+        $this->cleanupTempTable();
+        
         $this->runDeprecatedImports();
+    }
+    
+    function insertFitmentsFromTempTable()
+    {
     }
     
     function insertRowsIntoTempTable()
@@ -50,10 +58,16 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         $this->cleanupTempTable();
         while( $row = $this->getReader()->getRow() )
         {
+            $this->row_number++;
+            
             $values = $this->getLevelsArray( $row ); 
+            if(!$values)
+            {
+                continue;
+            }
+            
             $combinations = $this->getCombinations($values, $row);
             
-            $this->row_number++;
             foreach( $combinations as $combination )
             {
                 $this->insertIntoTempTable($row,$combination);
@@ -75,11 +89,8 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     
     function insertIntoTempTable($row,$combination)
     {
-        if($this->fieldsAreBlank($combination))
-        {
-            return;
-        }
-        
+        $combination['line'] = $this->row_number;
+        $combination['universal'] = $this->getFieldValue('universal', $row);
         $this->getReadAdapter()->insert('elite_import',$combination);
     }
     
@@ -91,9 +102,6 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
             $this->extractLevelsFromImportTable($level);
             $this->updateIdsInTempTable($level);
         }
-        
-        $this->insertVehicleRecords();
-        $this->cleanupTempTable();
     }
     
     function cleanupTempTable()
@@ -105,13 +113,13 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     {
         if( !$this->getSchema()->hasParent($level))
         {
-            $sql = sprintf('INSERT INTO elite_level_%1$s (title) SELECT DISTINCT %1$s FROM elite_import WHERE %1$s_id = 0',$level);
+            $sql = sprintf('INSERT INTO elite_level_%1$s (title) SELECT DISTINCT %1$s FROM elite_import WHERE universal != 1 && %1$s_id = 0',$level);
             $this->query($sql);
         }
         else
         {
             $sql = sprintf(
-                'INSERT INTO `elite_level_%1$s` (`title`, `%2$s_id`) SELECT DISTINCT `%1$s`, `%2$s_id` FROM `elite_import` WHERE `%1$s_id` = 0',
+                'INSERT INTO `elite_level_%1$s` (`title`, `%2$s_id`) SELECT DISTINCT `%1$s`, `%2$s_id` FROM `elite_import` WHERE universal != 1 && `%1$s_id` = 0',
                 $level,
                 $this->getSchema()->getPrevLevel($level)
             );
@@ -147,7 +155,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         }
         
         $query = 'REPLACE INTO elite_definition (' . implode(',', $cols) . ')';
-        $query .= ' SELECT DISTINCT ' . implode(',', $cols) . ' FROM elite_import';
+        $query .= ' SELECT DISTINCT ' . implode(',', $cols) . ' FROM elite_import WHERE universal != 1';
         $this->query($query);
     }
     
@@ -224,6 +232,11 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         $this->resetCountAdded();
         $this->startCountingAddedLevels();
         $this->startCountingAddedVehicles();
+        $this->doStartCountingAdded();
+    }
+    
+    function doStartCountingAdded()
+    {
     }
     
     /** Probe how many Make,Model,Year there are before the import */
@@ -249,6 +262,11 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     {
         $this->stopCountingAddedLevels();
         $this->stopCountingAddedVehicles();
+        $this->doStopCountingAdded();
+    }
+    
+    function doStopCountingAdded()
+    {
     }
     
     function stopCountingAddedLevels()
@@ -287,12 +305,6 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         return $this->stop_count_vehicles - $this->start_count_vehicles;
     }
     
-    /** @return integer */
-    function getCountSkippedDefinitions()
-    {
-        return $this->skipped_definitions;
-    }
-    
     /**
     * @var array $row from import file
     * @return array keyed by level names (make,model,year) or ranges (year_start,year_end)
@@ -315,9 +327,11 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
             elseif( isset($fieldPositions[$level]) )
             {
                 $levels[$level] = $this->getFieldValue( $level, $row );
-                if(!$levels[$level])
+                if(!$levels[$level] && !$this->getFieldValue('universal', $row))
                 {
                     $this->log('Line(' . $this->row_number . ') Blank ' . ucfirst($level), Zend_Log::NOTICE);
+                    $this->invalid_vehicle_count++;
+                    return false;
                 }
             }
             else
@@ -332,9 +346,10 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     {
         $combiner = new Elite_Vafimporter_Model_Combiner($this->getSchema(), $this->getConfig());
         $combinations = $combiner->getCombinations($values);
-        if($combiner->getError())
+        if($combiner->getError() )
         {
             $this->log( 'Line(' . $this->row_number . ') ' . $combiner->getError(), Zend_Log::NOTICE );
+            $this->invalid_vehicle_count++;
         }
         $combinations = $this->doGetCombinations($combinations, $row);
         return $combinations;

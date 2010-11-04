@@ -68,7 +68,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_ImportTests_MMY_LogErrorsTest ext
         $this->assertEquals(0, $importer->getCountAddedByLevel('year'));
         $this->assertEquals(0, $importer->getCountAddedByLevel('model'));
     }
-
+    
     function testShouldLogCorrectLineNumber()
     {
         $importer = $this->vehiclesListImporter('make,model,year' . "\n" . 

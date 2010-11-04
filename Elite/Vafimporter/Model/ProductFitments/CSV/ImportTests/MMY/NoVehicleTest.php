@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_NoVehicleest extends Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase
+class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_NoVehicletest extends Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase
 {    
     protected function doSetUp()
     {
@@ -12,7 +12,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_NoVehicleest e
         $importer = $this->mappingsImporterFromData('sku,make,model,year' . "\n" .
                                                     'sku,,,');
         $importer->import();
-        $this->assertEquals(0, $importer->getCountSkippedMappings(), 'should not increment skipped count');
+        $this->assertEquals(0, $importer->getCountSkippedMappings(), 'should not increment skipped count when there is no vehicle');
     }
     
     function testShouldIncrementInvalidVehicleCount()
@@ -20,6 +20,22 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_NoVehicleest e
         $importer = $this->mappingsImporterFromData('sku,make,model,year' . "\n" .
                                                     'sku,,,');
         $importer->import();
-        $this->assertEquals(1, $importer->invalidVehicleCount(), 'should increment invalid vehicle count');
+        $this->assertEquals(1, $importer->invalidVehicleCount(), 'should increment invalid vehicle count when there is no vehicle');
+    }
+    
+    function testShouldIncrementInvalidVehicleCount2()
+    {
+        $importer = $this->mappingsImporterFromData('sku,make,model,year' . "\n" .
+                                                    'sku,make,,year');
+        $importer->import();
+        $this->assertEquals(1, $importer->invalidVehicleCount(), 'should increment invalid vehicle count when there is no vehicle');
+    }
+    
+    function testShouldNotIncrementInvalidVehicleCountForUniversal()
+    {
+        $importer = $this->mappingsImporterFromData('sku,make,model,year,universal' . "\n" .
+                                                    'sku,,,,1');
+        $importer->import();
+        $this->assertEquals(0, $importer->invalidVehicleCount(), 'should not increment invalid vehicle count when universal fitment');
     }
 }

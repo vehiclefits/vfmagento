@@ -4,11 +4,6 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_NonExistantSku
     protected function doSetUp()
     {
         $this->switchSchema('make,model,year');
-        
-        $this->csvData = 'sku, make, model, year' . "\n" .
-                         'sku, honda, civic, 2000';
-        
-        $this->insertProduct( self::SKU );
     }
     
     function testWhenOneRow_ShouldReportSingleMissingSKU()
@@ -78,6 +73,31 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_NonExistantSku
         
         $event = $writer->events[1];
         $this->assertEquals( 'Line(2) Non Existant SKU \'sku2\'', $event['message'] );
+    }
+    
+    function testShouldLogMissingSkuOncePerLine()
+    {
+        $importer = $this->mappingsImporterFromData(
+            'sku,make,model,year_range' . "\n" . 
+            'sku1,honda,civic,2000-2001');
+        
+        $writer = new Zend_Log_Writer_Mock();
+        $logger = new Zend_Log($writer);
+        $logger->addFilter(new Zend_Log_Filter_Priority(Zend_Log::NOTICE));
+        $importer->setLog($logger);
+        
+        $importer->import();
+        $this->assertEquals( 1, count($writer->events) );
+    }
+    
+    function testWhenUsingYearRanges_ShouldReportSingleRowWithMissingSKU()
+    {
+        $data = 'sku, make, model, year_start,year_end
+nonexistantsku, honda, civic, 2000,2001';
+        
+        $importer = $this->mappingsImporterFromData($data);
+        $importer->import();
+        $this->assertEquals( 1, $importer->rowsWithNonExistantSkus(), 'row count with invalid SKUs should be 1 even if multiple years' );
     }
 
 }
