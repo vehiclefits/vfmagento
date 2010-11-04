@@ -37,17 +37,18 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
             }
         }
         $this->insertLevelsFromTempTable();
+        $this->getReader()->rewind();
         
-        $this->doImport();
-        
+        $this->getReader()->getRow(); // pop fields
+        $this->row_number = 0;
+        while( $row = $this->getReader()->getRow() )
+        {
+            $this->importRow($row);
+        }
         $this->stopCountingAdded();
         
         $this->getReadAdapter()->commit();
         $this->log('Import Completed',Zend_Log::INFO);
-    }
-    
-    function doImport()
-    {
     }
     
     function insertIntoTempTable($row,$combination)
@@ -69,6 +70,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         }
         
         $this->insertVehicleRecords();
+        $this->logVehicleRecords();
         $this->cleanupTempTable();
     }
     
@@ -126,7 +128,47 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         $query .= ' SELECT DISTINCT ' . implode(',', $cols) . ' FROM elite_import';
         $this->query($query);
     }
-
+    
+    function logVehicleRecords()
+    {
+        return;
+        //$cols = $this->getSchema()->getLevels();
+//        foreach($cols as $i=>$col)
+//        {
+//            $cols[$i] = $this->getReadAdapter()->quoteIdentifier($col);
+//        }
+//        $result = $this->getReadAdapter()->query('SELECT DISTINCT ' . implode(',', $cols) . ' FROM elite_import');
+//        while($row = $result->fetch() )
+//        {
+//            $this->log('Vehicle added: ' . implode(' ',$row), Zend_Log::INFO );
+//        }
+    }
+    
+    /** Import a row from the file */
+    function importRow($row)
+    {   
+        $this->row_number++;
+        /** @todo replace conditional with polymorphism */
+        if('Elite_Vafimporter_Model_VehiclesList_CSV_Import' == get_class($this))
+        {
+            return;
+        }
+        $values = $this->getLevelsArray( $row ); 
+        $combinations = $this->getCombinations($values);
+        
+        foreach( $combinations as $combination )
+        {
+            if( $this->fieldsAreBlank($combination) )
+            {
+                $this->doImportRow($row,false);
+                continue;
+            }
+            
+            $vehicle = $this->vehicleFinder()->findOneByLevels($combination);
+            $this->doImportRow($row,$vehicle);
+        }
+    }
+    
     function vehicleFinder()
     {
         return new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
