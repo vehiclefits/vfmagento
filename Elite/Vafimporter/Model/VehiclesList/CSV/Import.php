@@ -41,7 +41,8 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         while( $row = $this->getReader()->getRow() )
         {
             $values = $this->getLevelsArray( $row ); 
-            $combinations = $this->getCombinations($values);
+            $combinations = $this->getCombinations($values, $row);
+            
             $this->row_number++;
             foreach( $combinations as $combination )
             {
@@ -68,6 +69,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         {
             return;
         }
+        
         $this->getReadAdapter()->insert('elite_import',$combination);
     }
     
@@ -148,7 +150,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     function oldImportRow($row)
     {
         $values = $this->getLevelsArray( $row ); 
-        $combinations = $this->getCombinations($values);
+        $combinations = $this->getCombinations($values, $row);
         
         foreach( $combinations as $combination )
         {
@@ -315,7 +317,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         return $levels;
     }
     
-    function getCombinations( $values )
+    function getCombinations( $values, $row )
     {
         $combiner = new Elite_Vafimporter_Model_Combiner($this->getSchema(), $this->getConfig());
         $combinations = $combiner->getCombinations($values);
@@ -323,6 +325,12 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         {
             $this->log( 'Line(' . $this->row_number . ') ' . $combiner->getError(), Zend_Log::NOTICE );
         }
+        $combinations = $this->doGetCombinations($combinations, $row);
+        return $combinations;
+    }
+    
+    function doGetCombinations($combinations, $row)
+    {
         return $combinations;
     }
     

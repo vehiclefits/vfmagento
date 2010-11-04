@@ -124,6 +124,11 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
         
         foreach($levels as $level=>$value)
         {
+            if(!in_array($level,$this->schema->getLevels()))
+            {
+                continue;
+            }
+            
         	if(strpos($value,'-') || false !== strpos($value,'*'))
         	{
                 $value = $this->regexifyValue($value);

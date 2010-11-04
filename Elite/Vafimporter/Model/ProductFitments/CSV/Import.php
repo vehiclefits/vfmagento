@@ -60,6 +60,21 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
         return $this->invalid_vehicle_count;
     }
     
+    function doGetCombinations($combinations, $row)
+    {
+        $new_combinations = array();
+        foreach($combinations as $combination)
+        {
+            foreach($this->skus($row) as $sku)
+            {
+                $combination['sku'] = $sku;
+                array_push($new_combinations, $combination);
+            }
+        }
+        
+        return $new_combinations;
+    }
+    
     /**
     * @param array $row
     * @param Elite_Vaf_Model_Vehicle|boolean the vehicle, false if none (for example, when setting a product as universal)

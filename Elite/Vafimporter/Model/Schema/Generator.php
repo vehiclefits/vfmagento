@@ -11,15 +11,13 @@ class Elite_Vafimporter_Model_Schema_Generator extends Ne8Vehicle_Schema_Generat
     function createImportTable()
     {
         $query = 'CREATE TABLE elite_import (';
-        foreach($this->levels() as $level)
-        {
-            $query .= sprintf("`%s` VARCHAR(255) NOT NULL,", $level);
-            $query .= sprintf("`%s_id` INTEGER(50) NOT NULL", $level);
-            if($level != $this->leafLevel() )
+            foreach($this->levels() as $level)
             {
-                $query .= ',';
+                $query .= sprintf("`%s` VARCHAR(255) NOT NULL,", $level);
+                $query .= sprintf("`%s_id` INTEGER(50) NOT NULL,", $level);
             }
-        }
+            $query .= ' `sku` varchar(255) NOT NULL,';
+            $query .= '`product_id` int(255) NOT NULL';
         $query .= ') ENGINE = InnoDb;';
         return $query;
     }

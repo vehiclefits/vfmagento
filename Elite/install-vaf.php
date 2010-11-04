@@ -11,6 +11,8 @@
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the conditions in license.txt are met
 */
+ini_set('display_errors',1);
+error_reporting(E_ALL | E_STRICT);
 require_once( 'app/Mage.php' );
 require_once( 'app/code/local/Elite/Vaf/Model/Schema/Generator.php' );
 Mage::app();

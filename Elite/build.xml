@@ -595,8 +595,8 @@
         <exec command="scp ${modulepath}/vaf-${version}.zip ne8.net:&quot;/var/www/vehiclefits.com/public_html/free/vaf-free-${version}.zip&quot;" />
         
         <!-- 'old' starter -->
-        <exec command="scp ${packagepath}/vaf-old-starter-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Old Starter/&quot;" />
-        <exec command="scp ${packagepath}/vaf-old-starter-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Old Starter/&quot;" />
+        <exec command="scp ${packagepath}/vaf-old-starter-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Old\ Starter/&quot;" />
+        <exec command="scp ${packagepath}/vaf-old-starter-${version}.zip ne8.net:&quot;/var/www/vafdownloads/Vaf\ Old\ Starter/&quot;" />
 
         <!-- 'new' starter -->
 	    <exec command="scp ${packagepath}/vaf-starter-${version}.tar.gz ne8.net:&quot;/var/www/vafdownloads/Vaf\ Starter/&quot;" />

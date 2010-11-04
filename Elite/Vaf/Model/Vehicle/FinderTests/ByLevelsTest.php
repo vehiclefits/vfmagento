@@ -130,4 +130,10 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelsTest extends Elite_Vaf_Model_V
         $vehicles = $this->getFinder()->findByLevels( array('make'=>'.\+*?[^]$(){}=!<>|:-'), true );
         $this->assertEquals(1,count($vehicles),'should escape regex');
     }
+    
+    function testShouldIgnoreUnknownLevels()
+    {
+        $vehicles = $this->getFinder()->findByLevels( array('foo'=>'bar') );
+        $this->assertEquals( 0, count($vehicles));
+    }
 }
