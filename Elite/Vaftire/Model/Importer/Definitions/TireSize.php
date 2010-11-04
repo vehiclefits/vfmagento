@@ -1,6 +1,12 @@
 <?php
 class Elite_Vaftire_Model_Importer_Definitions_TireSize extends Elite_Vafimporter_Model_VehiclesList_CSV_Import
 {
+    function importRow($row)
+    {   
+        $this->row_number++;
+        $this->oldImportRow($row);
+    }
+    
     /**
     * @param array $row
     * @param Elite_Vaf_Model_Vehicle|boolean the vehicle, false if none (for example, when setting a product as universal)
