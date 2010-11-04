@@ -15,7 +15,6 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     /** @var integer corresponds to the row # in the CSV we are reading in */
     protected $row_number = 1;
     
-    /** Import the file */
     function import()
     {
         $this->log('Import Started',Zend_Log::INFO);
@@ -26,6 +25,19 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         $this->resetCountAdded();
         $this->startCountingAdded();
         
+        $this->insertRowsIntoTempTable();
+        $this->insertLevelsFromTempTable();
+        
+        $this->runAllOldImports();
+        
+        $this->stopCountingAdded();
+        
+        $this->getReadAdapter()->commit();
+        $this->log('Import Completed',Zend_Log::INFO);
+    }
+    
+    function insertRowsIntoTempTable()
+    {
         while( $row = $this->getReader()->getRow() )
         {
             $values = $this->getLevelsArray( $row ); 
@@ -36,7 +48,10 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
                 $this->insertIntoTempTable($row,$combination);
             }
         }
-        $this->insertLevelsFromTempTable();
+    }
+    
+    function runAllOldImports()
+    {
         $this->getReader()->rewind();
         
         $this->getReader()->getRow(); // pop fields
@@ -45,10 +60,6 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         {
             $this->importRow($row);
         }
-        $this->stopCountingAdded();
-        
-        $this->getReadAdapter()->commit();
-        $this->log('Import Completed',Zend_Log::INFO);
     }
     
     function insertIntoTempTable($row,$combination)
