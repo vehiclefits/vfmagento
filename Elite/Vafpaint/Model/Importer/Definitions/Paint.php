@@ -1,7 +1,6 @@
 <?php
 class Elite_Vafpaint_Model_Importer_Definitions_Paint extends Elite_Vafimporter_Model_VehiclesList_CSV_Import
 {
-
     function importRow($row)
     {   
         $this->row_number++;
