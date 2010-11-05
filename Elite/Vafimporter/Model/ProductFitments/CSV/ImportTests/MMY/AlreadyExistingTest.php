@@ -1,13 +1,14 @@
 <?php
 class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_AlreadyExistingTest extends Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_TestCase
 {    
+    
     protected function doSetUp()
     {
         $this->switchSchema('make,model,year');
         $this->csvData = 'sku, make, model, year' . "\n" .
                          'sku, honda, civic, 2000';
         
-        $this->insertProduct( self::SKU );
+        $this->insertProduct('sku');
     }
     
     function testNonExistantSku_ShouldNotAffectSkippedCount()
@@ -35,4 +36,39 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_AlreadyExistin
         
         $this->assertEquals( 1, $importer->getCountSkippedMappings() );
     }
+     
+    function testSkippedCountIs1IfFitAlreadyExists_Multiple()
+    {
+        $csvData = 'sku, make, model, year' . "\n" .
+                         'sku, honda, civic2, 2000' . "\n";
+                         'sku2, honda, integra, 2000';
+                         
+        $importer = $this->mappingsImporterFromData($csvData);
+        $importer->import();
+        
+        $importer = $this->mappingsImporterFromData($csvData);
+        $importer->import();
+        
+        $this->assertEquals( 1, $importer->getCountSkippedMappings() );
+    }
+        
+    
+    function testNameThis()
+    {
+        $this->insertProduct('sku1');
+        $productId = $this->insertProduct('sku2');
+        
+        $vehicle = $this->createMMY('Doesnt Fit', 'Doesnt Fit', 'doesnt fit');
+        $this->insertMappingMMY($vehicle, $productId);
+        
+        $csvData = 'sku, make, model, year' . "\n" .
+                   'sku1, honda, civic2, 2000';
+                         
+        $importer = $this->mappingsImporterFromData($csvData);
+        $importer->import();
+        
+        $this->assertEquals( 0, $importer->getCountSkippedMappings() );
+    }
+        
+    
 }

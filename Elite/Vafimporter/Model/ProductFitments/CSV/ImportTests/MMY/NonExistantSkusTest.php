@@ -100,4 +100,30 @@ nonexistantsku, honda, civic, 2000,2001';
         $this->assertEquals( 1, $importer->rowsWithNonExistantSkus(), 'row count with invalid SKUs should be 1 even if multiple years' );
     }
 
+    function testTwoNonExistantSku()
+    {
+        $vehicle = $this->createMMY('Doesnt Fit', 'Doesnt Fit', 'doesnt fit');
+        $this->insertMappingMMY($vehicle, 1);
+        
+        $importer = $this->mappingsImporterFromData('sku, make, model, year' . "\n" .
+                                                    'nonexist, honda, civic, 2000
+                                                    nonexist2, honda, civic, 2001');
+        $importer->import();
+        $this->assertEquals( 2, $importer->nonExistantSkusCount(), 'non existant sku should NOT affect skipped count' );
+    }
+
+    function testTwoNonExistantSku2()
+    {
+        return $this->markTestIncomplete();
+        
+        $vehicle = $this->createMMY('Doesnt Fit', 'Doesnt Fit', 'doesnt fit');
+        $this->insertMappingMMY($vehicle, 1);
+        
+        $importer = $this->mappingsImporterFromData('sku, make, model, year' . "\n" .
+                                                    'nonexist, acura, civic, 2000
+                                                    nonexist, honda, civic, 2000');
+        $importer->import();
+        $this->assertEquals( 1, $importer->nonExistantSkusCount(), 'should only count one non-existant sku' );
+    }
+
 }
