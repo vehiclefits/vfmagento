@@ -46,7 +46,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
         $this->insertVehicleRecords();
         $this->cleanupTempTable();
         
-        //$this->runDeprecatedImports();
+        $this->runDeprecatedImports();
     }
     
     function insertFitmentsFromTempTable()
@@ -170,8 +170,12 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     function oldImportRow($row)
     {
         $values = $this->getLevelsArray( $row ); 
+        if(!$values)
+        {
+            return;
+        }
         $combinations = $this->getCombinations($values, $row);
-        
+
         foreach( $combinations as $combination )
         {
             if( $this->fieldsAreBlank($combination) )
