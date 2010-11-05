@@ -162,11 +162,9 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
             }
         }
         
-        /** @todo MAJOR DEFECT - doesn't filter by product id' */
         $this->query('UPDATE elite_import i, elite_mapping m
                       SET i.mapping_id = m.id
-                      WHERE ' . $condition);
-                      
+                      WHERE ' . $condition . ' && i.product_id = m.entity_id');
     }
     
     function extractFitmentsFromImportTable()

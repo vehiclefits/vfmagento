@@ -40,6 +40,18 @@ sku, honda, civic, 2000, 2001';
         $this->assertEquals(1, $count);
     }
     
+    function testMultiple()
+    {
+        $this->insertProduct('sku1');
+        $this->insertProduct('sku2');
+        
+        $this->mappingsImport('sku, make, model, year_start, year_end' . "\n" .
+                               'sku1, honda, civic, 2000' .  "\n" .
+                               'sku2, honda, civic, 2000');
+        $count = $this->getReadAdapter()->query('select count(*) from elite_mapping')->fetchColumn();
+        $this->assertEquals(2, $count);
+    }
+    
     function testMultiple2()
     {
         $this->insertProduct('sku1');
@@ -50,7 +62,6 @@ sku, honda, civic, 2000, 2001';
                                'sku2, honda, integra, 2000, 2001');
         $count = $this->getReadAdapter()->query('select count(*) from elite_mapping')->fetchColumn();
         $this->assertEquals(4, $count);
-        
     }
 
 }
