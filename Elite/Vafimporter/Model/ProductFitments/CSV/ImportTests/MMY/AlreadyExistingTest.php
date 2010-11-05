@@ -53,12 +53,27 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_ImportTests_MMY_AlreadyExistin
     }
         
     
-    function testNameThis()
+    function testShouldNotCountExistingFitments()
     {
         $this->insertProduct('sku1');
         $productId = $this->insertProduct('sku2');
         
         $vehicle = $this->createMMY('Doesnt Fit', 'Doesnt Fit', 'doesnt fit');
+        $this->insertMappingMMY($vehicle, $productId);
+        
+        $csvData = 'sku, make, model, year' . "\n" .
+                   'sku1, honda, civic2, 2000';
+                         
+        $importer = $this->mappingsImporterFromData($csvData);
+        $importer->import();
+        
+        $this->assertEquals( 0, $importer->getCountSkippedMappings() );
+    }
+    
+    function testShouldNotCountDifferentFitments()
+    {
+        $productId = $this->insertProduct('sku1');
+        $vehicle = $this->createMMY('honda', 'Doesnt Fit', 'doesnt fit');
         $this->insertMappingMMY($vehicle, $productId);
         
         $csvData = 'sku, make, model, year' . "\n" .
