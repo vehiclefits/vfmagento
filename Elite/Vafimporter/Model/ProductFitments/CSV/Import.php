@@ -156,8 +156,10 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
         $condition = '';
         foreach($this->schema()->getLevels() as $level)
         {
-            /** @todo MAJOR DEFECT */
-            $condition .= 'i.make_id = m.make_id';
+            /** @todo MAJOR DEFECT works with $level = 'make' always, vafimporter tests dont pass but vafnote does */
+            // $level = make; // (uncomment)
+            
+            $condition .= 'i.' . $level . '_id = m.' . $level . '_id';
             if($this->schema()->getLeafLevel() != $level )
             {
                 $condition .= ' && ';

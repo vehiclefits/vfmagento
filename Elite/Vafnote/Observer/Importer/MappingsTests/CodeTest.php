@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafnote_Observer_Importer_MappingsTests_AlphaCodeTest extends Elite_Vafnote_Observer_Importer_MappingsTests_TestCase
+class Elite_Vafnote_Observer_Importer_MappingsTests_CodeTest extends Elite_Vafnote_Observer_Importer_MappingsTests_TestCase
 {    
     function doSetUp()
     {
@@ -11,7 +11,6 @@ class Elite_Vafnote_Observer_Importer_MappingsTests_AlphaCodeTest extends Elite_
     {        
         $this->createNoteDefinition('abc','foo');
         $this->createNoteDefinition('xyz','bar');
-        
         $this->import('sku, make, model, year, notes' . "\n" .
                       'sku, honda, civic, 2000, "abc,xyz"');
         

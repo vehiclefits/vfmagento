@@ -1,5 +1,5 @@
 <?php
-class Elite_Vafnote_Observer_Importer_MappingsTests_RowCombinationTest extends Elite_Vafnote_Observer_Importer_MappingsTests_TestCase
+class Elite_Vafnote_Observer_Importer_MappingsTests_RowCombinationsTest extends Elite_Vafnote_Observer_Importer_MappingsTests_TestCase
 {    
     protected $product_id;
     

@@ -14,6 +14,7 @@ class Vaf17
             ADD `line` INT( 255 ) NOT NULL,
             ADD `mapping_id` INT( 255 ) NOT NULL,
             ADD `note_message` VARCHAR( 255 ) NOT NULL,
+            ADD `notes` VARCHAR( 255 ) NOT NULL
         ');  
         
     }
