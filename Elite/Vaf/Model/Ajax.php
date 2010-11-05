@@ -28,7 +28,8 @@ class Elite_Vaf_Model_Ajax implements Elite_Vaf_Configurable
         $levelFinder = new Elite_Vaf_Model_Level_Finder();
         if( isset( $_GET['front'] ) )
         {
-            $children = $levelFinder->listInUse( new Elite_Vaf_Model_Level($this->requestLevel()), $this->requestLevels() );
+            $product = isset($_GET['product']) ? $_GET['product'] : null;
+            $children = $levelFinder->listInUse( new Elite_Vaf_Model_Level($this->requestLevel()), $this->requestLevels(), $product );
         }
         else
         {
