@@ -8,7 +8,7 @@ class Elite_Vafnote_Observer_Importer_MappingsTests_ByMessageTest extends Elite_
  
     function testShouldIgnoreRowsWithCodeButNoMessage_WithoutComma()
     {        
-        $this->insertProduct('sku');
+        $this->insertProduct('sku1');
         $this->import('"year_start","year_end","Make","Model","Sku","notes","note_message"
 1990,2009,"Acura","Integra","sku1",code1
 ');
@@ -20,7 +20,7 @@ class Elite_Vafnote_Observer_Importer_MappingsTests_ByMessageTest extends Elite_
      
     function testShouldIgnoreRowsWithCodeButNoMessage_WithComma()
     {        
-        $this->insertProduct('sku');
+        $this->insertProduct('sku1');
         $this->import('"year_start","year_end","Make","Model","Sku","notes","note_message"
 1990,2009,"Acura","Integra","sku1",code1,
 ');

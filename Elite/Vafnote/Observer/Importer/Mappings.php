@@ -5,7 +5,7 @@
 * 
 * Side effects: creates a fitment note, associates them to products
 */
-class Elite_Vafnote_Observer_Importer_Mappings implements Vafimporter_Observer
+class Elite_Vafnote_Observer_Importer_Mappings
 {
     /** @var array $fields for the current row */
     protected $fields;
@@ -16,9 +16,8 @@ class Elite_Vafnote_Observer_Importer_Mappings implements Vafimporter_Observer
     /**
     * @param array $fields for the current row
     * @param array $row the row being imported
-    * @param Elite_Vaf_Model_Vehicle the vehicle
     */
-    function doImportRow( $fields, $row, Elite_Vaf_Model_Vehicle $vehicle )
+    function doImportRow( $fields, $row )
     {
         $this->fields = $fields;
         $this->row = $row;
@@ -42,7 +41,7 @@ class Elite_Vafnote_Observer_Importer_Mappings implements Vafimporter_Observer
         $notes = explode( ',', $notes );
         foreach( $notes as $noteCode )
         {
-            $this->noteFinder()->insertNoteRelationship( $this->row['id'], $noteCode );
+            $this->noteFinder()->insertNoteRelationship( $this->row['mapping_id'], $noteCode );
         }
     }
     
@@ -60,7 +59,7 @@ class Elite_Vafnote_Observer_Importer_Mappings implements Vafimporter_Observer
         }
         $noteId = $this->noteFinder()->insert(null,$message);
         $note = $this->noteFinder()->find($noteId);
-        $this->noteFinder()->insertNoteRelationship($this->row['id'], $note->code );
+        $this->noteFinder()->insertNoteRelationship($this->row['mapping_id'], $note->code );
     }
     
     function hasNotesColumn()
@@ -75,8 +74,7 @@ class Elite_Vafnote_Observer_Importer_Mappings implements Vafimporter_Observer
     
     function getRowValue($field)
     {
-        $fieldPosition = $this->fields[$field];
-        return isset($this->row[$fieldPosition]) ? $this->row[$fieldPosition] : false;
+        return isset($this->row[$field]) ? $this->row[$field] : false;
     }
     
     protected function query( $sql )

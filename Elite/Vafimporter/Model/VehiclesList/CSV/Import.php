@@ -90,6 +90,7 @@ class Elite_Vafimporter_Model_VehiclesList_CSV_Import extends Elite_Vafimporter_
     function insertIntoTempTable($row,$combination)
     {
         $combination['line'] = $this->row_number;
+        $combination['note_message'] = $this->getFieldValue('note_message', $row);
         $combination['universal'] = $this->getFieldValue('universal', $row);
         $this->getReadAdapter()->insert('elite_import',$combination);
     }

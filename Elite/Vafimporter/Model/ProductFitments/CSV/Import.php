@@ -99,6 +99,8 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
         $this->determineInvalidSkus();
         $this->determineAlreadyExistingFitments();
         $this->extractFitmentsFromImportTable();
+        $this->updateMappingIdsInTempTable();
+        $this->extractNotesFromImportTable();
     }
     
     function updateProductIdsInTempTable()
@@ -134,6 +136,7 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
         $condition = '';
         foreach($this->schema()->getLevels() as $level)
         {
+            /** @todo MAJOR DEFECT */
             $condition .= 'i.make_id = m.make_id';
             if($this->schema()->getLeafLevel() != $level )
             {
@@ -148,13 +151,39 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
         $this->skipped_mappings = $this->getReadAdapter()->query($select)->fetchColumn();
     }
     
-    
+    function updateMappingIdsInTempTable()
+    {
+        $condition = '';
+        foreach($this->schema()->getLevels() as $level)
+        {
+            /** @todo MAJOR DEFECT */
+            $condition .= 'i.make_id = m.make_id';
+            if($this->schema()->getLeafLevel() != $level )
+            {
+                $condition .= ' && ';
+            }
+        }
+        
+        /** @todo MAJOR DEFECT - doesn't filter by product id' */
+        $this->query('UPDATE elite_import i, elite_mapping m
+                      SET i.mapping_id = m.id
+                      WHERE ' . $condition);
+    }
     
     function extractFitmentsFromImportTable()
     {
         $cols = $this->cols();
         $sql = 'INSERT IGNORE INTO elite_mapping (' . $this->cols() . ' universal, entity_id) SELECT ' . $this->cols() . ' universal, product_id from elite_import ';
         $this->query($sql);
+    }
+    
+    function extractNotesFromImportTable()
+    {
+        $sql = 'SELECT * from elite_import where mapping_id != 0';
+        foreach( $this->query($sql)->fetchAll() as $row )
+        {
+            $this->dispatchMappingImportEvent($row);
+        }
     }
     
     function cols()
@@ -391,12 +420,12 @@ class Elite_Vafimporter_Model_ProductFitments_CSV_Import extends Elite_Vafimport
         return $values;
     }
 
-    function dispatchMappingImportEvent( $row, $vehicle )
+    function dispatchMappingImportEvent( $row )
     {
         if( file_exists( ELITE_PATH  . '/Vafnote/Observer/Importer/Mappings.php' ) )
         {
             $noteImporter = new Elite_Vafnote_Observer_Importer_Mappings;
-            $noteImporter->doImportRow( $this->getFieldPositions(), $row, $vehicle );
+            $noteImporter->doImportRow( $this->getFieldPositions(), $row );
         }
 
     }
