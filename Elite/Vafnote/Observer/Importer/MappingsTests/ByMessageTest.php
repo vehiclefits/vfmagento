@@ -78,7 +78,7 @@ class Elite_Vafnote_Observer_Importer_MappingsTests_ByMessageTest extends Elite_
     
     function testShouldHandleRowsWithBlankNoteCode()
     {        
-        $this->insertProduct('sku');
+        $this->insertProduct('sku2');
         $this->import('"year_start","year_end","Make","Model","Sku","notes","note_message"
 1990,2009,"Acura","Integra","sku2",,"this is my message"
 ');
