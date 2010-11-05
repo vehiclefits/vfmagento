@@ -1,3 +1,8 @@
+1.27 November 5, 2010
+======================================================
+- 0000762: [Catalog / Products] requireVehicleBeforeCart Not Filtering Options
+- 0000763: [Application Fitments Import/export] Performance improvements to product fitments import
+
 1.26 November 3, 2010
 ======================================================
 - 0000500: [Application Fitments Import/export] Should be able to import/export product fitments via command line
