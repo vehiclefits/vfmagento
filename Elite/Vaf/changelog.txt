@@ -1,3 +1,7 @@
+1.28 November 5, 2010
+======================================================
+- 0000765: [Vehicles List Import/Export] Benign error on import
+
 1.27 November 5, 2010
 ======================================================
 - 0000762: [Catalog / Products] requireVehicleBeforeCart Not Filtering Options

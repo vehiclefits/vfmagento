@@ -147,10 +147,10 @@ class Elite_Vafimporter_Admin_VafdefinitionsimporterController extends Mage_Admi
         {
             $this->formatMessage( number_format($this->importer->getCountAddedByLevel($level)) . ' ' . $level . 's Added' );
         }
-        if( $this->importer->getCountSkippedDefinitions() > 0 )
-        {
-            $this->formatMessage( number_format( $this->importer->getCountSkippedDefinitions() ) . ' vehicles skipped because they already existed, your csv contained overlapping ranges or duplicate vehicles.' );
-        }
+//        if( $this->importer->getCountSkippedDefinitions() > 0 )
+//        {
+//            $this->formatMessage( number_format( $this->importer->getCountSkippedDefinitions() ) . ' vehicles skipped because they already existed, your csv contained overlapping ranges or duplicate vehicles.' );
+//        }
         $this->doFormatMessages();
     }
     
