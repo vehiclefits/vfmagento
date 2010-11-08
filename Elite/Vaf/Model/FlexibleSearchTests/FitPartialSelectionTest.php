@@ -17,8 +17,8 @@ class Elite_Vaf_Model_FlexibleSearchTests_FitPartialSelectionTest extends Elite_
         $helper = $this->getHelper( array(), $requestParams );
         
         $this->assertEquals( $vehicle->getLevel('make')->getId(), $helper->getFit()->getValue('make') );
-        $this->assertFalse( $helper->getFit()->getValue('model') );
-        $this->assertFalse( $helper->getFit()->getValue('year') );
+        $this->assertEquals( 0, $helper->getFit()->getValue('model') );
+        $this->assertEquals( 0, $helper->getFit()->getValue('year') );
     }
     
     function testShouldStoreInSession()

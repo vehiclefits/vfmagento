@@ -25,6 +25,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelIdsTest extends Elite_Vaf_Model
     function testShouldFindOneByLevelIds()
     {
         $vehicle = $this->createMMY( 'Honda', 'Civic', '2000' );
+
         $vehicle2 = $this->getFinder()->findOneByLevelIds( array('make_id'=>$vehicle->getValue('make')) );
         $this->assertEquals( $vehicle->toValueArray(), $vehicle2->toValueArray(), 'should find one by level ids' );
     }
@@ -36,7 +37,7 @@ class Elite_Vaf_Model_Vehicle_FinderTests_ByLevelIdsTest extends Elite_Vaf_Model
         $params = array('make'=>$vehicle->getValue('make'));
         $vehicle2 = $this->getFinder()->findOneByLevelIds( $params, Elite_Vaf_Model_Vehicle_Finder::INCLUDE_PARTIALS );
         
-        $params = array('make'=>$vehicle->getValue('make'), 'model'=>null, 'year'=>null);
+        $params = array('make'=>$vehicle->getValue('make'), 'model'=>0, 'year'=>0);
         $this->assertEquals( $params, $vehicle2->toValueArray(), 'should find one by level ids (partial)' );
     }
     

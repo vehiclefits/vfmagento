@@ -311,6 +311,6 @@ class Elite_Vaf_Model_Vehicle implements Elite_Vaf_Configurable
         }
         
         $var = $level . '_id';  
-        return isset( $this->row->$var ) ? $this->row->$var : false;
+        return isset( $this->row->$var ) ? $this->row->$var : 0;
     }
 }
