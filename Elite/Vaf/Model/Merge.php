@@ -1,7 +1,6 @@
 <?php
-class Elite_Vaf_Model_Merge
+class Elite_Vaf_Model_Merge extends Elite_Vaf_Model_Base
 {
-    protected $config;
     protected $slaveLevels;
     protected $masterLevel;
     protected $operating_grain;
@@ -138,11 +137,6 @@ class Elite_Vaf_Model_Merge
         $this->mergeFitments($slave_vehicle, $new_vehicle);
     }
     
-    function vehicleFinder()
-    {
-        return new Elite_Vaf_Model_Vehicle_Finder($this->getSchema());
-    }
-    
     function mergeFitments($vehicle_object, $master_vehicle)
     {
         foreach($this->getProductsThatFit($vehicle_object) as $product)
@@ -171,31 +165,4 @@ class Elite_Vaf_Model_Merge
         return $products;
     }
     
-    function getSchema()
-    {
-        $schema = new Elite_Vaf_Model_Schema;
-        $schema->setConfig( $this->getConfig() );
-        return $schema;
-    }
-    
-    function getConfig()
-    {
-        if( !$this->config instanceof Zend_Config )
-        {
-            
-            $this->config = Elite_Vaf_Helper_Data::getInstance()->getConfig();
-        }    
-        return $this->config;
-    }
-    
-    function setConfig( Zend_Config $config )
-    {
-        $this->config = $config;
-    }
-    
-    /** @return Zend_Db_Adapter_Abstract */
-    protected function getReadAdapter()
-    {
-        return Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
-    }
 }
