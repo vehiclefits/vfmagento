@@ -1,4 +1,6 @@
 <?php
+/// written like this: 205/55/16
+// section width/aspect ratio/diameter
 class Elite_Vaftire_Model_TireSize
 {
     const SECTION_WIDTH = 1;

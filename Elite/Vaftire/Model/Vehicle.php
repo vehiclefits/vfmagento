@@ -49,6 +49,12 @@ class Elite_Vaftire_Model_Vehicle
         ));
     }
     
+    function __call($methodName,$arguments)
+    {
+        $method = array($this->wrappedVehicle,$methodName);
+        return call_user_func_array( $method, $arguments );
+    }
+    
     /** @return Zend_Db_Statement_Interface */
     protected function query( $sql )
     {

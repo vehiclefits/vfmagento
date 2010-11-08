@@ -3,6 +3,11 @@ class Elite_Vaftire_Observer_ProductTireSizeBinderTest extends Elite_Vaf_TestCas
 {
     const ID = 1;
     
+    function doSetUp()
+    {
+        $this->switchSchema('make,model,year');
+    }
+    
     function testIsSilentWhenNoTireSizePassed()
     {
         $event = $this->event(new Elite_Vaf_Model_Catalog_Product);
