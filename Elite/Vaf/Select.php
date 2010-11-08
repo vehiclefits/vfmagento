@@ -1,9 +1,13 @@
 <?php
 class Elite_Vaf_Select extends Zend_Db_Select
 {
-    function addLevelTitles($fromTable='elite_mapping')
+    function addLevelTitles($fromTable='elite_mapping', $levels=array())
     {   
-        foreach($this->getSchema()->getLevels() as $level )
+        if(array() == $levels)
+        {
+            $levels = $this->getSchema()->getLevels();
+        }
+        foreach($levels as $level )
         {
             $table = 'elite_level_'.$level;
             $condition = $table.'.id = '.$fromTable.'.'.$level.'_id';

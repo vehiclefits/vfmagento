@@ -13,9 +13,6 @@
 */
 class Elite_Vaf_Admin_DefinitionsController extends Mage_Adminhtml_Controller_Action
 {   
-    protected $id;
-    protected $entity;
-    
     /** @var Zend_Config */
     protected $config;
     
@@ -142,6 +139,31 @@ class Elite_Vaf_Admin_DefinitionsController extends Mage_Adminhtml_Controller_Ac
         $this->block->level = $_REQUEST['entity'];
         $this->block->slaveLevels = $this->slaveLevels();
         
+        $this->_addContent( $this->block );
+        $this->renderLayout();
+        
+    }
+    
+    function splitAction()
+    {
+        $version = new Elite_Vafinstall_Migrate;
+        if( $version->needsUpgrade() )
+        {
+            echo 'Please run the upgrade-vaf.php script as per the documentation. Your database is out of date.';
+            exit();
+        }
+        
+        $this->loadLayout();
+        $this->_setActiveMenu('vaf');
+        
+        $this->block = $this->getLayout()->createBlock('adminhtml/vaf_definitions', 'vaf' );
+        $this->block->setTemplate( 'vaf/split.phtml' ); 
+        
+        $params = $this->requestLevels();
+        $params[$this->getRequest()->getParam('entity')] = $this->getRequest()->getParam('id');
+        print_r($params);
+        $this->block->vehicle = $this->vehicleFinder()->findOneByLevelIds($params, Elite_Vaf_Model_Vehicle_Finder::INCLUDE_PARTIALS);
+        print_r($this->block->vehicle->toTitleArray()); exit();
         $this->_addContent( $this->block );
         $this->renderLayout();
         
