@@ -1,5 +1,5 @@
 <?php
-class Elite_Vaf_Model_MergeTests_MMY extends Elite_Vaf_TestCase
+class Elite_Vaf_Model_MergeTests_MMYTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {
