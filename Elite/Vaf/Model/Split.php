@@ -3,6 +3,7 @@ class Elite_Vaf_Model_Split extends Elite_Vaf_Model_Base
 {
     /** @var Elite_Vaf_Model_Vehicle */
     protected $vehicle;
+    protected $vehicleObj;
     protected $grain, $newTitles;
     
     function __construct( $vehicle, $grain, $newTitles )
@@ -14,12 +15,19 @@ class Elite_Vaf_Model_Split extends Elite_Vaf_Model_Base
     
     function execute()
     {
+        if(!$this->grain)
+        {
+            throw new Elite_Vaf_Model_Split_Exception('no grain');
+        }
         $descendants = $this->vehicleDescendants();
         foreach($descendants as $descendant)
         {
             $this->apply($descendant);
         }
-        $this->vehicle()->unlink();
+        if(count($descendants))
+        {
+            $this->vehicle()->unlink();
+        }
     }
     
     function apply(Elite_Vaf_Model_Vehicle $descendant)
@@ -28,7 +36,7 @@ class Elite_Vaf_Model_Split extends Elite_Vaf_Model_Base
         $levelsToReplace = $this->getSchema()->getPrevLevelsIncluding($this->grain);
         foreach( $levelsToReplace as $levelToReplace )
         {
-            if($levelsToReplace != $this->grain)
+            if(true)
             {
                 $replacementTitle = $this->vehicle()->getLevel($levelToReplace)->getTitle();
                 $titles[$levelToReplace] = $replacementTitle;
@@ -46,11 +54,16 @@ class Elite_Vaf_Model_Split extends Elite_Vaf_Model_Base
     
     function vehicle()
     {
-        return $this->vehicleFinder()->findOneByLevelIds( $this->vehicleParams(), Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY );
+        if(!isset($this->vehicleObj))
+        {
+            $this->vehicleObj = $this->vehicleFinder()->findOneByLevelIds( $this->vehicleParams(), Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY );
+        }
+        return $this->vehicleObj;        
     }
     
     function vehicleDescendants()
     {
+        $this->vehicle();
         $descendants = $this->vehicleFinder()->findByLevelIds( $this->vehicleParams() );
         return $descendants;
     }
