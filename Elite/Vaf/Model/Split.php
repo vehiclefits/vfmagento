@@ -36,11 +36,8 @@ class Elite_Vaf_Model_Split extends Elite_Vaf_Model_Base
         $levelsToReplace = $this->getSchema()->getPrevLevelsIncluding($this->grain);
         foreach( $levelsToReplace as $levelToReplace )
         {
-            if(true)
-            {
-                $replacementTitle = $this->vehicle()->getLevel($levelToReplace)->getTitle();
-                $titles[$levelToReplace] = $replacementTitle;
-            }
+            $replacementTitle = $this->vehicle()->getLevel($levelToReplace)->getTitle();
+            $titles[$levelToReplace] = $replacementTitle;
         }
         
         foreach($this->newTitles as $replacementTitle)
@@ -48,6 +45,7 @@ class Elite_Vaf_Model_Split extends Elite_Vaf_Model_Base
             $titles[$this->grain] = $replacementTitle;
             $new_vehicle = Elite_Vaf_Model_Vehicle::create($this->getSchema(), $titles);
             $new_vehicle->save();
+            $this->mergeFitments($descendant, $new_vehicle);
         }
         
     }
@@ -74,4 +72,8 @@ class Elite_Vaf_Model_Split extends Elite_Vaf_Model_Base
         return $params;
     }
     
+    function operatingGrain()
+    {
+        return $this->grain;
+    }
 }

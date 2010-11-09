@@ -83,6 +83,23 @@ class Elite_Vaf_Model_SplitTest extends Elite_Vaf_TestCase
         $this->assertFalse( $this->vehicleExists(array('make'=>'Ford/Ford2'),true ), 'should ignore partial vehicles' );
     }
     
+    function testShouldSplitYears_Fitments()
+    {
+        $vehicle = $this->createMMY('Ford/Ford2','F-150','2001');
+        $this->insertMappingMMY($vehicle, 1);
+        
+        $vehicle = $this->vehicleFinder()->findOneByLevelIds(array('make'=>$vehicle->getValue('make')), Elite_Vaf_Model_Vehicle_Finder::EXACT_ONLY);
+        $this->split($vehicle, 'make', array('Ford','Ford 2'));
+        
+        $product = $this->newProduct(1);
+        $product->setCurrentlySelectedFit($this->vehicleFinder()->findOneByLevels(array('make'=>'Ford 2', 'model'=>'F-150', 'year'=>'2001')));
+        $this->assertTrue( $product->fitsSelection() );
+        
+        $product = $this->newProduct(1);
+        $product->setCurrentlySelectedFit($this->vehicleFinder()->findOneByLevels(array('make'=>'Ford', 'model'=>'F-150', 'year'=>'2001')));
+        $this->assertTrue( $product->fitsSelection() );
+    }
+    
     function split($vehicle, $grain, $newTitles)
     {
         $merge = new Elite_Vaf_Model_Split($vehicle, $grain, $newTitles);

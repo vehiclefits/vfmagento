@@ -220,10 +220,7 @@ class Elite_Vaf_Model_Vehicle_Finder implements Elite_Vaf_Configurable
         {
             foreach($this->schema->getLevels() as $level)
             {
-                if( self::EXACT_ONLY == $mode && (!isset($levelIds[$level]) || !$levelIds[$level]))
-                {
-                }
-                else
+                if( self::EXACT_ONLY != $mode || (isset($levelIds[$level]) && $levelIds[$level]))
                 {
                     $select->where('elite_definition.' . $level .'_id != 0');
                 }
