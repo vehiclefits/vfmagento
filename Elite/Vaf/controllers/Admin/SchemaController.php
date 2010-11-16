@@ -21,7 +21,6 @@ class Elite_Vaf_Admin_SchemaController extends Mage_Adminhtml_Controller_Action
             echo 'Please run the upgrade-vaf.php script as per the documentation. Your database is out of date.';
             exit();
         }        
-        
         $this->setLevels();
         $this->setSortingLevels();
         
@@ -37,7 +36,7 @@ class Elite_Vaf_Admin_SchemaController extends Mage_Adminhtml_Controller_Action
     function setLevels()
     {
         $levels = $this->getLevels();
-        if( $levels && isset($_REQUEST['submit']) )
+        if( count($levels)>1 && $levels && isset($_REQUEST['submit']) )
         {
             $this->generator()->dropExistingTables();
             $sql = $this->generator()->generator($levels);
@@ -79,7 +78,7 @@ class Elite_Vaf_Admin_SchemaController extends Mage_Adminhtml_Controller_Action
         {
             if( isset($_GET[$level.'Sorting']) )
             {
-                $generator->setSorting($level,$_GET[$level.'Sorting']);
+                $this->generator()->setSorting($level,$_GET[$level.'Sorting']);
             }
         }
     }
