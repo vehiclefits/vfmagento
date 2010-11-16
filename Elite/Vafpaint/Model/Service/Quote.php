@@ -10,10 +10,10 @@ class Elite_Vafpaint_Model_Service_Quote extends Mage_Sales_Model_Service_Quote
     
     public function submitOrder()
     {
-    	$version = Mage::getVersionInfo();
-    	if( 1 <= $version['major'] && 4 <= $version['minor'] && 1 <= $version['revision'] && 1 > $version['patch'] )
+        $version = Mage::getVersionInfo();
+    	if( 1 <= $version['major'] && 4 <= $version['minor'] && $version['revision'] <= 1 )
     	{
-			return parent::submitOrder();
+			return parent::submit();
     	}
     	
     	$this->_deleteNominalItems();

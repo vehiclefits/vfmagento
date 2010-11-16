@@ -30,14 +30,39 @@
                 If you want to view the user's vehicle on the sales orders, we must add an EAV attribute for storing the customer's vehicle fit for each order that comes thru. Run the following SQL ( phpmyadmin is one possible method to run it. )
                 <br /><br />
                 If all your tables begin with a prefix, for instance prefix_eav_attribute instead of eav_attribute, please edit the parts in bold ( eav_attribute and sales_order might be changed to, for instance: prefix_eav_attribute &amp; prefix_sales_order ). 
-                
+                <br /><br />
                 Magento 1.4.1.x
                 <pre>ALTER TABLE <b>`sales_flat_order`</b> ADD `elite_fit` INT( 25 ) NOT NULL ;</pre>
-                
+                <i>Note: This may not be neccessary depending on installation method, starting with Magento 1.4.1.x.</i>
+                <br /><br />
                 Magento 1.4.0.x
-                <pre>ALTER TABLE <b>`sales_order`</b> ADD `elite_fit` INT( 25 ) NOT NULL ;</pre>
+                <pre>Magento 1.4.x
 
-                <i>Note: This should be able to be automated by Magento, we are working to automate this.</i>
+            INSERT INTO `eav_attribute` (
+`attribute_id` ,
+`entity_type_id` ,
+`attribute_code` ,
+`attribute_model` ,
+`backend_model` ,
+`backend_type` ,
+`backend_table` ,
+`frontend_model` ,
+`frontend_input` ,
+`frontend_label` ,
+`frontend_class` ,
+`source_model` ,
+`is_required` ,
+`is_user_defined` ,
+`default_value` ,
+`is_unique` ,
+`note`
+)
+VALUES (
+NULL , '11', 'elite_fit', NULL , NULL , 'static', NULL , NULL , NULL , NULL , NULL , NULL , '0', '0', NULL , '0', ''
+);
+
+ALTER TABLE <b>`sales_order`</b> ADD `elite_fit` INT( 25 ) NOT NULL ;</pre>
+
                 <br />
             </p>
 
