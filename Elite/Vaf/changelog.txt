@@ -1,3 +1,11 @@
+1.29 November 17, 2010
+======================================================
+- 0000758: [Vehicles List] Should be able to 'split' a vehicle record
+
+ISSUES
+- 0000773: [Other] Can't adjust sorting of Schema
+- 0000757: [Tires] Should preset the tire search values when selecting a vehicle
+
 1.28 November 5, 2010
 ======================================================
 - 0000765: [Vehicles List Import/Export] Benign error on import
