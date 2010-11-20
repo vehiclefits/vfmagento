@@ -10,8 +10,12 @@
     
     <!-- on the "homepage search" results page, set the template to "2columns right" -->
     <vaf_product_list>
+        <reference name="right">
+            <block type="catalogsearch/layer" name="catalogsearch.leftnav" after="vaf_search" template="catalog/layer/view.phtml" /> 
+        </reference>            
+        
         <reference name="root">
-            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+            <action method="setTemplate"><template>page/3columns.phtml</template></action>
         </reference>
         
         <!-- used by "grid view" results page -->
@@ -33,8 +37,11 @@
                 <action method="setListCollection"/>
             </block>
         </reference>
-                
+        
+        
     </vaf_product_list>
     
+    
+
 </layout>
         
