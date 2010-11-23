@@ -16,17 +16,18 @@ class Elite_Vaf_ProductController extends Mage_Catalog_ProductController
 {
     function listAction()
     { 
-        $this->myLoadLayout();
-        
         $helper = Elite_Vaf_Helper_Data::getInstance();
+        
         $helper->setRequest( $this->getRequest() );
         $helper->storeFitInSession();
         
-        if( !$helper->getProductIds() )
+        if(!$helper->getFit() || !$helper->getProductIds() )
         {
             return $this->redirectToHomePage();
         }
         
+        
+        $this->myLoadLayout();
         switch( Elite_Vaf_Helper_Data::getInstance()->getConfig()->homepagesearch->mode )
         {
             case 'grid':
