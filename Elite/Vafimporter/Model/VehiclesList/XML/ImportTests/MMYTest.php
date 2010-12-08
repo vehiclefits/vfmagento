@@ -6,7 +6,6 @@ class Elite_Vafimporter_Model_VehiclesList_XML_ImportTests_MMYTest extends Elite
 
     function doSetUp()
     {
-        debugbreak();
         $this->xmlData = '<?xml version="1.0" encoding="UTF-8"?>   
 <vehicles>
     <definition id="1">
