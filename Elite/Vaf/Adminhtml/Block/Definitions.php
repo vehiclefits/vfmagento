@@ -37,8 +37,12 @@ class Elite_Vaf_Adminhtml_Block_Definitions extends Elite_Vaf_Block_Abstract imp
         $this->config = $config;
     }
     
-    protected function editing( $id )
+    protected function editing( $id = 0 )
     {
+		if(!$id)
+		{
+			return $this->getRequest()->getParam('edit') != 0;
+		}
         return $this->getRequest()->getParam( 'edit', 0 ) == $id;
     }
     

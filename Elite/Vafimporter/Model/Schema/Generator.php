@@ -19,7 +19,7 @@ class Elite_Vafimporter_Model_Schema_Generator extends Ne8Vehicle_Schema_Generat
             }
             $query .= ' `sku` varchar(255) NULL,';
             $query .= '`product_id` int(255) NULL,';
-            $query .= '`universal` int(1) NULL,';
+            $query .= '`universal` int(1)  NULL DEFAULT \'0\',';
             $query .= '`existing` INT( 1 ) NOT NULL,';
             $query .= '`line` INT( 255 ) NOT NULL,';
             $query .= '`mapping_id` INT( 255 ) NOT NULL,';

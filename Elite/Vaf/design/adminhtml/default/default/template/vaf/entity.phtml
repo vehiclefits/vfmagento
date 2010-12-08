@@ -26,7 +26,14 @@
             <?='<input type="text" name="title" value="" /><input type="submit" name="save" value="Add ' . ucfirst($this->label) . '" />'?>
         </form>
         
-        <form action="<?=$this->mergeUrl()?>" method="POST">
+	<?php
+	if(!$this->editing())
+	{
+		?>
+		<form action="<?=$this->mergeUrl()?>" method="POST">
+		<?php
+	}
+	?>
             <?php echo $this->getBlockHtml('formkey')?>
             <table>
                 <tr>
@@ -79,7 +86,14 @@
                 }
                 ?>
             </table>
+	<?php
+	if( !$this->editing() )
+	{
+		?>
             <input type="submit" name="merge" value="Merge Selected" />
         </form>
+		<?php
+	}
+	?>
     </fieldset>
 </div>

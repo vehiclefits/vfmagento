@@ -40,9 +40,9 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
     
     protected function truncateTables()
     {
-        $this->truncateTable( 'elite_make' );
-        $this->truncateTable( 'elite_model' );
-        $this->truncateTable( 'elite_year' );
+        $this->truncateTable( 'elite_level_make' );
+        $this->truncateTable( 'elite_level_model' );
+        $this->truncateTable( 'elite_level_year' );
         $this->truncateTable( 'elite_definition' );
         $this->truncateTable( 'elite_mapping' );
         $this->truncateTable( 'elite_mapping_paint' );
@@ -329,9 +329,11 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Extensions_PerformanceTestCase
         try
         {
             $this->query( sprintf( 'delete from `%s`', $table ) );
+            $this->query( sprintf( 'ALTER TABLE `%s` AUTO_INCREMENT = 1`', $table ) );
         }
         catch( Exception $e )
         {
+            // ignoring exceptions because the levels might not be MMY
         }
     }
     

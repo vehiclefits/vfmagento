@@ -8,6 +8,10 @@ class SampleData
     
     protected $i = 0;
     
+    const price = 19;
+    const description = 28;
+    const short_description = 29;
+    const category = 4;
     const SKU = 5;
     const name = 7;
     const urlKey = 13;
@@ -16,22 +20,53 @@ class SampleData
     
     function main()
     {
-        $this->seedCsv = new Csv_Reader('products.csv');
+        
+        $outputHandle = fopen('sampleProducts.csv','w');
+        
+        $this->seedCsv = fopen('products.csv','r');
         $fields = $this->fields();
-        $row = $this->row();
+        fputcsv($outputHandle,$fields);
+        
+        $seedRow = $this->row();
         $newCsv = '';
         $newCsv .= implode(',',$fields)."\n";
-        for( $this->i = 1; $this->i <= 4; $this->i++ )
+        
+        $products = new Csv_Reader('ekow-new.csv');
+        while($row = $products->getRow())
         {
-            $newRow = $this->generateUniqueValues($row);
-            foreach($newRow as $k => $value )
-            {
-				$newRow[$k] = '"' . $value . '"';
-            }
-            $newCsv .= implode(',',$newRow)."\n";
+            $newRow = $seedRow;
             
+            // images
+            $newRow[11] = '/' . $row[5] . '.jpg';
+            $newRow[12] = '/' . $row[5] . '.jpg';
+            $newRow[13] = '/' . $row[5] . '.jpg';
+            
+            $newRow[self::SKU] = $row[9];
+            $newRow[self::name] = $row[7];
+            $newRow[self::description] = $row[8];
+            $newRow[self::short_description] = $row[8];
+            $newRow[self::price] = $row[10];
+            if( $row[4])
+            {
+                $category = $row[4];
+            }
+            else if($row[3])
+            {
+                $category = $row[3];
+            }
+            else if($row[2])
+            {
+                $category = $row[2];
+            }
+            else if($row[1])
+            {
+                $category = $row[1];
+            }
+            $newRow[self::category] = $category;
+    
+            fputcsv($outputHandle,$newRow);
         }
-        file_put_contents('sampleProducts.csv',$newCsv);
+        
         echo 'data created to sampleProducts.csv';
     }
     
@@ -51,12 +86,12 @@ class SampleData
         {
             return $this->fields;
         }
-        return $this->fields = $this->seedCsv->getRow();
+        return $this->fields = fgetcsv($this->seedCsv);
     }
     
     function row()
     {
-        return $this->seedCsv->getRow();
+        return fgetcsv($this->seedCsv);
     }
     
     function newSku()

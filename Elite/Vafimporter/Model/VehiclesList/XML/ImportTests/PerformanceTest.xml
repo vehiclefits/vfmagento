@@ -1,0 +1,2234 @@
+<?xml version="1.0"?>
+<vehicles version="1.0">
+    <definition id="469">
+        <make id="83">Goldoni</make>
+        <model id="213">140</model>
+        <trim id="213">Base</trim>
+        <year>1992</year>
+    </definition>    <definition id="475">
+        <make id="83">Goldoni</make>
+        <model id="213">140</model>
+        <trim id="213">Base</trim>
+        <year>1993</year>
+    </definition>    <definition id="32039">
+        <make id="83">Goldoni</make>
+        <model id="213">140</model>
+        <trim id="213">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="32061">
+        <make id="83">Goldoni</make>
+        <model id="213">140</model>
+        <trim id="213">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="94460">
+        <make id="83">Goldoni</make>
+        <model id="213">140</model>
+        <trim id="213">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="461">
+        <make id="83">Goldoni</make>
+        <model id="209">150</model>
+        <trim id="209">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="464">
+        <make id="83">Goldoni</make>
+        <model id="209">150</model>
+        <trim id="209">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="63655">
+        <make id="83">Goldoni</make>
+        <model id="209">150</model>
+        <trim id="209">Base</trim>
+        <year>1992</year>
+    </definition>    <definition id="63659">
+        <make id="83">Goldoni</make>
+        <model id="209">150</model>
+        <trim id="209">Base</trim>
+        <year>1993</year>
+    </definition>    <definition id="63668">
+        <make id="83">Goldoni</make>
+        <model id="209">150</model>
+        <trim id="209">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="467">
+        <make id="83">Goldoni</make>
+        <model id="211">FC</model>
+        <trim id="211">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="478">
+        <make id="83">Goldoni</make>
+        <model id="211">FC</model>
+        <trim id="211">Base</trim>
+        <year>1993</year>
+    </definition>    <definition id="484">
+        <make id="83">Goldoni</make>
+        <model id="211">FC</model>
+        <trim id="211">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="494">
+        <make id="83">Goldoni</make>
+        <model id="211">FC</model>
+        <trim id="211">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="32068">
+        <make id="83">Goldoni</make>
+        <model id="211">FC</model>
+        <trim id="211">Base</trim>
+        <year>1995</year>
+    </definition>    <definition id="63646">
+        <make id="83">Goldoni</make>
+        <model id="211">FC</model>
+        <trim id="211">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="63674">
+        <make id="83">Goldoni</make>
+        <model id="211">FC</model>
+        <trim id="211">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="63675">
+        <make id="83">Goldoni</make>
+        <model id="211">FC</model>
+        <trim id="211">Base</trim>
+        <year>1999</year>
+    </definition>    <definition id="94466">
+        <make id="83">Goldoni</make>
+        <model id="211">FC</model>
+        <trim id="211">Base</trim>
+        <year>1992</year>
+    </definition>    <definition id="94472">
+        <make id="83">Goldoni</make>
+        <model id="211">FC</model>
+        <trim id="211">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="32044">
+        <make id="83">Goldoni</make>
+        <model id="9595">SPECIAL LUX</model>
+        <trim id="12731">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="32058">
+        <make id="83">Goldoni</make>
+        <model id="9595">SPECIAL LUX</model>
+        <trim id="12731">Base</trim>
+        <year>1992</year>
+    </definition>    <definition id="63667">
+        <make id="83">Goldoni</make>
+        <model id="9595">SPECIAL LUX</model>
+        <trim id="12731">Base</trim>
+        <year>1993</year>
+    </definition>    <definition id="63672">
+        <make id="83">Goldoni</make>
+        <model id="9595">SPECIAL LUX</model>
+        <trim id="12731">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="94464">
+        <make id="83">Goldoni</make>
+        <model id="9595">SPECIAL LUX</model>
+        <trim id="12731">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="508">
+        <make id="85">Gravely</make>
+        <model id="225">PROFESSIONAL 12</model>
+        <trim id="225">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="509">
+        <make id="85">Gravely</make>
+        <model id="225">PROFESSIONAL 12</model>
+        <trim id="225">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="32083">
+        <make id="85">Gravely</make>
+        <model id="225">PROFESSIONAL 12</model>
+        <trim id="225">Base</trim>
+        <year>1993</year>
+    </definition>    <definition id="32085">
+        <make id="85">Gravely</make>
+        <model id="225">PROFESSIONAL 12</model>
+        <trim id="225">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="32086">
+        <make id="85">Gravely</make>
+        <model id="225">PROFESSIONAL 12</model>
+        <trim id="225">Base</trim>
+        <year>1995</year>
+    </definition>    <definition id="94482">
+        <make id="85">Gravely</make>
+        <model id="225">PROFESSIONAL 12</model>
+        <trim id="225">Base</trim>
+        <year>1992</year>
+    </definition>    <definition id="94485">
+        <make id="85">Gravely</make>
+        <model id="225">PROFESSIONAL 12</model>
+        <trim id="225">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="507">
+        <make id="85">Gravely</make>
+        <model id="224">PROFESSIONAL 16</model>
+        <trim id="224">Base</trim>
+        <year>1995</year>
+    </definition>    <definition id="32087">
+        <make id="85">Gravely</make>
+        <model id="224">PROFESSIONAL 16</model>
+        <trim id="224">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="32088">
+        <make id="85">Gravely</make>
+        <model id="224">PROFESSIONAL 16</model>
+        <trim id="224">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="63687">
+        <make id="85">Gravely</make>
+        <model id="224">PROFESSIONAL 16</model>
+        <trim id="224">Base</trim>
+        <year>1993</year>
+    </definition>    <definition id="63690">
+        <make id="85">Gravely</make>
+        <model id="224">PROFESSIONAL 16</model>
+        <trim id="224">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="94483">
+        <make id="85">Gravely</make>
+        <model id="224">PROFESSIONAL 16</model>
+        <trim id="224">Base</trim>
+        <year>1992</year>
+    </definition>    <definition id="94484">
+        <make id="85">Gravely</make>
+        <model id="224">PROFESSIONAL 16</model>
+        <trim id="224">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="506">
+        <make id="85">Gravely</make>
+        <model id="223">PROFESSIONAL 8</model>
+        <trim id="223">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="32082">
+        <make id="85">Gravely</make>
+        <model id="223">PROFESSIONAL 8</model>
+        <trim id="223">Base</trim>
+        <year>1992</year>
+    </definition>    <definition id="32084">
+        <make id="85">Gravely</make>
+        <model id="223">PROFESSIONAL 8</model>
+        <trim id="223">Base</trim>
+        <year>1993</year>
+    </definition>    <definition id="32089">
+        <make id="85">Gravely</make>
+        <model id="223">PROFESSIONAL 8</model>
+        <trim id="223">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="63688">
+        <make id="85">Gravely</make>
+        <model id="223">PROFESSIONAL 8</model>
+        <trim id="223">Base</trim>
+        <year>1995</year>
+    </definition>    <definition id="63689">
+        <make id="85">Gravely</make>
+        <model id="223">PROFESSIONAL 8</model>
+        <trim id="223">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="30722">
+        <make id="774">Agco</make>
+        <model id="9128">100</model>
+        <trim id="12264">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="62262">
+        <make id="774">Agco</make>
+        <model id="9128">100</model>
+        <trim id="12264">Base</trim>
+        <year>1988</year>
+    </definition>    <definition id="62268">
+        <make id="774">Agco</make>
+        <model id="9128">100</model>
+        <trim id="12264">Base</trim>
+        <year>1989</year>
+    </definition>    <definition id="123950">
+        <make id="774">Agco</make>
+        <model id="9128">100</model>
+        <trim id="12264">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="30709">
+        <make id="774">Agco</make>
+        <model id="9122">120</model>
+        <trim id="12258">Base</trim>
+        <year>1988</year>
+    </definition>    <definition id="62269">
+        <make id="774">Agco</make>
+        <model id="9122">120</model>
+        <trim id="12258">Base</trim>
+        <year>1989</year>
+    </definition>    <definition id="62280">
+        <make id="774">Agco</make>
+        <model id="9122">120</model>
+        <trim id="12258">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="123951">
+        <make id="774">Agco</make>
+        <model id="9122">120</model>
+        <trim id="12258">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="30723">
+        <make id="774">Agco</make>
+        <model id="9129">140</model>
+        <trim id="12265">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="62263">
+        <make id="774">Agco</make>
+        <model id="9129">140</model>
+        <trim id="12265">Base</trim>
+        <year>1988</year>
+    </definition>    <definition id="62270">
+        <make id="774">Agco</make>
+        <model id="9129">140</model>
+        <trim id="12265">Base</trim>
+        <year>1989</year>
+    </definition>    <definition id="62275">
+        <make id="774">Agco</make>
+        <model id="9129">140</model>
+        <trim id="12265">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="30714">
+        <make id="774">Agco</make>
+        <model id="9124">160</model>
+        <trim id="12260">Base</trim>
+        <year>1989</year>
+    </definition>    <definition id="30724">
+        <make id="774">Agco</make>
+        <model id="9124">160</model>
+        <trim id="12260">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="93109">
+        <make id="774">Agco</make>
+        <model id="9124">160</model>
+        <trim id="12260">Base</trim>
+        <year>1988</year>
+    </definition>    <definition id="123952">
+        <make id="774">Agco</make>
+        <model id="9124">160</model>
+        <trim id="12260">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="30710">
+        <make id="774">Agco</make>
+        <model id="9123">185</model>
+        <trim id="12259">Base</trim>
+        <year>1988</year>
+    </definition>    <definition id="30715">
+        <make id="774">Agco</make>
+        <model id="9123">185</model>
+        <trim id="12259">Base</trim>
+        <year>1989</year>
+    </definition>    <definition id="30720">
+        <make id="774">Agco</make>
+        <model id="9123">185</model>
+        <trim id="12259">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="123942">
+        <make id="774">Agco</make>
+        <model id="9123">185</model>
+        <trim id="12259">Base</trim>
+        <year>1987</year>
+    </definition>    <definition id="123960">
+        <make id="774">Agco</make>
+        <model id="9123">185</model>
+        <trim id="12259">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="30679">
+        <make id="774">Agco</make>
+        <model id="9107">2-110</model>
+        <trim id="12243">Base</trim>
+        <year>1981</year>
+    </definition>    <definition id="30690">
+        <make id="774">Agco</make>
+        <model id="9107">2-110</model>
+        <trim id="12243">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="30696">
+        <make id="774">Agco</make>
+        <model id="9107">2-110</model>
+        <trim id="12243">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="30699">
+        <make id="774">Agco</make>
+        <model id="9107">2-110</model>
+        <trim id="12243">Base</trim>
+        <year>1986</year>
+    </definition>    <definition id="30705">
+        <make id="774">Agco</make>
+        <model id="9107">2-110</model>
+        <trim id="12243">Base</trim>
+        <year>1987</year>
+    </definition>    <definition id="62241">
+        <make id="774">Agco</make>
+        <model id="9107">2-110</model>
+        <trim id="12243">Base</trim>
+        <year>1982</year>
+    </definition>    <definition id="93089">
+        <make id="774">Agco</make>
+        <model id="9107">2-110</model>
+        <trim id="12243">Base</trim>
+        <year>1983</year>
+    </definition>    <definition id="30691">
+        <make id="774">Agco</make>
+        <model id="9115">2-135</model>
+        <trim id="12251">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="30700">
+        <make id="774">Agco</make>
+        <model id="9115">2-135</model>
+        <trim id="12251">Base</trim>
+        <year>1986</year>
+    </definition>    <definition id="30706">
+        <make id="774">Agco</make>
+        <model id="9115">2-135</model>
+        <trim id="12251">Base</trim>
+        <year>1987</year>
+    </definition>    <definition id="30711">
+        <make id="774">Agco</make>
+        <model id="9115">2-135</model>
+        <trim id="12251">Base</trim>
+        <year>1988</year>
+    </definition>    <definition id="62244">
+        <make id="774">Agco</make>
+        <model id="9115">2-135</model>
+        <trim id="12251">Base</trim>
+        <year>1983</year>
+    </definition>    <definition id="62276">
+        <make id="774">Agco</make>
+        <model id="9115">2-135</model>
+        <trim id="12251">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="62281">
+        <make id="774">Agco</make>
+        <model id="9115">2-135</model>
+        <trim id="12251">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="93098">
+        <make id="774">Agco</make>
+        <model id="9115">2-135</model>
+        <trim id="12251">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="123946">
+        <make id="774">Agco</make>
+        <model id="9115">2-135</model>
+        <trim id="12251">Base</trim>
+        <year>1989</year>
+    </definition>    <definition id="30686">
+        <make id="774">Agco</make>
+        <model id="9114">2-155</model>
+        <trim id="12250">Base</trim>
+        <year>1983</year>
+    </definition>    <definition id="30692">
+        <make id="774">Agco</make>
+        <model id="9114">2-155</model>
+        <trim id="12250">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="30712">
+        <make id="774">Agco</make>
+        <model id="9114">2-155</model>
+        <trim id="12250">Base</trim>
+        <year>1988</year>
+    </definition>    <definition id="30725">
+        <make id="774">Agco</make>
+        <model id="9114">2-155</model>
+        <trim id="12250">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="62257">
+        <make id="774">Agco</make>
+        <model id="9114">2-155</model>
+        <trim id="12250">Base</trim>
+        <year>1987</year>
+    </definition>    <definition id="62271">
+        <make id="774">Agco</make>
+        <model id="9114">2-155</model>
+        <trim id="12250">Base</trim>
+        <year>1989</year>
+    </definition>    <definition id="123934">
+        <make id="774">Agco</make>
+        <model id="9114">2-155</model>
+        <trim id="12250">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="123938">
+        <make id="774">Agco</make>
+        <model id="9114">2-155</model>
+        <trim id="12250">Base</trim>
+        <year>1986</year>
+    </definition>    <definition id="123953">
+        <make id="774">Agco</make>
+        <model id="9114">2-155</model>
+        <trim id="12250">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="30716">
+        <make id="774">Agco</make>
+        <model id="9125">2-180</model>
+        <trim id="12261">Base</trim>
+        <year>1989</year>
+    </definition>    <definition id="62240">
+        <make id="774">Agco</make>
+        <model id="9125">2-180</model>
+        <trim id="12261">Base</trim>
+        <year>1981</year>
+    </definition>    <definition id="62249">
+        <make id="774">Agco</make>
+        <model id="9125">2-180</model>
+        <trim id="12261">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="62277">
+        <make id="774">Agco</make>
+        <model id="9125">2-180</model>
+        <trim id="12261">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="93087">
+        <make id="774">Agco</make>
+        <model id="9125">2-180</model>
+        <trim id="12261">Base</trim>
+        <year>1982</year>
+    </definition>    <definition id="93090">
+        <make id="774">Agco</make>
+        <model id="9125">2-180</model>
+        <trim id="12261">Base</trim>
+        <year>1983</year>
+    </definition>    <definition id="93110">
+        <make id="774">Agco</make>
+        <model id="9125">2-180</model>
+        <trim id="12261">Base</trim>
+        <year>1988</year>
+    </definition>    <definition id="93120">
+        <make id="774">Agco</make>
+        <model id="9125">2-180</model>
+        <trim id="12261">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="123935">
+        <make id="774">Agco</make>
+        <model id="9125">2-180</model>
+        <trim id="12261">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="123939">
+        <make id="774">Agco</make>
+        <model id="9125">2-180</model>
+        <trim id="12261">Base</trim>
+        <year>1986</year>
+    </definition>    <definition id="123943">
+        <make id="774">Agco</make>
+        <model id="9125">2-180</model>
+        <trim id="12261">Base</trim>
+        <year>1987</year>
+    </definition>    <definition id="30680">
+        <make id="774">Agco</make>
+        <model id="9108">2-88</model>
+        <trim id="12244">Base</trim>
+        <year>1981</year>
+    </definition>    <definition id="62245">
+        <make id="774">Agco</make>
+        <model id="9108">2-88</model>
+        <trim id="12244">Base</trim>
+        <year>1983</year>
+    </definition>    <definition id="62250">
+        <make id="774">Agco</make>
+        <model id="9108">2-88</model>
+        <trim id="12244">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="62258">
+        <make id="774">Agco</make>
+        <model id="9108">2-88</model>
+        <trim id="12244">Base</trim>
+        <year>1987</year>
+    </definition>    <definition id="93092">
+        <make id="774">Agco</make>
+        <model id="9108">2-88</model>
+        <trim id="12244">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="93104">
+        <make id="774">Agco</make>
+        <model id="9108">2-88</model>
+        <trim id="12244">Base</trim>
+        <year>1986</year>
+    </definition>    <definition id="123922">
+        <make id="774">Agco</make>
+        <model id="9108">2-88</model>
+        <trim id="12244">Base</trim>
+        <year>1982</year>
+    </definition>    <definition id="30701">
+        <make id="774">Agco</make>
+        <model id="9120">4-225</model>
+        <trim id="12256">Base</trim>
+        <year>1986</year>
+    </definition>    <definition id="30707">
+        <make id="774">Agco</make>
+        <model id="9120">4-225</model>
+        <trim id="12256">Base</trim>
+        <year>1987</year>
+    </definition>    <definition id="30713">
+        <make id="774">Agco</make>
+        <model id="9120">4-225</model>
+        <trim id="12256">Base</trim>
+        <year>1988</year>
+    </definition>    <definition id="30717">
+        <make id="774">Agco</make>
+        <model id="9120">4-225</model>
+        <trim id="12256">Base</trim>
+        <year>1989</year>
+    </definition>    <definition id="93093">
+        <make id="774">Agco</make>
+        <model id="9120">4-225</model>
+        <trim id="12256">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="123927">
+        <make id="774">Agco</make>
+        <model id="9120">4-225</model>
+        <trim id="12256">Base</trim>
+        <year>1983</year>
+    </definition>    <definition id="123936">
+        <make id="774">Agco</make>
+        <model id="9120">4-225</model>
+        <trim id="12256">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="123954">
+        <make id="774">Agco</make>
+        <model id="9120">4-225</model>
+        <trim id="12256">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="123961">
+        <make id="774">Agco</make>
+        <model id="9120">4-225</model>
+        <trim id="12256">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="30697">
+        <make id="774">Agco</make>
+        <model id="9118">4-270</model>
+        <trim id="12254">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="30708">
+        <make id="774">Agco</make>
+        <model id="9118">4-270</model>
+        <trim id="12254">Base</trim>
+        <year>1987</year>
+    </definition>    <definition id="62246">
+        <make id="774">Agco</make>
+        <model id="9118">4-270</model>
+        <trim id="12254">Base</trim>
+        <year>1983</year>
+    </definition>    <definition id="62253">
+        <make id="774">Agco</make>
+        <model id="9118">4-270</model>
+        <trim id="12254">Base</trim>
+        <year>1986</year>
+    </definition>    <definition id="62264">
+        <make id="774">Agco</make>
+        <model id="9118">4-270</model>
+        <trim id="12254">Base</trim>
+        <year>1988</year>
+    </definition>    <definition id="62272">
+        <make id="774">Agco</make>
+        <model id="9118">4-270</model>
+        <trim id="12254">Base</trim>
+        <year>1989</year>
+    </definition>    <definition id="62282">
+        <make id="774">Agco</make>
+        <model id="9118">4-270</model>
+        <trim id="12254">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="123931">
+        <make id="774">Agco</make>
+        <model id="9118">4-270</model>
+        <trim id="12254">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="123955">
+        <make id="774">Agco</make>
+        <model id="9118">4-270</model>
+        <trim id="12254">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="30732">
+        <make id="774">Agco</make>
+        <model id="9134">7600</model>
+        <trim id="12270">Base</trim>
+        <year>1993</year>
+    </definition>    <definition id="30746">
+        <make id="774">Agco</make>
+        <model id="9134">7600</model>
+        <trim id="12270">Base</trim>
+        <year>1995</year>
+    </definition>    <definition id="30757">
+        <make id="774">Agco</make>
+        <model id="9134">7600</model>
+        <trim id="12270">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="62301">
+        <make id="774">Agco</make>
+        <model id="9134">7600</model>
+        <trim id="12270">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="123972">
+        <make id="774">Agco</make>
+        <model id="9134">7600</model>
+        <trim id="12270">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="123991">
+        <make id="774">Agco</make>
+        <model id="9134">7600</model>
+        <trim id="12270">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="123997">
+        <make id="774">Agco</make>
+        <model id="9134">7600</model>
+        <trim id="12270">Base</trim>
+        <year>1999</year>
+    </definition>    <definition id="30758">
+        <make id="774">Agco</make>
+        <model id="9147">7600 FWD</model>
+        <trim id="12283">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="30765">
+        <make id="774">Agco</make>
+        <model id="9147">7600 FWD</model>
+        <trim id="12283">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="62291">
+        <make id="774">Agco</make>
+        <model id="9147">7600 FWD</model>
+        <trim id="12283">Base</trim>
+        <year>1993</year>
+    </definition>    <definition id="93136">
+        <make id="774">Agco</make>
+        <model id="9147">7600 FWD</model>
+        <trim id="12283">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="93151">
+        <make id="774">Agco</make>
+        <model id="9147">7600 FWD</model>
+        <trim id="12283">Base</trim>
+        <year>1999</year>
+    </definition>    <definition id="123973">
+        <make id="774">Agco</make>
+        <model id="9147">7600 FWD</model>
+        <trim id="12283">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="123979">
+        <make id="774">Agco</make>
+        <model id="9147">7600 FWD</model>
+        <trim id="12283">Base</trim>
+        <year>1995</year>
+    </definition>    <definition id="30770">
+        <make id="774">Agco</make>
+        <model id="9149">8425 AGCOSTAR</model>
+        <trim id="12285">Base</trim>
+        <year>1999</year>
+    </definition>    <definition id="30774">
+        <make id="774">Agco</make>
+        <model id="9149">8425 AGCOSTAR</model>
+        <trim id="12285">Base</trim>
+        <year>2000</year>
+    </definition>    <definition id="62311">
+        <make id="774">Agco</make>
+        <model id="9149">8425 AGCOSTAR</model>
+        <trim id="12285">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="93137">
+        <make id="774">Agco</make>
+        <model id="9149">8425 AGCOSTAR</model>
+        <trim id="12285">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="93143">
+        <make id="774">Agco</make>
+        <model id="9149">8425 AGCOSTAR</model>
+        <trim id="12285">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="30734">
+        <make id="774">Agco</make>
+        <model id="9135">8600</model>
+        <trim id="12271">Base</trim>
+        <year>1993</year>
+    </definition>    <definition id="30742">
+        <make id="774">Agco</make>
+        <model id="9135">8600</model>
+        <trim id="12271">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="30747">
+        <make id="774">Agco</make>
+        <model id="9135">8600</model>
+        <trim id="12271">Base</trim>
+        <year>1995</year>
+    </definition>    <definition id="30759">
+        <make id="774">Agco</make>
+        <model id="9135">8600</model>
+        <trim id="12271">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="93138">
+        <make id="774">Agco</make>
+        <model id="9135">8600</model>
+        <trim id="12271">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="30760">
+        <make id="774">Agco</make>
+        <model id="9109">8700</model>
+        <trim id="12245">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="30775">
+        <make id="774">Agco</make>
+        <model id="9109">8700</model>
+        <trim id="12245">Base</trim>
+        <year>2000</year>
+    </definition>    <definition id="93147">
+        <make id="774">Agco</make>
+        <model id="9109">8700</model>
+        <trim id="12245">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="123998">
+        <make id="774">Agco</make>
+        <model id="9109">8700</model>
+        <trim id="12245">Base</trim>
+        <year>1999</year>
+    </definition>    <definition id="30776">
+        <make id="774">Agco</make>
+        <model id="9152">8700 FWD</model>
+        <trim id="12288">Base</trim>
+        <year>2000</year>
+    </definition>    <definition id="62306">
+        <make id="774">Agco</make>
+        <model id="9152">8700 FWD</model>
+        <trim id="12288">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="123992">
+        <make id="774">Agco</make>
+        <model id="9152">8700 FWD</model>
+        <trim id="12288">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="123999">
+        <make id="774">Agco</make>
+        <model id="9152">8700 FWD</model>
+        <trim id="12288">Base</trim>
+        <year>1999</year>
+    </definition>    <definition id="62287">
+        <make id="774">Agco</make>
+        <model id="11919">9130</model>
+        <trim id="16465">Base</trim>
+        <year>1992</year>
+    </definition>    <definition id="62273">
+        <make id="774">Agco</make>
+        <model id="11917">9150</model>
+        <trim id="16463">Base</trim>
+        <year>1989</year>
+    </definition>    <definition id="93116">
+        <make id="774">Agco</make>
+        <model id="11917">9150</model>
+        <trim id="16463">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="123963">
+        <make id="774">Agco</make>
+        <model id="11917">9150</model>
+        <trim id="16463">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="123967">
+        <make id="774">Agco</make>
+        <model id="11917">9150</model>
+        <trim id="16463">Base</trim>
+        <year>1992</year>
+    </definition>    <definition id="62288">
+        <make id="774">Agco</make>
+        <model id="11920">9170</model>
+        <trim id="16466">Base</trim>
+        <year>1992</year>
+    </definition>    <definition id="123947">
+        <make id="774">Agco</make>
+        <model id="11920">9170</model>
+        <trim id="16466">Base</trim>
+        <year>1989</year>
+    </definition>    <definition id="123956">
+        <make id="774">Agco</make>
+        <model id="11920">9170</model>
+        <trim id="16466">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="123964">
+        <make id="774">Agco</make>
+        <model id="11920">9170</model>
+        <trim id="16466">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="30727">
+        <make id="774">Agco</make>
+        <model id="9131">9190</model>
+        <trim id="12267">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="93117">
+        <make id="774">Agco</make>
+        <model id="9131">9190</model>
+        <trim id="12267">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="93123">
+        <make id="774">Agco</make>
+        <model id="9131">9190</model>
+        <trim id="12267">Base</trim>
+        <year>1992</year>
+    </definition>    <definition id="123948">
+        <make id="774">Agco</make>
+        <model id="9131">9190</model>
+        <trim id="12267">Base</trim>
+        <year>1989</year>
+    </definition>    <definition id="30761">
+        <make id="774">Agco</make>
+        <model id="9148">9400</model>
+        <trim id="12284">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="93148">
+        <make id="774">Agco</make>
+        <model id="9148">9400</model>
+        <trim id="12284">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="123974">
+        <make id="774">Agco</make>
+        <model id="9148">9400</model>
+        <trim id="12284">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="123980">
+        <make id="774">Agco</make>
+        <model id="9148">9400</model>
+        <trim id="12284">Base</trim>
+        <year>1995</year>
+    </definition>    <definition id="123985">
+        <make id="774">Agco</make>
+        <model id="9148">9400</model>
+        <trim id="12284">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="30754">
+        <make id="774">Agco</make>
+        <model id="9144">9400 FWD</model>
+        <trim id="12280">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="62307">
+        <make id="774">Agco</make>
+        <model id="9144">9400 FWD</model>
+        <trim id="12280">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="93127">
+        <make id="774">Agco</make>
+        <model id="9144">9400 FWD</model>
+        <trim id="12280">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="123981">
+        <make id="774">Agco</make>
+        <model id="9144">9400 FWD</model>
+        <trim id="12280">Base</trim>
+        <year>1995</year>
+    </definition>    <definition id="123993">
+        <make id="774">Agco</make>
+        <model id="9144">9400 FWD</model>
+        <trim id="12280">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="30748">
+        <make id="774">Agco</make>
+        <model id="9141">9600</model>
+        <trim id="12277">Base</trim>
+        <year>1995</year>
+    </definition>    <definition id="62295">
+        <make id="774">Agco</make>
+        <model id="9141">9600</model>
+        <trim id="12277">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="62302">
+        <make id="774">Agco</make>
+        <model id="9141">9600</model>
+        <trim id="12277">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="93125">
+        <make id="774">Agco</make>
+        <model id="9141">9600</model>
+        <trim id="12277">Base</trim>
+        <year>1993</year>
+    </definition>    <definition id="93144">
+        <make id="774">Agco</make>
+        <model id="9141">9600</model>
+        <trim id="12277">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="93149">
+        <make id="774">Agco</make>
+        <model id="9141">9600</model>
+        <trim id="12277">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="30749">
+        <make id="774">Agco</make>
+        <model id="9142">9600 FWD</model>
+        <trim id="12278">Base</trim>
+        <year>1995</year>
+    </definition>    <definition id="30766">
+        <make id="774">Agco</make>
+        <model id="9142">9600 FWD</model>
+        <trim id="12278">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="62292">
+        <make id="774">Agco</make>
+        <model id="9142">9600 FWD</model>
+        <trim id="12278">Base</trim>
+        <year>1993</year>
+    </definition>    <definition id="62296">
+        <make id="774">Agco</make>
+        <model id="9142">9600 FWD</model>
+        <trim id="12278">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="93145">
+        <make id="774">Agco</make>
+        <model id="9142">9600 FWD</model>
+        <trim id="12278">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="123986">
+        <make id="774">Agco</make>
+        <model id="9142">9600 FWD</model>
+        <trim id="12278">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="30771">
+        <make id="774">Agco</make>
+        <model id="9110">9700</model>
+        <trim id="12246">Base</trim>
+        <year>1999</year>
+    </definition>    <definition id="62312">
+        <make id="774">Agco</make>
+        <model id="9110">9700</model>
+        <trim id="12246">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="62321">
+        <make id="774">Agco</make>
+        <model id="9110">9700</model>
+        <trim id="12246">Base</trim>
+        <year>2000</year>
+    </definition>    <definition id="62313">
+        <make id="774">Agco</make>
+        <model id="11923">9700 FWD</model>
+        <trim id="16469">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="93153">
+        <make id="774">Agco</make>
+        <model id="11923">9700 FWD</model>
+        <trim id="16469">Base</trim>
+        <year>2000</year>
+    </definition>    <definition id="124000">
+        <make id="774">Agco</make>
+        <model id="11923">9700 FWD</model>
+        <trim id="16469">Base</trim>
+        <year>1999</year>
+    </definition>    <definition id="62322">
+        <make id="774">Agco</make>
+        <model id="11925">9755</model>
+        <trim id="16471">Base</trim>
+        <year>2000</year>
+    </definition>    <definition id="124001">
+        <make id="774">Agco</make>
+        <model id="11925">9755</model>
+        <trim id="16471">Base</trim>
+        <year>1999</year>
+    </definition>    <definition id="93154">
+        <make id="774">Agco</make>
+        <model id="13079">9765</model>
+        <trim id="18422">Base</trim>
+        <year>2000</year>
+    </definition>    <definition id="124002">
+        <make id="774">Agco</make>
+        <model id="13079">9765</model>
+        <trim id="18422">Base</trim>
+        <year>1999</year>
+    </definition>    <definition id="30772">
+        <make id="774">Agco</make>
+        <model id="9150">9775</model>
+        <trim id="12286">Base</trim>
+        <year>1999</year>
+    </definition>    <definition id="30777">
+        <make id="774">Agco</make>
+        <model id="9150">9775</model>
+        <trim id="12286">Base</trim>
+        <year>2000</year>
+    </definition>    <definition id="62317">
+        <make id="774">Agco</make>
+        <model id="11924">9785</model>
+        <trim id="16470">Base</trim>
+        <year>1999</year>
+    </definition>    <definition id="124004">
+        <make id="774">Agco</make>
+        <model id="11924">9785</model>
+        <trim id="16470">Base</trim>
+        <year>2000</year>
+    </definition>    <definition id="62297">
+        <make id="774">Agco</make>
+        <model id="11921">9800</model>
+        <trim id="16467">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="62303">
+        <make id="774">Agco</make>
+        <model id="11921">9800</model>
+        <trim id="16467">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="62314">
+        <make id="774">Agco</make>
+        <model id="11921">9800</model>
+        <trim id="16467">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="93146">
+        <make id="774">Agco</make>
+        <model id="11921">9800</model>
+        <trim id="16467">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="123982">
+        <make id="774">Agco</make>
+        <model id="11921">9800</model>
+        <trim id="16467">Base</trim>
+        <year>1995</year>
+    </definition>    <definition id="30735">
+        <make id="774">Agco</make>
+        <model id="9136">AGCO 5600</model>
+        <trim id="12272">Base</trim>
+        <year>1993</year>
+    </definition>    <definition id="30750">
+        <make id="774">Agco</make>
+        <model id="9136">AGCO 5600</model>
+        <trim id="12272">Base</trim>
+        <year>1995</year>
+    </definition>    <definition id="30767">
+        <make id="774">Agco</make>
+        <model id="9136">AGCO 5600</model>
+        <trim id="12272">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="62308">
+        <make id="774">Agco</make>
+        <model id="9136">AGCO 5600</model>
+        <trim id="12272">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="62318">
+        <make id="774">Agco</make>
+        <model id="9136">AGCO 5600</model>
+        <trim id="12272">Base</trim>
+        <year>1999</year>
+    </definition>    <definition id="93139">
+        <make id="774">Agco</make>
+        <model id="9136">AGCO 5600</model>
+        <trim id="12272">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="123975">
+        <make id="774">Agco</make>
+        <model id="9136">AGCO 5600</model>
+        <trim id="12272">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="30755">
+        <make id="774">Agco</make>
+        <model id="9145">AGCO 5650</model>
+        <trim id="12281">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="30762">
+        <make id="774">Agco</make>
+        <model id="9145">AGCO 5650</model>
+        <trim id="12281">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="62293">
+        <make id="774">Agco</make>
+        <model id="9145">AGCO 5650</model>
+        <trim id="12281">Base</trim>
+        <year>1993</year>
+    </definition>    <definition id="93132">
+        <make id="774">Agco</make>
+        <model id="9145">AGCO 5650</model>
+        <trim id="12281">Base</trim>
+        <year>1995</year>
+    </definition>    <definition id="93150">
+        <make id="774">Agco</make>
+        <model id="9145">AGCO 5650</model>
+        <trim id="12281">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="123976">
+        <make id="774">Agco</make>
+        <model id="9145">AGCO 5650</model>
+        <trim id="12281">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="62299">
+        <make id="774">Agco</make>
+        <model id="11922">AGCO 5660</model>
+        <trim id="16468">Base</trim>
+        <year>1995</year>
+    </definition>    <definition id="62304">
+        <make id="774">Agco</make>
+        <model id="11922">AGCO 5660</model>
+        <trim id="16468">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="62309">
+        <make id="774">Agco</make>
+        <model id="11922">AGCO 5660</model>
+        <trim id="16468">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="123970">
+        <make id="774">Agco</make>
+        <model id="11922">AGCO 5660</model>
+        <trim id="16468">Base</trim>
+        <year>1993</year>
+    </definition>    <definition id="123977">
+        <make id="774">Agco</make>
+        <model id="11922">AGCO 5660</model>
+        <trim id="16468">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="123994">
+        <make id="774">Agco</make>
+        <model id="11922">AGCO 5660</model>
+        <trim id="16468">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="30736">
+        <make id="774">Agco</make>
+        <model id="9137">AGCO 5670</model>
+        <trim id="12273">Base</trim>
+        <year>1993</year>
+    </definition>    <definition id="30743">
+        <make id="774">Agco</make>
+        <model id="9137">AGCO 5670</model>
+        <trim id="12273">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="30751">
+        <make id="774">Agco</make>
+        <model id="9137">AGCO 5670</model>
+        <trim id="12273">Base</trim>
+        <year>1995</year>
+    </definition>    <definition id="62310">
+        <make id="774">Agco</make>
+        <model id="9137">AGCO 5670</model>
+        <trim id="12273">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="62315">
+        <make id="774">Agco</make>
+        <model id="9137">AGCO 5670</model>
+        <trim id="12273">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="93140">
+        <make id="774">Agco</make>
+        <model id="9137">AGCO 5670</model>
+        <trim id="12273">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="30737">
+        <make id="774">Agco</make>
+        <model id="9138">AGCO 6670</model>
+        <trim id="12274">Base</trim>
+        <year>1993</year>
+    </definition>    <definition id="62300">
+        <make id="774">Agco</make>
+        <model id="9138">AGCO 6670</model>
+        <trim id="12274">Base</trim>
+        <year>1995</year>
+    </definition>    <definition id="62305">
+        <make id="774">Agco</make>
+        <model id="9138">AGCO 6670</model>
+        <trim id="12274">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="62316">
+        <make id="774">Agco</make>
+        <model id="9138">AGCO 6670</model>
+        <trim id="12274">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="123978">
+        <make id="774">Agco</make>
+        <model id="9138">AGCO 6670</model>
+        <trim id="12274">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="123988">
+        <make id="774">Agco</make>
+        <model id="9138">AGCO 6670</model>
+        <trim id="12274">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="30702">
+        <make id="774">Agco</make>
+        <model id="9121">BIG BOSS</model>
+        <trim id="12257">Base</trim>
+        <year>1986</year>
+    </definition>    <definition id="93219">
+        <make id="779">Allis-Chalmers</make>
+        <model id="13081">6070-2</model>
+        <trim id="18424">Base</trim>
+        <year>1980</year>
+    </definition>    <definition id="62368">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11927">6070-4</model>
+        <trim id="16473">Base</trim>
+        <year>1980</year>
+    </definition>    <definition id="62375">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11931">6080-2</model>
+        <trim id="16477">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="62378">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11931">6080-2</model>
+        <trim id="16477">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="93221">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11931">6080-2</model>
+        <trim id="16477">Base</trim>
+        <year>1982</year>
+    </definition>    <definition id="124059">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11931">6080-2</model>
+        <trim id="16477">Base</trim>
+        <year>1981</year>
+    </definition>    <definition id="124064">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11931">6080-2</model>
+        <trim id="16477">Base</trim>
+        <year>1983</year>
+    </definition>    <definition id="30835">
+        <make id="779">Allis-Chalmers</make>
+        <model id="9179">6080-4</model>
+        <trim id="12315">Base</trim>
+        <year>1983</year>
+    </definition>    <definition id="62374">
+        <make id="779">Allis-Chalmers</make>
+        <model id="9179">6080-4</model>
+        <trim id="12315">Base</trim>
+        <year>1982</year>
+    </definition>    <definition id="93220">
+        <make id="779">Allis-Chalmers</make>
+        <model id="9179">6080-4</model>
+        <trim id="12315">Base</trim>
+        <year>1981</year>
+    </definition>    <definition id="93225">
+        <make id="779">Allis-Chalmers</make>
+        <model id="9179">6080-4</model>
+        <trim id="12315">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="93227">
+        <make id="779">Allis-Chalmers</make>
+        <model id="9179">6080-4</model>
+        <trim id="12315">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="62369">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11928">7580</model>
+        <trim id="16474">Base</trim>
+        <year>1981</year>
+    </definition>    <definition id="62376">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11928">7580</model>
+        <trim id="16474">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="93222">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11928">7580</model>
+        <trim id="16474">Base</trim>
+        <year>1982</year>
+    </definition>    <definition id="93228">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11928">7580</model>
+        <trim id="16474">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="124065">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11928">7580</model>
+        <trim id="16474">Base</trim>
+        <year>1983</year>
+    </definition>    <definition id="30833">
+        <make id="779">Allis-Chalmers</make>
+        <model id="9177">8010</model>
+        <trim id="12313">Base</trim>
+        <year>1982</year>
+    </definition>    <definition id="62370">
+        <make id="779">Allis-Chalmers</make>
+        <model id="9177">8010</model>
+        <trim id="12313">Base</trim>
+        <year>1981</year>
+    </definition>    <definition id="62379">
+        <make id="779">Allis-Chalmers</make>
+        <model id="9177">8010</model>
+        <trim id="12313">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="93223">
+        <make id="779">Allis-Chalmers</make>
+        <model id="9177">8010</model>
+        <trim id="12313">Base</trim>
+        <year>1983</year>
+    </definition>    <definition id="124067">
+        <make id="779">Allis-Chalmers</make>
+        <model id="9177">8010</model>
+        <trim id="12313">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="62371">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11929">8030</model>
+        <trim id="16475">Base</trim>
+        <year>1981</year>
+    </definition>    <definition id="93224">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11929">8030</model>
+        <trim id="16475">Base</trim>
+        <year>1983</year>
+    </definition>    <definition id="93226">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11929">8030</model>
+        <trim id="16475">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="124061">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11929">8030</model>
+        <trim id="16475">Base</trim>
+        <year>1982</year>
+    </definition>    <definition id="124069">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11929">8030</model>
+        <trim id="16475">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="62372">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11930">8050</model>
+        <trim id="16476">Base</trim>
+        <year>1981</year>
+    </definition>    <definition id="124062">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11930">8050</model>
+        <trim id="16476">Base</trim>
+        <year>1982</year>
+    </definition>    <definition id="62380">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11932">8070</model>
+        <trim id="16478">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="124060">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11932">8070</model>
+        <trim id="16478">Base</trim>
+        <year>1981</year>
+    </definition>    <definition id="124063">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11932">8070</model>
+        <trim id="16478">Base</trim>
+        <year>1982</year>
+    </definition>    <definition id="124066">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11932">8070</model>
+        <trim id="16478">Base</trim>
+        <year>1983</year>
+    </definition>    <definition id="124068">
+        <make id="779">Allis-Chalmers</make>
+        <model id="11932">8070</model>
+        <trim id="16478">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="30834">
+        <make id="779">Allis-Chalmers</make>
+        <model id="9178">8550</model>
+        <trim id="12314">Base</trim>
+        <year>1982</year>
+    </definition>    <definition id="30836">
+        <make id="779">Allis-Chalmers</make>
+        <model id="9178">8550</model>
+        <trim id="12314">Base</trim>
+        <year>1983</year>
+    </definition>    <definition id="62373">
+        <make id="779">Allis-Chalmers</make>
+        <model id="9178">8550</model>
+        <trim id="12314">Base</trim>
+        <year>1981</year>
+    </definition>    <definition id="62377">
+        <make id="779">Allis-Chalmers</make>
+        <model id="9178">8550</model>
+        <trim id="12314">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="124070">
+        <make id="779">Allis-Chalmers</make>
+        <model id="9178">8550</model>
+        <trim id="12314">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="30837">
+        <make id="780">Andros</make>
+        <model id="9180">AGRI-TRAC</model>
+        <trim id="12316">Base</trim>
+        <year>1997</year>
+    </definition>    <definition id="30838">
+        <make id="780">Andros</make>
+        <model id="9180">AGRI-TRAC</model>
+        <trim id="12316">Base</trim>
+        <year>1999</year>
+    </definition>    <definition id="30839">
+        <make id="780">Andros</make>
+        <model id="9180">AGRI-TRAC</model>
+        <trim id="12316">Base</trim>
+        <year>2003</year>
+    </definition>    <definition id="62381">
+        <make id="780">Andros</make>
+        <model id="9180">AGRI-TRAC</model>
+        <trim id="12316">Base</trim>
+        <year>1998</year>
+    </definition>    <definition id="62382">
+        <make id="780">Andros</make>
+        <model id="9180">AGRI-TRAC</model>
+        <trim id="12316">Base</trim>
+        <year>2000</year>
+    </definition>    <definition id="62383">
+        <make id="780">Andros</make>
+        <model id="9180">AGRI-TRAC</model>
+        <trim id="12316">Base</trim>
+        <year>2002</year>
+    </definition>    <definition id="62384">
+        <make id="780">Andros</make>
+        <model id="9180">AGRI-TRAC</model>
+        <trim id="12316">Base</trim>
+        <year>2005</year>
+    </definition>    <definition id="62385">
+        <make id="780">Andros</make>
+        <model id="9180">AGRI-TRAC</model>
+        <trim id="12316">Base</trim>
+        <year>2007</year>
+    </definition>    <definition id="62386">
+        <make id="780">Andros</make>
+        <model id="9180">AGRI-TRAC</model>
+        <trim id="12316">Base</trim>
+        <year>2009</year>
+    </definition>    <definition id="93229">
+        <make id="780">Andros</make>
+        <model id="9180">AGRI-TRAC</model>
+        <trim id="12316">Base</trim>
+        <year>2001</year>
+    </definition>    <definition id="93230">
+        <make id="780">Andros</make>
+        <model id="9180">AGRI-TRAC</model>
+        <trim id="12316">Base</trim>
+        <year>2004</year>
+    </definition>    <definition id="124072">
+        <make id="780">Andros</make>
+        <model id="9180">AGRI-TRAC</model>
+        <trim id="12316">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="124073">
+        <make id="780">Andros</make>
+        <model id="9180">AGRI-TRAC</model>
+        <trim id="12316">Base</trim>
+        <year>2006</year>
+    </definition>    <definition id="124074">
+        <make id="780">Andros</make>
+        <model id="9180">AGRI-TRAC</model>
+        <trim id="12316">Base</trim>
+        <year>2008</year>
+    </definition>    <definition id="30894">
+        <make id="786">Big Bud</make>
+        <model id="9204">1866</model>
+        <trim id="12340">Base</trim>
+        <year>2001</year>
+    </definition>    <definition id="30895">
+        <make id="786">Big Bud</make>
+        <model id="9204">1866</model>
+        <trim id="12340">Base</trim>
+        <year>2006</year>
+    </definition>    <definition id="30896">
+        <make id="786">Big Bud</make>
+        <model id="9204">1866</model>
+        <trim id="12340">Base</trim>
+        <year>2008</year>
+    </definition>    <definition id="62438">
+        <make id="786">Big Bud</make>
+        <model id="9204">1866</model>
+        <trim id="12340">Base</trim>
+        <year>2000</year>
+    </definition>    <definition id="62439">
+        <make id="786">Big Bud</make>
+        <model id="9204">1866</model>
+        <trim id="12340">Base</trim>
+        <year>2003</year>
+    </definition>    <definition id="62440">
+        <make id="786">Big Bud</make>
+        <model id="9204">1866</model>
+        <trim id="12340">Base</trim>
+        <year>2009</year>
+    </definition>    <definition id="124125">
+        <make id="786">Big Bud</make>
+        <model id="9204">1866</model>
+        <trim id="12340">Base</trim>
+        <year>2002</year>
+    </definition>    <definition id="124126">
+        <make id="786">Big Bud</make>
+        <model id="9204">1866</model>
+        <trim id="12340">Base</trim>
+        <year>2004</year>
+    </definition>    <definition id="124127">
+        <make id="786">Big Bud</make>
+        <model id="9204">1866</model>
+        <trim id="12340">Base</trim>
+        <year>2005</year>
+    </definition>    <definition id="124128">
+        <make id="786">Big Bud</make>
+        <model id="9204">1866</model>
+        <trim id="12340">Base</trim>
+        <year>2007</year>
+    </definition>    <definition id="62433">
+        <make id="786">Big Bud</make>
+        <model id="11936">360</model>
+        <trim id="16482">Base</trim>
+        <year>1986</year>
+    </definition>    <definition id="62435">
+        <make id="786">Big Bud</make>
+        <model id="11936">360</model>
+        <trim id="16482">Base</trim>
+        <year>1987</year>
+    </definition>    <definition id="93286">
+        <make id="786">Big Bud</make>
+        <model id="11936">360</model>
+        <trim id="16482">Base</trim>
+        <year>1983</year>
+    </definition>    <definition id="124119">
+        <make id="786">Big Bud</make>
+        <model id="11936">360</model>
+        <trim id="16482">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="124121">
+        <make id="786">Big Bud</make>
+        <model id="11936">360</model>
+        <trim id="16482">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="30887">
+        <make id="786">Big Bud</make>
+        <model id="9201">370</model>
+        <trim id="12337">Base</trim>
+        <year>1986</year>
+    </definition>    <definition id="30889">
+        <make id="786">Big Bud</make>
+        <model id="9201">370</model>
+        <trim id="12337">Base</trim>
+        <year>1987</year>
+    </definition>    <definition id="124122">
+        <make id="786">Big Bud</make>
+        <model id="9201">370</model>
+        <trim id="12337">Base</trim>
+        <year>1988</year>
+    </definition>    <definition id="124123">
+        <make id="786">Big Bud</make>
+        <model id="9201">370</model>
+        <trim id="12337">Base</trim>
+        <year>1989</year>
+    </definition>    <definition id="124124">
+        <make id="786">Big Bud</make>
+        <model id="9201">370</model>
+        <trim id="12337">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="30883">
+        <make id="786">Big Bud</make>
+        <model id="9198">400</model>
+        <trim id="12334">Base</trim>
+        <year>1982</year>
+    </definition>    <definition id="30888">
+        <make id="786">Big Bud</make>
+        <model id="9198">400</model>
+        <trim id="12334">Base</trim>
+        <year>1986</year>
+    </definition>    <definition id="62431">
+        <make id="786">Big Bud</make>
+        <model id="9198">400</model>
+        <trim id="12334">Base</trim>
+        <year>1983</year>
+    </definition>    <definition id="62432">
+        <make id="786">Big Bud</make>
+        <model id="9198">400</model>
+        <trim id="12334">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="93284">
+        <make id="786">Big Bud</make>
+        <model id="9198">400</model>
+        <trim id="12334">Base</trim>
+        <year>1981</year>
+    </definition>    <definition id="93287">
+        <make id="786">Big Bud</make>
+        <model id="9198">400</model>
+        <trim id="12334">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="30891">
+        <make id="786">Big Bud</make>
+        <model id="9202">400 MODULE</model>
+        <trim id="12338">Base</trim>
+        <year>1988</year>
+    </definition>    <definition id="62436">
+        <make id="786">Big Bud</make>
+        <model id="9202">400 MODULE</model>
+        <trim id="12338">Base</trim>
+        <year>1989</year>
+    </definition>    <definition id="62437">
+        <make id="786">Big Bud</make>
+        <model id="9202">400 MODULE</model>
+        <trim id="12338">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="30886">
+        <make id="786">Big Bud</make>
+        <model id="9200">525</model>
+        <trim id="12336">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="30890">
+        <make id="786">Big Bud</make>
+        <model id="9200">525</model>
+        <trim id="12336">Base</trim>
+        <year>1987</year>
+    </definition>    <definition id="62434">
+        <make id="786">Big Bud</make>
+        <model id="9200">525</model>
+        <trim id="12336">Base</trim>
+        <year>1986</year>
+    </definition>    <definition id="124118">
+        <make id="786">Big Bud</make>
+        <model id="9200">525</model>
+        <trim id="12336">Base</trim>
+        <year>1983</year>
+    </definition>    <definition id="124120">
+        <make id="786">Big Bud</make>
+        <model id="9200">525</model>
+        <trim id="12336">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="30884">
+        <make id="786">Big Bud</make>
+        <model id="9199">650</model>
+        <trim id="12335">Base</trim>
+        <year>1983</year>
+    </definition>    <definition id="30885">
+        <make id="786">Big Bud</make>
+        <model id="9199">650</model>
+        <trim id="12335">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="62430">
+        <make id="786">Big Bud</make>
+        <model id="9199">650</model>
+        <trim id="12335">Base</trim>
+        <year>1981</year>
+    </definition>    <definition id="93285">
+        <make id="786">Big Bud</make>
+        <model id="9199">650</model>
+        <trim id="12335">Base</trim>
+        <year>1982</year>
+    </definition>    <definition id="93288">
+        <make id="786">Big Bud</make>
+        <model id="9199">650</model>
+        <trim id="12335">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="30892">
+        <make id="786">Big Bud</make>
+        <model id="9203">700 MODULE</model>
+        <trim id="12339">Base</trim>
+        <year>1988</year>
+    </definition>    <definition id="30893">
+        <make id="786">Big Bud</make>
+        <model id="9203">700 MODULE</model>
+        <trim id="12339">Base</trim>
+        <year>1989</year>
+    </definition>    <definition id="93289">
+        <make id="786">Big Bud</make>
+        <model id="9203">700 MODULE</model>
+        <trim id="12339">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="30982">
+        <make id="793">Buhler Genesis</make>
+        <model id="9235">GENESIS 2145</model>
+        <trim id="12371">Base</trim>
+        <year>2002</year>
+    </definition>    <definition id="30985">
+        <make id="793">Buhler Genesis</make>
+        <model id="9235">GENESIS 2145</model>
+        <trim id="12371">Base</trim>
+        <year>2004</year>
+    </definition>    <definition id="30990">
+        <make id="793">Buhler Genesis</make>
+        <model id="9235">GENESIS 2145</model>
+        <trim id="12371">Base</trim>
+        <year>2008</year>
+    </definition>    <definition id="62542">
+        <make id="793">Buhler Genesis</make>
+        <model id="9235">GENESIS 2145</model>
+        <trim id="12371">Base</trim>
+        <year>2003</year>
+    </definition>    <definition id="93347">
+        <make id="793">Buhler Genesis</make>
+        <model id="9235">GENESIS 2145</model>
+        <trim id="12371">Base</trim>
+        <year>2001</year>
+    </definition>    <definition id="93351">
+        <make id="793">Buhler Genesis</make>
+        <model id="9235">GENESIS 2145</model>
+        <trim id="12371">Base</trim>
+        <year>2005</year>
+    </definition>    <definition id="124200">
+        <make id="793">Buhler Genesis</make>
+        <model id="9235">GENESIS 2145</model>
+        <trim id="12371">Base</trim>
+        <year>2006</year>
+    </definition>    <definition id="124201">
+        <make id="793">Buhler Genesis</make>
+        <model id="9235">GENESIS 2145</model>
+        <trim id="12371">Base</trim>
+        <year>2007</year>
+    </definition>    <definition id="30983">
+        <make id="793">Buhler Genesis</make>
+        <model id="9236">GENESIS 2160</model>
+        <trim id="12372">Base</trim>
+        <year>2002</year>
+    </definition>    <definition id="62543">
+        <make id="793">Buhler Genesis</make>
+        <model id="9236">GENESIS 2160</model>
+        <trim id="12372">Base</trim>
+        <year>2003</year>
+    </definition>    <definition id="62545">
+        <make id="793">Buhler Genesis</make>
+        <model id="9236">GENESIS 2160</model>
+        <trim id="12372">Base</trim>
+        <year>2006</year>
+    </definition>    <definition id="62547">
+        <make id="793">Buhler Genesis</make>
+        <model id="9236">GENESIS 2160</model>
+        <trim id="12372">Base</trim>
+        <year>2007</year>
+    </definition>    <definition id="93348">
+        <make id="793">Buhler Genesis</make>
+        <model id="9236">GENESIS 2160</model>
+        <trim id="12372">Base</trim>
+        <year>2001</year>
+    </definition>    <definition id="93352">
+        <make id="793">Buhler Genesis</make>
+        <model id="9236">GENESIS 2160</model>
+        <trim id="12372">Base</trim>
+        <year>2005</year>
+    </definition>    <definition id="124198">
+        <make id="793">Buhler Genesis</make>
+        <model id="9236">GENESIS 2160</model>
+        <trim id="12372">Base</trim>
+        <year>2004</year>
+    </definition>    <definition id="124202">
+        <make id="793">Buhler Genesis</make>
+        <model id="9236">GENESIS 2160</model>
+        <trim id="12372">Base</trim>
+        <year>2008</year>
+    </definition>    <definition id="30984">
+        <make id="793">Buhler Genesis</make>
+        <model id="9237">GENESIS 2180</model>
+        <trim id="12373">Base</trim>
+        <year>2002</year>
+    </definition>    <definition id="30986">
+        <make id="793">Buhler Genesis</make>
+        <model id="9237">GENESIS 2180</model>
+        <trim id="12373">Base</trim>
+        <year>2004</year>
+    </definition>    <definition id="30989">
+        <make id="793">Buhler Genesis</make>
+        <model id="9237">GENESIS 2180</model>
+        <trim id="12373">Base</trim>
+        <year>2007</year>
+    </definition>    <definition id="30991">
+        <make id="793">Buhler Genesis</make>
+        <model id="9237">GENESIS 2180</model>
+        <trim id="12373">Base</trim>
+        <year>2008</year>
+    </definition>    <definition id="62544">
+        <make id="793">Buhler Genesis</make>
+        <model id="9237">GENESIS 2180</model>
+        <trim id="12373">Base</trim>
+        <year>2003</year>
+    </definition>    <definition id="62546">
+        <make id="793">Buhler Genesis</make>
+        <model id="9237">GENESIS 2180</model>
+        <trim id="12373">Base</trim>
+        <year>2006</year>
+    </definition>    <definition id="93349">
+        <make id="793">Buhler Genesis</make>
+        <model id="9237">GENESIS 2180</model>
+        <trim id="12373">Base</trim>
+        <year>2001</year>
+    </definition>    <definition id="124199">
+        <make id="793">Buhler Genesis</make>
+        <model id="9237">GENESIS 2180</model>
+        <trim id="12373">Base</trim>
+        <year>2005</year>
+    </definition>    <definition id="30987">
+        <make id="793">Buhler Genesis</make>
+        <model id="9238">GENESIS 2210</model>
+        <trim id="12374">Base</trim>
+        <year>2004</year>
+    </definition>    <definition id="30988">
+        <make id="793">Buhler Genesis</make>
+        <model id="9238">GENESIS 2210</model>
+        <trim id="12374">Base</trim>
+        <year>2005</year>
+    </definition>    <definition id="30992">
+        <make id="793">Buhler Genesis</make>
+        <model id="9238">GENESIS 2210</model>
+        <trim id="12374">Base</trim>
+        <year>2008</year>
+    </definition>    <definition id="62541">
+        <make id="793">Buhler Genesis</make>
+        <model id="9238">GENESIS 2210</model>
+        <trim id="12374">Base</trim>
+        <year>2001</year>
+    </definition>    <definition id="62548">
+        <make id="793">Buhler Genesis</make>
+        <model id="9238">GENESIS 2210</model>
+        <trim id="12374">Base</trim>
+        <year>2007</year>
+    </definition>    <definition id="93350">
+        <make id="793">Buhler Genesis</make>
+        <model id="9238">GENESIS 2210</model>
+        <trim id="12374">Base</trim>
+        <year>2002</year>
+    </definition>    <definition id="93353">
+        <make id="793">Buhler Genesis</make>
+        <model id="9238">GENESIS 2210</model>
+        <trim id="12374">Base</trim>
+        <year>2006</year>
+    </definition>    <definition id="124197">
+        <make id="793">Buhler Genesis</make>
+        <model id="9238">GENESIS 2210</model>
+        <trim id="12374">Base</trim>
+        <year>2003</year>
+    </definition>    <definition id="62556">
+        <make id="794">Buhler Versatile</make>
+        <model id="11942">HIGH HORSEPOWER 435</model>
+        <trim id="16488">Base</trim>
+        <year>2006</year>
+    </definition>    <definition id="93364">
+        <make id="794">Buhler Versatile</make>
+        <model id="11942">HIGH HORSEPOWER 435</model>
+        <trim id="16488">Base</trim>
+        <year>2007</year>
+    </definition>    <definition id="124207">
+        <make id="794">Buhler Versatile</make>
+        <model id="11942">HIGH HORSEPOWER 435</model>
+        <trim id="16488">Base</trim>
+        <year>2005</year>
+    </definition>    <definition id="124211">
+        <make id="794">Buhler Versatile</make>
+        <model id="11942">HIGH HORSEPOWER 435</model>
+        <trim id="16488">Base</trim>
+        <year>2008</year>
+    </definition>    <definition id="30995">
+        <make id="794">Buhler Versatile</make>
+        <model id="9240">HIGH HORSEPOWER 485</model>
+        <trim id="12376">Base</trim>
+        <year>2006</year>
+    </definition>    <definition id="62558">
+        <make id="794">Buhler Versatile</make>
+        <model id="9240">HIGH HORSEPOWER 485</model>
+        <trim id="12376">Base</trim>
+        <year>2007</year>
+    </definition>    <definition id="62560">
+        <make id="794">Buhler Versatile</make>
+        <model id="9240">HIGH HORSEPOWER 485</model>
+        <trim id="12376">Base</trim>
+        <year>2008</year>
+    </definition>    <definition id="124208">
+        <make id="794">Buhler Versatile</make>
+        <model id="9240">HIGH HORSEPOWER 485</model>
+        <trim id="12376">Base</trim>
+        <year>2005</year>
+    </definition>    <definition id="62559">
+        <make id="794">Buhler Versatile</make>
+        <model id="11943">HIGH HORSEPOWER 535</model>
+        <trim id="16489">Base</trim>
+        <year>2007</year>
+    </definition>    <definition id="93358">
+        <make id="794">Buhler Versatile</make>
+        <model id="11943">HIGH HORSEPOWER 535</model>
+        <trim id="16489">Base</trim>
+        <year>2005</year>
+    </definition>    <definition id="93361">
+        <make id="794">Buhler Versatile</make>
+        <model id="11943">HIGH HORSEPOWER 535</model>
+        <trim id="16489">Base</trim>
+        <year>2006</year>
+    </definition>    <definition id="124212">
+        <make id="794">Buhler Versatile</make>
+        <model id="11943">HIGH HORSEPOWER 535</model>
+        <trim id="16489">Base</trim>
+        <year>2008</year>
+    </definition>    <definition id="30997">
+        <make id="794">Buhler Versatile</make>
+        <model id="9242">VERSATILE 2290</model>
+        <trim id="12378">Base</trim>
+        <year>2007</year>
+    </definition>    <definition id="62551">
+        <make id="794">Buhler Versatile</make>
+        <model id="9242">VERSATILE 2290</model>
+        <trim id="12378">Base</trim>
+        <year>2004</year>
+    </definition>    <definition id="62554">
+        <make id="794">Buhler Versatile</make>
+        <model id="9242">VERSATILE 2290</model>
+        <trim id="12378">Base</trim>
+        <year>2005</year>
+    </definition>    <definition id="93355">
+        <make id="794">Buhler Versatile</make>
+        <model id="9242">VERSATILE 2290</model>
+        <trim id="12378">Base</trim>
+        <year>2003</year>
+    </definition>    <definition id="93362">
+        <make id="794">Buhler Versatile</make>
+        <model id="9242">VERSATILE 2290</model>
+        <trim id="12378">Base</trim>
+        <year>2006</year>
+    </definition>    <definition id="124203">
+        <make id="794">Buhler Versatile</make>
+        <model id="9242">VERSATILE 2290</model>
+        <trim id="12378">Base</trim>
+        <year>2002</year>
+    </definition>    <definition id="62549">
+        <make id="794">Buhler Versatile</make>
+        <model id="11941">VERSATILE 2335</model>
+        <trim id="16487">Base</trim>
+        <year>2002</year>
+    </definition>    <definition id="62557">
+        <make id="794">Buhler Versatile</make>
+        <model id="11941">VERSATILE 2335</model>
+        <trim id="16487">Base</trim>
+        <year>2006</year>
+    </definition>    <definition id="93356">
+        <make id="794">Buhler Versatile</make>
+        <model id="11941">VERSATILE 2335</model>
+        <trim id="16487">Base</trim>
+        <year>2003</year>
+    </definition>    <definition id="93365">
+        <make id="794">Buhler Versatile</make>
+        <model id="11941">VERSATILE 2335</model>
+        <trim id="16487">Base</trim>
+        <year>2007</year>
+    </definition>    <definition id="93366">
+        <make id="794">Buhler Versatile</make>
+        <model id="11941">VERSATILE 2335</model>
+        <trim id="16487">Base</trim>
+        <year>2008</year>
+    </definition>    <definition id="124206">
+        <make id="794">Buhler Versatile</make>
+        <model id="11941">VERSATILE 2335</model>
+        <trim id="16487">Base</trim>
+        <year>2004</year>
+    </definition>    <definition id="124209">
+        <make id="794">Buhler Versatile</make>
+        <model id="11941">VERSATILE 2335</model>
+        <trim id="16487">Base</trim>
+        <year>2005</year>
+    </definition>    <definition id="30993">
+        <make id="794">Buhler Versatile</make>
+        <model id="9239">VERSATILE 2360</model>
+        <trim id="12375">Base</trim>
+        <year>2003</year>
+    </definition>    <definition id="30994">
+        <make id="794">Buhler Versatile</make>
+        <model id="9239">VERSATILE 2360</model>
+        <trim id="12375">Base</trim>
+        <year>2004</year>
+    </definition>    <definition id="93359">
+        <make id="794">Buhler Versatile</make>
+        <model id="9239">VERSATILE 2360</model>
+        <trim id="12375">Base</trim>
+        <year>2005</year>
+    </definition>    <definition id="93363">
+        <make id="794">Buhler Versatile</make>
+        <model id="9239">VERSATILE 2360</model>
+        <trim id="12375">Base</trim>
+        <year>2006</year>
+    </definition>    <definition id="124204">
+        <make id="794">Buhler Versatile</make>
+        <model id="9239">VERSATILE 2360</model>
+        <trim id="12375">Base</trim>
+        <year>2002</year>
+    </definition>    <definition id="30998">
+        <make id="794">Buhler Versatile</make>
+        <model id="9243">VERSATILE 2375</model>
+        <trim id="12379">Base</trim>
+        <year>2007</year>
+    </definition>    <definition id="62550">
+        <make id="794">Buhler Versatile</make>
+        <model id="9243">VERSATILE 2375</model>
+        <trim id="12379">Base</trim>
+        <year>2003</year>
+    </definition>    <definition id="62552">
+        <make id="794">Buhler Versatile</make>
+        <model id="9243">VERSATILE 2375</model>
+        <trim id="12379">Base</trim>
+        <year>2004</year>
+    </definition>    <definition id="93360">
+        <make id="794">Buhler Versatile</make>
+        <model id="9243">VERSATILE 2375</model>
+        <trim id="12379">Base</trim>
+        <year>2005</year>
+    </definition>    <definition id="124205">
+        <make id="794">Buhler Versatile</make>
+        <model id="9243">VERSATILE 2375</model>
+        <trim id="12379">Base</trim>
+        <year>2002</year>
+    </definition>    <definition id="124210">
+        <make id="794">Buhler Versatile</make>
+        <model id="9243">VERSATILE 2375</model>
+        <trim id="12379">Base</trim>
+        <year>2006</year>
+    </definition>    <definition id="124213">
+        <make id="794">Buhler Versatile</make>
+        <model id="9243">VERSATILE 2375</model>
+        <trim id="12379">Base</trim>
+        <year>2008</year>
+    </definition>    <definition id="30996">
+        <make id="794">Buhler Versatile</make>
+        <model id="9241">VERSATILE 2425</model>
+        <trim id="12377">Base</trim>
+        <year>2006</year>
+    </definition>    <definition id="62553">
+        <make id="794">Buhler Versatile</make>
+        <model id="9241">VERSATILE 2425</model>
+        <trim id="12377">Base</trim>
+        <year>2004</year>
+    </definition>    <definition id="62555">
+        <make id="794">Buhler Versatile</make>
+        <model id="9241">VERSATILE 2425</model>
+        <trim id="12377">Base</trim>
+        <year>2005</year>
+    </definition>    <definition id="93354">
+        <make id="794">Buhler Versatile</make>
+        <model id="9241">VERSATILE 2425</model>
+        <trim id="12377">Base</trim>
+        <year>2002</year>
+    </definition>    <definition id="93357">
+        <make id="794">Buhler Versatile</make>
+        <model id="9241">VERSATILE 2425</model>
+        <trim id="12377">Base</trim>
+        <year>2003</year>
+    </definition>    <definition id="31088">
+        <make id="799">Cameco</make>
+        <model id="9281">110-T</model>
+        <trim id="12417">Base</trim>
+        <year>2002</year>
+    </definition>    <definition id="31096">
+        <make id="799">Cameco</make>
+        <model id="9281">110-T</model>
+        <trim id="12417">Base</trim>
+        <year>2005</year>
+    </definition>    <definition id="93481">
+        <make id="799">Cameco</make>
+        <model id="9281">110-T</model>
+        <trim id="12417">Base</trim>
+        <year>2004</year>
+    </definition>    <definition id="124304">
+        <make id="799">Cameco</make>
+        <model id="9281">110-T</model>
+        <trim id="12417">Base</trim>
+        <year>2000</year>
+    </definition>    <definition id="124305">
+        <make id="799">Cameco</make>
+        <model id="9281">110-T</model>
+        <trim id="12417">Base</trim>
+        <year>2001</year>
+    </definition>    <definition id="124314">
+        <make id="799">Cameco</make>
+        <model id="9281">110-T</model>
+        <trim id="12417">Base</trim>
+        <year>2003</year>
+    </definition>    <definition id="124323">
+        <make id="799">Cameco</make>
+        <model id="9281">110-T</model>
+        <trim id="12417">Base</trim>
+        <year>2006</year>
+    </definition>    <definition id="31058">
+        <make id="799">Cameco</make>
+        <model id="9273">115-B</model>
+        <trim id="12409">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="31069">
+        <make id="799">Cameco</make>
+        <model id="9273">115-B</model>
+        <trim id="12409">Base</trim>
+        <year>1996</year>
+    </definition>    <definition id="62609">
+        <make id="799">Cameco</make>
+        <model id="9273">115-B</model>
+        <trim id="12409">Base</trim>
+        <year>1986</year>
+    </definition>    <definition id="62615">
+        <make id="799">Cameco</make>
+        <model id="9273">115-B</model>
+        <trim id="12409">Base</trim>
+        <year>1988</year>
+    </definition>    <definition id="62634">
+        <make id="799">Cameco</make>
+        <model id="9273">115-B</model>
+        <trim id="12409">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="93442">
+        <make id="799">Cameco</make>
+        <model id="9273">115-B</model>
+        <trim id="12409">Base</trim>
+        <year>1992</year>
+    </definition>    <definition id="93444">
+        <make id="799">Cameco</make>
+        <model id="9273">115-B</model>
+        <trim id="12409">Base</trim>
+        <year>1993</year>
+    </definition>    <definition id="124267">
+        <make id="799">Cameco</make>
+        <model id="9273">115-B</model>
+        <trim id="12409">Base</trim>
+        <year>1987</year>
+    </definition>    <definition id="124273">
+        <make id="799">Cameco</make>
+        <model id="9273">115-B</model>
+        <trim id="12409">Base</trim>
+        <year>1989</year>
+    </definition>    <definition id="124275">
+        <make id="799">Cameco</make>
+        <model id="9273">115-B</model>
+        <trim id="12409">Base</trim>
+        <year>1990</year>
+    </definition>    <definition id="124285">
+        <make id="799">Cameco</make>
+        <model id="9273">115-B</model>
+        <trim id="12409">Base</trim>
+        <year>1995</year>
+    </definition>    <definition id="31093">
+        <make id="799">Cameco</make>
+        <model id="9285">220T 4WD</model>
+        <trim id="12421">Base</trim>
+        <year>2003</year>
+    </definition>    <definition id="62656">
+        <make id="799">Cameco</make>
+        <model id="9285">220T 4WD</model>
+        <trim id="12421">Base</trim>
+        <year>2000</year>
+    </definition>    <definition id="62673">
+        <make id="799">Cameco</make>
+        <model id="9285">220T 4WD</model>
+        <trim id="12421">Base</trim>
+        <year>2006</year>
+    </definition>    <definition id="93471">
+        <make id="799">Cameco</make>
+        <model id="9285">220T 4WD</model>
+        <trim id="12421">Base</trim>
+        <year>2001</year>
+    </definition>    <definition id="93476">
+        <make id="799">Cameco</make>
+        <model id="9285">220T 4WD</model>
+        <trim id="12421">Base</trim>
+        <year>2002</year>
+    </definition>    <definition id="93482">
+        <make id="799">Cameco</make>
+        <model id="9285">220T 4WD</model>
+        <trim id="12421">Base</trim>
+        <year>2004</year>
+    </definition>    <definition id="93487">
+        <make id="799">Cameco</make>
+        <model id="9285">220T 4WD</model>
+        <trim id="12421">Base</trim>
+        <year>2005</year>
+    </definition>    <definition id="31046">
+        <make id="799">Cameco</make>
+        <model id="9265">305-B</model>
+        <trim id="12401">Base</trim>
+        <year>1984</year>
+    </definition>    <definition id="31050">
+        <make id="799">Cameco</make>
+        <model id="9265">305-B</model>
+        <trim id="12401">Base</trim>
+        <year>1988</year>
+    </definition>    <definition id="31051">
+        <make id="799">Cameco</make>
+        <model id="9265">305-B</model>
+        <trim id="12401">Base</trim>
+        <year>1989</year>
+    </definition>    <definition id="31065">
+        <make id="799">Cameco</make>
+        <model id="9265">305-B</model>
+        <trim id="12401">Base</trim>
+        <year>1994</year>
+    </definition>    <definition id="62608">
+        <make id="799">Cameco</make>
+        <model id="9265">305-B</model>
+        <trim id="12401">Base</trim>
+        <year>1985</year>
+    </definition>    <definition id="62625">
+        <make id="799">Cameco</make>
+        <model id="9265">305-B</model>
+        <trim id="12401">Base</trim>
+        <year>1991</year>
+    </definition>    <definition id="62627">
+        <make id="799">Cameco</make>
+        <model id="9265">305-B</model>
+        <trim id="12401">Base</trim>
+        <year>1992</year>
+    </definition>  
+</vehicles>
