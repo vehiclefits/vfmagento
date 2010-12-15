@@ -37,7 +37,7 @@ class Elite_Vafsitemap_Model_Url_RewriteTests_VehicleListTests_GeneratesURLS_MMY
     
     function rewrite( Zend_Controller_Request_Http $request = null )
     {
-		return $rewrite = new Elite_Vafsitemap_Model_Url_RewriteTests_Subclass;
+		return new Elite_Vafsitemap_Model_Url_RewriteTests_Subclass;
     }
 
 }

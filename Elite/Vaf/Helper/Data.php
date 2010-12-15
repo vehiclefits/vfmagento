@@ -20,6 +20,7 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
     
     protected $productIds;
     
+    /** @return Elite_Vaf_Helper_Data */
     static function getInstance($new=false) // test only
     {
         static $instance;
