@@ -76,7 +76,7 @@ foreach($top_level_categories as $top_level_category)
 
     $top_level_id = createCategory($data,$storeId);
     $idsByTitle[$top_level_category] = array('id'=>$top_level_id);
-    
+
     foreach($sub1_categories[$top_level_category] as $sub1_category)
     {
         $data = $baseData;

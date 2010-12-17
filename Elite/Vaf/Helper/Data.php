@@ -297,7 +297,7 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements Elite_V
     }
 }
 
-/** Test only */
+/** Test only DB Adapter for emulating transaction nesting in MYSQL */
 class My_Adapter extends Zend_Db_Adapter_Pdo_Mysql
 {
     /**
