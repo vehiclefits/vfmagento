@@ -17,6 +17,7 @@
                 'ajaxTestJs/MMTC.php',
                 'ajaxTestJs/MMYdisabled.php',
                 'ajaxTestJs/MMYhide.php',
+                'ajaxTestJs/MMYInUse.php',
                 'ajaxTestJs/YMMGlobalMake.php',
                 'chooserTest/MMY.php',
                 'multiTreeTest/MMY.php'

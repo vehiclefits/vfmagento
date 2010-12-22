@@ -1,5 +1,5 @@
 <?php
-require_once('E:\dev\vaf\app\code\local\Elite\Vaf\bootstrap-tests.php');
+require_once('F:\dev\vaf\app\code\local\Elite\Vaf\bootstrap-tests.php');
 
 $schemaGenerator = new Elite_Vaf_Model_Schema_Generator();
 $schemaGenerator->dropExistingTables();

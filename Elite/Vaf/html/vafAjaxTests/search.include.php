@@ -3,7 +3,7 @@ class Elite_Vaf_Block_Search_AjaxTestSub extends Elite_Vaf_Block_Search
 {
 	function toHtml()
 	{
-		require_once('E:\dev\vaf\app\code\local\Elite\Vaf\design\frontend\default\default\template\vaf\search.phtml');
+		require_once('F:\dev\vaf\app\code\local\Elite\Vaf\design\frontend\default\default\template\vaf\search.phtml');
 	}
 	
 	function __()

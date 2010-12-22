@@ -8,7 +8,14 @@ $schemaGenerator->execute(array('make','model','year'));
 $schema = new Elite_Vaf_Model_Schema();
 
 $vehicle = Elite_Vaf_Model_Vehicle::create( $schema, array(
-    'make' => 'Honda_Unique'.uniqid(),
+    'make' => 'Honda',
+    'model' => 'Civic',
+    'year' => '2001'
+));
+$vehicle->save();
+
+$vehicle = Elite_Vaf_Model_Vehicle::create( $schema, array(
+    'make' => 'Honda',
     'model' => 'Civic',
     'year' => '2002'
 ));
@@ -26,35 +33,35 @@ $mapping->save();
   <head>
     <link rel="stylesheet" href="../qunit/qunit.css" type="text/css"/>
     
-    <script src="/skin/adminhtml/default/default/jquery-1.3.2.min.js"> </script>
+    <script src="/skin/adminhtml/default/default/jquery-1.4.2.min.js"> </script>
+    <script src="/skin/adminhtml/default/default/jquery.metadata.pack.js"> </script>
     <script type="text/javascript" src="../qunit/qunit.js"></script>
-    <script type="text/javascript" src="/vaf/ajax/js?front=1&leafFirst=1"></script>
+    <script type="text/javascript" src="/vaf/ajax/js?front=1"></script>
     <script type="text/javascript" src="../common.js"></script>
     <script type="text/javascript">
         jQuery(document).ready(function($){
             
             QUnit.done = function (failures, total) {
-                top.testPageComplete( '<?=basename(__FILE__)?>', failures, total );
+                top.testPageComplete( 'ajaxTestJs/MMYInUse.php', failures, total );
             };
             
             module("Loading Levels");
+
             
-            test("Selecting a YEAR should display a loading message in the MAKE select box", function() {
+            test("Should only show years in use", function() {
+                stop(); 
                 expect(1);
-                click( 'year', <?=$values['year']?> );
-                selectionTextEquals( $("#makeSelect"), "loading" );
+                click( 'make', <?=$values['make']?> ); 
+                $(".modelSelect").bind( 'vafLevelLoaded', function() { 
+                    click( 'model', <?=$values['model']?> );
+                    $(".yearSelect").bind( 'vafLevelLoaded', function() {
+                        start();
+                        $(".modelSelect").unbind('vafLevelLoaded');
+                        $(".yearSelect").unbind('vafLevelLoaded');
+                        equal( 1, $(".yearSelect option").length );
+                    });
+                });
             });
-            
-//            test("Clicking Make Should Load Models", function() {
-//                stop(); 
-//                expect(1);
-//                click( 'make', <?=$values['make']?> );
-//                $("#modelSelect").bind( 'vafLevelLoaded', function() {
-//                    start();
-//                    $("#modelSelect").unbind('vafLevelLoaded');
-//                    selectionTextEquals( $("#modelSelect"), "Civic" );
-//                });
-//            });
             
         });
     </script>
@@ -67,12 +74,6 @@ $mapping->save();
     </ol>
     
     <?php
-    $config = new Zend_Config( array(
-    	'search'=>array(),
-    	'categorychooser' => array(),
-    	'vaf' => array( 'levels' => 'make,model,year')
-    ), true );
-    $config->search->leafLevelFirst = true;
     include('../search.include.php');
     ?>
   </body>
