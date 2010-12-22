@@ -10,6 +10,10 @@ function selectHasValue( select ) {
 
 var decorateUnavailableSelections = function() {
     
+    if( 1 != <?=$main->isFront() ? 1 : 0?>)
+    {
+    	return;
+    }
     var mode = '<?=$mode?>';
     
     <?php
