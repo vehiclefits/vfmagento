@@ -20,7 +20,9 @@
                 'ajaxTestJs/MMYInUse.php',
                 'ajaxTestJs/YMMGlobalMake.php',
                 'chooserTest/MMY.php',
-                'multiTreeTest/MMY.php'
+                'multiTreeTest/MMY.php',
+                'multiTreeTest/MMYHide.php',
+                'multiTreeTest/YMMGlobalMake.php'
             );
             
             var currentPage = 0; 
