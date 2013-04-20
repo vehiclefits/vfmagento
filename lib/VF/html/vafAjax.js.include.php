@@ -73,6 +73,7 @@ class VafJs
       
     function main( $CONFIG, $schema, $front )
     {
+
         $this->CONFIG = $CONFIG;
         $this->schema = $schema;
         $this->front = $front;
@@ -120,7 +121,7 @@ class VafJs_Ucfirst implements VafJs_Decorator
 {
     function main( $content, $main )
     {
-        return file_get_contents(dirname(__FILE__).'/Js/ucfirst.js') . $content;
+        return file_get_contents(dirname(__FILE__).'/Js/ucfirst.js.php') . $content;
     }
 } 
 

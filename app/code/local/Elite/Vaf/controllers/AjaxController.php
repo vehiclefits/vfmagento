@@ -18,12 +18,12 @@ class Elite_Vaf_AjaxController extends Mage_Core_Controller_Front_Action
     {
         header('Content-Type:application/x-javascript');
         echo 'jQuery.noConflict();';
-        require_once('app/code/local/Elite/lib/VF/html/vafAjax.js.include.php'); 
+        require_once('VF/html/vafAjax.js.include.php');
     }
     
     function processAction()
     {
-        require_once('app/code/local/Elite/lib/VF/html/vafAjax.include.php');
+        require_once('VF/html/vafAjax.include.php');
     }
 
 }
