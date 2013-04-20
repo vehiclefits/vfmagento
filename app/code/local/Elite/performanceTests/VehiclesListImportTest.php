@@ -1,5 +1,5 @@
 <?php
-class Elite_VehiclesListImportTest extends VF_Import_TestCase
+class Elite_performanceTests_VehiclesListImportTest extends VF_Import_TestCase
 {
     protected $csvData;
 

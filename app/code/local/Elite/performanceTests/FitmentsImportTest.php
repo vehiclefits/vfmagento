@@ -1,5 +1,5 @@
 <?php
-class Elite_FitmentsImportTest extends VF_Import_ProductFitments_CSV_ImportTests_TestCase
+class Elite_performanceTests_FitmentsImportTest extends VF_Import_ProductFitments_CSV_ImportTests_TestCase
 {
     function doSetUp()
     {
@@ -21,6 +21,7 @@ class Elite_FitmentsImportTest extends VF_Import_ProductFitments_CSV_ImportTests
     
     function testMemory()
     {
+        var_dump(memory_get_usage());
         ini_set('memory_limit','12M');
         $this->switchSchema('model,year',true);
         $this->mappingsImportFromFile($this->csvFile());
