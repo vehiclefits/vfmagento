@@ -21,35 +21,19 @@
 <body>
     
 
-<strong>DISABLE your Magento cache before installing any new modules.</strong>
-<br />
-    Unzip the <b class="path source">Elite/</b> folder to <b class="path">app/code/local/</b></li>, so you will have app/code/local/Elite.
-        
-    
+<ol>
+    <li><strong>DISABLE your Magento cache before installing any new modules.</strong></li>
+    <li>Unzip the module to where Magento is installed.</li>
+    <li>Reanme app/code/local/Elite/Vaf/config.default.ini to config.ini</li>
+    <li>
+        Open <b class="path">app/Mage.php</b> and paste the following ( right at the beginning of the file after the &lt;?php tag )
+         <pre class="kodify php"> require_once( 'code/local/Elite/Vaf/bootstrap.php' ); </pre>
+         <i>Note: This needs to be repeated whenever you upgrade Magento. Just refer to the "upgrading magento" link on the table of contents.</i>
+    </li>
+    <li>
+        Copy <b class="source path">Elite/install-vaf.php</b> to Magento's web root. Load it in your browser. Press GO to have the database created and the design files, and layout XML copied to their correct paths. The check boxes allow you to choose which actions to omit if any. The red/green boxes show you if your file permissions are sufficient for installation.
+    </li>
+</ol>
 
-<div id="firststeps">
-        See Also: <a href="configuration.htm">Configuration Guide</a>
-        
-        <ul>
-            <li>
-                Open <b class="path">app/code/local/Elite/Vaf/</b>
-                <br />
-                Rename <b class="source path">config.default.ini</b> to <b>config.ini</b>
-            </li>
-           
-            <li>       
-                Open <b class="path">app/Mage.php</b> and paste the following ( right at the beginning of the file after the &lt;?php tag )
-                 <pre class="kodify php"> require_once( 'code/local/Elite/Vaf/bootstrap.php' ); </pre>
-                 <i>Note: This needs to be repeated whenever you upgrade Magento. Just refer to the "upgrading magento" link on the table of contents.</i> 
-            </li>                                                                                                                                      
-        </ul>
-        
- </div>
-         
-
-<div id="installer">
-    Copy <b class="source path">Elite/install-vaf.php</b> to Magento's web root. Load it in your browser. Press GO to have the database created and the design files copied. The check boxes allow you to choose which actions to omit if any. The red/green boxes show you if your file permissions are sufficient for installation.
-</div>
-  
 </body>
 </html>
