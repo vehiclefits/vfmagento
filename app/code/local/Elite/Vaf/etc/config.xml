@@ -118,7 +118,7 @@
                         <children>
                             <local translate="title">
                                 <title>Manage</title>
-                                <action>adminhtml/definitions</action>
+                                <action>adminhtml/vehicleslist</action>
                             </local>
                         </children>
                     </vehicleslist>
