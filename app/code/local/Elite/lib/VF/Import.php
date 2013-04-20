@@ -128,7 +128,7 @@ abstract class VF_Import extends VF_Import_Abstract implements VF_Configurable
 
     function allowMissingFields()
     {
-	return $this->getConfig()->importer->allowMissingFields;
+	return $this->getConfig()->importer->allowMissingFields != false && $this->getConfig()->importer->allowMissingFields != 'false';
     }
 
     function getConfig()
