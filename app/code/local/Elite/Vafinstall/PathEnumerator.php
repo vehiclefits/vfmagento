@@ -17,8 +17,6 @@ class Elite_Vafinstall_PathEnumerator
 	function tasks()
 	{
 		$tasks = array(
-		    array( 'app/code/local/Elite/skin/', './skin/', 'static js & css' ),
-            array( 'app/code/local/Elite/Vaf/jsAndCss/', '.', 'dynamic js, css & ajax' )
 		);
 
 		return $tasks;

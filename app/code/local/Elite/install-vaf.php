@@ -20,14 +20,8 @@ $helper = Elite_Vaf_Helper_Data::getInstance();
 ?>
 <form action="?" method="post">
 	<?php
-	$pathEnumerator = new Elite_Vafinstall_PathEnumerator;
-	include('Elite/Vafinstall/includes/check-permissions.php');
 	include('Elite/Vafinstall/includes/install-db.php');
-	include('Elite/Vafinstall/includes/copy-files.php')
 	?>
 
 	<input type="submit" name="submit" value="GO" />
 </form>
-
-<?php
-include('Elite/Vafinstall/includes/jquery.php');
