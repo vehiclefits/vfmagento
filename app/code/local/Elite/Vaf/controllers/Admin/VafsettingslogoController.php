@@ -12,7 +12,7 @@ class Elite_Vaf_Admin_VafsettingslogoController extends Mage_Adminhtml_Controlle
         
         $block = $this->getLayout()
                 ->createBlock('core/template', 'vafsettings/logo' )
-                ->setTemplate('vafsettings/logo.phtml');
+                ->setTemplate('vf/vafsettings/logo.phtml');
         
         $this->_addContent( $block );
         $this->renderLayout();

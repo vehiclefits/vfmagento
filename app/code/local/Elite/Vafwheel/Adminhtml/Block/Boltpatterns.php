@@ -16,7 +16,7 @@ class Elite_Vafwheel_Adminhtml_Block_Boltpatterns extends Mage_Adminhtml_Block_W
             $this->messages = 'done';
         }
         
-        $this->setTemplate( 'vaf/boltpatterns.phtml' );
+        $this->setTemplate( 'vf/vaf/boltpatterns.phtml' );
 
     }
   

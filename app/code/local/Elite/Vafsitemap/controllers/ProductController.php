@@ -19,7 +19,7 @@ class Elite_Vafsitemap_ProductController extends Mage_Core_Controller_Front_Acti
         $this->_initLayoutMessages('tag/session');
         
         $block = $this->getLayout()->createBlock( 'vafsitemap/product', 'vafsitemap_products' );
-        $block->setTemplate('vafsitemap/product.phtml');
+        $block->setTemplate( 'vf/vafsitemap/product.phtml');
        // $block->setProductId( $this->getProductId() );
         $this->getLayout()->getBlock( 'content' )->append( $block );
         

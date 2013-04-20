@@ -22,7 +22,7 @@ class Elite_Vafnote_Admin_VafnoteimportController extends Mage_Adminhtml_Control
         $this->loadLayout();
         $this->_setActiveMenu('vaf');
         $this->block = $this->getLayout()->createBlock('core/template' );
-       	$this->block->setTemplate('vafnote/import.phtml');
+       	$this->block->setTemplate( 'vf/vafnote/import.phtml');
        	
        	$this->guts();
        	

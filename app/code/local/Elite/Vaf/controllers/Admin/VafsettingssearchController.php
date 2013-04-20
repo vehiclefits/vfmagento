@@ -12,7 +12,7 @@ class Elite_Vaf_Admin_VafsettingssearchController extends Mage_Adminhtml_Control
         
         $block = $this->getLayout()
                 ->createBlock('core/template', 'vafsettings/search' )
-                ->setTemplate('vafsettings/search.phtml');
+                ->setTemplate('vf/vafsettings/search.phtml');
         
         $this->_addContent( $block );
         $this->renderLayout();

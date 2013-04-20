@@ -16,7 +16,7 @@ class Elite_Vaf_Block_Product_Result_Group extends Elite_Vaf_Block_Product_Resul
     function __construct()
     {
         parent::__construct();
-        $this->setTemplate('vaf/group/result.phtml');
+        $this->setTemplate('vf/vaf/group/result.phtml');
     }
     
     /**

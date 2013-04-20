@@ -16,7 +16,7 @@ class Elite_Vafpaint_Adminhtml_Block_Paintcodes extends Mage_Adminhtml_Block_Wid
             $this->messages = 'Import Complete';
         }
         
-        $this->setTemplate( 'vaf/paintcodes.phtml' );
+        $this->setTemplate( 'vf/vaf/paintcodes.phtml' );
     }
   
     /**

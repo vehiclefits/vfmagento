@@ -32,16 +32,16 @@ class Elite_Vafnote_Admin_VafnotemanageController extends Mage_Adminhtml_Control
             if( $this->getRequest()->getParam('confirm') )
             {
                 $finder->delete($this->getRequest()->getParam('id'));
-                $block->setTemplate('vafnote/manage.phtml');
+                $block->setTemplate( 'vf/vafnote/manage.phtml');
             }
             else
             {
-                $block->setTemplate('vafnote/delete.phtml');
+                $block->setTemplate( 'vf/vafnote/delete.phtml');
             }
         }
         else
         {
-            $block->setTemplate('vafnote/manage.phtml');
+            $block->setTemplate( 'vf/vafnote/manage.phtml');
         }
         
         $this->_addContent( $block );
@@ -61,7 +61,7 @@ class Elite_Vafnote_Admin_VafnotemanageController extends Mage_Adminhtml_Control
             $finder->update( $id, $message );
             
             $block = $this->getLayout()->createBlock('adminhtml/manage', 'vafnote' );
-            $block->setTemplate('vafnote/manage.phtml');
+            $block->setTemplate( 'vf/vafnote/manage.phtml');
             $this->_addContent( $block );
         	$this->renderLayout();
         	return;
@@ -69,7 +69,7 @@ class Elite_Vafnote_Admin_VafnotemanageController extends Mage_Adminhtml_Control
         
         $block = $this->getLayout()->createBlock('adminhtml/edit', 'vafnote' );
         $block->id = $this->getRequest()->getParam('id');
-        $block->setTemplate('vafnote/edit.phtml');
+        $block->setTemplate( 'vf/vafnote/edit.phtml');
         $this->_addContent( $block );
         
         $this->renderLayout();  
