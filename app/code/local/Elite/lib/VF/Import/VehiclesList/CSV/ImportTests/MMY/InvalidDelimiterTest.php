@@ -9,7 +9,7 @@ class VF_Import_VehiclesList_CSV_ImportTests_MMY_InvalidDelimiterTest extends VF
     }
     
     /**
-    * @expectedException Exception
+    * @expectedException VF_Import_VehiclesList_CSV_Exception_FieldHeaders
     */
     function testInvalidDelimiterCausesException()
     {
