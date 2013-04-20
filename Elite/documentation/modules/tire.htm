@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xml:lang="en">
+<head>
+
+    <link id="theme" rel="stylesheet" type="text/css" href="../kodify/themes/cheery.css" />
+    <link id="theme" rel="stylesheet" type="text/css" href="../style.css" />
+
+    <script type="text/javascript" src="../kodify/js/lx_analyzer.js"></script>
+    <script type="text/javascript" src="../kodify/js/kodify.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/js.js"></script>
+
+    <script type="text/javascript" src="../kodify/js/lang/php.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/html.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/css.js"></script>
+
+</head>
+<body>
+
+    <h1>Tire Installation &amp; User Guide</h1>
+    <p>With the tire module, you have the capability to upload the product's tire specifications. Your users can then search by tire size</p>
+    
+    <!-- install -->
+    <h2 id="install">Installation</h2>
+    <div>
+        <p>To install the module:
+            <ul>
+                <li>First upload the module, upload <b class="source path">Elite/Vaftire</b> into your <b class="target path">app/code/local/Elite/</b> path.</li>
+                <li>You may use the installer, or manually copy <b class="source path">Vaftire/Elite_Vaftire.xml</b> to <b class="target path">app/etc/modules</b></li>
+            </ul>
+        </p>
+    </div>
+    
+    <!-- set tire size -->   
+    <h2 id="set_tire_size">Set A Product's Tire Size</h2>
+    <div>
+        When editing a product set or unset the tire size and press save. This sets the tire size of your product.
+        <br />
+        <img src="tire/set_tiresize.JPG" />
+        <br />
+        Save the product within Magento to save your changes. To unset the tiresize, highlight each field and back space out all values, and subsequently save the product.
+    </div>
+    
+    <!-- import tire size -->  
+    <h2 id="import_export_product_tiresizes">Import/Export Product Tire Sizes</h2>
+    <div>
+        Navigate to Vehicles -> Tires -> Product Tire Sizes -> Import:
+        <br />
+        
+        <img src="tire/import_menu.JPG" />
+        <br />
+        <br />
+        
+        Use this format:
+        <br />
+        <img src="tire/import_format.JPG" />
+        <hr />
+
+        <strong>Tire Type Codes</strong>
+        <p>In the tire_type column,<br /> 1=Summer/All.<br /> 2=Winter.</p>
+    </div>
+        
+    <!-- import tire size (CLI) -->  
+    <h2 id="import_export_product_tiresizesCLI">Import/Export Product Tire Sizes (Command Line Interface)</h2>
+    <div>
+        Navigate to Elite/Vaftire/cron
+        <br />
+        
+        Open config.php and set the path information &amp; database details.
+        <br />
+        
+        To <strong>import</strong>, create a file called product-tires-sizes-import.csv <a href="#import_export_product_tiresizes">with the above format</a>, then use this command:
+        <br />
+        <pre>php product-tire-sizes-import.csv.php</pre>
+        Or as a background process:
+        <pre>nohup php product-tire-sizes-import.csv.php > product-tire-sizes-import.csv.log &amp;</pre>
+        <br />
+        
+        To <strong>export</strong>, use this command
+        <br />
+        <pre>php product-tire-sizes-export.csv.php</pre>
+        Or as a background process:
+        <pre>nohup php product-tire-sizes-export.csv.php > product-tire-sizes-export.csv &amp;</pre>
+        <br />
+    </div>
+    
+    <!-- search form -->
+    <h2 id="tire_search_form">Tire Search Form</h2>
+    <div>
+        <strong>Activate Search Via layout/vaftire.xml</strong>
+        <br />
+        In your theme's path, under the layout folder (app/design/frontend/default/default/layout/) open 'vaftire.xml'. Uncomment the layout XML to activate the tire search on the front-end. This allows a customer to search by tire size.
+
+        <br />
+        <img src="tire/search_form.JPG" />
+        <br />
+        <br />
+        
+        <strong>Submit Action</strong>
+        <p>To change the submit action of the tires form, open the template file &amp; change the form action. The template file is in vaftire/search.phtml</p>
+        <p>Edit in the URL of your tire category to the form action.</p>
+    </div>
+    
+    <!-- import vehicle tire sizes -->
+    <h2 id="import_vehicle_tiresizes">Import Vehicle Tire Sizes</h2>
+    <div>
+        // documentation todo - call for help setting up this database 1-877-CAR-1788
+    </div>
+    
+</body></html>

@@ -1,0 +1,22 @@
+<div class="box vaf vaf-garage">
+    <div class="head"><h4>My Garage</h4></div>
+    <div class="content">
+	<?php
+	if (isset($_SESSION['garage']))
+	{
+	    $garage = $_SESSION['garage'];
+	    foreach ($garage->vehicles() as $vehicle)
+	    {
+		$vehicleFinder = new VF_Vehicle_Finder(new VF_Schema);
+		$vehicle = $vehicleFinder->findOneByLevelIds($vehicle, VF_Vehicle_Finder::EXACT_ONLY);
+		if ($vehicle)
+		{
+		    echo '<a href="' . $this->getUrl('vafgarage/remove/remove/vehicle/' . implode('-', $vehicle->toValueArray())) . '">[x]</a>';
+		    echo '<a href="?' . http_build_query($vehicle->toValueArray()) . '">' . $vehicle . '</a>';
+		    echo '<br />';
+		}
+	    }
+	}
+	?>
+    </div>
+</div>

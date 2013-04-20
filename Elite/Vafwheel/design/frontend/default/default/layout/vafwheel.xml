@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <!-- add bolt search on right hand side of any applicable page -->
+	<default>
+        <reference name="right">
+            <!--<block type="core/template" name="vafwheel_search" template="vafwheel/search.phtml" after="vaf_search"></block>-->
+        </reference>
+    </default>
+    
+</layout>
+        

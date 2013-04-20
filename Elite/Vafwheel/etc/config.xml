@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+
+<config>
+    
+    <modules>
+        <Elite_Vafwheel>
+            <version>1.35</version>
+        </Elite_Vafwheel>
+    </modules>
+    
+    <global>
+
+        <blocks>
+            <adminhtml>
+                <rewrite>
+                    <vaf_boltpatterns>Elite_Vafwheel_Adminhtml_Block_Boltpatterns</vaf_boltpatterns>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        
+        <events>
+            <elite_vaf_product_edit>
+                <observers>
+                    <Elite_Vafwheel>
+                        <type>singleton</type>
+                        <class>Elite_Vafwheel_Observer_ProductBoltBinder</class>
+                        <method>addBoltPatterns</method>
+                    </Elite_Vafwheel>
+                </observers>
+            </elite_vaf_product_edit>
+        </events>
+        
+    </global>
+
+            
+    <adminhtml>
+        <menu>
+            <vaf>
+                <children>
+                	<wheels translate="title">
+                		<title>Wheels</title>
+	                    <sort_order>120</sort_order>
+                		<children>
+		                    <import translate="title">
+		                        <title>Import</title>
+		                        <action>adminhtml/bolt/boltpatterns</action> 
+		                        <sort_order>130</sort_order>
+		                    </import>
+						</children>
+					</wheels>
+                </children>
+            </vaf>
+            
+        </menu>
+        
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <vaf>
+                            <children>
+                                <wheels translate="title">
+                                    <title>Wheels</title>
+                                    <sort_order>120</sort_order>
+                                    <children>
+                                        <import translate="title">
+                                            <title>Import</title>
+                                            <action>adminhtml/bolt/boltpatterns</action> 
+                                            <sort_order>130</sort_order>
+                                        </import>
+                                    </children>
+                                </wheels>
+                            </children>
+                        </vaf>
+                    </children>
+               </admin>
+           </resources>
+        </acl>
+    </adminhtml>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <frontName><![CDATA[admin]]></frontName>
+                    
+                    <modules>
+                      <Elite_Vafwheel_Admin before="Mage_Adminhtml">Elite_Vafwheel_Admin</Elite_Vafwheel_Admin>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+     </admin>
+     
+     <frontend>
+        <layout>
+            <updates>
+                <Elite_Vafwheel>
+                    <file>vafwheel.xml</file>
+                </Elite_Vafwheel>
+            </updates>
+        </layout>
+     </frontend>
+    
+</config>

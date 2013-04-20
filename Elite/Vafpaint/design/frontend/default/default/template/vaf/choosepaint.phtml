@@ -1,0 +1,65 @@
+<?php
+
+$product = Mage::registry('current_product');
+
+/** @todo move this out of templates */
+function isPainted($product)
+{
+	$options = $product->getOptions();
+	foreach($options as $option)
+	{
+		 if('painted'==strtolower($option->getTitle()))
+		 {
+			 return true;
+		 }
+	}
+	return false;
+}
+
+if(!isPainted($product))
+{
+	return;
+}
+?>
+
+<div class="paintOptions" align="center">
+    <?php
+    $fit = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
+    if( $fit )
+    {
+    	$leaf_id = $fit->getLeafValue();
+    
+        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new Elite_Vaf_Model_Schema );
+        $vehicle = $vehicleFinder->findByLeaf( $leaf_id );
+        ?>
+        <strong>Choose Painting Option For Your <?=$vehicle->__toString()?>:</strong>
+        <br />
+        <?php
+        $mapper = new Elite_Vafpaint_Model_Paint_Mapper;
+        $paint_codes = $mapper->findByFitId( $leaf_id );
+        echo '<table class="vafPaintList">';
+        foreach( $paint_codes as $paint )
+        {
+            echo '<tr>';
+                echo '<td><input type="radio" name="paint" value="' . $paint->getId() . '" /></td>';
+                echo '<td>' . $this->htmlEscape( $paint->getCode() ) . '</td>';
+                echo '<td>' . $this->htmlEscape( $paint->getName() ) . '</td>';
+                echo '<td style="background-color:' . $this->htmlEscape( $paint->getColor() ) . ';width:30px;border:1px #000 solid">&nbsp;</td>';
+            echo '</tr>';
+        }
+        echo '<tr>';
+        	echo '<td><input type="radio" name="paint" value="other" /></td>';
+            echo '<td>OTHER</td>';
+            echo '<td colspan="2">Custom Color Code
+            	<input type="text" name="vafPaintCustom" value="" /></td>';
+        echo '</tr>';
+        echo '</table>';
+    }
+    else
+    {
+        ?>
+        Select your vehicle to view paint availability.
+        <?php
+    }
+    ?>
+</div>

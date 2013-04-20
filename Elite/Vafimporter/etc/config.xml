@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Elite_Vaf>
+            <version>1.35</version>
+        </Elite_Vaf>
+    </modules>
+    <global>
+        <blocks>
+            <adminhtml>
+                <rewrite>
+                    <vafimporter_definitions>Elite_Vafimporter_Adminhtml_Block_Definitions_Import</vafimporter_definitions>
+                    <vafimporter_definitionsexport>Elite_Vafimporter_Adminhtml_Block_Definitionsexport</vafimporter_definitionsexport>
+                    <vafimporter_mappings>Elite_Vafimporter_Adminhtml_Block_Mappings</vafimporter_mappings>
+                    <vafimporter_mappingsexport>Elite_Vafimporter_Adminhtml_Block_Mappingsexport</vafimporter_mappingsexport>
+                    <vafimporter_mappingsadvanced>Elite_Vafimporter_Adminhtml_Block_MappingsAdvanced</vafimporter_mappingsadvanced>
+                </rewrite>
+            </adminhtml> 
+        </blocks>
+     </global>
+     
+     <adminhtml>
+        <menu>
+            <vaf>
+                <children>
+                    <vehicleslist>
+                        <children>
+                            <import translate="title">
+                                <title>Import</title>
+                                <action>adminhtml/vafdefinitionsimporter/index</action>
+                            </import>
+                            <export translate="title">
+                                <title>Export</title>
+                                <action>adminhtml/vafimporter/definitionsexport</action>
+                            </export>
+                        </children>
+                    </vehicleslist>
+                    <mappings translate="title">
+                        <title>Product Applications</title>
+                        <children>
+                            <import translate="title">
+                                <title>Import</title>
+                                <action>adminhtml/vafmappingsimporter/index</action>
+                            </import>
+                            <export translate="title">
+                                <title>Export</title>
+                                <action>adminhtml/vafimporter/mappingsexport</action>
+                            </export>
+                        </children>
+                        <sort_order>20</sort_order>
+                    </mappings>
+                    <settings>
+                        <children>
+                            <importexportsettings translate="title">
+                                <title>Import/Export</title>
+                                <action>adminhtml/vafimportexportsettings/index</action>
+                                <sort_order>21</sort_order>
+                            </importexportsettings>
+                        </children>
+                    </settings>
+                </children>
+            </vaf>
+        </menu>
+        
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <vaf>
+                            <children>
+                                <vehicleslist>
+                                    <children>
+                                        <import translate="title">
+                                            <title>Import</title>
+                                            <action>adminhtml/vafdefinitionsimporter/index</action>
+                                        </import>
+                                        <export translate="title">
+                                            <title>Export</title>
+                                            <action>adminhtml/vafimporter/definitionsexport</action>
+                                        </export>
+                                    </children>
+                                </vehicleslist>
+                                <mappings translate="title">
+                                    <title>Product Applications</title>
+                                    <children>
+                                        <import translate="title">
+                                            <title>Import</title>
+                                            <action>adminhtml/vafmappingsimporter/index</action>
+                                        </import>
+                                        <export translate="title">
+                                            <title>Export</title>
+                                            <action>adminhtml/vafimporter/mappingsexport</action>
+                                        </export>
+                                    </children>
+                                    <sort_order>20</sort_order>
+                                </mappings>
+                            </children>
+                       </vaf>
+                   </children>
+               </admin>
+           </resources>
+        </acl>
+    </adminhtml>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <frontName><![CDATA[admin]]></frontName>
+                    
+                    <modules>
+                      <Elite_Vafimporter_Admin before="Mage_Adminhtml">Elite_Vafimporter_Admin</Elite_Vafimporter_Admin>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+     </admin>
+
+</config>

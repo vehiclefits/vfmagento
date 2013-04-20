@@ -1,0 +1,1 @@
+This module exists to override admin controllers in a test environment, for the purposes of bypassing CRSF checks and authentication checks, to ease testing of ajax components that need to call upon controllers. Should this module ever be included in production it would compromise admin panel security.

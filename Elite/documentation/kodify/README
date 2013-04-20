@@ -1,0 +1,63 @@
+Kodify is a multi-language code beautifier for HTML pages
+---------------------------------------------------------
+
+Unlike most other code beautifiers which run on the server
+side, Kodify runs in the browser, allowing you to use
+more semantic markup (i.e. it doesn't fill your page with
+<span> tags or CSS.
+
+What makes Kodify undisputably more powerful & flexible
+than other code beautifiers is the fact that it is powered
+by a real lexical analyzer based on the long-proven C tool
+lex.
+
+Styling is done by manipulating the DOM to add class name
+attributes to tokens detected in the text of elements
+given the "kodify" class name.
+
+Kodify supports multiple themes as lightweight, basic CSS
+files.
+
+Adding new languages to Kodify is easy and simply requires
+an understanding of JavaScript (ECMAScript actually) and
+some knowledge of state-based lexical analysis.  See the
+Lx project for more information on the scanning routine.
+
+The provided language specifications in the "js/lang"
+directory should serve as a good starting point.
+
+USAGE:
+------
+
+Refer to the file "demo/index.html" for an example.
+
+You need to include a few .js files in your web page:
+
+<script type="text/javascript" src="kodify/js/lx_analyzer.js">
+</script>
+<script type="text/javascript" src="kodify/js/kodify.js">
+</script>
+<script type="text/javascript" src="kodify/js/lang/lang-name.js">
+</script>
+
+The last <script> tag above includes the relevant language file.
+You should replace "lang-name.js" with the relevant language
+file (e.g. "php.js").
+
+You also need to include a theme of your choice:
+
+<link rel="stylesheet" type="text/css"
+  href="kodify/themes/dark.css" />
+
+All code blocks to be colorized must have the class name "kodify"
+in addition to the language they contain.  If they do not contain
+any specific language the generic ruleset will be used instead.
+
+<code><pre class="kodify js">
+function AJavaScriptFunction(foo) {
+  //Code etc etc
+}
+</pre></code>
+
+Kodify will automatically apply styles to your code sections when
+the page has completed loading.

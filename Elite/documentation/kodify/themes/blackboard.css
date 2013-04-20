@@ -1,0 +1,96 @@
+/** Kodify Theme: Blackboard */
+
+.kodify {
+  background: #222233;
+  color: #ffffff;
+}
+
+.kodify .bracketpair {
+  background: #ffffaa;
+  color: #222222;
+  cursor: default;
+}
+
+.kodify .bracketpair.unpaired {
+  background: none;
+  color: #ff0000;
+  border-bottom: 2px solid #ff0000;
+  cursor: default;
+}
+
+.kodify .control {
+  color: #ffff00;
+}
+
+.kodify .operator {
+  color: #dddd44;
+}
+
+.kodify .predefined {
+  color: #ff5588;
+}
+
+.kodify .predefined.variable {
+  color: #ff5588;
+}
+
+.kodify .predefined.function {
+  font-weight: bold;
+}
+
+.kodify .keyword {
+  color: #ffaa44;
+}
+
+.kodify .identifier.variable {
+  color: #ff88ff;
+}
+
+.kodify .string {
+  color: #22dd22;
+}
+
+.kodify .string.literal {
+  color: #44aa44;
+}
+
+.kodify .number {
+  color: #7777ff;
+}
+
+.kodify .number.hexadecimal {
+  color: #aaaaff;
+}
+
+.kodify .comment {
+  color: #aaaaaa;
+}
+
+.kodify .regex {
+  color: #66ff88;
+}
+
+.kodify .markup.xml,
+.kodify .markup.doctype {
+  font-style: italic;
+  color: #ff5588;
+}
+
+.kodify .markup.tag {
+  color: #ffaa44;
+}
+
+.kodify .markup.attribute {
+  color: #ffff00;
+  font-style: italic;
+}
+
+.kodify .markup.class {
+  color: #ff5588;
+  font-style: italic;
+}
+
+.kodify .markup.id {
+  color: #ff5588;
+  text-decoration: underline;
+}

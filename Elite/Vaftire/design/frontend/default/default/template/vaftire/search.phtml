@@ -1,0 +1,59 @@
+<?php
+Elite_Vaf_Helper_Data::getInstance()->storeFitInSession();
+
+$finder = new Elite_Vaftire_Model_Finder();
+$flexibleSearch = Elite_Vaf_Helper_Data::getInstance()->flexibleSearch();
+$flexibleSearch = new Elite_Vaftire_Model_FlexibleSearch($flexibleSearch);
+
+$helper = new Zend_View_Helper_FormSelect();
+$helper->setView(new Zend_View);
+?>
+
+<div class="box base-mini mini-vaf">
+    <div class="head"><h4>Search By Tire Size:</h4></div>
+    <div class="content">  
+    
+    <form action="?" id="vafTireForm" class="vafTireForm">
+        Section Width:
+        <?php
+        $options = array('');
+        $options = $options + $finder->sectionWidths();
+        echo $helper->formSelect('section_width', $flexibleSearch->sectionWidth(), array(), $options );
+        ?>
+        <br />
+        Aspect Ratio:
+        <?php
+        $options = array('');
+        $options = $options + $finder->aspectRatios();
+        echo $helper->formSelect('aspect_ratio', $flexibleSearch->aspectRatio(), array(), $options );
+        ?>
+        <br />
+        Diameter:
+        <?php
+        $options = array('');
+        $options = $options + $finder->diameters();
+        echo $helper->formSelect('diameter', $flexibleSearch->diameter(), array(), $options );
+        ?>
+        <br />
+        <br />
+        Season:
+        <?php
+        /** @todo duplicated in admin */
+        $helper = new Zend_View_Helper_FormSelect();
+	    $helper->setView( new Zend_View );
+
+	    echo $helper->formSelect('tire_type',$flexibleSearch->tireType(),array(),array(
+	    	0 => 'All',
+	    	Elite_Vaftire_Model_Catalog_Product::SUMMER_ALL => 'Summer/All Seasons',
+	    	Elite_Vaftire_Model_Catalog_Product::WINTER => 'Winter'
+	    	
+	    ));
+        ?>
+        <div align="center">
+        	<input type="button" name="clear" value="Clear" onclick="window.location = '?diameter=0&aspect_ratio=0&section_width=0';" />
+        	<input type="submit" name="search" value="Search" />
+        </div>
+    </form>
+
+    </div>
+</div>

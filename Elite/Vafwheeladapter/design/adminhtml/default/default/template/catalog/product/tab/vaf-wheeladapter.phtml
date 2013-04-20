@@ -1,0 +1,18 @@
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('catalog')->__('Adapter Specification (Wheel Side)') ?></h4>
+    </div>
+    <fieldset>
+        If this is a wheel adapter product, enter it's <b>Wheel Side</b> specification below. (vehicle side gets entered like a regular wheel, above).
+        
+        <br />
+        Put one bolt pattern ex. 4x144.3  
+        <br />
+        <?php
+        $product = $this->getProduct();
+        $wheeladapterProduct = new Elite_Vafwheeladapter_Model_Catalog_Product($product);
+        $boltPattern = $wheeladapterProduct->getWheelSideBoltPattern();
+        ?>
+        <input type="text" name="wheel_side_pattern" value="<?=$boltPattern?>" />
+    </fieldset>
+</div>

@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+
+<config>
+    
+    <modules>
+        <Elite_Vaftire>
+            <version>1.35</version>
+        </Elite_Vaftire>
+    </modules>
+    
+    <global>
+        <events>
+            <elite_vaf_product_edit>
+                <observers>
+                    <Elite_Vaftire>
+                        <type>singleton</type>
+                        <class>Elite_Vaftire_Observer_ProductTireSizeBinder</class>
+                        <method>setTireSize</method>
+                    </Elite_Vaftire>
+                </observers>
+            </elite_vaf_product_edit>
+        </events>
+    </global>
+    
+    <frontend>
+        <layout>
+            <updates>
+                <Elite_Vaftire>
+                    <file>vaftire.xml</file>
+                </Elite_Vaftire>
+            </updates>
+        </layout>
+    </frontend>
+    
+    <adminhtml>
+        <menu>
+            <vaf>
+                <children>
+                    <tire translate="title">
+                        <title>Tires</title>
+                        <children>
+                            <vehicletiresizes translate="title">
+                                <title>Vehicle Tire Sizes</title>
+                                <children>
+                                    <export translate="title">
+                                        <title>Export</title>
+                                        <action>adminhtml/vaftirevehicleexport/export</action>
+                                    </export>
+                                    <import translate="title">
+                                        <title>Import</title>
+                                        <action>adminhtml/vaftirevehicleimport/import</action>
+                                    </import>
+                                </children>
+                            </vehicletiresizes>
+                            <producttiresizes translate="title">
+                                <title>Product Tire Sizes</title>
+                                <children>
+                                    <export translate="title">
+                                        <title>Export</title>
+                                        <action>adminhtml/vaftireexport/export</action>
+                                    </export>
+                                    <import translate="title">
+                                        <title>Import</title>
+                                        <action>adminhtml/vaftireimport/import</action>
+                                    </import>
+                                </children>
+                            </producttiresizes>
+                        </children>
+                        <sort_order>90</sort_order>
+                    </tire>
+                </children>
+            </vaf>
+        </menu>
+        
+        
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <vaf>
+                            <children>
+                                <tire translate="title">
+                                    <title>Tires</title>
+                                    <children>
+                                        <vehicletiresizes translate="title">
+                                            <title>Vehicle Tire Sizes</title>
+                                            <children>
+                                                <export translate="title">
+                                                    <title>Export</title>
+                                                    <action>adminhtml/vaftirevehicleexport/export</action>
+                                                </export>
+                                                <import translate="title">
+                                                    <title>Import</title>
+                                                    <action>adminhtml/vaftirevehicleimport/import</action>
+                                                </import>
+                                            </children>
+                                        </vehicletiresizes>
+                                        <producttiresizes translate="title">
+                                            <title>Product Tire Sizes</title>
+                                            <children>
+                                                <export translate="title">
+                                                    <title>Export</title>
+                                                    <action>adminhtml/vaftireexport/export</action>
+                                                </export>
+                                                <import translate="title">
+                                                    <title>Import</title>
+                                                    <action>adminhtml/vaftireimport/import</action>
+                                                </import>
+                                            </children>
+                                        </producttiresizes>
+                                    </children>
+                                    <sort_order>90</sort_order>
+                                </tire>
+                            </children>
+                        </vaf>
+                    </children>
+               </admin>
+           </resources>
+        </acl>
+    </adminhtml>
+    
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <frontName><![CDATA[admin]]></frontName>
+                    
+                    <modules>
+                      <Elite_Vaftire_Admin before="Mage_Adminhtml">Elite_Vaftire_Admin</Elite_Vaftire_Admin>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+     </admin>
+</config>

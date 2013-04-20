@@ -1,0 +1,25 @@
+<pre>
+&lt;vaf translate=&quot;title&quot; module=&quot;adminhtml&quot;&gt;
+    &lt;title&gt;Vaf&lt;/title&gt;
+    &lt;sort_order&gt;25&lt;/sort_order&gt;
+    &lt;children&gt;
+    &lt;definitions translate=&quot;title&quot;&gt;
+        &lt;title&gt;Fit Definitions&lt;/title&gt;
+        &lt;action&gt;adminhtml/vaf&lt;/action&gt; 
+        &lt;sort_order&gt;10&lt;/sort_order&gt;
+    &lt;/definitions&gt;
+    &lt;mappings translate=&quot;title&quot;&gt;
+        &lt;title&gt;Product Mappings&lt;/title&gt;
+        &lt;action&gt;adminhtml/vaf/mappings&lt;/action&gt; 
+        &lt;sort_order&gt;20&lt;/sort_order&gt;
+    &lt;/mappings&gt;
+    &lt;/children&gt;
+&lt;/vaf&gt;
+            </pre>  
+            
+            <li>
+            Add VAF to the menu. Open <b class="path">app/code/core/Mage/Adminhtml/etc/config.xml</b>, find the line that ends in &lt;/dashboard&gt; Make sure it is the one within the &lt;menu&gt; section and not the &lt;acl&gt; section
+            After that paste:
+                  
+        
+    </li>

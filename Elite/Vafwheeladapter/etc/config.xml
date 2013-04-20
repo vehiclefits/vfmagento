@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<config>
+    
+	<modules>
+	    <Elite_Vafwheeladapter>
+	        <version>1.35</version>
+	    </Elite_Vafwheeladapter>
+	</modules>
+	
+	<global>
+		<events>
+            <elite_vaf_product_edit>
+                <observers>
+                    <Elite_Vafwheeladapter>
+                        <type>singleton</type>
+                        <class>Elite_Vafwheeladapter_Observer_WheelSideBinder</class>
+                        <method>bindWheelSide</method>
+                    </Elite_Vafwheeladapter>
+                </observers>
+            </elite_vaf_product_edit>
+        </events>
+    </global>
+
+	<frontend>
+		<layout>
+			<updates>
+			    <Elite_Vafwheeladapter>
+			        <file>vafwheeladapter.xml</file>
+			    </Elite_Vafwheeladapter>
+			</updates>
+		</layout>
+	</frontend>
+    
+</config>

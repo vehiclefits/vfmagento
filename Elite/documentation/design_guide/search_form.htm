@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xml:lang="en">
+<head>
+
+    <link id="theme" rel="stylesheet" type="text/css" href="../kodify/themes/cheery.css" />
+    <link id="theme" rel="stylesheet" type="text/css" href="../style.css" />
+
+    <script type="text/javascript" src="../kodify/js/lx_analyzer.js"></script>
+    <script type="text/javascript" src="../kodify/js/kodify.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/js.js"></script>
+
+    <script type="text/javascript" src="../kodify/js/lang/php.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/html.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/css.js"></script>
+
+</head>
+<body>
+    
+    <h1>Design Guide - Search Form</h1>
+    
+    <!-- move search -->
+    <a name="move_search"></a>
+    <h2>Move the Form</h2>
+    <div id="moveSearch">
+        <p>
+            The search filter can be moved from the left column to the right column, or any other block references your template provides. For this you simply need to override some layout XML. The way we recommend you make layout XML changes is to let the extension's core files reside in the default theme. Then create your own custom theme. It will automatically inherit from the default theme. Then you can override or copy over just the files you want to change. In this way your changes will not get overwritten when you do upgrades.
+    <pre class="kodify html">
+    &lt;reference name="right"&gt;
+        &lt;block type="vaf/search" name="vaf_search" template="vaf/search.phtml" before="-" /&gt; 
+    &lt;/reference&gt;
+    </pre>
+    Change to, for example
+    <pre class="kodify html">
+    &lt;reference name="left"&gt;
+        &lt;block type="vaf/search" name="vaf_search" template="vaf/search.phtml" before="-" /&gt; 
+    &lt;/reference&gt;
+    </pre>
+        </p>
+    </div>
+
+    <!-- template search -->
+    <a name="template_search"></a>
+    <h2>Use in a .phtml template</h2>
+    <div id="templateSearch">
+        <p>
+        You can use the search block from within a Magento template, for example page/html/header.phtml to put a search in the header (this is good in "horizontal" mode).
+    <pre class="kodify php">
+    &lt;?php
+    $block = $this-&gt;getLayout()-&gt;createBlock('vaf/search')
+        -&gt;setTemplate('vaf/search.phtml')
+        -&gt;setBlockId('vehiclelookup');
+
+    echo $block-&gt;renderView();
+    ?&gt; 
+    </pre>
+        </p>
+    </div>
+
+    <!-- use search in CMS -->
+    <a name="use_in_cms"></a>
+    <h2>Use in CMS page</h2>    
+    <div id="cms">   
+        
+        <p>
+            <h4>(multiple vehicle searches per page)</h4>
+            <p>Using the following in the content of a CMS page, will pull in the vehicle search.</p>
+            <pre>{{block type="vaf/search" block_id="vaf_search2" template="vaf/search.phtml"}}</pre>
+            <p>However, if you want to use multiple vehicle searches, some in horizontal mode, some in vertical, it would be done in the following manner. First search.phtml would be duplicated to search-horizontal.phtml, next find the line that looks like the following:</p>
+            <pre class="kodify php">echo $helper->display( $this, $level, $prevLevel );</pre>
+            <br />
+            Change to:
+            <br />
+            <pre class="kodify php">echo $helper->display( $this, $level, $prevLevel<b>, false</b> );</pre>
+            <p>Next, instead of calling in the block like so:</p>
+            <pre>{{block type="vaf/search" block_id="vaf_search2" template="vaf/search.phtml"}}</pre>
+            <br />
+            You would use:
+            <br />
+            <pre>{{block type="vaf/search" block_id="vaf_search2" template="vaf/<b>search-horizontal.phtml</b>"}}</pre>
+        </p>
+    </div>
+    
+    <!-- Display search horizontally -->
+    <a name="search_horizontal"></a>
+    <h2>Display Horizontally</h2>
+
+    <div id="horizontal">
+        <p>
+            To display the search horizontally <a href="configuration.htm#search">use the [search]->insertBrTag setting</a> to turn off the &lt;br&gt; tags. Then open vaf.xml and change reference="left" to reference="content" (or another named reference for where in the template the block should be displayed). You must put it in a wide parent block. If you leave it on the sidebar, the br tag will have no visible effect.
+        </p>
+
+    </div>
+    
+    <!-- style with css -->
+<a name="styling"></a> 
+<h2>Style With CSS</h2>
+<div id="style">
+    <p>
+        You will see there is a vafStyle.css.php that comes with the extension. You are encourated to NOT put your CSS into this file, since it gets overwrote on upgrades. Please put all of your own custom CSS into your actual theme specific file. (ex skin/frontend/default/default/boxes.css)
+    </p>
+    <p>
+        You can easily target specific parts of the search with your CSS to style it. First we will ensure all labels show on their own line.
+<pre class="kodify css">
+#vafForm>label {
+    display:block;
+}
+</pre>
+    You can also target all the selects
+    <pre class="kodify css">
+#vafForm>select {
+    border:1px red solid;   
+}
+</pre>
+    Or style only a specific select box
+    <pre class="kodify css">
+#vafForm>#makeSelect {
+    border:1px blue solid;
+}
+</pre>
+    </p>
+</div>
+
+
+</body>
+</html>

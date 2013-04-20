@@ -1,0 +1,210 @@
+
+<?php
+$_coreHelper = $this->helper('core');
+
+$vehicle = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
+$vehicle = new Elite_Vafdiagram_Model_Vehicle($vehicle);
+$serviceCode = $vehicle->serviceCode();
+?>
+<h1 class="vehicle-results-header">Vehicle Search Results <img class="vehicle-results-header-arrow" src="/skin/frontend/default/default/images/down-arrow.png" /></h1>
+<div class="vehicle-results-selected-vehicle">
+    <img class="vehicle-image" src="/vehicle-images/<?= $serviceCode ?>.jpg" />
+    <div class="vehicle-results-logo-container">
+        <img class="vehicle-results-logo" src="/logos/<?= strtoupper($vehicle->getLevel('make')->getTitle()) ?>.PNG" />
+    </div>
+    <?php
+    $schema = new Elite_Vaf_Model_Schema;
+    foreach($schema->getLevels() as $level)
+    {
+	?>
+	<span><?=htmlentities(ucfirst($level))?>:	    <?=htmlentities($vehicle->getLevel($level))?></span>
+	<br />
+	<?php
+    }
+    ?>
+</div>
+<?php
+$category1 = $this->getRequest()->getParam('category1');
+$category2 = $this->getRequest()->getParam('category2');
+$category3 = $this->getRequest()->getParam('category3');
+$category4 = $this->getRequest()->getParam('category4');
+
+$categoryFinder = new Elite_Vafdiagram_Model_CategoryFinder;
+$categories = $categoryFinder->listCategories(array(
+	    'service_code' => $serviceCode,
+	    'level1' => $category1,
+	    'level2' => $category2,
+	    'level3' => $category3,
+	    'level4' => $category4,
+	));
+foreach ($categories as $key => $category)
+{
+    $categories[$key] = Mage::getModel('catalog/category')->load($category);
+}
+$sorted_categories = array();
+foreach ($categories as $category)
+{
+    $sorted_categories[$this->categoryName($category)] = $category;
+}
+asort($sorted_categories);
+
+if (count($categories))
+{
+    ?>
+    <div class="vehicle-results-instructions">
+        Please select the <?=($category1?'sub':'')?>category of the part you're looking for below
+        <br />
+        <div align="center"><img src="/skin/frontend/default/default/images/down-arrow.png" /></div>
+    </div>
+    <?php
+}
+else
+{
+    ?>
+    <div class="vehicle-results-instructions">
+        Please scroll down to view your selection
+        <br />
+        <div align="center"><img src="/skin/frontend/default/default/images/down-arrow.png" /></div>
+   </div>
+    <?php
+}
+?>
+<h2 class="vehicle-results-header2">Part Categories</h2>
+<?php
+if($category1)
+{
+    ?>
+    <div class="category-breadcrumbs">
+        <a href="?">Parts Category</a>
+        <?php
+        if($category1)
+        {
+            echo '> <a href="?category1=' . $category1 . '">' . Mage::getModel('catalog/category')->load($category1)->getName() . '</a>';
+        }
+
+        if($category2)
+        {
+            echo ' > <a href="?category1=' . $category1 . '&category2=' . $category2 . '">' . Mage::getModel('catalog/category')->load($category2)->getName() . '</a>';
+        }
+
+        if($category3)
+        {
+            echo ' > <a href="?category1=' . $category1 . '&category2=' . $category2 . '&category3=' . $category3 . '">' . Mage::getModel('catalog/category')->load($category3)->getName() . '</a>';
+        }
+
+        if($category4)
+        {
+            echo ' > <a href="?category1=' . $category1 . '&category2=' . $category2 . '&category3=' . $category3 . '&category4=' . $category4 . '">' . Mage::getModel('catalog/category')->load($category4)->getName() . '</a>';
+        }
+
+        ?>
+    </div>
+    <?php
+}
+
+if($category1)
+{
+    $file = str_replace('/', '-', $this->categoryName(Mage::getModel('catalog/category')->load($category1)));
+    echo '<img class="category-thumbnail-float-left" src="/category-images/' . $file . '.jpg" />';
+}
+?>
+    
+<ul class="<?=$category1 ? 'subCategoryList' : 'categorySidebar2' ?>">
+    <?php
+    foreach ($sorted_categories as $category)
+    {
+        ?>
+        <li>
+	    
+            <?php
+            if(!$category1)
+            {
+                ?>
+                <a href="<?= $this->categoryUrl($category) ?>"><img src="/category-images/<?php echo str_replace('/', '-', $this->categoryName($category)); ?>.jpg" /></a>
+                <br />
+                <?php
+            }
+            ?>
+            <a href="<?= $this->categoryUrl($category) ?>"><?= $this->htmlEscape($this->categoryName($category)) ?></a>
+        </li>
+	<?php
+    }
+    ?>
+</ul>
+
+<?php
+    if (!count($categories))
+    {
+	$category1 = $this->getRequest()->getParam('category1');
+	$category2 = $this->getRequest()->getParam('category2');
+	$category3 = $this->getRequest()->getParam('category3');
+	$category4 = $this->getRequest()->getParam('category4');
+
+	$finder = new Elite_Vafdiagram_Model_ProductFinder;
+	$productIds = $finder->listProductIds(array(
+		    'category1' => $category1,
+		    'category2' => $category2,
+		    'category3' => $category3,
+		    'category4' => $category4,
+		    'service_code' => $serviceCode
+		));
+
+	$product = Mage::getModel('catalog/product')->load(current($productIds));
+	$product = new Elite_Vafdiagram_Model_Catalog_Product($product);
+	$illustrationIds = $finder->listIllustrationIds(array(
+		    'category1' => $category1,
+		    'category2' => $category2,
+		    'category3' => $category3,
+		    'category4' => $category4,
+		    'service_code' => $serviceCode
+		));
+
+	foreach ($illustrationIds as $illustrationId)
+	{
+	    echo '<img src="/illustrations/' . $this->htmlEscape($illustrationId) . '.jpg" style="width:100%" /><br clear="all" />';
+	    #echo $this->htmlEscape('Please upload ' . $this->htmlEscape($illustrationId) . '.jpg!');
+	}
+?>
+
+	<form action="<?= $this->getUrl('checkout/cart/myadd') ?>" method="post">
+<?php
+$priceBlock = new Mage_Directory_Block_Currency;
+$priceBlock->setTemplate('directory/currency.phtml');
+$priceBlockHtml =  $priceBlock->_toHtml();
+
+	echo '<table class="vafdiagram"><tr><th>Select</th><th>Qty</th><th>Call out #</th><th>Part Description</th><th>OEM Part #</th><th>' . $priceBlockHtml . 'Price</th></tr>';
+	$i = 1;
+	foreach ($productIds as $productId)
+	{
+	    $baseProduct = Mage::getModel('catalog/product')->load($productId);
+	    if (!$baseProduct->getId())
+		continue;
+
+	    $i++;
+	    $product = new Elite_Vafdiagram_Model_Catalog_Product($baseProduct);
+	    $callout = $product->callout(array(
+			'category1' => $category1,
+			'category2' => $category2,
+			'category3' => $category3,
+			'category4' => $category4,
+			'service_code' => $serviceCode,
+		    ));
+	    $url = $product->getProductUrl();
+	    $js = 'onclick="window.location=\'' . $url . '\';"';
+	    echo '<tr  class="' . ($i % 2 == 0 ? 'odd' : 'even') . '">';
+	    echo '<td><input type="checkbox" name="products[]" value="' . $product->getId() . '" /></td>';
+            echo '<td><input type="text" size="2" name="qty_' . $product->getid() . '" value="1" /></td>';
+	    echo '<td class="clicky" ' . $js . '> ' . $callout . '</td>';
+	    echo '<td class="clicky" ' . $js . '><span style="text-decoration: underline;"> ' . $this->htmlEscape($product->getName()) . '</span><br />' .
+	    '<span class="description">' . $this->htmlEscape($product->getDescription()) . '</span></td>';
+	    echo '<td class="clicky" ' . $js . '> ' . $baseProduct->getSku() . '</td>';
+	    echo '<td class="clicky" ' . $js . '> ' . $_coreHelper->currency($product->getPrice(), true, false) . '</td>';
+	    echo '</tr>';
+	}
+	echo '</table>';
+?>
+            
+        <input class="add-to-cart-results" type="image" src="/skin/frontend/default/default/images/add-to-cart.png" value="Add to Cart" />
+    </form>
+<?php
+    }

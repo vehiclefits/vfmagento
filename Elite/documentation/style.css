@@ -1,0 +1,35 @@
+li{
+    margin-bottom:2px;
+}
+pre
+{
+    padding: 15px;
+    border:1px black solid;
+    background-color:#FFF;
+}
+b.path
+{
+    color:#FF6600;
+}
+b.source
+{
+    color:green;
+}
+
+pre {
+  margin: 20px;
+  padding: 10px;
+}
+form#themeselector {
+  display: none;
+}
+h2 {
+  border-bottom: 1px solid #000000;
+}
+body>div
+{
+    margin-bottom:10px;
+    background-color:#FAFAFA;
+    border:1px #000 dashed;
+    padding:10px;
+}

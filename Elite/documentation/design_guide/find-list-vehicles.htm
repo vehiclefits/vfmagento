@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xml:lang="en">
+<head>
+
+    <link id="theme" rel="stylesheet" type="text/css" href="../kodify/themes/cheery.css" />
+    <link id="theme" rel="stylesheet" type="text/css" href="../style.css" />
+
+    <script type="text/javascript" src="../kodify/js/lx_analyzer.js"></script>
+    <script type="text/javascript" src="../kodify/js/kodify.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/js.js"></script>
+
+    <script type="text/javascript" src="../kodify/js/lang/php.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/html.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/css.js"></script>
+
+</head>
+<body>
+
+    <h1>Design Guide - Find/List Vehicles</h1>
+    <strong>Preface</strong>
+    <p>A 'level' is a part of a vehicle. 'Honda' is a "level" whereas 'Honda Civic 2002' is a complete vehicle. You may list all values for a level using the below snippet.</p>
+
+    <strong>The 'level' class</strong>
+    <p>The level class is <i>Elite_Vaf_Model_Level</i>. This class encapsulates data &amp; behavior for a vehicle part. When you have a level, you can query for it's ID, title, or call it's __toString() magic method. See example 1.</p>
+
+    <strong>The 'vehicle' class</strong>
+    <p>The level class is <i>Elite_Vaf_Model_Vehicle</i>. This class encapsulates data &amp; behavior for a complete vehicle, including it's level parts. When you have a vehicle, you can query for an associative array of level IDs, associative array of titles (keyed by level name), or query for a particular level object. See examples 3-7.</p>
+
+    <strong>Example 1 - Listing all models</strong>
+    <pre class="kodify php">
+$model = new Elite_Vaf_Model_Level('model');
+$actual = $model->listAll();
+
+foreach($actual as $eachModel)
+{
+    echo $eachModel->getId() . '-' . $eachModel->getTitle();
+}
+    </pre>
+
+    <strong>Example 2 - Listing all models that are in use.*</strong><i>'In use' refers to the model being utilized in a fitment for at least one product</i>
+    <pre class="kodify php">
+$model = new Elite_Vaf_Model_Level('model');
+$actual = $model->listInUse();
+
+foreach($actual as $eachModel)
+{
+    echo $eachModel->getId() . '-' . $eachModel->getTitle();
+}
+    </pre>
+
+    <p>Using the 'vehicle finder' you may list vehicles. You may find them by ID, or by title. Simply instantiate the vehicle finder, then you can search for vehicles by the ID(s) of it's component 'levels' or by the titles of them. Pass an associative array where the keys are the level names, and the values are the IDs/Titles. When searching by ID "make_id" may optionally be used instead of "make" for the array keys.</p>
+
+    <strong>Example 3 - Listing all vehicles for make ID #5</strong>
+    <pre class="kodify php">
+$schema = new Elite_Vaf_Model_Schema;
+$finder = new Elite_Vaf_Model_Vehicle_Finder( $schema );
+$vehicles = $finder->findByLevelIds(array('make_id'=>5));
+
+foreach($vehicles as $vehicle)
+{
+    echo $vehicle;
+    print_r($vehicle->toValueArray());
+    print_r($vehicle->toTitleArray());
+    // echo 'make Id is ' . $vehicle->getLevel('make)->getId() . ' which corresponds to  ' . $vehicle->getLevel('make')->getTitle();
+}
+    </pre>
+
+    <strong>Example 4 - Listing all vehicles for make matching "Honda"</strong>
+    <pre class="kodify php">
+$schema = new Elite_Vaf_Model_Schema;
+$finder = new Elite_Vaf_Model_Vehicle_Finder( $schema );
+$vehicles = $finder->findByLevels(array('make'=>'Honda'));
+
+foreach($vehicles as $vehicle)
+{
+    echo $vehicle;
+    print_r($vehicle->toValueArray());
+    print_r($vehicle->toTitleArray());
+    // echo 'make Id is ' . $vehicle->getLevel('make)->getId() . ' which corresponds to  ' . $vehicle->getLevel('make')->getTitle();
+}
+    </pre>
+
+    
+    <strong>Example 5 - Listing all vehicles for make matching "Honda" and manufactured in 2005</strong>
+    <pre class="kodify php">
+$schema = new Elite_Vaf_Model_Schema;
+$finder = new Elite_Vaf_Model_Vehicle_Finder( $schema );
+$vehicles = $finder->findByLevels(array('make'=>'Honda', 'year'=>2005 ));
+
+foreach($vehicles as $vehicle)
+{
+    echo $vehicle;
+    print_r($vehicle->toValueArray());
+    print_r($vehicle->toTitleArray());
+    // echo 'make Id is ' . $vehicle->getLevel('make)->getId() . ' which corresponds to  ' . $vehicle->getLevel('make')->getTitle();
+}
+    </pre>
+
+    <strong>Example 6 - Find an exact [one] vehicle by titles.</strong>
+    <pre class="kodify php">
+$schema = new Elite_Vaf_Model_Schema;
+$finder = new Elite_Vaf_Model_Vehicle_Finder( $schema );
+$vehicle = $finder->findOneByLevels(array('make'=>'Honda', 'model'=>'Civic', 'year'=>2005 ));
+
+echo $vehicle;
+print_r($vehicle->toValueArray());
+print_r($vehicle->toTitleArray());
+// echo 'make Id is ' . $vehicle->getLevel('make)->getId() . ' which corresponds to  ' . $vehicle->getLevel('make')->getTitle();
+
+    </pre>
+
+
+    <strong>Example 7 - Find an exact [one] vehicle by ID.</strong>
+    <pre class="kodify php">
+$schema = new Elite_Vaf_Model_Schema;
+$finder = new Elite_Vaf_Model_Vehicle_Finder( $schema );
+$vehicle = $finder->findOneByLevelIds(array('make'=>5, 'model'=>3, 'year'=>8 ));
+
+echo $vehicle;
+print_r($vehicle->toValueArray());
+print_r($vehicle->toTitleArray());
+// echo 'make Id is ' . $vehicle->getLevel('make)->getId() . ' which corresponds to  ' . $vehicle->getLevel('make')->getTitle();
+
+    </pre>
+
+    <strong>Example 8 - Find unique models that fit a particular make &amp; year</strong>
+<pre class="kodify php">
+$model = new Elite_Vaf_Model_Level('model');
+$models = $model->listAll(array('year'=>1, 'make'=>5));
+</pre>
+    
+</body>
+</html>

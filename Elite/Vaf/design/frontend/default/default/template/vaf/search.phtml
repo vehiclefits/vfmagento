@@ -1,0 +1,124 @@
+<div class="box vaf vaf-search">
+    <div class="head"><h4><?=$this->getHeaderText()?></h4></div>
+    <div class="content">                            
+    	<?php
+        Elite_Vaf_Helper_Data::getInstance()->storeFitInSession();
+        ?>
+    	<?=$this->renderBefore()?>
+    	
+        <!-- start "My Garage" -->
+        <?php
+        if( $this->shouldShowMyGarageActive()  )
+        {
+            $vehicle = $this->getFlexibleDefinition()
+            ?>
+            <div class="vafMyGarageActive">
+                <strong>My Vehicle:</strong> <?=$this->htmlEscape( $vehicle->__toString() )?>
+                <br />
+                <a href="#" class="vafMyGarageChange">Change</a>
+                <?php
+                if( $this->showClearButton() )
+                {
+                    ?>
+                    <a href="#" id="vafClear"><?=$this->getClearText()?></a>
+                    <?php
+                }
+                ?>
+            </div>
+            <?php
+        }
+        ?>
+        <!-- end "My Garage" -->
+        
+        <form action="<?=$this->action()?>" method="<?=$this->getMethod()?>" id="<?=$this->formId()?>" name="<?=$this->formId()?>">
+            <input type="hidden" id="vafProduct" value="<?=$this->getProductId()?>" />
+            <?=$this->proxyValues();?>
+            <!-- start "category chooser" --> 
+            <?php
+            if( $this->showCategoryChooser() )
+            {
+                ?>
+                <label>Category:</label>
+                <select name="category" id="categorySelect" style="width:160px"> 
+                    <?=$this->renderCategoryOptions()?>
+                </select>
+                <?php
+                if(Elite_Vaf_Helper_Data::getInstance()->displayBrTag())
+                {
+					echo '<br />';
+                }
+            }
+            else
+            { 
+                echo '<input type="hidden" name="category" id="categorySelect" value="?" />'; 
+            }
+            ?>
+            <!-- end "category chooser" --> 
+            
+            <?php
+            $levels = $this->getLevels();
+            
+            $helper = new VF_SearchLevel();
+            
+            $displayLevels = $this->getLevels();
+            $c = count( $displayLevels );
+            
+            for( $i = 0; $i < $c; $i++ )
+            {
+                $level = $displayLevels[ $i ];
+                $prevLevel = ( $i > 0 ) ? $displayLevels[ $i - 1 ] : false;
+                echo $helper->display( $this, $level, $prevLevel );
+            }
+//            echo $helper->display( $this, 'make', '' );
+//            echo $helper->display( $this, 'year', 'make', null, 'year_start' );
+//            echo $helper->display( $this, 'year', 'make', null, 'year_end' );
+            
+            if( $this->showSearchButton() )
+            {
+                ?>
+                <div align="center">
+                    <?php
+                    // clear button
+                    if( $this->showClearButton()  )
+                    {
+                        if( 'link' == $this->clearButton() )
+                        {
+                            ?><a href="#" id="vafClear"><?=$this->getClearText()?></a><?php
+                        }
+                        else
+                        {
+                            ?><input type="button" id="vafClear" value="<?=$this->getClearText()?>" /><?php
+                        }
+                    }
+                    
+                    echo ' ';
+                    
+                    // search button
+                    if( 'link' == $this->searchButton() )
+                    {
+                        ?><a href="#" class="vafSubmit"><?=$this->getSubmitText()?></a><?php
+                    }
+                    else
+                    {
+                        ?><input type="button" value="<?=$this->getSubmitText()?>" class="vafSubmit" /><?php
+                    }
+                    ?>
+                    
+                </div>
+                <?php
+            }
+            ?>
+        </form>
+    </div>
+</div>
+
+<!-- start VAF -->
+<script src="/skin/adminhtml/default/default/jquery-1.7.1.min.js" type="text/javascript" language="javascript"></script>
+<script type="text/javascript" language="javascript">
+ jQuery.noConflict();
+</script>
+<script src="/skin/adminhtml/default/default/jquery.metadata.pack.js" type="text/javascript" language="javascript"></script>
+<script src="/skin/adminhtml/default/default/jquery.simplemodal-1.3.min.js" type="text/javascript" language="javascript"></script>
+<script src="<?=Mage::getBaseUrl( Mage_Core_Model_Store::URL_TYPE_LINK, isset($_SERVER['HTTPS']) )?>vaf/ajax/js?front=1&loadingStrategy=<?=$this->loadingStrategy()?>&unavailableSelections=<?=$this->unavailableSelections()?>" type="text/javascript" language="javascript"></script>
+<link rel="stylesheet" type="text/css" href="/vafStyle.css.php" media="all" />
+<!-- end VAF -->

@@ -1,0 +1,27 @@
+<div class="box base-mini mini-vaf">
+    <div class="head"><h4>Search By Vehicle</h4></div>
+    <div class="content"> 
+
+        <?php
+        $selection = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
+        if ($selection) {
+            ?>
+            <strong>Your Selection</strong>
+            <?php
+            echo $this->htmlEscape($selection) . '<br />';
+        }
+
+        foreach ($this->getDefinitions() as $vehicle) {
+            echo '&raquo; <a href="' . $this->vafUrl($vehicle) . '">' . (string) $vehicle . '</a><br />';
+        }
+        ?>
+        <br />
+        <?php
+        $params = array();
+        foreach ($this->getSchema()->getLevels() as $level) {
+            $params[$level] = 0;
+        }
+        ?>
+        <a href="?<?= http_build_query($params) ?>">Clear</a>
+    </div>
+</div>

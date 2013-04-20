@@ -1,0 +1,35 @@
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('catalog')->__('Tire Size') ?></h4>
+    </div>
+    <fieldset>
+    
+        <?php
+        $product = $this->getProduct();
+        $tireProduct = new Elite_Vaftire_Model_Catalog_Product($product);
+        $tireSize = $tireProduct->getTireSize();
+        ?>
+    
+        If this is a tire product, add it's tire size here:
+        <br />
+        Section Width: <input type="text" name="section_width" value="<?=$tireSize ? $tireSize->sectionWidth() : ''?>" /> (Ex. 205)
+        <br />
+        Aspect Ratio: <input type="text" name="aspect_ratio" value="<?=$tireSize ? $tireSize->aspectRatio() : ''?>" /> (Ex 55)
+        <br />
+        Diameter: <input type="text" name="diameter" value="<?=$tireSize ? $tireSize->diameter() : ''?>" /> (Ex 16)
+        <br />
+        <br />
+        Tire Type:
+        <?php
+        /** @todo duplicated in front end */
+	    $helper = new Zend_View_Helper_FormSelect();
+	    $helper->setView( new Zend_View );
+	    echo $helper->formSelect('tire_type',$tireProduct->tireType(),array(),array(
+	    	Elite_Vaftire_Model_Catalog_Product::SUMMER_ALL => 'Summer/All Seasons',
+	    	Elite_Vaftire_Model_Catalog_Product::WINTER => 'Winter'
+	    	
+	    ));
+		?>
+        
+    </fieldset>
+</div>

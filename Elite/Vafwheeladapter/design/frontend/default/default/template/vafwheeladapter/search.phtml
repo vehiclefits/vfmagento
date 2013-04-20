@@ -1,0 +1,59 @@
+<div class="box base-mini mini-vaf">
+    <div class="head"><h4>Search By Wheel Adapter Size:</h4></div>
+    <div class="content">                            
+     	
+     	<?php
+	    $finder = new Elite_Vafwheeladapter_Model_Finder();
+	    
+	    $search = new Elite_Vaf_Model_FlexibleSearch(new Elite_Vaf_Model_Schema(),$this->getRequest());
+	    $search = new Elite_Vafwheeladapter_Model_FlexibleSearch($search);
+	    
+	    $helper = new Zend_View_Helper_FormSelect();
+	    $helper->setView(new Zend_View);
+	    ?>
+
+	    <form action="?">
+	        Wheel Side Lug Count:
+	        <?php
+	        $options = array('');
+	        $options = $options + $finder->listWheelSideLugCounts();
+	        echo $helper->formSelect('wheel_lug_count', $search->wheelSideLugCount(), array(), $options );
+	        ?>
+	        <br />
+	        
+	        Wheel Side Stud Spread:
+	        <?php
+	        $options = array('');
+	        $options = $options + $finder->listWheelSideSpread();
+	        echo $helper->formSelect('wheel_stud_spread', $search->wheelSideStudSpread(), array(), $options);
+	        ?>
+	        (Millimeters)
+	        
+	        <br />
+	        <br />
+	        
+	        Vehicle Side Lug Count:
+	        <?php
+	        $options = array('');
+	        $options = $options + $finder->listVehicleSideLugCounts();
+	        echo $helper->formSelect('vehicle_lug_count', $search->vehicleSideLugCount(), array(), $options );
+	        ?>
+	        <br />
+	        
+	        Vehicle Side Stud Spread:
+	        <?php
+	        $options = array('');
+	        $options = $options + $finder->listVehicleSideSpread();
+	        echo $helper->formSelect('vehicle_stud_spread', $search->vehicleSideStudSpread(), array(), $options);
+	        ?>
+	        (Millimeters)
+	        <br />
+	        
+	        <div align="center">
+        		<input type="button" name="clear" value="Clear" onclick="window.location = '?wheel_lug_count=0&wheel_stud_spread=0&vehicle_lug_count=0&vehicle_stud_spread=0';" />
+        		<input type="submit" name="search" value="Search" />
+	        </div>
+	    </form>
+     	
+    </div>
+</div>

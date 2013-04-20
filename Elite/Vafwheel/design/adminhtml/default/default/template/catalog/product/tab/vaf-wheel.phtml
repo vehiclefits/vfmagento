@@ -1,0 +1,24 @@
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('catalog')->__('Wheel Specification') ?></h4>
+    </div>
+    <fieldset>
+        If this is a wheel product, add it's bolt pattern specification here. Enter one bolt pattern per line, or upload a CSV of skus &amp; their bolt patterns (see documentation).
+        <br />
+        Upload file:<br />
+        <input type="file" name="boltpatterncsv" />
+        <br />
+        - or -
+        <br />
+        Put one bolt pattern per line ex. 4x144.3  
+        <br />
+        <?php
+        $product = $this->getProduct();
+        $wheelProduct = new Elite_Vafwheel_Model_Catalog_Product($product);
+        $boltPatterns = $wheelProduct->getBoltPatterns();
+        ?>
+        <textarea name="multipatterns" rows="3" cols="50"><?=implode("\n",$boltPatterns)?></textarea>
+        <br />
+        <i>These operations may take some time, especially if uploading .csv file of bolt-patterns which could result in 10s of thousands of vehicles to be added.</i>
+    </fieldset>
+</div>

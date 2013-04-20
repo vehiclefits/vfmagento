@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xml:lang="en">
+<head>
+
+    <link id="theme" rel="stylesheet" type="text/css" href="../../kodify/themes/cheery.css" />
+    <link id="theme" rel="stylesheet" type="text/css" href="../../style.css" />
+
+    <script type="text/javascript" src="../../kodify/js/lx_analyzer.js"></script>
+    <script type="text/javascript" src="../../kodify/js/kodify.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/js.js"></script>
+
+    <script type="text/javascript" src="../../kodify/js/lang/php.js"></script>
+    <script type="text/javascript" src="../../kodify/js/lang/html.js"></script>
+    <script type="text/javascript" src="../../kodify/js/lang/css.js"></script>
+
+</head>
+<body>
+
+<h1>Fitment Notes - Fitments</h1>
+
+<a name="note_fitments"></a>
+<h2>Note Fitments Import/Export</h2>
+Use standard product application fitment import format but add a column 'notes' that has the comma seperated note codes that you created in the previous step (example: "123,abc,xyz")</p>
+    
+    <br />
+    <br />
+    <strong>Note</strong>: If you have existing application fitment data, clear them out under schema->manage (before clearing your data make a full backup). This is because if you add a fitment without notes, and later specify notes, the formerly added noteless fitment will take precedence. This will be resolved in a future version of the extension.
+    
+<br />
+<br />
+
+<strong>Example #1 - Fitment Notes Import (By Note Code, Single)</strong>
+<br />
+<img src="note_fitments_by_code_single.gif" />
+<br />
+
+<h2>Multiple Notes In One Fitment Row</h2>
+<p>If you are specifying multiple note codes, list them out separated by comma to add multiple note fitments with one fitment row.</p>
+<strong>Example #2 - Fitment Notes Import (Note Code, Multiple)</strong>
+<br />
+<img src="note_fitments_by_code_multiple.gif" />
+<br />
+
+<h2>Import By Note Message</h2>
+<p>In the "notes" column there can be a code. If there is a message in the "note_message" column, first the system will check if an existing note has been setup, if so it will use that code, that way messages can be renamed in one place in the admin panel.</p>
+
+<strong>Example #3 - Fitment Notes Import (Note By Message)</strong><br />
+<img src="note_fitments_by_message.gif" />
+
+<p>If that message had never been encountered, it will try to generate a unique code "code-1", "code-2", "code-3" for each new message.</p>
+<strong>Note</strong> Multiple messages - 
+If you need to specify multiple messages you will need to repeat the row, since a message may contain a literal comma. If you need a way to specify multiple messages per fitment, simply copy the row for each message like in example 3.
+
+<br />
+<br />
+<strong>Example #4 - Fitment Notes Import (Multiple Note Messages)</strong>
+<br />
+<img src="note_fitments_by_message_multiple.gif" />
+
+</body></html>

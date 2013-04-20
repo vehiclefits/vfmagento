@@ -1,0 +1,97 @@
+/** Kodify Theme: Summer Meadow */
+
+.kodify {
+  background: #285e00;
+  color: #ffffff;
+}
+
+.kodify .bracketpair {
+  background: #ffffaa;
+  color: #222222;
+  cursor: default;
+}
+
+.kodify .bracketpair.unpaired {
+  background: none;
+  color: #ff0000;
+  border-bottom: 2px solid #ff0000;
+  cursor: default;
+}
+
+.kodify .control {
+  color: #ffff00;
+}
+
+.kodify .operator {
+  color: #ffffaa;
+}
+
+.kodify .keyword {
+  font-weight: bold;
+  color: #e164b0;
+}
+
+.kodify .predefined {
+  font-weight: bold;
+}
+.kodify .predefined.variable {
+  font-weight: bold;
+  color: #440000;
+}
+.kodify .predefined.function {
+  color: #222222;
+  font-weight: bold;
+}
+
+.kodify .identifier.variable {
+  color: #ff4444;
+}
+
+.kodify .string {
+  color: #8866ff;
+}
+.kodify .string.literal {
+  color: #9977cc;
+}
+.kodify .string.heredoc {
+  font-style: italic;
+}
+
+.kodify .number {
+  color: #ffff00;
+}
+
+.kodify .comment {
+  color: #cccccc;
+}
+.kodify .comment.multiline {
+  font-style: italic;
+}
+
+.kodify .regex {
+  color: #9977cc;
+}
+
+.kodify .markup.xml {
+  font-weight: bold;
+  color: #ffff00;
+}
+.kodify .markup.doctype {
+  font-weight: bold;
+  font-style: italic;
+  color: #ffff00;
+}
+.kodify .markup.tag {
+  color: #e164b0;
+  font-weight: bold;
+}
+.kodify .markup.attribute {
+  font-weight: bold;
+}
+.kodify .markup.class {
+  font-style: italic;
+}
+.kodify .markup.id {
+  color: #9977cc;
+  font-style: italic;
+}

@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Elite_Vaf>
+            <version>1.35</version>
+        </Elite_Vaf>
+    </modules>
+    
+    <global>
+
+        <blocks>
+            <vaf>
+                <rewrite>
+                    <search>Elite_Vaf_Block_Search</search>
+                    <categories>Elite_Vaf_Block_Categories</categories>
+                </rewrite>
+                <class>Elite_Vaf_Block</class>
+            </vaf>
+            <catalog>
+                <rewrite>
+                    <product_view>Elite_Vaf_Block_Product_View</product_view>
+                    <category_view>Elite_Vaf_Block_Category_View</category_view>
+                    <product_list>Elite_Vaf_Block_Product_List</product_list>
+                </rewrite>
+            </catalog>
+            <adminhtml>
+                <rewrite>
+                    <catalog_product_edit_tab_vaf>Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf</catalog_product_edit_tab_vaf>
+                    <vaf_definitions>Elite_Vaf_Adminhtml_Block_Definitions</vaf_definitions>
+                    <vaf_schema>Elite_Vaf_Adminhtml_Block_Schema</vaf_schema>
+                    <vaf>Elite_Vaf_Adminhtml_Block_Definitions</vaf>
+                </rewrite>
+            </adminhtml> 
+        </blocks>
+        
+        <models>
+            <catalog>
+                <rewrite>
+                    <product>Elite_Vaf_Model_Catalog_Product</product>
+                    <category>Elite_Vaf_Model_Catalog_Category</category>
+                    
+                </rewrite>
+            </catalog>
+            <catalogsearch>
+                <rewrite> 
+                    <layer>Elite_Vaf_Model_SearchLayer</layer> 
+                </rewrite> 
+            </catalogsearch> 
+
+        </models>
+        
+        <helpers>
+            <vaf>
+                <class>Elite_Vaf_Helper</class>
+            </vaf>
+        </helpers>
+        
+                
+        <events>
+            <controller_action_postdispatch_adminhtml_catalog_product_save>
+                <observers>
+                    <vaf>
+                        <type>singleton</type>
+                        <class>Elite_Vaf_Model_Observer</class>
+                        <method>catalogProductEditAction</method>
+                    </vaf>
+                </observers>
+            </controller_action_postdispatch_adminhtml_catalog_product_save>     
+            <core_block_abstract_prepare_layout_after>
+                <observers>
+                    <vaf>
+                        <type>singleton</type>
+                        <class>Elite_Vaf_Model_Observer</class>
+                        <method>doTabs</method>
+                    </vaf>
+                </observers>
+            </core_block_abstract_prepare_layout_after>     
+            <checkout_type_onepage_save_order>
+                <observers>
+                    <vaf>
+                        <type>singleton</type>
+                        <class>Elite_Vaf_Model_Observer</class>
+                        <method>checkoutSaveOrder</method>
+                    </vaf>
+                </observers>
+            </checkout_type_onepage_save_order>   
+            <model_delete_before>
+                <observers>
+                    <vaf>
+                        <type>singleton</type>
+                        <class>Elite_Vaf_Model_Observer</class>
+                        <method>deleteModelBefore</method>
+                    </vaf>
+                </observers>
+            </model_delete_before>     
+        </events>
+
+        
+
+        <rewrite>
+            <elite_vaf_cart>
+                <from><![CDATA[#^/checkout/cart#]]></from>
+                <to>vaf/cart</to>
+            </elite_vaf_cart>
+        </rewrite>
+     </global>
+     
+     <adminhtml>
+        <menu>
+            <vaf translate="title" module="adminhtml">
+                <title>Vehicles</title>
+                <sort_order>25</sort_order>
+                <children>
+                    <vehicleslist translate="title">
+                        <title>Vehicle List</title>
+                        <sort_order>10</sort_order>
+                        <children>
+                            <local translate="title">
+                                <title>Manage</title>
+                                <action>adminhtml/definitions</action>
+                            </local>
+                        </children>
+                    </vehicleslist>
+                    <settings translate="settings">
+                        <title>Settings</title>
+                        <sort_order>300</sort_order>
+                        <children>
+                            <schema translate="title">
+                                <title>Schema</title>
+                                <sort_order>10</sort_order>
+                                <action>adminhtml/schema</action>
+                            </schema>
+                            <settingscategory translate="title">
+                                <title>Category</title>
+                                <sort_order>20</sort_order>
+                                <action>adminhtml/vafsettingscategory</action>
+                            </settingscategory>
+                            <settingssearch translate="title">
+                                <title>Search</title>
+                                <sort_order>30</sort_order>
+                                <action>adminhtml/vafsettingssearch</action>
+                            </settingssearch>
+                            <settingsproduct translate="title">
+                                <title>Product</title>
+                                <sort_order>40</sort_order>
+                                <action>adminhtml/vafsettingsproduct</action>
+                            </settingsproduct>
+                            <settingsgarage translate="title">
+                                <title>Garage</title>
+                                <sort_order>50</sort_order>
+                                <action>adminhtml/vafsettingsgarage</action>
+                            </settingsgarage>
+                            <homepagesearch translate="title">
+                                <title>Home Page Search</title>
+                                <sort_order>60</sort_order>
+                                <action>adminhtml/vafsettingshomepagesearch</action>
+                            </homepagesearch>
+                            <categorychooser translate="title">
+                                <title>Category Chooser</title>
+                                <sort_order>70</sort_order>
+                                <action>adminhtml/vafsettingscategorychooser</action>
+                            </categorychooser>
+                            <logo translate="title">
+                                <title>Logo</title>
+                                <sort_order>80</sort_order>
+                                <action>adminhtml/vafsettingslogo</action>
+                            </logo>
+                            
+                        </children>
+                    </settings>
+                </children>
+            </vaf>
+        </menu>
+        
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <vaf translate="title">
+                            <title>Vehicle Fits</title>
+                            <sort_order>0</sort_order>
+                            <children>
+                                <vehicleslist translate="title">
+                                    <title>Vehicle List</title>
+                                    <sort_order>10</sort_order>
+                                    <children>
+                                        <local translate="title">
+                                            <title>Manage</title>
+                                            <action>adminhtml/definitions</action>
+                                        </local>
+                                    </children>
+                                </vehicleslist>
+                                <schema translate="title">
+                                    <title>Schema</title>
+                                    <sort_order>200</sort_order>
+                                    <children>
+                                        <local translate="title">
+                                            <title>Manage</title>
+                                            <action>adminhtml/schema</action>
+                                        </local>
+                                    </children>
+                                </schema>
+                            </children>
+                       </vaf>
+                   </children>
+               </admin>
+           </resources>
+        </acl>
+    </adminhtml>
+
+     <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <frontName><![CDATA[admin]]></frontName>
+                    
+                    <modules>
+                      <Elite_Vaf_Admin before="Mage_Adminhtml">Elite_Vaf_Admin</Elite_Vaf_Admin>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+     </admin>
+
+     <frontend>
+        <routers>
+            <vaf>
+                <use>standard</use>
+                <args>
+                    <module>Elite_Vaf</module>
+                    <frontName>vaf</frontName>
+                </args>
+            </vaf>
+        </routers>
+        <translate>
+            <modules>
+                <Elite_Vaf>
+                    <files>
+                        <default>Elite_Vaf.csv</default>
+                    </files>
+                </Elite_Vaf>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <Elite_Vaf>
+                    <file>vaf.xml</file>
+                </Elite_Vaf>
+            </updates>
+        </layout>
+     </frontend>
+</config>

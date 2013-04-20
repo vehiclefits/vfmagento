@@ -1,0 +1,41 @@
+<div align="right">
+    <?php
+    if( 0 == $this->count() )
+    {
+        ?>
+        There are no vehicles
+        <?php
+    }
+    else
+    {
+        ?>
+        Showing vehicles <?=$this->start()?> through <?= $this->end()?> of <?= $this->count()?>
+        <?php
+    }
+    ?>
+    <br />
+    <?php
+    if( $this->start() > 1 )
+    {
+        ?>
+        <a href="?page=<?=$this->prev()?>">Prev</a>
+        <?php
+    }
+    if( $this->end() < $this->count() )
+    {
+        ?>
+        <a href="?page=<?=$this->next()?>">Next</a>
+        <?php
+    }
+    ?>
+</div>
+<?php
+
+foreach( $this->getDefinitions( 50, $this->start()-1 ) as $vehicle )
+{
+    $url = $this->getUrl($this->getVehicleUrl( $vehicle ));
+    ?>
+    <a href="<?=$url?>">Products for <?=$this->htmlEscape( $vehicle )?></a>
+    <br />
+    <?php
+}

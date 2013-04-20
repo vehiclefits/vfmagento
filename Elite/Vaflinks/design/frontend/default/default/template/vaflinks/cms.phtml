@@ -1,0 +1,19 @@
+<?php
+if(isset($_GET['make']))
+{
+    echo 'The current vehicle is: ';
+    $makeFinder = new VF_Level_Finder();
+    $make = $makeFinder->find('make',$_GET['make']);
+    echo $make;
+
+    /*
+    switch($make->getTitle())
+    {
+        case 'Acura':
+         echo 'different content for Acura to avoid duplicate content';
+        break;
+        case 'Honda':
+         echo 'different content for Honda to avoid duplicate content';
+        break;
+    }*/
+}

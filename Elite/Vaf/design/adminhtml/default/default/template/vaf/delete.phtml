@@ -1,0 +1,29 @@
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('catalog')->__('Confirm Deletion') ?></h4>
+    </div>
+    <fieldset>
+        <div align="center">
+            Are you sure you want to delete the <?=ucfirst( $this->model->getLabel() )?>
+            <b><?=$this->htmlEscape( $this->model->getTitle() )?></b>?
+            <?php
+            if( false && $this->model->getChildCount() )
+            {
+                ?>
+                along with all <b><?=$this->model->getChildCount()?></b> of it's
+                <b><?=$this->model->getNextLevel()?>s</b>?
+                <?php
+            }
+            ?>
+            <br />
+            <a href="<?=$this->getDeleteUrl( $this->model->getId(), 1 )?>">Yes</a> | 
+            <?php
+            $url = Mage::helper('adminhtml')->getUrl('*/definitions/index', array());
+            $url .= '?entity=' . $this->getEntity()->getType();
+            $params = $this->requestLevels();
+            $url .= '&' . http_build_query($params);
+            ?>
+            <a href="<?=$url?>">No</a>
+        </div>
+    </fieldset>    
+</div>

@@ -1,0 +1,123 @@
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Fitment Settings') ?></h4>
+    </div>
+    <fieldset>
+        <input type="checkbox" id="universal" name="universal" <?= $this->getProduct()->isUniversal() ? ' checked="checked"' : '' ?> value="1" />
+        Universal Product
+        <br />
+	<?php
+        if( file_exists(ELITE_PATH.'/Vafrelated') )
+        {
+            $relatedProduct = new Elite_Vafrelated_Model_Catalog_Product($this->getProduct());
+            ?>
+            <input type="checkbox" id="related" name="related" <?= $relatedProduct->showInRelated() ? ' checked="checked"' : '' ?> value="1" />
+            Show In Automotive Related Products
+            <?php
+        }
+        ?>
+    </fieldset>
+</div>
+
+<?=$this->renderConfigurations()?>
+
+<div id="vaf-toggle">    
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Add New Vehicle Fit') ?></h4>
+        </div>
+        <?php
+        $metaData = '{';
+            $metaData .= "'ajaxUrl':'" . $this->getUrl('*/vafajax/process') . "',";
+            $metaData .= "'quickAddUrl':'" . $this->getUrl('*/definitions/save') . "',";
+            $metaData .= "'elementName':'vaf'";
+            $metaData .= ", 'initialSelections':[{'level':'3','id':'0','node':{},'path':['','','']}]";
+        $metaData .= "}";
+        ?>
+        <div class="field">
+            <div class="multiTree <?=$metaData?>">
+                <?php
+                $schema = new VF_Schema();
+                $levels = $schema->getLevels();
+                foreach( $levels as $level )
+                {
+                    ?>
+                    <div class="multiTree-selectContainer" >
+                        <?=ucfirst($this->htmlEscape($level))?>:<br />
+                        <?php
+                        $metadata = "{level:'$level', parent:'" . $schema->getPrevLevel($level) . "', parents:'" . implode(',',$schema->getPrevLevels($level)) . "',  parents_including:'" . implode(',',$schema->getPrevLevelsIncluding($level)) . "' }";
+                        ?>
+                        <select class="multiTree-select <?=$level?>Select <?=$metadata?>" size="10">
+                            <?php
+                            if( $schema->getRootLevel() == $level )
+                            {
+                                $entity = new VF_Level( $schema->getRootLevel( ));
+                                foreach( $entity->listAll() as $item )
+                                {
+                                    ?>
+                                    <option value="<?=$item->getId()?>"><?=$item->getTitle()?></option>
+                                    <?php
+                                }
+                            }
+                            ?>
+                        </select>
+                        <br />
+                        Quick Add:
+                        <br />
+                        <input type="text" class="vafQuickAdd vafQuickAdd_<?=$level?> {level:'<?=$level?>'}" name="vafQuickAdd_<?=$level?>" />
+                        <input type="button" class="vafQuickAddSubmit vafQuickAddSubmit_<?=$level?> {level:'<?=$level?>'}" name="vafQuickAddSubmit_<?=$level?>" value="+" />
+                        <br />
+                        <span class="multiTree-levelName" style="display:none;"><?=$level?></span>
+                    </div>
+                    <?php
+                }
+                ?>
+                <input class="multiTree-Add" type="button" value="Add +" />
+                <br  clear="all" />
+                <input type="checkbox" class="vafCheckAll" />  Select All
+                <br />
+                <a href="#" class="vafDeleteSelected">Delete Selected</a>
+                <div class="multiTree-selections" style="height:500px; overflow:auto;">
+                <?php
+                foreach( $this->getFits() as $fit )
+                {
+                    $leafLevel = Elite_Vaf_Helper_Data::getInstance()->getLeafLevel();
+                    ?>
+                    <div class="multiTree-selection">
+                        <input type="checkbox" name="vafcheck[]" class="vafcheck" value="<?=$leafLevel?>-<?=$fit->id?>" />
+                        <div class="multiTree-value" style="display:none"><?=$leafLevel?>-<?=$fit->id?></div>
+                        <a class="multiTree-closeLink" href="#">[ x ]</a>
+                        <?php
+                        $label = array();
+                        $schema = new VF_Schema();
+                        foreach( $schema->getLevels() as $level )
+                        {
+                            $label[] = $this->htmlEscape( $fit->$level );
+                        }
+                        echo implode( '<span class="multiTree-selection-seperator">&raquo;</span>', $label );
+                        ?>
+
+                    </div>
+                    <?php
+                }
+                ?>
+            </div>
+            <div class="multiTree-new-selections"></div>
+            <div class="multiTree-deleted-selections"></div>
+            <br  clear="all" />
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- start VAF -->
+<script src="/skin/adminhtml/default/default/jquery-1.7.1.min.js" type="text/javascript" language="javascript"></script>
+<script type="text/javascript" language="javascript">
+ jQuery.noConflict();
+</script>
+<script src="<?=Mage::getBaseUrl()?>vaf/ajax/js?unavailableSelections=<?=$this->unavailableSelections()?>" type="text/javascript" language="javascript"></script>
+<script src="/skin/adminhtml/default/default/jquery.metadata.pack.js" type="text/javascript" language="javascript"></script>
+<link rel="stylesheet" type="text/css" href="/skin/adminhtml/default/default/multiTree.css" />
+<!-- end VAF -->

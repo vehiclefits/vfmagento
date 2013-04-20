@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xml:lang="en">
+<head>
+
+    <link id="theme" rel="stylesheet" type="text/css" href="../kodify/themes/cheery.css" />
+    <link id="theme" rel="stylesheet" type="text/css" href="../style.css" />
+
+    <script type="text/javascript" src="../kodify/js/lx_analyzer.js"></script>
+    <script type="text/javascript" src="../kodify/js/kodify.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/js.js"></script>
+
+    <script type="text/javascript" src="../kodify/js/lang/php.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/html.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/css.js"></script>
+
+</head>
+<body>
+    
+    <h1>Design Guide - Sales Order</h1>
+    
+    <a name="vehicle_on_order"></a>
+    <h2>Showing Vehicles On the Sales Order </h2>
+
+    <div id="vehicle_on_order">
+        <p>
+                If you want to view the user's vehicle on the sales orders, we must add an EAV attribute for storing the customer's vehicle fit for each order that comes thru. Run the following SQL ( phpmyadmin is one possible method to run it. )
+                <br /><br />
+                If all your tables begin with a prefix, for instance prefix_eav_attribute instead of eav_attribute, please edit the parts in bold ( eav_attribute and sales_order might be changed to, for instance: prefix_eav_attribute &amp; prefix_sales_order ). 
+                <br /><br />
+                Magento 1.4.1.x
+                <pre>ALTER TABLE <b>`sales_flat_order`</b> ADD `elite_fit` INT( 25 ) NOT NULL ;</pre>
+                <i>Note: This may not be neccessary depending on installation method, starting with Magento 1.4.1.x.</i>
+                <br /><br />
+                Magento 1.4.0.x
+                <pre>Magento 1.4.x
+
+            INSERT INTO `eav_attribute` (
+`attribute_id` ,
+`entity_type_id` ,
+`attribute_code` ,
+`attribute_model` ,
+`backend_model` ,
+`backend_type` ,
+`backend_table` ,
+`frontend_model` ,
+`frontend_input` ,
+`frontend_label` ,
+`frontend_class` ,
+`source_model` ,
+`is_required` ,
+`is_user_defined` ,
+`default_value` ,
+`is_unique` ,
+`note`
+)
+VALUES (
+NULL , '11', 'elite_fit', NULL , NULL , 'static', NULL , NULL , NULL , NULL , NULL , NULL , '0', '0', NULL , '0', ''
+);
+
+ALTER TABLE <b>`sales_order`</b> ADD `elite_fit` INT( 25 ) NOT NULL ;</pre>
+
+                <br />
+            </p>
+
+
+                Insert snippet to display the customer's fit on the order page. Open <b class="path">app/design/adminhtml/default/default/template/sales/order/view/info.phtml</b>. We recommend placing this below the customer group data.
+                The customer group section looks like this:
+    <pre class="kodify html">
+    &lt;tr&gt;
+        &lt;td class=&quot;label&quot;&gt;&lt;label&gt;&lt;?php echo Mage::helper('sales')-&gt;__('Customer Group') ?&gt;&lt;/label&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;strong&gt;&lt;?php echo $_groupName ?&gt;&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    </pre>
+                Immediately following that we recommend inserting the following snippet:
+    <pre class="kodify html">
+     &lt;tr&gt;
+        &lt;td class="label"&gt;&lt;label&gt;Vehicle Fit&lt;/label&gt;&lt;/td&gt;
+        &lt;td&gt;
+        &lt;?php
+        if( (int)$_order-&gt;getEliteFit() )
+        {
+            try
+            {
+             $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new Elite_Vaf_Model_Schema );
+             $fit = $vehicleFinder-&gt;findByLeaf( (int)$_order-&gt;getEliteFit() );
+             echo htmlentities( $fit );
+            }
+            catch( Exception $e )
+            {
+             echo 'Unable to access vehicle information. Exception occured: ' . $e->getTraceAsString();
+            }
+        }
+        ?&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    </pre>
+
+</div>
+
+</body>
+</html>

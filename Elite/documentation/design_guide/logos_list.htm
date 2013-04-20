@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xml:lang="en">
+<head>
+
+    <link id="theme" rel="stylesheet" type="text/css" href="../kodify/themes/cheery.css" />
+    <link id="theme" rel="stylesheet" type="text/css" href="../style.css" />
+
+    <script type="text/javascript" src="../kodify/js/lx_analyzer.js"></script>
+    <script type="text/javascript" src="../kodify/js/kodify.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/js.js"></script>
+
+    <script type="text/javascript" src="../kodify/js/lang/php.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/html.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/css.js"></script>
+
+</head>
+<body>
+
+    <h1>Design Guide - Logos List</h1>
+    Edit a CMS page and under it's design tab place the following in the 'layout XML update' field.
+
+<pre class="kodify xml">
+&lt;reference name="content"&gt;
+     &lt;block type="vaflogo/list" name="vaflogo_list" template="vaflogo/list.phtml" /&gt;
+&lt;/reference&gt;
+</pre>
+
+    To display the logos in a "grid" instead of a vertical list, just apply a little CSS:
+
+<pre class="kodify css">
+.vaflogolist li {
+    display: inline-block;
+    width: 200px;
+}
+</pre>
+    
+</body>
+</html>

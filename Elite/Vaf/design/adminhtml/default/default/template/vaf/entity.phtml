@@ -1,0 +1,99 @@
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <?php
+        $title = 'Vehicle ' . ucfirst( $this->label ) . 's';
+        if( $this->hasParentTitle() )
+        {
+            $title .= ' for ' . $this->getParentTitle();
+        }
+        ?>
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('catalog')->__( $title ) ?></h4>
+    </div>
+    <fieldset>
+                 
+        <legend><?php echo Mage::helper('catalog')->__('Vehicle Application Fit') ?></legend>
+        <form action="<?=$this->add_url?>" method="GET">
+            <input type="hidden" name="id" value="<?=(int)$this->id?>" />
+            <?php
+            foreach($this->request_levels as $level=>$val)
+            {
+                ?>
+                <input type="hidden" name="<?=$level?>" value="<?=$val?>" />
+                <?php
+            }
+            ?>
+            <input type="hidden" name="entity" value="<?=$this->htmlEscape( $this->label )?>" />
+            <?='<input type="text" name="title" value="" /><input type="submit" name="save" value="Add ' . ucfirst($this->label) . '" />'?>
+        </form>
+        
+	<?php
+	if(!$this->editing())
+	{
+		?>
+		<form action="<?=$this->mergeUrl()?>" method="POST">
+		<?php
+	}
+	?>
+            <?php echo $this->getBlockHtml('formkey')?>
+            <table>
+                <tr>
+                    <td width="190"></td>
+                    <td><b>Title</b></td>
+                </tr>
+                <?php
+                foreach( $this->rs as $row )
+                {
+                    echo '<tr>';
+                        echo '<td>
+                            <input type="checkbox" name="selected[]" value="' . $row->getId() . '" />
+                            <a href="' . $this->productUrl( $row->getId() ) . '">Products</a>
+                            |
+                            <a href="' . $this->getEditUrl( $row->getId() ) . '">Edit</a>
+                            |
+                            <a href="' . $this->splitUrl( $row->getId() ) . '">Split</a>
+                            |
+                            <a href="' . $this->getDeleteUrl(  $row->getId() ) . '">Delete</a>
+                        </td>';
+                        echo '<td>';
+                            if( $this->editing(  $row->getId() ) )
+                            {
+                                ?>
+                                <form action="<?=$this->getSaveUrl(  $row->getId() )?>" method="GET">
+                                    <?php
+                                    foreach($this->requestLevels() as $level=>$value)
+                                    {
+                                        $helper = new Zend_View_Helper_FormHidden();
+                                        $helper->setView(new Zend_View());
+                                        echo $helper->formHidden($level, $value);
+                                    }
+                                    ?>
+                                    <?='<input type="text" name="title" value="' .  $this->htmlEscape( $row->getTitle() ) . '" /><input type="submit" name="save" value="Save" />'?>
+                                </form>
+                                <?php
+                            }
+                            else
+                            {
+                                echo $this->htmlEscape( $row->getTitle() );
+                            }
+                        echo '</td>';
+                        echo '<td>';
+                            if( $this->getNextLevel() )
+                            {
+                                echo '<a href="' . $this->getListUrl( $this->getNextLevel(), $row->getId() )  . '">List ' . ucfirst( $this->getNextLevel() ) . 's &raquo;</a>';
+                            }
+                        echo '</td>';
+                    echo '</tr>';
+                }
+                ?>
+            </table>
+	<?php
+	if( !$this->editing() )
+	{
+		?>
+            <input type="submit" name="merge" value="Merge Selected" />
+        </form>
+		<?php
+	}
+	?>
+    </fieldset>
+</div>

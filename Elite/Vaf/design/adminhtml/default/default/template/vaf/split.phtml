@@ -1,0 +1,19 @@
+Going to split <? echo $this->htmlEscape($this->vehicle)?>
+
+<form action="?" method="post">
+    <?php echo $this->getBlockHtml('formkey')?>
+    <input type="hidden" name="entity" value="<?=$this->getEntity()->getType()?>" />
+    <?php
+    foreach($this->vehicle->toValueArray() as $field => $value )
+    {
+        ?>
+        <input type="hidden" name="<?=$field?>" value="<?=$value?>" />
+        <?php
+    }
+    ?>
+    New Titles: <input type="text" name="new_titles" /> (Separate by comma)
+    <br />
+    <input type="submit" name="submit" value="Split" />
+    
+    <i>Note: This is intended for 'full' vehicles only, so you must enter a make/model/year. You may not have just a make and split it without creating models &amp; years.</i>
+</form>

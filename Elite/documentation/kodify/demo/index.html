@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xml:lang="en">
+  <head>
+    <title>Kodify Demo</title>
+    <link id="theme" rel="stylesheet" type="text/css" href="../themes/blackboard.css" />
+    <script type="text/javascript" src="../js/lx_analyzer.js"></script>
+    <script type="text/javascript" src="../js/kodify.js"></script>
+    <script type="text/javascript" src="../js/lang/js.js"></script>
+    <script type="text/javascript" src="../js/lang/php.js"></script>
+    <script type="text/javascript" src="../js/lang/html.js"></script>
+    <script type="text/javascript" src="../js/lang/css.js"></script>
+    <style type="text/css">
+    pre {
+      margin: 20px;
+      padding: 10px;
+    }
+    form#themeselector {
+      display: none;
+    }
+    h2 {
+      border-bottom: 1px solid #000000;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="intro">
+      <h1>Kodify Demo</h1>
+      <p>
+        View this page with JavaScript enabled, then try it with JavaScript turned off.
+      </p>
+      <p>
+        Try changing the theme dropdown for a different look and feel (not my stong point!).
+      </p>
+      <p>
+        View the HTML source and see how clear and semantic it is.
+      </p>
+      
+      <form id="themeselector" method="post" action="#">
+        <fieldset>
+          <label for="themelist">
+            Theme
+          </label>
+          <select id="themelist"
+            onchange="document.getElementById('theme').href = '../themes/' + this.options[this.selectedIndex].value + '.css';">
+            <option value="blackboard">Blackboard</option>
+            <option value="cheery">Cheap &amp; Cheery</option>
+            <option value="coffee">Coffee</option>
+            <option value="meadow">Summer Meadow</option>
+          </select>
+        </fieldset>
+      </form>
+    </div>
+    
+    <div class="example">
+      <h2>JavaScript</h2>
+      <code>
+        <pre class="kodify js">
+/**
+ * This is a comment.
+ */
+var ClassA = function ClassA(argName) {
+  this.publicProperty = argName;
+  
+  /** @private */
+  var _privateVar = 42;
+  
+  this.methodName = function methodName(a, b, c) {
+    return window.confirm(a + b + c);
+  };
+  
+};
+
+ClassA.prototype.otherMethod = function otherMethod() {
+  this.publicProperty = 0xFF;
+};
+
+for (var x in y) {
+  document.write(y[x]);
+}
+
+//Strings work fine and dandy
+var regex = new RegExp("Word\\s+\"moon\"");
+
+//RegExp literals are detected
+var regexLiteral = /Word\s+"moon"/;
+
+//The / c / part of this is not detected as a regex
+var x = a + b / c / d * 9;
+
+#Single line comments work
+doSomething(/regex here/);
+
+        </pre>
+      </code>
+    </div>
+    
+    <div class="example">
+      <h2>PHP</h2>
+      <code>
+        <pre class="kodify php">
+&lt;?php
+
+/**
+ * Multi-line comment
+ */
+interface C {
+  // ...
+}
+
+class ClassA extends ClassB implements InterfaceC {
+  private $_property;
+  const CONST_NAME = 42;
+  
+  public function __construct($magicNumber) {
+    $this-&gt;_property = $magicNumber;
+  }
+  
+  final public static function functionName() {
+    return self::CONST_NAME;
+  }
+}
+
+?&gt;
+
+&lt;strong class="foo"&gt; HTML here &lt;strong&gt;
+
+&lt;?php
+
+$obj = new ClassA(7);
+
+$string = "foo\n \"test\" \\ bar";
+
+if (false !== strpos($string, '\\')) {
+  echo '\\ is found in string';
+}
+
+$hd = &lt;&lt;&lt;EOD
+This is a heredoc block
+with multiple lines
+EOD;
+
+$a = $_POST['a'];
+
+foreach (array(1, 2, 3) as $k =&gt; $v) {
+  print $v;
+}
+
+?&gt;
+        </pre>
+      </code>
+    </div>
+    
+    <div class="example">
+      <h2>HTML</h2>
+      <code>
+        <pre class="kodify html">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xml:lang="en"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Example&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body onload='doSomething();'&gt;
+    &lt;p class="content"&gt;
+      String "within element body" actively not highlighted
+      &lt;br /&gt;
+      Other line
+    &lt;/p&gt;
+    &lt;!--
+      This is a comment
+    --&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+      </code>
+    </div>
+    
+    <div class="example">
+      <h2>CSS</h2>
+      <code>
+        <pre class="kodify css">
+@import url('another/stylesheet.css');
+
+@media print {
+  
+  /*
+   This is a comment
+   */
+  body p.main {
+    font-color: black;
+  }
+  
+}
+
+* body>p {
+  line-height: 2em;
+  font-family: arial,sans-serif;
+}
+
+#someid {
+  float: left;
+}
+
+table td.number.currency {
+  font-weight: bold;
+  text-align: center;
+}
+
+div.note {
+  background: #fff url(/images/pen.png) right no-repeat;
+}
+
+h2 {
+  border-bottom: 1px solid #aaaaaa !important;
+}
+
+}
+        </pre>
+      </code>
+    </div>
+    
+    <script type="text/javascript"><!--
+    var selector = document.getElementById("themeselector");
+    var list =  document.getElementById("themelist");
+    selector.style.display = "block";
+    document.getElementById('theme').href = '../themes/' + list.options[list.selectedIndex].value + '.css'
+    --></script>
+    
+  </body>
+</html>

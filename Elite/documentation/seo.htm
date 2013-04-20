@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xml:lang="en">
+<head>
+
+    <link id="theme" rel="stylesheet" type="text/css" href="kodify/themes/cheery.css" />
+    <link id="theme" rel="stylesheet" type="text/css" href="style.css" />
+
+    <script type="text/javascript" src="kodify/js/lx_analyzer.js"></script>
+    <script type="text/javascript" src="kodify/js/kodify.js"></script>
+    <script type="text/javascript" src="kodify/js/lang/js.js"></script>
+
+    <script type="text/javascript" src="kodify/js/lang/php.js"></script>
+    <script type="text/javascript" src="kodify/js/lang/html.js"></script>
+    <script type="text/javascript" src="kodify/js/lang/css.js"></script>
+
+</head>
+<body>
+
+<h1>SEO</h1>
+
+
+<!-- HTML -->
+<h2 id="html">HTML Vehicle Sitemap</h2>
+<div>
+    The sitemap is automatically loaded if it is enabled in the configuration. Simply place an indexable link where Google can see it somewhere in your page, such as the footer. We recommend removing any links from your built in Magento sitemap, and disallowing them in your robots.txt, there is no need to have the Magento sitemap as well as the vehicle site map. Choose one and stick with it to avoid duplicate content penalization.
+    <br />
+    <br />
+    The default Vehicle Sitemap URL is at:<br />
+    http://example.com/vafsitemap/vehicle
+    
+    <br />
+
+    <div align="center">
+        <img src="images/sitemap_vehicle.jpg" />
+        <br />
+        <i>The extension will list each vehicle that has product with application mappings</i>
+    </div>
+    <br />
+    <div align="center">
+        <img src="images/sitemap_product.jpg" />
+        <br />
+        <i>The extension will list each product mapped to that vehicle, as Google crawls the site map!</i>
+    </div>
+    
+</div>
+
+
+<!-- Rewrite Titles -->
+<h2 id="rewrite_titles">Rewrite Product Titles</h2>
+<div>
+    
+    <p>Product titles may be rewritten, for example if the user has "2000 Honda Civic" as their selected vehicle, a product with a title of "Widget" would appear as "Widget for 2000 Honda Civic". Any custom title formatting may also be used... for example replacing 'for' with 'for your' to get 'Widget for your 2000 Honda Civic'.</p>
+    
+    <p>Product titles may be rewritten on a global or local basis. When rewritten locally, you can cherry pick specific locations where you want the product title to appear rewritten (Ex: product view, shopping cart, home page). When rewritten globally, the product title will appear rewritten eveywhere [globally], including but not limited to the page's html title tag and shopping cart.<p>
+    
+    <p>With global rewriting, there is no need to modify any tempaltes, as shown in example #1. With local rewriting, there a need to modify each template where you want to rewrite the titles. The product view page is treated as "global" even if you are in local mode, this cannot be disabled.</p>
+    
+    <p>
+        <strong>Example 1: Global Rewrites</strong>
+        <br />
+        Configuration is set to:
+        <pre>
+[seo]
+rewriteProductName = true
+globalRewrites = true
+        </pre>    
+        
+        With global rewriting, there is no need to modify any tempaltes, as shown:
+        <pre class="kodify php">
+// when global rewrites are on & product fits current vehicle selection
+$product->getName(); // Widget for Honda Civic 2002
+
+// when global rewrites are on & product does not fit selection
+$product->getName(); // Widget
+        </pre>
+   </p>
+   
+   <p>
+        <strong>Example 2: Local Rewrites</strong>
+        <br />
+        Configuration is set to:
+        <pre>
+[seo]
+rewriteProductName = true
+globalRewrites = false
+        </pre>
+        
+        With local rewriting, there a need to modify each template where you want to rewrite the titles, as shown:
+        <pre class="kodify php">
+// when global rewrites are off & product fits current vehicle selection
+$product->setCurrentlySelectedFit( Elite_Vaf_Helper_Data::getInstance()->getFit() );
+$product->getname(); //  Widget for Honda Civic 2002
+
+// when global rewrites are off & product does not fit current vehicle selection
+$product->setCurrentlySelectedFit( Elite_Vaf_Helper_Data::getInstance()->getFit() );
+$product->getname();  // Widget
+        </pre>
+   </p>
+   
+   
+</div>
+
+
+<!-- CSV -->
+<h2 id="google_products">Google Products</h2>
+<div>
+    Export this under Vehicles -> SEO -> Export
+    <br />
+    <img src="seo/export-csv.png" />
+    <br />
+    You must run the export on a store by store basis. Select a store and select 'CSV' for the format. If you have over a few thousand application mappings its recommended to use the CLI / Crontab
+</div>
+    
+<!-- XML -->
+<a  name="csv"></a>
+<h2>Sitemap XML (Google, Yahoo, and other crawlers)</h2>
+<div>
+     Export this under Vehicles -> SEO -> Export
+    <br />
+    <img src="seo/export-xml.png" />
+    <br />
+    You must run the export on a store by store basis. Select a store and select 'XML' for the format. If you have over a few thousand product application fitments its recommended to use the Command Line Interface (CLI).
+</div>
+        
+<!-- CLI -->
+<a  name="cli"></a>
+<h2>Command Line Interface (CLI) / Crontab</h2>
+<div>
+    Navigate to Elite/Vafsitemap/cron
+    <br />
+    Rename google-base.default.php to google-base.My-Store.php (put your store name)
+    <br />
+    Open config.php and set the path information &amp; database details.
+    <br />
+    Open google-base.My-Store.php and set the store ID on the second line.
+    <br />
+    Run this file like this:
+    <br />
+    	<br />
+    	php google-base.My-Store.php
+    	<br />
+    	<br />
+    	Or as a background process:
+    	<br />
+    	<br />
+    	nohup php google-base.My-Store.php > seo.My-Store.log &amp;
+    <br />
+    <br />
+    <br />
+    Repeat for each store.
+</div>
+    
+</body>
+</html>

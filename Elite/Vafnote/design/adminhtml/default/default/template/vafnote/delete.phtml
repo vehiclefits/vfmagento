@@ -1,0 +1,7 @@
+Are you sure you want to delete note <?=(int)$this->getRequest()->getParam('id')?>?
+<br />
+<?php
+$yes = $this->getUrl('*/*/*',array('delete'=>1, 'confirm'=>1, 'id'=>$this->getRequest()->getParam('id')));
+$no = $this->getUrl('*/*/*');
+?>
+<a href="<?=$yes?>">Yes</a> | <a href="<?=$no?>">No</a>

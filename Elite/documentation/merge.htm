@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xml:lang="en">
+<head>
+
+    <link id="theme" rel="stylesheet" type="text/css" href="kodify/themes/cheery.css" />
+    <link id="theme" rel="stylesheet" type="text/css" href="style.css" />
+
+    <script type="text/javascript" src="kodify/js/lx_analyzer.js"></script>
+    <script type="text/javascript" src="kodify/js/kodify.js"></script>
+    <script type="text/javascript" src="kodify/js/lang/js.js"></script>
+
+    <script type="text/javascript" src="kodify/js/lang/php.js"></script>
+    <script type="text/javascript" src="kodify/js/lang/html.js"></script>
+    <script type="text/javascript" src="kodify/js/lang/css.js"></script>
+
+</head>
+<body>
+    
+    
+
+<h1>Merging</h1> 
+<div id="merge"> 
+
+<p>
+    <b>Step 1 - Choose the candidates to merge ('slaves' &amp; 'master')</b><br />
+    <img src="merge/choose-slaves.jpg" /><br />
+    Choose all the levels you want to be merged, including the one you want to retain.
+</p>
+
+<p>
+    <b>Step 2 - Select the level you intend to retain ('master')</b><br />
+    <img src="merge/choose-master.jpg" /><br />
+    All levels will be recursively merged into the 'master' (the one to be retained).
+</p>
+
+    
+<h2>How it works</h2>
+
+<h3>Merge of Make</h3>
+<pre>
+Honda / Civic / 2000
+Honda-oops / Civic / 2001
+Honda-oops / Accord / 2003
+</pre>
+
+If you merge the makes, and select 'Honda' as the one to keep, you get:
+
+<pre>
+Honda / Civic / 2000
+Honda / Civic / 2001
+Honda / Accord / 2003
+</pre>
+
+<p>As you can see it merges years if there are two models with alike names (civic). It will not merge names if they are not direct descendants at all levels ('Accord' is different than 'Civic' so the merging doesn't go past the make for those vehicles). This way after the merge, years from Accord won't end up under Civic, for example.</p>
+
+<h3>Merge of Model</h3>
+<pre>
+Ford / F-150 / 2000
+Ford / F150 / 2000
+</pre>
+
+<p>Let's say you had the above setup. The customer would currently have to check 'under' both versions of the model (with and w/o dash), seeing approximately half of the products each time. This is obviously no good!</p>
+
+<p>Merging the models, and selecting 'F-150' as the model to keep, we'd end up with:</p>
+<pre>Ford / F-150 / 2000</pre>
+
+<p>All products that had previously fit either of the models, will now show up under searches, and there will only be one ubiquitous spelling of 'F-150' in the database (with the dash of course).</p>
+
+<h3>Merge Model With Differing Years</h3>
+<p>When merging, its worth noting certain measures are taken to ensure the fitment information is updated as per the merge.</p>
+
+<pre>
+Ford / F-150 / 2000
+Ford / F150 / 2001
+</pre>
+
+<p>Let's say you had the above setup in the vehicles list. the '2000' fits product A, and the '2001' fits product B.</p>
+
+After the merge, you will have in your vehicles list:
+<pre>
+Ford / F-150 / 2000
+Ford / F-150 / 2001
+</pre>
+
+Product A's fitments:
+<pre>Ford / F-150 / 2000</pre>
+
+Product B's fitments:
+<pre>Ford / F-150 / 2001</pre>
+
+<p>So basically, even though all years get merged together into one single model, care is taken that if a product does not fit one of those years, they will not be added as a result of the merge</p>
+
+<h2>Interoperation with other Modules</h2>
+<p>
+Fitment Notes<br />
+=====<br />
+MERGE Should "multiply" out all notes + vehicle combinations when requesting merge. All products that fit *any* vehicle, will now have notes from *all* vehicles.
+<br /><br />
+SPLIT Should copy notes to each resultant vehicle/mapping.<br /><br />
+
+Wheels/Wheel adapters<br />
+=====<br />
+MERGE Should prevent (throw exception) when requesting to merge vehicles that do not all share a common bolt pattern.<br /><br />
+
+SPLIT Should copy wheel (bolt pattern) to each resultant vehicle.<br /><br />
+
+Tires<br />
+======<br />
+MERGE Should prevent (throw exception) when requesting to merge vehicles that do not all share a common tire size.<br /><br />
+
+SPLIT Should copy tire size to each resultant vehicle.<br /><br />
+
+Paint Codes<br />
+======<br />
+MERGE Should prevent (throw exception) when requesting to merge vehicles that have paint codes.<br /><br />
+
+SPLIT Should prevent operation if vehicles have paint codes</p>
+
+</div>
+</body>
+</html>

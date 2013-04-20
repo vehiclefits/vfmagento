@@ -1,0 +1,83 @@
+/** Kodify Theme Outline File */
+
+/* Copy & Paste the contents of this to start writing your own theme */
+
+.kodify {
+}
+
+.kodify .bracketpair {
+}
+.kodify .bracketpair.unpaired {
+}
+
+.kodify .control {
+}
+
+.kodify .operator {
+}
+
+.kodify .keyword {
+}
+
+.kodify .predefined {
+}
+.kodify .predefined.variable {
+}
+.kodify .predefined.function {
+}
+.kodify .predefined.class {
+}
+.kodify .predefined.interface {
+}
+
+.kodify .identifier {
+}
+.kodify .identifier.variable {
+}
+.kodify .identifier.function {
+}
+.kodify .identifier.class {
+}
+.kodify .identifier.interface {
+}
+
+.kodify .string {
+}
+.kodify .string.literal {
+}
+.kodify .string.heredoc {
+}
+.kodify .string.escapedchar {
+}
+
+.kodify .number {
+}
+.kodify .number.hexadecimal {
+}
+.kodify .number.octal {
+}
+.kodify .number.float {
+}
+
+.kodify .comment {
+}
+.kodify .comment.multiline {
+}
+.kodify .comment.singleline {
+}
+
+.kodify .regex {
+}
+
+.kodify .markup.xml {
+}
+.kodify .markup.doctype {
+}
+.kodify .markup.tag {
+}
+.kodify .markup.attribute {
+}
+.kodify .markup.class {
+}
+.kodify .markup.id {
+}

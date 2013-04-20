@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Elite_Vafwheeladapter>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Elite_Vafwheeladapter>
+    </modules>
+</config> 

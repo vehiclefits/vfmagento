@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Elite_Vafsitemap>
+            <version>1.35</version>
+        </Elite_Vafsitemap>
+    </modules>
+    <global>
+
+        <blocks>
+            <vafsitemap>
+                <class>Elite_Vafsitemap_Block</class>
+            </vafsitemap> 
+        </blocks>
+        
+        <models>
+            <core>
+                <rewrite>
+                    <url_rewrite>Elite_Vafsitemap_Model_Url_Rewrite</url_rewrite>
+                </rewrite>
+            </core>
+        </models>
+
+     </global>
+     
+     <frontend>
+        <routers>
+            <vafsitemap>
+                <use>standard</use>
+                <args>
+                    <module>Elite_Vafsitemap</module>
+                    <frontName>vafsitemap</frontName>
+                </args>
+            </vafsitemap>
+        </routers>
+        <layout>
+            <updates>
+                <Elite_Vafsitemap>
+                    <file>vafsitemap.xml</file>
+                </Elite_Vafsitemap>
+            </updates>
+        </layout>
+     </frontend>
+     
+     <adminhtml>
+        <menu>
+            <vaf>
+                <children>
+                    <seo translate="title">
+                        <title>SEO</title>
+                        <children>
+                            <export translate="title">
+                                <title>Export</title>
+                                <action>adminhtml/vafsitemap/export</action>
+                            </export>
+                        </children>
+                        <sort_order>80</sort_order>
+                    </seo>
+                </children>
+            </vaf>
+        </menu>
+        
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <vaf>
+                            <children>
+                                <seo translate="title">
+                                    <title>SEO</title>
+                                    <children>
+                                        <export translate="title">
+                                            <title>Export</title>
+                                            <action>adminhtml/vafsitemap/export</action>
+                                        </export>
+                                    </children>
+                                    <sort_order>80</sort_order>
+                                </seo>
+                            </children>
+                        </vaf>
+                    </children>
+               </admin>
+           </resources>
+        </acl>
+    </adminhtml>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <frontName><![CDATA[admin]]></frontName>
+                    
+                    <modules>
+                      <Elite_Vafsitemap_Admin before="Mage_Adminhtml">Elite_Vafsitemap_Admin</Elite_Vafsitemap_Admin>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+     </admin>
+</config>

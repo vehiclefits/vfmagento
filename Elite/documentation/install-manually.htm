@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xml:lang="en">
+<head>
+
+    <link id="theme" rel="stylesheet" type="text/css" href="kodify/themes/cheery.css" />
+    <link id="theme" rel="stylesheet" type="text/css" href="style.css" />
+
+    <script type="text/javascript" src="kodify/js/lx_analyzer.js"></script>
+    <script type="text/javascript" src="kodify/js/kodify.js"></script>
+    <script type="text/javascript" src="kodify/js/lang/js.js"></script>
+
+    <script type="text/javascript" src="kodify/js/lang/php.js"></script>
+    <script type="text/javascript" src="kodify/js/lang/html.js"></script>
+    <script type="text/javascript" src="kodify/js/lang/css.js"></script>
+
+</head>
+<body>
+    
+
+<h1>Manual Installation</h1> 
+<div id="copy_some_files"> 
+    If the installer script doesn't work (for example, if there are permission issues you were unable to resolve) you can try copying the files by hand. After you copy the files you'll also need to run the SQL file located in Elite/vaf.sql
+
+    <ol>
+        <li>
+            Load module XMLs <b class="path">app/code/local/Elite/Vaf/</b>
+            <br />
+            Copy <b class="source path">Elite_Vaf.xml</b> to <b class="path">app/etc/modules/</b>.
+            
+            Similarly you must do this for each module you purchased.
+        </li> 
+        <li> 
+            Install jquery dependencies into your skin path.
+            <br />
+            <ul>
+                <li>Copy: <b class="source path">Elite/skin/</b> to: <b class="path">skin/</b>. Overwrite/merge files if/when prompted.</li>
+            </ul>
+        </li> 
+        <li> 
+            Copy Designs (templates+layouts)
+            <br /> 
+            <ul> 
+                <li>Copy <b class="source path">Elite/Vaf/design/</b> to <b class="path">app/design/</b>. Overwrite/Merge Files when prompted.</li> 
+            </ul> 
+        </li> 
+        <li> 
+            Copy CSS
+            <br /> 
+            <ul> 
+                <li>Copy <b class="source path">Elite/Vaf/jsAndCss/vafStyle.css.php</b> to <b class="path">/</b>. (web root).</li> 
+            </ul> 
+        </li> 
+        <li> 
+            <i>Copy icons to public directory</i> 
+            <ul> 
+                <li>In <b class="source path">Elite/Vaf/</b> copy <b class="source path">plus.jpg</b> and <b class="source path">minus.jpg</b> to your Magento's index.php path ( usually document root )  - This adds icons on the 'group' mode homepage vaf search   </b></li> 
+            </ul> 
+        </li> 
+    </ol>    
+</div> 
+
+- Paths in <b class="path">Orange</b> refer to the path in your version of Magento, "your files"
+
+    <br />
+    - Paths in <b class="path source">green</b> refer to the path relative to the extension, "my files".
+    <br />
+    
+    - Unzip the <b class="path source">Elite/</b> folder to <b class="path">app/code/local/</b></li>, so you will have app/code/local/Elite.
+        
+    
+</body>
+</html>

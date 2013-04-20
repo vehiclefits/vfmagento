@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xml:lang="en">
+<head>
+
+    <link id="theme" rel="stylesheet" type="text/css" href="../kodify/themes/cheery.css" />
+    <link id="theme" rel="stylesheet" type="text/css" href="../style.css" />
+
+    <script type="text/javascript" src="../kodify/js/lx_analyzer.js"></script>
+    <script type="text/javascript" src="../kodify/js/kodify.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/js.js"></script>
+
+    <script type="text/javascript" src="../kodify/js/lang/php.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/html.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/css.js"></script>
+
+</head>
+<body>
+    
+    <h1>Design Guide - Product Page</h1>
+    
+    <ul>
+        <li><a href="#vehicle_applications">Display Vehicle Applications</a></li>
+    </ul>
+    
+    <a name="vehicle_applications"></a>
+<h2>Display Vehicle Applications</h2>
+<div id="display_fits_on_product">      
+            To display vehicles [applications] for a product, open app\design\frontend\base\default\template\catalog\product\view.pthml and paste the following snippet where you would like the fits to appear. Warning: you should not use this feature / or just modify this to take appropriate action if you have more then say, 20 fits or so ( ex. you don't want a list of 1000s of fits on the product page ).
+<pre class="kodify php">
+&lt;?php
+if( $_product-&gt;isUniversal() )
+{
+    echo 'Universal Product';
+}
+else if( count( $_product-&gt;getFits() ) )
+{
+    ?&gt;
+    &lt;div class="description"&gt;
+    &lt;h3&gt;Vehicle Fits&lt;/h3&gt;
+    &lt;?php
+    foreach( $_product-&gt;getFitModels() as $fit )
+    {
+        ?&gt;
+        &lt;? echo htmlentities( $fit )?&gt;
+        &lt;br /&gt;
+        &lt;?php
+    }
+    ?&gt;
+    &lt;/div&gt;
+    &lt;?php
+}
+?&gt;
+</pre>
+
+
+</div>

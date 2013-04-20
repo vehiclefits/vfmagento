@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+
+<config>
+    
+    <modules>
+        <Elite_Vafpaint>
+            <version>1.35</version>
+        </Elite_Vafpaint>
+    </modules>
+    
+    <global>
+    
+        <blocks>
+            <adminhtml>
+                <rewrite>    
+                    <paint_paintcodes>Elite_Vafpaint_Adminhtml_Block_Paintcodes</paint_paintcodes>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        
+        <models>
+
+            <sales>
+                <rewrite>
+                    <quote>Elite_Vafpaint_Model_Quote</quote>
+                    <service_quote>Elite_Vafpaint_Model_Service_Quote</service_quote>
+                </rewrite>
+            </sales>
+
+        </models>
+        
+    </global>
+
+            
+    <adminhtml>
+        <menu>
+            <vaf>
+                <children>
+                	<paintcodes translate="title">
+                		<title>Paint Codes</title>
+	                    <sort_order>150</sort_order>
+                		<children>
+		                    <paintcodes translate="title">
+		                        <title>Import</title>
+		                        <action>adminhtml/paintcodes/import</action> 
+		                        <sort_order>20</sort_order>
+		                    </paintcodes>
+						</children>
+					</paintcodes>
+                </children>
+            </vaf>
+
+        </menu>
+        
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <vaf>
+                            <children>
+                                <paintcodes translate="title">
+                                    <title>Paint Codes</title>
+                                    <sort_order>150</sort_order>
+                                    <children>
+                                        <paintcodes translate="title">
+                                            <title>Import</title>
+                                            <action>adminhtml/paintcodes/import</action> 
+                                            <sort_order>20</sort_order>
+                                        </paintcodes>
+                                    </children>
+                                </paintcodes>
+                            </children>
+                        </vaf>
+                    </children>
+               </admin>
+           </resources>
+        </acl>
+    </adminhtml>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <frontName><![CDATA[admin]]></frontName>
+                    
+                    <modules>
+                      <Elite_Vafpaint_Admin before="Mage_Adminhtml">Elite_Vafpaint_Admin</Elite_Vafpaint_Admin>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+     </admin>
+     
+     <frontend>
+        <layout>
+            <updates>
+                <Elite_Vafpaint>
+                    <file>vafpaint.xml</file>
+                </Elite_Vafpaint>
+            </updates>
+        </layout>
+     </frontend>
+    
+</config>
