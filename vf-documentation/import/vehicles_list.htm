@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xml:lang="en">
+<head>
+
+    <link id="theme" rel="stylesheet" type="text/css" href="../kodify/themes/cheery.css" />
+    <link id="theme" rel="stylesheet" type="text/css" href="../style.css" />
+
+    <script type="text/javascript" src="../kodify/js/lx_analyzer.js"></script>
+    <script type="text/javascript" src="../kodify/js/../kodify.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/js.js"></script>
+
+    <script type="text/javascript" src="../kodify/js/lang/php.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/html.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/css.js"></script>
+
+</head>
+<body>
+
+<h1>Import Vehicles List</h1>
+
+<h2 id="preface">Preface</h2>
+<div>
+    <i>This populates the vehicle list in the extension so you can start adding the vehicle application fitments to your products!</i>
+    
+    <p>
+
+        When the system encounters a Make/Model that is already present in the vehicles list, it will skip it. If the system does not know about the Make or Model yet it will be added. The names of the Make/Models should match up character for character otherwise it will be added as a new vehicle.
+    </p>
+    
+    <div align="center">
+        <img src="../images/import_definitions.jpg" />
+    </div>
+</div>
+
+<h2 id="rules">Rules</h2>
+<div>
+    Summarized simply: include column labels in the first row. You are able to have a single 'year' column, or 'year_start' & 'year_end' columns for easily importing ranges of years. If you do not have a 'year' dropdown on your search use whatever "levels" your search will have.
+    <ol>
+        <li>Column labels must be included in the first row to identify each column to the system.</li>
+        <li>You must have a column for each "level" in your <a href="../configuration.htm">configuration</a>.</li>
+        <li>Column ordering is not important.</li>
+        <li>Column labels are case-sensitive (starting with v1.33).</li>
+        <li>Substitute underscore instead of space if desired.</li>
+    </ol>
+    
+    <strong>Note</strong>
+    <p>In your vehicles list, if you already had a Make "Acura", but no models, and then you specified Acura Integra for Make/Model in the import, the system would add "Integra" under the existing "Acura" record.</p>      
+    
+    <strong>Troubleshooting</strong>
+    <ol>
+        <li>If you use "special characters" you must use UTF-8 file encoding</li>
+        <li>MAC newlines are not supported</li>
+    </ol>
+</div>
+
+<h2 id="year_ranges">Year Ranges</h2>
+<div>
+    <p>Year ranges allow you to add ranges of years by specify the start &amp; end years. You may break the range out into two columns, or use one column and separate the columns with dashes. If the year_start you specify is greater than the year_end, they will be swapped automatically on a row by row basis. To add a single year in a range formatted file, just put the same year for both year_start &amp; year_end, or specify just the year_start, or just the year_end (leaving the other blank).</p>
+    
+    <strong>Example #1 - No Year Ranges</strong>
+    <p>
+        If you wish, you don't need to use the year ranges.
+        <br />
+        <img src="vehicles_list/no_year_range.gif" />
+    </p>
+
+    <strong>Example #2 - Year Ranges In Multiple Fields</strong>
+    <p>
+        <img src="vehicles_list/year_range.gif" />
+    </p>
+    
+    <strong>Example #3 - Year Ranges In One Field</strong>
+    <p>
+        <br />
+        <img src="vehicles_list/year-range-one-field.jpg" />
+    </p>
+    
+    <i>If you accidentally reverse the year_end and year_start it will be automatically fixed.</i>
+</div>
+
+<h2 id="2digit_years">2 Digit Years</h2>
+<div>
+    
+    <p>When specifying the year_range column, or the year_start &amp; year_end columns, you may use 2 digit years. It is assumed if a 2 digit year is '24' or less, that it means 21st century. If a 2 digit year is '25' or higher, it is assumed it means 20th century. Use of 2 digit years is discouraged, but supported.</p>
+    
+    <strong>Example #1 - Year Ranges In Multiple Fields (2 Digit Years)</strong>
+    <p>
+        <img src="vehicles_list/year_range_2digit.JPG" />
+    </p>
+    
+    <strong>Example #2 - Year Ranges In One Field (2 Digit Years)</strong>
+    <p>
+        <img src="vehicles_list/year-range-one-field-2digit.jpg" />
+    </p>
+</div>
+
+<h2 id="enumeration">Enumeration</h2>
+<div>
+    <p>You may separate Makes or Models by comma if you are adding the same years. Separating by comma will cause each Make,Model, or Year to be "multiplied" or blown out. In other words it will enumerate over all possible combinations. You may enumerate multiple values within any 'level' field (Make/Model/Year field). All possible combinations will be multiplied out, or in other words the system will derive the power set.</p>
+    <p><b>Note:</b> If you want an actual comma, escape it with another comma. For example "test1, test2" is regarded as 2 individual models, if you mean it as one type "test1,, test2" to show you actually want the comma in there. The double comma will be replaced with a single comma. </p>
+        
+    <strong>Example #1 - Comma Enumeration:</strong>
+    <br />
+    <img src="vehicles_list/comma.gif" />
+    <br />
+    <strong>Example #2 - Comma Enumeration In Multiple Fields (Power Set):</strong>
+    <br />
+    <img src="vehicles_list/comma2.gif" />
+</div>
+
+<h2 id="logging">Logging</h2>
+<div>
+    <p>Logging will automatically happen when using the web interface. This will be written to '/var/vaf-import.log'. It will be logged when an import starts &amp; stops, and when errors are encountered in your data quality that cause skipped rows.</p>
+
+</div>
+
+<h2 id="cli">Command Line Interface (CLI) / Cron</h2>
+<div>
+    Navigate to <b class="path">Elite/Vafimporter/cron</b>. The file to be imported will be read from <b class="path">vehicles-list-import.csv</b>. Export files will be named as <b class="path">vehicles-list-export.csv</b>
+    <br />
+    <br />
+    
+    <h3>Import</h3>
+    To <strong>import</strong>, use this command:
+    <br />
+    <pre>php vehicles-list-import.csv.php</pre>
+    Or as a background process:
+    <pre>nohup php vehicles-list-import.csv.php > error_log &amp;</pre>
+    <br />
+    
+    <h3>Export</h3>
+    To <strong>export</strong>, use this command
+    <br />
+    <pre>php vehicles-list-export.csv.php</pre>
+    Or as a background process:
+    <pre>nohup php vehicles-list-export.csv.php > vehicles-list.csv &amp;</pre>
+    <br />
+    
+    <h3>Logging</h3>
+    Import logging will automatically be written to vehicles-list-import.log, errors and notices will be logged.
+</div>
+
+
+</body>
+</html>

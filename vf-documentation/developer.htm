@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <p>When we develop the extension we do not unzip the extension over Magento like a normal install. We keep the paths separate & use symlinks. This way our version control system [git] does not try to track Magento's files.</p>
+
+<pre>cd /home/josh/www
+git clone git@github.com:vehiclefits/Vehicle-Fits-Magento.git
+cd /home/josh/www/magento/app/code/local
+ln -s /home/josh/www/Vehiclefits-Magento/app/code/local/Elite Elite
+cd /home/josh/www/magento/lib
+ln -s /home/josh/www/Vehicle-Fits-Magento/lib/VF VF
+</pre>
+This assumes you have Magento installed at /home/josh/www/magento/. We check out the Vehicle Fits repository in /home/josh/www/, in app/code/local we create a symlink for the Elite folder to point to where we just checked out the repository to. We also do the same for the lib/VF folder.
+</body>
+</html>

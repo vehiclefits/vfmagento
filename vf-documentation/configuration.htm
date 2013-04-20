@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xml:lang="en">
+<head>
+
+    <link rel="stylesheet" type="text/css" href="kodify/themes/cheery.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <script type="text/javascript" src="kodify/js/lx_analyzer.js"></script>
+    <script type="text/javascript" src="kodify/js/kodify.js"></script>
+    <script type="text/javascript" src="kodify/js/lang/js.js"></script>
+
+    <script type="text/javascript" src="kodify/js/lang/php.js"></script>
+    <script type="text/javascript" src="kodify/js/lang/html.js"></script>
+    <script type="text/javascript" src="kodify/js/lang/css.js"></script>
+
+        <style>
+        div li>b
+        {
+            color:blue;
+        }
+        </style>
+</head>
+<body>
+
+
+  
+  <h1>Configuration Guide</h1>    
+  
+  <strong>Format</strong>
+  <p>The configuration is read from <b class="path">app/code/local/Elite/Vaf/config.ini</b>. We use the <a href="http://en.wikipedia.org/wiki/INI_file">ini configuration format</a>.</p>
+  
+  <strong>Default Configuration</strong>
+  <p>A default file is located in Vaf/config.default.ini - you should copy this file &amp; rename to config.ini, and edit the settings as you desire.
+  Where possible, a comment (prefixed with a semicolon ';') will appear describing a setting, within the config.ini. For a full description of a setting, please refer to this extended configuration guide.</p>
+    
+<h2 id="category">Catalog Categories</h2> 
+<h4>[Category]</h4> 
+<div id="category">    
+    <i>Controls how the extension modifies your category pages. Also see related settings homepagesearch/exclude_categories and categorychooser/ignore which are settings that control behavior related to categories on other store pages.</i>
+
+    <ul>
+        <li>
+            <b>disable</b> -  Disable filtering on all category pages.
+
+            <p> This is if you want the vehicle search to "be seperate" from your main store, for "window shopping" style. If disable is set to true, the extension will provide the make/model/year search form and filter on all category pages by default, unless white/black listing is in effect.</p>
+            <p>Example usage: disable = true</p>
+        </li>
+        <li>
+            <b>mode</b> - Change the category mode for when user clicks through to a category page.
+            <p>Defaults to "default". Alternatively specify "group" for 'group view' on every category page.</p>
+        </li>
+        <li>
+            <b>whitelist</b> -  Allows you to control for which categories filtering is enabled. Should be a comma separated list of category IDs.
+            <br />
+            <b>blacklist</b> -  Allows you to control for which categories filtering is disabled. Should be a comma separated list of category IDs.
+            <br />
+            For instance if only one of your categories is applicable to the make/model/year search. Works according to these rules:
+            <ul>
+                <li>If whitelisting is specified, and the customer is on the category specified, the they will see the filter.</li>
+                <li>If blacklist is specified, and the customer is on the category specified, the they will not see the filter.</li>
+                <li>If neither is specified, the value of "disabled" will control wether the customer will see the filter.</li>
+            </ul>
+            <p>Example Usage:<br />
+            whitelist = "4,3,2"; only enable the search on this category<br />
+            blacklist = "1,2,3"   ; do not enable the search on this category
+            </p>
+        </li>
+        <li>
+            <b>requireVehicle</b> - Allows you to require user to select a vehicle before seeing products. Should be a comma separated list of category IDs. Optionally set to "all" to match all category IDs.
+            <br />
+            Example Usage:
+            <br />
+            requireVehicle = "1,2,3"
+            <br />
+            requireVehicle = "all"
+            <br />
+            The splash page that is shown can be edited in vaf/splash.phtml
+        </li>
+    </ul>
+    
+</div>     
+
+
+<h2 id="search_filter">Search Filter</h2>
+<h4>[search]</h4>
+<div id="search">
+    <i>Control how the extension's front-end search functionality works for the customer</i>
+
+    <ul>
+        <li>
+            <b>loadingText</b> - text to show in the drop-down while the ajax is processing
+            <p>Set text you want to appear in each dropdown while the ajax is loading, if left blank or ommited defaults to "loading". You may set it to an empty string ("") to have no loading text.</p>
+        </li>
+        <li><b>searchButton</b> - Changes the operation of the submit button. Defaults to "button". Set to "button" to show a submit button. Set to "link" to show a submit link. Set to "hide" and there will be no submit button (it will auto-submit after any change of vehicle).</li>
+        <li><b>clearButton</b> - Changes the clear button. Defaults to "button". Set to "button" to show a clear button. Set to "link" to show a clear link. Set to "hide" and there will be no clear link.</li>
+        <li><b>defaultText</b> Text to use as the default option prompting user to make selection. Defaults to "-please select-" if you do not override it. Use %s to put the current level. Example "- Pick %s -" will cause each drop down to read "- Pick Make -", "- Pick Year -",etc.</li>
+        <li><b>labels</b> Set to false if you don't want labels in front of the select boxes. Defaults to true.</li>
+        <li>
+            <b>unavailableSelections</b> - What to do with unavailable selections? show, hide, disable. Default = show.
+            <p>Before the user completely makes all selections you have several drop downs that are just blank. Several popular automotive shops have the feature for drop downs to be "hidden" or disabled before the selection is ready. Set this option to "show", "disable", or "hide". If you do not set it, it will default to "show".</p>
+            <div align="center">
+                <object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/E_8D3afbwzs?fs=1&amp;hl=en_US"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/E_8D3afbwzs?fs=1&amp;hl=en_US" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
+            </div>
+        </li>
+        <li>
+            <b>insertBrTag</b>  - Wether or not to insert a &lt;br /&gt; tag between each level. Set to true/false. Defaults to true.
+        </li>
+		<li>
+            <b>loadingStrategy</b> Loading strategy (ajax/non ajax). Defaults to "ajax". Set to "offline" for smaller data sets to get faster, smoother loading.
+        </li>
+        <li>
+            <b>submitAction</b> - Where to submit the search form. Valid options are to set this to: "homepagesearch". Setting it to any other value will cause the value to be treated as a URL. In this way you can have the form post to a URL of your choice (like a specific category or CMS page). If the user is on a category page, the form will submit to the same page (filter the current results) unless you also set the 'submitOnCategoryAction' setting. If at any time the category chooser is active on any given page, the form will ALWAYS post the category that the user selects.
+        </li>
+        <li>
+            <b>submitOnCategoryAction</b> - Where to submit the search form when the user is viewing a "category view" page. You may either set this to "refresh", or "homepagesearch", or a specific URL. If not specified, this value defaults to refresh. If at any time the category chooser is active on any given page, the form will ALWAYS post the category that the user selects.
+        </li>
+        <li>
+            <b>submitOnProductAction</b> - Where to submit the search form when the user is viewing a "product view" page. You may either set this to "refresh", or "homepagesearch", or a specific URL. If not specified, the value of "submitAction" is used on the product page, if it were specified. If at any time the category chooser is active on any given page, the form will ALWAYS post the category that the user selects.
+        </li>
+        <li>
+            <b>submitOnHomepageAction</b> - Where to submit the search form when the user is viewing the home page. You may either set this to "refresh", or "homepagesearch", or a specific URL. Defaults to "homepagesearch". If not specified, the value of "submitAction" is used on the home page, if it were specified. If at any time the category chooser is active on any given page, the form will ALWAYS post the category that the user selects.
+        </li>
+        <li>
+            <b>categoriesThatSubmitToHomepage</b> - List category IDs separated by comma that should always submit to the "homepage search results"
+        </li>
+        <li>
+            <b>categoriesThatRefresh</b> - List category IDs separated by comma that should always refresh on submit
+        </li>
+        <li><b>vehicleTemplate</b> - Customize how the vehicle is displayed, for example if your schema is "year,make,model" it would default to displaying vehicles like "2000 Honda Civic" but with this you could have it show "2000 Civic" by setting the vehicleTemplate to "%year% %model%"</li>
+        <li><b>storeVehicleInSession</b> - Set to false to not store the vehicle in the user's session. Defaults to true.</li>
+    </ul>
+</div>
+
+<h2 id="link_directory">Link Directory</h2>
+<h4>[directory]</h4>
+<div id="directory">
+    <i>Controls behavior of the vehicle link directory module</i>
+    
+    <ul>
+        <li><b>enable</b>  - enables the module. Defaults to false.</li>
+        <li><b>cmsEnable</b>  - enables the CMS directory. <a href="design_guide/cms-directory.htm">See more information here.</a></li>
+    </ul>
+</div>
+
+<h2 id="product">Product</h2> 
+<h4>[product]</h4> 
+<div id="product">    
+    <i>Controls how the extension modifies your products &amp; shopping cart.</i>
+
+    <ul>
+        <li>
+            <b>requireVehicleBeforeCart</b> - Require the user to choose a vehicle before adding product to cart 
+            <p>Set to true to require the user to choose a vehicle before adding product to cart. If enabled users will be presented with an intermediate page, and asked to choose their vehicle from a list of compatable vehicles before adding the product to the cart. The default behavior is for this to be turned off, unless you set it to true.*[1][2]</p>
+        </li>
+    </ul>
+    
+    *[1] <i>Will only affect categories that are enabled. Will only affect product that are in enabled categories. If product is in both a blacklisted & whitelisted category, it will be treated as if it is whitelisted.</i>
+    <br />
+    *[2] <i>Will only occur if the product actually has fitments mapped to it, if not there would be no possible choices and it would not make sense to show it.</i>
+    
+</div>
+
+  
+<h2 id="my_garage">My Garage</h2>
+<h4>[mygarage]</h4>
+<div id="mygarage">
+    <i>Control the "My Garage" Functionality</i>
+    <ul>
+        <li>
+            <b>show</b> - Set to true to show the "My Garage" block.
+        </li>
+        <li>
+            <b>collapseAfterSelection</b> - Tuck away the search into "low profile mode" after selection is made.
+            <p>Set to true to collapse the "year/make/model" search block. If enabled, the customer will only see the search drop downs when they first hit the home page. After they select their vehicle the drop downs will be hidden in favor of the smaller footprint "my garage" with change button.</p>
+            <div align="center">
+                <object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/wJZDTPXd8NY?fs=1&amp;hl=en_US"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/wJZDTPXd8NY?fs=1&amp;hl=en_US" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<h2 id="homepage_search">Home Page Search</h2>
+<h4>[homepagesearch]</h4>  
+<div id="homepage">
+    <i>Control how your customer uses the extension to search from the home-page.</i>
+
+    <ul>
+        <li>
+            <b>mode</b> - Change the search results display mode  
+        
+            <p>Valid values are "group", "category" or "grid". <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;<i>grid</i> will enable a sortable native Magento grid grouping all products in one giant group. <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;<i>category</i> will enable a category listing (See <a href="snippets.htm#category">"category view"</a>). <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;<i>group</i> will enable a javascript powered interface where products are grouped according to their location in the category tree</p>
+        </li>
+        <li>
+            <b>exclude_categories</b> - Specify comma delimited category ids to exclude those category's product from being included in the homepage search. Works for group view only (see 'mode' setting above).       
+        </li>
+    </ul>
+</div>
+
+
+<h2 id="category_chooser">Category Chooser</h2>
+<h4>[categorychooser]</h4>
+<div id="categorychooser">
+    <i>You can allow your customer to choose from a list of "top level" categories to search in when using the vehicle search. If not used, searches will cover all categories.</i>
+
+    <ul>
+        <li>
+            <b>onHomepage</b> - Show the category chooser on the homepage
+            <p>Set to true to place a chooser on the homepage. Set to false and the customer will never see a category chooser on the homepage. If not specified, the system would default to the below option "onAllPages". If neither option is specified, there will be no category chooser on any page. If both options are specified, the value of "onHomepage" will always take presdence for the homepage.</p>
+        </li>
+        <li>
+            <b>onAllPages</b> - Show category chooser on pages other than homepage
+            <p>Set to true to place the chooser on all pages. Note that if "onHomepage" (see previous option) is specified as well, it's value will take presedence on the homepage.</p>
+        </li>
+        <li>
+            <b>allOptionOnHomepage</b> - Show "all" as the first option of the category chooser (for homepage)
+            <p>Set to true to have "All" as a category option on homepage. Follows same rules as onHomepage & onAllPages regarding precedence</p>
+        </li>            
+        <li>
+            <b>allOptionOnAllPages</b> - Show "all" as the first option of the category chooser (for all pages)
+            <p>Set to true to have "All" as a category option. Follows same rules as onHomepage & onAllPages regarding precedence</p>
+        </li>
+        <li>
+            <b>allCategoryOptionText</b> - text to show for the "all categories" option
+            <p>Set to the text you want to use in place of "All" on the category chooser, if ommited or blank, "All" will be used by default.</p>
+        </li>
+        <li>
+            <b>ignore</b> - Category IDs to ignore
+            <p>Ignores any category IDs listed, they will not show up in the "category chooser". List them out seperated by comma. If you do not put an ignore paramater then all categories will be listed by default.</p>
+        </li>
+    </ul>
+</div>   
+
+<h2 id="automotive_seo">Automotive Search Engine Optomization</h2>
+<h4>[seo]</h4>
+<div id="seo">
+    <i>Control how the extension affects your search engine optimization (SEO).</i>
+
+    <ul>
+
+        <li>
+            <b>htmlSitemap</b> - Enable an HTML sitemap? Set to true or false.
+        </li>
+        <li>
+            <b>rewriteProductName</b> - Rewrite Product Names. If set to true the name of the vehicle will be appended to the product name. Will only affect products in whitelisted (and/or non blacklisted) categories.
+        </li>
+        <li>
+            <b>globalRewrites</b> - When rewritten globally, the product title will appear rewritten eveywhere [globally], including but not limited to the page's html title tag and shopping cart. If this option is not activated, <a href="seo.htm#rewrite_titles">you must use a snippet for each place you want the product's title to appear rewritten.</a>
+        </li>
+        <li>
+            <b>productNameTemplate</b> Change how product titles are altered
+            <p>Template for changing how product titles are changed. Defaults to '_product_ for _vehicle_'</p>
+        </li>
+        <li>
+            <b>rewriteLevels</b> Change how URLs are generated
+            <p>For example, if your schema is make/model/year you could set this to "make,model" to not have a page for each year. You must only omit levels off the end.</p>
+        </li>
+
+    </ul>
+    
+</div> 
+
+
+<h2 id="logo">Logo Module</h2>
+<h4>[logo]</h4>
+<div>
+    <i>Controls the optional logos module.</i>
+
+    <ul>
+        <li>
+            <b>disable</b> - Disable the module. Set to true or false.
+        </li>
+        <li>
+            <b>extension</b> - Defaults to 'PNG', set to the file extension that will become the filename suffix for your logos.
+        </li>
+        <li>
+            <b>level</b> - Defaults to "make", or if there is no level called "make" in your schema, your root (first) level. Specify this setting to override which level is used for the logo's filename.
+        </li>
+    </ul>
+
+</div>       
+
+<h2 id="importer">Importer</h2>
+<h4>[importer]</h4>
+<div>
+    <i>Controls the import/export module.</i>
+
+    <ul>
+        <li>
+            <b>allowMissingFields</b> - Defaults to false. If set to true, import files will be accepted with less than all the "levels". Missing levels will be treated as if they were included but every row set to "Base".
+        </li>
+        <li>
+            <b>Y2KMode</b> - Defaults to true, enables Y2k Mode. Converts 2 digit years to 4 digit years as per the Vehicles List Import documentation.
+        </li>
+        <li>
+            <b>Y2KThreshold</b> - Defaults to 25. If a two digit year is less than this number, it assumed to mean 21st century; otherwise 20th century.
+        </li>
+    </ul>
+
+</div>
+
+<h2 id="tire">Tire</h2>
+<h4>[tire]</h4>
+<div>
+
+    <ul>
+        <li>
+            <b>populateWhenSelectVehicle</b> - Wether to preselect tire size when selecting vehicle. Set to true or false. Defaults to true.
+        </li>
+    </ul>
+
+</body>
+</html>

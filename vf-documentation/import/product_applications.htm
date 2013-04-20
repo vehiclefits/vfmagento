@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xml:lang="en">
+<head>
+
+    <link id="theme" rel="stylesheet" type="text/css" href="../kodify/themes/cheery.css" />
+    <link id="theme" rel="stylesheet" type="text/css" href="../style.css" />
+
+    <script type="text/javascript" src="../kodify/js/lx_analyzer.js"></script>
+    <script type="text/javascript" src="../kodify/js/../kodify.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/js.js"></script>
+
+    <script type="text/javascript" src="../kodify/js/lang/php.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/html.js"></script>
+    <script type="text/javascript" src="../kodify/js/lang/css.js"></script>
+
+</head>
+<body>
+
+<h2>Application Fitments</h2>
+<div id="mappings">
+    <p>The Application Fitments associates products with vehicles. It also adds any new vehicles it encounters.</p>
+    <div align="center">
+        <img src="../images/import_human_format.jpg" />
+    </div>
+    <br />
+    <strong>This format <strong>is almost the same as the <a href="vehicles_list.htm">Vehicles List</a> format</strong>. In fact is just an extension to the Vehicles List import format. The difference is you may list each vehicle more than once for different products.</strong>
+
+    <br />
+    <br />
+    The following rules should be noted
+    <ul>
+        <li>Each row requires a 'sku' value. If the value in this row does not match an existing product that row will be skipped.</li>
+        <li>A column for each level in your hierarchy (make,model). You may seperate Makes or Models by comma if you are adding the same years.</li>
+        <li>A column 'year', or in numeric mode 2 columns called 'year_start' and 'year_end'.</li>
+    </ul>
+    <p>
+        Tip: Vehicles can and often will span multiple rows. For example you may define years 1990-1995, and then on the next row you would do more year(s).. eg. 2000-2005.
+    </p>
+
+    <br />
+    <br />
+    
+    <b>Universal Product</b>
+    <p>You may add a 'universal' column to your spreadsheet. Place a "1" in this column for any products you want to be universal product (show up for any vehicle).</p>
+    
+    <br />
+    <br />
+    
+    <br />
+    <br />
+    
+    
+    <strong>Pitfalls</strong>
+    <ol>
+        <li>If you use "special characters" you must use UTF-8 file encoding</li>
+        <li>MAC newlines are not supported</li>
+    </ol>
+</div>
+
+<h2 id="enumeration">Enumeration</h2>
+<div>
+    <p>You may seperate SKUs by comma if you are adding the same fitments for more than one sku. This is in addition to being able to <a href="vehicles_list.htm#enumeration">enumerate the Year/Make/Model themselves.</a> Separating by comma will cause the SKU to be "multplied out" (power set) with combinations already <a href="vehicles_list.htm#enumeration">derived on the Vehicles List import.</a></p>
+        
+    <strong>Example #1 - Comma Enumeration:</strong>
+    <br />
+    <img src="product_fitments/comma.gif" />
+    <br />
+    <strong>Example #2 - Comma Enumeration In Multiple Fields (Power Set):</strong>
+    <br />
+    <img src="product_fitments/comma2.gif" />
+</div>
+
+<h2 id="wildcards">Wildcards</h2>
+<div>
+    <p>You may use wild cards within your SKU or Make/Model/Year. For example if you want to add a bunch of Ford pickup trucks (F-150, F-250, F-350, etc..) You may use the wild card character '*' within a model name, for example 'F-*' would match 'F-150', or 'F-150 *' would match 'F-150 Super Duty' but not 'F-150' . The wild card character {{all}} can be used an alias to '*' to match all applicable values. Wild cards may be used in one or more levels (Make,Model,Year) and/or the SKU. All possible combinations will be derived. Wild cards can be combined with <a href="#enumeration">Enumeration</a> for maximum flexibility.</p>
+    
+    <strong>Example #1 - {{all}} wild card:</strong>
+    <br />
+    <img src="product_fitments/wildcard1.gif" />
+    <p>In example #1, all engines for Ford F-150 for each applicable year will be added as a fitment. More concretely, if you had "Ford/F-150/1.6L" and "Ford/F-150/1.8L" in your vehicles list, both vehicles will be added as fitments for this product. In order to make the operation a "safe operation", if there were no such vehicle '2000/Ford/F-150/1.8L', it would not be added, even if 1.8L were a valid F-150 engine for other years. In other words wildcards behave as a filter that filters against the vehicles list you've previously set up. It will not behave as a "power set" (add newly implied vehicles) ala the 'enumeration' feature. Thanks to this filtering &amp; matching behavior of the wildcards, it can be guaranteed that engines do not end up associated to the wrong years (aka it is a "safe operation").</p>
+    <br />
+    
+    <strong>Example #2 - '*' within a model name:</strong>
+    <br />
+    <img src="product_fitments/wildcard2.gif" />
+    <br />
+    
+    <strong>Example #3 - '*' within a model name (more specific):</strong>
+    <br />
+    <img src="product_fitments/wildcard3.gif" />
+    <br />
+    
+    <strong>Example #4 - Wild cards &amp; Enumeration Combined, multiple fields:</strong>
+    <br />
+    <img src="product_fitments/wildcard4.gif" />
+    <br />
+    
+</div>
+
+<h2 id="logging">Logging</h2>
+<div>
+    <p>Logging will automatically happen when using the web interface. This will be written to '/var/vaf-import.log'. It will be logged when an import starts &amp; stops, and when errors are encountered in your data quality that cause skipped rows.</p>
+
+</div>
+
+<h2 id="cli">Command Line Interface (CLI) / Cron</h2>
+<div>
+    Navigate to <b class="path">Elite/Vafimporter/cron</b>. The file to be imported will be read from <b class="path">product-fitments-import.csv</b>. Export files will be named as <b class="path">product-fitments-export.csv</b>
+    <br />
+    <br />
+    
+    <h3>Import</h3>
+    To <strong>import</strong>, use this command:
+    <br />
+    <pre>php product-fitments-import.csv.php</pre>
+    Or as a background process:
+    <pre>nohup php product-fitments-import.csv.php > error_log &amp;</pre>
+    <br />
+    
+    <h3>Export</h3>
+    To <strong>export</strong>, use this command
+    <br />
+    <pre>php product-fitments-export.csv.php</pre>
+    Or as a background process:
+    <pre>nohup php product-fitments-export.csv.php > product-fitments.csv &amp;</pre>
+    <br />
+    
+    <h3>Logging</h3>
+    Import logging will automatically be written to product-fitments-import.log, errors and notices will be logged.
+</div>
+
+
+</body>
+</html>

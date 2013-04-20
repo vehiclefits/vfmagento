@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xml:lang="en">
+<head>
+
+    <link id="theme" rel="stylesheet" type="text/css" href="kodify/themes/cheery.css" />
+    <link id="theme" rel="stylesheet" type="text/css" href="style.css" />
+
+    <script type="text/javascript" src="kodify/js/lx_analyzer.js"></script>
+    <script type="text/javascript" src="kodify/js/kodify.js"></script>
+    <script type="text/javascript" src="kodify/js/lang/js.js"></script>
+
+    <script type="text/javascript" src="kodify/js/lang/php.js"></script>
+    <script type="text/javascript" src="kodify/js/lang/html.js"></script>
+    <script type="text/javascript" src="kodify/js/lang/css.js"></script>
+
+</head>
+<body>
+    
+<h1>Preface</h1>
+<p>The goal of the parts explosion diagram module is to assign one or more service codes to each product. Then, instead of manually assigning vehicles to SKUs, you assign vehicles to service codes, which will cause the system to add the applicable vehicles for you. Then when the customer searches on a vehicle, products with similiar service codes are grouped, accompanied by a diagram showing the relationship between parts. Customers can choose multiple products from this diagram and add to cart in one operation.</p>
+
+
+<h1>Product Service Codes</h1>
+Minimal:<br />
+<img src="diagram/product-service-codes.png" />
+<br />
+Full:
+<br />
+<img src="diagram/product-service-codes2.png" />
+<p>First you must assign each product (sku) to a service code. The service code &amp; illustartion ID are any arbitrary combination of letters &amp numbers. You can also optionally specify up to 4 categories.</p>
+
+<p>Navigate to Elite/Vafdiagram/cron/. Place the above data (comma delimited CSV) into a file called product-service-codes.csv. Run the below command to import it:</p>
+linux:
+<pre>
+nohup php ProductServiceCodeImporter.php > log &
+</pre>
+windows:
+<pre>
+php ProductServiceCodeImporter.php > log
+</pre>
+
+<h1>Diagram Fitments Import</h1>
+<p>Only once a product has a 'service code' can we add vehicle fitments with service codes.</p>
+<img src="diagram/fitments.png" />
+<p>Create a file just like a regular fitments import, but add 'service_code', &amp; 'sku'. Sku must be left blank. Service code corresponds of course to the service codes you added to the products in the previous step. They will be cross referenced to generate your fitments.
+
+
+    Navigate to Elite/Vafdiagram/cron/. Place the above data (comma delimited CSV) into a file called fitments-import.csv. Run the below command to import it:</p>
+linux:
+<pre>
+nohup php FitmentsImport.php > log &
+</pre>
+windows:
+<pre>
+php FitmentsImport.php > log
+</pre>
+
+<h1>User Category Selection</h1>
+<img src="diagram/screen1.png" />
+<p>After executing a search the user arrives at a category listing. This corresponds to the "category1, category2, etc.". After clicking the first level category the second level categories are listed, and so on.. until the user has no category choices left to make.</p>
+<p>For the category images use the category name &amp; create a file in your web-root:</p>
+<i>/category-images/ELECTRICAL.jpg</i>
+
+
+
+</body>
+</html>
