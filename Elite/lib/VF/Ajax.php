@@ -11,7 +11,7 @@
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the conditions in license.txt are met
 */
-class Vf_Ajax implements VF_Configurable
+class VF_Ajax implements VF_Configurable
 {
     protected $alphaNumeric;
     protected $schema;

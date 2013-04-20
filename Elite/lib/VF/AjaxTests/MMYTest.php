@@ -1,5 +1,5 @@
 <?php
-class Vf_AjaxTests_MMYTest extends Elite_Vaf_TestCase
+class VF_AjaxTests_MMYTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {
@@ -141,10 +141,10 @@ class Vf_AjaxTests_MMYTest extends Elite_Vaf_TestCase
         return ob_get_clean();
     }
     
-    /** @return Vf_Ajax */
+    /** @return VF_Ajax */
     function getAjax()
     {
-        return new Vf_Ajax();
+        return new VF_Ajax();
     }
     
     /** @return VF_Schema */
