@@ -5,13 +5,13 @@ ini_set( 'display_errors', 1 );
 require_once('bootstrap.php');
 
 # set up paths specific to test environment
-define( 'MAGE_PATH', dirname( __FILE__ ) . '/../../../../../' );
-define( 'TESTFILES', 'C:/Windows/Temp' );
+define( 'MAGE_PATH', '/home/josh/www/magento' );
+define( 'TESTFILES', '/tmp' );
 
 # database details for test server
 define( 'VAF_DB_USERNAME', 'root' );
 define( 'VAF_DB_PASSWORD', '' );
-define( 'VAF_DB_NAME', 'vaf' );
+define( 'VAF_DB_NAME', 'magento' );
 
 # used to make "test only code" run (Google "test code in production")
 define( 'ELITE_TESTING', 1 );
