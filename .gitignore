@@ -1,2 +1,3 @@
 app/code/local/Elite/Vaf/config.ini
 .DS_Store
+composer.lock
