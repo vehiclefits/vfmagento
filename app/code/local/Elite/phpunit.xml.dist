@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- http://www.phpunit.de/manual/current/en/appendixes.configuration.html -->
+<phpunit
+        backupGlobals="false"
+        backupStaticAttributes="false"
+        colors="true"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        processIsolation="false"
+        stopOnFailure="true"
+        syntaxCheck="false"
+        bootstrap="Vaf/bootstrap-tests.php">
+
+    <php>
+        <env name="MAGE_PATH" value="../../../.."/>
+        <env name="TESTFILES" value="/tmp"/>
+        <env name="VAF_DB_USERNAME" value="root"/>
+        <env name="VAF_DB_PASSWORD" value=""/>
+        <env name="VAF_DB_NAME" value="magento"/>
+    </php>
+
+    <testsuites>
+        <testsuite name="VF Magento Test Suite">
+            <directory>Vaf*/</directory>
+        </testsuite>
+        <testsuite name="VF Core Test Suite">
+            <directory>../../../../lib/VF</directory>
+        </testsuite>
+    </testsuites>
+
+</phpunit>
