@@ -21,8 +21,7 @@ class Elite_performanceTests_FitmentsImportTest extends VF_Import_ProductFitment
     
     function testMemory()
     {
-        var_dump(memory_get_usage());
-        ini_set('memory_limit','12M');
+        ini_set('memory_limit','64M');
         $this->switchSchema('model,year',true);
         $this->mappingsImportFromFile($this->csvFile());
     }
