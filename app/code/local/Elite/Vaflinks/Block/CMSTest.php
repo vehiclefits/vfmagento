@@ -43,7 +43,7 @@ class Elite_Vaflinks_Block_CMSTestSub extends Elite_Vaflinks_Block_CMS
             return;
         }
         ob_start();
-        include(ELITE_PATH . '/Vaflinks/design/frontend/default/default/template/vaflinks/cms.phtml');
+        include(MAGE_PATH . '/app/design/frontend/default/default/template/vaflinks/cms.phtml');
         return ob_get_clean();
     }
 

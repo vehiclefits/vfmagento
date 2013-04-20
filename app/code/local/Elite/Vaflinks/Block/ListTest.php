@@ -121,7 +121,7 @@ class Elite_Vaflinks_Block_ListTestSub extends Elite_Vaflinks_Block_List {
 
     function _toHtml() {
         ob_start();
-        include(ELITE_PATH . '/Vaflinks/design/frontend/default/default/template/vaflinks/list.phtml');
+        include(MAGE_PATH . '/app/design/frontend/default/default/template/vaflinks/list.phtml');
         return ob_get_clean();
     }
 
