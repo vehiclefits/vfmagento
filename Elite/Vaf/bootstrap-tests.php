@@ -41,7 +41,8 @@ class Mage_Catalog_Model_Product
     protected $name;
     protected $price;
     protected $finalPrice;
-    
+    protected $minimal_price;
+
     function setId( $id )
     {
         $this->id = $id;
@@ -71,12 +72,17 @@ class Mage_Catalog_Model_Product
     {
         $this->price = $price;
     }
-    
+
     function getMinimalPrice()
     {
-        
+        return $this->minimal_price;
     }
-    
+
+    function setMinimalPrice($price)
+    {
+       $this->minimal_price = $price;
+    }
+
     function getFinalPrice()
     {
         return $this->finalPrice;

@@ -78,6 +78,10 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
             return parent::getMinimalPrice();
         }
         $customPrice = $this->customPrice($vehicle);
+        if(!$customPrice)
+        {
+            return parent::getMinimalPrice();
+        }
         return $customPrice;
     }
 

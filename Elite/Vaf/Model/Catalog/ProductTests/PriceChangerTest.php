@@ -143,4 +143,26 @@ sku, honda, civic, 2000, 222.22');
         $this->assertNotEquals(null,$product->currentlySelectedFit());
 	$this->assertEquals( 222.22, $product->getPrice(), 'should get price/fitment from global fitment"');
     }
+
+    function testShouldNotUsePrice0()
+    {
+        $this->insertProduct('sku');
+        $vehicle = $this->createVehicle(array('make' => 'honda', 'model' => 'civic', 'year' => 2000));
+        $this->mappingsImport(
+            'price,sku, make, model, year,
+            0,sku, honda, civic, 2000'
+        );
+
+        $product = $this->getProductForSku('sku');
+        $product->setPrice(5);
+        $product->setMinimalPrice(5);
+        $product->setFinalPrice(5);
+        //$product->setFormattedPrice(5);
+        $this->setRequestParams($vehicle->toValueArray());
+
+        $this->assertEquals(5, $product->getPrice(), 'should never show $0 as price"');
+        $this->assertEquals(5, $product->getMinimalPrice(), 'should never show $0 as price"');
+        $this->assertEquals(5, $product->getFinalPrice(), 'should never show $0 as price"');
+        $this->assertEquals(5, $product->getFormatedPrice(), 'should never show $0 as price"');
+    }
 }
