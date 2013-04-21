@@ -1,0 +1,24 @@
+language: php
+
+services:
+  - mysql
+
+php:
+  - 5.3
+  - 5.4
+
+before_script:
+  - mysql -e 'create database vf_magento'
+  - cd app/code/local/Elite
+  - curl -s http://getcomposer.org/installer | php -- --quiet
+  - php composer.phar install --dev
+  - mv Vaf/config.default.ini Vaf/config.ini
+  - mkdir -p vendor/kylecannon/magento/app/design/frontend/default/default/template
+  - cd vendor/kylecannon/magento/app/design/frontend/default/default/template
+  - ln -s ../../../../../../../../../../../../design/frontend/default/default/template/vf vf
+  - cd ../../../../adminhtml/default/default/template/
+  - ln -s ../../../../../../../../../../../../design/adminhtml/default/default/template/vf vf
+  - cd ../../../../../../../../../
+
+script:
+  - vendor/bin/phpunit --coverage-text -c phpunit.travis.xml
