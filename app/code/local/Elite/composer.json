@@ -21,7 +21,6 @@
         "phpunit/php-invoker": "*",
         "phpunit/phpunit-selenium": "*",
         "phpunit/phpunit-story": "*",
-        "phpunit/dbunit": "*",
-        "kylecannon/magento":"dev-master"
+        "phpunit/dbunit": "*"
     }
 }
