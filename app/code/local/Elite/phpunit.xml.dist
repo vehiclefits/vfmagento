@@ -22,10 +22,10 @@
     </php>
 
     <testsuites>
-        <testsuite name="VF Magento Test Suite">
+        <testsuite name="vfmage">
             <directory>Vaf*/</directory>
         </testsuite>
-        <testsuite name="VF Core Test Suite">
+        <testsuite name="vfcore">
             <directory>../../../../lib/VF</directory>
         </testsuite>
     </testsuites>
