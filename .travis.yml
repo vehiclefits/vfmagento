@@ -12,7 +12,7 @@ before_script:
   - cd app/code/local/Elite
   - curl -s http://getcomposer.org/installer | php -- --quiet
   - php composer.phar install --dev
-  - mv Vaf/config.default.ini Vaf/config.ini
+  - cp Vaf/config.default.ini Vaf/config.ini
   - mkdir -p vendor/kylecannon/magento/app/design/frontend/default/default/template
   - cd vendor/kylecannon/magento/app/design/frontend/default/default/template
   - ln -s ../../../../../../../../../../../../design/frontend/default/default/template/vf vf
