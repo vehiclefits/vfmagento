@@ -40,7 +40,7 @@ define( 'VAF_DB_NAME', getenv('PHP_VAF_DB_NAME') );
 
 # used to make "test only code" run (Google "test code in production")
 define( 'ELITE_TESTING', 1 );
-define('ELITE_PATH',MAGE_PATH.'/app/code/local/Elite');
+
 require_once('bootstrap.php');
 
 set_include_path(
