@@ -1,1 +1,0 @@
-C:/wamp/bin/php/php5.3.0/php E:\dev\vaf\app\code\local\Elite\Vaf\tasks\tests.php E:\dev\vaf\app\code\local\Elite\Vaf\
