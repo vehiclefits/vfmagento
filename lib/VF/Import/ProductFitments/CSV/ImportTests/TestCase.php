@@ -18,7 +18,7 @@ abstract class VF_Import_ProductFitments_CSV_ImportTests_TestCase extends VF_Imp
     
     function mappingsImporterFromData($csvData)
     {
-        $file = TESTFILES . '/mappings.csv';
+        $file = TEMP_PATH . '/mappings.csv';
         file_put_contents( $file, $csvData );
         return $this->mappingsImporterFromFile($file);
     }

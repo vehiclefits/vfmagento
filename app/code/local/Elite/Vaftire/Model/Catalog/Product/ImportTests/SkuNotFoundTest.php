@@ -17,7 +17,7 @@ class Elite_Vaftire_Model_Catalog_Product_ImportTests_SkuNotFoundTest extends El
     
     function importVehicleTireSizes($stringData)
     {
-        $file = TESTFILES . '/vehicle-tire-sizes.csv';
+        $file = TEMP_PATH . '/vehicle-tire-sizes.csv';
         file_put_contents( $file, $stringData );
         $importer = new Elite_Vaftire_Model_Importer_Definitions_TireSize($file);
         $importer->import();
@@ -27,7 +27,7 @@ class Elite_Vaftire_Model_Catalog_Product_ImportTests_SkuNotFoundTest extends El
     {
         $stringData = '"sku","section_width","aspect_ratio","diameter","tire_type"
 "sku9846546546465465","205","55","16","2"';
-        $file = TESTFILES . '/product-tire-sizes.csv';
+        $file = TEMP_PATH . '/product-tire-sizes.csv';
         file_put_contents( $file, $stringData );
         $importer = $this->importer( $file );
         $importer->import();

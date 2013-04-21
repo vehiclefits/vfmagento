@@ -17,7 +17,7 @@ class VF_Import_VehiclesList_XML_ImportTests_MMYRenameTest extends VF_Import_Veh
         <year id="8">2000</year>
     </definition>        
 </vehicles>';
-        $this->csvFile = TESTFILES . '/definitions.xml';
+        $this->csvFile = TEMP_PATH . '/definitions.xml';
         file_put_contents( $this->csvFile, $this->csvData );
 
         $importer = $this->vehiclesListImporter( $this->csvFile );
@@ -33,7 +33,7 @@ class VF_Import_VehiclesList_XML_ImportTests_MMYRenameTest extends VF_Import_Veh
         <year id="8">2000</year>
     </definition>        
 </vehicles>';
-        $this->csvFile = TESTFILES . '/definitions.xml';
+        $this->csvFile = TEMP_PATH . '/definitions.xml';
         file_put_contents( $this->csvFile, $this->csvData );
 
         $importer = $this->vehiclesListImporter( $this->csvFile );

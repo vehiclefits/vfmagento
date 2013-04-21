@@ -7,7 +7,7 @@ class Elite_Vafnote_Model_ImportTest extends Elite_Vaf_TestCase {
 code1,message1
 ";
 
-        $csvFile = TESTFILES . '/notes-definitions.csv';
+        $csvFile = TEMP_PATH . '/notes-definitions.csv';
         file_put_contents($csvFile, $csvData);
 
         $import = new Elite_Vafnote_Model_Import($csvFile);
@@ -24,7 +24,7 @@ code1,message1
 code1,message1
 ";
 
-        $csvFile = TESTFILES . '/notes-definitions.csv';
+        $csvFile = TEMP_PATH . '/notes-definitions.csv';
         file_put_contents($csvFile, $csvData);
 
         $import = new Elite_Vafnote_Model_Import($csvFile);
@@ -41,7 +41,7 @@ code1,message1
 code1,message1
 ";
 
-        $csvFile = TESTFILES . '/notes-definitions.csv';
+        $csvFile = TEMP_PATH . '/notes-definitions.csv';
         file_put_contents($csvFile, $csvData);
 
         $import = new Elite_Vafnote_Model_Import($csvFile);
@@ -52,7 +52,7 @@ code1,message1
 code1,message-new
 ";
 
-        $csvFile = TESTFILES . '/notes-definitions.csv';
+        $csvFile = TEMP_PATH . '/notes-definitions.csv';
         file_put_contents($csvFile, $csvData);
 
         $import = new Elite_Vafnote_Model_Import($csvFile);
@@ -69,7 +69,7 @@ code1,message-new
 code1,message1
 ";
 
-        $csvFile = TESTFILES . '/notes-definitions.csv';
+        $csvFile = TEMP_PATH . '/notes-definitions.csv';
         file_put_contents($csvFile, $csvData);
 
         $import = new Elite_Vafnote_Model_Import($csvFile);
@@ -80,7 +80,7 @@ code1,message1
 code1,message-new
 ";
 
-        $csvFile = TESTFILES . '/notes-definitions.csv';
+        $csvFile = TEMP_PATH . '/notes-definitions.csv';
         file_put_contents($csvFile, $csvData);
 
         $import = new Elite_Vafnote_Model_Import($csvFile);

@@ -36,7 +36,7 @@ sku, honda, civic, the_trim, the_chassis';
         return $this->markTestIncomplete();
 //        $data = 'sku, make, model, trim, chassis
 //nonexistantsku, honda, civic, the_trim, the_chassis';
-//        $file = TESTFILES . '/mappings-skipped.csv';
+//        $file = TEMP_PATH . '/mappings-skipped.csv';
 //        file_put_contents( $file, $data );
 //        $importer = new VF_Import_ProductFitments_CSV_Import_TestSubClass( $file );
 //        $importer->import();

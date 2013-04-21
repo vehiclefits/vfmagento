@@ -8,7 +8,7 @@ class Elite_Vaftire_Model_Catalog_Product_ImportTests_DifferentColumnOrderTest e
         $this->switchSchema('make,model,year');
         $this->csvData = '"sku","diameter","section_width","aspect_ratio"
 "sku","16","205","55"';
-        $this->csvFile = TESTFILES . '/product-tire-sizes.csv';
+        $this->csvFile = TEMP_PATH . '/product-tire-sizes.csv';
         file_put_contents( $this->csvFile, $this->csvData );
         
         

@@ -14,7 +14,7 @@ class VF_Import_VehiclesList_XML_MMYTest extends VF_Import_VehiclesList_XML_Test
         <year id="8">2000</year>
     </definition>        
 </vehicles>';
-        $this->csvFile = TESTFILES . '/definitions.xml';
+        $this->csvFile = TEMP_PATH . '/definitions.xml';
         file_put_contents( $this->csvFile, $this->csvData );
         
         $this->switchSchema('make,model,year');

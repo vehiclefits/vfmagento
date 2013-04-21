@@ -7,7 +7,7 @@ class VF_Import_ProductFitments_CSV_ExportTests_UniversalTest extends VF_Import_
         
         $this->csvData = 'sku, make, model, year, universal
 sku123,  ,  ,  ,1';
-        $this->csvFile = TESTFILES . '/mappings-single.csv';
+        $this->csvFile = TEMP_PATH . '/mappings-single.csv';
         file_put_contents( $this->csvFile, $this->csvData );
         
         

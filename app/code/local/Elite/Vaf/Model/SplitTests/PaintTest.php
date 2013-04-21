@@ -10,7 +10,7 @@ class Elite_Vaf_Model_SplitTests_PaintTest extends Elite_Vaf_TestCase
 
 	$this->csvData = 'make,model,year,Code,Name,Color(hex)' . self::NEWLINE;
 	$this->csvData .= 'Acura, Integra, 1987,  B-38,  Capitol Blue, #061D72' . self::NEWLINE;
-	$this->csvFile = TESTFILES . '/paint-definitions.csv';
+	$this->csvFile = TEMP_PATH . '/paint-definitions.csv';
 	file_put_contents($this->csvFile, $this->csvData);
 
 	$importer = new Elite_Vafpaint_Model_Importer_Definitions_Paint($this->csvFile);

@@ -33,7 +33,7 @@ honda, civic, lx, b, 2000
 
 honda, civic, lx, b, 2001
 not honda, civic, lx, b, 2000';
-        $csvFile = TESTFILES . '/definitions.csv';
+        $csvFile = TEMP_PATH . '/definitions.csv';
         file_put_contents( $csvFile, $csvData );
         
         $importer = new VF_Import_VehiclesList_CSV_Import( $csvFile );

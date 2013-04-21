@@ -21,7 +21,7 @@ class VF_Import_TestCase extends Elite_Vaf_TestCase
     
     function vehiclesListImporter($csvData)
     {
-        $file = TESTFILES . '/vehicles-list.csv';  
+        $file = TEMP_PATH . '/vehicles-list.csv';
         file_put_contents( $file, $csvData );
         $importer = new VF_Import_VehiclesList_CSV_Import( $file );
         return $importer;

@@ -12,7 +12,7 @@ sku456,acura,integra,2000
 sku123,acura,integra,2004
 sku123,acura,test,2002
 ';
-        $this->csvFile = TESTFILES . '/mappings-single.csv';
+        $this->csvFile = TEMP_PATH . '/mappings-single.csv';
         file_put_contents( $this->csvFile, $this->csvData );
         
         

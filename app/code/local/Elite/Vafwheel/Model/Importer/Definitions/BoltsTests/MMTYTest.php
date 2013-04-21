@@ -63,7 +63,7 @@ MAZDA,PROTÉGÉ ,DX,1988,2000,8X165.1');
     function import($data)
     {
 	$this->csvData = $data;
-        $this->csvFile = TESTFILES . '/bolt-definitions-range.csv';
+        $this->csvFile = TEMP_PATH . '/bolt-definitions-range.csv';
         file_put_contents( $this->csvFile, $this->csvData );
 
         $importer = new Elite_Vafwheel_Model_Importer_Definitions_Bolts( $this->csvFile );

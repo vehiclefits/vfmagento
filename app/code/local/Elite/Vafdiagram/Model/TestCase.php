@@ -5,7 +5,7 @@ abstract class Elite_Vafdiagram_Model_TestCase extends Elite_Vaf_TestCase
 
     function import($data)
     {
-	$file = TESTFILES . '/mappings.csv';
+	$file = TEMP_PATH . '/mappings.csv';
 	file_put_contents($file, $data);
 	$import = new Elite_Vafdiagram_Model_ProductFitments_CSV_Import_TestSubClass($file);
 	$import->import();
@@ -13,7 +13,7 @@ abstract class Elite_Vafdiagram_Model_TestCase extends Elite_Vaf_TestCase
 
     function importProductServiceCodes($data)
     {
-	$file = TESTFILES . '/servicecodes.csv';
+	$file = TEMP_PATH . '/servicecodes.csv';
 	file_put_contents($file, $data);
 	$importer = new Elite_Vafdiagram_Model_ProductServiceCodeImporter_TestSubClass($file);
 	$importer->import();

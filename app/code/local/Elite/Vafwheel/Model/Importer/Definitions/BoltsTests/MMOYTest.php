@@ -11,7 +11,7 @@ class Elite_Vafwheel_Model_Importer_Definitions_BoltsTests_MMOYTest extends Elit
         $this->csvData = 'make, model, option, year_start, year_end, bolt_pattern
 honda, civic, EL, 2000, 2002, 4x114.3
 acura, integra, base, 2000, 2003, 5x114.3';
-        $this->csvFile = TESTFILES . '/bolt-definitions-range-MMOY.csv';
+        $this->csvFile = TEMP_PATH . '/bolt-definitions-range-MMOY.csv';
         file_put_contents( $this->csvFile, $this->csvData );
         
         $importer = new Elite_Vafwheel_Model_Importer_Definitions_Bolts( $this->csvFile );

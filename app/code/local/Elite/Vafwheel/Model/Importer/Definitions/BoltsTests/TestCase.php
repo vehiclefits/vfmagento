@@ -3,7 +3,7 @@ abstract class Elite_Vafwheel_Model_Importer_Definitions_BoltsTests_TestCase ext
 {
     function importVehicleBolts($stringData)
     {
-        $csvFile = TESTFILES . '/bolt-definitions.csv';
+        $csvFile = TEMP_PATH . '/bolt-definitions.csv';
         file_put_contents( $csvFile, $stringData );
         $importer = new Elite_Vafwheel_Model_Importer_Definitions_Bolts( $csvFile );
         $importer->import();

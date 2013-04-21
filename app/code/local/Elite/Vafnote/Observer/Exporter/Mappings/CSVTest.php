@@ -9,7 +9,7 @@ class Elite_Vafnote_Observer_Exporter_Mappings_CSVTest extends VF_Import_Product
         $this->createNoteDefinition('code2','bar');
         $this->csvData = 'sku, make, model, year, notes
 sku, honda, civic, 2000, "code1,code2"';
-        $this->csvFile = TESTFILES . '/mappings-single.csv';
+        $this->csvFile = TEMP_PATH . '/mappings-single.csv';
         file_put_contents( $this->csvFile, $this->csvData );
         
         $this->insertProduct('sku');

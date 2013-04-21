@@ -3,7 +3,7 @@ class Elite_Vaftire_Model_Importer_Definitions_TireSizeTests_MMY_TestCase extend
 {
     function importVehicleTireSizes($stringData)
     {
-        $file = TESTFILES . '/bolt-definitions-range.csv';
+        $file = TEMP_PATH . '/bolt-definitions-range.csv';
         file_put_contents( $file, $stringData );
         $importer = new Elite_Vaftire_Model_Importer_Definitions_TireSize($file);
         $importer->import();

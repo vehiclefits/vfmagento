@@ -16,7 +16,7 @@ class VF_Import_VehiclesList_XML_ImportTests_EngineTest extends VF_Import_Vehicl
         <engine id="5">4 Cylinder</engine>
     </definition>        
 </vehicles>';
-        $this->csvFile = TESTFILES . '/definitions.xml';
+        $this->csvFile = TEMP_PATH . '/definitions.xml';
         file_put_contents( $this->csvFile, $this->csvData );
         
         $this->switchSchema('year,make,model,submodel,engine');

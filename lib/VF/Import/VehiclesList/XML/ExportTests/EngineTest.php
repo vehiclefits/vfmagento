@@ -16,7 +16,7 @@ class VF_Import_VehiclesList_XML_ExportTests_EngineTest extends VF_Import_Vehicl
         <engine id="85">EX</engine>
     </definition>        
 </vehicles>';
-        $this->csvFile = TESTFILES . '/definitions.xml';
+        $this->csvFile = TEMP_PATH . '/definitions.xml';
         file_put_contents( $this->csvFile, $this->csvData );
         
         $this->switchSchema('year,make,model,submodel,engine');

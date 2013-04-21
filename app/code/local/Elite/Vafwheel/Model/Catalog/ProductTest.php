@@ -104,7 +104,7 @@ class Elite_Vafwheel_Model_Catalog_ProductTest extends Elite_Vaf_TestCase
     {
 	$data = '"sku","lug_count","bolt_distance"' . "\n";
 	$data .= '"sku","4","144.3"';
-        $file = TESTFILES . '/product-wheel-sizes.csv';
+        $file = TEMP_PATH . '/product-wheel-sizes.csv';
         file_put_contents( $file, $data );
 
 

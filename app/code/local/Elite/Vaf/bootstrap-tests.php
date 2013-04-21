@@ -11,7 +11,7 @@ require_once('bootstrap.php');
  */
 
 define( 'MAGE_PATH', realpath(getenv('PHP_MAGE_PATH')));
-define( 'TESTFILES', getenv('PHP_TESTFILES') );
+define( 'TEMP_PATH', getenv('PHP_TEMP_PATH') );
 
 # database details for test server
 define( 'VAF_DB_USERNAME', getenv('PHP_VAF_DB_USERNAME') );
