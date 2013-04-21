@@ -38,6 +38,6 @@ sku, honda, civic, 2000';
         $fit = $this->getFitForSku( self::SKU );
         $this->assertEquals( 'honda', $fit->getLevel( 'Make' )->getTitle() );
 
-	$this->schemaGenerator()->dropExistingTables();
+	    $this->schemaGenerator()->dropExistingTables();
     }
 }

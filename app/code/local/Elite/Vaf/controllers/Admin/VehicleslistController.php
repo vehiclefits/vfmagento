@@ -130,13 +130,17 @@ class Elite_Vaf_Admin_VehicleslistController extends Mage_Adminhtml_Controller_A
 
     function saveAction()
     {
-        $id = (int)$this->getRequest()->getParam( 'save' );
-        $entity = new VF_Level( $this->getEntity()->getType(), $id );
-        $entity->setTitle( $this->getRequest()->getParam( 'title' ) );
-        $entity->save( $this->requestLevels() );
-        if($this->getRequest()->isXmlHttpRequest())
-        {
-            echo $entity->getId();
+        $dataToSave = $this->requestLevels();
+        $vehiclesFinder = new VF_Vehicle_Finder(new VF_Schema());
+        $vehicle = $vehiclesFinder->findOneByLevelIds($dataToSave,VF_Vehicle_Finder::INCLUDE_PARTIALS);
+        $dataToSave = $vehicle->toTitleArray();
+
+        $dataToSave[$this->getRequest()->getParam('entity')] = $this->getRequest()->getParam('title');
+        $vehicle = VF_Vehicle::create(new VF_Schema(), $dataToSave);
+        $vehicle->save();
+
+        if ($this->getRequest()->isXmlHttpRequest()) {
+            echo $vehicle->getValue($this->getRequest()->getParam('entity'));
             exit();
         }
         $this->doSave();

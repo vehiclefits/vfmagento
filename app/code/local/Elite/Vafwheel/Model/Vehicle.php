@@ -41,7 +41,7 @@ class Elite_Vafwheel_Model_Vehicle
     {
         $this->query( sprintf(
             "REPLACE INTO `elite_definition_wheel` ( `leaf_id`, `lug_count`, `bolt_distance`, `offset` ) VALUES ( %d, %d, %s, %s )",
-            $this->getLeafValue(),
+            $this->getId(),
             (int)$boltPattern->getLugCount(),
             (float)$boltPattern->getDistance(),
             (float)$boltPattern->getOffset()
@@ -57,7 +57,7 @@ class Elite_Vafwheel_Model_Vehicle
             FROM elite_definition_wheel
             WHERE leaf_id = %d
             ",
-            (int)$this->wrappedVehicle->getLeafValue()
+            (int)$this->wrappedVehicle->getId()
         ));
         return $r->fetchObject();
     }

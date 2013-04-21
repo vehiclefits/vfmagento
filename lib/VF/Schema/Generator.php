@@ -164,17 +164,16 @@ class VF_Schema_Generator
     protected function createLevel( $i )
     {
         $return = sprintf(
-            'CREATE TABLE IF NOT EXISTS `elite_level_%d_%s` (',
-            $this->id(),
-            $this->getLevel($i)
-        ) . self::NEWLINE;
+                'CREATE TABLE IF NOT EXISTS `elite_level_%d_%s` (',
+                $this->id(),
+                $this->getLevel($i)
+            ) . self::NEWLINE;
             $return .= '`id` int(255) NOT NULL AUTO_INCREMENT,' . self::NEWLINE;
             $return .= '`title` varchar(255) NOT NULL,' . self::NEWLINE;
-            $return .= $this->createForeignKeyIntoPreviousLevel($i);
             $return .= 'PRIMARY KEY (`id`),' . self::NEWLINE;
             $return .= 'KEY `title` (`title`)' . self::NEWLINE;
         $return .= ') ENGINE=InnoDB DEFAULT CHARSET=utf8;' . self::NEWLINE;
-        $return .= $this->indexForeignKeyIntoPreviousLevel($i);
+        //$return .= $this->indexForeignKeyIntoPreviousLevel($i);
         
         return $return;
     }

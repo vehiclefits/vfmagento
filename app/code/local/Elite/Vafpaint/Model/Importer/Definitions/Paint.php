@@ -50,7 +50,7 @@ class Elite_Vafpaint_Model_Importer_Definitions_Paint extends VF_Import_Vehicles
                 VALUES
             ( %d, %s, %s, %s )
             ",
-            (int)$vehicle->getLevel( $schema->getLeafLevel() )->getId(),
+            (int)$vehicle->getId(),
             $this->getReadAdapter()->quote( $paint->getCode() ),
             $this->getReadAdapter()->quote( $paint->getName() ),
             $this->getReadAdapter()->quote( $paint->getColor() )

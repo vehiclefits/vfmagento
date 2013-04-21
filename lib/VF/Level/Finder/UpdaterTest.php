@@ -23,18 +23,16 @@
  */
 class VF_Level_Finder_UpdaterTest extends Elite_Vaf_TestCase
 {
-    const PARENT_ID = 1;
-    
     function testSaveLevelWithParent()
     {
         $model = new VF_Level('model');
         $model->setTitle('Civic');
-        $model->save(self::PARENT_ID);
-        $model = $this->findEntityById( $model->getId(), $model->getType(), self::PARENT_ID );
+        $model->save();
+        $model = $this->findEntityById( $model->getId(), $model->getType());
         
         $model->setTitle('Accord');
-        $model->save(self::PARENT_ID);
-        $model = $this->findEntityById( $model->getId(), $model->getType(), self::PARENT_ID );
+        $model->save();
+        $model = $this->findEntityById( $model->getId(), $model->getType());
         
         $this->assertSame( 'Accord', $model->getTitle(), 'saved entity should have correct title value' );
     }

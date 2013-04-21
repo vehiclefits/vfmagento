@@ -62,30 +62,6 @@ class VF_Level_Finder_Updater extends VF_Level_Finder_Abstract implements VF_Lev
     
     protected function getQuery()
     {
-        if( $this->entity->getPrevLevel() )
-        {
-            return $this->saveLevelWithParent();
-        }
-        else
-        {
-            return $this->saveRootLevel();
-        }
-    }
-    
-    protected function saveLevelWithParent()
-    {
-        return sprintf(
-            "UPDATE %s SET `title` = %s, %s = %d WHERE id = %d",
-            $this->getReadAdapter()->quoteIdentifier( $this->entity->getTable() ),
-            $this->getReadAdapter()->quote( $this->entity->getTitle() ),
-            $this->getReadAdapter()->quoteIdentifier( $this->entity->getPrevLevel() . '_id' ),
-            (int)$this->parent_id,
-            (int)$this->entity->getId()
-        );   
-    }
-    
-    protected function saveRootLevel()
-    {
         return sprintf(
             "UPDATE %s SET `title` = %s WHERE id = %d",
             $this->getReadAdapter()->quoteIdentifier( $this->entity->getTable() ),

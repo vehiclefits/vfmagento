@@ -156,14 +156,10 @@ class VF_Level implements VF_Configurable
             throw new Exception('Must have a non blank title to save ' . $this->getType());
         }
 
-        $levelId = $this->findEntityIdByTitle($parent_id);
+        $levelId = $this->findEntityIdByTitle();
         if ($levelId)
         {
             $this->id = $levelId;
-            if ($createDefinition)
-            {
-                $this->createDefinition($parent_id);
-            }
             return $levelId;
         }
 
@@ -174,147 +170,20 @@ class VF_Level implements VF_Configurable
 
         if ($this->getId())
         {
-            $saver = new VF_Level_Finder_Updater($this, $parent_id);
+            $saver = new VF_Level_Finder_Updater($this);
             return $saver->save();
         }
 
-        $saver = new VF_Level_Finder_Inserter($this, $parent_id);
+        $saver = new VF_Level_Finder_Inserter($this);
         $saver->setConfig($this->getConfig());
         $levelId = $saver->save($requestedSaveId);
 
-        if ($this->getSchema()->hasGlobalLevel() && $createDefinition)
-        {
-            $this->createDefinition($parent_id);
-        }
-
         return $levelId;
-    }
-
-    function createDefinition($parent_id)
-    {
-        if ($this->getType() == $this->getSchema()->getLeafLevel())
-        {
-            $this->createFullDefinition($parent_id);
-        } else if ($this->getType() == $this->getSchema()->getRootLevel())
-        {
-            $this->createPartialDefinitionForRootLevel();
-        } else
-        {
-            $this->createPartialDefinition($parent_id);
-        }
-    }
-
-    function createPartialDefinitionForRootLevel()
-    {
-        $titles = array($this->getType() => $this->getTitle());
-        $bind = array($this->getSchema()->getRootLevel() . '_id' => $this->getId());
-        if (!count($this->vehicleFinder()->findByLevelIds($bind, true)))
-        {
-            $this->getReadAdapter()->insert('elite_' . $this->getSchema()->id() . '_definition', $bind);
-        }
-    }
-
-    function createPartialDefinition($parent_id)
-    {
-        $params = array();
-        if (is_array($parent_id))
-        {
-            $params = array_merge($params, $parent_id);
-        } else
-        {
-            $params[$this->getPrevLevel()] = $parent_id;
-        }
-        foreach ($this->getSchema()->getNextLevels($this->getPrevLevel()) as $level)
-        {
-            $params[$level] = 0;
-        }
-
-        $vehicles = $this->vehicleFinder()->findByLevelIds($params, true);
-        foreach ($vehicles as $vehicle)
-        {
-            $values = $vehicle->toValueArray();
-            $values[$this->getType()] = $this->getId();
-
-            $bind = array();
-            foreach ($this->getSchema()->getLevels() as $level)
-            {
-                $bind[$level . '_id'] = $values[$level];
-            }
-
-            $titles = $vehicle->toTitleArray();
-            $titles[$this->getType()] = $this->getTitle();
-            if (!count($this->vehicleFinder()->findByLevelIds($bind, true)))
-            {
-                $this->getReadAdapter()->insert($this->getSchema()->definitionTable(), $bind);
-            }
-        }
-    }
-
-    function createFullDefinition($parent_id)
-    {
-        if (is_array($parent_id))
-        {
-            foreach ($this->getSchema()->getLevels() as $level)
-            {
-                $row[$level . '_id'] = isset($parent_id[$level]) ? $parent_id[$level] : false;
-            }
-        } else
-        {
-            $rootTable = $this->getSchema()->levelTable($this->getSchema()->getRootLevel());
-            $select = $this->getReadAdapter()->select()
-                            ->from($rootTable, $this->vehicleFinder()->getColumns());
-            $select .= $this->getJoinsNoDefinition();
-            $leafTable = $this->getSchema()->levelTable($this->getSchema()->getLeafLevel());
-            $select .= sprintf(" WHERE `".$leafTable."`.`id` = %d", $this->getId());
-
-            $row = $this->query($select)->fetch(Zend_Db::FETCH_ASSOC);
-        }
-        if (!$row)
-        {
-            return;
-        }
-
-        $bind = array();
-        foreach ($this->getSchema()->getLevels() as $level)
-        {
-            $bind[$level . '_id'] = $row[$level . '_id'];
-        }
-
-        if (count($this->vehicleFinder()->findByLevelIds($bind)) == 0)
-        {
-            $this->getReadAdapter()->insert($this->getSchema()->definitionTable(), $bind);
-        }
     }
 
     function vehicleFinder()
     {
         return new VF_Vehicle_Finder($this->getSchema());
-    }
-
-    function getJoinsNoDefinition()
-    {
-        $joins = '';
-        $levels = $this->getSchema()->getLevels();
-
-        foreach ($levels as $level)
-        {
-            if ($level == $this->getSchema()->getRootLevel())
-            {
-                continue;
-            }
-            $joins .= sprintf(
-                            '
-                LEFT JOIN
-                    `%1$s`
-                ON
-                    `%1$s`.`%2$s_id` = `%3$s`.`id`
-                ',
-                $this->getSchema()->levelTable($level),
-                $this->getSchema()->getPrevLevel($level),
-                $this->getSchema()->levelTable($this->getSchema()->getPrevLevel($level))
-            );
-        }
-        return $joins;
     }
 
     function requestedIdCorrespondsToExistingRecord($requestedSaveId)

@@ -39,7 +39,8 @@ class Elite_Vaflinks_Block_List extends Elite_Vaf_Block_Search {
         $vehicles = array();
         $vehicleFinder = new VF_Vehicle_Finder($this->getSchema());
         foreach ($this->getItems() as $level) {
-            array_push($vehicles, $vehicleFinder->findByLevel($level->getType(), $level->getId()));
+            $vehicle = $vehicleFinder->findByLevel($level->getType(), $level->getId());
+            array_push($vehicles, $vehicle);
         }
         return $vehicles;
     }

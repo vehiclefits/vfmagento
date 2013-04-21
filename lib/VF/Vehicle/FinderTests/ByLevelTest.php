@@ -26,6 +26,12 @@ class VF_Vehicle_FinderTests_ByLevelTest extends VF_Vehicle_FinderTests_TestCase
     const MAKE = 'Honda';
     const MODEL = 'Civic';
     const YEAR = '2002';
+
+    protected function doSetUp()
+    {
+        $this->schemaGenerator()->dropExistingTables();
+        $this->switchSchema('make,model,year');
+    }
     
     function testFindAll()
     {
@@ -60,17 +66,16 @@ class VF_Vehicle_FinderTests_ByLevelTest extends VF_Vehicle_FinderTests_TestCase
         $this->assertSame( self::MODEL, $vehicle->getLevel('model')->getTitle() );
         $this->assertSame( self::YEAR, $vehicle->getLevel('year')->getTitle() );
     }
-        
+
+    /**
+     * @expectedException Exception
+     */
     function testFindByYear2()
     {
         $vehicle1 = $this->createMMY( 'honda', 'civic', '2000' );
         $vehicle2 = $this->createMMY( 'honda', 'civic2', '2000' );
-        
-        $vehicle1 = $this->getFinder()->findByLevel( 'year', $vehicle1->getLevel('year')->getId() );
-        $vehicle2 = $this->getFinder()->findByLevel( 'year', $vehicle2->getLevel('year')->getId() );
-        
-        $this->assertSame( 'civic', $vehicle1->getLevel('model')->getTitle() );
-        $this->assertSame( 'civic2', $vehicle2->getLevel('model')->getTitle() );
+
+        $this->getFinder()->findByLevel( 'year', $vehicle1->getLevel('year')->getId() );
     }
     
     function testFindById()

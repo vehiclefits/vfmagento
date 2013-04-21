@@ -60,7 +60,7 @@ class VF_Import_VehiclesList_Xml_Import extends VF_Import
         {
         
             $this->row_number++;
-            $values = $this->getLevelsArray( $vehicleInput ); 
+            $values = $this->getLevelsArray( $vehicleInput );
             if(!$values)
             {
                 continue;
@@ -84,25 +84,12 @@ class VF_Import_VehiclesList_Xml_Import extends VF_Import
     
     function extractLevelsFromImportTable($level)
     {
-        if( !$this->getSchema()->hasParent($level))
-        {
-            $levelTable = $this->getSchema()->levelTable($level);
-            $sql = "INSERT INTO {$levelTable} (`id`, `title`) ";
-            $sql .= "SELECT DISTINCT `{$level}_id`, `{$level}` ";
-            $sql .= "FROM elite_import i WHERE universal != 1 ";
-            $sql .= "ON DUPLICATE KEY UPDATE title=VALUES(title);)";
-            $this->query($sql);
-        }
-        else
-        {
-            $pevLevel = $this->getSchema()->getPrevLevel($level);
-            $levelTable = $this->getSchema()->levelTable($level);
-            $sql = "INSERT INTO `{$levelTable}` (`id`, `title`, `{$pevLevel}_id`)";
-            $sql .= "SELECT DISTINCT `{$level}_id`, `{$level}`, `{$pevLevel}_id`";
-            $sql .= "FROM `elite_import` i WHERE universal != 1 ";
-            $sql .= "ON DUPLICATE KEY UPDATE title=VALUES(title);)";
-            $this->query($sql);
-        }
+        $levelTable = $this->getSchema()->levelTable($level);
+        $sql = "INSERT INTO {$levelTable} (`id`, `title`) ";
+        $sql .= "SELECT DISTINCT `{$level}_id`, `{$level}` ";
+        $sql .= "FROM elite_import i WHERE universal != 1 ";
+        $sql .= "ON DUPLICATE KEY UPDATE title=VALUES(title);)";
+        $this->query($sql);
     }
     
     function getLevelsArray($vehicleInput)

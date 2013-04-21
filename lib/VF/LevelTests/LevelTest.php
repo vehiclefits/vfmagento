@@ -80,33 +80,7 @@ class VF_LevelTests_LevelTest extends Elite_Vaf_TestCase
         $entity = $this->findMakeById( $id );
         $this->assertSame( self::ENTITY_TITLE, $entity->getTitle() );
     }
-    
-    function testCreatesDefinitionWhenSavingLeafLevel()
-    {
-        $make = new VF_Level( 'make' );
-        $make->setTitle('Honda');
-        $make_id = $make->save();
-        
-        $model = new VF_Level( 'model' );
-        $model->setTitle('Civic');
-        $model_id = $model->save( $make_id );
-        
-        $year = new VF_Level( 'year' );
-        $year->setTitle('2000');
-        $year_id = $year->save($model_id);
 
-        $vehicleFinder = new VF_Vehicle_Finder(new VF_Schema);
-        $vehicle = $vehicleFinder->findByLeaf($year_id);
-        $this->assertEquals( $year_id, $vehicle->getLevel('year')->getId() );
-    }
-    
-    function testCreatesDefinitionWhenSavingLeafLevel2()
-    {
-        return $this->markTestIncomplete();
-      //  $schemaGenerator = new VF_Schema_Generator();
-      //  $schemaGenerator->execute( 'make,model,trim,chassis', false);
-    }
-    
     function testDeleteFits()
     {
         $vehicle = $this->createMMY();

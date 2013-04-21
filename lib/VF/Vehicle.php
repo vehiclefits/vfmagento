@@ -129,19 +129,19 @@ class VF_Vehicle implements VF_Configurable
     
     function __toString()
     {
-	$template = $this->getConfig()->search->vehicleTemplate;
-	$levels = $this->schema->getLevels();
-	if($template)
-	{
-	    foreach($levels as $level)
-	    {
-		$find = '%' . $level . '%';
-		$template = str_replace($find,$this->getLevel($level)->getTitle(),$template);
-	    }
-	    return $template;
-	}
+        $template = $this->getConfig()->search->vehicleTemplate;
+        $levels = $this->schema->getLevels();
+        if($template)
+        {
+            foreach($levels as $level)
+            {
+                $find = '%' . $level . '%';
+                $template = str_replace($find,$this->getLevel($level)->getTitle(),$template);
+            }
+            return trim($template);
+        }
 
-	$string = array();
+        $string = array();
         foreach( $levels as $level )
         {
             if( $this->levelIsOutsideFlexibleSelection( $level ) )
@@ -151,7 +151,7 @@ class VF_Vehicle implements VF_Configurable
             $value = $this->getLevel( $level )->getTitle();
             $string[] = $value;
         }
-        return implode( ' ', $string );
+        return trim(implode( ' ', $string ));
     }
     
     function levelIdsTruncateAfter($level)
@@ -240,12 +240,16 @@ class VF_Vehicle implements VF_Configurable
     
     function save()
     {
-        $parent_id = array();
+        $bind = array();
         foreach( $this->getLevelObjs() as $level )
         {
-            $level->save( $parent_id, null, false );
-            $parent_id[$level->getType()] = $level->getId();
-            $bind[$level->getType().'_id'] = $level->getId();
+            if(!$level->getTitle())
+            {
+                $bind[$level->getType().'_id'] = 0;
+                continue;
+            }
+            $level->save( null, null, false );
+            $bind[str_replace(' ','_',$level->getType()).'_id'] = $level->getId();
         }
 
         $finder = new VF_Vehicle_Finder($this->schema);
@@ -256,19 +260,8 @@ class VF_Vehicle implements VF_Configurable
         }
         
         // doesnt exist, insert it
-        try
-        {
-            $insertAdapter = new Elite_Vaf_Model_Db_Adapter_InsertWrapper($this->getReadAdapter());
-            $insertAdapter->insert( 'elite_definition', $bind );
-        }
-        catch(Exception $e)
-        {
-            echo $e->getMessage();
-            print_r($bind);
-            print_r($this->toTitleArray());
-            echo $e->getTraceAsString();
-            exit();
-        }
+        $insertAdapter = new Elite_Vaf_Model_Db_Adapter_InsertWrapper($this->getReadAdapter());
+        $insertAdapter->insert( $this->schema()->definitionTable(), $bind );
         $this->row->id = $this->getReadAdapter()->lastInsertId();
     }
     

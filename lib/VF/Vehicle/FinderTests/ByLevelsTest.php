@@ -85,9 +85,8 @@ class VF_Vehicle_FinderTests_ByLevelsTest extends VF_Vehicle_FinderTests_TestCas
     
     function testShouldFindPartialVehicleMake()
     {
-        $make = new VF_Level('make');
-        $make->setTitle('Honda');
-        $make->save();
+        $vehicle = $this->createVehicle(array('make'=>'Honda'));
+        $make = $vehicle->getLevel('make');
         
         $vehicles = $this->getFinder()->findByLevels( array('make'=>'Honda'), true );
         $this->assertEquals(1,count($vehicles),'should find partial vehicle by make');
@@ -95,20 +94,18 @@ class VF_Vehicle_FinderTests_ByLevelsTest extends VF_Vehicle_FinderTests_TestCas
 
     function testPartialVehicleShouldHaveMakeID()
     {
-        $make = new VF_Level('make');
-        $make->setTitle('Honda');
-        $make->save();
+        $vehicle = $this->createMMY('Honda', 'Civic', '2000');
+        $make = $vehicle->getLevel('make');
         
         $vehicles = $this->getFinder()->findByLevels( array('make'=>'Honda'), true );
+
         $this->assertEquals( $make->getId(), $vehicles[0]->getValue('make'), 'partial vehicle should have make ID');
         $this->assertEquals( 0, $vehicles[0]->getValue('model'), 'partial vehicle should have no model ID');
     }
     
     function testShouldEscapeRegex()
     {
-        $make = new VF_Level('make');
-        $make->setTitle('.\+');
-        $make->save();
+        $this->createMMY('.\+', 'Civic', '2000');
         
         $vehicles = $this->getFinder()->findByLevels( array('make'=>'.\+'), true );
         $this->assertEquals(1,count($vehicles),'should escape regex');
@@ -117,9 +114,7 @@ class VF_Vehicle_FinderTests_ByLevelsTest extends VF_Vehicle_FinderTests_TestCas
     
     function testShouldEscapeRegex2()
     {
-        $make = new VF_Level('make');
-        $make->setTitle('?[^]$');
-        $make->save();
+        $this->createMMY('?[^]$', 'Civic', '2000');
         
         $vehicles = $this->getFinder()->findByLevels( array('make'=>'?[^]$'), true );
         $this->assertEquals(1,count($vehicles),'should escape regex');
@@ -127,29 +122,23 @@ class VF_Vehicle_FinderTests_ByLevelsTest extends VF_Vehicle_FinderTests_TestCas
     
     function testShouldEscapeRegex3()
     {
-        $make = new VF_Level('make');
-        $make->setTitle('(){}=!');
-        $make->save();
-        
+        $this->createMMY('(){}=!', 'Civic', '2000');
+
         $vehicles = $this->getFinder()->findByLevels( array('make'=>'(){}=!'), true );
         $this->assertEquals(1,count($vehicles),'should escape regex');
     }
     
     function testShouldEscapeRegex4()
     {
-        $make = new VF_Level('make');
-        $make->setTitle(':-');
-        $make->save();
-        
+        $this->createMMY(':-', 'Civic', '2000');
+
         $vehicles = $this->getFinder()->findByLevels( array('make'=>':-'), true );
         $this->assertEquals(1,count($vehicles),'should escape regex');
     }
     
     function testShouldEscapeRegex5()
     {
-        $make = new VF_Level('make');
-        $make->setTitle('.\+*?[^]$(){}=!<>|:-');
-        $make->save();
+        $this->createMMY('.\+*?[^]$(){}=!<>|:-', 'Civic', '2000');
         
         $vehicles = $this->getFinder()->findByLevels( array('make'=>'.\+*?[^]$(){}=!<>|:-'), true );
         $this->assertEquals(1,count($vehicles),'should escape regex');

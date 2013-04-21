@@ -87,13 +87,13 @@ class VF_Import_VehiclesList_CSV_ImportTests_MMY_CountAddedTest extends VF_Impor
         $this->assertEquals( 1, $importer->getCountAddedByLevel('year'), 'should add year' );
     }
     
-    function testShouldAddTwoYears()
+    function testShouldAddOneYears()
     {
         $importer = $this->importVehiclesList('make, model, year' . "\n" .
                                               'honda, civic, 2000' . "\n" .
                                               'acura, integra, 2000');
                                               
-        $this->assertEquals( 2, $importer->getCountAddedByLevel('year'), 'should add two years' );
+        $this->assertEquals( 1, $importer->getCountAddedByLevel('year'), 'should add one year if the same year is added for two models' );
     }
     
     function testWhenNoMakesWillAdd0()

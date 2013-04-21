@@ -33,7 +33,9 @@ class VF_Vehicle_FinderTests_PerformanceTest extends Elite_Vaf_TestCase
         
         $finder->findById($vehicle->getId());
         $finder->findById($vehicle->getId());
-        
+        $finder->findById($vehicle->getId());
+        $finder->findById($vehicle->getId());
+
         $queries = $this->getReadAdapter()->getProfiler()->getQueryProfiles();
         $this->assertEquals(1,count($queries));
     }
@@ -50,9 +52,11 @@ class VF_Vehicle_FinderTests_PerformanceTest extends Elite_Vaf_TestCase
         
         $finder->findByLevel('year',$yearId);
         $finder->findByLevel('year',$yearId);
-        
+        $finder->findByLevel('year',$yearId);
+        $finder->findByLevel('year',$yearId);
+
         $queries = $this->getReadAdapter()->getProfiler()->getQueryProfiles();
-        $this->assertEquals(1,count($queries));
+        $this->assertTrue(count($queries)<=2);
     }
     
     function testFindByLeaf()
@@ -67,8 +71,10 @@ class VF_Vehicle_FinderTests_PerformanceTest extends Elite_Vaf_TestCase
         
         $finder->findByLeaf($yearId);
         $finder->findByLeaf($yearId);
+        $finder->findByLeaf($yearId);
+        $finder->findByLeaf($yearId);
         
         $queries = $this->getReadAdapter()->getProfiler()->getQueryProfiles();
-        $this->assertEquals(1,count($queries));
+        $this->assertTrue(count($queries)<=2);
     }
 }

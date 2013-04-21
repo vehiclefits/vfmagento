@@ -39,17 +39,7 @@ class VF_Import_VehiclesList_CSV_ImportTests_MMY_DuplicateTest extends VF_Import
     
     function testShouldSkipDuplicateVehicles()
     {
-        $make = new VF_Level('make');
-        $make->setTitle('STIHL');
-        $make->save();
-        
-        $model = new VF_Level('model');
-        $model->setTitle('39');
-        $model->save($make->getId());
-        
-        $year = new VF_Level('year');
-        $year->setTitle('1997');
-        $year->save($model->getId(),null,false);
+        $this->createVehicle(array('make'=>'STIHL','model'=>'39','year'=>1997));
         
         $this->importVehiclesList($this->csvData);
         

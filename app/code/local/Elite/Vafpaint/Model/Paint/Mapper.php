@@ -29,11 +29,11 @@ class Elite_Vafpaint_Model_Paint_Mapper
     * @param mixed $year_id
     * @return array of Elite_Vaf_Model_Paint
     */
-    function findByFitId( $fit_id )
+    function findByVehicleId( $vehicle_id )
     {
         $select = $this->getReadAdapter()->select()
         	->from( 'elite_mapping_paint' )
-        	->where( 'mapping_id = ?', (int)$fit_id );
+        	->where( 'mapping_id = ?', (int)$vehicle_id );
         $result = $select->query();
         $return = array();
         while( $code = $result->fetch( Zend_Db::FETCH_OBJ ) )

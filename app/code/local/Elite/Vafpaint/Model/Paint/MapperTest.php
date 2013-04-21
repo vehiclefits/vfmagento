@@ -64,7 +64,7 @@ class Elite_Vafpaint_Model_Paint_MapperTest extends Elite_Vaf_TestCase
 	
 	function testFindByFitId()
 	{
-		$paint = $this->mapper->findByFitId( $this->definition->getLevel('year')->getId() );
+		$paint = $this->mapper->findByVehicleId( $this->definition->getId() );
 		$this->assertEquals( self::CODE, $paint[0]->getCode() );
 	}
 }

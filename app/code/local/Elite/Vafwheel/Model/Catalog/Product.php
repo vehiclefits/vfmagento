@@ -116,10 +116,10 @@ class Elite_Vafwheel_Model_Catalog_Product
         }
     }
     
-    function definition($leaf_id)
+    function definition($vehicle_id)
     {
         $vehicleFinder = new VF_Vehicle_Finder( new VF_Schema() );
-        return $vehicleFinder->findByLeaf($leaf_id);
+        return $vehicleFinder->findById($vehicle_id);
     }
     
     function __call($methodName,$arguments)

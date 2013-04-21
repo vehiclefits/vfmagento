@@ -44,51 +44,25 @@ class Elite_Vafpaint_Model_Importer_Definitions_PaintMMYTest extends Elite_Vaf_T
     
     function testImport1()
     {
-        $year = $this->findLeafFromFullPathMMY( 'Acura', 'Integra', '1986' );
-        $actual = $this->findPaints( $year->getId() );
+        $vehicleId = $this->findVehicleByLevelsMMY( 'Acura', 'Integra', '1986' )->getId();
+        $mapper = new Elite_Vafpaint_Model_Paint_Mapper();
+        $actual = $mapper->findByVehicleId($vehicleId);
         $actual = $actual[0];
-        $expected = new stdClass;
-        $expected->code = 'B-26MZ';
-        $expected->name = 'Avignon Blue Metallic Clearcoat';
-        $expected->color = '#9CBBCC';
-        $this->assertEquals( $expected, $actual );
+
+        $this->assertEquals('B-26MZ', $actual->getCode());
+        $this->assertEquals('Avignon Blue Metallic Clearcoat',$actual->getName());
+        $this->assertEquals('#9CBBCC',$actual->getColor());
     }
     
     function testImport2()
     {
-        $year = $this->findLeafFromFullPathMMY( 'Acura', 'Integra', '1986' );
-        $actual = $this->findPaints( $year->getId() );
+        $vehicleId = $this->findVehicleByLevelsMMY( 'Acura', 'Integra', '1986' )->getId();
+        $mapper = new Elite_Vafpaint_Model_Paint_Mapper();
+        $actual = $mapper->findByVehicleId($vehicleId);
         $actual = $actual[1];
-        $expected = new stdClass;
-        $expected->code = 'B-38';
-        $expected->name = 'Capitol Blue';
-        $expected->color = '#061D72';
-        $this->assertEquals( $expected, $actual );
-    }  
-    
-    /** @todo use production method */
-    protected function findPaints( $yearId )
-    {
-        $r = $this->query(
-            sprintf(
-                "
-                SELECT
-                    code,name,color
-                FROM
-                    elite_mapping_paint
-                WHERE
-                    mapping_id = %d
-                ",
-                (int)$yearId
-            )
-        );
-        $return = array();
-        while( $row = $r->fetchObject() )
-        {
-            array_push( $return, $row );
-        }
-        return $return;
+        $this->assertEquals('B-38', $actual->getCode());
+        $this->assertEquals('Capitol Blue',$actual->getName());
+        $this->assertEquals('#061D72',$actual->getColor());
     }
-    
 
 }

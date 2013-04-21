@@ -38,7 +38,6 @@ class Elite_Vafwheel_Model_Importer_Definitions_Bolts extends VF_Import_Vehicles
         $boltPattern = $this->getFieldValue( 'bolt_pattern', $row );
         $offset = $this->getFieldValue( 'offset', $row );
         $boltPattern = Elite_Vafwheel_Model_BoltPattern::create($boltPattern, $offset);
-        
         $wheelDefinition = new Elite_Vafwheel_Model_Vehicle($vehicle);
         $wheelDefinition->addBoltPattern($boltPattern);
     }

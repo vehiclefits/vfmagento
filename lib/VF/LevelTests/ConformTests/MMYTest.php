@@ -76,7 +76,7 @@ class VF_LevelsTests_ConformTests_MMYTest extends Elite_Vaf_TestCase
         $civic2->setTitle('Civic');
         $civic2->save( $ford_make_id );
         
-        $this->assertNotEquals( $civic->getId(), $civic2->getId(), 'when saving two models with same title, but under different makes, they should get different ids' );
+        $this->assertEquals( $civic->getId(), $civic2->getId(), 'when saving two models with same title, but under different makes, they should get same ids' );
     }
     
           

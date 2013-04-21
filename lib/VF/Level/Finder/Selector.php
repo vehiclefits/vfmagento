@@ -308,14 +308,9 @@ class VF_Level_Finder_Selector extends VF_Level_Finder_Abstract implements VF_Le
     function findEntityIdByTitle( $type, $title, $parent_id = 0 )
     {
         $identityMap = VF_Level_IdentityMap_ByTitle::getInstance();
-        if( $identityMap->has($type,$title,$parent_id))
+        if( $identityMap->has($type,$title))
         {
-            return $identityMap->get($type,$title,$parent_id);
-        }
-        
-        if( !$this->getSchema()->isGlobal($type) && !$parent_id )
-        {
-            throw new VF_Level_Finder_SchemaException('Please specify parent level to search under. If you want all possible matches use the vehicle finder, not the level finder. Level requested was '.$type);
+            return $identityMap->get($type,$title);
         }
 
         $inflectedType = $this->inflect($type);
@@ -324,30 +319,13 @@ class VF_Level_Finder_Selector extends VF_Level_Finder_Abstract implements VF_Le
             ->from(array('l'=>'elite_level_' . $this->getSchema()->id() . '_' . $inflectedType))
             ->where('`title` LIKE binary ?', $title );
         
-        if( !$this->getSchema()->isGlobal($type) && is_numeric($parent_id) && $parent_id )
-        {
-            $parent_type = $this->getSchema()->getPrevLevel($type);
-            $inflected_parent_type = $this->inflect($parent_type);
-            $query->joinLeft(array('d'=>'elite_' . $this->getSchema()->id() . '_definition'), "l.id = d.{$inflectedType}_id", array());
-            $query->where('d.' . $inflected_parent_type . '_id = ?', $parent_id);
-        }
-        
-        if( is_array($parent_id) )
-        {
-            $query->joinLeft(array('d'=>'elite_' . $this->getSchema()->id() . '_definition'), 'l.id = d.' . str_replace(' ', '_',$type) . '_id', array());
-            foreach($parent_id as $level=>$val)
-            {
-                $query->where('d.' . str_replace(' ', '_',$level) . '_id = ?', $val);
-            }
-        }
-        
         $result = $this->query($query);
         $id = $result->fetchColumn(0);
         if(!$id)
         {
             return false;
         }
-        $identityMap->add($id,$type,$title,$parent_id);
+        $identityMap->add($id,$type,$title);
         return $id;
     }
 

@@ -82,10 +82,9 @@ class Elite_Vaf_Model_SplitTest extends Elite_Vaf_TestCase
     
     function testShouldSplitMake_Partial()
     {
-        $level = $this->newMake('Ford/Ford2');
-        $level->save();
+        $this->createVehicle(array('make'=>'Ford/Ford2'));
         
-        $vehicle = $this->vehicleFinder()->findOneByLevelIds(array('make'=>$level->getId()), VF_Vehicle_Finder::EXACT_ONLY);
+        $vehicle = $this->vehicleFinder()->findOneByLevels(array('make'=>'Ford/Ford2'), VF_Vehicle_Finder::INCLUDE_PARTIALS);
         
         $this->split($vehicle, 'make', array('Ford','Ford 2'));
         
@@ -96,16 +95,9 @@ class Elite_Vaf_Model_SplitTest extends Elite_Vaf_TestCase
     
     function testShouldSplitYears_PartiallyCreated()
     {
-        $make = $this->newMake('Ford/Ford2');
-        $make->save();
-        
-        $model = $this->newModel('Model');
-        $model->save(array('make'=>$make->getId()));
-        
-        $year = $this->newYear('2000');
-        $year->save(array('make'=>$make->getId(), 'model'=>$model->getId()));
-        
-        $vehicle = $this->vehicleFinder()->findOneByLevelIds(array('make'=>$make->getId()), VF_Vehicle_Finder::EXACT_ONLY);
+        $this->createVehicle(array('make'=>'Ford/Ford2','model'=>'foo','year'=>'2000'));
+
+        $vehicle = $this->vehicleFinder()->findOneByLevels(array('make'=>'Ford/Ford2'), VF_Vehicle_Finder::EXACT_ONLY);
         $this->split($vehicle, 'make', array('Ford','Ford 2'));
         
         $this->assertTrue( $this->vehicleExists(array('make'=>'Ford') ) );

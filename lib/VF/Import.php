@@ -72,9 +72,8 @@ abstract class VF_Import extends VF_Import_Abstract implements VF_Configurable
         } else
         {
             $sql = sprintf(
-                    'INSERT INTO `'.$this->getSchema()->levelTable($level).'` (`title`, `%2$s_id`) SELECT DISTINCT `%1$s`, `%2$s_id` FROM `elite_import` WHERE universal != 1 && `%1$s_id` = 0',
-                    str_replace(' ', '_', $level ),
-                    str_replace(' ', '_', $this->getSchema()->getPrevLevel($level))
+                    'INSERT INTO `'.$this->getSchema()->levelTable($level).'` (`title`) SELECT DISTINCT `%1$s` FROM `elite_import` WHERE universal != 1 && `%1$s_id` = 0',
+                    str_replace(' ', '_', $level )
             );
             $this->query($sql);
         }
@@ -84,15 +83,18 @@ abstract class VF_Import extends VF_Import_Abstract implements VF_Configurable
     {
         if (!$this->getSchema()->hasParent($level))
         {
-            $this->query(sprintf('UPDATE elite_import i, elite_level_%2$d_%1$s l SET i.%1$s_id = l.id WHERE l.title = i.%1$s', str_replace(' ', '_', $level), $this->schema()->id()));
+            $this->query(sprintf(
+                'UPDATE elite_import i, elite_level_%2$d_%1$s l SET i.%1$s_id = l.id WHERE l.title = i.%1$s',
+                str_replace(' ', '_', $level),
+                $this->schema()->id()
+            ));
         } else
         {
             $sql = sprintf(
                     'UPDATE elite_import i, `'.$this->getSchema()->levelTable($level).'` l
                     SET i.`%1$s_id` = l.id
-                    WHERE i.`%1$s` = l.title AND i.`%2$s_id` = l.`%2$s_id`',
-                    str_replace(' ', '_', $level),
-                    str_replace(' ', '_', $this->getSchema()->getPrevLevel($level))
+                    WHERE i.`%1$s` = l.title',
+                    str_replace(' ', '_', $level)
             );
             $this->query($sql);
         }
