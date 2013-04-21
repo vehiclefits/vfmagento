@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.org/vehiclefits/Vehicle-Fits-Magento.png)](https://travis-ci.org/vehiclefits/Vehicle-Fits-Magento])
+[![Build Status](https://api.travis-ci.org/vehiclefits/Vehicle-Fits-Magento.png)](https://travis-ci.org/vehiclefits/Vehicle-Fits-Magento)
 README
 ======
 
