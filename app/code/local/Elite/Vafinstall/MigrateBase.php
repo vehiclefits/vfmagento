@@ -28,7 +28,7 @@
 * @copyright Copyright (c) 2008-2009 Vehicle Fits, LLC <josh.ribakoff@gmail.com>
 * @license New BSD License
 */
-abstract class Shuffler_DB_Refactor
+abstract class Elite_Vafinstall_MigrateBase
 {
     abstract function pathToScripts();
     
