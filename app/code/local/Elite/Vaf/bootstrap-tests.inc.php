@@ -10,13 +10,13 @@ require_once('bootstrap.php');
  * of phpunit.xml.dist to phpunit.xml
  */
 
-define( 'MAGE_PATH', $_ENV['MAGE_PATH']);
-define( 'TESTFILES', $_ENV['TESTFILES'] );
+define( 'MAGE_PATH', realpath(getenv('PHP_MAGE_PATH')));
+define( 'TESTFILES', getenv('PHP_TESTFILES') );
 
 # database details for test server
-define( 'VAF_DB_USERNAME', $_ENV['VAF_DB_USERNAME'] );
-define( 'VAF_DB_PASSWORD', $_ENV['VAF_DB_PASSWORD'] );
-define( 'VAF_DB_NAME', $_ENV['VAF_DB_NAME'] );
+define( 'VAF_DB_USERNAME', getenv('PHP_VAF_DB_USERNAME') );
+define( 'VAF_DB_PASSWORD', getenv('PHP_VAF_DB_PASSWORD') );
+define( 'VAF_DB_NAME', getenv('PHP_VAF_DB_NAME') );
 
 # used to make "test only code" run (Google "test code in production")
 define( 'ELITE_TESTING', 1 );
