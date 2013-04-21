@@ -3,14 +3,13 @@ README
 
 What is Vehicle-Fits?
 ---------------------
-Vehicle Fits is an extension to add automotive features to your Magento shopping cart. We install either shopping cart for you, as well as install the Vehicle Fits extension itself. Once your shopping cart has the Vehicle Fits extension installed, you will have hundreds of automotive features including a year/make/model search.
+Vehicle Fits is an extension to add automotive features to your Magento or Prestashop shopping cart. We install either shopping cart for you, as well as install the Vehicle Fits extension itself. Once your shopping cart has the Vehicle Fits extension installed, you will have hundreds of automotive features including a year/make/model search.
 The year/make/model search can be customized in 50+ ways, including the ability to change the number, order, or names of the select box. For example if you want to add a select box called "engine", or remove the select box called "year" you can do so. You can have as few as two select boxes, or as many as you'd like.
 You can import your existing data, or use Vehicle Fits to create your own data using our vehicle databases.
 
 Installation Instructions
 -------------------------
- * Install [Vehicle-Fits-Core](https://github.com/vehiclefits/Vehicle-Fits-Core) to `lib/VF` in the Magento root.
- * Install the following repository by dropping in the Magento root.
+ * Install the [Vehicle-Fits-Magento](https://github.com/vehiclefits/Vehicle-Fits-Magento) repository by dropping in the Magento root.
 
 Run Unit Tests
 --------------------------------
@@ -36,9 +35,9 @@ After you've installed composer, and changed the `phpunit.xml` if needed, you ma
 
 `phpunit` to run all the unit tests for the Magento module and Core tests.
 
-`phpunit vendor/bin/phpunit --testsuite "VF Magento Test Suite"` to run just the Magento module tests.
+`phpunit vendor/bin/phpunit --testsuite "vfmage"` to run just the Magento module tests.
 
-`phpunit vendor/bin/phpunit --testsuite "VF Core Test Suite"` to run the lib/VF tests.
+`phpunit vendor/bin/phpunit --testsuite "vfcore"` to run the lib/VF tests.
 
 Documentation
 -------------
