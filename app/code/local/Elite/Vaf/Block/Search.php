@@ -62,6 +62,7 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements VF_Conf
     {
         $this->searchStrategy->setTemplate($template);
         parent::setTemplate($template);
+        return $this;
     }
     
     function setRequest($request)

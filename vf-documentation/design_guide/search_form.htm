@@ -49,13 +49,12 @@
         <p>
         You can use the search block from within a Magento template, for example page/html/header.phtml to put a search in the header (this is good in "horizontal" mode).
     <pre class="kodify php">
-    &lt;?php
-    $block = $this-&gt;getLayout()-&gt;createBlock('vaf/search')
-        -&gt;setTemplate('vaf/search.phtml')
-        -&gt;setBlockId('vehiclelookup');
+&lt;?php
+$block = $this-&gt;getLayout()-&gt;createBlock('vaf/search');
+$block-&gt;setTemplate('vf/vaf/search.phtml');
 
-    echo $block-&gt;renderView();
-    ?&gt; 
+echo $block-&gt;renderView();
+?&gt;
     </pre>
         </p>
     </div>
@@ -68,7 +67,7 @@
         <p>
             <h4>(multiple vehicle searches per page)</h4>
             <p>Using the following in the content of a CMS page, will pull in the vehicle search.</p>
-            <pre>{{block type="vaf/search" block_id="vaf_search2" template="vaf/search.phtml"}}</pre>
+            <pre>{{block type="vaf/search" block_id="vaf_search2" template="vf/vaf/search.phtml"}}</pre>
             <p>However, if you want to use multiple vehicle searches, some in horizontal mode, some in vertical, it would be done in the following manner. First search.phtml would be duplicated to search-horizontal.phtml, next find the line that looks like the following:</p>
             <pre class="kodify php">echo $helper->display( $this, $level, $prevLevel );</pre>
             <br />
@@ -76,11 +75,11 @@
             <br />
             <pre class="kodify php">echo $helper->display( $this, $level, $prevLevel<b>, false</b> );</pre>
             <p>Next, instead of calling in the block like so:</p>
-            <pre>{{block type="vaf/search" block_id="vaf_search2" template="vaf/search.phtml"}}</pre>
+            <pre>{{block type="vaf/search" block_id="vaf_search2" template="vf/vaf/search.phtml"}}</pre>
             <br />
             You would use:
             <br />
-            <pre>{{block type="vaf/search" block_id="vaf_search2" template="vaf/<b>search-horizontal.phtml</b>"}}</pre>
+            <pre>{{block type="vf/vaf/search" block_id="vaf_search2" template="vaf/<b>search-horizontal.phtml</b>"}}</pre>
         </p>
     </div>
     
