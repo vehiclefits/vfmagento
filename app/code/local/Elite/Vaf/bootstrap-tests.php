@@ -262,4 +262,9 @@ class Mage
     {
         return '/';
     }
+
+    public static function getUrl($url)
+    {
+        return $url;
+    }
 }
