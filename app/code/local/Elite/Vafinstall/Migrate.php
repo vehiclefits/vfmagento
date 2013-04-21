@@ -21,7 +21,6 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-include(dirname(__FILE__) . '/MigrateBase.php');
 class Elite_Vafinstall_Migrate extends Elite_Vafinstall_MigrateBase
 {
     /**
