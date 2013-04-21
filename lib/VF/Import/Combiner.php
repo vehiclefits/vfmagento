@@ -35,8 +35,6 @@ class VF_Import_Combiner
     
     function getCombinations( $values )
     {
-        $values = $this->trimSpaces($values);
-        
         foreach( $this->getSchema()->getLevels() as $level )
         {
             $values = $this->explodeRangesAndEnumerations($level,$values);
@@ -67,15 +65,6 @@ class VF_Import_Combiner
             $values[$level] = $this->convertValueToArray( $values[$level] );
         }
         
-        return $values;
-    }
-    
-    function trimSpaces($values)
-    {
-        foreach($values as $key => $value)
-        {
-            $values[$key] = trim($value);
-        }
         return $values;
     }
 

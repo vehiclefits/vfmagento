@@ -50,18 +50,20 @@ class VF_Import_Schema_Generator extends VF_Schema_Generator
 	    $query .= '`price` float NOT NULL,';
             $query .= 'PRIMARY KEY (`id`)';
         $query .= ') ENGINE = InnoDB CHARSET=utf8;';
+        // it seems to run faster without an index. test this with performanceTests/VehiclesListImporterTest
+        //$query .= $this->indexImportTable();
         return $query;
     }
     
     function indexImportTable()
     {
-        $levels = array();
+        $query = '';
         foreach( $this->levels() as $level )
         {
-            $levels[] = sprintf( '`%s_id`', $level );
+            //$query .= sprintf("ALTER TABLE `elite_import` ADD INDEX (%s);",$level);
+            $query .= sprintf("ALTER TABLE `elite_import` ADD INDEX (%s);",$level.'_id');
         }
-        $levels = implode( ',', $levels );
-        return sprintf("ALTER TABLE `elite_import` ADD INDEX (%s);",$levels);
+        return $query;
     }
     
     function getSchema()

@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_GetFitsPerformanceTest extends Elite_Vaf_Model_Catalog_ProductTests_TestCase
+class Elite_performanceTests_GetFitsPerformanceTest extends Elite_Vaf_Model_Catalog_ProductTests_TestCase
 {
     function doSetUp()
     {
@@ -35,7 +35,7 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_GetFitsPerfo
     {
         $this->setMaxRunningTime(1);
 
-	$this->product->getFitModels();
+	    $this->product->getFitModels();
         $this->product->getFitModels();
         $this->product->getFitModels();
         $this->product->getFitModels();

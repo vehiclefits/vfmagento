@@ -106,7 +106,7 @@ class Elite_Vafsitemap_Model_Sitemap_Vehicle extends VF_Import_Abstract
 	return $count;
     }
 
-    protected function getSchema()
+    function getSchema()
     {
 	$schema = new VF_Schema();
 	$schema->setConfig($this->config);

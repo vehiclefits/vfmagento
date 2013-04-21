@@ -86,10 +86,21 @@ abstract class VF_Import_Abstract
     {
         return $this->getReader()->getRow();
     }
-    
+
     function schema()
     {
-        return new VF_Schema();
+        return $this->getSchema();
+    }
+
+    function getSchema()
+    {
+        if(isset($this->schema))
+        {
+            return $this->schema;
+        }
+        $schema = new VF_Schema();
+        $schema->setConfig($this->getConfig());
+        return $this->schema = $schema;
     }
     
     /** @return Csv_Reader */
@@ -100,12 +111,12 @@ abstract class VF_Import_Abstract
     
     function getFieldValue( $fieldName, $row )
     {
-        $position = $this->getFieldPosition( $fieldName );
+        $position = $this->getFieldPosition($fieldName);
         if( false === $position )
         {
             return false;
         }
-        return isset( $row[ $position ] ) ? $row[ $position ] : '';
+        return isset( $row[$position] ) ? trim($row[$position]) : '';
     }
     
     /**
