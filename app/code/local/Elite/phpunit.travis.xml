@@ -28,6 +28,9 @@
         <testsuite name="vfcore">
             <directory>../../../../lib/VF</directory>
         </testsuite>
+        <testsuite name="vfdocs">
+            <directory>../../../../vf-documentation</directory>
+        </testsuite>
     </testsuites>
 
 </phpunit>
