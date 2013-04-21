@@ -1,2 +1,4 @@
 app/code/local/Elite/Vaf/config.ini
 app/code/local/Elite/phpunit.xml
+app/code/local/Elite/vendor
+composer.lock
