@@ -21,7 +21,7 @@ class Elite_Vaftire_Admin_VaftirevehicleimportController extends Mage_Adminhtml_
         $this->loadLayout();
         $this->_setActiveMenu('vaf');
         $block = $this->getLayout()->createBlock('core/template' );
-       	$block->setTemplate('vaftire/vehicle/import.phtml');
+       	$block->setTemplate( 'vf/vaftire/vehicle/import.phtml');
         $this->_addContent( $block );
         $this->renderLayout();
     }

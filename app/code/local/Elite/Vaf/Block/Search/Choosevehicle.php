@@ -18,7 +18,7 @@ class Elite_Vaf_Block_Search_Choosevehicle extends Elite_Vaf_Block_Search
     function __construct()
     {
         parent::__construct();
-        $this->setTemplate('vaf/search.phtml');
+        $this->setTemplate('vf/vaf/search.phtml');
     }
 	
     function action()

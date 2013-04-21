@@ -12,7 +12,7 @@ class Elite_Vaf_Admin_VafsettingsproductController extends Mage_Adminhtml_Contro
         
         $block = $this->getLayout()
                 ->createBlock('core/template', 'vafsettings/product' )
-                ->setTemplate('vafsettings/product.phtml');
+                ->setTemplate('vf/vafsettings/product.phtml');
         
         $this->_addContent( $block );
         $this->renderLayout();

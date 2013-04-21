@@ -12,7 +12,7 @@ class Elite_Vaf_Admin_VafsettingshomepagesearchController extends Mage_Adminhtml
         
         $block = $this->getLayout()
                 ->createBlock('core/template', 'vafsettings/homepagesearch' )
-                ->setTemplate('vafsettings/homepagesearch.phtml');
+                ->setTemplate('vf/vafsettings/homepagesearch.phtml');
         
         $this->_addContent( $block );
         $this->renderLayout();

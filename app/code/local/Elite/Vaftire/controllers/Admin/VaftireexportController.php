@@ -23,7 +23,7 @@ class Elite_Vaftire_Admin_VaftireexportController extends Mage_Adminhtml_Control
 	$this->loadLayout();
 	$this->_setActiveMenu('vaf');
 	$block = $this->getLayout()->createBlock('core/template');
-	$block->setTemplate('vaftire/export.phtml');
+	$block->setTemplate( 'vf/vaftire/export.phtml');
 	$this->_addContent($block);
 	$this->renderLayout();
     }

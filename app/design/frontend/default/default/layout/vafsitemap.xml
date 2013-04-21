@@ -11,7 +11,7 @@ Vehicle SEO Site Map
         </reference>
         
         <reference name="content">
-            <block type="vafsitemap/vehicles" name="vafsitemap_vehicles" template="vafsitemap/vehicles.phtml">
+            <block type="vafsitemap/vehicles" name="vafsitemap_vehicles" template="vf/vafsitemap/vehicles.phtml">
             </block>
         </reference>
         

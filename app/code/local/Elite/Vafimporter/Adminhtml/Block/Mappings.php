@@ -6,7 +6,7 @@ class Elite_Vafimporter_Adminhtml_Block_Mappings extends Elite_Vafimporter_Admin
     protected $mageBlockId = 'vafimporter_mappings';
     
     /** @var string the name of the magento template to render with this block */
-    protected $template = 'vafimporter/mappings_import.phtml';
+    protected $template = 'vf/vafimporter/mappings_import.phtml';
     
     /** @var VF_Import_ProductFitments */
     protected $importer;

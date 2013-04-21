@@ -4,7 +4,7 @@ class Elite_Vaflinks_Block_List extends Elite_Vaf_Block_Search {
 
     function __construct() {
         parent::__construct();
-        $this->setTemplate('vaflinks/list.phtml');
+        $this->setTemplate( 'vf/vaflinks/list.phtml');
     }
 
     function getDefinitions() {

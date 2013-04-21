@@ -37,7 +37,7 @@ class Elite_Vafimporter_Admin_VafimporterController extends Mage_Adminhtml_Contr
 	$this->_setActiveMenu('vaf/export');
 
 	$block = $this->getLayout()->createBlock('core/template', 'vafimporter/definitionsexport');
-	$block->setTemplate('vafimporter/definitions_export.phtml');
+	$block->setTemplate( 'vf/vafimporter/definitions_export.phtml');
 	$this->_addContent($block);
 	$this->renderLayout();
     }
@@ -61,7 +61,7 @@ class Elite_Vafimporter_Admin_VafimporterController extends Mage_Adminhtml_Contr
 	$this->loadLayout();
 	$this->_setActiveMenu('vaf/export');
 
-	$block = $this->getLayout()->createBlock('core/template')->setTemplate('vafimporter/mappings_export.phtml');
+	$block = $this->getLayout()->createBlock('core/template')->setTemplate( 'vf/vafimporter/mappings_export.phtml');
 	$this->_addContent($block);
 	$this->renderLayout();
     }

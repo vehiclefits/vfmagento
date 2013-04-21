@@ -21,7 +21,7 @@ class Elite_Vaftire_Admin_VaftireimportController extends Mage_Adminhtml_Control
         $this->loadLayout();
         $this->_setActiveMenu('vaf');
         $block = $this->getLayout()->createBlock('core/template' );
-       	$block->setTemplate('vaftire/import.phtml');
+       	$block->setTemplate( 'vf/vaftire/import.phtml');
         $this->_addContent( $block );
         $this->renderLayout();
     }

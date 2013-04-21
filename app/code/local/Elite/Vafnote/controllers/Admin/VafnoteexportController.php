@@ -21,7 +21,7 @@ class Elite_Vafnote_Admin_VafnoteexportController extends Mage_Adminhtml_Control
         $this->loadLayout();
         $this->_setActiveMenu('vaf');
         $block = $this->getLayout()->createBlock('core/template' );
-       	$block->setTemplate('vafnote/export.phtml');
+       	$block->setTemplate( 'vf/vafnote/export.phtml');
         $this->_addContent( $block );
         $this->renderLayout();
     }

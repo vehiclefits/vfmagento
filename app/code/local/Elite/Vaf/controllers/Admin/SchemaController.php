@@ -28,7 +28,7 @@ class Elite_Vaf_Admin_SchemaController extends Mage_Adminhtml_Controller_Action
         $this->_setActiveMenu('vaf');
         
         $block = $this->getLayout()->createBlock('adminhtml/vaf_schema', 'vaf' );
-        $block->setTemplate( 'vaf/schema.phtml' );
+        $block->setTemplate( 'vf/vaf/schema.phtml' );
         $this->_addContent( $block );
         $this->renderLayout();
     }

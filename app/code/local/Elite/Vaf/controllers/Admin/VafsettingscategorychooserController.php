@@ -12,7 +12,7 @@ class Elite_Vaf_Admin_VafsettingscategorychooserController extends Mage_Adminhtm
         
         $block = $this->getLayout()
                 ->createBlock('core/template', 'vafsettings/categorychooser' )
-                ->setTemplate('vafsettings/categorychooser.phtml');
+                ->setTemplate('vf/vafsettings/categorychooser.phtml');
         
         $this->_addContent( $block );
         $this->renderLayout();
