@@ -21,7 +21,8 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-require_once( dirname( __FILE__ ) . '/../../../../Mage.php' );
+require_once( dirname( __FILE__ ).'/config.default.php');
+require_once( getenv('PHP_MAGE_PATH').'/app/Mage.php' );
 require_once( dirname( __FILE__ ) . '/../Vaf/bootstrap.php' );
 Mage::app();
 
@@ -52,17 +53,18 @@ class SampleData
              $line .= ",";
              $line .= 'model' . rand(1,25);
              $line .= ",";
-             
+
              $year = rand(1950,2010);
              $line .= $year;
             
-            $newCsv .= $line . "\n";
+             $newCsv .= $line . "\n";
         }
-        $file = 'E:\dev\vaf\app\code\local\Elite\tasks\sampleMappings.csv';
+
+        $file = getenv('PHP_TEMP_PATH').'/sampleMappings.csv';
         file_put_contents($file,$newCsv);
         $importer = new VF_Import_ProductFitments_CSV_Import($file);
         $importer->import();
-        echo 'data imported';
+        echo "data imported\n";
     }
 
     function newSku()
