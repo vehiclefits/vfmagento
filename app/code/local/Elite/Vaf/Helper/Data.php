@@ -351,12 +351,12 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements VF_Conf
     
     function processUrl()
     {
-        return $this->getBaseUrl(isset($_SERVER['HTTPS']) ) . 'vaf/ajax/process?';
+        return $this->getBaseUrl(isset($_SERVER['HTTPS']) ) . '/vaf/ajax/process?';
     }
     
     function homepageSearchURL()
     {
-        return $this->getBaseUrl(isset($_SERVER['HTTPS'])) . 'vaf/product/list?';
+        return $this->getBaseUrl(isset($_SERVER['HTTPS'])) . '/vaf/product/list?';
     }
 
 }

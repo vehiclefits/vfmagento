@@ -42,12 +42,12 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements VF_Conf
             return parent::__call($method, $arguments);
         }
     }
-    
+
     function url( $route )
     {
         return Mage::getUrl( $route );
     }
-    
+
     function _toHtml()
     {
         if( !$this->shouldShow( $this->currentCategoryId() ) )
@@ -143,5 +143,10 @@ class VF_Search_Mage extends VF_Search
         }
         $this->_request = Elite_Vaf_Helper_Data::getInstance()->getRequest();
         return $this->_request;
+    }
+
+    function url( $route )
+    {
+        return Mage::getUrl( $route );
     }
 }
