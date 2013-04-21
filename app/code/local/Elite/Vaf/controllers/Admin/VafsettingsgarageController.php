@@ -12,7 +12,7 @@ class Elite_Vaf_Admin_VafsettingsgarageController extends Mage_Adminhtml_Control
         
         $block = $this->getLayout()
                 ->createBlock('core/template', 'vafsettings/garage' )
-                ->setTemplate('vafsettings/garage.phtml');
+                ->setTemplate('vf/vafsettings/garage.phtml');
         
         $this->_addContent( $block );
         $this->renderLayout();

@@ -5,7 +5,7 @@ class Elite_Vafimporter_Adminhtml_Block_Definitions_Import extends Mage_Adminhtm
     protected $mageBlockId = 'vafimporter_definitions_import';
     
     /** @var string the name of the magento template to render with this block */
-    protected $template = 'vafimporter/definitions_import.phtml';
+    protected $template = 'vf/vafimporter/definitions_import.phtml';
     
     public $messages;
     

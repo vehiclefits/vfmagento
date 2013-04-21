@@ -12,7 +12,7 @@ class Elite_Vaf_Admin_VafsettingscategoryController extends Mage_Adminhtml_Contr
         
         $block = $this->getLayout()
                 ->createBlock('core/template', 'vafsettings/category' )
-                ->setTemplate('vafsettings/category.phtml');
+                ->setTemplate('vf/vafsettings/category.phtml');
         
         $this->_addContent( $block );
         $this->renderLayout();

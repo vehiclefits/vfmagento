@@ -16,7 +16,7 @@ class Elite_Vaf_Block_Product_Result_Group2 extends Elite_Vaf_Block_Product_Resu
     function __construct()
     {
         parent::__construct();
-        $this->setTemplate('vaf/group2/result.phtml');
+        $this->setTemplate('vf/vaf/group2/result.phtml');
     }
     
     // this is to null out functionality that adds 'group by' on the `product_id` field. SInce we only care about category IDs in group2, this is less rows.

@@ -4,7 +4,7 @@
     <!-- add MMY search on right hand side of any applicable page -->
     <default>
         <reference name="right">
-            <block type="vaf/search" name="vaf_search" template="vaf/search.phtml" before="-"></block>
+            <block type="vaf/search" name="vaf_search" template="vf/vaf/search.phtml" before="-"></block>
         </reference>
     </default>
     

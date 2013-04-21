@@ -38,7 +38,7 @@ class Elite_Vaf_Admin_VehicleslistController extends Mage_Adminhtml_Controller_A
 
     function doIndexAction()
     {
-        $this->block->setTemplate( 'vaf/entity.phtml' );
+        $this->block->setTemplate( 'vf/vaf/entity.phtml' );
 
         $this->block->entity = $this->getEntity();
 
@@ -98,7 +98,7 @@ class Elite_Vaf_Admin_VehicleslistController extends Mage_Adminhtml_Controller_A
         }
 
         $this->block->model = $vehicle->getLevel($this->getEntity()->getType());
-        $this->block->setTemplate( 'vaf/delete.phtml' );
+        $this->block->setTemplate( 'vf/vaf/delete.phtml' );
     }
 
     function redirectAfterDelete()
@@ -133,7 +133,7 @@ class Elite_Vaf_Admin_VehicleslistController extends Mage_Adminhtml_Controller_A
         $this->_setActiveMenu('vaf');
 
         $this->block = $this->getLayout()->createBlock('adminhtml/vaf_definitions', 'vaf' );
-        $this->block->setTemplate( 'vaf/merge.phtml' );
+        $this->block->setTemplate( 'vf/vaf/merge.phtml' );
 
         if(isset($_POST['master']))
         {
@@ -168,7 +168,7 @@ class Elite_Vaf_Admin_VehicleslistController extends Mage_Adminhtml_Controller_A
         $this->_setActiveMenu('vaf');
 
         $this->block = $this->getLayout()->createBlock('adminhtml/vaf_definitions', 'vaf' );
-        $this->block->setTemplate( 'vaf/split.phtml' );
+        $this->block->setTemplate( 'vf/vaf/split.phtml' );
 
         if(isset($_POST['submit']))
         {
@@ -198,7 +198,7 @@ class Elite_Vaf_Admin_VehicleslistController extends Mage_Adminhtml_Controller_A
         $this->_setActiveMenu('vaf');
 
         $this->block = $this->getLayout()->createBlock('adminhtml/vaf_definitions', 'vaf' );
-        $this->block->setTemplate( 'vaf/product.phtml' );
+        $this->block->setTemplate( 'vf/vaf/product.phtml' );
 
         $this->block->products = Elite_Vaf_Helper_Data::getInstance()->getProductIds();
 

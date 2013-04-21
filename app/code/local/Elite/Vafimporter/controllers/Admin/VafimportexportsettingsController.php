@@ -12,7 +12,7 @@ class Elite_Vafimporter_Admin_VafimportexportsettingsController extends Mage_Adm
         
         $block = $this->getLayout()
                 ->createBlock('core/template', 'vafimporter/settings' )
-                ->setTemplate('vafimporter/settings.phtml');
+                ->setTemplate( 'vf/vafimporter/settings.phtml');
         
         $this->_addContent( $block );
         $this->renderLayout();

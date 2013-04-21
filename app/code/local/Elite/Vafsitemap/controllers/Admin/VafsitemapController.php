@@ -45,7 +45,7 @@ class Elite_Vafsitemap_Admin_VafsitemapController extends Mage_Adminhtml_Control
 	$this->loadLayout();
 	$this->_setActiveMenu('vaf/export');
 
-	$block = $this->getLayout()->createBlock('adminhtml/template', 'vafsitemap_export')->setTemplate('vafsitemap/export.phtml');
+	$block = $this->getLayout()->createBlock('adminhtml/template', 'vafsitemap_export')->setTemplate( 'vf/vafsitemap/export.phtml');
 	$this->_addContent($block);
 	$this->renderLayout();
     }

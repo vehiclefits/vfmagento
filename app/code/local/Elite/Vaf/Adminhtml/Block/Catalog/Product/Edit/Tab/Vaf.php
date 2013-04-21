@@ -7,7 +7,7 @@ class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf extends Mage_Adminh
     function __construct()
     {
         parent::__construct();
-        $this->setTemplate('catalog/product/tab/vaf.phtml');
+        $this->setTemplate('vf/catalog/product/tab/vaf.phtml');
     }           
     
     function getFits()
@@ -27,19 +27,19 @@ class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf extends Mage_Adminh
         if( file_exists(ELITE_PATH.'/Vafwheel') )
         {
             $this->setScriptPath($this->designScriptPath());
-            $html = $this->fetchView($this->myGetTemplateFile('catalog/product/tab/vaf-wheel.phtml'));
+            $html = $this->fetchView($this->myGetTemplateFile('vf/catalog/product/tab/vaf-wheel.phtml'));
             $return .= $html;
         }
         if( file_exists(ELITE_PATH.'/Vafwheeladapter') )
         {
             $this->setScriptPath($this->designScriptPath());
-            $html = $this->fetchView($this->myGetTemplateFile('catalog/product/tab/vaf-wheeladapter.phtml'));
+            $html = $this->fetchView($this->myGetTemplateFile('vf/catalog/product/tab/vaf-wheeladapter.phtml'));
             $return .= $html;
         }
         if( file_exists(ELITE_PATH.'/Vaftire') )
         {
             $this->setScriptPath($this->designScriptPath());
-            $html = $this->fetchView($this->myGetTemplateFile('catalog/product/tab/vaf-tire.phtml'));
+            $html = $this->fetchView($this->myGetTemplateFile('vf/catalog/product/tab/vaf-tire.phtml'));
             $return .= $html;
         }
         return $return;
