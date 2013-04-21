@@ -4,14 +4,19 @@ ini_set( 'display_errors', 1 );
 
 require_once('bootstrap.php');
 
-# set up paths specific to test environment
-define( 'MAGE_PATH', '/home/josh/www/magento' );
-define( 'TESTFILES', '/tmp' );
+/**
+ * The paths are controlled by app/code/local/Elite/phpunit.xml.dist
+ * using the <php><env /></php> section. To make changes, make a copy
+ * of phpunit.xml.dist to phpunit.xml
+ */
+
+define( 'MAGE_PATH', $_ENV['MAGE_PATH']);
+define( 'TESTFILES', $_ENV['TESTFILES'] );
 
 # database details for test server
-define( 'VAF_DB_USERNAME', 'root' );
-define( 'VAF_DB_PASSWORD', '' );
-define( 'VAF_DB_NAME', 'magento' );
+define( 'VAF_DB_USERNAME', $_ENV['VAF_DB_USERNAME'] );
+define( 'VAF_DB_PASSWORD', $_ENV['VAF_DB_PASSWORD'] );
+define( 'VAF_DB_NAME', $_ENV['VAF_DB_NAME'] );
 
 # used to make "test only code" run (Google "test code in production")
 define( 'ELITE_TESTING', 1 );
