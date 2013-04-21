@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- http://www.phpunit.de/manual/current/en/appendixes.configuration.html -->
+<phpunit
+        backupGlobals="false"
+        backupStaticAttributes="false"
+        colors="true"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        processIsolation="false"
+        stopOnFailure="true"
+        syntaxCheck="false"
+        bootstrap="Vaf/bootstrap-tests.travis.php">
+
+    <php>
+        <env name="PHP_MAGE_PATH" value="vendor/kylecannon/magento"/>
+        <env name="PHP_TEMP_PATH" value="/tmp"/>
+        <env name="PHP_VAF_DB_USERNAME" value="root"/>
+        <env name="PHP_VAF_DB_PASSWORD" value=""/>
+        <env name="PHP_VAF_DB_NAME" value="vf_magento"/>
+    </php>
+
+    <testsuites>
+        <testsuite name="vfmage">
+            <directory>Vaf*/</directory>
+        </testsuite>
+        <testsuite name="vfcore">
+            <directory>../../../../lib/VF</directory>
+        </testsuite>
+    </testsuites>
+
+</phpunit>
