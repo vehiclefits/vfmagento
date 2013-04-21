@@ -25,7 +25,7 @@ class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf_AjaxTestStub extend
 {
     function toHtml()
     {
-        require_once($this->designScriptPath() . '\adminhtml\default\default\template\catalog\product\tab\vaf.phtml');
+        require_once($this->designScriptPath() . '/adminhtml/default/default/template/catalog/product/tab/vaf.phtml');
     }
     
     function getProduct()
@@ -40,7 +40,7 @@ class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf_AjaxTestStub extend
     
     function designScriptPath()
     {
-        return 'E:\dev\vaf\app\code\local\Elite\Vaf\design';
+        return getenv('PHP_MAGE_PATH').'/app/design';
     }
     
     function getUrl( $routeString )

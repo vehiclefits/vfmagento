@@ -21,7 +21,8 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-require_once('E:\dev\vaf\app\code\local\Elite\Vaf\bootstrap-tests.php');
+require_once '../config.default.php';
+require_once(getenv('PHP_MAGE_PATH').'/app/code/local/Elite/Vaf/bootstrap-tests.php');
 
 $schemaGenerator = new VF_Schema_Generator();
 $schemaGenerator->dropExistingTables();
