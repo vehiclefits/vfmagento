@@ -37,9 +37,9 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
 
     function runTest()
     {
-        $startTime = microtime();
+        $startTime = microtime(true);
         parent::runTest();
-        $endTime = microtime();
+        $endTime = microtime(true);
         if( 0 != $this->maxRunningTime && $endTime-$startTime > $this->maxRunningTime)
         {
             $this->fail('expected running time: <= ' . $this->maxRunningTime . ' but was ' . ($endTime-$startTime) );
