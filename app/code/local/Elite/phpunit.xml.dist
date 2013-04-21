@@ -24,12 +24,16 @@
     <testsuites>
         <testsuite name="vfmage">
             <directory>Vaf*/</directory>
+            <exclude>performanceTests/*</exclude>
         </testsuite>
         <testsuite name="vfcore">
             <directory>../../../../lib/VF</directory>
         </testsuite>
         <testsuite name="vfdocs">
             <directory>../../../../vf-documentation</directory>
+        </testsuite>
+        <testsuite name="vfperformance">
+            <directory>performanceTests*/</directory>
         </testsuite>
     </testsuites>
 
