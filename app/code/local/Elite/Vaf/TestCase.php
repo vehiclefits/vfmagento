@@ -593,7 +593,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
         if (is_null($request)) {
             $request = new Zend_Controller_Request_Http();
         }
-        require_once(ELITE_PATH . '/Vaf/controllers/Admin/DefinitionsController.php');
+        require_once(ELITE_PATH . '/Vaf/controllers/Admin/VehicleslistController.php');
         require_once(ELITE_PATH . '/Vaf/controllers/Admin/DefinitionsController/TestSubClass.php');
         $controller = new Elite_Vaf_Admin_DefinitionsController_TestSubClass($request, new Zend_Controller_Response_Http());
         return $controller;

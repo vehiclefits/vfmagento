@@ -133,7 +133,11 @@ class Elite_Vaf_Admin_VehicleslistController extends Mage_Adminhtml_Controller_A
         $dataToSave = $this->requestLevels();
         $vehiclesFinder = new VF_Vehicle_Finder(new VF_Schema());
         $vehicle = $vehiclesFinder->findOneByLevelIds($dataToSave,VF_Vehicle_Finder::INCLUDE_PARTIALS);
-        $dataToSave = $vehicle->toTitleArray();
+        if($vehicle){
+            $dataToSave = $vehicle->toTitleArray();
+        } else {
+            $dataToSave = array();
+        }
 
         $dataToSave[$this->getRequest()->getParam('entity')] = $this->getRequest()->getParam('title');
         $vehicle = VF_Vehicle::create(new VF_Schema(), $dataToSave);
