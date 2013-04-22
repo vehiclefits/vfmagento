@@ -24,7 +24,7 @@ After you've installed composer, you may need to rename the `phpunit.xml.dist` t
 ```xml
 <php>
     <env name="PHP_MAGE_PATH" value="/home/josh/www/magento"/>
-    <env name="PHP_TESTFILES" value="/tmp"/>
+    <env name="PHP_TEMP_PATH" value="/tmp"/>
     <env name="PHP_VAF_DB_USERNAME" value="root"/>
     <env name="PHP_VAF_DB_PASSWORD" value=""/>
     <env name="PHP_VAF_DB_NAME" value="magento"/>
