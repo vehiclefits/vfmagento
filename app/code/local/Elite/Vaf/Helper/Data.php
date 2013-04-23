@@ -59,7 +59,11 @@ class Elite_Vaf_Helper_Data extends Mage_Core_Helper_Abstract implements VF_Conf
     function getConfig()
     {
         if (!$this->config instanceof Zend_Config) {
-            $config = new Zend_Config_Ini(ELITE_CONFIG, null, true);
+            if(file_exists(ELITE_CONFIG)) {
+                $config = new Zend_Config_Ini(ELITE_CONFIG, null, true);
+            } else {
+                $config = new Zend_Config_Ini(ELITE_CONFIG_DEFAULT, null, true);
+            }
             $this->setConfig($config);
         }
         return $this->config;
