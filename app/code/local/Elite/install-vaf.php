@@ -29,7 +29,7 @@ require_once( 'lib/VF/Schema/Generator.php' );
 Mage::app();
 $helper = Elite_Vaf_Helper_Data::getInstance();
 ?>
-<form action="?" method="post">
+<form action="?" method="get">
 	<?php
 	include('Elite/Vafinstall/includes/install-db.php');
 	?>

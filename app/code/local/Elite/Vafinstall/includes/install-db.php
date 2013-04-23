@@ -31,6 +31,7 @@
     if( isset( $_REQUEST['levels'] ) && isset( $_REQUEST['runDb'] ) )
     {
         $generator = new VF_Schema_Generator();
+        $generator->dropExistingTables();
         $sql = $generator->generator( explode(',', $_REQUEST['levels'] ) );
 
         if( file_exists(ELITE_PATH.'/Vafpaint') )
@@ -49,14 +50,15 @@
         {
             if(!trim($statement))
             {
-                return;
+                continue;
             }
             try{
                 $helper->getReadAdapter()->query( $statement );
             }catch(Exception$e){
-                echo'ERROR: '.$e->getMessage();
+                echo'<br /><span style="color:red;">ERROR: '.$e->getMessage().' in SQL: ' . $statement .'</span>';
             }
         }
+        echo '<br /><b style="color:green">Ok! Database created!</b>';
     }
     else if( isset( $_REQUEST['levels'] ) && isset( $_REQUEST['generateDb'] ) )
     {
