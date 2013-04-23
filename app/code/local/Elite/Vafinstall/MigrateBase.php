@@ -107,11 +107,14 @@ abstract class Elite_Vafinstall_MigrateBase
     
     function needsUpgrade()
     {
-        return $this->getCurrentVersion() != $this->maxVersion();
+        return false !== $this->maxVersion() && $this->getCurrentVersion() != $this->maxVersion();
     }
     
     function maxVersion()
     {
+        if(!count($this->versions())) {
+            return false;
+        }
         return max($this->versions());
     }
     

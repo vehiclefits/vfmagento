@@ -1,33 +1,17 @@
--- phpMyAdmin SQL Dump
--- version 3.5.1
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Jan 29, 2013 at 05:43 PM
--- Server version: 5.5.24-log
--- PHP Version: 5.3.13
-
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
 --
--- Database: `vaf`
+-- Database: `magento`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `elite_definition`
+-- Table structure for table `elite_1_definition`
 --
 
-DROP TABLE IF EXISTS `elite_definition`;
-CREATE TABLE IF NOT EXISTS `elite_definition` (
+CREATE TABLE IF NOT EXISTS `elite_1_definition` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
   `make_id` int(15) NOT NULL,
   `model_id` int(15) NOT NULL,
@@ -38,7 +22,31 @@ CREATE TABLE IF NOT EXISTS `elite_definition` (
   KEY `make_id` (`make_id`),
   KEY `model_id` (`model_id`),
   KEY `year_id` (`year_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `elite_1_mapping`
+--
+
+CREATE TABLE IF NOT EXISTS `elite_1_mapping` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `make_id` int(15) NOT NULL,
+  `model_id` int(15) NOT NULL,
+  `year_id` int(15) NOT NULL,
+  `entity_id` int(25) NOT NULL,
+  `universal` int(1) NOT NULL COMMENT 'if there is a row with this flag set for a product ( entity_id ) then it should be returned universally for all vehicles',
+  `related` int(1) NOT NULL,
+  `price` float NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `make_id_2` (`make_id`,`model_id`,`year_id`,`universal`,`entity_id`),
+  KEY `universal` (`universal`),
+  KEY `make_id` (`make_id`),
+  KEY `model_id` (`model_id`),
+  KEY `year_id` (`year_id`),
+  KEY `entity_id` (`entity_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -46,7 +54,6 @@ CREATE TABLE IF NOT EXISTS `elite_definition` (
 -- Table structure for table `elite_definition_wheel`
 --
 
-DROP TABLE IF EXISTS `elite_definition_wheel`;
 CREATE TABLE IF NOT EXISTS `elite_definition_wheel` (
   `leaf_id` int(50) NOT NULL,
   `lug_count` int(1) NOT NULL,
@@ -62,7 +69,6 @@ CREATE TABLE IF NOT EXISTS `elite_definition_wheel` (
 -- Table structure for table `elite_import`
 --
 
-DROP TABLE IF EXISTS `elite_import`;
 CREATE TABLE IF NOT EXISTS `elite_import` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `make` varchar(255) NOT NULL,
@@ -87,80 +93,41 @@ CREATE TABLE IF NOT EXISTS `elite_import` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `elite_level_make`
+-- Table structure for table `elite_level_1_make`
 --
 
-DROP TABLE IF EXISTS `elite_level_make`;
-CREATE TABLE IF NOT EXISTS `elite_level_make` (
+CREATE TABLE IF NOT EXISTS `elite_level_1_make` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `title` (`title`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `elite_level_model`
+-- Table structure for table `elite_level_1_model`
 --
 
-DROP TABLE IF EXISTS `elite_level_model`;
-CREATE TABLE IF NOT EXISTS `elite_level_model` (
+CREATE TABLE IF NOT EXISTS `elite_level_1_model` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
-  `make_id` int(255) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `title` (`title`),
-  KEY `make_id` (`make_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  KEY `title` (`title`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `elite_level_year`
+-- Table structure for table `elite_level_1_year`
 --
 
-DROP TABLE IF EXISTS `elite_level_year`;
-CREATE TABLE IF NOT EXISTS `elite_level_year` (
+CREATE TABLE IF NOT EXISTS `elite_level_1_year` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
-  `model_id` int(255) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `title` (`title`),
-  KEY `model_id` (`model_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `elite_mapping`
---
-
-DROP TABLE IF EXISTS `elite_mapping`;
-CREATE TABLE IF NOT EXISTS `elite_mapping` (
-  `id` int(50) NOT NULL AUTO_INCREMENT,
-  `make_id` int(15) NOT NULL,
-  `model_id` int(15) NOT NULL,
-  `year_id` int(15) NOT NULL,
-  `entity_id` int(25) NOT NULL,
-  `universal` int(1) NOT NULL COMMENT 'if there is a row with this flag set for a product ( entity_id ) then it should be returned universally for all vehicles',
-  `related` int(1) NOT NULL,
-  `price` float NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `make_id_2` (`make_id`,`model_id`,`year_id`,`universal`,`entity_id`),
-  KEY `universal` (`universal`),
-  KEY `make_id` (`make_id`),
-  KEY `model_id` (`model_id`),
-  KEY `year_id` (`year_id`),
-  KEY `entity_id` (`entity_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `elite_mapping`
---
-
-INSERT INTO `elite_mapping` (`id`, `make_id`, `model_id`, `year_id`, `entity_id`, `universal`, `related`, `price`) VALUES
-(1, 0, 0, 0, 1, 0, 0, 0);
+  KEY `title` (`title`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -168,7 +135,6 @@ INSERT INTO `elite_mapping` (`id`, `make_id`, `model_id`, `year_id`, `entity_id`
 -- Table structure for table `elite_mapping_notes`
 --
 
-DROP TABLE IF EXISTS `elite_mapping_notes`;
 CREATE TABLE IF NOT EXISTS `elite_mapping_notes` (
   `fit_id` int(50) NOT NULL,
   `note_id` varchar(50) NOT NULL,
@@ -181,7 +147,6 @@ CREATE TABLE IF NOT EXISTS `elite_mapping_notes` (
 -- Table structure for table `elite_mapping_paint`
 --
 
-DROP TABLE IF EXISTS `elite_mapping_paint`;
 CREATE TABLE IF NOT EXISTS `elite_mapping_paint` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
   `mapping_id` int(50) NOT NULL,
@@ -198,7 +163,6 @@ CREATE TABLE IF NOT EXISTS `elite_mapping_paint` (
 -- Table structure for table `elite_note`
 --
 
-DROP TABLE IF EXISTS `elite_note`;
 CREATE TABLE IF NOT EXISTS `elite_note` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
   `code` varchar(50) NOT NULL,
@@ -213,7 +177,6 @@ CREATE TABLE IF NOT EXISTS `elite_note` (
 -- Table structure for table `elite_product_servicecode`
 --
 
-DROP TABLE IF EXISTS `elite_product_servicecode`;
 CREATE TABLE IF NOT EXISTS `elite_product_servicecode` (
   `product_id` int(100) NOT NULL,
   `service_code` varchar(100) NOT NULL,
@@ -232,7 +195,6 @@ CREATE TABLE IF NOT EXISTS `elite_product_servicecode` (
 -- Table structure for table `elite_product_tire`
 --
 
-DROP TABLE IF EXISTS `elite_product_tire`;
 CREATE TABLE IF NOT EXISTS `elite_product_tire` (
   `entity_id` int(50) NOT NULL,
   `section_width` int(3) NOT NULL,
@@ -242,20 +204,12 @@ CREATE TABLE IF NOT EXISTS `elite_product_tire` (
   UNIQUE KEY `entity_id` (`entity_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `elite_product_tire`
---
-
-INSERT INTO `elite_product_tire` (`entity_id`, `section_width`, `aspect_ratio`, `diameter`, `tire_type`) VALUES
-(1, 0, 0, 0, 1);
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `elite_product_wheel`
 --
 
-DROP TABLE IF EXISTS `elite_product_wheel`;
 CREATE TABLE IF NOT EXISTS `elite_product_wheel` (
   `entity_id` int(50) NOT NULL,
   `lug_count` int(1) NOT NULL,
@@ -271,7 +225,6 @@ CREATE TABLE IF NOT EXISTS `elite_product_wheel` (
 -- Table structure for table `elite_product_wheeladapter`
 --
 
-DROP TABLE IF EXISTS `elite_product_wheeladapter`;
 CREATE TABLE IF NOT EXISTS `elite_product_wheeladapter` (
   `entity_id` int(50) NOT NULL,
   `lug_count` int(1) NOT NULL,
@@ -286,19 +239,20 @@ CREATE TABLE IF NOT EXISTS `elite_product_wheeladapter` (
 -- Table structure for table `elite_schema`
 --
 
-DROP TABLE IF EXISTS `elite_schema`;
 CREATE TABLE IF NOT EXISTS `elite_schema` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(25) NOT NULL,
-  `value` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `value` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `elite_schema`
 --
 
-INSERT INTO `elite_schema` (`key`, `value`) VALUES
-('levels', 'make,model,year'),
-('make_global', '1');
+INSERT INTO `elite_schema` (`id`, `key`, `value`) VALUES
+(1, 'levels', 'make,model,year'),
+(2, 'make_global', '1');
 
 -- --------------------------------------------------------
 
@@ -306,7 +260,6 @@ INSERT INTO `elite_schema` (`key`, `value`) VALUES
 -- Table structure for table `elite_vehicle_tire`
 --
 
-DROP TABLE IF EXISTS `elite_vehicle_tire`;
 CREATE TABLE IF NOT EXISTS `elite_vehicle_tire` (
   `leaf_id` int(50) NOT NULL,
   `section_width` int(3) NOT NULL,
@@ -322,7 +275,6 @@ CREATE TABLE IF NOT EXISTS `elite_vehicle_tire` (
 -- Table structure for table `elite_version`
 --
 
-DROP TABLE IF EXISTS `elite_version`;
 CREATE TABLE IF NOT EXISTS `elite_version` (
   `version` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -332,8 +284,4 @@ CREATE TABLE IF NOT EXISTS `elite_version` (
 --
 
 INSERT INTO `elite_version` (`version`) VALUES
-(25);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+(26);

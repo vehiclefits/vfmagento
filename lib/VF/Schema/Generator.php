@@ -28,7 +28,7 @@ class VF_Schema_Generator
     
     const NEWLINE = "\n";
     
-    const VERSION = 25;
+    const VERSION = 26;
     
     function __construct()
     {
