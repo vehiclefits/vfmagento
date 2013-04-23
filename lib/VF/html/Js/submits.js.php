@@ -47,7 +47,7 @@ if( shouldAutoSubmit( $levels ) )
         }
     }
     
-    <?
+    <?php
 }
 ?>
 
@@ -99,5 +99,5 @@ if( shouldAutoSubmit( $levels ) )
     jQuery( '.<?=$levels[$c - 1]?>Select').change( function() {
         autoSubmit();
     } );
-    <?
+    <?php
 }
