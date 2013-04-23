@@ -13,7 +13,7 @@ If you are running v1.35 or less, you *must* export your current fitments to CSV
 
 Installation Instructions
 -------------------------
- * Install the [Vehicle-Fits-Magento](https://github.com/vehiclefits/Vehicle-Fits-Magento) repository by dropping in the Magento root.
+ * Install the [Vehicle-Fits-Magento](https://github.com/vehiclefits/Vehicle-Fits-Magento) repository by dropping it in the Magento root.
  * Copy app/code/local/Elite/Vaf/config.default.ini to app/code/local/Elite/Vaf/config.ini
  * Open app/Mage.php and add `require_once( 'code/local/Elite/Vaf/bootstrap.php' );` on the line after the <?php tag.
  * Move app/code/local/Elite/vf-install.php to the root magento folder
