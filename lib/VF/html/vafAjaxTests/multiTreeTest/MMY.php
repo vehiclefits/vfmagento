@@ -40,6 +40,8 @@ $vehicle->save();
 
 $values = $vehicle->toValueArray();
 
+file_put_contents(sys_get_temp_dir().'/vf-ajax-tests','1');
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
       "http://www.w3.org/TR/html4/loose.dtd">
@@ -67,6 +69,8 @@ $values = $vehicle->toValueArray();
         jQuery(document).ready(function(){
             
             QUnit.done = function (failures, total) {
+                jQuery.ajax('removeTmpLockFile.php');
+                console.log('done');
                 top.testPageComplete( 'multiTreeTest/MMY.php', failures, total );
             };
 
@@ -119,17 +123,6 @@ $values = $vehicle->toValueArray();
                 
                 jQuery('.multiTree-Add').click();
             });
-            
-//            test("Should get selection (make)", function() {
-//                stop(); 
-//                expect(1);
-//                jQuery('.multiTree').getSelected();
-//                jQuery(".modelSelect").bind( 'vafLevelLoaded', function() {
-//                    start();
-//                    jQuery(".modelSelect").unbind('vafLevelLoaded');
-//                    firstOptionTextEquals( jQuery(".modelSelect"), "Civic" );
-//                });
-//            });
             
             test("Clicking Model Should Load Years", function() {
                 stop(); 

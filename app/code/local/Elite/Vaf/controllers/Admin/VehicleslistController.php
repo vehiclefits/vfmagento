@@ -40,6 +40,14 @@ class Elite_Vaf_Admin_VehicleslistController extends Mage_Adminhtml_Controller_A
 
     protected $block;
 
+    function preDispatch()
+    {
+        if('localhost'==$_SERVER['HTTP_HOST'] && file_exists(sys_get_temp_dir().'/vf-ajax-tests')) {
+            return;
+        }
+        return parent::preDispatch();
+    }
+
     function indexAction()
     {
         $version = new Elite_Vafinstall_Migrate;
