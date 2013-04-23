@@ -7,9 +7,17 @@ Vehicle Fits is an extension to add automotive features to your Magento or Prest
 The year/make/model search can be customized in 50+ ways, including the ability to change the number, order, or names of the select box. For example if you want to add a select box called "engine", or remove the select box called "year" you can do so. You can have as few as two select boxes, or as many as you'd like.
 You can import your existing data, or use Vehicle Fits to create your own data using our vehicle databases.
 
+Upgrade Instructions
+--------------------
+If you are running v1.35 or less, you *must* export your current fitments to CSV or XML before installing this version.
+
 Installation Instructions
 -------------------------
  * Install the [Vehicle-Fits-Magento](https://github.com/vehiclefits/Vehicle-Fits-Magento) repository by dropping in the Magento root.
+ * Copy app/code/local/Elite/Vaf/config.default.ini to app/code/local/Elite/Vaf/config.ini
+ * Open app/Mage.php and add `require_once( 'code/local/Elite/Vaf/bootstrap.php' );` on the line after the <?php tag.
+ * Move app/code/local/Elite/install-vaf.php to the root magento folder
+    * Run the installer to install the new database.
 
 Run Unit Tests
 --------------------------------
@@ -24,7 +32,7 @@ After you've installed composer, you may need to rename the `phpunit.xml.dist` t
 ```xml
 <php>
     <env name="PHP_MAGE_PATH" value="/home/josh/www/magento"/>
-    <env name="PHP_TESTFILES" value="/tmp"/>
+    <env name="PHP_TEMP_PATH" value="/tmp"/>
     <env name="PHP_VAF_DB_USERNAME" value="root"/>
     <env name="PHP_VAF_DB_PASSWORD" value=""/>
     <env name="PHP_VAF_DB_NAME" value="magento"/>
