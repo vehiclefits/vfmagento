@@ -21,8 +21,8 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-require_once( ELITE_PATH . "Vaf/controllers/Admin/DefinitionsController.php");
-class Elite_Vaftest_Admin_DefinitionsController extends Elite_Vaf_Admin_DefinitionsController
+require_once( ELITE_PATH . "Vaf/controllers/Admin/VehicleslistController.php");
+class Elite_Vaftest_Admin_VehicleslistController extends Elite_Vaf_Admin_VehicleslistController
 {
     public function preDispatch()
     {
