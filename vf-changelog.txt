@@ -1,11 +1,17 @@
+v2-build April 24, 2013
+===================================================================
+ISSUES
+- If two vehicles have the same year,and fit the same product, it causes a bug
+
 v2-build37 April 22, 2013
 ===================================================================
-Remove PHP short tags
-Restrucutre layout of files so you can unzip over a Magento install
-Move template files into a 'vf' folder to better organize
-Changed database schema for faster imports & page loads
-Added support for Magento's 'compilation' module (performance increase)
-If config.ini doesn't exist, uses config.default.ini (less steps to install)
+IMPROVEMENTS
+- Remove PHP short tags
+- Restrucutre layout of files so you can unzip over a Magento install
+- Move template files into a 'vf' folder to better organize
+- Changed database schema for faster imports & page loads
+- Added support for Magento's 'compilation' module (performance increase)
+- If config.ini doesn't exist, uses config.default.ini (less steps to install)
 
 1.35 December 27, 2012
 ===================================================================
