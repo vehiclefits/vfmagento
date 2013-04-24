@@ -136,5 +136,15 @@ class VF_FlexibleSearchTests_FitPartialSelectionTest extends Elite_Vaf_Helper_Da
         $this->assertFalse( $_SESSION['model'] );
         $this->assertFalse( $_SESSION['year'] );
     }
+
+    function testWhenTwoVehiclesHaveSameYear()
+    {
+        $vehicle1 = $this->createVehicle(array('make'=>'Honda','model'=>'Civic','year'=>'2000'));
+        $vehicle2 = $this->createVehicle(array('make'=>'Acura','model'=>'Integra','year'=>'2000'));
+
+        $helper = $this->getHelper( array(), $vehicle1->toValueArray() );
+
+        $this->assertEquals( $vehicle1->getLevel('make')->getId(), $helper->flexibleSearch()->getFlexibleDefinition()->getValue('make') );
+    }
     
 }
