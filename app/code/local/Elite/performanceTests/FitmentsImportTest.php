@@ -25,27 +25,21 @@ class Elite_performanceTests_FitmentsImportTest extends VF_Import_ProductFitment
 {
     function doSetUp()
     {
-        
+        $this->switchSchema('make,model,year');
     }
     
     protected function doTearDown()
     {
-	    ini_set('memory_limit','256M');
+	    ini_set('memory_limit','128M');
     }
     
     function testShouldImport1kProductsInTenSeconds()
     {
-        ini_set('memory_limit','512M');
-        $this->switchSchema('make,model,year');
-        $this->setMaxRunningTime(10);
-        $this->mappingsImportFromFile($this->csvFile());
-    }
-    
-    function testMemory()
-    {
         ini_set('memory_limit','64M');
-        $this->switchSchema('model,year',true);
+        $this->setMaxRunningTime(10);
+        #var_dump(round(memory_get_peak_usage()/1024/1024,1).'MB');
         $this->mappingsImportFromFile($this->csvFile());
+        #var_dump(round(memory_get_peak_usage()/1024/1024,1).'MB');
     }
     
     function csvFile()
