@@ -21,14 +21,19 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-require_once('config.php');
+require_once('../../tasks/config.default.php');
 
-$file = 'product-fitments-import.csv';
+require_once( getenv('PHP_MAGE_PATH') . '/app/code/local/Elite/Vaf/bootstrap.php' );
+require_once( getenv('PHP_MAGE_PATH') . '/app/Mage.php');
+Mage::app('admin')->setUseSessionInUrl(false);
 
+if(!isset($argv[1])) {
+    echo 'Try product-fitments-import.php <filename>'."\n";
+    exit;
+}
+$file = $argv[1];
 $writer = new Zend_Log_Writer_Stream('product-fitments-import.csv.log');
 $log = new Zend_Log($writer);
-
 $importer = new VF_Import_ProductFitments_CSV_Import($file);
 $importer->setLog($log);
-
 $importer->import();
