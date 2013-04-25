@@ -44,8 +44,7 @@ define( 'ELITE_TESTING', 1 );
 require_once('bootstrap.php');
 
 set_include_path(
-    ELITE_PATH
-        . PATH_SEPARATOR . MAGE_PATH . '/app/code/local/'
+        PATH_SEPARATOR . MAGE_PATH . '/app/code/local/'
         . PATH_SEPARATOR . MAGE_PATH . '/app/code/core/'
         . PATH_SEPARATOR . MAGE_PATH . '/lib/'
         . PATH_SEPARATOR . get_include_path()
@@ -55,12 +54,11 @@ $_SESSION = array();
 
 function my_autoload($class_name) {
     $file = str_replace( '_', '/', $class_name . '.php' );
+
     if( 'Mage.php' == $file )
     {
         throw new Exception();
     }
-    
-
     require_once $file;
 }
 spl_autoload_register('my_autoload');
