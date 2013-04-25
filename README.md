@@ -48,7 +48,7 @@ After you've installed composer, and changed the `phpunit.xml` if needed, you ma
 
 Documentation
 -------------
-Vehicle Fits' documentation is accessible at our website at: [http://vehiclefits.com/documentation/](http://vehiclefits.com/documentation/)
+Vehicle Fits' documentation is accessible at our website at: [http://vehiclefits.com/vf-documentation/](http://vehiclefits.com/vf-documentation/)
 
 Contributing
 ------------
