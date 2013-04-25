@@ -67,7 +67,7 @@ class Vafsitemap_Model_Url_Rewrite_SlugTest extends Elite_Vaf_TestCase
 
     function slug()
     {
-	return new Vafsitemap_Model_Url_Rewrite_Slug();
+	return new Elite_Vafsitemap_Model_Url_Rewrite_Slug();
     }
 
 }

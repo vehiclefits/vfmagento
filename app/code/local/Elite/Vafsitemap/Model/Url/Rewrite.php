@@ -107,7 +107,7 @@ class Elite_Vafsitemap_Model_Url_Rewrite extends Mage_Core_Model_Url_Rewrite
      */
     function slugToVehicle($vehicleSlug)
     {
-        $slug = new Vafsitemap_Model_Url_Rewrite_Slug();
+        $slug = new Elite_Vafsitemap_Model_Url_Rewrite_Slug();
         $slug->setConfig($this->getConfig());
         return $slug->slugToVehicle($vehicleSlug);
     }
