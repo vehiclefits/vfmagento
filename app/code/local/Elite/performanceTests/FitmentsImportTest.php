@@ -30,7 +30,7 @@ class Elite_performanceTests_FitmentsImportTest extends VF_Import_ProductFitment
     
     protected function doTearDown()
     {
-	ini_set('memory_limit','256M');
+	    ini_set('memory_limit','256M');
     }
     
     function testShouldImport1kProductsInTenSeconds()
