@@ -28,7 +28,6 @@ Mage::app();
 
 class SampleData
 {
-    protected $seedCsv;
     protected $fields;
     
     protected $i = 0;
@@ -41,7 +40,6 @@ class SampleData
     
     function main()
     {
-        $this->seedCsv = new Csv_Reader(ELITE_PATH.'/tasks/sampleProducts.csv');
         $newCsv = '';
         $newCsv .= "sku,make,model,year\n";
         for( $this->i = 1; $this->i <= 300; $this->i++ )
