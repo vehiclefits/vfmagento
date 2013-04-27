@@ -61,4 +61,13 @@ class VF_MappingTest extends Elite_Vaf_TestCase
         $mapping = new VF_Mapping( 0, $vehicle );
         $mapping_id = $mapping->save();
     }
+
+    function testShouldSaveMappingInSecondSchema()
+    {
+        $schema = VF_Schema::create('foo,bar');
+        $vehicle = $this->createVehicle(array('foo'=>'123','bar'=>'456'), $schema);
+        $mapping = new VF_Mapping(1, $vehicle);
+        $id = $mapping->save();
+        $this->assertTrue($id>0,'should save mapping in second schema');
+    }
 }

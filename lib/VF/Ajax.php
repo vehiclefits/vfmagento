@@ -21,18 +21,6 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-/**
-* Vehicle Fits Free Edition - Copyright (c) 2008-2010 by Vehicle Fits, LLC
-* PROFESSIONAL IDENTIFICATION:
-* "www.vehiclefits.com"
-* PROMOTIONAL SLOGAN FOR AUTHOR'S PROFESSIONAL PRACTICE:
-* "Automotive Ecommerce Provided By Vehicle Fits llc"
-*
-* All Rights Reserved
-* VEHICLE FITS ATTRIBUTION ASSURANCE LICENSE (adapted from the original OSI license)
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the conditions in license.txt are met
-*/
 class VF_Ajax implements VF_Configurable
 {
     protected $alphaNumeric;
@@ -49,7 +37,7 @@ class VF_Ajax implements VF_Configurable
         $levels = $schema->getLevels();
         $c = count( $levels );
         
-        $levelFinder = new VF_Level_Finder();
+        $levelFinder = new VF_Level_Finder($schema);
         if( isset( $_GET['front'] ) )
         {
             $product = isset($_GET['product']) ? $_GET['product'] : null;

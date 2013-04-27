@@ -21,18 +21,6 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-/**
-* Vehicle Fits Free Edition - Copyright (c) 2008-2010 by Vehicle Fits, LLC
-* PROFESSIONAL IDENTIFICATION:
-* "www.vehiclefits.com"
-* PROMOTIONAL SLOGAN FOR AUTHOR'S PROFESSIONAL PRACTICE:
-* "Automotive Ecommerce Provided By Vehicle Fits llc"
-*
-* All Rights Reserved
-* VEHICLE FITS ATTRIBUTION ASSURANCE LICENSE (adapted from the original OSI license)
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the conditions in license.txt are met
-*/
 class VF_Level_Finder_Selector extends VF_Level_Finder_Abstract implements VF_Level_Finder_Interface
 {
     /** @var mixed either NULL, or an array representing cached objects for listAll() method */
@@ -205,12 +193,13 @@ class VF_Level_Finder_Selector extends VF_Level_Finder_Abstract implements VF_Le
             
         }
         $subQuery->group($entity->getType() .'_id');
-        
+
         $idSet = array();
         foreach( $subQuery->query()->fetchAll() as $id )
         {
             array_push($idSet,$id[$entity->getType() .'_id']);
         }
+
         
         $select = $this->getReadAdapter()->select();
         $select
@@ -226,6 +215,7 @@ class VF_Level_Finder_Selector extends VF_Level_Finder_Abstract implements VF_Le
         }
         
         $select->order('m.title ' . $entity->getSortOrder());
+
         return $this->query( $select );
     }
     

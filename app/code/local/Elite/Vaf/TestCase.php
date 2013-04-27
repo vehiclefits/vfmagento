@@ -118,9 +118,9 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
         $this->startTransaction();
     }
 
-    protected function createVehicle($titles = array())
+    protected function createVehicle($titles = array(), $schema = null)
     {
-        $vehicle = VF_Vehicle::create(new VF_Schema(), $titles);
+        $vehicle = VF_Vehicle::create($schema?$schema:new VF_Schema(), $titles);
         $vehicle->save();
         return $vehicle;
     }

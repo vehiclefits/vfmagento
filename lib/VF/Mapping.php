@@ -61,7 +61,7 @@ class VF_Mapping implements VF_Configurable
         {
             throw new Exception('Trying to insert a mapping with no product ID');
         }
-        $schema = new VF_Schema;
+        $schema = $this->vehicle()->schema();
         $schema->setConfig($this->getConfig());
         $levels = $schema->getLevels();
 
