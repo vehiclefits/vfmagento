@@ -17,7 +17,6 @@
  * Do not edit or add to this file if you wish to upgrade Vehicle Fits to newer
  * versions in the future. If you wish to customize Vehicle Fits for your
  * needs please refer to http://www.vehiclefits.com for more information.
-
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
@@ -37,8 +36,7 @@ class VF_Level implements VF_Configurable
     function __construct($type, $id = 0)
     {
         $this->schema = new VF_Schema;
-        if ($id && !in_array($type, $this->getSchema()->getLevels()))
-        {
+        if ($id && !in_array($type, $this->getSchema()->getLevels())) {
             throw new VF_Level_Exception_InvalidLevel('[' . $type . '] is an invalid level');
         }
         $this->type = $type;
@@ -52,8 +50,7 @@ class VF_Level implements VF_Configurable
 
     function getConfig()
     {
-        if (!$this->config instanceof Zend_Config)
-        {
+        if (!$this->config instanceof Zend_Config) {
             $this->config = Elite_Vaf_Helper_Data::getInstance()->getConfig();
         }
         return $this->config;
@@ -67,8 +64,7 @@ class VF_Level implements VF_Configurable
     /** @return VF_Level_Finder */
     function getFinder()
     {
-        if (!( $this->finder instanceof VF_Level_Finder ))
-        {
+        if (!($this->finder instanceof VF_Level_Finder)) {
             $this->finder = new VF_Level_Finder($this->getSchema());
         }
         $this->finder->setConfig($this->getConfig());
@@ -82,11 +78,9 @@ class VF_Level implements VF_Configurable
 
     function setId($id)
     {
-        if (0 == $this->id)
-        {
+        if (0 == $this->id) {
             $this->id = $id;
-        } else
-        {
+        } else {
             throw new Exception('cannot set id if its previously already set');
         }
     }
@@ -99,7 +93,7 @@ class VF_Level implements VF_Configurable
 
     function getTitle()
     {
-        return (string) $this->title;
+        return (string)$this->title;
     }
 
     function getLabel()
@@ -145,37 +139,33 @@ class VF_Level implements VF_Configurable
      */
     function save($parent_id = 0, $requestedSaveId = null, $createDefinition = true)
     {
-        if ('' == trim($this->getTitle()))
-        {
+        if ('' == trim($this->getTitle())) {
             throw new Exception('Must have a non blank title to save ' . $this->getType());
         }
 
         $levelId = $this->findEntityIdByTitle();
-        if ($levelId)
-        {
+        if ($levelId) {
             $this->id = $levelId;
             return $levelId;
         }
 
-        if ($requestedSaveId && $this->requestedIdCorrespondsToExistingRecord($requestedSaveId))
-        {
+        if ($requestedSaveId && $this->requestedIdCorrespondsToExistingRecord($requestedSaveId)) {
             $this->id = $requestedSaveId;
         }
 
-        if ($this->getId())
-        {
+        if ($this->getId()) {
             $sql = sprintf(
                 "UPDATE %s SET `title` = %s WHERE id = %d",
-                $this->getReadAdapter()->quoteIdentifier( $this->getTable() ),
-                $this->getReadAdapter()->quote( $this->getTitle() ),
+                $this->getReadAdapter()->quoteIdentifier($this->getTable()),
+                $this->getReadAdapter()->quote($this->getTitle()),
                 (int)$this->getId()
             );
             $this->query($sql);
             return $this->id;
         }
 
-        $data = array('title'=>$this->getTitle());
-        if($requestedSaveId) {
+        $data = array('title' => $this->getTitle());
+        if ($requestedSaveId) {
             $data['id'] = $requestedSaveId;
         }
         $this->getReadAdapter()->insert($this->getTable(), $data);
@@ -192,10 +182,10 @@ class VF_Level implements VF_Configurable
     function requestedIdCorrespondsToExistingRecord($requestedSaveId)
     {
         $select = $this->getReadAdapter()->select()
-                        ->from($this->getTable(), 'count(*)')
-                        ->where('id=?', (int) $requestedSaveId);
+            ->from($this->getTable(), 'count(*)')
+            ->where('id=?', (int)$requestedSaveId);
         $result = $this->getReadAdapter()->query($select);
-        return (bool) $result->fetchColumn();
+        return (bool)$result->fetchColumn();
     }
 
     function listAll($parent_id = 0)
@@ -205,8 +195,7 @@ class VF_Level implements VF_Configurable
 
     function getSortOrder()
     {
-        if ($sort = $this->getSchema()->getSorting($this->getType()))
-        {
+        if ($sort = $this->getSchema()->getSorting($this->getType())) {
             return $sort;
         }
         return "ASC";
@@ -224,7 +213,7 @@ class VF_Level implements VF_Configurable
 
     function getTable()
     {
-        return 'elite_level_' . $this->getSchema()->id() . '_' . str_replace(' ','_',$this->getType());
+        return 'elite_level_' . $this->getSchema()->id() . '_' . str_replace(' ', '_', $this->getType());
     }
 
     function getLevels()
