@@ -62,7 +62,6 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
         $_FILES = array();
 
         $this->resetIdentityMaps();
-        $this->truncateTables();
         $this->dropAndRecreateMockProductTable();
 
         Mage::resetRegistry();
@@ -78,19 +77,6 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
         VF_Level_IdentityMap_ByTitle::reset();
         VF_Schema::reset();
         VF_Vehicle_Finder::$IDENTITY_MAP_FINDBYLEVEL = array();
-    }
-
-    protected function truncateTables()
-    {
-        $this->truncateTable('elite_level_1_make');
-        $this->truncateTable('elite_level_1_model');
-        $this->truncateTable('elite_level_1_year');
-        $this->truncateTable('elite_1_definition');
-        $this->truncateTable('elite_1_mapping');
-        $this->truncateTable('elite_mapping_paint');
-        $this->truncateTable('elite_note');
-        $this->truncateTable('elite_mapping_notes');
-        $this->truncateTable('elite_import');
     }
 
     protected function doSetUp()
@@ -111,7 +97,6 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
 
     protected function switchSchema($levels, $force = false)
     {
-        $this->truncateTables();
         if (!$force) {
             try {
                 try {
