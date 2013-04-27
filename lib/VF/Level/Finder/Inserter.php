@@ -44,10 +44,6 @@ class VF_Level_Finder_Inserter extends VF_Level_Finder_Abstract
     protected $entity;
     protected $requestedSaveId;
 
-    /**
-     * @param VF_Level $entity
-     * @return VF_Level_Saver
-     */
     function __construct(VF_Level $entity, $parent_id = 0)
     {
         $this->entity = $entity;
@@ -57,24 +53,9 @@ class VF_Level_Finder_Inserter extends VF_Level_Finder_Abstract
     function save($requestedSaveId = null)
     {
         $this->requestedSaveId = $requestedSaveId;
-
-        $id = $this->entity->getId();
-        $existingId = $this->levelFinder()->findEntityIdByTitle($this->entity->getType(), $this->entity->getTitle());
-        if (false == $existingId) {
-            $this->getReadAdapter()->insert($this->entity->getTable(), $this->getBind());
-
-            $id = $this->getReadAdapter()->lastInsertId();
-            $this->entity->setId($id);
-        } else {
-            $this->entity->setId($existingId);
-        }
-        return $id;
-
-        $id = $existingId ? $existingId : $this->getReadAdapter()->lastInsertId();
-        if (!$this->entity->getId()) {
-            $this->entity->setId($id);
-        }
-
+        $this->getReadAdapter()->insert($this->entity->getTable(), $this->getBind());
+        $id = $this->getReadAdapter()->lastInsertId();
+        $this->entity->setId($id);
         return $id;
     }
 
