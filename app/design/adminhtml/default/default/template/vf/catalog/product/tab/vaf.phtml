@@ -28,7 +28,7 @@
         </div>
         <?php
         $metaData = '{';
-            $metaData .= "'ajaxUrl':'" . $this->getUrl('*/vafajax/process') . "',";
+            $metaData .= "'ajaxUrl':'" . $this->getUrl('*/vafajax/process/?schema='.$this->schema()->id()) . "',";
             $metaData .= "'quickAddUrl':'" . $this->getUrl('*/vehicleslist/save') . "',";
             $metaData .= "'elementName':'vaf'";
             $metaData .= ", 'initialSelections':[{'level':'3','id':'0','node':{},'path':['','','']}]";
@@ -37,7 +37,7 @@
         <div class="field">
             <div class="multiTree <?=$metaData?>">
                 <?php
-                $schema = new VF_Schema();
+                $schema = $this->schema();
                 $levels = $schema->getLevels();
                 foreach( $levels as $level )
                 {
@@ -51,7 +51,7 @@
                             <?php
                             if( $schema->getRootLevel() == $level )
                             {
-                                $entity = new VF_Level( $schema->getRootLevel( ));
+                                $entity = new VF_Level( $schema->getRootLevel(), null, $schema);
                                 foreach( $entity->listAll() as $item )
                                 {
                                     ?>
@@ -114,6 +114,7 @@
 
 <!-- start VAF -->
 <script src="/skin/adminhtml/default/default/jquery-1.7.1.min.js" type="text/javascript" language="javascript"></script>
+<script src="/skin/adminhtml/default/default/VF/multiTree.js" type="text/javascript" language="javascript"></script>
 <script type="text/javascript" language="javascript">
  jQuery.noConflict();
 </script>

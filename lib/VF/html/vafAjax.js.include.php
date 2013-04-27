@@ -83,7 +83,6 @@ else
     });
     
     <?php
-    require_once( 'multiTree.js.include.php' );
 }
 
 

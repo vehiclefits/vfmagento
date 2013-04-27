@@ -13,8 +13,10 @@ cd /home/josh/www/magento/app/code/local
 ln -s /home/josh/www/Vehiclefits-Magento/app/code/local/Elite Elite
 cd /home/josh/www/magento/lib
 ln -s /home/josh/www/Vehicle-Fits-Magento/lib/VF VF
+cd /home/josh/www/magento/skin/adminhtml/default/default
+ln -s /home/josh/www/Vehicle-Fits-Magento/skin/adminhtml/default/default/VF/
 </pre>
-This assumes you have Magento installed at /home/josh/www/magento/. We check out the Vehicle Fits repository in /home/josh/www/, in app/code/local we create a symlink for the Elite folder to point to where we just checked out the repository to. We also do the same for the lib/VF folder.
+This assumes you have Magento installed at /home/josh/www/magento/. We check out the Vehicle Fits repository in /home/josh/www/, in app/code/local we create a symlink for the Elite folder to point to where we just checked out the repository to. We also do the same for the lib/VF folder. The same goes for the subdirectory we add to the /skin/ folder.<br /><br />Hopefully in the future Magento makes some changes so we don't have to do all this mess.
 
 <h1>Unit Tests</h1>
 <p>cd to the app/code/local/Elite directory and run `phpunit`. The configuration is read from phpunit.xml.dist</p>
