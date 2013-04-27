@@ -99,17 +99,13 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
     {
         if (!$force) {
             try {
-                try {
-                    $schema = new VF_Schema();
-                    if ($levels == implode(',', $schema->getLevels())) {
-                        $this->startTransaction();
-                        return;
-                    }
-                } catch (Zend_Db_Statement_Mysqli_Exception $e) {
-
+                $schema = new VF_Schema();
+                if ($levels == implode(',', $schema->getLevels())) {
+                    $this->startTransaction();
+                    return;
                 }
+            } catch (Zend_Db_Statement_Mysqli_Exception $e) {
             } catch (Zend_Db_Statement_Exception $e) {
-
             }
         }
 
