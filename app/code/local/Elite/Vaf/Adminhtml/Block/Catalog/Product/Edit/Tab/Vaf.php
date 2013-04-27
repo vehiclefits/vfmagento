@@ -25,6 +25,7 @@ class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf extends Mage_Adminh
     implements VF_Configurable
 {
     protected $config;
+    protected $schema;
     
     function __construct()
     {
@@ -100,5 +101,15 @@ class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf extends Mage_Adminh
     function unavailableSelections()
     {
         return $this->getConfig()->search->unavailableSelections;
+    }
+
+    function setSchema($schema)
+    {
+        $this->schema = $schema;
+    }
+
+    function schema()
+    {
+        return $this->schema ? $this->schema : new VF_Schema;
     }
 }
