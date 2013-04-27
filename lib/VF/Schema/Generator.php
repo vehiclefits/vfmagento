@@ -174,10 +174,10 @@ class VF_Schema_Generator
             $return .= 'KEY `title` (`title`)' . self::NEWLINE;
         $return .= ') ENGINE=InnoDB DEFAULT CHARSET=utf8;' . self::NEWLINE;
         //$return .= $this->indexForeignKeyIntoPreviousLevel($i);
-        
+
         return $return;
     }
-    
+
     protected function createForeignKeyIntoPreviousLevel( $i )
     {
         if( !$this->getPreviousLevel( $i ) )
@@ -189,7 +189,7 @@ class VF_Schema_Generator
             $this->getPreviousLevel( $i )
         ) . self::NEWLINE;
     }
-    
+
     protected function enforceUniquenessOnLevel( $i )
     {
         return sprintf(
@@ -198,7 +198,7 @@ class VF_Schema_Generator
             $this->getLevel( $i )
         ) . self::NEWLINE;
     }
-    
+
     protected function indexForeignKeyIntoPreviousLevel( $i )
     {
         if( !$this->getPreviousLevel($i) )
@@ -212,12 +212,12 @@ class VF_Schema_Generator
             $this->getPreviousLevel($i)
         ) . self::NEWLINE;
     }
-    
+
     protected function getPreviousLevel( $i )
     {
         return $this->getLevel( $i - 1 );
     }
-    
+
     protected function createMappingsTable()
     {
         $return = sprintf('CREATE TABLE IF NOT EXISTS `elite_%d_mapping` (',$this->id());
@@ -233,10 +233,10 @@ class VF_Schema_Generator
 
 	$return .= sprintf('ALTER TABLE `elite_%d_mapping` ADD `price` FLOAT NOT NULL ;',$this->id());
         $return .= sprintf('ALTER TABLE `elite_%d_mapping` ADD INDEX ( `entity_id` ) ;',$this->id());
-        
+
         return $return;
     }
-    
+
     protected function createDefinitionTable()
     {
         $return = sprintf("CREATE TABLE IF NOT EXISTS `elite_%d_definition` (",$this->id());
@@ -259,7 +259,7 @@ class VF_Schema_Generator
         $levels = implode( ',', $levels );
         return sprintf("ALTER TABLE `elite_%d_definition` ADD UNIQUE ( %s );",$this->id(),$levels);
     }
-    
+
     function addUniqueOnMappingsTable()
     {
         $levels = array();
@@ -273,7 +273,7 @@ class VF_Schema_Generator
         $levels = implode( ',', $levels );
         return sprintf("ALTER TABLE `elite_%d_mapping` ADD UNIQUE ( %s );",$this->id(),$levels);
     }
-    
+
     function createSchemaTable()
     {
         $return = "CREATE TABLE `elite_schema` (`id` int(11) NOT NULL AUTO_INCREMENT, `key` VARCHAR( 25 ) NOT NULL , `value` VARCHAR( 255 ) NOT NULL, PRIMARY KEY (`id`) ) ENGINE = InnoDB CHARSET=utf8;";
@@ -281,21 +281,10 @@ class VF_Schema_Generator
             "INSERT INTO `elite_schema` ( `id`, `key`, `value` ) VALUES ( 1, 'levels', %s );",
             $this->getReadAdapter()->quote( $this->levelsDelimByComma() )
         );
-        
-        foreach($this->levels() as $level)
-        {
-            if( $this->isRoot($level) || $this->isGlobal($level) )
-            {
-                $return .= sprintf(
-                    "INSERT INTO `elite_schema` ( `key`, `value` ) VALUES ( %s, %d );",
-                    $this->getReadAdapter()->quote( $level . '_global' ),
-                    true
-                );
-            }
-        }
+
         return $return;
     }
-    
+
     function isRoot($level)
     {
         foreach( $this->levels() as $eachLevel )
@@ -307,12 +296,12 @@ class VF_Schema_Generator
             return false;
         }
     }
-    
+
     function levelsDelimByComma()
     {
         return implode(',', $this->levels());
     }
-    
+
     function createVersionTable()
     {
         return "CREATE TABLE IF NOT EXISTS `elite_version` ( `version` int(5) NOT NULL ) ENGINE=InnoDb; INSERT INTO `elite_version` (`version`) VALUES (" . self::VERSION . ");";
@@ -388,11 +377,6 @@ class VF_Schema_Generator
             array_push($levels, $levelString);
         }
         return $levels;
-    }
-    
-    function isGlobal($level)
-    {
-        return isset( $this->level_options[$level]['global'] ) && $this->level_options[$level]['global'];
     }
     
     function tablePrefix()
