@@ -31,20 +31,20 @@ class VF_SchemaTests_MultipleTest extends Elite_Vaf_TestCase
     function testCreateNewSchemaId()
     {
         $schema = VF_Schema::create('foo,bar');
-        $this->assertTrue( $schema->id() > 0 );
+        $this->assertTrue( $schema->id() > 0 , 'should assign new ID when create new schema');
     }
     
-    function testGetsDefaultSchemaAfterCreatingNew()
+    function testShouldAssumeDefaultSchemaWhenNotSpecified()
     {
-        $schema1 = VF_Schema::create('foo,bar');
-        $schema2 = new VF_Schema;
-        $this->assertEquals(array('make','model','option','year'),$schema2->getLevels(), 'should get default schemas levels after creating new');
+        VF_Schema::create('foo,bar');
+        $schema = new VF_Schema;
+        $this->assertEquals(array('make','model','option','year'),$schema->getLevels(), 'should assume default schema when not specified');
     }
     
     function testGetNewSchemasLevels()
     {
         $schema1 = VF_Schema::create('foo,bar');
-        $schema2 = new VF_Schema;
-        $this->assertEquals(array('foo','bar'),$schema1->getLevels(), 'should get new schemas levels');
+        VF_Schema::create('foo2,bar2');
+        $this->assertEquals(array('foo','bar'),$schema1->getLevels(), 'should get the correct levels when we specify which schema');
     }
 }
