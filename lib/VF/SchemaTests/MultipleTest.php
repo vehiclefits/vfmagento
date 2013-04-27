@@ -47,4 +47,13 @@ class VF_SchemaTests_MultipleTest extends Elite_Vaf_TestCase
         VF_Schema::create('foo2,bar2');
         $this->assertEquals(array('foo','bar'),$schema1->getLevels(), 'should get the correct levels when we specify which schema');
     }
+
+    function testShouldGetSchemaById()
+    {
+        $schema = VF_Schema::create('foo,bar');
+        $schemaID = $schema->id();
+        $new_schema = new VF_Schema($schemaID);
+        $this->assertEquals(array('foo','bar'), $new_schema->getLevels(), 'should look up schema specified by ID passed to constructor');
+
+    }
 }
