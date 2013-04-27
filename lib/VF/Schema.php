@@ -33,9 +33,7 @@
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the conditions in license.txt are met
 */
-class VF_Schema implements
-    VF_Schema_Interface,
-    VF_Configurable
+class VF_Schema implements VF_Configurable
 {
     /** @var Zend_Config */
     protected $config;
