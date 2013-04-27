@@ -21,4 +21,4 @@ before_script:
   - cd ../../../../../../../../../
 
 script:
-  - vendor/bin/phpunit --coverage-text -c phpunit.travis.xml
+  - vendor/bin/phpunit -c phpunit.travis.xml --testsuite="vfall"
