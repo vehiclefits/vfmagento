@@ -21,23 +21,11 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-/**
-* Vehicle Fits Free Edition - Copyright (c) 2008-2010 by Vehicle Fits, LLC
-* PROFESSIONAL IDENTIFICATION:
-* "www.vehiclefits.com"
-* PROMOTIONAL SLOGAN FOR AUTHOR'S PROFESSIONAL PRACTICE:
-* "Automotive Ecommerce Provided By Vehicle Fits llc"
-*
-* All Rights Reserved
-* VEHICLE FITS ATTRIBUTION ASSURANCE LICENSE (adapted from the original OSI license)
-* Redistribution and use in source and binary forms, with or without
-* modification, are permitted provided that the conditions in license.txt are met
-*/
 class vafAjaxInclude
 {
     function execute()
     {
-        $schema = new VF_Schema();
+        $schema = new VF_Schema();//$_GET['schema']);
         $ajax = new VF_Ajax();
         return $ajax->execute( $schema );   
     }
