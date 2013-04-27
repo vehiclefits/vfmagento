@@ -54,7 +54,7 @@ class Elite_performanceTests_FitmentsImportTest extends VF_Import_ProductFitment
     
     function csvFile()
     {
-        return dirname(__FILE__).'/FitmentsImportTest.csv';
+        return sys_get_temp_dir().'/FitmentsImportTest.csv';
     }
 
 }
