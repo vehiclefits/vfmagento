@@ -136,9 +136,10 @@ class VF_Import_ProductFitments_CSV_Import extends VF_Import_VehiclesList_CSV_Im
         {
             array_push($this->nonexistant_skus, $row['sku']);
         }
-        
+
         $select = 'SELECT `sku`, `line` FROM elite_import WHERE `sku` NOT IN (select `sku` from '. $this->getProductTable() . ') GROUP BY `line`';
-        foreach( $this->getReadAdapter()->query($select)->fetchAll() as $row )
+        $result = $this->getReadAdapter()->query($select);
+        while($row = $result->fetch())
         {
             $this->log('Line(' . $row['line'] . ') Non Existant SKU \'' . $row['sku'] . '\'', Zend_Log::NOTICE );
         }

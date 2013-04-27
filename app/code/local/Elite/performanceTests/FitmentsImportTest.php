@@ -26,20 +26,30 @@ class Elite_performanceTests_FitmentsImportTest extends VF_Import_ProductFitment
     function doSetUp()
     {
         $this->switchSchema('make,model,year');
+        $this->createHugeFile();
     }
     
-    protected function doTearDown()
+    function testShouldImportLargeAmountOfFitments()
     {
-	    ini_set('memory_limit','128M');
+        $this->setMaxRunningTime(120);
+        $command = 'php '.MAGE_PATH . '/app/code/local/Elite/Vafimporter/cron/product-fitments-import.csv.php '.$this->csvFile();
+        exec($command,$output,$return_code);
+        $this->assertEquals(0,$return_code);
     }
-    
-    function testShouldImport1kProductsInTenSeconds()
+
+    function createHugeFile()
     {
-        ini_set('memory_limit','64M');
-        $this->setMaxRunningTime(10);
-        #var_dump(round(memory_get_peak_usage()/1024/1024,1).'MB');
-        $this->mappingsImportFromFile($this->csvFile());
-        #var_dump(round(memory_get_peak_usage()/1024/1024,1).'MB');
+        $file = $this->csvFile();
+        $h = fopen($file,'w');
+        fwrite($h,"sku,year,make,model\n");
+        for($i=0;$i<=100000;$i++)
+        {
+            $sku = 'sku'.rand(1,1000);
+            $year = rand(1990,2013);
+            $make = 'make'.rand(1,50);
+            $model = 'model'.rand(1,500);
+            fwrite($h,"$sku,$year,$make,$model\n");
+        }
     }
     
     function csvFile()
