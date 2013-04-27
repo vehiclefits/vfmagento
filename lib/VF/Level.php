@@ -36,13 +36,9 @@ class VF_Level implements VF_Configurable
     /** @var Zend_Config */
     protected $config;
 
-    /**
-     * @param mixed $type
-     * @param mixed $id
-     * @return Elite_Vaf_Model_Abstract
-     */
     function __construct($type, $id = 0)
     {
+        $this->schema = new VF_Schema;
         if ($id && !in_array($type, $this->getSchema()->getLevels()))
         {
             throw new VF_Level_Exception_InvalidLevel('[' . $type . '] is an invalid level');
@@ -75,7 +71,7 @@ class VF_Level implements VF_Configurable
     {
         if (!( $this->finder instanceof VF_Level_Finder ))
         {
-            $this->finder = new VF_Level_Finder();
+            $this->finder = new VF_Level_Finder($this->getSchema());
         }
         $this->finder->setConfig($this->getConfig());
         return $this->finder;
@@ -170,8 +166,14 @@ class VF_Level implements VF_Configurable
 
         if ($this->getId())
         {
-            $saver = new VF_Level_Finder_Updater($this);
-            return $saver->save();
+            $sql = sprintf(
+                "UPDATE %s SET `title` = %s WHERE id = %d",
+                $this->getReadAdapter()->quoteIdentifier( $this->getTable() ),
+                $this->getReadAdapter()->quote( $this->getTitle() ),
+                (int)$this->getId()
+            );
+            $this->query($sql);
+            return $this->id;
         }
 
         $saver = new VF_Level_Finder_Inserter($this);
@@ -316,9 +318,7 @@ class VF_Level implements VF_Configurable
 
     function getSchema()
     {
-        $schema = new VF_Schema();
-        $schema->setConfig($this->getConfig());
-        return $schema;
+        return $this->schema;
     }
 
     function __toString()
