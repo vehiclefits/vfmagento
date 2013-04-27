@@ -41,6 +41,21 @@ class VF_Schema_GeneratorTest extends Elite_Vaf_TestCase
     {
         $this->schemaGenerator()->execute(array('make'));
     }
+
+    function testShouldDefaultToMasterSchema()
+    {
+        $this->schemaGenerator()->execute(array('make','model','year'));
+        $schema = new VF_Schema;
+        $this->assertEquals(1,$schema->id(), 'schema should default to master schema represented by ID=1');
+    }
+
+    function testMasterSchemaShouldCreateTablesWithID1()
+    {
+        $this->schemaGenerator()->execute(array('make','model','year'));
+        $expectedTable = 'elite_level_1_make';
+        $tables = $this->getReadAdapter()->listTables();
+        $this->assertTrue(in_array($expectedTable, $tables), "master schema should create make with '1' in it's name");
+    }
         
     function testMMY()
     {
@@ -66,9 +81,7 @@ class VF_Schema_GeneratorTest extends Elite_Vaf_TestCase
         $schema = VF_Schema::create('foo,bar');
 
         $expectedTable = 'elite_level_'.$schema->id().'_foo';
-        #var_dump($expectedTable);
         $tables = $this->getReadAdapter()->listTables();
-        #print_r($tables);
         $this->assertTrue(in_array($expectedTable, $tables), 'should create table for new schema `elite_level_x_foo`');
     }
     

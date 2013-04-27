@@ -37,10 +37,16 @@ class Schema_CLI
         $this->generator = new VF_Schema_Generator();
     }
     
-    function main()
+    function main($options)
     {
-        $this->askUserLevels();
-        $this->confirmTablesToDrop();
+        if(!$options['levels']) {
+            $this->askUserLevels();
+        } else {
+            $this->levels = $options['levels'];
+        }
+        if(!$options['force']) {
+            $this->confirmTablesToDrop();
+        }
         $this->generator->dropExistingTables();
         
         $this->createTheNewTables();
@@ -87,5 +93,13 @@ class Schema_CLI
     }
 }
 
+$opt = new Zend_Console_Getopt(array(
+    'force|f'    => 'force creation without prompting to delete old schema',
+    'levels|l=s'    => 'levels to create',
+));
+
 $cli = new Schema_CLI();
-$cli->main();
+$cli->main(array(
+    'force'=>$opt->getOption('force'),
+    'levels'=>$opt->getOption('levels')
+));
