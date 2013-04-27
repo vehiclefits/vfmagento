@@ -47,7 +47,7 @@ class VF_Schema implements VF_Configurable
         $schema->setId($schema->getReadAdapter()->lastInsertId());
 
         $schemaGenerator = new VF_Schema_Generator();
-        $schemaGenerator->execute(explode(',',$levels), true, $schema->id());
+        $schemaGenerator->execute(explode(',',$levels), false, $schema->id());
 
         return $schema;
     }

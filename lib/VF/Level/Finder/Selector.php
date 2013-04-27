@@ -69,7 +69,7 @@ class VF_Level_Finder_Selector extends VF_Level_Finder_Abstract implements VF_Le
             throw new VF_Level_Exception_NotFound( 'error initializing model with level [' . $level . '] and id [' . $id . ']' );
         }
         
-        $level = new VF_Level($level,$id);
+        $level = new VF_Level($level,$id,$this->schema);
         $level->setTitle( $row->title );
         
         $this->identityMap()->add($level);

@@ -544,9 +544,9 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
         return new VF_Level_Finder;
     }
 
-    function vehicleFinder()
+    function vehicleFinder($schema=null)
     {
-        return new VF_Vehicle_Finder(new VF_Schema());
+        return new VF_Vehicle_Finder($schema?$schema:new VF_Schema());
     }
 
     function boltPattern($boltPatternString, $offset = null)
@@ -580,9 +580,9 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
         return $controller;
     }
 
-    function vehicleExists($titles = array(), $allowPartialVehicleMatch = false)
+    function vehicleExists($titles = array(), $allowPartialVehicleMatch = false, $schema=null)
     {
-        return 0 != count($this->vehicleFinder()->findByLevels($titles, $allowPartialVehicleMatch));
+        return 0 != count($this->vehicleFinder($schema)->findByLevels($titles, $allowPartialVehicleMatch));
     }
 
     function createNoteDefinition($code, $message)

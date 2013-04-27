@@ -33,9 +33,9 @@ class VF_Level implements VF_Configurable
     /** @var Zend_Config */
     protected $config;
 
-    function __construct($type, $id = 0)
+    function __construct($type, $id = 0, $schema=null)
     {
-        $this->schema = new VF_Schema;
+        $this->schema = $schema ? $schema : new VF_Schema;
         if ($id && !in_array($type, $this->getSchema()->getLevels())) {
             throw new VF_Level_Exception_InvalidLevel('[' . $type . '] is an invalid level');
         }

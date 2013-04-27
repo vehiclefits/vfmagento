@@ -23,8 +23,11 @@
  */
 class VF_Select extends Zend_Db_Select
 {
-    function addLevelTitles($fromTable=null, $levels=array())
-    {   
+    protected $schema;
+
+    function addLevelTitles($fromTable=null, $levels=array(), $schema=null)
+    {
+        $this->schema = $schema ? $schema : new VF_Schema;
         if(is_null($fromTable))
         {
             $fromTable = $this->getSchema()->mappingsTable();
@@ -55,6 +58,6 @@ class VF_Select extends Zend_Db_Select
     
     function getSchema()
     {
-        return new VF_Schema();
+        return $this->schema;
     }
 }

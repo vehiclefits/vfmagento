@@ -174,7 +174,7 @@ class VF_Vehicle_Finder implements VF_Configurable
         $select = new VF_Select($this->getReadAdapter());
         $select
             ->from('elite_' . $this->schema->id() . '_definition')
-            ->addLevelTitles('elite_' . $this->schema->id() . '_definition',array_keys($levels));
+            ->addLevelTitles('elite_' . $this->schema->id() . '_definition',array_keys($levels), $this->schema);
 
         foreach ($levels as $level => $value) {
 
