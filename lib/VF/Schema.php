@@ -45,6 +45,10 @@ class VF_Schema implements VF_Configurable
             'value'=>$levels
         ));
         $schema->setId($schema->getReadAdapter()->lastInsertId());
+
+        $schemaGenerator = new VF_Schema_Generator();
+        $schemaGenerator->execute(explode(',',$levels), true, $schema->id());
+
         return $schema;
     }
     

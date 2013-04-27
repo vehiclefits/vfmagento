@@ -25,6 +25,7 @@ class VF_Schema_GeneratorTest extends Elite_Vaf_TestCase
 {
     function doSetUp()
     {
+        $this->schemaGenerator()->dropExistingTables();
     }
     
     function tearDown()
@@ -38,29 +39,37 @@ class VF_Schema_GeneratorTest extends Elite_Vaf_TestCase
     */
     function testShouldThrowExceptionForLessThanTwoLevels()
     {
-        $this->schemaGenerator()->dropExistingTables();
         $this->schemaGenerator()->execute(array('make'));
     }
         
     function testMMY()
     {
-        $this->schemaGenerator()->dropExistingTables();
         $this->schemaGenerator()->execute(array('make','model','year'));
         $this->assertEquals( array('make','model','year'), $this->schema()->getLevels(), 'should switch levels to MMY' );
     }
     
     function testYMM()
     {
-        $this->schemaGenerator()->dropExistingTables();
         $this->schemaGenerator()->execute(array('year','make','model'));
         $this->assertEquals( array('year','make','model'), $this->schema()->getLevels(), 'should switch levels to YMM' );
     }
             
     function testYMM_MakeShouldHaveParent_WhenNotGlobal()
     {
-        $this->schemaGenerator()->dropExistingTables();
         $this->schemaGenerator()->execute(array('year','make','model'));
         $this->assertTrue( $this->schema()->hasParent('make'), 'make should have parent when not global' );
+    }
+
+    function testShouldGenerateMultipleSchemas()
+    {
+        $this->schemaGenerator()->execute(array('make','model','year'));
+        $schema = VF_Schema::create('foo,bar');
+
+        $expectedTable = 'elite_level_'.$schema->id().'_foo';
+        #var_dump($expectedTable);
+        $tables = $this->getReadAdapter()->listTables();
+        #print_r($tables);
+        $this->assertTrue(in_array($expectedTable, $tables), 'should create table for new schema `elite_level_x_foo`');
     }
     
     function schema()
