@@ -69,10 +69,10 @@
             }
             
             var testPageComplete = function( testPage, failures, total ) {
-                var result = failures + ' failures, ' + total + ' total<br />';
-                //$('#testPageResults').append( testPage + ' ' + result );
+                var result = (failures == 0 ? '' : failures + ' failures, ') + total + ' Tests Total<br />';
                 var selector = '.page' + getPageIndex( testPage );
-                $(selector).append( ' | ' + result ).click();
+                var status = failures > 0 ? 'fail' : 'pass';
+                $(selector).append( ' <span class="' + status + '">' + result + '</span>' ).click();
                 if( areMorePages() ) {
                     runCurrentPage();
                 }
@@ -84,9 +84,23 @@
             $(document).ready( runSuite );
             
         </script>
+        <style type="text/css">
+            #testPageContainer {
+                width:500px;
+            }
+            .pass {
+                float:right;
+                background-color:green;
+                color:white;
+            }
+            .fail {
+                float:right;
+                background-color:red;
+                color:white;
+            }
+        </style>
   </head>
 <body>
-    <div id="testPageResults"></div>
     <div id="testPageContainer"></div>
 </body>
 </html>
