@@ -4,7 +4,8 @@
     <title></title>
 </head>
 <body>
-    <p>When we develop the extension we do not unzip the extension over Magento like a normal install. We keep the paths separate & use symlinks. This way our version control system [git] does not try to track Magento's files.</p>
+<h1>Developer Installation</h1>
+<p>When we develop the extension we do not unzip the extension over Magento like a normal install. We keep the paths separate & use symlinks. This way our version control system [git] does not try to track Magento's files.</p>
 
 <pre>cd /home/josh/www
 git clone git@github.com:vehiclefits/Vehicle-Fits-Magento.git
@@ -14,5 +15,10 @@ cd /home/josh/www/magento/lib
 ln -s /home/josh/www/Vehicle-Fits-Magento/lib/VF VF
 </pre>
 This assumes you have Magento installed at /home/josh/www/magento/. We check out the Vehicle Fits repository in /home/josh/www/, in app/code/local we create a symlink for the Elite folder to point to where we just checked out the repository to. We also do the same for the lib/VF folder.
+
+<h1>Unit Tests</h1>
+<p>cd to the app/code/local/Elite directory and run `phpunit`. The configuration is read from phpunit.xml.dist</p>
+<p>The tests are each wrapped in a transaciton that gets rolled back. In each test case, in the doSetUp() method the schema should be specified (year,make,model for example). If the schema differs from the current database's schema, a reset of the tables is forced. If a unit test fails at an unfortunate time, the tables could not all be created. To force a database reset run ` php tasks/schema.php`.</p>
+
 </body>
 </html>
