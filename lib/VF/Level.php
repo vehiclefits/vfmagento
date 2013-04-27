@@ -21,8 +21,6 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-
-
 class VF_Level implements VF_Configurable
 {
 
@@ -176,10 +174,13 @@ class VF_Level implements VF_Configurable
             return $this->id;
         }
 
-        $saver = new VF_Level_Finder_Inserter($this);
-        $saver->setConfig($this->getConfig());
-        $levelId = $saver->save($requestedSaveId);
-
+        $data = array('title'=>$this->getTitle());
+        if($requestedSaveId) {
+            $data['id'] = $requestedSaveId;
+        }
+        $this->getReadAdapter()->insert($this->getTable(), $data);
+        $levelId = $this->getReadAdapter()->lastInsertId();
+        $this->setId($levelId);
         return $levelId;
     }
 
