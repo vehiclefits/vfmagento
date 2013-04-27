@@ -81,14 +81,6 @@ class VF_LevelTests_LevelTest extends Elite_Vaf_TestCase
         $this->assertSame( self::ENTITY_TITLE, $entity->getTitle() );
     }
 
-    function testDeleteFits()
-    {
-        $vehicle = $this->createMMY();
-        $this->insertMappingMMY( $vehicle, 1 );
-        $level = new VF_Level( 'year', $vehicle->getLevel('year')->getId() );
-        $level->deleteFits();
-    }
-    
     function testPrefixingZero()
     {
         $make = $this->newMake('039');

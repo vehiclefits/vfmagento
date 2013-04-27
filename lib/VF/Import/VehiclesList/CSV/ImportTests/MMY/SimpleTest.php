@@ -54,12 +54,9 @@ acura, integra, 2000';
         $this->importVehiclesList( "make, model, year\n" .
             "makeA,modelA,2000\n" .
             "makeB,modelA,2000");
-        
-        $makeA = new VF_Level( 'make', $this->levelFinder()->findEntityIdByTitle( 'make', 'makeA' ) );
-        $makeB = new VF_Level( 'make', $this->levelFinder()->findEntityIdByTitle( 'make', 'makeB' ) );
-        
-        $this->assertEquals( 1, count($makeA->getChildren()), 'when a model name is not unique, should be stored under the proper parent' );
-        $this->assertEquals( 1, count($makeB->getChildren()), 'when a model name is not unique, should be stored under the proper parent' );
+
+        $this->assertTrue( $this->vehicleExists(array('make'=>'makeA','model'=>'modelA','year'=>'2000')), 'should import first vehicle' );
+        $this->assertTrue( $this->vehicleExists(array('make'=>'makeB','model'=>'modelA','year'=>'2000')), 'should import second vehicle' );
     }
     
     function testShouldImportYear2000()

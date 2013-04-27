@@ -197,75 +197,6 @@ class VF_Level implements VF_Configurable
         return (bool) $result->fetchColumn();
     }
 
-    function delete()
-    {
-        if (!(int) $this->getId())
-        {
-            throw new Exception();
-        }
-
-        $identityMap = VF_Level_IdentityMap_ByTitle::getInstance();
-        $identityMap->remove($this->getType(), $this->getId());
-
-        $this->deleteFits();
-
-        $this->deleteChildren();
-
-        $query = sprintf("DELETE FROM `" . $this->getTable() . "` WHERE   `id` = %d", $this->getId());
-        $this->query($query);
-
-        $query = sprintf("DELETE FROM `" . $this->getSchema()->definitionTable() . "` WHERE `" . $this->getType() . "_id` = %d", $this->getId());
-        $this->query($query);
-
-        if ($this->getType() == $this->getSchema()->getLeafLevel() && file_exists(ELITE_PATH . '/Vafwheel'))
-        {
-            $query = sprintf("DELETE FROM `elite_definition_wheel` WHERE `leaf_id` = %d", $this->getId());
-            $this->query($query);
-        }
-    }
-
-    function deleteChildren()
-    {
-        if ($this->getNextLevel() != '')
-        {
-            foreach ($this->getChildren() as $child)
-            {
-                $child->delete();
-            }
-        }
-    }
-
-    /** Recurse this object's hierarchy until we arrive at the year, and then delete all of it's fits */
-    function deleteFits()
-    {
-        if ($this->getNextLevel() != '')
-        {
-            foreach ($this->getChildren() as $child)
-            {
-                $child->deleteFits();
-            }
-            return;
-        }
-
-        $mappingsQuery = sprintf(
-                        "SELECT `id` FROM `" . $this->getSchema()->mappingsTable() . "` WHERE %s = %d",
-                        $this->getReadAdapter()->quoteIdentifier($this->getType() . '_id'),
-                        (int) $this->getId()
-        );
-        $mappingsResult = $this->query($mappingsQuery);
-        foreach ($mappingsResult->fetchAll() as $mappingsRow)
-        {
-            if (file_exists(ELITE_PATH . '/Vafnote'))
-            {
-                $deleteQuery = sprintf("DELETE FROM `elite_mapping_notes` WHERE `fit_id` = %d", $mappingsRow['id']);
-                $this->query($deleteQuery);
-            }
-
-            $deleteQuery = sprintf("DELETE FROM `" . $this->getSchema()->mappingsTable() . "` WHERE `id` = %d LIMIT 1", $mappingsRow['id']);
-            $this->query($deleteQuery);
-        }
-    }
-
     function listAll($parent_id = 0)
     {
         return $this->getFinder()->listAll($this, $parent_id);
@@ -292,7 +223,7 @@ class VF_Level implements VF_Configurable
 
     function getTable()
     {
-        return 'elite_level_' . $this->getSchema()->id() . '_' . $this->getType();
+        return 'elite_level_' . $this->getSchema()->id() . '_' . str_replace(' ','_',$this->getType());
     }
 
     function getLevels()

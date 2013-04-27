@@ -84,75 +84,13 @@ class VF_Level_Finder_Selector extends VF_Level_Finder_Abstract implements VF_Le
         }
         return $this->identityMap;
     }
-
-    function getChildren( VF_Level $entity )
-    {
-        if($this->getSchema()->isGlobal($entity->getType()) && $this->getSchema()->getRootLevel() != $entity->getType())
-        {
-            throw new Exception('ambiguous operation');
-        }
-        
-        if( $entity->getNextLevel() == '' )
-        {
-            throw new Exception( 'this type doesnt have children' );
-        }
-        
-        $nextLevelsTable = $this->getSchema()->levelTable($entity->getNextLevel());
-        $q = $this->getReadAdapter()->select()
-            ->from(array('l'=>$nextLevelsTable))
-            ->joinLeft(array('d'=>$this->getSchema()->definitionTable()), 'l.id = d.' . $entity->getNextLevel() . '_id', array())
-            ->where('d.' . $entity->getType() . '_id = ?', $entity->getId() )
-            ->order('title')
-            ->group('l.id');
-           
-        $r = $this->query( $q );
-        $children = array();
-        foreach( $r->fetchAll( Zend_Db::FETCH_OBJ ) as $row )
-        {
-            $child = $entity->createEntity( $entity->getNextLevel() );
-            $child->setId( $row->id );
-            $child->setTitle( $row->title );
-            $children[] = $child;
-        }
-        return $children;
-    }
     
     /** @param string level type */
     protected function sortingDirection( $type )
     {
         return $type == $this->getSchema()->getLeafLevel() ? $this->getConfig()->search->leafSorting : 'ASC';
     }
-    
-    function getChildCount( VF_Level $entity )
-    {
-        if($this->getSchema()->isGlobal($entity->getType()) && $this->getSchema()->getRootLevel() != $entity->getType())
-        {
-            throw new Exception('ambiguous operation');
-        }
-        if( !is_array( $this->child_count ) )
-        {
-            $this->child_count = $this->doGetChildCount( $entity );
-        }
-        return $this->child_count; 
-    }
-    
-    protected function doGetChildCount( VF_Level $entity )
-    {    
-        if( $entity->getNextLevel() == '' )
-        {
-            return 0;
-        }
-        
-        $q = $this->getReadAdapter()->select()
-            ->from(array('l'=>$this->getSchema()->levelTable($entity->getNextLevel())), 'count(distinct(l.id))')
-            ->joinLeft(array('d'=>$this->getSchema()->definitionTable()), 'l.id = d.' . $entity->getNextLevel() . '_id', array())
-            ->where('d.' . $entity->getType() . '_id = ?', $entity->getId() )
-            ->where('d.' . $entity->getNextLevel() . '_id != 0' );
-                              
-        $r = $this->query( $q );
-        return (int)$r->fetchColumn();
-    }
-    
+
     function listAll( VF_Level $entity, $parent_id = 0 )
     {
         if( isset( $this->objs[ $entity->getType() ][ $entity->getId() ] ) )

@@ -276,32 +276,9 @@ class VF_Schema implements VF_Configurable
         return $return;
     }
     
-    function hasGlobalLevel()
-    {
-        foreach($this->getLevels() as $level)
-        {
-            if($this->isGlobal($level))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    function isGlobal($level)
-    {
-        if( isset(self::$global_status[$level]))
-        {
-            return self::$global_status[$level];
-        }
-        
-        $key = $level.'_global';
-        return self::$global_status[$level] = (bool)$this->readSchemaRegistryKey($key);
-    }
-    
     function hasParent($level)
     {
-        return !$this->isGlobal($level);
+        return $level != $this->getRootLevel();
     }
     
     function getSorting($level)

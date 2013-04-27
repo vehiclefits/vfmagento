@@ -58,24 +58,17 @@ class VF_Level_Finder_Inserter extends VF_Level_Finder_Abstract
     {
         $this->requestedSaveId = $requestedSaveId;
 
-        if ($this->getSchema()->isGlobal($this->entity->getType())) {
-            $id = $this->entity->getId();
-            $existingId = $this->levelFinder()->findEntityIdByTitle($this->entity->getType(), $this->entity->getTitle());
-            if (false == $existingId) {
-                $this->getReadAdapter()->insert($this->entity->getTable(), $this->getBind());
+        $id = $this->entity->getId();
+        $existingId = $this->levelFinder()->findEntityIdByTitle($this->entity->getType(), $this->entity->getTitle());
+        if (false == $existingId) {
+            $this->getReadAdapter()->insert($this->entity->getTable(), $this->getBind());
 
-                $id = $this->getReadAdapter()->lastInsertId();
-                $this->entity->setId($id);
-            } else {
-                $this->entity->setId($existingId);
-            }
-            return $id;
+            $id = $this->getReadAdapter()->lastInsertId();
+            $this->entity->setId($id);
         } else {
-            $existingId = $this->levelFinder()->findEntityIdByTitle($this->entity->getType(), $this->entity->getTitle());
-            if (!$existingId) {
-                $this->getReadAdapter()->insert($this->inflect($this->entity->getTable()), $this->getBind());
-            }
+            $this->entity->setId($existingId);
         }
+        return $id;
 
         $id = $existingId ? $existingId : $this->getReadAdapter()->lastInsertId();
         if (!$this->entity->getId()) {
