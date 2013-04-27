@@ -29,7 +29,7 @@ class VF_Vehicle_FinderTests_SaveTest extends Elite_Vaf_TestCase
         $schemaGenerator->dropExistingTables();
         $schemaGenerator->execute(array(
             'year',
-            'make' => array('global'=>true),
+            'make',
             'model'
         ));
         $this->startTransaction();
