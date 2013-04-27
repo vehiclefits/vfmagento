@@ -21,9 +21,15 @@ This assumes you have Magento installed at /home/josh/www/magento/. We check out
 <p>The tests are each wrapped in a transaciton that gets rolled back. In each test case, in the doSetUp() method the schema should be specified (year,make,model for example). If the schema differs from the current database's schema, a reset of the tables is forced. If a unit test fails at an unfortunate time, the tables could not all be created. To force a database reset run ` php tasks/schema.php`.</p>
 
 <h1>Command Line Utilities</h1>
-<p>In app/code/local/Elite are various utilities. To reset the schema to a new schema do this:<br />
-php tasks/schema.php --force --levels="make,model,year"
+<p>In app/code/local/Elite are various utilities.</p>
+<h2>Schema</h2>
+<p>To reset the schema to a new schema do this:<br />
+php tasks/schema.php --force --levels="make,model,year" <br /><br />
+To add a new schema do this:<br />
+php tasks/schema.php --add --levels="foo,bar"<br /><br />
+You must create the first schema before creating an additional one with the --add flag.
 </p>
+<h2>Import/Export</h2>
 
 </body>
 </html>

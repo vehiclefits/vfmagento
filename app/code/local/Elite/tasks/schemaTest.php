@@ -50,4 +50,14 @@ class Elite_tasks_SchemaTest extends Elite_Vaf_TestCase
         $tables = $this->getReadAdapter()->listTables();
         $this->assertTrue(in_array($expectedTable, $tables), "master schema should create make with '1' in it's name");
     }
+
+    function testShouldAddSecondSchema()
+    {
+        $command = 'php '.MAGE_PATH .'/app/code/local/Elite/tasks/schema.php --force --levels="year,make,model"';
+        exec($command);
+        $command = 'php '.MAGE_PATH .'/app/code/local/Elite/tasks/schema.php --add --levels="foo,bar"';
+        exec($command);
+        $schema = new VF_Schema(2);
+        $this->assertEquals(array('foo','bar'), $schema->getLevels(), 'should create second schema');
+    }
 }

@@ -44,12 +44,19 @@ class Schema_CLI
         } else {
             $this->levels = $options['levels'];
         }
-        if(!$options['force']) {
+        if(!$options['add'] && !$options['force']) {
             $this->confirmTablesToDrop();
         }
-        $this->generator->dropExistingTables();
-        
-        $this->createTheNewTables();
+        if(!$options['add']) {
+            $this->generator->dropExistingTables();
+        }
+
+        if($options['add']) {
+            VF_Schema::create($options['levels']);
+            $this->notifyUser( self::DONE );
+        } else {
+            $this->createTheNewTables();
+        }
     }
     
     protected function isYes( $value )
@@ -96,10 +103,12 @@ class Schema_CLI
 $opt = new Zend_Console_Getopt(array(
     'force|f'    => 'force creation without prompting to delete old schema',
     'levels|l=s'    => 'levels to create',
+    'add|a' => 'add schema instead of replace'
 ));
 
 $cli = new Schema_CLI();
 $cli->main(array(
     'force'=>$opt->getOption('force'),
-    'levels'=>$opt->getOption('levels')
+    'levels'=>$opt->getOption('levels'),
+    'add'=>$opt->getOption('add')
 ));
