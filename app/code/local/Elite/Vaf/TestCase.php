@@ -515,7 +515,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
           `attribute_set_id` smallint(5) unsigned NOT NULL DEFAULT '0',
           `type_id` varchar(32) NOT NULL DEFAULT 'simple',
           `sku` varchar(64) DEFAULT NULL,
-          `category_ids` text,
+          `category_ids` varchar(64),
           `created_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
           `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
           `has_options` smallint(1) NOT NULL DEFAULT '0',
