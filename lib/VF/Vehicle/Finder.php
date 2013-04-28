@@ -208,7 +208,8 @@ class VF_Vehicle_Finder implements VF_Configurable
     }
 
     /**
-     * @param array conjunction of critera Ex: array('make'=>1'year'=>1)
+     * @param $levelIds - array conjunction of critera Ex: array('make'=>1'year'=>1)
+     * @param $mode - what mode to operate in (allow matching of 'partial' vehicles?)
      * @return array of Vehicle that meet the critera
      */
     function findByLevelIds($levelIds, $mode = false)
@@ -293,9 +294,7 @@ class VF_Vehicle_Finder implements VF_Configurable
         return isset($vehicles[0]) ? $vehicles[0] : false;
     }
 
-    /**
-     * @deprecated this is an ambiguous query now
-     */
+    /** @deprecated this is an ambiguous query now */
     function findByLeaf($leaf_id)
     {
         #throw new Exception('this is deprecated. Do NOT call it.');
@@ -388,9 +387,7 @@ class VF_Vehicle_Finder implements VF_Configurable
         return $levels;
     }
 
-    /**
-     * Figures out which levels need to be selected based on the level IDs being searched & what mode
-     */
+    /** Figures out which levels need to be selected based on the level IDs being searched & what mode */
     function levelsToSelect($levelIds, $mode)
     {
         $levelsToSelect = array();
@@ -417,9 +414,7 @@ class VF_Vehicle_Finder implements VF_Configurable
         return $levelIds;
     }
 
-    /**
-     * Depending on the $mode, will replace missing levels with 0 or false
-     */
+    /** Depending on the $mode, will replace missing levels with 0 or false */
     function specifyPartial($levelIds, $mode)
     {
         foreach ($this->schema->getLevels() as $level) {
