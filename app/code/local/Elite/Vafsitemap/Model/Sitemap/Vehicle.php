@@ -17,7 +17,6 @@
  * Do not edit or add to this file if you wish to upgrade Vehicle Fits to newer
  * versions in the future. If you wish to customize Vehicle Fits for your
  * needs please refer to http://www.vehiclefits.com for more information.
-
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
@@ -31,86 +30,79 @@ class Elite_Vafsitemap_Model_Sitemap_Vehicle extends VF_Import_Abstract
     function __construct($config)
     {
         $this->schema = new VF_Schema;
-	$this->config = $config;
+        $this->config = $config;
     }
 
     /** @todo move/rename this to definition finder -> find all in use() method */
-    function getDefinitions($perPage=false, $offset=false, $productId = null)
+    function getDefinitions($perPage = false, $offset = false, $productId = null)
     {
-	$return = array();
-	$vehicleFinder = new VF_Vehicle_Finder($this->getSchema());
-	$vehicles = $this->doGetDefinitions($perPage, $offset, $productId);
-	foreach ($vehicles as $vehicleStdClass)
-	{
-	    $vehicle = $vehicleFinder->findOneByLevelIds($vehicleStdClass, VF_Vehicle_Finder::EXACT_ONLY);
-	    array_push($return, $vehicle);
-	}
-	return $return;
+        $return = array();
+        $vehicleFinder = new VF_Vehicle_Finder($this->getSchema());
+        $vehicles = $this->doGetDefinitions($perPage, $offset, $productId);
+        foreach ($vehicles as $vehicleStdClass) {
+            $vehicle = $vehicleFinder->findOneByLevelIds($vehicleStdClass, VF_Vehicle_Finder::EXACT_ONLY);
+            array_push($return, $vehicle);
+        }
+        return $return;
     }
 
-    function doGetDefinitions($perPage, $offset, $productId=null)
+    function doGetDefinitions($perPage, $offset, $productId = null)
     {
-	$rewriteLevels = $this->getSchema()->getRewriteLevels();
-	
-	$db = $this->getReadAdapter();
+        $rewriteLevels = $this->getSchema()->getRewriteLevels();
 
-	$cols = array();
-	foreach ($this->getSchema()->getRewriteLevels() as $col)
-	{
-	    $cols[] = $col . '_id';
-	}
-	$select = $db->select()
-			->from($this->getSchema()->mappingsTable(), $cols);
-	foreach ($rewriteLevels as $level)
-	{
-	    $select->group($level . '_id');
-	}
+        $db = $this->getReadAdapter();
 
-	if(!is_null($productId))
-	{
-	    $select->where('entity_id = ?', $productId);
-	}
+        $cols = array();
+        foreach ($this->getSchema()->getRewriteLevels() as $col) {
+            $cols[] = $col . '_id';
+        }
+        $select = $db->select()
+            ->from($this->getSchema()->mappingsTable(), $cols);
+        foreach ($rewriteLevels as $level) {
+            $select->group($level . '_id');
+        }
 
-	if ($perPage || $offset)
-	{
-	    $select->limit($perPage, $offset);
-	}
+        if (!is_null($productId)) {
+            $select->where('entity_id = ?', $productId);
+        }
 
-	$result = $select->query(Zend_Db::FETCH_ASSOC);
-	$return = array();
-	while ($row = $result->fetch())
-	{
-	    array_push($return, $row);
-	}
+        if ($perPage || $offset) {
+            $select->limit($perPage, $offset);
+        }
 
-	return $return;
+        $result = $select->query(Zend_Db::FETCH_ASSOC);
+        $return = array();
+        while ($row = $result->fetch()) {
+            array_push($return, $row);
+        }
+
+        return $return;
     }
 
     /** @return integer total # of definitions in the sitemap */
     function vehicleCount()
     {
-	$col = 'count(distinct(CONCAT(';
-	$colParams = array();
-	foreach ($this->getSchema()->getRewriteLevels() as $level)
-	{
-	    $colParams[] = $level . '_id';
-	}
-	$col .= implode(',\'/\',', $colParams);
-	$col .= ')))';
+        $col = 'count(distinct(CONCAT(';
+        $colParams = array();
+        foreach ($this->getSchema()->getRewriteLevels() as $level) {
+            $colParams[] = $level . '_id';
+        }
+        $col .= implode(',\'/\',', $colParams);
+        $col .= ')))';
 
-	$select = $this->getReadAdapter()->select()
-			->from($this->getSchema()->mappingsTable(), array($col));
+        $select = $this->getReadAdapter()->select()
+            ->from($this->getSchema()->mappingsTable(), array($col));
 
-	$result = $select->query();
-	$count = $result->fetchColumn();
-	return $count;
+        $result = $select->query();
+        $count = $result->fetchColumn();
+        return $count;
     }
 
     function getSchema()
     {
-	$schema = new VF_Schema();
-	$schema->setConfig($this->config);
-	return $schema;
+        $schema = new VF_Schema();
+        $schema->setConfig($this->config);
+        return $schema;
     }
 
 }
