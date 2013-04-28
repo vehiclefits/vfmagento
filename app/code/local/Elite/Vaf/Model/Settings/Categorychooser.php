@@ -64,7 +64,7 @@ Set to the text you want to use in place of "All" on the category chooser, if om
             'label'=>'ignore',
             'description'=> 'Category IDs to ignore
 
-Ignores any category IDs listed, they will not show up in the "category chooser". List them out seperated by comma. If you do not put an ignore paramater then all categories will be listed by default.',
+Ignores any category IDs listed, they will not show up in the "category chooser". List them out separated by comma. If you do not put an ignore paramater then all categories will be listed by default.',
             'value' => $this->getConfig()->categorychooser->ignore
         ));
         

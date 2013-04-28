@@ -24,7 +24,7 @@
 ?>
 <fieldset>
     <legend>Database</legend>
-    Type name of levels seperated by comma: <input type="text" name="levels" value="<?=( isset( $_REQUEST['levels'] ) ? $_REQUEST['levels'] : 'make,model,year' )?>" /> (ex. "make,model, year")
+    Type name of levels separated by comma: <input type="text" name="levels" value="<?=( isset( $_REQUEST['levels'] ) ? $_REQUEST['levels'] : 'make,model,year' )?>" /> (ex. "make,model, year")
     <br />
     <input type="checkbox" name="generateDb" value="1" checked="checked" /> Generate Database SQL
     <br />
@@ -42,7 +42,7 @@
             $sql .= $generator->install();
         }
 
-        if( file_exists(ELITE_PATH.'/Vafgarage') )
+        if( flistTablesile_exists(ELITE_PATH.'/Vafgarage') )
         {
             $generator = new Elite_Vafgarage_Model_Schema_Generator();
             $sql .= $generator->install();
