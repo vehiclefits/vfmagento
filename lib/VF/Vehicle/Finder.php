@@ -223,9 +223,7 @@ class VF_Vehicle_Finder implements VF_Configurable
             ->joinAndSelectLevels(VF_Select::DEFINITIONS, $levelsToSelect, $this->schema);
 
         foreach ($this->schema->getLevels() as $level) {
-            $value = false;
-            $value = isset($levelIds[$level]) ? $levelIds[$level] : $value;
-            $value = isset($levelIds[$level . '_id']) ? $levelIds[$level . '_id'] : $value;
+            $value = $levelIds[$level];
             if ($value != false) {
                 $level = str_replace(' ', '_', $level);
                 $select->where('`elite_' . $this->schema->id() . '_definition`.`' . $level . '_id` = ?', $value);
