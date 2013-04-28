@@ -4,10 +4,12 @@
     <title></title>
 </head>
 <body>
-<h1>Developer Installation</h1>
+
+<h1>Developer Guide</h1>
+<h2>Installing Symlinks</h2>
 <p>Magento's extension system utilizes a complex directory structure. Due to this, there are many points in the Magento directory strucutre in which we must add files. Normally this is done via unzipping. However when we develop the extension we do not unzip the extension over Magento like a normal install. We keep the paths separate & use symlinks. This way our version control system [git] does not try to track Magento's files.</p>
 <p>Before creating the symlinks, we must tell Magento to follow them for the template files. <strong>System > Configuration > Developer > Template Settings > Allow Symlinks </strong>, set this to <strong>yes</strong> and press 'Save Config'.</p>
-
+<div style="float:right;"><img src="developer-paths.png"  />Figure 1</div>
 <pre>cd ~/www
 git clone git@github.com:vehiclefits/Vehicle-Fits-Magento.git
 
@@ -23,12 +25,16 @@ ln -s ~/www/Vehicle-Fits-Magento/skin/adminhtml/default/default/VF/
 cd ~/www/magento/app/design/adminhtml/default/default/template/
 ln -s ~/www/Vehicle-Fits-Magento/app/design/adminhtml/default/default/template/vf/
 </pre>
-This assumes you have Magento installed at ~/www/magento/. We check out the Vehicle Fits repository in ~/www/, we then create symlinks from the points in Magento's directory tree in which our extension normally adds files via unzipping. See the screenshot below showing on the left the Magento installation with symlinks into the file structure from the right which only contains our extension. <br />
-<img src="developer-paths.png" />
+This assumes you have Magento installed at ~/www/magento/. We check out the Vehicle Fits repository in ~/www/, we then create symlinks from the points in Magento's directory tree in which our extension normally adds files via unzipping. See the screenshot in figure 1 showing on the left the Magento installation with symlinks into the file structure from the right which only contains our extension. <br />
 
-<h1>Unit Tests</h1>
+<h1>Automated Tests</h1>
+<p>The Vehicle Fits software is a complex software. Some users want "year,make,model", others may want "foo,bar". Due to this, the number of interactions between features is difficult to manage. In order to ensure all interactions of these features work after making code changes, we run an automated test suite. This is comprised of phpunit tests for PHP & qunit tests for javascript.</p>
+<h2>Running the phpunit tests</h2>
 <p>cd to the app/code/local/Elite directory and run `phpunit`. The configuration is read from phpunit.xml.dist</p>
 <p>The tests are each wrapped in a transaciton that gets rolled back. In each test case, in the doSetUp() method the schema should be specified (year,make,model for example). If the schema differs from the current database's schema, a reset of the tables is forced. If a unit test fails at an unfortunate time, the tables could not all be created. To force a database reset run ` php tasks/schema.php`.</p>
+
+<h2>Running the Qunit tests</h2>
+<p>Open your browser to http://localhost/vafAjaxTests/ replacing localhost with wherever you have Magento installed. The tests should run and their results will be displayed in your browser.</p>
 
 <h1>Command Line Utilities</h1>
 <p>In app/code/local/Elite are various utilities.</p>
@@ -40,6 +46,12 @@ php tasks/schema.php --add --levels="foo,bar"<br /><br />
 You must create the first schema before creating an additional one with the --add flag.
 </p>
 <h2>Import/Export</h2>
+<p>//todo</p>
 
+<h1>Coding Standards</h1>
+<p>We use the <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md">coding standards called psr-2</a> for all PHP files. For javascript, curly braces always go 'on the same line'.</p>
+
+<h1>Contributions</h1>
+<p>Contributions are more than welcome, however please read the above notes about automated tests. The more code we accept, the more code we have to maintain. Your code must be well unit tested to be accepted, even a bug fix is not officially incorporated in most cases, without accompanying unit tests.</p>
 </body>
 </html>
