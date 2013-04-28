@@ -213,31 +213,12 @@ class VF_Vehicle_Finder implements VF_Configurable
      */
     function findByLevelIds($levelIds, $mode = false)
     {
-        $levelsToSelect = array();
-        foreach ($this->schema->getLevels() as $level) {
-            if (self::INCLUDE_PARTIALS == $mode) {
-                $value = 0;
-            } else {
-                $value = false;
-            }
-            $value = isset($levelIds[$level]) ? $levelIds[$level] : $value;
-            $value = isset($levelIds[$level . '_id']) ? $levelIds[$level . '_id'] : $value;
-            unset($levelIds[$level . '_id']);
-
-            $levelIds[$level] = $value;
-            if(self::INCLUDE_PARTIALS == $mode && !$levelIds[$level])
-            {
-                continue;
-            }
-            if (self::INCLUDE_PARTIALS == $mode && !$levelIds[$level]) {
-                continue;
-            }
-            array_push($levelsToSelect, $level);
-        }
+        $levelIds = $this->cleanupLevelIds($levelIds, $mode);
+        $levelsToSelect = $this->levelsToSelect($levelIds, $mode);
 
         $select = $this->select()
             ->from('elite_' . $this->schema->id() . '_definition')
-            ->joinAndSelectLevels('elite_' . $this->schema->id() . '_definition', $levelsToSelect, $this->schema);
+            ->joinAndSelectLevels(VF_Select::DEFINITIONS, $levelsToSelect, $this->schema);
 
         foreach ($this->schema->getLevels() as $level) {
             $value = false;
@@ -404,6 +385,52 @@ class VF_Vehicle_Finder implements VF_Configurable
             }
         }
         return $levels;
+    }
+
+    /**
+     * Figures out which levels need to be selected based on the level IDs being searched & what mode
+     */
+    function levelsToSelect($levelIds, $mode)
+    {
+        $levelsToSelect = array();
+        foreach ($this->schema->getLevels() as $level) {
+            if(self::INCLUDE_PARTIALS == $mode && !$levelIds[$level]) {
+                continue;
+            }
+            if (self::INCLUDE_PARTIALS == $mode && !$levelIds[$level]) {
+                continue;
+            }
+            array_push($levelsToSelect, $level);
+        }
+        return $levelsToSelect;
+    }
+
+    /**
+     * Takes an array like array('make_id'=>5) and converts it to array('make'=>5)
+     * Depending on the $mode, will replace missing levels with 0 or false
+     */
+    function cleanupLevelIds($levelIds, $mode)
+    {
+        foreach ($this->schema->getLevels() as $level) {
+            if(isset($levelIds[$level])) {
+                continue;
+            }
+            if (self::INCLUDE_PARTIALS == $mode) {
+                $emptyValue = 0;
+            } else {
+                $emptyValue = false;
+            }
+
+            if(isset($levelIds[$level . '_id'])) {
+                $value = $levelIds[$level . '_id'];
+                unset($levelIds[$level . '_id']);
+            } else {
+                $value = $emptyValue;
+            }
+
+            $levelIds[$level] = $value;
+        }
+        return $levelIds;
     }
 
 }
