@@ -125,6 +125,7 @@ abstract class Elite_Vaf_TestCase extends PHPUnit_Framework_TestCase
         return $vehicle;
     }
 
+    /** @deprecated use createVehicle() */
     protected function createMMY($makeTitle = 'test make', $modelTitle = 'test model', $yearTitle = 'test year')
     {
         $titles = array(
