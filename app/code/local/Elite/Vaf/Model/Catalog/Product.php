@@ -405,7 +405,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     {
         $select = new VF_Select($this->getReadAdapter());
         $select->from($this->getSchema()->mappingsTable())
-            ->addLevelTitles()
+            ->joinAndSelectLevels()
             ->where('entity_id=?', $productId);
         $result = $this->query($select);
 

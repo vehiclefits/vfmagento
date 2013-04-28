@@ -23,14 +23,26 @@
  */
 class VF_Select extends Zend_Db_Select
 {
+    /** @var VF_Schema */
     protected $schema;
+    const DEFINITIONS = 'definitions';
+    const MAPPINGS = 'mappings';
 
-    function addLevelTitles($fromTable=null, $levels=array(), $schema=null)
+    function joinAndSelectLevels($fromTable=null, $levels=array(), $schema=null)
     {
         $this->schema = $schema ? $schema : new VF_Schema;
-        if(is_null($fromTable))
+        switch($fromTable)
         {
-            $fromTable = $this->getSchema()->mappingsTable();
+            case self::DEFINITIONS:
+                $fromTable = $this->getSchema()->definitionTable();
+            break;
+            case null:
+            case self::MAPPINGS;
+                $fromTable = $this->getSchema()->mappingsTable();
+            break;
+            default:
+                // assume they passed in a literal string
+            break;
         }
         
         if(array() == $levels)

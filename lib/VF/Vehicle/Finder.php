@@ -151,16 +151,11 @@ class VF_Vehicle_Finder implements VF_Configurable
      */
     function findByLevels($levels, $includePartials = false)
     {
-        foreach ($levels as $level => $value) {
-            if (!in_array($level, $this->schema->getLevels())) {
-                unset($levels[$level]);
-                continue;
-            }
-        }
-        $select = new VF_Select($this->getReadAdapter());
-        $select
+        $levels = $this->removeInvalidLevels($levels);
+
+        $select = $this->select()
             ->from('elite_' . $this->schema->id() . '_definition')
-            ->addLevelTitles('elite_' . $this->schema->id() . '_definition',array_keys($levels), $this->schema);
+            ->joinAndSelectLevels('elite_' . $this->schema->id() . '_definition',array_keys($levels), $this->schema);
 
         foreach ($levels as $level => $value) {
 
@@ -240,10 +235,9 @@ class VF_Vehicle_Finder implements VF_Configurable
             array_push($levelsToSelect, $level);
         }
 
-        $select = new VF_Select($this->getReadAdapter());
-        $select
+        $select = $this->select()
             ->from('elite_' . $this->schema->id() . '_definition')
-            ->addLevelTitles('elite_' . $this->schema->id() . '_definition', $levelsToSelect, $this->schema);
+            ->joinAndSelectLevels('elite_' . $this->schema->id() . '_definition', $levelsToSelect, $this->schema);
 
         foreach ($this->schema->getLevels() as $level) {
             $value = false;
@@ -394,6 +388,22 @@ class VF_Vehicle_Finder implements VF_Configurable
     function inflect($identifier)
     {
         return str_replace(' ', '_', $identifier);
+    }
+
+    function select()
+    {
+        return new VF_Select($this->getReadAdapter());
+    }
+
+    function removeInvalidLevels($levels)
+    {
+        foreach ($levels as $level => $value) {
+            if (!in_array($level, $this->schema->getLevels())) {
+                unset($levels[$level]);
+                continue;
+            }
+        }
+        return $levels;
     }
 
 }
