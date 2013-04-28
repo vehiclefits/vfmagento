@@ -128,7 +128,14 @@ class VF_Vehicle_Finder implements VF_Configurable
             $levelIds['year_start'] = $year_start;
             $levelIds['year_end'] = $year_end;
         }
-        for ($year = $levelIds['year_start']; $year <= $levelIds['year_end']; $year++) {
+
+        $year_start = $levelIds['year_start'];
+        $year_end = $levelIds['year_end'];
+
+        unset($levelIds['year_start']);
+        unset($levelIds['year_end']);
+
+        for ($year = $year_start; $year <= $year_end; $year++) {
             $theseVehicles = $this->findByLevelIds($levelIds + array('year' => $year));
             $vehicles = array_merge($vehicles, $theseVehicles);
         }
@@ -220,15 +227,8 @@ class VF_Vehicle_Finder implements VF_Configurable
 
         $select = $this->select()
             ->from('elite_' . $this->schema->id() . '_definition')
-            ->joinAndSelectLevels(VF_Select::DEFINITIONS, $levelsToSelect, $this->schema);
-
-        foreach ($this->schema->getLevels() as $level) {
-            $value = $levelIds[$level];
-            if ($value != false) {
-                $level = str_replace(' ', '_', $level);
-                $select->where('`elite_' . $this->schema->id() . '_definition`.`' . $level . '_id` = ?', $value);
-            }
-        }
+            ->joinAndSelectLevels(VF_Select::DEFINITIONS, $levelsToSelect, $this->schema)
+            ->whereLevelIdsEqual($levelIds);
 
         if (self::INCLUDE_PARTIALS != $mode) {
             foreach ($this->schema->getLevels() as $level) {
@@ -407,6 +407,7 @@ class VF_Vehicle_Finder implements VF_Configurable
         foreach ($this->schema->getLevels() as $level) {
             if(isset($levelIds[$level.'_id'])) {
                 $levelIds[$level] = $levelIds[$level.'_id'];
+                unset($levelIds[$level.'_id']);
             }
         }
         return $levelIds;

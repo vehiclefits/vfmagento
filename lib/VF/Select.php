@@ -63,7 +63,10 @@ class VF_Select extends Zend_Db_Select
     {
         foreach($levelIds as $level => $id)
         {
-            $this->where($level . '_id = ?', $id);
+            if($id==false) {
+                continue;
+            }
+            $this->where($this->inflect($level) . '_id = ?', $id);
         }
         return $this;
     }
@@ -71,5 +74,10 @@ class VF_Select extends Zend_Db_Select
     function getSchema()
     {
         return $this->schema;
+    }
+
+    function inflect($identifier)
+    {
+        return str_replace(' ', '_', $identifier);
     }
 }
