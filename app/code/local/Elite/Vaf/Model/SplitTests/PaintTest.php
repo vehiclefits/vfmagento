@@ -21,22 +21,21 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-
 class Elite_Vaf_Model_SplitTests_PaintTest extends Elite_Vaf_TestCase
 {
     const NEWLINE = "\n";
 
     function doSetUp()
     {
-	$this->switchSchema('make,model,year');
+        $this->switchSchema('make,model,year');
 
-	$this->csvData = 'make,model,year,Code,Name,Color(hex)' . self::NEWLINE;
-	$this->csvData .= 'Acura, Integra, 1987,  B-38,  Capitol Blue, #061D72' . self::NEWLINE;
-	$this->csvFile = TEMP_PATH . '/paint-definitions.csv';
-	file_put_contents($this->csvFile, $this->csvData);
+        $this->csvData = 'make,model,year,Code,Name,Color(hex)' . self::NEWLINE;
+        $this->csvData .= 'Acura, Integra, 1987,  B-38,  Capitol Blue, #061D72' . self::NEWLINE;
+        $this->csvFile = TEMP_PATH . '/paint-definitions.csv';
+        file_put_contents($this->csvFile, $this->csvData);
 
-	$importer = new Elite_Vafpaint_Model_Importer_Definitions_Paint($this->csvFile);
-	$importer->import();
+        $importer = new Elite_Vafpaint_Model_Importer_Definitions_Paint($this->csvFile);
+        $importer->import();
     }
 
     /**
