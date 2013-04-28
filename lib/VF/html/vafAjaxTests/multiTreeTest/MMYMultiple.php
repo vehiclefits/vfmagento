@@ -86,7 +86,7 @@ $values2 = $vehicle2->toValueArray();
         QUnit.done = function (failures, total) {
             jQuery.ajax('removeTmpLockFile.php');
             console.log('done');
-            top.testPageComplete( 'multiTreeTest/MMY.php', failures, total );
+            top.testPageComplete( 'multiTreeTest/MMYMultiple.php', failures, total );
         };
 
         module("Mutli Tree");
