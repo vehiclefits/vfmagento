@@ -329,7 +329,6 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 
     function fitsVehicle($vehicle)
     {
-        return true;
         $select = $this->getReadAdapter()->select()
             ->from($this->getSchema()->mappingsTable(), array('count(*)'))
             ->where('entity_id = ?', $this->getId());
