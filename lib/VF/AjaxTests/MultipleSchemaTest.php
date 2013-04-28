@@ -28,7 +28,7 @@ class VF_AjaxTests_MultipleSchemaTest extends Elite_Vaf_TestCase
         $this->switchSchema('make,model,year');
     }
 
-    function testShouldListMakes()
+    function testShouldListRootLevel_WhenCalledFromFrontend()
     {
         $schema = VF_Schema::create('foo,bar');
         $vehicle = $this->createVehicle(array('foo'=>'123','bar'=>'456'), $schema);
@@ -43,6 +43,43 @@ class VF_AjaxTests_MultipleSchemaTest extends Elite_Vaf_TestCase
         $ajax->execute( $schema );
         $actual = ob_get_clean();
 
-        $this->assertEquals( '<option value="' . $vehicle->getValue('foo') . '">123</option>', $actual, 'should list makes from second schema' );
+        $this->assertEquals( '<option value="' . $vehicle->getValue('foo') . '">123</option>', $actual, 'should list root levels from 2nd schema' );
+    }
+
+    function testShouldListChildLevel_WhenCalledFromFrontend()
+    {
+        $schema = VF_Schema::create('foo,bar');
+        $vehicle = $this->createVehicle(array('foo'=>'123','bar'=>'456'), $schema);
+
+        $mapping = new VF_Mapping(1,$vehicle);
+        $mapping->save();
+
+        ob_start();
+        $_GET['front']=1;
+        $_GET['requestLevel'] = 'bar';
+        $_GET['foo'] = $vehicle->getValue('bar');
+        $ajax = new VF_Ajax();
+        $ajax->execute( $schema );
+        $actual = ob_get_clean();
+
+        $this->assertEquals( '<option value="' . $vehicle->getValue('bar') . '">456</option>', $actual, 'should list child levels from 2nd schema' );
+    }
+
+    function testShouldListChildLevel_WhenCalledFromBackend()
+    {
+        $schema = VF_Schema::create('foo,bar');
+        $vehicle = $this->createVehicle(array('foo'=>'123','bar'=>'456'), $schema);
+
+        $mapping = new VF_Mapping(1,$vehicle);
+        $mapping->save();
+
+        ob_start();
+        $_GET['requestLevel'] = 'bar';
+        $_GET['foo'] = $vehicle->getValue('bar');
+        $ajax = new VF_Ajax();
+        $ajax->execute( $schema );
+        $actual = ob_get_clean();
+
+        $this->assertEquals( '<option value="' . $vehicle->getValue('bar') . '">456</option>', $actual, 'should list child levels from 2nd schema' );
     }
 }

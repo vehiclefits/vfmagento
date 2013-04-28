@@ -6,7 +6,7 @@
         <input type="checkbox" id="universal" name="universal" <?= $this->getProduct()->isUniversal() ? ' checked="checked"' : '' ?> value="1" />
         Universal Product
         <br />
-	<?php
+	    <?php
         if( file_exists(ELITE_PATH.'/Vafrelated') )
         {
             $relatedProduct = new Elite_Vafrelated_Model_Catalog_Product($this->getProduct());
@@ -28,10 +28,11 @@
         </div>
         <?php
         $metaData = '{';
-            $metaData .= "'ajaxUrl':'" . $this->getUrl('*/vafajax/process/?schema='.$this->schema()->id()) . "',";
+            $metaData .= "'ajaxUrl':'" . $this->getUrl('*/vafajax/process/') . "',";
             $metaData .= "'quickAddUrl':'" . $this->getUrl('*/vehicleslist/save') . "',";
-            $metaData .= "'elementName':'vaf'";
-            $metaData .= ", 'initialSelections':[{'level':'3','id':'0','node':{},'path':['','','']}]";
+            $metaData .= "'elementName':'vaf',";
+            $metaData .= "'initialSelections':[{'level':'3','id':'0','node':{},'path':['','','']}],";
+            $metaData .= "'schema':".$this->schema()->id();
         $metaData .= "}";
         ?>
         <div class="field">

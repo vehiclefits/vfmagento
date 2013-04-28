@@ -1,5 +1,6 @@
 <?php
-$schema = new Vf_Schema();
+echo 'got here';exit;
+$schema = new VF_Schema();
 $levels = isset( $_REQUEST['levels'] ) ? $_REQUEST['levels'] : implode(',',$schema->getLevels());
 ?>
 
@@ -15,7 +16,6 @@ $levels = isset( $_REQUEST['levels'] ) ? $_REQUEST['levels'] : implode(',',$sche
 }
 </style>
 
-
 <form action="?" class="vafSchemaForm">
     <fieldset>
         <legend>Change Levels</legend>
@@ -26,40 +26,6 @@ $levels = isset( $_REQUEST['levels'] ) ? $_REQUEST['levels'] : implode(',',$sche
         <br /><input name="submit" type="submit" value="Create New Schema" />
     </fieldset>
 </form>
-
-<!--<form action="?" class="vafSchemaForm">
-    <input type="hidden" name="levels" value="<?=$levels?>" />
-    
-    <fieldset>
-        <legend>Change Settings</legend>
-    
-        <?php
-        foreach( $schema->getLevels() as $level )
-        {
-            ?>
-            <div>
-                <dl>
-                    <dd><label><?=ucfirst($level)?> Global?</label></dd>
-                    <dt>
-                        <select name="<?=$level?>Global">
-                            <option value="global" <?=$schema->isGlobal($level) == true ? ' selected="selected"' : ''?>>Global</option>
-                            <option value="child" <?=$schema->isGlobal($level) == false ? ' selected="selected"' : ''?>>Child</option>
-                        </select>
-                    </dt>
-                </dl>
-                    
-            </div>
-            <?php
-        }
-        ?>
-        
-    </fieldset>
-    
-    <br />
-    <strong>Warning:</strong> pressing submit will clear out any & all loaded data. Back up mappings+definitions files first.
-    <br />
-    <input name="submit" type="submit" value="Save" />
-</form> -->
 
 <form action="?" class="vafSchemaForm">
     <fieldset>

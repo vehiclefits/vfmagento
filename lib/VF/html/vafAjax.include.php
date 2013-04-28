@@ -25,7 +25,7 @@ class vafAjaxInclude
 {
     function execute()
     {
-        $schema = new VF_Schema();//$_GET['schema']);
+        $schema = new VF_Schema(isset($_GET['schema']) ? $_GET['schema'] : 1);
         $ajax = new VF_Ajax();
         return $ajax->execute( $schema );   
     }

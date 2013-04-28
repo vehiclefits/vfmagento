@@ -48,13 +48,11 @@
             seperator: 'multiTree-selection-seperator'
         };
         
-        var data = $( element ).metadata();
+        var data = $(element).metadata();
         
-        var ajaxUrl;
-        ajaxUrl = data.ajaxUrl;
-        
-        var quickAddUrl;
-        quickAddUrl = data.quickAddUrl;
+        var ajaxUrl = data.ajaxUrl;
+        var quickAddUrl = data.quickAddUrl;
+        var schema = data.schema;
         
         
         var treeName = data.elementName;
@@ -62,7 +60,7 @@
         /**
         * Get the name of the level for a select element
         *
-        * @param jquery select
+        * @param select jquery select
         * @return string
         */
         var getLevelName = function( select ) {
@@ -72,7 +70,7 @@
         /**
         * Get the child ( dependant ) selects for a select element
         *
-        * @param jquery select
+        * @param select - jquery select
         * @return jquery collection of select elements
         */
         var getNextSelects = function( select ) {
@@ -82,8 +80,8 @@
         /**
         * Load into a select a collection of options
         *
-        * @param jquery select to load into
-        * @param jquery collection of options, to contain:
+        * @param select - jquery select to load into
+        * @param data - jquery collection of options, to contain:
         *   id - the primary key id of this option within it's level
         *   title - the title of this option
         *   more - boolean, wether or not this option has child options in the descendant level
@@ -118,7 +116,7 @@
         * If children may be present, initates an ajax request with
         * callback to loadInto() to load the child options
         *
-        * @param jquery select object that has been changed
+        * @param select - jquery select object that has been changed
         * @return boolean wether or not a request to load children was initiated
         */
         var selectChange = function( select ) {
@@ -146,7 +144,8 @@
             var levelName =  getLevelName( select );
             var childLevelName =  getLevelName( childSelect );
 
-            url = ajaxUrl + '?';
+            var url = ajaxUrl + '?';
+            url = url + 'schema='+schema;
             $.each(parentLevels, function(index, level) {
                 var value = $(element).find('.' + level + 'Select' ).val();
                 url = url + '&' + level + '=' + value;
@@ -190,7 +189,7 @@
         
         /**
         * Get the right most select that has a value
-        * @param jquery collection of selects
+        * @param selects jquery collection of selects
         */
         var getCurrentLevelSelect = function( selects ) {
             var selected;

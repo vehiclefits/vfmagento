@@ -58,7 +58,7 @@ class VF_Level_Finder extends VF_Level_Finder_Abstract
     {
         if(is_string($level))
         {
-            $level = new VF_Level($level);
+            $level = new VF_Level($level, null, $this->schema);
         }
         return $this->selector()->listAll( $level, $parent_id );
     }

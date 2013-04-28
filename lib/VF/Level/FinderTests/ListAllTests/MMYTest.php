@@ -94,6 +94,15 @@ class VF_Level_FinderTests_ListAllTests_MMYTest extends Elite_Vaf_TestCase
         $actual = $model->listAll($vehicle1->getLevel('make')->getId());
         $this->assertEquals( 'A', $actual[0]->getTitle(), 'should sort items' );
         $this->assertEquals( 'B', $actual[1]->getTitle(), 'should sort items' );
-    }  
+    }
+
+    function testShouldListChildrenLevelsInSecondSchema()
+    {
+        $schema = VF_Schema::create('foo,bar');
+        $vehicle = $this->createVehicle(array('foo'=>'123','bar'=>'456'),$schema);
+        $bar = new VF_Level('bar',null,$schema);
+        $actual = $bar->listAll($vehicle->getValue('foo'));
+        $this->assertEquals('456',$actual[0]->getTitle(), 'should list children levels in 2nd schema');
+    }
     
 }
