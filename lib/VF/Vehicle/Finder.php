@@ -121,13 +121,7 @@ class VF_Vehicle_Finder implements VF_Configurable
     function findByRangeIds($levelIds)
     {
         $vehicles = array();
-        if ($levelIds['year_start'] > $levelIds['year_end']) {
-            $year_end = $levelIds['year_start'];
-            $year_start = $levelIds['year_end'];
-
-            $levelIds['year_start'] = $year_start;
-            $levelIds['year_end'] = $year_end;
-        }
+        $levelIds = $this->ensureYearStartAndYearEndArentBackwards($levelIds);
 
         $year_start = $levelIds['year_start'];
         $year_end = $levelIds['year_end'];
@@ -429,4 +423,15 @@ class VF_Vehicle_Finder implements VF_Configurable
         return $levelIds;
     }
 
+    function ensureYearStartAndYearEndArentBackwards($levelIds)
+    {
+        if ($levelIds['year_start'] > $levelIds['year_end']) {
+            $year_end = $levelIds['year_start'];
+            $year_start = $levelIds['year_end'];
+
+            $levelIds['year_start'] = $year_start;
+            $levelIds['year_end'] = $year_end;
+        }
+        return $levelIds;
+    }
 }
