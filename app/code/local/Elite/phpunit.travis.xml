@@ -24,7 +24,7 @@
     <testsuites>
         <testsuite name="vfall">
             <directory>Vaf*/</directory>
-            <directory>../../../../lib/VF</directory>
+            <directory>../../../../lib/Vehicle-Fits-Core/library/VF</directory>
             <directory>../../../../vf-documentation</directory>
             <exclude>performanceTests/*</exclude>
         </testsuite>
@@ -32,7 +32,7 @@
             <directory>Vaf*/</directory>
         </testsuite>
         <testsuite name="vfcore">
-            <directory>../../../../lib/VF</directory>
+            <directory>../../../../lib/Vehicle-Fits-Core/library/VF</directory>
         </testsuite>
         <testsuite name="vfdocs">
             <directory>../../../../vf-documentation</directory>

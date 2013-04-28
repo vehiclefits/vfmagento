@@ -47,6 +47,7 @@ set_include_path(
         PATH_SEPARATOR . MAGE_PATH . '/app/code/local/'
         . PATH_SEPARATOR . MAGE_PATH . '/app/code/core/'
         . PATH_SEPARATOR . MAGE_PATH . '/lib/'
+        . PATH_SEPARATOR . MAGE_PATH . '/lib/Vehicle-Fits-Core/library/'
         . PATH_SEPARATOR . get_include_path()
 );
 
