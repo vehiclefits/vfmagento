@@ -1,11 +1,4 @@
-<fieldset>
-    <legend>Database</legend>
-    Type name of levels seperated by comma: <input type="text" name="levels" value="<?=( isset( $_REQUEST['levels'] ) ? $_REQUEST['levels'] : 'make,model,year' )?>" /> (ex. "make,model, year")
-    <br />
-    <input type="checkbox" name="generateDb" value="1" checked="checked" /> Generate Database SQL
-    <br />
-    <input type="checkbox" name="runDb" value="1" /> Run Database SQL
-    <?php
+<?php
 /**
  * Vehicle Fits
  *
@@ -28,6 +21,15 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
+?>
+<fieldset>
+    <legend>Database</legend>
+    Type name of levels seperated by comma: <input type="text" name="levels" value="<?=( isset( $_REQUEST['levels'] ) ? $_REQUEST['levels'] : 'make,model,year' )?>" /> (ex. "make,model, year")
+    <br />
+    <input type="checkbox" name="generateDb" value="1" checked="checked" /> Generate Database SQL
+    <br />
+    <input type="checkbox" name="runDb" value="1" /> Run Database SQL
+    <?php
     if( isset( $_REQUEST['levels'] ) && isset( $_REQUEST['runDb'] ) )
     {
         $generator = new VF_Schema_Generator();

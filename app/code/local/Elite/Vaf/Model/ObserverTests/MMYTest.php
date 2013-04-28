@@ -43,6 +43,37 @@ class Elite_Vaf_Model_ObserverTests_MMYTest extends Elite_Vaf_Model_ObserverTest
 
         $this->assertTrue($product->fitsVehicle($vehicle), 'should have added the vehicle');
     }
+
+    function testShouldInsertOneRowWhenAddFitment()
+    {
+        $product = $this->product();
+        $vehicle = $this->createVehicle(array('make'=>'Honda', 'model'=>'Civic', 'year'=>2000));
+
+        // request to add a vehicle based upon it's 'formatted string' (level name [year] and ID).
+        $formattedString = 'year-'.$vehicle->getValue('year');
+        $request = $this->getRequest();
+        $request->setParam('vaf', array($formattedString));
+
+        $this->observer($request);
+
+        $rows = $this->getReadAdapter()->query('select * from elite_1_mapping')->fetchAll();
+        $this->assertEquals(1, count($rows), 'should insert only 1 row when add fitment');
+    }
+
+    function testShouldNotAddBlankRowWhenAddFitment()
+    {
+        $product = $this->product();
+        $vehicle = $this->createVehicle(array('make'=>'Honda', 'model'=>'Civic', 'year'=>2000));
+
+        // request to add a vehicle based upon it's 'formatted string' (level name [year] and ID).
+        $formattedString = 'year-'.$vehicle->getValue('year');
+        $request = $this->getRequest();
+        $request->setParam('vaf', array($formattedString));
+
+        $this->observer($request);
+
+        $this->assertEquals(1, count($product->getFits()), 'should add only 1 fitment');
+    }
     
     /** @todo get working */
     function testDeleteProductShouldDeleteFits()

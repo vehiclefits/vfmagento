@@ -20,19 +20,6 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-
-/**
- * Vehicle Fits Free Edition - Copyright (c) 2008-2010 by Vehicle Fits, LLC
- * PROFESSIONAL IDENTIFICATION:
- * "www.vehiclefits.com"
- * PROMOTIONAL SLOGAN FOR AUTHOR'S PROFESSIONAL PRACTICE:
- * "Automotive Ecommerce Provided By Vehicle Fits llc"
- *
- * All Rights Reserved
- * VEHICLE FITS ATTRIBUTION ASSURANCE LICENSE (adapted from the original OSI license)
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the conditions in license.txt are met
- */
 class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product implements VF_Configurable
 {
 
@@ -67,9 +54,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
         return $return;
     }
 
-    /**
-     * Get a result set for the fits for this product
-     */
+    /** Get a result set for the fits for this product */
     function getFits()
     {
         if (!is_null($this->fits)) {
@@ -195,11 +180,9 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     }
 
     /**
-     * Add fit(s)
+     * Add one or more fitment(s) described by an array of level IDs
      *
-     * @param array  as described below
-     *
-     *  Examples -  add make 5 and all its children:
+     * Examples -  add make 5 and all its children:
      * array( 'make' => 5 )
      *
      *  ...   is the same as:
@@ -211,8 +194,8 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
      * ... is the same as
      * array( 'year' => 4 )
      *
-     * etc...
-     *
+     * @param array fitToAdd - fitment to add represented as an array keyed by level name [string]
+     * @return integer ID of fitment row created
      */
     function addVafFit(array $fitToAdd)
     {
@@ -275,26 +258,13 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
             $r = $this->query($query);
             return;
         }
-
-        $this->query(
-            sprintf(
-                "
-                    REPLACE INTO
-                        `" . $this->getSchema()->mappingsTable() . "`
-                (
-                    `universal`,
-                    `entity_id`
-                )
-                VALUES
-                (
-                    %d,
-                    %d
-                )
-                ",
-                1,
-                (int)$this->getId()
-            )
-        );
+        $sql = sprintf("REPLACE INTO `" . $this->getSchema()->mappingsTable() . "`
+                        (`universal`,`entity_id`)
+                        VALUES
+                        (%d,%d)",
+                        1,
+                        (int)$this->getId());
+        $this->query($sql);
     }
 
     function getName()
@@ -419,7 +389,6 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
      */
     function doAddFit($entity)
     {
-
         $vehicleFinder = new VF_Vehicle_Finder(new VF_Schema);
         $params = array($entity->getType() => $entity->getTitle());
         $vehicles = $vehicleFinder->findByLevels($params);

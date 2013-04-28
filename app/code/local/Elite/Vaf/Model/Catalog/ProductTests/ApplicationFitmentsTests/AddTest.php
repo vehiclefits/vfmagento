@@ -30,12 +30,23 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_AddTest exte
     {
         $this->switchSchema('make,model,year');
     }
+
+    function testShouldAddOnlyOneFitment()
+    {
+        $product = $this->getProduct(self::PRODUCT_ID);
+        $vehicle = $this->createMMY();
+
+        $product->addVafFit( $vehicle->toValueArray() );
+
+        $this->assertEquals(1, count($product->getFits()), 'should add only 1 fitment');
+    }
     
     function testAddSingle()
     {
         $product = $this->getProduct(self::PRODUCT_ID);
         $vehicle = $this->createMMY();
-        $mapping_id = $product->addVafFit( $vehicle->toValueArray() );
+
+        $product->addVafFit( $vehicle->toValueArray() );
         
         $actualRow = $this->getMappingRow( array('make_id'=>$vehicle->getLevel('make')->getId(),'model_id'=>$vehicle->getLevel('model')->getId(),'year_id'=>$vehicle->getLevel('year')->getId()));
         $this->assertEquals( $vehicle->getLevel('make')->getId(), $actualRow['make_id'] );
@@ -53,7 +64,7 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_AddTest exte
         $vehicle1 = $this->createMMY('Make', 'Model1');
         $vehicle2 = $this->createMMY('Make', 'Model2');
 
-        $mapping_id = $product->addVafFit( array('make'=>$vehicle1->getLevel('make')->getId()) );    
+        $product->addVafFit( array('make'=>$vehicle1->getLevel('make')->getId()) );
         
         $actual = $product->getFitModels();
         
