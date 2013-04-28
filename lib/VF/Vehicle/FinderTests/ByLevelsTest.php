@@ -24,15 +24,28 @@
 
 class VF_Vehicle_FinderTests_ByLevelsTest extends VF_Vehicle_FinderTests_TestCase
 {
-	function testShouldThrowExceptionForInvalidLevel()
+    /**
+     * @expectedException Exception
+     */
+    function testShouldThrowExceptionForInvalidLevel()
     {
-        return $this->markTestIncomplete();
+        $this->getFinder()->findByLevels( array(
+            'foo'=>'bar'
+        ));
     }
     
     function testShouldFindByAllLevels()
     {
-        $this->createMMY( 'Honda', 'Civic', '2000' );
-        $vehicles = $this->getFinder()->findByLevels( array('make'=>'Honda','model'=>'Civic','year'=>2000));
+        $this->createVehicle(array(
+            'make'=>'Honda',
+            'model'=>'Civic',
+            'year'=>'2000'
+        ));
+        $vehicles = $this->getFinder()->findByLevels( array(
+            'make'=>'Honda',
+            'model'=>'Civic',
+            'year'=>2000
+        ));
         $this->assertEquals(1,count($vehicles),'should find by levels');
     }
     
@@ -44,14 +57,22 @@ class VF_Vehicle_FinderTests_ByLevelsTest extends VF_Vehicle_FinderTests_TestCas
     
     function testShouldFindOneByLevels()
     {
-        $this->createMMY( 'Honda', 'Civic', '2000' );
-        $vehicle = $this->getFinder()->findOneByLevels( array('make'=>'Honda','model'=>'Civic','year'=>2000));
+        $this->createVehicle(array(
+            'make'=>'Honda',
+            'model'=>'Civic',
+            'year'=>'2000'
+        ));
+        $vehicle = $this->getFinder()->findOneByLevels( array(
+            'make'=>'Honda',
+            'model'=>'Civic',
+            'year'=>2000
+        ));
         $this->assertEquals( 'Honda Civic 2000', (string)$vehicle, 'should find one vehicle by levels');
     }
     
     function testShouldFindByMakeAndYear()
     {
-	$this->createMMY( 'Not Honda', 'Civic', '2000' );
+	    $this->createMMY( 'Not Honda', 'Civic', '2000' );
         $this->createMMY( 'Honda', 'Accord', '2000' );
         $this->createMMY( 'Honda', 'Accord', '6666' );
         $vehicles = $this->getFinder()->findByLevels( array('make'=>'Honda','year'=>'2000'));
@@ -142,11 +163,5 @@ class VF_Vehicle_FinderTests_ByLevelsTest extends VF_Vehicle_FinderTests_TestCas
         
         $vehicles = $this->getFinder()->findByLevels( array('make'=>'.\+*?[^]$(){}=!<>|:-'), true );
         $this->assertEquals(1,count($vehicles),'should escape regex');
-    }
-    
-    function testShouldIgnoreUnknownLevels()
-    {
-        $vehicles = $this->getFinder()->findByLevels( array('foo'=>'bar') );
-        $this->assertEquals( 0, count($vehicles));
     }
 }

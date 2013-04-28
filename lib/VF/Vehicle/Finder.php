@@ -139,7 +139,13 @@ class VF_Vehicle_Finder implements VF_Configurable
     function findByRange($levels)
     {
         $vehicles = array();
-        for ($year = $levels['year_start']; $year <= $levels['year_end']; $year++) {
+        $year_start = $levels['year_start'];
+        $year_end = $levels['year_end'];
+
+        unset($levels['year_start']);
+        unset($levels['year_end']);
+
+        for ($year = $year_start; $year <= $year_end; $year++) {
             $theseVehicles = $this->findByLevels($levels + array('year' => $year));
             $vehicles = array_merge($vehicles, $theseVehicles);
         }
@@ -152,7 +158,7 @@ class VF_Vehicle_Finder implements VF_Configurable
      */
     function findByLevels($levels, $includePartials = false)
     {
-        $levels = $this->removeInvalidLevels($levels);
+        $levels = $this->checkForInvalidLevels($levels);
 
         $select = $this->select()
             ->from('elite_' . $this->schema->id() . '_definition')
@@ -368,12 +374,11 @@ class VF_Vehicle_Finder implements VF_Configurable
         return new VF_Select($this->getReadAdapter());
     }
 
-    function removeInvalidLevels($levels)
+    function checkForInvalidLevels($levels)
     {
         foreach ($levels as $level => $value) {
             if (!in_array($level, $this->schema->getLevels())) {
-                unset($levels[$level]);
-                continue;
+                throw new Exception('Invalid level '.$level);
             }
         }
         return $levels;
