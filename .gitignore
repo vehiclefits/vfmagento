@@ -2,3 +2,6 @@ app/code/local/Elite/Vaf/config.ini
 app/code/local/Elite/phpunit.xml
 app/code/local/Elite/vendor
 composer.lock
+/app/code/local/Elite/Vafimporter/cron/product-fitments-import.csv.log
+/app/code/local/Elite/Vafimporter/cron/vaf-export-1366771527.csv
+/app/code/local/Elite/product-fitments-import.csv.log
