@@ -257,7 +257,7 @@ class VF_Vehicle_Finder implements VF_Configurable
         $select = new VF_Select($this->getReadAdapter());
         $select
             ->from('elite_' . $this->schema->id() . '_definition')
-            ->addLevelTitles('elite_' . $this->schema->id() . '_definition', $levelsToSelect);
+            ->addLevelTitles('elite_' . $this->schema->id() . '_definition', $levelsToSelect, $this->schema);
 
         foreach ($this->schema->getLevels() as $level) {
             $value = false;
@@ -277,6 +277,7 @@ class VF_Vehicle_Finder implements VF_Configurable
                 }
             }
         }
+
         $result = $this->query($select)->fetchAll(Zend_Db::FETCH_OBJ);
 
         $return = array();

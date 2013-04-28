@@ -120,6 +120,42 @@ $values2 = $vehicle2->toValueArray();
 
             multiTreeClick( 'foo', <?=$values2['foo']?> );
         });
+
+        test("'quick add' make should 'quick add' new make to make select box", function() {
+            stop();
+            expect(3);
+            jQuery('.vafQuickAdd_make').val('Acura');
+            jQuery('.makeSelect').bind('vafLevelQuickAdd', function() {
+
+                jQuery('.makeSelect').unbind('vafLevelQuickAdd');
+
+                equals( jQuery('.makeSelect option:last').text(), 'Acura', "Should add option with title Acura" );
+                ok( jQuery('.makeSelect option:last').val() != 0, "Added option should have an id" );
+                equals( jQuery('.vafQuickAdd_make').val(), "", "should clear quick add box afterwards" );
+
+                start();
+
+            });
+            jQuery('.vafQuickAddSubmit_make').click();
+        });
+
+        test("'quick add' foo should 'quick add' new foo to make select box", function() {
+            stop();
+            expect(3);
+            jQuery('.vafQuickAdd_foo').val('abc');
+            jQuery('.fooSelect').bind('vafLevelQuickAdd', function() {
+
+                jQuery('.fooSelect').unbind('vafLevelQuickAdd');
+
+                equals( jQuery('.fooSelect option:last').text(), 'abc', "Should add option with title Acura" );
+                ok( jQuery('.fooSelect option:last').val() != 0, "Added option should have an id" );
+                equals( jQuery('.vafQuickAdd_foo').val(), "", "should clear quick add box afterwards" );
+
+                start();
+
+            });
+            jQuery('.vafQuickAddSubmit_foo').click();
+        });
     });
 </script>
 </body>

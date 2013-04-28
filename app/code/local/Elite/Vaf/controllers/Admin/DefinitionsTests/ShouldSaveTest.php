@@ -59,5 +59,19 @@ class Elite_Vaf_Adminhtml_Block_DefinitionsTests_ShouldSaveTest extends Elite_Va
         $this->assertTrue($this->vehicleExists(array('make'=>self::TITLE),true));
     }
 
-    
+    function testSaveActionNewMultipleSchemas()
+    {
+        $schema = VF_Schema::create('foo,bar');
+        $request = $this->getRequest( array(
+            'save' => self::ARBITRARY_STRING, // FOR some reason the way this was implemented in the view script, the save button passes the id for editing, but an arbitrary string when doing new
+            'title' => '123',
+            'entity'=>'foo',
+            'schema'=>$schema->id()
+        ));
+        $controller = $this->definitionsController($request);
+
+        $controller->saveAction();
+        $this->assertTrue($this->vehicleExists(array('foo'=>'123'), true, $schema));
+    }
+
 }

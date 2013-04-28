@@ -137,4 +137,12 @@ class VF_Vehicle_FinderTests_ByLevelIdsTest extends VF_Vehicle_FinderTests_TestC
         $this->assertEquals(0, $vehicle->getValue('model'));
     }
 
+    function testShouldFindInSecondSchema()
+    {
+        $schema = VF_Schema::create('foo,bar');
+        $vehicle = $this->createVehicle(array('foo'=>'123','bar'=>'456'),$schema);
+        $found = $this->getFinder($schema)->findOneByLevelIds(array('foo'=>$vehicle->getValue('foo')));
+        $this->assertEquals($vehicle->getValue('foo'), $found->getValue('foo'), 'should find in second schema');
+    }
+
 }

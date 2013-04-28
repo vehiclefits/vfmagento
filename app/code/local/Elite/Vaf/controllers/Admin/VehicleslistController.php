@@ -126,8 +126,9 @@ class Elite_Vaf_Admin_VehicleslistController extends Mage_Adminhtml_Controller_A
 
     function saveAction()
     {
+        $schema = new VF_Schema($this->getRequest()->getParam('schema'));
         $dataToSave = $this->requestLevels();
-        $vehiclesFinder = new VF_Vehicle_Finder(new VF_Schema());
+        $vehiclesFinder = new VF_Vehicle_Finder($schema);
         $vehicle = $vehiclesFinder->findOneByLevelIds($dataToSave,VF_Vehicle_Finder::INCLUDE_PARTIALS);
         if($vehicle){
             $dataToSave = $vehicle->toTitleArray();
@@ -136,7 +137,7 @@ class Elite_Vaf_Admin_VehicleslistController extends Mage_Adminhtml_Controller_A
         }
 
         $dataToSave[$this->getRequest()->getParam('entity')] = $this->getRequest()->getParam('title');
-        $vehicle = VF_Vehicle::create(new VF_Schema(), $dataToSave);
+        $vehicle = VF_Vehicle::create($schema, $dataToSave);
         $vehicle->save();
 
         if ($this->getRequest()->isXmlHttpRequest()) {

@@ -23,9 +23,9 @@
  */
 abstract class VF_Vehicle_FinderTests_TestCase extends Elite_Vaf_TestCase
 {
-	protected function getFinder()
+	protected function getFinder($schema=null)
     {
-        $schema = new VF_Schema;
+        $schema = $schema ? $schema : new VF_Schema;
         return new VF_Vehicle_Finder( $schema );
     }
 }

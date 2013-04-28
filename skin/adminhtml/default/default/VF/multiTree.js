@@ -347,9 +347,10 @@
             var parentId = parentSelect.find('option:selected').val();
             
             var url = quickAddUrl + '?';
+            url = url + 'schema=' + schema;
             if( undefined != parentId )
             {
-                url = url + 'id=' + parentId;
+                url = url + '&id=' + parentId;
             }
             $.each(parentLevels, function(index, level) {
                 var value = $(element).find('.' + level + 'Select' ).val();
