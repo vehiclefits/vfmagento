@@ -139,7 +139,7 @@ class VF_FlexibleSearch implements VF_FlexibleSearch_Interface
             if (isset($params['year_start']) && isset($params['year_end'])) {
                 $vehicles = $vehicleFinder->findByRangeIds($params);
             } else {
-                $vehicles = $vehicleFinder->findByLevelIds($params, VF_Vehicle_Finder::EXACT_ONLY);
+                $vehicles = $vehicleFinder->findByLevelIds($params, VF_Vehicle_Finder::INCLUDE_PARTIALS);
             }
             $selection = new VF_Vehicle_Selection($vehicles);
             return $selection;

@@ -200,7 +200,7 @@ class Elite_Vaf_Admin_VehicleslistController extends Mage_Adminhtml_Controller_A
         if(isset($_POST['submit']))
         {
             $titles = explode(',', $_POST['new_titles']);
-            $vehicle = $this->vehicleFinder()->findOneByLevelIds($this->requestLevels(), VF_Vehicle_Finder::EXACT_ONLY);
+            $vehicle = $this->vehicleFinder()->findOneByLevelIds($this->requestLevels(), VF_Vehicle_Finder::INCLUDE_PARTIALS);
             $split = new Elite_Vaf_Model_Split($vehicle, $_POST['entity'], $titles);
             $split->execute();
             header('location:' . $this->getListUrl2($_REQUEST['entity']) );
@@ -209,7 +209,7 @@ class Elite_Vaf_Admin_VehicleslistController extends Mage_Adminhtml_Controller_A
 
         $params = $this->requestLevels();
         $params[$this->getRequest()->getParam('entity')] = $this->getRequest()->getParam('id');
-        $this->block->vehicle = $this->vehicleFinder()->findOneByLevelIds($params, VF_Vehicle_Finder::EXACT_ONLY);
+        $this->block->vehicle = $this->vehicleFinder()->findOneByLevelIds($params, VF_Vehicle_Finder::INCLUDE_PARTIALS);
         if(!$this->block->vehicle)
         {
             header('location:' . $this->getListUrl2($_REQUEST['entity']) );

@@ -93,7 +93,7 @@ class Elite_Vaf_Model_Split extends Elite_Vaf_Model_Base
     {
         if(!isset($this->vehicleObj))
         {
-            $this->vehicleObj = $this->vehicleFinder()->findOneByLevelIds( $this->vehicleParams(), VF_Vehicle_Finder::EXACT_ONLY );
+            $this->vehicleObj = $this->vehicleFinder()->findOneByLevelIds( $this->vehicleParams(), VF_Vehicle_Finder::INCLUDE_PARTIALS );
         }
         return $this->vehicleObj;        
     }

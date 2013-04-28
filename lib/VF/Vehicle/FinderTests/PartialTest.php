@@ -27,7 +27,7 @@ class VF_Vehicle_FinderTests_PartialTest extends VF_Vehicle_FinderTests_TestCase
     {
         $vehicleCreated = $this->createVehicle(array('make'=>'Ford/Honda'));
         
-        $vehicleFound = $this->getFinder()->findOneByLevelIds( array('make'=>$vehicleCreated->getValue('make')), VF_Vehicle_Finder::EXACT_ONLY );
+        $vehicleFound = $this->getFinder()->findOneByLevelIds( array('make'=>$vehicleCreated->getValue('make')), VF_Vehicle_Finder::INCLUDE_PARTIALS );
         $this->assertEquals($vehicleCreated->getValue('make'), $vehicleFound->getValue('make'), 'should find newly created level');
     }
 }

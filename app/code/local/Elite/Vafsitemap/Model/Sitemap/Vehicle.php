@@ -40,7 +40,7 @@ class Elite_Vafsitemap_Model_Sitemap_Vehicle extends VF_Import_Abstract
         $vehicleFinder = new VF_Vehicle_Finder($this->getSchema());
         $vehicles = $this->doGetDefinitions($perPage, $offset, $productId);
         foreach ($vehicles as $vehicleStdClass) {
-            $vehicle = $vehicleFinder->findOneByLevelIds($vehicleStdClass, VF_Vehicle_Finder::EXACT_ONLY);
+            $vehicle = $vehicleFinder->findOneByLevelIds($vehicleStdClass, VF_Vehicle_Finder::INCLUDE_PARTIALS);
             array_push($return, $vehicle);
         }
         return $return;

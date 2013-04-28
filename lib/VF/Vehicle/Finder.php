@@ -20,19 +20,6 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-
-/**
- * Vehicle Fits Free Edition - Copyright (c) 2008-2010 by Vehicle Fits, LLC
- * PROFESSIONAL IDENTIFICATION:
- * "www.vehiclefits.com"
- * PROMOTIONAL SLOGAN FOR AUTHOR'S PROFESSIONAL PRACTICE:
- * "Automotive Ecommerce Provided By Vehicle Fits llc"
- *
- * All Rights Reserved
- * VEHICLE FITS ATTRIBUTION ASSURANCE LICENSE (adapted from the original OSI license)
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the conditions in license.txt are met
- */
 class VF_Vehicle_Finder implements VF_Configurable
 {
 
@@ -41,7 +28,6 @@ class VF_Vehicle_Finder implements VF_Configurable
     protected $config;
 
     const INCLUDE_PARTIALS = 1;
-    const EXACT_ONLY = 2;
     static $IDENTITY_MAP_FINDBYLEVEL = array();
 
     function __construct(VF_Schema $schema)
@@ -234,7 +220,7 @@ class VF_Vehicle_Finder implements VF_Configurable
     {
         $levelsToSelect = array();
         foreach ($this->schema->getLevels() as $level) {
-            if (self::EXACT_ONLY == $mode) {
+            if (self::INCLUDE_PARTIALS == $mode) {
                 $value = 0;
             } else {
                 $value = false;
@@ -248,7 +234,7 @@ class VF_Vehicle_Finder implements VF_Configurable
             {
                 continue;
             }
-            if (self::EXACT_ONLY == $mode && !$levelIds[$level]) {
+            if (self::INCLUDE_PARTIALS == $mode && !$levelIds[$level]) {
                 continue;
             }
             array_push($levelsToSelect, $level);
@@ -271,7 +257,7 @@ class VF_Vehicle_Finder implements VF_Configurable
 
         if (self::INCLUDE_PARTIALS != $mode) {
             foreach ($this->schema->getLevels() as $level) {
-                if (self::EXACT_ONLY != $mode || (isset($levelIds[$level]) && $levelIds[$level])) {
+                if (self::INCLUDE_PARTIALS != $mode || (isset($levelIds[$level]) && $levelIds[$level])) {
                     $level = str_replace(' ', '_', $level);
                     $select->where('elite_' . $this->schema->id() . '_definition.' . $level . '_id != 0');
                 }
@@ -283,7 +269,7 @@ class VF_Vehicle_Finder implements VF_Configurable
         $return = array();
         foreach ($result as $row) {
             foreach ($this->schema->getLevels() as $level) {
-                if (self::EXACT_ONLY == $mode && (!in_array($level, $levelsToSelect)) && $row->{$level . '_id'}) {
+                if (self::INCLUDE_PARTIALS == $mode && (!in_array($level, $levelsToSelect)) && $row->{$level . '_id'}) {
                     foreach ($this->schema->getNextLevelsIncluding($level) as $level) {
                         $row->{$level . '_id'} = 0;
                         $row->{$level} = '';
@@ -300,7 +286,7 @@ class VF_Vehicle_Finder implements VF_Configurable
                     continue;
                 }
 
-                if ((!$mode || self::EXACT_ONLY == $mode) && (!isset($levelIds[$level]) || !$levelIds[$level]) && !$row->{$level . '_id'}) {
+                if ((!$mode || self::INCLUDE_PARTIALS == $mode) && (!isset($levelIds[$level]) || !$levelIds[$level]) && !$row->{$level . '_id'}) {
                     continue;
                 }
             }

@@ -141,7 +141,7 @@ class VF_Vehicle_FinderTests_Partial_ByLevelIdsTest extends VF_Vehicle_FinderTes
         $vehicle = $this->createMMY('Honda', 'Civic', '2000');
 
         $params = array('make' => $vehicle->getValue('make'));
-        $vehicles = $this->getFinder()->findByLevelIds($params, VF_Vehicle_Finder::EXACT_ONLY);
+        $vehicles = $this->getFinder()->findByLevelIds($params, VF_Vehicle_Finder::INCLUDE_PARTIALS);
         $this->assertEquals(1, count($vehicles), 'zero should exclude full vehicles');
     }
 
@@ -150,7 +150,7 @@ class VF_Vehicle_FinderTests_Partial_ByLevelIdsTest extends VF_Vehicle_FinderTes
         $vehicle = $this->createMMY('Honda', 'Civic', '2000');
 
         $params = array('make' => $vehicle->getValue('make'));
-        $vehicle = $this->getFinder()->findOneByLevelIds($params, VF_Vehicle_Finder::EXACT_ONLY);
+        $vehicle = $this->getFinder()->findOneByLevelIds($params, VF_Vehicle_Finder::INCLUDE_PARTIALS);
         $this->assertEquals(0, $vehicle->getValue('model'));
     }
 }

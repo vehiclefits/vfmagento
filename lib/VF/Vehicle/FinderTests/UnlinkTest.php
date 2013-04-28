@@ -36,7 +36,7 @@ class VF_Vehicle_FinderTests_UnlinkTest extends VF_Import_TestCase
         $params = array(
             'make' => $makeId
         );
-        $this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::EXACT_ONLY )->unlink();
+        $this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::INCLUDE_PARTIALS )->unlink();
         
         $this->assertFalse( $this->levelExists('make', $makeId), 'when unlink make should delete make');
     }
@@ -50,7 +50,7 @@ class VF_Vehicle_FinderTests_UnlinkTest extends VF_Import_TestCase
             'make' => $makeId
         );
         
-        $t =$this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::EXACT_ONLY );
+        $t =$this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::INCLUDE_PARTIALS );
         $t->unlink();
         
         $this->assertFalse( $this->vehicleExists(array('make'=>'Honda')), 'when unlink make should delete partial vehicle record');
@@ -66,7 +66,7 @@ class VF_Vehicle_FinderTests_UnlinkTest extends VF_Import_TestCase
         $params = array(
             'make' => $makeId
         );
-        $this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::EXACT_ONLY )->unlink();
+        $this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::INCLUDE_PARTIALS )->unlink();
         
         $this->assertFalse( $this->levelExists('make', $makeId), 'when unlink make, should delete make (from import)');
     }
@@ -79,7 +79,7 @@ class VF_Vehicle_FinderTests_UnlinkTest extends VF_Import_TestCase
         $params = array(
             'make' => $makeId
         );
-        $this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::EXACT_ONLY )->unlink();
+        $this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::INCLUDE_PARTIALS )->unlink();
         
         $modelId = $originalVehicle->getValue('model');
         $this->assertFalse( $this->levelExists('model', $modelId), 'when unlink make, should delete model');
@@ -94,7 +94,7 @@ class VF_Vehicle_FinderTests_UnlinkTest extends VF_Import_TestCase
         $params = array(
             'make' => $makeId
         );
-        $this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::EXACT_ONLY )->unlink();
+        $this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::INCLUDE_PARTIALS )->unlink();
         
         $modelId = $originalVehicle1->getValue('model');
         $this->assertFalse( $this->levelExists('model', $modelId), 'when unlink make, should delete model');
@@ -113,7 +113,7 @@ class VF_Vehicle_FinderTests_UnlinkTest extends VF_Import_TestCase
         $params = array(
             'make' => $makeId,
         );
-        $this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::EXACT_ONLY )->unlink();
+        $this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::INCLUDE_PARTIALS )->unlink();
         
         $this->assertFalse( $this->levelExists('year', $yearId), 'when unlink make, should delete year');
     }
@@ -130,7 +130,7 @@ class VF_Vehicle_FinderTests_UnlinkTest extends VF_Import_TestCase
             'model'=>$modelId
         );
 
-        $this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::EXACT_ONLY )->unlink();
+        $this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::INCLUDE_PARTIALS )->unlink();
         
         $this->assertTrue( $this->levelExists('make', $makeId), 'when unlink model, should retain make');
     }
@@ -146,7 +146,7 @@ class VF_Vehicle_FinderTests_UnlinkTest extends VF_Import_TestCase
             'make'=>$makeId,
             'model'=>$modelId
         );
-        $this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::EXACT_ONLY )->unlink();
+        $this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::INCLUDE_PARTIALS )->unlink();
                 
         $this->assertFalse( $this->levelExists('model', $modelId), 'when unlink model, should delete model' );
     }
@@ -163,7 +163,7 @@ class VF_Vehicle_FinderTests_UnlinkTest extends VF_Import_TestCase
             'make'=>$make->getId(),
             'model'=>$model->getId()
         );
-        $this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::EXACT_ONLY )->unlink();
+        $this->vehicleFinder()->findOneByLevelIds( $params, VF_Vehicle_Finder::INCLUDE_PARTIALS )->unlink();
                 
         $this->assertFalse( $this->levelExists('year', $year->getId()), 'when unlink model, should delete year');
     }

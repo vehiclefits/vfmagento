@@ -157,7 +157,7 @@ class Elite_Vaf_Model_Merge extends Elite_Vaf_Model_Base
         if (!$this->equalsAboveOperatingGrain($slaveVehicle, $master_vehicle))
         {
             $params = $slaveVehicle->levelIdsTruncateAfter($this->operatingGrain());
-            $unlinkTarget = $this->vehicleFinder()->findOneByLevelIds($params, VF_Vehicle_Finder::EXACT_ONLY);
+            $unlinkTarget = $this->vehicleFinder()->findOneByLevelIds($params, VF_Vehicle_Finder::INCLUDE_PARTIALS);
             if ($unlinkTarget)
             {
                 $unlinkTarget->unlink();
