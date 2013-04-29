@@ -23,6 +23,6 @@
 require_once('bootstrap-tests.php');
 set_include_path(
     ELITE_PATH . '../'
-        . PATH_SEPARATOR . '../../../../lib/'
-        . PATH_SEPARATOR . get_include_path()
+    . PATH_SEPARATOR . '../../../../lib/Vehicle-Fits-Core/library/'
+    . PATH_SEPARATOR . get_include_path()
 );
