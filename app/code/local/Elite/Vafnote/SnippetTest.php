@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vafnote_SnippetTest extends Elite_Vaf_TestCase
+class Elite_Vafnote_SnippetTest extends VF_TestCase
 {
     const PRODUCT_ID = 1;
     const NOTE_CODE = 1;

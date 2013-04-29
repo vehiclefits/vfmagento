@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-abstract class Elite_Vaf_Model_Catalog_ProductTests_TestCase extends Elite_Vaf_TestCase
+abstract class Elite_Vaf_Model_Catalog_ProductTests_TestCase extends VF_TestCase
 {
     const PRODUCT_ID = 1;
     const PRODUCT_NAME = 'Widget';

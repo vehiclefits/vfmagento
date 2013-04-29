@@ -22,7 +22,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Elite_Vaflinks_Block_ListTest extends Elite_Vaf_TestCase {
+class Elite_Vaflinks_Block_ListTest extends VF_TestCase {
 
     function testShouldListMakes() {
         $vehicle = $this->createMMY('Honda', 'Civic', '2000');

@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vaf_Adminhtml_Block_DefinitionsTests_ShouldSaveTest extends Elite_Vaf_TestCase
+class Elite_Vaf_Adminhtml_Block_DefinitionsTests_ShouldSaveTest extends VF_TestCase
 {
     const TITLE = 'test title';
     const ARBITRARY_STRING = 'sdfsdf';

@@ -22,7 +22,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Elite_Vafwheel_Model_FlexibleSearchTests_VehicleSearchTest extends Elite_Vaf_TestCase
+class Elite_Vafwheel_Model_FlexibleSearchTests_VehicleSearchTest extends VF_TestCase
 {
 
     /** @var VF_Vehicle */

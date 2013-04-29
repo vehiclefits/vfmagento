@@ -22,7 +22,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Elite_Vaflinks_Block_CMSTest extends Elite_Vaf_TestCase
+class Elite_Vaflinks_Block_CMSTest extends VF_TestCase
 {
 
     function testShouldDisableOutput()

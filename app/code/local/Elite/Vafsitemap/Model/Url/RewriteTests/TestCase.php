@@ -22,7 +22,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-abstract class Elite_Vafsitemap_Model_Url_RewriteTests_TestCase extends Elite_Vaf_TestCase
+abstract class Elite_Vafsitemap_Model_Url_RewriteTests_TestCase extends VF_TestCase
 {
 
     function getSEORequest($uri)

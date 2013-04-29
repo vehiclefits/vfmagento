@@ -22,7 +22,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 require_once 'CartController.php';
-class Elite_Vaf_controllers_CartControllerTest extends Elite_Vaf_TestCase
+class Elite_Vaf_controllers_CartControllerTest extends VF_TestCase
 {
     function testShouldGetGlobalConfig()
     {

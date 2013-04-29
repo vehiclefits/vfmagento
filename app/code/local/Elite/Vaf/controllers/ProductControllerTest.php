@@ -22,7 +22,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 require_once 'ProductController.php';
-class Elite_Vaf_controllers_ProductControllerTest extends Elite_Vaf_TestCase
+class Elite_Vaf_controllers_ProductControllerTest extends VF_TestCase
 {
     const MAKE = 'Honda';
     const MODEL = 'Civic';

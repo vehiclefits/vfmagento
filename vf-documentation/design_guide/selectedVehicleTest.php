@@ -1,5 +1,5 @@
 <?php
-class selectedVehicleTest extends Elite_Vaf_TestCase
+class selectedVehicleTest extends VF_TestCase
 {
     function testSnippet1_WhenNoVehicle()
     {

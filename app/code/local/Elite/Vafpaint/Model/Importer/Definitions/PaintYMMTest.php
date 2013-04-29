@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vafpaint_Model_Importer_Definitions_PaintYMMTest extends Elite_Vaf_TestCase
+class Elite_Vafpaint_Model_Importer_Definitions_PaintYMMTest extends VF_TestCase
 {
     protected $csvData;
     protected $csvFile;

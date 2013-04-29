@@ -21,7 +21,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Elite_Vafsitemap_Model_Url_RewriteTests_VehicleListTests_GeneratesURLS_MMYTest extends Elite_Vaf_TestCase
+class Elite_Vafsitemap_Model_Url_RewriteTests_VehicleListTests_GeneratesURLS_MMYTest extends VF_TestCase
 {
 
     function doSetUp()

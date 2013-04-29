@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class product_wheel_sizes_import_csvTest extends Elite_Vaf_TestCase
+class product_wheel_sizes_import_csvTest extends VF_TestCase
 {
     function testTest()
     {
