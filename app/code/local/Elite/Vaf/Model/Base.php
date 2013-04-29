@@ -70,7 +70,7 @@ abstract class Elite_Vaf_Model_Base
         if( !$this->config instanceof Zend_Config )
         {
             
-            $this->config = Elite_Vaf_Helper_Data::getInstance()->getConfig();
+            $this->config = VF_Singleton::getInstance()->getConfig();
         }    
         return $this->config;
     }
@@ -83,6 +83,6 @@ abstract class Elite_Vaf_Model_Base
     /** @return Zend_Db_Adapter_Abstract */
     protected function getReadAdapter()
     {
-        return Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
+        return VF_Singleton::getInstance()->getReadAdapter();
     }
 }

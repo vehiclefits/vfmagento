@@ -112,7 +112,7 @@ class VF_Search_Mage extends VF_Search
     
     function translate($text)
     {
-        return Elite_Vaf_Helper_Data::getInstance()->__($text);
+        return VF_Singleton::getInstance()->__($text);
     }
     
     function currentCategoryId()
@@ -142,7 +142,7 @@ class VF_Search_Mage extends VF_Search
         {
             return $this->_request;
         }
-        $this->_request = Elite_Vaf_Helper_Data::getInstance()->getRequest();
+        $this->_request = VF_Singleton::getInstance()->getRequest();
         return $this->_request;
     }
 

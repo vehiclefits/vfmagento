@@ -70,6 +70,6 @@ class Elite_Vaftire_Observer_ProductTireSizeBinder
     /** @return Zend_Db_Adapter_Abstract */
     protected function getReadAdapter()
     {
-        return Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
+        return VF_Singleton::getInstance()->getReadAdapter();
     }
 }

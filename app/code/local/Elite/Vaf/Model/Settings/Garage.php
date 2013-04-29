@@ -47,7 +47,7 @@ Set to true to collapse the "year/make/model" search block. If enabled, the cust
     {
 	if (!$this->config instanceof Zend_Config)
 	{
-	    $this->config = Elite_Vaf_Helper_Data::getInstance()->getConfig();
+	    $this->config = VF_Singleton::getInstance()->getConfig();
 	}
 	return $this->config;
     }

@@ -2,7 +2,7 @@
     <div class="head"><h4><?=$this->getHeaderText()?></h4></div>
     <div class="content">                            
     	<?php
-        Elite_Vaf_Helper_Data::getInstance()->storeFitInSession();
+        VF_Singleton::getInstance()->storeFitInSession();
         ?>
     	<?=$this->renderBefore()?>
     	
@@ -43,7 +43,7 @@
                     <?=$this->renderCategoryOptions()?>
                 </select>
                 <?php
-                if(Elite_Vaf_Helper_Data::getInstance()->displayBrTag())
+                if(VF_Singleton::getInstance()->displayBrTag())
                 {
 					echo '<br />';
                 }

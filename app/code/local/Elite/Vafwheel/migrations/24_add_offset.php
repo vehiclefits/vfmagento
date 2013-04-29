@@ -26,7 +26,7 @@ class Vaf24
     function run()
     {
         $schema = new VF_Schema();
-        $db = Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
+        $db = VF_Singleton::getInstance()->getReadAdapter();
         foreach($schema->getLevels() as $level)
         {
             $db->query('ALTER TABLE `elite_product_wheel` ADD `offset` FLOAT NOT NULL ');

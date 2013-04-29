@@ -35,7 +35,7 @@ class Elite_Vaf_Model_Catalog_Category_FilterImpl implements
         if( !$this->config instanceof Zend_Config )
         {
             
-            $this->config = Elite_Vaf_Helper_Data::getInstance()->getConfig();
+            $this->config = VF_Singleton::getInstance()->getConfig();
         }    
         return $this->config;
     }

@@ -98,7 +98,7 @@ class Elite_Vaf_Block_Category_View extends Mage_Catalog_Block_Category_View
     /** @return boolean */
     function vehicleIsSelected()
     {
-        return !Elite_Vaf_Helper_Data::getInstance()->vehicleSelection()->isEmpty();
+        return !VF_Singleton::getInstance()->vehicleSelection()->isEmpty();
     }
     
     function setConfig($config)
@@ -110,7 +110,7 @@ class Elite_Vaf_Block_Category_View extends Mage_Catalog_Block_Category_View
     {
         if( !$this->config instanceof Zend_Config )
         {
-            $this->config = Elite_Vaf_Helper_Data::getInstance()->getConfig();
+            $this->config = VF_Singleton::getInstance()->getConfig();
         }    
         return $this->config;
     }

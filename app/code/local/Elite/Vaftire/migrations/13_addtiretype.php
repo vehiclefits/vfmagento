@@ -21,5 +21,5 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-$db = Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
+$db = VF_Singleton::getInstance()->getReadAdapter();
 $db->query("ALTER TABLE `elite_product_tire` ADD `tire_type` INT( 1 ) NOT NULL");

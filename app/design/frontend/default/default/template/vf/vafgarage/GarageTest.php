@@ -18,7 +18,7 @@ class Elite_Vafgarage_design_frontend_GarageTest extends Elite_Vaf_TestCase
         	'year'=>''
         );
         $this->setRequestParams($requestParams);
-        Elite_Vaf_Helper_Data::getInstance()->storeFitInSession();
+        VF_Singleton::getInstance()->storeFitInSession();
         
         $block = new Elite_Vafgarage_design_garageTestSub;
         $output = $block->_toHtml();

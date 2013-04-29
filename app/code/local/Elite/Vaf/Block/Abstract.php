@@ -31,7 +31,7 @@ abstract class Elite_Vaf_Block_Abstract extends Mage_Core_Block_Template
     {
         if( !$this->config instanceof Zend_Config )
         {
-            $this->config = Elite_Vaf_Helper_Data::getInstance()->getConfig();
+            $this->config = VF_Singleton::getInstance()->getConfig();
         }
         return $this->config;
     }

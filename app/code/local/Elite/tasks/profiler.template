@@ -1,4 +1,4 @@
-//$profiler = Elite_Vaf_Helper_Data::getInstance()->getReadAdapter()->getProfiler();
+//$profiler = VF_Singleton::getInstance()->getReadAdapter()->getProfiler();
 //            $profiler->setEnabled(true);
 
 //            

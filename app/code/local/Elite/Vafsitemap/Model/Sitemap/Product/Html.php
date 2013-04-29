@@ -29,7 +29,7 @@ class Elite_Vafsitemap_Model_Sitemap_Product_Html extends Elite_Vafsitemap_Model
     /** @return VF_Vehicle */
     function getSelectedDefinition()
     {
-        return Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
+        return VF_Singleton::getInstance()->vehicleSelection();
     }
     
     function getCollection()
@@ -52,7 +52,7 @@ class Elite_Vafsitemap_Model_Sitemap_Product_Html extends Elite_Vafsitemap_Model
     
     function filterCollectionByVehicle($collection)
     {
-		$ids = Elite_Vaf_Helper_Data::getInstance()->getProductIds();
+		$ids = VF_Singleton::getInstance()->getProductIds();
         $collection->addIdFilter( $ids );
         $this->filtered = true;
     }

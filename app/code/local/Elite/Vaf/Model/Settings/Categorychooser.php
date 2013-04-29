@@ -76,7 +76,7 @@ Ignores any category IDs listed, they will not show up in the "category chooser"
     {
 	if (!$this->config instanceof Zend_Config)
 	{
-	    $this->config = Elite_Vaf_Helper_Data::getInstance()->getConfig();
+	    $this->config = VF_Singleton::getInstance()->getConfig();
 	}
 	return $this->config;
     }

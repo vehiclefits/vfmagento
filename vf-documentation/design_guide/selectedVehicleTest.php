@@ -42,7 +42,7 @@ class selectedVehicleTest extends VF_TestCase
     function snippet1()
     {
         // Showing products for your: 2009 Honda Civic
-        $vehicleSelection = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
+        $vehicleSelection = VF_Singleton::getInstance()->vehicleSelection();
         if( !$vehicleSelection->isEmpty() )
         {
             $vehicle = $vehicleSelection->getFirstVehicle();
@@ -54,7 +54,7 @@ class selectedVehicleTest extends VF_TestCase
     function snippet2()
     {
         // Showing products for your: 2009 Honda Civic
-        $vehicleSelection = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
+        $vehicleSelection = VF_Singleton::getInstance()->vehicleSelection();
         if( !$vehicleSelection->isEmpty() )
         {
             $vehicle = $vehicleSelection->getFirstVehicle();

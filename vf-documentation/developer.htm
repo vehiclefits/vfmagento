@@ -40,6 +40,9 @@ ln -s ~/www/Vehicle-Fits-Magento/skin/adminhtml/default/default/VF/
 
 cd ~/www/magento/app/design/adminhtml/default/default/template/
 ln -s ~/www/Vehicle-Fits-Magento/app/design/adminhtml/default/default/template/vf/
+
+cd ~/www/magento/app/design/frontend/default/default/template/
+ln -s /home/josh/www/Vehicle-Fits-Magento/app/design/frontend/default/default/template/vf
 </pre>
 This assumes you have Magento installed at ~/www/magento/. We check out the Vehicle Fits repository in ~/www/, we then create symlinks from the points in Magento's directory tree in which our extension normally adds files via unzipping. See the screenshot in figure 1 showing on the left the Magento installation with symlinks into the file structure from the right which only contains our extension. <br />
 

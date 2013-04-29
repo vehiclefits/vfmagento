@@ -227,7 +227,7 @@ class Elite_Vaf_Admin_VehicleslistController extends Mage_Adminhtml_Controller_A
         $this->block = $this->getLayout()->createBlock('adminhtml/vaf_definitions', 'vaf' );
         $this->block->setTemplate( 'vf/vaf/product.phtml' );
 
-        $this->block->products = Elite_Vaf_Helper_Data::getInstance()->getProductIds();
+        $this->block->products = VF_Singleton::getInstance()->getProductIds();
 
         $this->_addContent( $this->block );
         $this->renderLayout();
@@ -346,7 +346,7 @@ class Elite_Vaf_Admin_VehicleslistController extends Mage_Adminhtml_Controller_A
         if( !$this->config instanceof Zend_Config )
         {
 
-            $this->config = Elite_Vaf_Helper_Data::getInstance()->getConfig();
+            $this->config = VF_Singleton::getInstance()->getConfig();
         }
         return $this->config;
     }

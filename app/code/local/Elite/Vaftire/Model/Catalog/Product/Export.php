@@ -51,7 +51,7 @@ class Elite_Vaftire_Model_Catalog_Product_Export
 
     function getProductRows()
     {
-	$query = Elite_Vaf_Helper_Data::getInstance()->getReadAdapter()->select()
+	$query = VF_Singleton::getInstance()->getReadAdapter()->select()
 		->from($this->getProductTable(), array('entity_id','sku'));
 	$rs = $query->query();
 	$ids = array();

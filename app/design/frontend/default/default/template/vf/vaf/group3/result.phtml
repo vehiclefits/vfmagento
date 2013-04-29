@@ -2,7 +2,7 @@
 <?php
 $_coreHelper = $this->helper('core');
 
-$vehicle = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
+$vehicle = VF_Singleton::getInstance()->vehicleSelection();
 $vehicle = new Elite_Vafdiagram_Model_Vehicle($vehicle);
 $serviceCode = $vehicle->serviceCode();
 ?>

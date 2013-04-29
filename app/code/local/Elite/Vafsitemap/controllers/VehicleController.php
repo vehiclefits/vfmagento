@@ -27,7 +27,7 @@ class Elite_Vafsitemap_VehicleController extends Mage_Core_Controller_Front_Acti
     /** Magento uses the "handle" of this action to load the block where the code lives */
     function indexAction()
     { 
-        if( !Elite_Vaf_Helper_Data::getInstance()->getConfig()->seo->htmlSitemap )
+        if( !VF_Singleton::getInstance()->getConfig()->seo->htmlSitemap )
         {
             return;
         }

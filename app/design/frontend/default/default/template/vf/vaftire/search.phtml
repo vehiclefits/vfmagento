@@ -1,8 +1,8 @@
 <?php
-Elite_Vaf_Helper_Data::getInstance()->storeFitInSession();
+VF_Singleton::getInstance()->storeFitInSession();
 
 $finder = new Elite_Vaftire_Model_Finder();
-$flexibleSearch = Elite_Vaf_Helper_Data::getInstance()->flexibleSearch();
+$flexibleSearch = VF_Singleton::getInstance()->flexibleSearch();
 $flexibleSearch = new Elite_Vaftire_Model_FlexibleSearch($flexibleSearch);
 
 $helper = new Zend_View_Helper_FormSelect();

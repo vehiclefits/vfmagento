@@ -92,11 +92,11 @@ globalRewrites = false
         With local rewriting, there a need to modify each template where you want to rewrite the titles, as shown:
         <pre class="kodify php">
 // when global rewrites are off & product fits current vehicle selection
-$product->setCurrentlySelectedFit( Elite_Vaf_Helper_Data::getInstance()->getFit() );
+$product->setCurrentlySelectedFit( VF_Singleton::getInstance()->getFit() );
 $product->getname(); //  Widget for Honda Civic 2002
 
 // when global rewrites are off & product does not fit current vehicle selection
-$product->setCurrentlySelectedFit( Elite_Vaf_Helper_Data::getInstance()->getFit() );
+$product->setCurrentlySelectedFit( VF_Singleton::getInstance()->getFit() );
 $product->getname();  // Widget
         </pre>
    </p>

@@ -41,10 +41,10 @@ class Elite_Vaf_Block_Product_Result extends Elite_Vaf_Block_Product_List
 
     function getHeaderText()
     {
-        $fit = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
+        $fit = VF_Singleton::getInstance()->vehicleSelection();
         if( $fit )
         {            
-            return Elite_Vaf_Helper_Data::getInstance()->__("Products for %s", $this->htmlEscape( $fit->__toString() ) );        
+            return VF_Singleton::getInstance()->__("Products for %s", $this->htmlEscape( $fit->__toString() ) );
         }
         else
         {
@@ -106,7 +106,7 @@ class Elite_Vaf_Block_Product_Result extends Elite_Vaf_Block_Product_List
     
     function getNoResultText()
     {
-        return Elite_Vaf_Helper_Data::getInstance()->__('No matches found.');
+        return VF_Singleton::getInstance()->__('No matches found.');
     }
     
     function getProductCollectionGroupedByCategory()
@@ -155,7 +155,7 @@ class Elite_Vaf_Block_Product_Result extends Elite_Vaf_Block_Product_List
     function productCategoryHashMap($ids)
     {
         // get product ID <-> category ID array
-        $select = Elite_Vaf_Helper_Data::getInstance()->getReadAdapter()
+        $select = VF_Singleton::getInstance()->getReadAdapter()
                     ->select()
                     ->from('catalog_category_product_index', array('category_id','product_id'))
                     ->where('product_id IN (' . implode(',',$ids) .')')
@@ -202,7 +202,7 @@ class Elite_Vaf_Block_Product_Result extends Elite_Vaf_Block_Product_List
     
     protected function getExcludeCategories()
     {
-        $exclude = explode( ',', Elite_Vaf_Helper_Data::getInstance()->getConfig()->homepagesearch->exclude_categories );
+        $exclude = explode( ',', VF_Singleton::getInstance()->getConfig()->homepagesearch->exclude_categories );
         return $exclude;
     }
     

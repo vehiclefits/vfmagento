@@ -30,7 +30,7 @@
 <p>The vehicle object returned by the getFit() method implements a PHP magic method, allowing it to be treated a string or an object. To display the name of a vehicle, simply echo the object.</p>
 <pre class="kodify php"> 
 // Showing products for your: 2009 Honda Civic
-$vehicleSelection = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
+$vehicleSelection = VF_Singleton::getInstance()->vehicleSelection();
 if( !$vehicleSelection->isEmpty() )
 {
     $vehicle = $vehicleSelection->getFirstVehicle();
@@ -43,7 +43,7 @@ if( !$vehicleSelection->isEmpty() )
 <p>You can fetch each 'level' of the vehicle separately, and form your own custom formats.</p>
 <pre class="kodify php"> 
 // Showing products for your: 2009 Honda Civic
-$vehicleSelection = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
+$vehicleSelection = VF_Singleton::getInstance()->vehicleSelection();
 if( !$vehicleSelection->isEmpty() )
 {
     $vehicle = $vehicleSelection->getFirstVehicle();

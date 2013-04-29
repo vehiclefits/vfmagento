@@ -31,6 +31,6 @@ class Elite_Vafinstall_DatabaseVersion
     
     function db()
     {
-        return Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
+        return VF_Singleton::getInstance()->getReadAdapter();
     }
 }

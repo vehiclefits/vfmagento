@@ -33,7 +33,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     function getConfig()
     {
         if (!$this->config instanceof Zend_Config) {
-            $this->config = Elite_Vaf_Helper_Data::getInstance()->getConfig();
+            $this->config = VF_Singleton::getInstance()->getConfig();
         }
         return $this->config;
     }
@@ -286,7 +286,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
 
     function setFitFromGlobalIfNoLocalFitment()
     {
-        $selection = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
+        $selection = VF_Singleton::getInstance()->vehicleSelection();
         if (!$this->fit && !$selection->isEmpty()) {
             $this->fit = $selection;
         }
@@ -433,7 +433,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     /** @return Zend_Db_Adapter_Abstract */
     protected function getReadAdapter()
     {
-        return Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
+        return VF_Singleton::getInstance()->getReadAdapter();
     }
 
 }

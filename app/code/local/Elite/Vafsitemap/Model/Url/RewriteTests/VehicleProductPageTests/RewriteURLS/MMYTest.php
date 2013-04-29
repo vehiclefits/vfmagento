@@ -81,7 +81,7 @@ class Elite_Vafsitemap_Model_Url_RewriteTests_VehicleProductPageTests_RewriteURL
 
 	$this->rewrite($request);
 
-	Elite_Vaf_Helper_Data::getInstance()->getProductIds();
+	VF_Singleton::getInstance()->getProductIds();
 	$this->assertEquals($vehicle->getLevel('make')->getId(), $_SESSION['make'], 'should look up the right ID#s from the vehicle string');
 	$this->assertEquals($vehicle->getLevel('model')->getId(), $_SESSION['model'], 'should look up the right ID#s from the vehicle string');
 	$this->assertEquals($vehicle->getLevel('year')->getId(), $_SESSION['year'], 'should look up the right ID#s from the vehicle string');
@@ -97,7 +97,7 @@ class Elite_Vafsitemap_Model_Url_RewriteTests_VehicleProductPageTests_RewriteURL
 	$config = new Zend_Config( array('seo'=>array('rewriteLevels'=>'make,model')) );
 	$this->rewrite($request, $config);
 
-	Elite_Vaf_Helper_Data::getInstance()->getProductIds();
+	VF_Singleton::getInstance()->getProductIds();
 	$this->assertEquals($vehicle->getLevel('make')->getId(), $_SESSION['make'], 'should look up the right ID#s from the vehicle string');
 	$this->assertEquals($vehicle->getLevel('model')->getId(), $_SESSION['model'], 'should look up the right ID#s from the vehicle string');
 	$this->assertEquals(0, $_SESSION['year'], 'should store a partial vehicle for custom levels');

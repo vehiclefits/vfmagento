@@ -32,17 +32,17 @@ class Elite_Vafwheel_Model_FlexibleSearchTests_StudSpreadTest extends VF_TestCas
     function testShouldStoreInSession()
     {
         $flexibleSearch = $this->flexibleWheelSearch(array('stud_spread'=>'114.3'));
-        Elite_Vaf_Helper_Data::getInstance()->storeFitInSession();
+        VF_Singleton::getInstance()->storeFitInSession();
         $this->assertEquals( 114.3, $this->flexibleWheelSearch()->studSpread(), 'should store stud spread in session' );
     }
     
     function testShouldClearFromSession()
     {
         $flexibleSearch = $this->flexibleWheelSearch(array('stud_spread'=>'5'));
-        Elite_Vaf_Helper_Data::getInstance()->storeFitInSession();
+        VF_Singleton::getInstance()->storeFitInSession();
         
         $flexibleSearch = $this->flexibleWheelSearch(array('stud_spread'=>'0'));
-        Elite_Vaf_Helper_Data::getInstance()->storeFitInSession();
+        VF_Singleton::getInstance()->storeFitInSession();
         
         $this->assertEquals( 0, $this->flexibleWheelSearch()->studSpread(), 'should clear stud spread from session' );
     }

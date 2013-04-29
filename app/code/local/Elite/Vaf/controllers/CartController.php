@@ -44,7 +44,7 @@ class Elite_Vaf_CartController extends Mage_Checkout_CartController
     {
         if( $this->customerAlreadySelectedFit() )
         {
-            $ids = Elite_Vaf_Helper_Data::getInstance()->getProductIds();
+            $ids = VF_Singleton::getInstance()->getProductIds();
             $product = $this->getRequest()->getParam( 'product' );
             if( in_array( $product, $ids ) )
             {
@@ -97,7 +97,7 @@ class Elite_Vaf_CartController extends Mage_Checkout_CartController
     
     protected function customerAlreadySelectedFit()
     {
-        return !Elite_Vaf_Helper_Data::getInstance()->vehicleSelection()->isEmpty();
+        return !VF_Singleton::getInstance()->vehicleSelection()->isEmpty();
     }
     
     protected function getProductId()
@@ -146,7 +146,7 @@ class Elite_Vaf_CartController extends Mage_Checkout_CartController
     {
         if( !$this->config instanceof Zend_Config )
         {
-            $this->config = Elite_Vaf_Helper_Data::getInstance()->getConfig();
+            $this->config = VF_Singleton::getInstance()->getConfig();
         }    
         return $this->config;
     }

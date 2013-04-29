@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-$db = Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
+$db = VF_Singleton::getInstance()->getReadAdapter();
 
 $db->query("CREATE TABLE IF NOT EXISTS `elite_product_wheeladapter` (
   `entity_id` int(50) NOT NULL,

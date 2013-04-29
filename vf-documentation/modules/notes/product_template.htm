@@ -30,7 +30,7 @@
  &lt;!-- begin fitment notes --&gt;
 &lt;?php
 $noteFinder = new Elite_Vafnote_Model_Finder();
-$vehicle = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection()->getFirstVehicle();
+$vehicle = VF_Singleton::getInstance()->vehicleSelection()->getFirstVehicle();
 
 if( null == $vehicle )
 {

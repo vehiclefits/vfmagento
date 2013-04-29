@@ -135,7 +135,7 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
     /** array('order'=>$order, 'quote'=>$this->getQuote()) */
     function checkoutSaveOrder($event)
     {
-        $fit_id = Elite_Vaf_Helper_Data::getInstance()->getFitId();
+        $fit_id = VF_Singleton::getInstance()->getFitId();
         if ($fit_id) {
             $event->order->setEliteFit($fit_id);
         }
@@ -158,7 +158,7 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
     /** @return Zend_Db_Adapter_Abstract */
     protected function getReadAdapter()
     {
-        return Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
+        return VF_Singleton::getInstance()->getReadAdapter();
     }
 
 }

@@ -114,7 +114,7 @@ class Elite_Vafsitemap_Model_Url_Rewrite extends Mage_Core_Model_Url_Rewrite
 
     function getRequestPathRewritten()
     {
-        $vehicle = Elite_Vaf_Helper_Data::getInstance()->vehicleSelection();
+        $vehicle = VF_Singleton::getInstance()->vehicleSelection();
         return $this->getRequestPathForDefinition($vehicle);
     }
 
@@ -155,7 +155,7 @@ class Elite_Vafsitemap_Model_Url_Rewrite extends Mage_Core_Model_Url_Rewrite
     function getConfig()
     {
         if (!$this->config instanceof Zend_Config) {
-            $this->config = Elite_Vaf_Helper_Data::getInstance()->getConfig();
+            $this->config = VF_Singleton::getInstance()->getConfig();
         }
         return $this->config;
     }

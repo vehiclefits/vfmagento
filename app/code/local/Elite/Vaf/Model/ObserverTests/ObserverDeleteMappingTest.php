@@ -50,7 +50,7 @@ class Elite_Vaf_Model_ObserverDeleteMappingTest extends VF_TestCase
             'model' => $vehicle->getLevel('model')->getId(),
             'year' => $vehicle->getLevel('year')->getId()
         ));
-        $helper = new Elite_Vaf_Helper_Data;
+        $helper = new VF_Singleton;
         $helper->setRequest( $request );
         $this->assertEquals( array(0), $helper->getProductIds(), 'deleting fitments should result in there being no fitments' );
     }

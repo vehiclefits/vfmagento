@@ -32,7 +32,7 @@ class Elite_Vafsitemap_Model_Sitemap_VehicleTests_DefinitionMMTCTest extends VF_
 
     function testDefinitions()
     {
-        $sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle(Elite_Vaf_Helper_Data::getInstance()->getConfig());
+        $sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle(VF_Singleton::getInstance()->getConfig());
         $vehicle = $this->createMMTC();
         $this->insertMappingMMTC( $vehicle );
 

@@ -34,8 +34,8 @@ class Elite_Vaf_Block_Product_Result_Grid extends Elite_Vaf_Block_Product_Result
     {
         $this->getChild('search_result_list')
             ->setAvailableOrders(array(
-                'name' => Elite_Vaf_Helper_Data::getInstance()->__('Name'),
-                'price'=>Elite_Vaf_Helper_Data::getInstance()->__('Price'))
+                'name' => VF_Singleton::getInstance()->__('Name'),
+                'price'=>VF_Singleton::getInstance()->__('Price'))
             );
     }
 
@@ -43,8 +43,8 @@ class Elite_Vaf_Block_Product_Result_Grid extends Elite_Vaf_Block_Product_Result
     {
         $this->getChild('search_result_list')
             ->setModes(array(
-                'grid' => Elite_Vaf_Helper_Data::getInstance()->__('Grid'),
-                'list' => Elite_Vaf_Helper_Data::getInstance()->__('List'))
+                'grid' => VF_Singleton::getInstance()->__('Grid'),
+                'list' => VF_Singleton::getInstance()->__('List'))
             );
     }
 }

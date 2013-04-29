@@ -95,7 +95,7 @@ class Elite_Vaflinks_Block_ListTest extends VF_TestCase {
         $block->setRequest($request);
         $html = $block->toHtml();
 
-        Elite_Vaf_Helper_Data::getInstance()->storeFitInSession();
+        VF_Singleton::getInstance()->storeFitInSession();
 
         // list years
         $block = new Elite_Vaflinks_Block_ListTestSub;
@@ -119,7 +119,7 @@ class Elite_Vaflinks_Block_ListTest extends VF_TestCase {
         $block->setRequest($request);
         $html = $block->toHtml();
 
-        Elite_Vaf_Helper_Data::getInstance()->storeFitInSession();
+        VF_Singleton::getInstance()->storeFitInSession();
 
         // list years
         $block = new Elite_Vaflinks_Block_ListTestSub;

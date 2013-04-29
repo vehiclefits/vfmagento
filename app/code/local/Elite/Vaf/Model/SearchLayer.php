@@ -54,7 +54,7 @@ class Elite_Vaf_Model_SearchLayer extends Mage_CatalogSearch_Model_Layer
             $collection->addSearchFilter(Mage::helper('catalogsearch')->getQuery()->getQueryText());
         }
         
-        $ids = Elite_Vaf_Helper_Data::getInstance()->getProductIds();
+        $ids = VF_Singleton::getInstance()->getProductIds();
         if($ids)
         {
             $collection->addIdFilter($ids);

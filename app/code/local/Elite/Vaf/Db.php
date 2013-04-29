@@ -26,11 +26,11 @@ class Elite_Vaf_Db implements VF_Db
 {
     function getReadAdapter()
     {
-        return Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
+        return VF_Singleton::getInstance()->getReadAdapter();
     }
     
     function getWriteAdapter()
     {
-        return Elite_Vaf_Helper_Data::getInstance()->getWriteAdapter();
+        return VF_Singleton::getInstance()->getWriteAdapter();
     }
 }

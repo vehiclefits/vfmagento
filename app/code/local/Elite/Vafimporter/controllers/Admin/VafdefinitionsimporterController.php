@@ -114,7 +114,7 @@ class Elite_Vafimporter_Admin_VafdefinitionsimporterController extends Mage_Admi
     {
         // profiling
         $profiler = new My_Zend_Db_Profiler;
-        Elite_Vaf_Helper_Data::getInstance()->getReadAdapter()->setProfiler($profiler);
+        VF_Singleton::getInstance()->getReadAdapter()->setProfiler($profiler);
         $profiler->setEnabled(true);
         
         try
@@ -196,7 +196,7 @@ class Elite_Vafimporter_Admin_VafdefinitionsimporterController extends Mage_Admi
     /** @return Zend_Db_Adapter_Abstract */
     protected function getReadAdapter()
     {
-        return Elite_Vaf_Helper_Data::getInstance()->getReadAdapter();
+        return VF_Singleton::getInstance()->getReadAdapter();
     }
 
     protected function checkVersion()

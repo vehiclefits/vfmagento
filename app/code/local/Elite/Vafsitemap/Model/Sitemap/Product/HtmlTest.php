@@ -31,7 +31,7 @@ class Elite_Vafsitemap_Model_Sitemap_Product_HtmlTest extends VF_TestCase
 		$this->switchSchema('make,model,year');
 		$this->expectedDefinition = $this->createMMY();
         $this->setRequestParams( $this->expectedDefinition->toValueArray() );
-        $this->sitemap = new Elite_Vafsitemap_Model_Sitemap_Product_Sub( Elite_Vaf_Helper_Data::getInstance()->getConfig() );
+        $this->sitemap = new Elite_Vafsitemap_Model_Sitemap_Product_Sub( VF_Singleton::getInstance()->getConfig() );
     }
     
     function testSelectedVehicle()

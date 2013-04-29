@@ -44,7 +44,7 @@ abstract class Elite_Vaf_Model_Catalog_CategoryTests_TestCase extends VF_TestCas
     {
         $vehicle = $this->createMMY();
         $this->insertMappingMMY( $vehicle, self::PRODUCT_ID );
-        Elite_Vaf_Helper_Data::getInstance()->getRequest()
+        VF_Singleton::getInstance()->getRequest()
             ->setParam('make',$vehicle->getLevel('make')->getId())
             ->setParam('model',$vehicle->getLevel('model')->getId())
             ->setParam('year',$vehicle->getLevel('year')->getId());

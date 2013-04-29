@@ -94,6 +94,6 @@ class Elite_Vaf_Admin_SchemaController extends Mage_Adminhtml_Controller_Action
     
     function query($sql)
     {
-        return Elite_Vaf_Helper_Data::getInstance()->getReadAdapter()->query($sql);
+        return VF_Singleton::getInstance()->getReadAdapter()->query($sql);
     }     
 }
