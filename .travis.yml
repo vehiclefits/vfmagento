@@ -8,6 +8,7 @@ php:
   - 5.4
 
 before_script:
+  - git submodule update --init
   - mysql -e 'create database vf_magento'
   - cd app/code/local/Elite
   - curl -s http://getcomposer.org/installer | php -- --quiet
