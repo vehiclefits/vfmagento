@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vaf_Block_SearchTests_CategoryChooser_CategoryChooserTest extends Elite_Vaf_Block_SearchTests_TestCase
+class Elite_Vaf_Block_SearchTests_CategoryChooser_CategoryChooserTest extends VF_SearchTestCase
 {
     /**
     * Tests for wether Search shows When it IS the homempage
