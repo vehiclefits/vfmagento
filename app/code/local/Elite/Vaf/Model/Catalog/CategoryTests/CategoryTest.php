@@ -23,6 +23,10 @@
  */
 class Elite_Vaf_Model_Catalog_CategoryTests_CategoryTest extends VF_TestCase
 {
+    function doSetUp()
+    {
+        $this->switchSchema('make,model,year');
+    }
   
     function testGetsProductionConfig()
     {

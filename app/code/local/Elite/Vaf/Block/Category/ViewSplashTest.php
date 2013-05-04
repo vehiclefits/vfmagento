@@ -23,6 +23,11 @@
  */
 class Elite_Vaf_Block_Category_ViewSplashTest extends VF_TestCase
 {
+    function doSetUp()
+    {
+        $this->switchSchema('make,model,year');
+    }
+
     function testWhenNoCategoriesRequireVehicleShouldNotShowSplash()
     {
         $categoryView = new Elite_Vaf_Block_Category_View;
