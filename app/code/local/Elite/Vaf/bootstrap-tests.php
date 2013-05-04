@@ -92,6 +92,11 @@ class Mage_Catalog_Model_Product
     protected $finalPrice;
     protected $minimal_price;
 
+    function __construct()
+    {
+
+    }
+
     function setId( $id )
     {
         $this->id = $id;

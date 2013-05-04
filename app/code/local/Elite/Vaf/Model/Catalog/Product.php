@@ -20,51 +20,21 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product implements VF_Configurable
+class git extends Mage_Catalog_Model_Product implements VF_Configurable
 {
 
-    /** @var Collection of VF_Vehicle */
-    protected $fits = NULL;
-    /** @var VF_Vehicle the customer has associated */
-    protected $fit;
-    /** @var Zend_Config */
-    protected $config;
+    protected $vf_product;
 
-    function getConfig()
+    function __construct()
     {
-        if (!$this->config instanceof Zend_Config) {
-            $this->config = VF_Singleton::getInstance()->getConfig();
-        }
-        return $this->config;
+        $this->vf_product = new VF_Product;
+        parent::__construct();
     }
 
-    function setConfig(Zend_Config $config)
+    function setId($id)
     {
-        $this->config = $config;
-    }
-
-    function getFitModels()
-    {
-        $fits = $this->getFits();
-        $return = array();
-        foreach ($fits as $fitRow) {
-            $fit = $this->createFitFromRow($fitRow);
-            array_push($return, $fit);
-        }
-        return $return;
-    }
-
-    /** Get a result set for the fits for this product */
-    function getFits()
-    {
-        if (!is_null($this->fits)) {
-            return $this->fits;
-        }
-        if ($productId = (int)$this->getId()) {
-            $this->fits = $this->doGetFits($productId);
-            return $this->fits;
-        }
-        return array();
+        $this->vf_product->setId($id);
+        return parent::setId($id);
     }
 
     function getMinimalPrice()
@@ -124,59 +94,40 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
         return parent::getPrice();
     }
 
+    function getConfig()
+    {
+        return $this->vf_product->getConfig();
+    }
+
+    function setConfig(Zend_Config $config)
+    {
+        return $this->vf_product->setConfig($config);
+    }
+
+    function getFitModels()
+    {
+        return $this->vf_product->getFitModels();
+    }
+
+    /** Get a result set for the fits for this product */
+    function getFits()
+    {
+        return $this->vf_product->getFits();
+    }
+
     function customPrice($vehicle)
     {
-        $select = $this->getReadAdapter()->select();
-        $select->from(array('m' => $this->getSchema()->mappingsTable()), array('price'));
-
-        foreach ($vehicle->toValueArray() as $parentType => $parentId) {
-            if (!in_array($parentType, $this->getSchema()->getLevels())) {
-                throw new VF_Level_Exception($parentType);
-            }
-            if (!(int)$parentId) {
-                continue;
-            }
-            $select->where(sprintf('m.`%s_id` = ?', $parentType), $parentId);
-        }
-
-        $select->where('`entity_id` = ?', $this->getId());
-
-        $price = $this->query($select)->fetchColumn();
-        return (!$price) ? null : $price;
+        return $this->vf_product->customPrice($vehicle);
     }
 
     function getOrderBy()
     {
-        $schema = new VF_Schema();
-        $levels = $schema->getLevels();
-        $c = count($levels);
-        $sql = '';
-        for ($i = 0; $i <= $c - 1; $i++) {
-            $sql .= '`' . $levels[$i] . '`' . ($i < $c - 1 ? ',' : '');
-        }
-        return $sql;
+        return $this->vf_product->getOrderBy();
     }
 
     public static function getJoins()
     {
-        $joins = '';
-
-        $schema = new VF_Schema();
-        $levels = $schema->getLevels();
-
-        $c = count($levels);
-        for ($i = 0; $i <= $c - 1; $i++) {
-            $joins .= sprintf(
-                '
-                LEFT JOIN
-                    `elite_%1$s`
-                ON
-                    `elite_%1$s`.`id` = `".$this->getSchema()->mappingsTable()."`.`%1$s_id`
-                ',
-                $levels[$i]
-            );
-        }
-        return $joins;
+        return vf_product::getJoins();
     }
 
     /**
@@ -199,166 +150,85 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
      */
     function addVafFit(array $fitToAdd)
     {
-        $vehicles = $this->vehicleFinder()->findByLevelIds($fitToAdd);
-        $mapping_id = null;
-        foreach ($vehicles as $vehicle) {
-            $mapping_id = $this->insertMapping($vehicle);
-        }
-        return $mapping_id;
+        return $this->vf_product->addVafFit($fitToAdd);
     }
 
     function vehicleFinder()
     {
-        return new VF_Vehicle_Finder($this->getSchema());
+        return $this->vf_product->vehicleFinder();
     }
 
     function insertMapping(VF_Vehicle $vehicle)
     {
-        $mapping = new VF_Mapping($this->getId(), $vehicle);
-        return $mapping->save();
+        return $this->vf_product->insertMapping($vehicle);
     }
 
     function deleteVafFit($mapping_id)
     {
-        $sql = sprintf("DELETE FROM `" . $this->getSchema()->mappingsTable() . "` WHERE `id` = %d", (int)$mapping_id);
-        $this->query($sql);
-
-        if (file_exists(ELITE_PATH . '/Vafnote')) {
-            $sql = sprintf("DELETE FROM `elite_mapping_notes` WHERE `fit_id` = %d", (int)$mapping_id);
-            $this->query($sql);
-        }
+        return $this->vf_product->deleteVafFit($mapping_id);
     }
 
     /** @return boolean */
     function isUniversal()
     {
-        $sql = sprintf(
-            "
-            SELECT
-                count( * )
-            FROM
-                `" . $this->getSchema()->mappingsTable() . "`
-		    WHERE
-		        `entity_id` = %d
-		    AND
-		        `universal` = 1
-		    ",
-            (int)$this->getId()
-        );
-        $result = $this->query($sql);
-        $count = $result->fetchColumn();
-        return $count == 0 ? false : true;
+        return $this->vf_product->isUniversal();
     }
 
     /** @param boolean */
     function setUniversal($universal)
     {
-        if (!$universal) {
-            $query = sprintf("DELETE FROM " . $this->getSchema()->mappingsTable() . " WHERE universal = 1 AND entity_id = %d", $this->getId());
-            $r = $this->query($query);
-            return;
-        }
-        $sql = sprintf("REPLACE INTO `" . $this->getSchema()->mappingsTable() . "`
-                        (`universal`,`entity_id`)
-                        VALUES
-                        (%d,%d)",
-                        1,
-                        (int)$this->getId());
-        $this->query($sql);
+        return $this->vf_product->setUniversal($universal);
     }
 
     function getName()
     {
-        $name = parent::getName();
-        $this->setFitFromGlobalIfNoLocalFitment();
-        if (!$this->rewritesOn() || !$this->fitsSelection()) {
-            return $name;
-        }
-        $template = $this->getConfig()->seo->productNameTemplate;
-        if (empty($template)) {
-            $template = '_product_ for _vehicle_';
-        }
-
-        $find = array('_product_', '_vehicle_');
-        $replace = array($name, (string)$this->currentlySelectedFit()->getFirstVehicle());
-        return str_replace($find, $replace, $template);
+        return $this->vf_product->getName(parent::getName());
     }
 
     function setFitFromGlobalIfNoLocalFitment()
     {
-        $selection = VF_Singleton::getInstance()->vehicleSelection();
-        if (!$this->fit && !$selection->isEmpty()) {
-            $this->fit = $selection;
-        }
+        return $this->vf_product->setFitFromGlobalIfNoLocalFitment();
     }
 
     function rewritesOn()
     {
-        return $this->getConfig()->seo->rewriteProductName;
+        return $this->vf_product->rewritesOn();
     }
 
     function globalRewritesOn()
     {
-        return $this->getConfig()->seo->globalRewrites;
+        return $this->vf_product->globalRewritesOn();
     }
 
     function setCurrentlySelectedFit($fit)
     {
-        $this->fit = new VF_Vehicle_Selection(array($fit));
+        return $this->vf_product->setCurrentlySelectedFit($fit);
     }
 
     function currentlySelectedFit()
     {
-        $this->setFitFromGlobalIfNoLocalFitment();
-        if ($this->fit) {
-            return $this->fit;
-        } else {
-            return new VF_Vehicle_Selection();
-        }
+        return $this->vf_product->currentlySelectedFit();
     }
 
     function fitsSelection()
     {
-        $currentVehicleSelection = $this->currentlySelectedFit();
-        if ($currentVehicleSelection->isEmpty()) {
-            return false;
-        }
-        $vehicle = $currentVehicleSelection->getFirstVehicle();
-        return $this->fitsVehicle($vehicle);
+        return $this->vf_product->fitsSelection();
     }
 
     function fitsVehicle($vehicle)
     {
-        $select = $this->getReadAdapter()->select()
-            ->from($this->getSchema()->mappingsTable(), array('count(*)'))
-            ->where('entity_id = ?', $this->getId());
-        $params = $vehicle->toValueArray();
-        foreach ($params as $param => $value) {
-            $select->where($param .= '_id = ?', $value);
-        }
-
-        $count = $select->query()->fetchColumn();
-        return 0 != $count;
+        return $this->vf_product->fitsVehicle($vehicle);
     }
 
     function isInEnabledCategory(Elite_Vaf_Model_Catalog_Category_Filter $filter)
     {
-        foreach ($this->getCategoryIds() as $categoryId) {
-            if ($filter->shouldShow($categoryId)) {
-                return true;
-            }
-        }
-        return false;
+        $categoryids = $this->getCategoryIds();
+        return $this->vf_product->isInEnabledCategory($filter, $categoryids);
     }
 
     function getMappingId(VF_Vehicle $vehicle)
     {
-        $schema = new VF_Schema;
-        $select = $this->getReadAdapter()->select()
-            ->from($this->getSchema()->mappingsTable(), 'id')
-            ->where($schema->getLeafLevel() . '_id = ?', $vehicle->getLeafValue())
-            ->where('entity_id = ?', $this->getId());
-        return $select->query()->fetchColumn();
+        return $this->vf_product->getMappingId($vehicle);
     }
 
     /**
@@ -368,20 +238,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
      */
     function duplicate()
     {
-        $schema = new VF_Schema();
-        $vehicleFinder = new VF_Vehicle_Finder($schema);
-        $leaf = $schema->getLeafLevel() . '_id';
-
-        $newProduct = parent::duplicate();
-        foreach ($this->getFits() as $fit) {
-            print_r($fit);exit;
-            $vehicle = $vehicleFinder->findByLeaf($fit->$leaf);
-            $newProduct->insertMapping($vehicle);
-        }
-        if ($this->isUniversal()) {
-            $newProduct->setUniversal(true);
-        }
-        return $newProduct;
+        return $this->vf_product->duplicate();
     }
 
     /**
@@ -389,51 +246,33 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
      */
     function doAddFit($entity)
     {
-        $vehicleFinder = new VF_Vehicle_Finder(new VF_Schema);
-        $params = array($entity->getType() => $entity->getTitle());
-        $vehicles = $vehicleFinder->findByLevels($params);
-        return $vehicles;
+        return $this->vf_product->doAddFit($entity);
     }
 
-    protected function createFitFromRow($row)
+    function createFitFromRow($row)
     {
-        $schema = new VF_Schema();
-        return new VF_Vehicle($schema, $row->id, $row);
+        return $this->vf_product->createFitFromRow($row);
     }
 
-    protected function doGetFits($productId)
+    function doGetFits($productId)
     {
-        $select = new VF_Select($this->getReadAdapter());
-        $select->from($this->getSchema()->mappingsTable())
-            ->joinAndSelectLevels()
-            ->where('entity_id=?', $productId);
-        $result = $this->query($select);
-
-        $fits = array();
-        while ($row = $result->fetchObject()) {
-            if ($row->universal) {
-                continue;
-            }
-            $fits[] = $row;
-        }
-        return $fits;
+        return $this->vf_product->doGetFits($productId);
     }
 
     function getSchema()
     {
-        return new VF_Schema();
+        return $this->vf_product->getSchema();
     }
 
     /** @return Zend_Db_Statement_Interface */
-    protected function query($sql)
+    function query($sql)
     {
-        return $this->getReadAdapter()->query($sql);
+        return $this->vf_product->query($sql);
     }
 
     /** @return Zend_Db_Adapter_Abstract */
-    protected function getReadAdapter()
+    function getReadAdapter()
     {
-        return VF_Singleton::getInstance()->getReadAdapter();
+        return $this->vf_product->getReadAdapter();
     }
-
 }

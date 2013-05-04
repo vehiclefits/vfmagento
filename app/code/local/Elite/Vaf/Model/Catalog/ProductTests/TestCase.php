@@ -34,8 +34,8 @@ abstract class Elite_Vaf_Model_Catalog_ProductTests_TestCase extends VF_TestCase
     */
     protected function getProduct( $id = 0 )
     {
-        $product = $this->getMock( 'Elite_Vaf_Model_Catalog_Product', array( 'getId' ) );
-        $product->expects( $this->any() )->method( 'getId' )->will( $this->returnValue( $id ) );
+        $product = new Elite_Vaf_Model_Catalog_Product;
+        $product->setId($id);
         return $product;
     }
         
