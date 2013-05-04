@@ -46,7 +46,7 @@ class Elite_Vafnote_Admin_VafnoteimportController extends Mage_Adminhtml_Control
     {
 		if( isset( $_FILES['file']['error'] ) && $_FILES['file']['error'] === 0 )
         {
-			$importer = new Elite_Vafnote_Model_Import($_FILES['file']['tmp_name']);
+			$importer = new VF_Note_Import($_FILES['file']['tmp_name']);
             $importer->import();
             
             $this->block->messages = 'Done';

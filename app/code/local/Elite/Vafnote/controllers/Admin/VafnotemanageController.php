@@ -26,7 +26,7 @@ class Elite_Vafnote_Admin_VafnotemanageController extends Mage_Adminhtml_Control
 {
     function indexAction()
     {
-        $finder = new Elite_Vafnote_Model_Finder();
+        $finder = new VF_Note_Finder();
         
         if( isset( $_GET['code'] ) && isset($_GET['message']) )
         {
@@ -66,7 +66,7 @@ class Elite_Vafnote_Admin_VafnotemanageController extends Mage_Adminhtml_Control
         
         if( $this->getRequest()->getParam('message') )
         {
-            $finder = new Elite_Vafnote_Model_Finder;
+            $finder = new VF_Note_Finder;
             $id = $this->getRequest()->getParam('id');
             $message = $this->getRequest()->getParam('message');
             $finder->update( $id, $message );

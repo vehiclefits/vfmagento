@@ -107,7 +107,7 @@ class Elite_Vafnote_SnippetTest extends VF_TestCase
     {
         // begin fitment fitment notes
         
-        $noteFinder = new Elite_Vafnote_Model_Finder();
+        $noteFinder = new VF_Note_Finder();
         $vehicle = VF_Singleton::getInstance()->vehicleSelection()->getFirstVehicle();
         
         $product = new Elite_Vaf_Model_Catalog_Product();

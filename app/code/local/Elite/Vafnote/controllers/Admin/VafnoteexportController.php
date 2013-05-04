@@ -44,7 +44,7 @@ class Elite_Vafnote_Admin_VafnoteexportController extends Mage_Adminhtml_Control
 			header(sprintf('Content-Disposition: attachment;filename="vaf-export-%s.csv"',time()));
             header('Content-Type: text/csv');
             
-            $exporter = new Elite_Vafnote_Model_Export($_FILES['file']['tmp_name']);
+            $exporter = new VF_Note_Export($_FILES['file']['tmp_name']);
             echo $exporter->export();
             exit();
         }

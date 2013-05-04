@@ -29,7 +29,7 @@ class Elite_Vafnote_Adminhtml_Block_Edit extends Mage_Adminhtml_Block_Template
     
     function finder()
     {
-        $finder = new Elite_Vafnote_Model_Finder();
+        $finder = new VF_Note_Finder();
         return $finder;
     }
 }

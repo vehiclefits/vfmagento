@@ -27,7 +27,7 @@ class Elite_Vafnote_Adminhtml_Block_Manage extends Mage_Adminhtml_Block_Template
     
     function notes()
     {
-        $finder = new Elite_Vafnote_Model_Finder();
+        $finder = new VF_Note_Finder();
         return $finder->getNotes();
     }
 }
