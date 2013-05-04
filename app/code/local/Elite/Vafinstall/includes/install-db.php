@@ -26,9 +26,9 @@
     <legend>Database</legend>
     Type name of levels separated by comma: <input type="text" name="levels" value="<?=( isset( $_REQUEST['levels'] ) ? $_REQUEST['levels'] : 'make,model,year' )?>" /> (ex. "make,model, year")
     <br />
-    <input type="checkbox" name="generateDb" value="1" checked="checked" /> Generate Database SQL
+    <input id="generateDB" type="checkbox" name="generateDb" value="1" checked="checked" /> Generate Database SQL
     <br />
-    <input type="checkbox" name="runDb" value="1" /> Run Database SQL
+    <input id="runDB" type="checkbox" name="runDb" value="1" /> Run Database SQL
     <?php
     if( isset( $_REQUEST['levels'] ) && isset( $_REQUEST['runDb'] ) )
     {
@@ -42,7 +42,7 @@
             $sql .= $generator->install();
         }
 
-        if( flistTablesile_exists(ELITE_PATH.'/Vafgarage') )
+        if( file_exists(ELITE_PATH.'/Vafgarage') )
         {
             $generator = new Elite_Vafgarage_Model_Schema_Generator();
             $sql .= $generator->install();
@@ -61,6 +61,7 @@
             }
         }
         echo '<br /><b style="color:green">Ok! Database created!</b>';
+
     }
     else if( isset( $_REQUEST['levels'] ) && isset( $_REQUEST['generateDb'] ) )
     {
@@ -72,9 +73,12 @@
             $sql .= $generator->install();
         }
         
-        echo '<br /><textarea onClick="javascript:this.focus();this.select();" cols="100" rows="10">' . $sql . '</textarea>';
+        echo '<br /><textarea id="query_text" onClick="javascript:this.focus();this.select();" cols="100" rows="10">' . $sql . '</textarea>';
         echo '<br /><b style="color:green">Ok!</b></textarea>';
         echo '<br />Now copy and paste this into the SQL tab of your phpmyadmin. Drop any existing "elite_" tables first (but not before backing them up)<br />';
+
+        echo '<script type="text/javascript" src="/skin/adminhtml/default/default/jquery-1.7.1.min.js"></script>';
+        echo '<script type="text/javascript">parent.jQuery("body").trigger("foo");</script>';
     }
     ?>
 </fieldset>
