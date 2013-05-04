@@ -112,7 +112,10 @@ class VF_Search_Mage extends VF_Search
     
     function translate($text)
     {
-        return VF_Singleton::getInstance()->__($text);
+        if(defined('ELITE_TESTING')) {
+            return $text;
+        }
+        return Mage::helper('catalog/product')->__($text);
     }
     
     function currentCategoryId()
