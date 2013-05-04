@@ -20,7 +20,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product implements VF_Configurable
+class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product
 {
 
     protected $vf_product;
@@ -29,6 +29,21 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product impleme
     {
         $this->vf_product = new VF_Product;
         parent::__construct();
+    }
+
+    function VFProduct()
+    {
+        return $this->vf_product;
+    }
+
+    function setData($key, $value = null)
+    {
+        if(is_array($key)) {
+            $this->setId($key['id']);
+        } elseif ('id'==$key || 'entity_id'==$key) {
+            $this->vf_product->setId($value);
+        }
+        return parent::setData($key, $value);
     }
 
     function setId($id)

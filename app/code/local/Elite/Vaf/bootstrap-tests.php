@@ -106,6 +106,11 @@ class Mage_Catalog_Model_Product
     {
         return $this->id;
     }
+
+    function setData($data)
+    {
+        return $this;
+    }
     
     function setName( $name )
     {

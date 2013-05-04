@@ -24,6 +24,35 @@
 class Elite_Vaf_Model_Catalog_ProductTests_ProductTest extends Elite_Vaf_Model_Catalog_ProductTests_TestCase
 {
 
+    function testSetDataShouldSetWrappedProductsIdArray()
+    {
+        $product = new Elite_Vaf_Model_Catalog_Product;
+        $product->setData(array('id'=>4));
+        $this->assertEquals(4,$product->VFProduct()->getId(), "setData() should set the wrapped VF_Product's ID");
+    }
+
+    function testSetDataShouldSetWrappedProductsId()
+    {
+        $product = new Elite_Vaf_Model_Catalog_Product;
+        $product->setData('id',4);
+        $this->assertEquals(4,$product->VFProduct()->getId(), "setData() should set the wrapped VF_Product's ID");
+    }
+
+    function testSetDataShouldSetWrappedEntityId()
+    {
+        $product = new Elite_Vaf_Model_Catalog_Product;
+        $product->setData('entity_id',4);
+        $this->assertEquals(4,$product->VFProduct()->getId(), "setData() should set the wrapped VF_Product's ID");
+    }
+
+    function testSetDataShouldBeChainable()
+    {
+        $product = new Elite_Vaf_Model_Catalog_Product;
+        $product->setData(array('id'=>4))
+                ->setData(array('id'=>5));
+        $this->assertEquals(5,$product->VFProduct()->getId(), "setData() should be chainable");
+    }
+
     function testGetOrderBy()
     {
         $product = $this->getProduct();
