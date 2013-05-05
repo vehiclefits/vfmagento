@@ -44,7 +44,7 @@ class Elite_Vaf_Block_Product_Result extends Elite_Vaf_Block_Product_List
         $fit = VF_Singleton::getInstance()->vehicleSelection();
         if( $fit )
         {            
-            return VF_Singleton::getInstance()->__("Products for %s", $this->htmlEscape( $fit->__toString() ) );
+            return $this->translate("Products for %s", htmlentities( $fit->__toString() ) );
         }
         else
         {
@@ -295,5 +295,13 @@ class Elite_Vaf_Block_Product_Result extends Elite_Vaf_Block_Product_List
 	function baseUrl($storeId = 0)
     {
         return Mage::getBaseUrl();
+    }
+
+    function translate($text)
+    {
+        if(defined('ELITE_TESTING')) {
+            return $text;
+        }
+        return Mage::helper('catalog/product')->__($text);
     }
 }
