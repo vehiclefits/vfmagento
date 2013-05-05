@@ -34,8 +34,8 @@ class Elite_Vaf_Block_Product_Result_Grid extends Elite_Vaf_Block_Product_Result
     {
         $this->getChild('search_result_list')
             ->setAvailableOrders(array(
-                'name' => VF_Singleton::getInstance()->__('Name'),
-                'price'=>VF_Singleton::getInstance()->__('Price'))
+                'name' => $this->translate('Name'),
+                'price'=>$this->translate('Price'))
             );
     }
 
@@ -43,8 +43,8 @@ class Elite_Vaf_Block_Product_Result_Grid extends Elite_Vaf_Block_Product_Result
     {
         $this->getChild('search_result_list')
             ->setModes(array(
-                'grid' => VF_Singleton::getInstance()->__('Grid'),
-                'list' => VF_Singleton::getInstance()->__('List'))
+                'grid' => $this->translate('Grid'),
+                'list' => $this->translate('List'))
             );
     }
 }

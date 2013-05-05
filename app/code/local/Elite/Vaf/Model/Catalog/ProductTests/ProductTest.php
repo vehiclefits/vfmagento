@@ -38,6 +38,13 @@ class Elite_Vaf_Model_Catalog_ProductTests_ProductTest extends Elite_Vaf_Model_C
         $this->assertEquals(4,$product->VFProduct()->getId(), "setData() should set the wrapped VF_Product's ID");
     }
 
+    function testSetDataShouldSetWrappedProductsEntityId()
+    {
+        $product = new Elite_Vaf_Model_Catalog_Product;
+        $product->setData(array('entity_id'=>4));
+        $this->assertEquals(4,$product->VFProduct()->getId(), "setData() should set the wrapped VF_Product's entity_id");
+    }
+
     function testSetDataShouldSetWrappedEntityId()
     {
         $product = new Elite_Vaf_Model_Catalog_Product;
