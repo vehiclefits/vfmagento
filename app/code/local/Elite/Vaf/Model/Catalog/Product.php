@@ -39,7 +39,9 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product
     function setData($key, $value = null)
     {
         if(is_array($key)) {
-            $this->setId($key['id']);
+            if(isset($key['id'])) {
+                $this->setId($key['id']);
+            }
         } elseif ('id'==$key || 'entity_id'==$key) {
             $this->vf_product->setId($value);
         }

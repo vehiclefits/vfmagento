@@ -53,6 +53,12 @@ class Elite_Vaf_Model_Catalog_ProductTests_ProductTest extends Elite_Vaf_Model_C
         $this->assertEquals(5,$product->VFProduct()->getId(), "setData() should be chainable");
     }
 
+    function testSetDataShouldWorkWithNoID()
+    {
+        $product = new Elite_Vaf_Model_Catalog_Product;
+        $product->setData(array());
+    }
+
     function testGetOrderBy()
     {
         $product = $this->getProduct();
