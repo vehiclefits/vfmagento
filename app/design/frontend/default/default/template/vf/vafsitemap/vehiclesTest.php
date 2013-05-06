@@ -1,6 +1,6 @@
 <?php
 
-class Elite_Vafsitemap_design_frontend_VehiclesTest extends Elite_Vaf_TestCase
+class Elite_Vafsitemap_design_frontend_VehiclesTest extends VF_TestCase
 {
 
     function doSetUp()
@@ -63,7 +63,7 @@ class Elite_Vafsitemap_design_frontend_VehiclesTest extends Elite_Vaf_TestCase
 	$block = new Elite_Vafsitemap_Block_VehiclesTestSub;
 	$block->setConfig($config);
 	$output = $block->_toHtml();
-	$this->assertRegExp('#<a href="">Products for Honda Civic </a>#', $output);
+	$this->assertRegExp('#<a href="">Products for Honda Civic</a>#', $output);
     }
 
     function testTotalsShouldUseCustomLevels()

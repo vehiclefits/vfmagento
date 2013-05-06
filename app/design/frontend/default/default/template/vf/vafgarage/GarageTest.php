@@ -1,6 +1,6 @@
 <?php
 
-class Elite_Vafgarage_design_frontend_GarageTest extends Elite_Vaf_TestCase
+class Elite_Vafgarage_design_frontend_GarageTest extends VF_TestCase
 {
 
     function doSetUp()
@@ -22,7 +22,8 @@ class Elite_Vafgarage_design_frontend_GarageTest extends Elite_Vaf_TestCase
         
         $block = new Elite_Vafgarage_design_garageTestSub;
         $output = $block->_toHtml();
-        $this->assertRegExp( '#' . $vehicle->getLevel('make')->getTitle() . '  <#', $output, 'should render only partial vehicle name' );
+
+        $this->assertRegExp( '#' . $vehicle->getLevel('make')->getTitle() . '<#', $output, 'should render only partial vehicle name' );
     }
 
     

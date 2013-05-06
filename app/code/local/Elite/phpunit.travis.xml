@@ -24,16 +24,7 @@
     <testsuites>
         <testsuite name="vfall">
             <directory>Vaf*/</directory>
-            <directory>../../../../vf-documentation</directory>
-            <exclude>performanceTests/*</exclude>
-        </testsuite>
-        <testsuite name="vfmage">
-            <directory>Vaf*/</directory>
-        </testsuite>
-        <testsuite name="vfcore">
-            <directory>../../../../lib/Vehicle-Fits-Core/library/VF</directory>
-        </testsuite>
-        <testsuite name="vfdocs">
+            <directory>../../../../app/design/frontend/template/vf/</directory>
             <directory>../../../../vf-documentation</directory>
         </testsuite>
     </testsuites>

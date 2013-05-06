@@ -7,14 +7,15 @@
 	    $garage = $_SESSION['garage'];
 	    foreach ($garage->vehicles() as $vehicle)
 	    {
-		$vehicleFinder = new VF_Vehicle_Finder(new VF_Schema);
-		$vehicle = $vehicleFinder->findOneByLevelIds($vehicle, VF_Vehicle_Finder::EXACT_ONLY);
-		if ($vehicle)
-		{
-		    echo '<a href="' . $this->getUrl('vafgarage/remove/remove/vehicle/' . implode('-', $vehicle->toValueArray())) . '">[x]</a>';
-		    echo '<a href="?' . http_build_query($vehicle->toValueArray()) . '">' . $vehicle . '</a>';
-		    echo '<br />';
-		}
+            $vehicleFinder = new VF_Vehicle_Finder(new VF_Schema);
+            $vehicle = $vehicleFinder->findOneByLevelIds($vehicle, VF_Vehicle_Finder::INCLUDE_PARTIALS);
+
+            if ($vehicle)
+            {
+                echo '<a href="' . $this->getUrl('vafgarage/remove/remove/vehicle/' . implode('-', $vehicle->toValueArray())) . '">[x]</a>';
+                echo '<a href="?' . http_build_query($vehicle->toValueArray()) . '">' . $vehicle . '</a>';
+                echo '<br />';
+            }
 	    }
 	}
 	?>
