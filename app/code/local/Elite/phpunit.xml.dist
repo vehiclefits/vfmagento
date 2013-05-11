@@ -33,9 +33,6 @@
             <directory>../../../../app/design/frontend/template/vf/</directory>
             <exclude>performanceTests/*</exclude>
         </testsuite>
-        <testsuite name="vfcore">
-            <directory>../../../../lib/Vehicle-Fits-Core/library/VF</directory>
-        </testsuite>
         <testsuite name="vfdocs">
             <directory>../../../../vf-documentation</directory>
         </testsuite>
