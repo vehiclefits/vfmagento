@@ -24,15 +24,7 @@
 <ol>
     <li><strong>DISABLE your Magento cache before installing any new modules.</strong></li>
     <li>Unzip the module to where Magento is installed.</li>
-    <li>In <b class="path">app/code/local/Elite/Vaf/</b> rename <b class="path">config.default.ini</b> to <b class="path">config.ini</b></li>
-    <li>
-        Open <b class="path">app/Mage.php</b> and paste the following ( right at the beginning of the file after the &lt;?php tag )
-         <pre class="kodify php"> require_once( 'code/local/Elite/Vaf/bootstrap.php' ); </pre>
-         <i>Note: This needs to be repeated whenever you upgrade Magento. Just refer to the "upgrading magento" link on the table of contents.</i>
-    </li>
-    <li>
-        Run <b class="path">./vf-install.php</b> in your browser. Press GO to have the database created.
-    </li>
+    <li>Run <b class="path">./vf-install.php</b> in your browser. Press GO to have the database created.</li>
 </ol>
 
 </body>

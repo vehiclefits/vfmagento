@@ -23,6 +23,21 @@
 
 class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
 {
+    function bootstrap($event)
+    {
+        $elite_path = Mage::getBaseDir() . '/app/code/local/Elite';
+
+        defined('ELITE_PATH') or define( 'ELITE_PATH', $elite_path ); // put path to app/code/local/Elite
+        defined('ELITE_CONFIG_DEFAULT') or define(  'ELITE_CONFIG_DEFAULT', ELITE_PATH . '/Vaf/config.default.ini' );
+        defined('ELITE_CONFIG') or define(  'ELITE_CONFIG', ELITE_PATH . '/Vaf/config.ini' );
+        defined('MAGE_PATH') or define( 'MAGE_PATH', Mage::getBaseDir());
+
+        set_include_path(
+            PATH_SEPARATOR . MAGE_PATH . '/lib/Vehicle-Fits-Core/library/'
+                . PATH_SEPARATOR . get_include_path()
+        );
+    }
+
     function catalogProductEditAction($event)
     {
         $product = Mage::registry('current_product');
