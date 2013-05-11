@@ -33,8 +33,8 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
         defined('MAGE_PATH') or define( 'MAGE_PATH', Mage::getBaseDir());
 
         set_include_path(
-            PATH_SEPARATOR . MAGE_PATH . '/lib/Vehicle-Fits-Core/library/'
-                . PATH_SEPARATOR . get_include_path()
+            get_include_path() . PATH_SEPARATOR .
+            MAGE_PATH . '/lib/Vehicle-Fits-Core/library/'
         );
     }
 
