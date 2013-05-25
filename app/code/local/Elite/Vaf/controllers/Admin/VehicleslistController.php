@@ -30,7 +30,7 @@ class Elite_Vaf_Admin_VehicleslistController extends Mage_Adminhtml_Controller_A
 
     function preDispatch()
     {
-        if('localhost'==$_SERVER['HTTP_HOST'] && file_exists(sys_get_temp_dir().'/vf-ajax-tests')) {
+        if(preg_match('#localhost#',$_SERVER['HTTP_HOST']) && file_exists(sys_get_temp_dir().'/vf-ajax-tests')) {
             return;
         }
         return parent::preDispatch();
