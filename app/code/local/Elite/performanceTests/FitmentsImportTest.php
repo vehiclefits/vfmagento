@@ -32,7 +32,7 @@ class Elite_performanceTests_FitmentsImportTest extends VF_Import_ProductFitment
     function testShouldImportLargeAmountOfFitments()
     {
         $this->setMaxRunningTime(120);
-        $command = 'php '.MAGE_PATH . '/app/code/local/Elite/Vafimporter/cron/product-fitments-import.csv.php '.$this->csvFile();
+        $command = 'php '.MAGE_PATH . '/app/code/local/Elite/bin/import-fitments.php '.$this->csvFile();
         exec($command,$output,$return_code);
         $this->assertEquals(0,$return_code);
     }
