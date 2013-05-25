@@ -10,7 +10,7 @@
  * http://opensource.org/licenses/osl-3.0.php
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
- * to sales@vehiclefits.com so we can send you a copy immediately.
+ * to license@magentocommerce.com so we can send you a copy immediately.
  *
  * DISCLAIMER
  *
@@ -25,14 +25,15 @@
 ini_set('display_errors',1);
 error_reporting(E_ALL | E_STRICT);
 require_once( 'app/Mage.php' );
-require_once( 'lib/VF/Schema/Generator.php' );
+require_once( 'app/code/local/Elite/Vaf/bootstrap.php' );
+require_once( 'lib/Vehicle-Fits-Core/library/VF/Schema/Generator.php' );
 Mage::app();
-$helper = Elite_Vaf_Helper_Data::getInstance();
+$helper = VF_Singleton::getInstance();
 ?>
 <form action="?" method="get">
 	<?php
 	include('Elite/Vafinstall/includes/install-db.php');
 	?>
 
-	<input type="submit" name="submit" value="GO" />
+	<input id="go" type="submit" name="submit" value="GO" />
 </form>
