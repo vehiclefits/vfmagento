@@ -23,11 +23,27 @@
  */
 class vfmagentoTest extends VF_TestCase
 {
-    function doSetUp()
+    function setUp()
     {
-        $this->switchSchema('make,model,year',true);
+        VF_Singleton::reset();
+        VF_Singleton::getInstance(true);
+        VF_Singleton::getInstance()->setRequest(new Zend_Controller_Request_Http);
+        $database = new VF_TestDbAdapter(array(
+            'dbname' => VAF_DB_NAME,
+            'username' => VAF_DB_USERNAME,
+            'password' => VAF_DB_PASSWORD
+        ));
+        VF_Singleton::getInstance()->setReadAdapter($database);
+
+        $schemaGenerator = new VF_Schema_Generator();
+        $schemaGenerator->dropExistingTables();
+        $schemaGenerator->execute(array('make','model','year'));
+
+        VF_Schema::reset();
         $this->dropAndRecreateMockProductTable();
     }
+
+    function tearDown() {}
 
     function testShouldImportVehicles()
     {
@@ -59,7 +75,7 @@ class vfmagentoTest extends VF_TestCase
         $data .= "sku123,Honda,Civic,2000";
         file_put_contents($file,$data);
 
-        $command = MAGE_PATH . '/app/code/local/Elite/bin/vfmagento importfitments --product-table=test_catalog_product_entity '.$file;
+        $command = __DIR__ . '/vfmagento importfitments --product-table=test_catalog_product_entity '.$file;
         `$command`;
         $product = new VF_Product;
         $product->setId($productID);
