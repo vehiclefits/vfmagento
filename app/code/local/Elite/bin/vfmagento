@@ -23,21 +23,21 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
+require_once(__DIR__.'/../vendor/autoload.php');
+
 class VF_Magento_CLI
 {
+    protected $opt;
+
     function __construct()
     {
+        $this->opt = new Zend_Console_Getopt(array(
+            'product-table=s'    => 'product table to use for converting SKUs to IDs'
+        ));
+
         $this->requireConfig();
         $this->bootstrap();
-    }
-
-    function requireConfig()
-    {
-        if(file_exists(__DIR__.'/config.php')) {
-            require_once(__DIR__ . '/config.php');
-        } else {
-            require_once(__DIR__ . '/config.default.php');
-        }
+        $this->injectDb();
     }
 
     function bootstrap()
@@ -47,16 +47,42 @@ class VF_Magento_CLI
         Mage::app('admin')->setUseSessionInUrl(false);
     }
 
+    /* Figure out where we are reading the database configuration from */
+    function requireConfig()
+    {
+        $config = $this->opt->getOption('config');
+        if($config) {
+            require_once($config);
+        } elseif(file_exists(__DIR__.'/config.php')) {
+            require_once(__DIR__ . '/config.php');
+        } else {
+            require_once(__DIR__ . '/config.default.php');
+        }
+    }
+
+    /* Inject a database adapter into VF_Singleton using the configuration from previous step */
+    function injectDb()
+    {
+        VF_Singleton::getInstance()->setReadAdapter(new VF_TestDbAdapter(array(
+            'dbname' => getenv('PHP_VAF_DB_NAME'),
+            'username' => getenv('PHP_VAF_DB_USERNAME'),
+            'password' => getenv('PHP_VAF_DB_PASSWORD')
+        )));
+    }
+
     function importFitments()
     {
-        if(!isset($argv[1])) {
-            echo 'Try product-fitments-import.php <filename>'."\n";
+        global $argv;
+        if(!isset($argv[count($argv)-1])) {
+            echo 'vfmagento <filename>'."\n";
             exit;
         }
-        $file = $argv[1];
+        $file = $argv[count($argv)-1];
         $writer = new Zend_Log_Writer_Stream('product-fitments-import.csv.log');
         $log = new Zend_Log($writer);
+
         $importer = new VF_Import_ProductFitments_CSV_Import($file);
+        $importer->setProductTable($this->opt->getOption('product-table'));
         $importer->setLog($log);
         $importer->import();
     }
