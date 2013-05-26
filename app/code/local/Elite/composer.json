@@ -2,19 +2,18 @@
     "name": "vehiclefits/vehicle-fits-magento",
     "description": "Vehiclefits Magento Module.",
     "license": "OSL-3.0",
-    "authors": [
-        {
-            "name": "Josh Ribakoff",
-            "email": "sales@vehiclefits.com"
-        },
-        {
-            "name": "Kyle Cannon",
-            "email": "kyle.d.cannon@gmail.com"
+    "autoload": {
+        "psr-0": {
+            "Elite": "../"
         }
+    },
+    "include-path": [
+        "../"
     ],
-    "minimum-stability": "dev",
+    "minimum-stability":"dev",
     "require": {
-
+        "vehiclefits/vehicle-fits-core":"*",
+        "bombayworks/zendframework1":"1.11.1"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.19",

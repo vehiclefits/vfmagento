@@ -46,16 +46,28 @@ defined('ELITE_PATH') or define( 'ELITE_PATH', $elite_path ); // put path to app
 defined('ELITE_CONFIG_DEFAULT') or define(  'ELITE_CONFIG_DEFAULT', ELITE_PATH . '/Vaf/config.default.ini' );
 defined('ELITE_CONFIG') or define(  'ELITE_CONFIG', ELITE_PATH . '/Vaf/config.ini' );
 
+# If being used on qUnit tests, ensure composer's autoloader is setup.
+require_once(__DIR__.'/../vendor/autoload.php');
+
 set_include_path(
-        PATH_SEPARATOR . MAGE_PATH . '/app/code/local/'
-        . PATH_SEPARATOR . MAGE_PATH . '/app/code/core/'
-        . PATH_SEPARATOR . MAGE_PATH . '/lib/'
-        . PATH_SEPARATOR . MAGE_PATH . '/lib/Vehicle-Fits-Core/library/'
+        PATH_SEPARATOR . MAGE_PATH . '/lib/'
         . PATH_SEPARATOR . get_include_path()
+        . PATH_SEPARATOR . MAGE_PATH . '/app/code/local/'
+        . PATH_SEPARATOR . MAGE_PATH . '/app/code/core/'
+
 );
 
 $_SESSION = array();
 
+# If being used on qUnit tests, ensure DB is injected
+$database = new VF_TestDbAdapter(array(
+    'dbname' => VAF_DB_NAME,
+    'username' => VAF_DB_USERNAME,
+    'password' => VAF_DB_PASSWORD
+));
+VF_Singleton::getInstance()->setReadAdapter($database);
+
+# used to autoload the Mage_ classes
 function my_autoload($class_name) {
     $file = str_replace( '_', '/', $class_name . '.php' );
 
@@ -66,4 +78,5 @@ function my_autoload($class_name) {
     require_once $file;
 }
 spl_autoload_register('my_autoload');
+
 require_once('test-stubs.php');

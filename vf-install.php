@@ -25,9 +25,9 @@
 ini_set('display_errors',1);
 error_reporting(E_ALL | E_STRICT);
 require_once( 'app/Mage.php' );
-require_once( 'app/code/local/Elite/Vaf/bootstrap.php' );
-require_once( 'lib/Vehicle-Fits-Core/library/VF/Schema/Generator.php' );
 Mage::app();
+require_once( 'app/code/local/Elite/Vaf/bootstrap.php' );
+
 $helper = VF_Singleton::getInstance();
 ?>
 <form action="?" method="get">

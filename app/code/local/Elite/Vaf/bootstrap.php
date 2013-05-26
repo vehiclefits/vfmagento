@@ -21,13 +21,15 @@
  * @copyright Copyright (c) 2013 Vehicle Fits, llc
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  */
+
 $elite_path = dirname(__FILE__).'/../';
 defined('ELITE_PATH') or define( 'ELITE_PATH', $elite_path ); // put path to app/code/local/Elite
 defined('ELITE_CONFIG_DEFAULT') or define( 'ELITE_CONFIG_DEFAULT', ELITE_PATH . '/Vaf/config.default.ini' );
 defined('ELITE_CONFIG') or define( 'ELITE_CONFIG', ELITE_PATH . '/Vaf/config.ini' );
 defined('MAGE_PATH') or define( 'MAGE_PATH', realpath($elite_path.'../../../../'));
 
+require_once( __DIR__.'/../vendor/autoload.php' );
 set_include_path(
-    PATH_SEPARATOR . MAGE_PATH . '/lib/Vehicle-Fits-Core/library/'
+    PATH_SEPARATOR . MAGE_PATH . '/lib/'
     . PATH_SEPARATOR . get_include_path()
 );
