@@ -88,5 +88,31 @@ class VF_Magento_CLI
     }
 }
 
-$cli = new VF_Magento_CLI();
-$cli->importFitments();
+class Elite_CLI_Schema extends VF_CLI_Schema
+{
+    /* Figure out where we are reading the database configuration from */
+    function requireConfig()
+    {
+        $config = $this->opt->getOption('config');
+        if($config) {
+            require_once($config);
+        } elseif(file_exists(__DIR__.'/config.php')) {
+            require_once(__DIR__ . '/config.php');
+        } else {
+            require_once(__DIR__ . '/config.default.php');
+        }
+    }
+}
+
+$command = isset($argv[1]) ? $argv[1] : null;
+switch($command)
+{
+    case 'importfitments':
+        $cli = new VF_Magento_CLI();
+        $cli->importFitments();
+    break;
+    case 'schema':
+        $cli = new Elite_CLI_Schema();
+        $cli->main();
+    break;
+}

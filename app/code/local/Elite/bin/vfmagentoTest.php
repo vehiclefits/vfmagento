@@ -40,7 +40,7 @@ class vfmagentoTest extends VF_TestCase
         $data .= "sku123,Honda,Civic,2000";
         file_put_contents($file,$data);
 
-        $command = MAGE_PATH . '/app/code/local/Elite/bin/vfmagento --product-table=test_catalog_product_entity '.$file;
+        $command = MAGE_PATH . '/app/code/local/Elite/bin/vfmagento importfitments --product-table=test_catalog_product_entity '.$file;
         `$command`;
 
         $exists = $this->vehicleExists(array(
@@ -57,5 +57,16 @@ class vfmagentoTest extends VF_TestCase
         $this->assertEquals('Honda Civic 2000', $fitments[0]->__toString(), 'should import fitment');
     }
 
+    function testShouldSetSchema()
+    {
+        $schemaGenerator = new VF_Schema_Generator();
+        $schemaGenerator->dropExistingTables();
+        VF_Schema::$levels = null;
+
+        $command = __DIR__.'/vfmagento schema --force --levels="year,make,model"';
+        exec($command);
+        $schema = new VF_Schema;
+        $this->assertEquals(array('year','make','model'), $schema->getLevels(), 'should create default schema of MMY');
+    }
 
 }
