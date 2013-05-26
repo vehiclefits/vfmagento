@@ -12,7 +12,7 @@
     ],
     "minimum-stability":"dev",
     "require": {
-        "vehiclefits/vehicle-fits-core":"0.1.*",
+        "vehiclefits/vehicle-fits-core":"0.2.*",
         "bombayworks/zendframework1":"1.11.1"
     },
     "require-dev": {
