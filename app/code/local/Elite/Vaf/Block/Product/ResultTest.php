@@ -32,4 +32,10 @@ class Elite_Vaf_Block_Product_ResultTest extends VF_SearchTestCase
 
         $this->assertEquals('Products for %s',$block->getHeaderText(), 'should translate');
     }
+
+    function testShouldTranslateNoResultsMessage()
+    {
+        $block = new Elite_Vaf_Block_Product_Result();
+        $this->assertEquals('No matches found.', $block->getNoResultText(), 'should translate "no results message"');
+    }
 }

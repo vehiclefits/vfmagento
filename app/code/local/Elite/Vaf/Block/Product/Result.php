@@ -106,7 +106,7 @@ class Elite_Vaf_Block_Product_Result extends Elite_Vaf_Block_Product_List
     
     function getNoResultText()
     {
-        return VF_Singleton::getInstance()->__('No matches found.');
+        return $this->translate('No matches found.');
     }
     
     function getProductCollectionGroupedByCategory()
