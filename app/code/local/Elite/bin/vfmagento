@@ -74,7 +74,7 @@ class VF_Magento_CLI
     {
         global $argv;
         if(!isset($argv[count($argv)-1])) {
-            echo 'vfmagento <filename>'."\n";
+            echo 'vfmagento importfitments <filename>'."\n";
             exit;
         }
         $file = $argv[count($argv)-1];
@@ -104,9 +104,47 @@ class Elite_CLI_Schema extends VF_CLI_Schema
     }
 }
 
+class Elite_CLI_ImportVehicles extends VF_CLI_ImportVehicles
+{
+    /* Figure out where we are reading the database configuration from */
+    function requireConfig()
+    {
+        $config = $this->opt->getOption('config');
+        if($config) {
+            require_once($config);
+        } elseif(file_exists(__DIR__.'/config.php')) {
+            require_once(__DIR__ . '/config.php');
+        } else {
+            require_once(__DIR__ . '/config.default.php');
+        }
+    }
+
+    function main()
+    {
+        global $argv;
+        if(!isset($argv[count($argv)-1])) {
+            echo 'vfmagento importvehicles <filename>'."\n";
+            exit;
+        }
+        $file = $argv[count($argv)-1];
+
+        $writer = new Zend_Log_Writer_Stream('vehicles-list-import.csv.log');
+        $log = new Zend_Log($writer);
+
+        $importer = new VF_Import_VehiclesList_CSV_Import($file);
+        $importer->setLog($log);
+
+        $importer->import();
+    }
+}
+
 $command = isset($argv[1]) ? $argv[1] : null;
 switch($command)
 {
+    case 'importvehicles':
+        $cli = new Elite_CLI_ImportVehicles();
+        $cli->main();
+    break;
     case 'importfitments':
         $cli = new VF_Magento_CLI();
         $cli->importFitments();

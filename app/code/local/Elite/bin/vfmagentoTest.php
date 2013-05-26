@@ -29,6 +29,25 @@ class vfmagentoTest extends VF_TestCase
         $this->dropAndRecreateMockProductTable();
     }
 
+    function testShouldImportVehicles()
+    {
+        $file = sys_get_temp_dir().'/'.uniqid();
+
+        $data = "make,model,year\n";
+        $data .= "Honda,Civic,2000";
+        file_put_contents($file,$data);
+
+        $command = MAGE_PATH . '/app/code/local/Elite/bin/vfmagento importvehicles '.$file;
+        `$command`;
+
+        $exists = $this->vehicleExists(array(
+            'make'=>'Honda',
+            'model'=>'Civic',
+            'year'=>2000
+        ));
+        $this->assertTrue($exists, 'should import vehicles');
+    }
+
     function testShouldImportFitments()
     {
         $this->query("INSERT INTO test_catalog_product_entity ( `sku` ) values ( 'sku123' )");
@@ -42,14 +61,6 @@ class vfmagentoTest extends VF_TestCase
 
         $command = MAGE_PATH . '/app/code/local/Elite/bin/vfmagento importfitments --product-table=test_catalog_product_entity '.$file;
         `$command`;
-
-        $exists = $this->vehicleExists(array(
-            'make'=>'Honda',
-            'model'=>'Civic',
-            'year'=>2000
-        ));
-        $this->assertTrue($exists, 'should import vehicles');
-
         $product = new VF_Product;
         $product->setId($productID);
 
