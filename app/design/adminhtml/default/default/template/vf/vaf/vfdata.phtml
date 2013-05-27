@@ -1,0 +1,31 @@
+<h1>data.vehiclefits.com</h1>
+<?php
+$url = Mage::helper('adminhtml')->getUrl('*/*/index', array(
+
+));
+
+$this->form
+    ->setAction($url)
+    ->addElement('hidden','form_key',array(
+        'value'=>Mage::getSingleton('core/session')->getFormKey()
+    ));
+echo $this->form;
+
+$download_url = Mage::helper('adminhtml')->getUrl('*/*/index', array(
+    'download'=>1
+));
+$upload_url = Mage::helper('adminhtml')->getUrl('*/*/index', array(
+    'upload'=>1
+));
+?>
+
+<a href="<?=$download_url?>">Download Open Source Data</a> |
+<a href="<?=$upload_url?>">Upload my data</a>
+
+<?php
+if($this->downloaded) {
+    echo '<p>Downloaded open source data &amp; imported into Magento.</p>';
+}
+if($this->uploaded) {
+    echo '<p>Uploaded your data. Upload ID='.$this->uploaded.'</p>';
+}

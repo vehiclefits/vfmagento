@@ -131,6 +131,11 @@
                             </local>
                         </children>
                     </vehicleslist>
+                    <vfdata translate="title">
+                        <title>data.vehiclefits.com</title>
+                        <sort_order>15</sort_order>
+                        <action>adminhtml/vfdata</action>
+                    </vfdata>
                     <settings translate="settings">
                         <title>Settings</title>
                         <sort_order>300</sort_order>

@@ -82,11 +82,11 @@ The splash page that is shown can be edited in vaf/splash.phtml ',
 
     function getConfig()
     {
-	if (!$this->config instanceof Zend_Config)
-	{
-	    $this->config = VF_Singleton::getInstance()->getConfig();
-	}
-	return $this->config;
+        if (!$this->config instanceof Zend_Config)
+        {
+            $this->config = VF_Singleton::getInstance()->getConfig();
+        }
+        return $this->config;
     }
 
 }

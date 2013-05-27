@@ -25,8 +25,6 @@ class Elite_Vaf_Admin_VafsettingscategoryController extends Mage_Adminhtml_Contr
 { 
     function indexAction()
     {
-        //$this->checkVersion();
-        
         $this->loadLayout();
         $this->_setActiveMenu('vaf/import');
         
