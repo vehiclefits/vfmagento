@@ -18,6 +18,12 @@ Installation Instructions
  * Open `app/Mage.php` and add `require_once( 'code/local/Elite/Vaf/bootstrap.php' );` on the line after the `<?php` tag.
  * Run ./vf-install.php`in your web browser to install the new database.
 
+Troubleshooting
+-------------------------
+ * Flush Magento Cache Storage.
+ * Enable PHP Short Tags -- Set `short_open_tag=On` in php.ini and restart your Apache server.
+ * Run SQL in phpMyAdmin `SET @@global.sql_mode= ”;` to disable Strict Mode in mySQL.
+
 Run Unit Tests
 --------------------------------
 If you're interested in running the unit tests that come with Vehicle Fits, simply download [Composer](http://getcomposer.org/download/) and do the following:
