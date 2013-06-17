@@ -18,6 +18,7 @@ Installation Instructions
 Troubleshooting
 -------------------------
  * Flush Magento Cache Storage.
+ * Disable Magento 'compilation module' (a form of cache)
  * Run SQL in phpMyAdmin `SET @@global.sql_mode= ”;` to disable Strict Mode in mySQL. [todo - fix queries such that this step is not needed [#44](https://github.com/vehiclefits/Vehicle-Fits-Magento/issues/44)]
 
 Run Unit Tests
