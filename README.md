@@ -18,8 +18,8 @@ Installation Instructions
 Troubleshooting
 -------------------------
  * Flush Magento Cache Storage.
- * Enable PHP Short Tags -- Set `short_open_tag=On` in php.ini and restart your Apache server.
- * Run SQL in phpMyAdmin `SET @@global.sql_mode= ”;` to disable Strict Mode in mySQL.
+ * Enable PHP Short Tags -- Set `short_open_tag=On` in php.ini and restart your web server. [todo - remove usage of short tags and remove this step]
+ * Run SQL in phpMyAdmin `SET @@global.sql_mode= ”;` to disable Strict Mode in mySQL. [todo - fix queries such that this step is not needed [#44](https://github.com/vehiclefits/Vehicle-Fits-Magento/issues/44)]
 
 Run Unit Tests
 --------------------------------
