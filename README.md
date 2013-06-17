@@ -41,9 +41,12 @@ After you've installed composer, you may need to rename the `phpunit.xml.dist` t
 </php>
 ```
 
-After you've installed composer, and changed the `phpunit.xml` if needed, you may run one of the following commands:
+After you've installed composer, and changed the `phpunit.xml` if needed, you may run the following command:
 
-`vendor/bin/phpunit` to run all the unit tests for the Magento module
+````
+#run all the unit tests for the Magento module
+vendor/bin/phpunit
+````
 
 Documentation
 -------------
