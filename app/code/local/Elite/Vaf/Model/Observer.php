@@ -20,30 +20,24 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-
 class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
 {
     function bootstrap($event)
     {
         $elite_path = Mage::getBaseDir() . '/app/code/local/Elite';
-
-        defined('ELITE_PATH') or define( 'ELITE_PATH', $elite_path ); // put path to app/code/local/Elite
-        defined('ELITE_CONFIG_DEFAULT') or define(  'ELITE_CONFIG_DEFAULT', ELITE_PATH . '/Vaf/config.default.ini' );
-        defined('ELITE_CONFIG') or define(  'ELITE_CONFIG', ELITE_PATH . '/Vaf/config.ini' );
-        defined('MAGE_PATH') or define( 'MAGE_PATH', Mage::getBaseDir());
-
+        defined('ELITE_PATH') or define('ELITE_PATH', $elite_path); // put path to app/code/local/Elite
+        defined('ELITE_CONFIG_DEFAULT') or define('ELITE_CONFIG_DEFAULT', ELITE_PATH . '/Vaf/config.default.ini');
+        defined('ELITE_CONFIG') or define('ELITE_CONFIG', ELITE_PATH . '/Vaf/config.ini');
+        defined('MAGE_PATH') or define('MAGE_PATH', Mage::getBaseDir());
         require_once('Elite/vendor/autoload.php');
         set_include_path(
             PATH_SEPARATOR . MAGE_PATH . '/lib/'
             . PATH_SEPARATOR . get_include_path()
         );
-
         $resource = Mage::getSingleton('core/resource');
         $read = $resource->getConnection('core_read');
         VF_Singleton::getInstance()->setReadAdapter($read);
-
         VF_Singleton::getInstance()->setProcessURL('/vaf/ajax/process?');
-
     }
 
     function catalogProductEditAction($event)
@@ -54,12 +48,10 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
         }
         $controller = $event->getControllerAction();
         $request = $controller->getRequest();
-
         $this->removeFitments($request, $product);
         $this->updateUniversal($product);
         $this->updateRelated($product);
         $this->addNewFitments($request, $product);
-
         $this->dispatchProductEditEvent($controller, $product);
     }
 
@@ -101,12 +93,9 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
 
     function addNewFitments($request, $product)
     {
-
         if (is_array($request->getParam('vaf')) && count($request->getParam('vaf')) >= 1) {
-
             foreach ($request->getParam('vaf') as $fit) {
                 if (strpos($fit, ':') && strpos($fit, ';')) {
-
                     // new logic
                     $params = explode(';', $fit);
                     $newParams = array();
@@ -115,7 +104,6 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
                         if (count($data) <= 1) {
                             continue;
                         }
-
                         $newParams[$data[0]] = $data[1];
                     }
                     $product->addVafFit($newParams);
@@ -147,6 +135,10 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
 
     function deleteModelBefore($event)
     {
+        $product = $event->_data->object;
+        if (get_class($product) != 'Elite_Vaf_Model_Catalog_Product') {
+            return;
+        }
         $this->query(
             sprintf(
                 "DELETE FROM `elite_1_mapping` WHERE `entity_id` = %d",
@@ -183,5 +175,4 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
     {
         return VF_Singleton::getInstance()->getReadAdapter();
     }
-
 }

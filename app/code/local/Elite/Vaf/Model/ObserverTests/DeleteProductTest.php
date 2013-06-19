@@ -43,4 +43,37 @@ class Elite_Vaf_Model_ObserverTests_DeleteProductTest extends Elite_Vaf_Model_Ob
         $this->assertEquals(0,count($product->getFits()), 'should have 0 fitments after callback for product deletion');
     }
 
+    function testShouldNotDeleteFitmentsForCategory()
+    {
+        $category = new Mage_Category_Model;
+        $category->setId(1);
+
+        $product = $this->product();
+        $product->setId(1);
+
+        $vehicle = $this->createVehicle(array('make'=>'Honda', 'model'=>'Civic', 'year'=>2000));
+
+        $product->addVafFit($vehicle->toValueArray());
+        $observer = new Elite_Vaf_Model_Observer();
+
+        $event = new stdClass;
+        $event->_data = new stdClass;
+        $event->_data->object = $category;
+        $observer->deleteModelBefore($event);
+        $this->assertEquals(1,count($product->getFits()), 'should have 1 fitments after callback for category deletion');
+    }
+
+}
+
+class Mage_Category_Model
+{
+    function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    function getId()
+    {
+        return $this->id;
+    }
 }
