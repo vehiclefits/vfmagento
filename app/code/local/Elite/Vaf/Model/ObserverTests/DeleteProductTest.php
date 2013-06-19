@@ -37,8 +37,7 @@ class Elite_Vaf_Model_ObserverTests_DeleteProductTest extends Elite_Vaf_Model_Ob
         $observer = new Elite_Vaf_Model_Observer();
 
         $event = new stdClass;
-        $event->_data = new stdClass;
-        $event->_data->object = $product;
+        $event->object = $product;
         $observer->deleteModelBefore($event);
         $this->assertEquals(0,count($product->getFits()), 'should have 0 fitments after callback for product deletion');
     }
@@ -57,8 +56,7 @@ class Elite_Vaf_Model_ObserverTests_DeleteProductTest extends Elite_Vaf_Model_Ob
         $observer = new Elite_Vaf_Model_Observer();
 
         $event = new stdClass;
-        $event->_data = new stdClass;
-        $event->_data->object = $category;
+        $event->object = $category;
         $observer->deleteModelBefore($event);
         $this->assertEquals(1,count($product->getFits()), 'should have 1 fitments after callback for category deletion');
     }

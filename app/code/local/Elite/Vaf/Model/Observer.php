@@ -135,14 +135,14 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
 
     function deleteModelBefore($event)
     {
-        $product = $event->_data->object;
+        $product = $event->object;
         if (get_class($product) != 'Elite_Vaf_Model_Catalog_Product') {
             return;
         }
         $this->query(
             sprintf(
                 "DELETE FROM `elite_1_mapping` WHERE `entity_id` = %d",
-                (int)$event->_data->object->getId()
+                (int)$product->getId()
             )
         );
     }
