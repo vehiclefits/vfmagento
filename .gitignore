@@ -6,3 +6,5 @@ app/code/local/Elite/phpunit.xml
 # Don't commit 3rd party libraries into git
 app/code/local/Elite/vendor
 composer.lock
+.idea
+*.log
