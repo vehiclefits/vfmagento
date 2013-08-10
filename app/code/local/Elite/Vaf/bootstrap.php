@@ -29,6 +29,11 @@ defined('ELITE_CONFIG') or define( 'ELITE_CONFIG', ELITE_PATH . '/Vaf/config.ini
 defined('MAGE_PATH') or define( 'MAGE_PATH', realpath($elite_path.'../../../../'));
 
 require_once( __DIR__.'/../vendor/autoload.php' );
+
+$resource = Mage::getSingleton('core/resource');
+$read = $resource->getConnection('core_read');
+VF_Singleton::getInstance()->setReadAdapter($read);
+
 set_include_path(
     PATH_SEPARATOR . MAGE_PATH . '/lib/'
     . PATH_SEPARATOR . get_include_path()
