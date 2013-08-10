@@ -258,7 +258,19 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product
      */
     function duplicate()
     {
-        return $this->vf_product->duplicate();
+        $schema = new VF_Schema();
+        $vehicleFinder = new VF_Vehicle_Finder($schema);
+        $leaf = $schema->getLeafLevel() . '_id';
+
+        $newProduct = parent::duplicate();
+        foreach ($this->getFits() as $fit) {
+            $vehicle = $vehicleFinder->findByLeaf($fit->$leaf);
+            $newProduct->insertMapping($vehicle);
+        }
+        if ($this->isUniversal()) {
+            $newProduct->setUniversal(true);
+        }
+        return $newProduct;
     }
 
     /**
