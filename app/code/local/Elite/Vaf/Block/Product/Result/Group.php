@@ -132,7 +132,7 @@ class Elite_Vaf_Block_Product_Result_Group extends Elite_Vaf_Block_Product_Resul
         $_iterator = 0; 
         foreach( $collection as $_product )
         {
-            include( Mage::getDesign()->getTemplateFilename( 'vaf/group/result-item.phtml') );
+            include( Mage::getDesign()->getTemplateFilename( 'vf/vaf/group/result-item.phtml') );
         }  
         return ob_get_clean();
     }
