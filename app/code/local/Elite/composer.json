@@ -13,7 +13,7 @@
     "minimum-stability":"dev",
     "require": {
         "vehiclefits/vehicle-fits-core":"0.2.*",
-        "bombayworks/zendframework1":"1.11.1"
+        "joshribakoff/zf1-empty":"*"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.19",
