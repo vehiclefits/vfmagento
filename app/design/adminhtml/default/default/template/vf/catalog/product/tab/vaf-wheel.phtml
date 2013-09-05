@@ -17,7 +17,7 @@
         $wheelProduct = new Elite_Vafwheel_Model_Catalog_Product($product);
         $boltPatterns = $wheelProduct->getBoltPatterns();
         ?>
-        <textarea name="multipatterns" rows="3" cols="50"><?=implode("\n",$boltPatterns)?></textarea>
+        <textarea name="multipatterns" rows="3" cols="50"><?php echo implode("\n",$boltPatterns)?></textarea>
         <br />
         <i>These operations may take some time, especially if uploading .csv file of bolt-patterns which could result in 10s of thousands of vehicles to be added.</i>
     </fieldset>
