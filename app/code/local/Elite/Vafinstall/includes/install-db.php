@@ -24,7 +24,7 @@
 ?>
 <fieldset>
     <legend>Database</legend>
-    Type name of levels separated by comma: <input type="text" name="levels" value="<?=( isset( $_REQUEST['levels'] ) ? $_REQUEST['levels'] : 'make,model,year' )?>" /> (ex. "make,model, year")
+    Type name of levels separated by comma: <input type="text" name="levels" value="<?php echo ( isset( $_REQUEST['levels'] ) ? $_REQUEST['levels'] : 'make,model,year' )?>" /> (ex. "make,model, year")
     <br />
     <input id="generateDB" type="checkbox" name="generateDb" value="1" checked="checked" /> Generate Database SQL
     <br />
