@@ -13,6 +13,6 @@
         $wheeladapterProduct = new Elite_Vafwheeladapter_Model_Catalog_Product($product);
         $boltPattern = $wheeladapterProduct->getWheelSideBoltPattern();
         ?>
-        <input type="text" name="wheel_side_pattern" value="<?=$boltPattern?>" />
+        <input type="text" name="wheel_side_pattern" value="<?php echo $boltPattern?>" />
     </fieldset>
 </div>

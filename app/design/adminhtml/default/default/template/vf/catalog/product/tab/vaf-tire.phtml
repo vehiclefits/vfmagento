@@ -12,11 +12,11 @@
     
         If this is a tire product, add it's tire size here:
         <br />
-        Section Width: <input type="text" name="section_width" value="<?=$tireSize ? $tireSize->sectionWidth() : ''?>" /> (Ex. 205)
+        Section Width: <input type="text" name="section_width" value="<?php echo $tireSize ? $tireSize->sectionWidth() : ''?>" /> (Ex. 205)
         <br />
-        Aspect Ratio: <input type="text" name="aspect_ratio" value="<?=$tireSize ? $tireSize->aspectRatio() : ''?>" /> (Ex 55)
+        Aspect Ratio: <input type="text" name="aspect_ratio" value="<?php echo $tireSize ? $tireSize->aspectRatio() : ''?>" /> (Ex 55)
         <br />
-        Diameter: <input type="text" name="diameter" value="<?=$tireSize ? $tireSize->diameter() : ''?>" /> (Ex 16)
+        Diameter: <input type="text" name="diameter" value="<?php echo $tireSize ? $tireSize->diameter() : ''?>" /> (Ex 16)
         <br />
         <br />
         Tire Type:
