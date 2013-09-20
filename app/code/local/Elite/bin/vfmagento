@@ -26,15 +26,15 @@
 require_once(__DIR__ . '/../vendor/autoload.php');
 define('COMPOSER_INIT', true);
 
-$mageLocalConfigLocation = false;
-
-if (file_exists(realpath(__DIR__ . '/../../../../../../../app/etc/local.xml'))) {
-    $mageLocalConfigLocation = realpath(__DIR__ . '/../../../../../../../app/etc/local.xml');
-} elseif (file_exists(realpath(__DIR__ . '/../../../app/etc/local.xml'))) {
-    $mageLocalConfigLocation = realpath(__DIR__ . '/../../../app/etc/local.xml');
+if (file_exists(realpath(__DIR__ . '/../../../../../../../app/Mage.php'))) {
+    define('MAGENTO_ROOT_LOCATION', (__DIR__ . '/../../../../../../../'));
+} elseif (file_exists(realpath(__DIR__ . '/../../../app/Mage.php'))) {
+    define('MAGENTO_ROOT_LOCATION', realpath(__DIR__ . '/../../../'));
 }
-if ($mageLocalConfigLocation !== false) {
-    $config = new Zend_Config_Xml($mageLocalConfigLocation);
+
+if (defined('MAGENTO_ROOT_LOCATION')) {
+
+    $config = new Zend_Config_Xml(MAGENTO_ROOT_LOCATION . 'app/etc/local.xml');
     $dbConfig = $config->toArray();
 
     $dbinfo = $dbConfig['global']['resources']['default_setup']['connection'];
@@ -44,6 +44,9 @@ if ($mageLocalConfigLocation !== false) {
         putenv('PHP_VAF_DB_NAME=' . $dbinfo['dbname']);
         define('DB_ENV_INJECTED', true);
     }
+    # gets magento's include paths
+    require_once MAGENTO_ROOT_LOCATION . 'app/Mage.php';
+    Mage::app('default');
 }
 
 $command = isset($argv[1]) ? $argv[1] : null;
