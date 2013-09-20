@@ -10,10 +10,10 @@
     "include-path": [
         "../"
     ],
-    "minimum-stability":"dev",
+    "minimum-stability": "dev",
     "require": {
-        "vehiclefits/vehicle-fits-core":"0.2.*",
-        "joshribakoff/zf1-empty":"*"
+        "vehiclefits/vehicle-fits-core": "0.2.*",
+        "joshribakoff/zf1-empty": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.19",
@@ -21,6 +21,11 @@
         "phpunit/phpunit-selenium": "*",
         "phpunit/phpunit-story": "*",
         "phpunit/dbunit": "*",
-        "kylecannon/magento":"dev-master"
+        "kylecannon/magento": "dev-master"
+    },
+    "extras": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        }
     }
 }
