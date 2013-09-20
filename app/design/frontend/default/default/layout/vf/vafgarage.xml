@@ -4,9 +4,10 @@
     <!-- add MMY search on right hand side of any applicable page -->
     <default>
         <reference name="right">
-            <block type="vafgarage/garage" name="vafgarage_garage" template="vf/vafgarage/garage.phtml" before="-"></block>
+            <block type="vafgarage/garage" name="vafgarage_garage" template="vf/vafgarage/garage.phtml"
+                   before="-"></block>
         </reference>
     </default>
-    
+
 </layout>
         

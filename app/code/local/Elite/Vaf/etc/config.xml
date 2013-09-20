@@ -259,7 +259,7 @@
         <layout>
             <updates>
                 <Elite_Vaf>
-                    <file>vaf.xml</file>
+                    <file>vf/vaf.xml</file>
                 </Elite_Vaf>
             </updates>
         </layout>

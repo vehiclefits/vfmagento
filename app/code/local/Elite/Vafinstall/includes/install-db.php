@@ -77,7 +77,7 @@
         echo '<br /><b style="color:green">Ok!</b></textarea>';
         echo '<br />Now copy and paste this into the SQL tab of your phpmyadmin. Drop any existing "elite_" tables first (but not before backing them up)<br />';
 
-        echo '<script type="text/javascript" src="/skin/adminhtml/default/default/jquery-1.7.1.min.js"></script>';
+        echo '<script type="text/javascript" src="/skin/adminhtml/default/default/vf/jquery-1.7.1.min.js"></script>';
         echo '<script type="text/javascript">parent.jQuery("body").trigger("foo");</script>';
     }
     ?>

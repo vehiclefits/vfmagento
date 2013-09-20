@@ -7,6 +7,6 @@
             <!--<block type="core/template" name="vaftire_search" template="vf/vaftire/search.phtml" after="vaf_search"></block>-->
         </reference>
     </default>
-    
+
 </layout>
         

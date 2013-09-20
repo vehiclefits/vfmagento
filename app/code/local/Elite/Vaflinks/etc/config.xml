@@ -29,7 +29,7 @@
         <layout>
             <updates>
                 <Elite_Vaflinks>
-                    <file>vaflinks.xml</file>
+                    <file>vf/vaflinks.xml</file>
                 </Elite_Vaflinks>
             </updates>
         </layout>

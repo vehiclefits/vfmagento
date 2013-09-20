@@ -37,7 +37,7 @@
         <layout>
             <updates>
                 <Elite_Vafsitemap>
-                    <file>vafsitemap.xml</file>
+                    <file>vf/vafsitemap.xml</file>
                 </Elite_Vafsitemap>
             </updates>
         </layout>

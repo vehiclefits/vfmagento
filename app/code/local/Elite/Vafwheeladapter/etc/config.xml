@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 
 <config>
-    
-	<modules>
-	    <Elite_Vafwheeladapter>
-	        <version>v2-build44</version>
-	    </Elite_Vafwheeladapter>
-	</modules>
-	
-	<global>
-		<events>
+
+    <modules>
+        <Elite_Vafwheeladapter>
+            <version>v2-build44</version>
+        </Elite_Vafwheeladapter>
+    </modules>
+
+    <global>
+        <events>
             <elite_vaf_product_edit>
                 <observers>
                     <Elite_Vafwheeladapter>
@@ -22,14 +22,14 @@
         </events>
     </global>
 
-	<frontend>
-		<layout>
-			<updates>
-			    <Elite_Vafwheeladapter>
-			        <file>vafwheeladapter.xml</file>
-			    </Elite_Vafwheeladapter>
-			</updates>
-		</layout>
-	</frontend>
-    
+    <frontend>
+        <layout>
+            <updates>
+                <Elite_Vafwheeladapter>
+                    <file>vf/vafwheeladapter.xml</file>
+                </Elite_Vafwheeladapter>
+            </updates>
+        </layout>
+    </frontend>
+
 </config>
