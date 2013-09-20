@@ -11,9 +11,28 @@ Upgrade Instructions
 --------------------
 If you are running v1.35 or less, you *must* export your current fitments to CSV or XML before installing this version.
 
-Installation Instructions
--------------------------
- * Install the [Vehicle-Fits-Magento](https://github.com/vehiclefits/Vehicle-Fits-Magento) repository by dropping it in the Magento root.
+Installation Instructions using [modman](https://github.com/colinmollenhour/modman) and [Composer](http://getcomposer.org/download/)
+--------------------------
+This is the recommended installation procedure due to the fact that we use the composer autoloader to load the Vehicle Fits Core library into the magento module
+
+```
+$ cd /path/to/root/magento/install
+$ modman clone https://github.com/vehiclefits/Vehicle-Fits-Magento
+$ cd .modman/Vehicle-Fits-Magento/app/code/local/Elite
+$ composer install
+```
+
+Creating Your Schema For Your Fitments
+-----------------------
+This step is assuming that you already followed the installation instructions above to have a working installation.
+
+```
+$ cd /path/to/root/magento/install/
+$ cd app/code/local/Elite
+$ php bin/vfmagento schema
+```
+
+After you typed into the schema creation tool you will be given instructions on how to proceed.
 
 Troubleshooting
 -------------------------
@@ -26,8 +45,8 @@ Run Unit Tests
 If you're interested in running the unit tests that come with Vehicle Fits, simply download [Composer](http://getcomposer.org/download/) and do the following:
 
 ```
-cd app/code/local/Elite
-composer install --dev
+$ cd app/code/local/Elite
+$ composer install --dev
 ```
 
 After you've installed composer, you may need to rename the `phpunit.xml.dist` to `phpunit.xml` and change the following configuration's to your specifications:
