@@ -14,9 +14,9 @@ before_script:
 - curl -s http://getcomposer.org/installer | php -- --quiet
 - php composer.phar install --dev
 - cp Vaf/config.default.ini Vaf/config.ini
-- mkdir -p vendor/kylecannon/magento/app/design/frontend/default/default/template
-- cd vendor/kylecannon/magento/app/design/frontend/default/default/template
-- ln -s ../../../../../../../../../../../../design/frontend/default/default/template/vf vf
+- mkdir -p vendor/kylecannon/magento/app/design/frontend/blank/default/template
+- cd vendor/kylecannon/magento/app/design/frontend/blank/default/template
+- ln -s ../../../../../../../../../../../../design/frontend/blank/default/template/vf vf
 - cd ../../../../adminhtml/default/default/template/
 - ln -s ../../../../../../../../../../../../design/adminhtml/default/default/template/vf vf
 - cd ../../../../../../../../../
