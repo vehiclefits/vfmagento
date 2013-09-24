@@ -1,23 +1,23 @@
 <?xml version="1.0"?>
 
 <config>
-    
+
     <modules>
         <Elite_Vafpaint>
             <version>v2-build44</version>
         </Elite_Vafpaint>
     </modules>
-    
+
     <global>
-    
+
         <blocks>
             <adminhtml>
-                <rewrite>    
+                <rewrite>
                     <paint_paintcodes>Elite_Vafpaint_Adminhtml_Block_Paintcodes</paint_paintcodes>
                 </rewrite>
             </adminhtml>
         </blocks>
-        
+
         <models>
 
             <sales>
@@ -28,30 +28,37 @@
             </sales>
 
         </models>
-        
+
     </global>
 
-            
+
     <adminhtml>
+        <layout>
+            <updates>
+                <Elite_Vafpaint>
+                    <file>vf/vafpaint.xml</file>
+                </Elite_Vafpaint>
+            </updates>
+        </layout>
         <menu>
             <vaf>
                 <children>
-                	<paintcodes translate="title">
-                		<title>Paint Codes</title>
-	                    <sort_order>150</sort_order>
-                		<children>
-		                    <paintcodes translate="title">
-		                        <title>Import</title>
-		                        <action>adminhtml/paintcodes/import</action> 
-		                        <sort_order>20</sort_order>
-		                    </paintcodes>
-						</children>
-					</paintcodes>
+                    <paintcodes translate="title">
+                        <title>Paint Codes</title>
+                        <sort_order>150</sort_order>
+                        <children>
+                            <paintcodes translate="title">
+                                <title>Import</title>
+                                <action>adminhtml/paintcodes/import</action>
+                                <sort_order>20</sort_order>
+                            </paintcodes>
+                        </children>
+                    </paintcodes>
                 </children>
             </vaf>
 
         </menu>
-        
+
         <acl>
             <resources>
                 <admin>
@@ -64,7 +71,7 @@
                                     <children>
                                         <paintcodes translate="title">
                                             <title>Import</title>
-                                            <action>adminhtml/paintcodes/import</action> 
+                                            <action>adminhtml/paintcodes/import</action>
                                             <sort_order>20</sort_order>
                                         </paintcodes>
                                     </children>
@@ -72,8 +79,8 @@
                             </children>
                         </vaf>
                     </children>
-               </admin>
-           </resources>
+                </admin>
+            </resources>
         </acl>
     </adminhtml>
 
@@ -82,23 +89,23 @@
             <adminhtml>
                 <args>
                     <frontName><![CDATA[admin]]></frontName>
-                    
+
                     <modules>
-                      <Elite_Vafpaint_Admin before="Mage_Adminhtml">Elite_Vafpaint_Admin</Elite_Vafpaint_Admin>
+                        <Elite_Vafpaint_Admin before="Mage_Adminhtml">Elite_Vafpaint_Admin</Elite_Vafpaint_Admin>
                     </modules>
                 </args>
             </adminhtml>
         </routers>
-     </admin>
-     
-     <frontend>
+    </admin>
+
+    <frontend>
         <layout>
             <updates>
                 <Elite_Vafpaint>
-                    <file>vafpaint.xml</file>
+                    <file>vf/vafpaint.xml</file>
                 </Elite_Vafpaint>
             </updates>
         </layout>
-     </frontend>
-    
+    </frontend>
+
 </config>

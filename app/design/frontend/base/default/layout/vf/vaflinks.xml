@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="content">
+            <block type="vaflinks/list" name="vaf_list" template="vf/vaflinks/list.phtml" after="-"></block>
+            <block type="vaflinks/cmslist" name="vaf_cmslist" template="vf/vaflinks/cms-list.phtml" after="-"></block>
+        </reference>
+    </default>
+</layout>

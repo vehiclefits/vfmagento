@@ -96,7 +96,7 @@
         <layout>
             <updates>
                 <Elite_Vafwheel>
-                    <file>vafwheel.xml</file>
+                    <file>vf/vafwheel.xml</file>
                 </Elite_Vafwheel>
             </updates>
         </layout>

@@ -1,0 +1,22 @@
+app/code/local/Elite                                                            app/code/local/Elite
+
+app/design/adminhtml/default/default/layout/vf                                  app/design/adminhtml/default/default/layout/vf
+app/design/adminhtml/default/default/template/vf                                app/design/adminhtml/default/default/template/vf
+
+app/design/frontend/base/default/layout/vf                                      app/design/frontend/base/default/layout/vf
+app/design/frontend/base/default/template/vf                                    app/design/frontend/base/default/template/vf
+
+app/etc/modules/Elite_Vaf.xml                                                   app/etc/modules/Elite_Vaf.xml
+app/etc/modules/Elite_Vafbundle.xml                                             app/etc/modules/Elite_Vafbundle.xml
+app/etc/modules/Elite_Vafgarage.xml                                             app/etc/modules/Elite_Vafgarage.xml
+app/etc/modules/Elite_Vafimporter.xml                                           app/etc/modules/Elite_Vafimporter.xml
+app/etc/modules/Elite_Vaflinks.xml                                              app/etc/modules/Elite_Vaflinks.xml
+app/etc/modules/Elite_Vaflogo.xml                                               app/etc/modules/Elite_Vaflogo.xml
+app/etc/modules/Elite_Vafnote.xml                                               app/etc/modules/Elite_Vafnote.xml
+app/etc/modules/Elite_Vafpaint.xml                                              app/etc/modules/Elite_Vafpaint.xml
+app/etc/modules/Elite_Vafsitemap.xml                                            app/etc/modules/Elite_Vafsitemap.xml
+app/etc/modules/Elite_Vaftire.xml                                               app/etc/modules/Elite_Vaftire.xml
+app/etc/modules/Elite_Vafwheel.xml                                              app/etc/modules/Elite_Vafwheel.xml
+app/etc/modules/Elite_Vafwheeladapter.xml                                       app/etc/modules/Elite_Vafwheeladapter.xml
+
+skin/adminhtml/default/default/vf                                               skin/adminhtml/default/default/vf

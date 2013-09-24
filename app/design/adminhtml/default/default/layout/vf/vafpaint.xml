@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout>
+    <default>
+
+        <!--  <reference name="top.menu">
+              <action method="unsetChild">
+                  <name>catalog.topnav</name>
+              </action>
+              <block type="dc_topnav/navigation" name="catalog.topnav" template="catalog/navigation/top.phtml"/>
+          </reference>-->
+
+    </default>
+
+</layout>

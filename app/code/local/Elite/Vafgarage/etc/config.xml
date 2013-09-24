@@ -28,7 +28,7 @@
         <layout>
             <updates>
                 <Elite_Vafgarage>
-                    <file>vafgarage.xml</file>
+                    <file>vf/vafgarage.xml</file>
                 </Elite_Vafgarage>
             </updates>
         </layout>
