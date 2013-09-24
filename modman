@@ -3,8 +3,8 @@ app/code/local/Elite                                                            
 app/design/adminhtml/default/default/layout/vf                                  app/design/adminhtml/default/default/layout/vf
 app/design/adminhtml/default/default/template/vf                                app/design/adminhtml/default/default/template/vf
 
-app/design/frontend/blank/default/layout/vf                                      app/design/frontend/base/default/layout/vf
-app/design/frontend/blank/default/template/vf                                    app/design/frontend/base/default/template/vf
+app/design/frontend/base/default/layout/vf                                      app/design/frontend/base/default/layout/vf
+app/design/frontend/base/default/template/vf                                    app/design/frontend/base/default/template/vf
 
 app/etc/modules/Elite_Vaf.xml                                                   app/etc/modules/Elite_Vaf.xml
 app/etc/modules/Elite_Vafbundle.xml                                             app/etc/modules/Elite_Vafbundle.xml
