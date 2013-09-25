@@ -12,7 +12,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "vehiclefits/vehicle-fits-core": "0.2.*",
+        "vehiclefits/vehicle-fits-core": ">=0.2.2",
         "joshribakoff/zf1-empty": "*"
     },
     "require-dev": {
