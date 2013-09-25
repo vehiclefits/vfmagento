@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vafwheeladapter_Observer_WheelSideBinderTest extends VF_TestCase
+class Elite_Vafwheeladapter_Observer_WheelSideBinderTest extends Elite_TestCase
 {
     function doSetUp()
     {

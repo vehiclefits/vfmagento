@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vaftire_Model_FlexibleSearchTests_SectionWidthTest extends VF_TestCase
+class Elite_Vaftire_Model_FlexibleSearchTests_SectionWidthTest extends Elite_TestCase
 {
     function testShouldGetFromRequest()
     {
@@ -32,17 +32,17 @@ class Elite_Vaftire_Model_FlexibleSearchTests_SectionWidthTest extends VF_TestCa
     function testShouldStoreInSession()
     {
         $flexibleSearch = $this->flexibleTireSearch(array('section_width'=>'205', 'aspect_ratio'=>'55', 'diameter'=>'16'));
-        VF_Singleton::getInstance()->storeFitInSession();
+        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
         $this->assertEquals( 205, $this->flexibleTireSearch()->sectionWidth(), 'should store section width in session' );
     }
     
     function testShouldClearFromSession()
     {
         $flexibleSearch = $this->flexibleTireSearch(array('section_width'=>'205', 'aspect_ratio'=>'55', 'diameter'=>'16'));
-        VF_Singleton::getInstance()->storeFitInSession();
+        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
         
         $flexibleSearch = $this->flexibleTireSearch(array('section_width'=>'0', 'aspect_ratio'=>'0', 'diameter'=>'0'));
-        VF_Singleton::getInstance()->storeFitInSession();
+        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
         
         $this->assertNull( $this->flexibleTireSearch()->sectionWidth(), 'should clear section width from session' );
     }

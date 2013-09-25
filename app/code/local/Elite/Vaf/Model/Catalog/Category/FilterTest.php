@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vaf_Model_Catalog_Category_FilterImplTest extends VF_TestCase
+class Elite_Vaf_Model_Catalog_Category_FilterImplTest extends Elite_TestCase
 {
     const ID = 3;
     const DIFFERENT_ID = 4;

@@ -27,7 +27,7 @@ class Elite_Vaf_ProductController extends Mage_Catalog_ProductController
 {
     function listAction()
     { 
-        $helper = VF_Singleton::getInstance();
+        $helper = Elite_Vaf_Singleton::getInstance();
         
         $helper->setRequest( $this->getRequest() );
         $helper->storeFitInSession();
@@ -39,7 +39,7 @@ class Elite_Vaf_ProductController extends Mage_Catalog_ProductController
         
         
         $this->myLoadLayout();
-        switch( VF_Singleton::getInstance()->getConfig()->homepagesearch->mode )
+        switch( Elite_Vaf_Singleton::getInstance()->getConfig()->homepagesearch->mode )
         {
             case 'grid':
                 // set in layout.xml

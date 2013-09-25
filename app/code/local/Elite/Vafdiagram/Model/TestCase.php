@@ -22,7 +22,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-abstract class Elite_Vafdiagram_Model_TestCase extends VF_TestCase
+abstract class Elite_Vafdiagram_Model_TestCase extends Elite_TestCase
 {
 
     function import($data)

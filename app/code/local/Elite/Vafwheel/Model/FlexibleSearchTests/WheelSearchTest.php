@@ -22,7 +22,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Elite_Vafwheel_Model_FlexibleSearchTests_WheelSearchTest extends VF_TestCase
+class Elite_Vafwheel_Model_FlexibleSearchTests_WheelSearchTest extends Elite_TestCase
 {
 
     function testShouldFindMatchingWheels()
@@ -56,7 +56,7 @@ class Elite_Vafwheel_Model_FlexibleSearchTests_WheelSearchTest extends VF_TestCa
 	$flexibleWheelSearch = $this->flexibleWheelSearch($wheelParamaters);
 	$flexibleWheelSearch->storeSizeInSession();
 	
-	$this->assertEquals(array(1), VF_Singleton::getInstance()->flexibleSearch()->doGetProductIds(), 'should clear tire search');
+	$this->assertEquals(array(1), Elite_Vaf_Singleton::getInstance()->flexibleSearch()->doGetProductIds(), 'should clear tire search');
 	$this->assertNull( $this->flexibleTireSearch()->aspectRatio(), 'should clear aspect ratio from session' );
     }
 
@@ -64,11 +64,11 @@ class Elite_Vafwheel_Model_FlexibleSearchTests_WheelSearchTest extends VF_TestCa
     {
 	$vehicle = $this->createVehicle(array('make'=>'Honda', 'model'=>'Civic', 'year'=>'2000'));
 	$this->setRequestParams($vehicle->toValueArray());
-	$this->assertEquals( $vehicle->toValueArray(), VF_Singleton::getInstance()->vehicleSelection()->toValueArray(), 'should first select a vehicle');
+	$this->assertEquals( $vehicle->toValueArray(), Elite_Vaf_Singleton::getInstance()->vehicleSelection()->toValueArray(), 'should first select a vehicle');
 
 	$this->setRequestParams(array('lug_count' => '5', 'stud_spread' => '114.3'));
-	VF_Singleton::getInstance()->flexibleSearch()->doGetProductIds();
-	$this->assertNull(VF_Singleton::getInstance()->vehicleSelection()->getFirstVehicle(), 'should clear vehicle when searching on a wheel size');
+	Elite_Vaf_Singleton::getInstance()->flexibleSearch()->doGetProductIds();
+	$this->assertNull(Elite_Vaf_Singleton::getInstance()->vehicleSelection()->getFirstVehicle(), 'should clear vehicle when searching on a wheel size');
     }
 
 }

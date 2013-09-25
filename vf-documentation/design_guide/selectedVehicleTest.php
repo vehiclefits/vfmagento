@@ -1,5 +1,5 @@
 <?php
-class selectedVehicleTest extends VF_TestCase
+class selectedVehicleTest extends Elite_TestCase
 {
     function testSnippet1_WhenNoVehicle()
     {
@@ -42,7 +42,7 @@ class selectedVehicleTest extends VF_TestCase
     function snippet1()
     {
         // Showing products for your: 2009 Honda Civic
-        $vehicleSelection = VF_Singleton::getInstance()->vehicleSelection();
+        $vehicleSelection = Elite_Vaf_Singleton::getInstance()->vehicleSelection();
         if( !$vehicleSelection->isEmpty() )
         {
             $vehicle = $vehicleSelection->getFirstVehicle();
@@ -54,7 +54,7 @@ class selectedVehicleTest extends VF_TestCase
     function snippet2()
     {
         // Showing products for your: 2009 Honda Civic
-        $vehicleSelection = VF_Singleton::getInstance()->vehicleSelection();
+        $vehicleSelection = Elite_Vaf_Singleton::getInstance()->vehicleSelection();
         if( !$vehicleSelection->isEmpty() )
         {
             $vehicle = $vehicleSelection->getFirstVehicle();

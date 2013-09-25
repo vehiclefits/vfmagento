@@ -26,7 +26,7 @@ class Elite_Vafsitemap_ProductController extends Mage_Core_Controller_Front_Acti
 {
     function indexAction()
     { 
-        if( !VF_Singleton::getInstance()->getConfig()->seo->htmlSitemap )
+        if( !Elite_Vaf_Singleton::getInstance()->getConfig()->seo->htmlSitemap )
         {
             return;
         }

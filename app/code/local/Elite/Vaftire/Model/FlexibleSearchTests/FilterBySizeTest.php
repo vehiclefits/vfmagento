@@ -22,7 +22,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Elite_Vaftire_Model_FlexibleSearchTests_FilterBySizeTest extends VF_TestCase
+class Elite_Vaftire_Model_FlexibleSearchTests_FilterBySizeTest extends Elite_TestCase
 {
 
     function testTireSearch()
@@ -58,7 +58,7 @@ class Elite_Vaftire_Model_FlexibleSearchTests_FilterBySizeTest extends VF_TestCa
 	$flexibleTireSearch = $this->flexibleTireSearch($tireParamaters);
 	$flexibleTireSearch->storeTireSizeInSession();
 
-	$this->assertEquals(array(1), VF_Singleton::getInstance()->flexibleSearch()->doGetProductIds(), 'should clear wheel search');
+	$this->assertEquals(array(1), Elite_Vaf_Singleton::getInstance()->flexibleSearch()->doGetProductIds(), 'should clear wheel search');
 	$this->assertEquals('', $this->flexibleWheelSearch()->boltPattern()->getLugCount(), 'should clear bolt pattern from session' );
     }
 
@@ -66,11 +66,11 @@ class Elite_Vaftire_Model_FlexibleSearchTests_FilterBySizeTest extends VF_TestCa
     {
 	$vehicle = $this->createVehicle(array('make'=>'Honda', 'model'=>'Civic', 'year'=>'2000'));
 	$this->setRequestParams($vehicle->toValueArray());
-	$this->assertEquals( $vehicle->toValueArray(), VF_Singleton::getInstance()->vehicleSelection()->toValueArray(), 'should first select a vehicle');
+	$this->assertEquals( $vehicle->toValueArray(), Elite_Vaf_Singleton::getInstance()->vehicleSelection()->toValueArray(), 'should first select a vehicle');
 
 	$this->setRequestParams(array('section_width' => '205', 'aspect_ratio' => '55', 'diameter' => '16'));
-	VF_Singleton::getInstance()->flexibleSearch()->doGetProductIds();
-	$this->assertNull(VF_Singleton::getInstance()->vehicleSelection()->getFirstVehicle(), 'should clear vehicle when searching on a tire size');
+	Elite_Vaf_Singleton::getInstance()->flexibleSearch()->doGetProductIds();
+	$this->assertNull(Elite_Vaf_Singleton::getInstance()->vehicleSelection()->getFirstVehicle(), 'should clear vehicle when searching on a tire size');
     }
 
 }

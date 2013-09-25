@@ -1,6 +1,6 @@
 <?php
 
-class Elite_Vafsitemap_design_frontend_VehiclesTest extends VF_TestCase
+class Elite_Vafsitemap_design_frontend_VehiclesTest extends Elite_TestCase
 {
 
     function doSetUp()
