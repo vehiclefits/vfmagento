@@ -51,7 +51,7 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_RewriteTitle
         $product->addVafFit($this->vehicle->toValueArray());
         
         $this->setRequestParams($this->vehicle->toValueArray());
-        $product->setCurrentlySelectedFit( VF_Singleton::getInstance()->vehicleSelection() );
+        $product->setCurrentlySelectedFit( Elite_Vaf_Singleton::getInstance()->vehicleSelection() );
         $this->assertEquals( 'Widget for Honda Civic 2002', $product->getName(), 'when product fits selection (and rewrites enabled), should rewrite title' );
     }
     
@@ -70,7 +70,7 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_RewriteTitle
         $product = $this->getProduct2($config);
         
         $this->setRequestParams($this->vehicle->toValueArray());
-        $product->setCurrentlySelectedFit( VF_Singleton::getInstance()->vehicleSelection() );
+        $product->setCurrentlySelectedFit( Elite_Vaf_Singleton::getInstance()->vehicleSelection() );
         $this->assertEquals( 'Widget', $product->getName(), 'when product does not fit selection, should not rewrite title' );
     }
     
@@ -96,7 +96,7 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_RewriteTitle
         $product->addVafFit($this->vehicle->toValueArray());
         
         $this->setRequestParams($this->vehicle->toValueArray());
-        $product->setCurrentlySelectedFit( VF_Singleton::getInstance()->vehicleSelection() );
+        $product->setCurrentlySelectedFit( Elite_Vaf_Singleton::getInstance()->vehicleSelection() );
         $this->assertEquals( 'Widget', $product->getName(), 'when rewrites disabled, should not rewrite title' );
     }
     

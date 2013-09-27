@@ -1,6 +1,6 @@
 <?php
 $relatedProduct = new Elite_Vafrelated_Model_Catalog_Product($_product);
-$products = $relatedProduct->relatedProducts(VF_Singleton::getInstance()->getFit());
+$products = $relatedProduct->relatedProducts(Elite_Vaf_Singleton::getInstance()->getFit());
 echo '<h1>Related Vehicle Products</h1><ul>';
 foreach($products as $relatedProduct)
 {

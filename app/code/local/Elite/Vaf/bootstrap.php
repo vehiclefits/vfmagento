@@ -32,7 +32,7 @@ require_once( __DIR__.'/../vendor/autoload.php' );
 
 $resource = Mage::getSingleton('core/resource');
 $read = $resource->getConnection('core_read');
-VF_Singleton::getInstance()->setReadAdapter($read);
+Elite_Vaf_Singleton::getInstance()->setReadAdapter($read);
 
 set_include_path(
     PATH_SEPARATOR . MAGE_PATH . '/lib/'

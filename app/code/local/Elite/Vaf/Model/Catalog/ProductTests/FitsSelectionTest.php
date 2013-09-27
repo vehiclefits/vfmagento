@@ -62,6 +62,6 @@ class Elite_Vaf_Model_Catalog_ProductTests_FitsSelectionTest extends Elite_Vaf_M
 
     function setSelectedFit($vehicle)
     {
-        VF_Singleton::getInstance()->getRequest()->setParams($vehicle->toValueArray());
+        Elite_Vaf_Singleton::getInstance()->getRequest()->setParams($vehicle->toValueArray());
     }
 }

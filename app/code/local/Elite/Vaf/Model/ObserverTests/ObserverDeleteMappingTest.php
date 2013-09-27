@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vaf_Model_ObserverDeleteMappingTest extends VF_TestCase
+class Elite_Vaf_Model_ObserverDeleteMappingTest extends Elite_TestCase
 {
     const PRODUCT_ID = 1;
 
@@ -50,7 +50,7 @@ class Elite_Vaf_Model_ObserverDeleteMappingTest extends VF_TestCase
             'model' => $vehicle->getLevel('model')->getId(),
             'year' => $vehicle->getLevel('year')->getId()
         ));
-        $helper = new VF_Singleton;
+        $helper = new Elite_Vaf_Singleton;
         $helper->setRequest( $request );
         $this->assertEquals( array(0), $helper->getProductIds(), 'deleting fitments should result in there being no fitments' );
     }

@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vafsitemap_Model_Sitemap_VehicleTests_CountMMTCTest extends VF_TestCase
+class Elite_Vafsitemap_Model_Sitemap_VehicleTests_CountMMTCTest extends Elite_TestCase
 {
     protected $make, $model, $trim, $chassis;
     
@@ -32,13 +32,13 @@ class Elite_Vafsitemap_Model_Sitemap_VehicleTests_CountMMTCTest extends VF_TestC
     
     function testCount0()
     {
-        $sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle(VF_Singleton::getInstance()->getConfig());
+        $sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle(Elite_Vaf_Singleton::getInstance()->getConfig());
         $this->assertEquals( 0, $sitemap->vehicleCount() );
     }
 
     function testCount1()
     {
-        $sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle(VF_Singleton::getInstance()->getConfig());
+        $sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle(Elite_Vaf_Singleton::getInstance()->getConfig());
         $vehicle = $this->createMMTC();
         $this->insertMappingMMTC( $vehicle );
         $this->assertEquals( 1, $sitemap->vehicleCount() );

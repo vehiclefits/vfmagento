@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vafwheeladapter_Model_FlexibleSearchTests_WheelSideSpreadTest extends VF_TestCase
+class Elite_Vafwheeladapter_Model_FlexibleSearchTests_WheelSideSpreadTest extends Elite_TestCase
 {
 	function testShouldGetFromRequest()
     {
@@ -32,17 +32,17 @@ class Elite_Vafwheeladapter_Model_FlexibleSearchTests_WheelSideSpreadTest extend
     function testShouldStoreInSession()
     {
         $flexibleSearch = $this->flexibleWheeladapterSearch(array('wheel_stud_spread'=>'114.3'));
-        VF_Singleton::getInstance()->storeFitInSession();
+        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
         $this->assertEquals( 114.3, $this->flexibleWheeladapterSearch()->wheelSideStudSpread(), 'should store wheel side stud spread in session' );
     }
     
     function testShouldClearFromSession()
     {
         $flexibleSearch = $this->flexibleWheeladapterSearch(array('wheel_stud_spread'=>'114.3'));
-        VF_Singleton::getInstance()->storeFitInSession();
+        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
         
         $flexibleSearch = $this->flexibleWheeladapterSearch(array('wheel_stud_spread'=>'0'));
-        VF_Singleton::getInstance()->storeFitInSession();
+        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
         
         $this->assertNull( $this->flexibleWheeladapterSearch()->wheelSideStudSpread(), 'should clear wheel side stud spread from session' );
     }

@@ -32,7 +32,7 @@ class Elite_Vafsitemap_Model_Sitemap_Product_XML extends Elite_Vafsitemap_Model_
         
         $record = $startRecord;
         
-        $query = VF_Singleton::getInstance()->getReadAdapter()->select()
+        $query = Elite_Vaf_Singleton::getInstance()->getReadAdapter()->select()
 		->from($this->getProductTable(), array('entity_id'));
 	$rs = $query->query();
 	while($productRow = $rs->fetch())
@@ -62,7 +62,7 @@ class Elite_Vafsitemap_Model_Sitemap_Product_XML extends Elite_Vafsitemap_Model_
 
     function fitmentCount($storeId)
     {
-        $query = VF_Singleton::getInstance()->getReadAdapter()->select()
+        $query = Elite_Vaf_Singleton::getInstance()->getReadAdapter()->select()
 		->from($this->getProductTable(), array('entity_id'));
 	$rs = $query->query();
 	while($productRow = $rs->fetch())
@@ -82,7 +82,7 @@ class Elite_Vafsitemap_Model_Sitemap_Product_XML extends Elite_Vafsitemap_Model_
     function productCount()
     {
 	$count = 0;
-	$query = VF_Singleton::getInstance()->getReadAdapter()->select()
+	$query = Elite_Vaf_Singleton::getInstance()->getReadAdapter()->select()
 		->from($this->getProductTable(), array('entity_id'));
 	$rs = $query->query();
 	while($productRow = $rs->fetch())

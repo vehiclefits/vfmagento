@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vafsitemap_Model_Sitemap_Product_HtmlTest extends VF_TestCase
+class Elite_Vafsitemap_Model_Sitemap_Product_HtmlTest extends Elite_TestCase
 {
     protected $expectedDefinition;
     protected $sitemap;
@@ -31,7 +31,7 @@ class Elite_Vafsitemap_Model_Sitemap_Product_HtmlTest extends VF_TestCase
 		$this->switchSchema('make,model,year');
 		$this->expectedDefinition = $this->createMMY();
         $this->setRequestParams( $this->expectedDefinition->toValueArray() );
-        $this->sitemap = new Elite_Vafsitemap_Model_Sitemap_Product_Sub( VF_Singleton::getInstance()->getConfig() );
+        $this->sitemap = new Elite_Vafsitemap_Model_Sitemap_Product_Sub( Elite_Vaf_Singleton::getInstance()->getConfig() );
     }
     
     function testSelectedVehicle()

@@ -30,7 +30,7 @@ class Elite_Vaflinks_Block_List extends Elite_Vaf_Block_Search {
     }
 
     function getDefinitions() {
-        VF_Singleton::getInstance()->storeFitInSession();
+        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
 
         if ($this->lastLevelAlreadySelected()) {
             return array();
@@ -97,7 +97,7 @@ class Elite_Vaflinks_Block_List extends Elite_Vaf_Block_Search {
     }
     
     function isEnabled() {
-        return (bool)VF_Singleton::getInstance()->enableDirectory();
+        return (bool)Elite_Vaf_Singleton::getInstance()->enableDirectory();
     }
 
 }

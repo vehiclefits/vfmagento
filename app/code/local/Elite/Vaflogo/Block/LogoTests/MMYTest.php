@@ -22,7 +22,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Elite_Vaflogo_Block_LogoTests_MMYTest extends VF_TestCase
+class Elite_Vaflogo_Block_LogoTests_MMYTest extends Elite_TestCase
 {
 
     function doSetUp()

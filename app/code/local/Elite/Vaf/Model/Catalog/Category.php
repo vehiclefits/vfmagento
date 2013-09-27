@@ -42,7 +42,7 @@ class Elite_Vaf_Model_Catalog_Category extends Mage_Catalog_Model_Category imple
     {
         if( !$this->config instanceof Zend_Config )
         {
-            $this->config = VF_Singleton::getInstance()->getConfig();
+            $this->config = Elite_Vaf_Singleton::getInstance()->getConfig();
         }    
         return $this->config;
     }
@@ -93,7 +93,7 @@ class Elite_Vaf_Model_Catalog_Category extends Mage_Catalog_Model_Category imple
     
     protected function getProductIdsInFilter()
     {
-        return VF_Singleton::getInstance()->getProductIds();
+        return Elite_Vaf_Singleton::getInstance()->getProductIds();
     }
     
 }

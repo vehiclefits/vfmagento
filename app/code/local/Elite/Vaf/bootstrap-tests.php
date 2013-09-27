@@ -67,7 +67,7 @@ $database = new VF_TestDbAdapter(array(
     'username' => VAF_DB_USERNAME,
     'password' => VAF_DB_PASSWORD
 ));
-VF_Singleton::getInstance()->setReadAdapter($database);
+Elite_Vaf_Singleton::getInstance()->setReadAdapter($database);
 
 # used to autoload the Mage_ classes
 function my_autoload($class_name) {

@@ -22,7 +22,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Elite_Vaflinks_Block_ListTest extends VF_TestCase {
+class Elite_Vaflinks_Block_ListTest extends Elite_TestCase {
 
     function testShouldListMakes() {
         $vehicle = $this->createMMY('Honda', 'Civic', '2000');
@@ -95,7 +95,7 @@ class Elite_Vaflinks_Block_ListTest extends VF_TestCase {
         $block->setRequest($request);
         $html = $block->toHtml();
 
-        VF_Singleton::getInstance()->storeFitInSession();
+        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
 
         // list years
         $block = new Elite_Vaflinks_Block_ListTestSub;
@@ -119,7 +119,7 @@ class Elite_Vaflinks_Block_ListTest extends VF_TestCase {
         $block->setRequest($request);
         $html = $block->toHtml();
 
-        VF_Singleton::getInstance()->storeFitInSession();
+        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
 
         // list years
         $block = new Elite_Vaflinks_Block_ListTestSub;

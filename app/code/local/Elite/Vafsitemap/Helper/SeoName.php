@@ -46,16 +46,16 @@ class Elite_Vafsitemap_Helper_SeoName
     
     protected function rewritesOn()
     {
-        return VF_Singleton::getInstance()->getConfig()->seo->rewriteProductName;
+        return Elite_Vaf_Singleton::getInstance()->getConfig()->seo->rewriteProductName;
     }
     
     protected function getFit()
     {
-        return VF_Singleton::getInstance()->vehicleSelection();
+        return Elite_Vaf_Singleton::getInstance()->vehicleSelection();
     }
     
     protected function getFitId()
     {
-        return VF_Singleton::getInstance()->getFitId();
+        return Elite_Vaf_Singleton::getInstance()->getFitId();
     }
 }

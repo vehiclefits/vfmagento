@@ -38,7 +38,7 @@ class Elite_Vaf_Adminhtml_Block_Definitions extends Elite_Vaf_Block_Abstract imp
         if( !$this->config instanceof Zend_Config )
         {
             
-            $this->config = VF_Singleton::getInstance()->getConfig();
+            $this->config = Elite_Vaf_Singleton::getInstance()->getConfig();
         }    
         return $this->config;
     }
