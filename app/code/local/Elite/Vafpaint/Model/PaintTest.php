@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vafpaint_Model_PaintTest extends VF_TestCase
+class Elite_Vafpaint_Model_PaintTest extends Elite_TestCase
 {
     const CODE = 'B-27MZ';
     const COLOR = '#9CBBCC';

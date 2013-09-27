@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-abstract class Elite_Vaf_Model_Catalog_CategoryTests_TestCase extends VF_TestCase
+abstract class Elite_Vaf_Model_Catalog_CategoryTests_TestCase extends Elite_TestCase
 {
     const PRODUCT_ID = 5;
     
@@ -44,7 +44,7 @@ abstract class Elite_Vaf_Model_Catalog_CategoryTests_TestCase extends VF_TestCas
     {
         $vehicle = $this->createMMY();
         $this->insertMappingMMY( $vehicle, self::PRODUCT_ID );
-        VF_Singleton::getInstance()->getRequest()
+        Elite_Vaf_Singleton::getInstance()->getRequest()
             ->setParam('make',$vehicle->getLevel('make')->getId())
             ->setParam('model',$vehicle->getLevel('model')->getId())
             ->setParam('year',$vehicle->getLevel('year')->getId());

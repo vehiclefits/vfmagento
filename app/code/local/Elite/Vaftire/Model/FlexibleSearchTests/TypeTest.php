@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vaftire_Model_FlexibleSearchTests_TypeTest extends VF_TestCase
+class Elite_Vaftire_Model_FlexibleSearchTests_TypeTest extends Elite_TestCase
 {
 	function testShouldGetFromRequest()
     {
@@ -32,17 +32,17 @@ class Elite_Vaftire_Model_FlexibleSearchTests_TypeTest extends VF_TestCase
     function testShouldStoreInSession()
     {
         $flexibleSearch = $this->flexibleTireSearch(array('tire_type'=>2,'section_width'=>'205', 'aspect_ratio'=>'55', 'diameter'=>'16'));
-        VF_Singleton::getInstance()->storeFitInSession();
+        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
         $this->assertEquals( 2, $this->flexibleTireSearch(array())->tireType(), 'should store tire type in session' );
     }
     
     function testShouldClearFromSession()
     {
         $flexibleSearch = $this->flexibleTireSearch(array('tire_type'=>2,'section_width'=>'205', 'aspect_ratio'=>'55', 'diameter'=>'16'));
-        VF_Singleton::getInstance()->storeFitInSession();
+        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
         
         $flexibleSearch = $this->flexibleTireSearch(array('tire_type'=>'','section_width'=>'0', 'aspect_ratio'=>'0', 'diameter'=>'0'));
-        VF_Singleton::getInstance()->storeFitInSession();
+        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
         
         $this->assertNull( $this->flexibleTireSearch()->tireType(), 'should clear tire type from session' );
     }
@@ -50,10 +50,10 @@ class Elite_Vaftire_Model_FlexibleSearchTests_TypeTest extends VF_TestCase
     function testShouldClearFromSession2()
     {
         $flexibleSearch = $this->flexibleTireSearch(array('tire_type'=>2,'section_width'=>'205', 'aspect_ratio'=>'55', 'diameter'=>'16'));
-        VF_Singleton::getInstance()->storeFitInSession();
+        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
         
         $flexibleSearch = $this->flexibleTireSearch(array('tire_type'=>'','section_width'=>'0', 'aspect_ratio'=>'0', 'diameter'=>'0'));
-        VF_Singleton::getInstance()->storeFitInSession();
+        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
         
         $this->assertNull( $flexibleSearch->tireType(), 'should clear tire type from session' );
     }

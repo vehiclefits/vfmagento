@@ -88,7 +88,7 @@ class Elite_Vaf_Adminhtml_Block_Catalog_Product_Edit_Tab_Vaf extends Mage_Adminh
     {
         if( !$this->config instanceof Zend_Config )
         {
-            $this->config = VF_Singleton::getInstance()->getConfig();
+            $this->config = Elite_Vaf_Singleton::getInstance()->getConfig();
         }
         return $this->config;
     }

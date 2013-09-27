@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vafwheel_Model_FlexibleSearchTests_LugCountTest extends VF_TestCase
+class Elite_Vafwheel_Model_FlexibleSearchTests_LugCountTest extends Elite_TestCase
 {
 	function testShouldGetFromRequest()
     {
@@ -32,17 +32,17 @@ class Elite_Vafwheel_Model_FlexibleSearchTests_LugCountTest extends VF_TestCase
     function testShouldStoreInSession()
     {
         $flexibleSearch = $this->flexibleWheelSearch(array('lug_count'=>'5'));
-        VF_Singleton::getInstance()->storeFitInSession();
+        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
         $this->assertEquals( 5, $this->flexibleWheelSearch()->lugCount(), 'should store lug count in session' );
     }
     
     function testShouldClearFromSession()
     {
         $flexibleSearch = $this->flexibleWheelSearch(array('lug_count'=>'5'));
-        VF_Singleton::getInstance()->storeFitInSession();
+        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
         
         $flexibleSearch = $this->flexibleWheelSearch(array('lug_count'=>'0'));
-        VF_Singleton::getInstance()->storeFitInSession();
+        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
         
         $this->assertEquals( 0, $this->flexibleWheelSearch()->lugCount(), 'should clear lug count from session' );
     }

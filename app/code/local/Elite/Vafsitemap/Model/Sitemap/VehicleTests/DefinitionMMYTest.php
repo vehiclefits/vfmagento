@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vafsitemap_Model_Sitemap_VehicleTests_DefinitionMMYTest extends VF_TestCase
+class Elite_Vafsitemap_Model_Sitemap_VehicleTests_DefinitionMMYTest extends Elite_TestCase
 {
     protected $make, $model, $year;
     
@@ -34,7 +34,7 @@ class Elite_Vafsitemap_Model_Sitemap_VehicleTests_DefinitionMMYTest extends VF_T
     
     function testDefinitionsMMY()
     {
-        $sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle(VF_Singleton::getInstance()->getConfig());
+        $sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle(Elite_Vaf_Singleton::getInstance()->getConfig());
         $vehicles = $sitemap->getDefinitions(10);
         $this->assertTrue( $vehicles[0] instanceof VF_Vehicle );
         $this->assertNotEquals( 0, (int)$vehicles[0]->getLevel('year')->getId() );

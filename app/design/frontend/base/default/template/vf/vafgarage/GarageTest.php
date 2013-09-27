@@ -1,6 +1,6 @@
 <?php
 
-class Elite_Vafgarage_design_frontend_GarageTest extends VF_TestCase
+class Elite_Vafgarage_design_frontend_GarageTest extends Elite_TestCase
 {
 
     function doSetUp()
@@ -18,7 +18,7 @@ class Elite_Vafgarage_design_frontend_GarageTest extends VF_TestCase
         	'year'=>''
         );
         $this->setRequestParams($requestParams);
-        VF_Singleton::getInstance()->storeFitInSession();
+        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
         
         $block = new Elite_Vafgarage_design_garageTestSub;
         $output = $block->_toHtml();

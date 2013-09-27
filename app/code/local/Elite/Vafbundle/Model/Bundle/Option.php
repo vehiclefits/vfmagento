@@ -27,7 +27,7 @@ class Elite_Vafbundle_Model_Bundle_Option extends Mage_Bundle_Model_Option
     {
 	$startTime = time();
 
-        $vehicle = VF_Singleton::getInstance()->vehicleSelection();
+        $vehicle = Elite_Vaf_Singleton::getInstance()->vehicleSelection();
         
         if( Mage::app()->getStore()->isAdmin() )
         {
@@ -47,7 +47,7 @@ class Elite_Vafbundle_Model_Bundle_Option extends Mage_Bundle_Model_Option
         
         if( $vehicle && $vehicle->getLeafValue() )
         {
-	    $productIds = VF_Singleton::getInstance()->getProductIds();
+	    $productIds = Elite_Vaf_Singleton::getInstance()->getProductIds();
 
 	    $return = array();
             foreach( $selections as $product )

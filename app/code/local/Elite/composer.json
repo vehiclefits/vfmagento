@@ -12,7 +12,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "vehiclefits/vehicle-fits-core": "0.2.*",
+        "vehiclefits/vehicle-fits-core": ">=0.2.2",
         "joshribakoff/zf1-empty": "*"
     },
     "require-dev": {
@@ -25,7 +25,7 @@
     },
     "extras": {
         "branch-alias": {
-            "dev-master": "2.0.x-dev"
+            "dev-master": "2.1.x-dev"
         }
     }
 }

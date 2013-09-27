@@ -45,7 +45,7 @@ class Elite_Vaf_Model_Settings_Product extends Zend_Form
     {
 	if (!$this->config instanceof Zend_Config)
 	{
-	    $this->config = VF_Singleton::getInstance()->getConfig();
+	    $this->config = Elite_Vaf_Singleton::getInstance()->getConfig();
 	}
 	return $this->config;
     }

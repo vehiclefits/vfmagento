@@ -120,7 +120,7 @@ Before the user completely makes all selections you have several drop downs that
     {
 	if (!$this->config instanceof Zend_Config)
 	{
-	    $this->config = VF_Singleton::getInstance()->getConfig();
+	    $this->config = Elite_Vaf_Singleton::getInstance()->getConfig();
 	}
 	return $this->config;
     }

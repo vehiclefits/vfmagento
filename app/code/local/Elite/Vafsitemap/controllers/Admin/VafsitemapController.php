@@ -74,7 +74,7 @@ class Elite_Vafsitemap_Admin_VafsitemapController extends Mage_Adminhtml_Control
 
     function config()
     {
-	return VF_Singleton::getInstance()->getConfig();
+	return Elite_Vaf_Singleton::getInstance()->getConfig();
     }
 
     protected function checkVersion()

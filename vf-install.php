@@ -28,7 +28,7 @@ require_once( 'app/Mage.php' );
 Mage::app();
 require_once( 'app/code/local/Elite/Vaf/bootstrap.php' );
 
-$helper = VF_Singleton::getInstance();
+$helper = Elite_Vaf_Singleton::getInstance();
 ?>
 <form action="?" method="get">
 	<?php
