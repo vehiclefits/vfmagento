@@ -76,7 +76,7 @@ class Elite_Vafsitemap_Model_Url_RewriteTests_ProductListTests_RewriteURLS_MMYTe
 	$this->rewrite($request);
 	$this->setRequest($request);
 
-	Elite_Vaf_Singleton::getInstance()->getProductIds();
+	VF_Singleton::getInstance()->getProductIds();
 	$this->assertEquals($this->definition->getLevel('make')->getId(), $_SESSION['make'], 'should look up the right ID#s from the vehicle string, and store in session');
 	$this->assertEquals($this->definition->getLevel('model')->getId(), $_SESSION['model'], 'should look up the right ID#s from the vehicle string, and store in session');
 	$this->assertEquals($this->definition->getLevel('year')->getId(), $_SESSION['year'], 'should look up the right ID#s from the vehicle string, and store in session');

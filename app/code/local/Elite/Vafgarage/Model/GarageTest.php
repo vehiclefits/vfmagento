@@ -22,7 +22,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Elite_Vafgarage_Model_GarageTest extends Elite_TestCase {
+class Elite_Vafgarage_Model_GarageTest extends VF_TestCase {
 
     function testAddVehicle() {
         $garage = new Elite_Vafgarage_Model_Garage;

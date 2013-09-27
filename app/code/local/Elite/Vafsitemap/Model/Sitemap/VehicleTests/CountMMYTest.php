@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vafsitemap_Model_Sitemap_VehicleTests_CountTest extends Elite_TestCase
+class Elite_Vafsitemap_Model_Sitemap_VehicleTests_CountTest extends VF_TestCase
 {
     protected $make, $model, $year;
     
@@ -33,14 +33,14 @@ class Elite_Vafsitemap_Model_Sitemap_VehicleTests_CountTest extends Elite_TestCa
 
     function testWhenThereIsAMappingShouldCountTheDefinition()
     {
-        $sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle(Elite_Vaf_Singleton::getInstance()->getConfig());
+        $sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle(VF_Singleton::getInstance()->getConfig());
         $this->insertMappingMMY( $this->definition );
         $this->assertEquals( 1, $sitemap->vehicleCount(), 'when there is a mapping should count the definition' );
     }
 
     function testWhenThereIsNotAMappingShouldNotCountTheDefinition()
     {
-        $sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle(Elite_Vaf_Singleton::getInstance()->getConfig());
+        $sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle(VF_Singleton::getInstance()->getConfig());
         $this->assertEquals( 0, $sitemap->vehicleCount(), 'when there is not a mapping should not count the definition' );
     }
 

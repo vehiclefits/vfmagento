@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vaf_Block_Search_ChoosevehicleTest extends Elite_Vaf_Block_SearchTestCase
+class Elite_Vaf_Block_Search_ChoosevehicleTest extends VF_SearchTestCase
 {
     function testDoesntShowCategoryChooser()
     {

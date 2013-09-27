@@ -145,7 +145,7 @@ class VF_Search_Mage extends VF_Search
         {
             return $this->_request;
         }
-        $this->_request = Elite_Vaf_Singleton::getInstance()->getRequest();
+        $this->_request = VF_Singleton::getInstance()->getRequest();
         return $this->_request;
     }
 

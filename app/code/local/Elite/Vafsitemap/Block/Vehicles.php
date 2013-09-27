@@ -39,7 +39,7 @@ class Elite_Vafsitemap_Block_Vehicles extends Mage_Core_Block_Template implement
     {
 	if (!$this->config instanceof Zend_Config)
 	{
-	    $this->config = Elite_Vaf_Singleton::getInstance()->getConfig();
+	    $this->config = VF_Singleton::getInstance()->getConfig();
 	}
 	return $this->config;
     }
@@ -122,7 +122,7 @@ class Elite_Vafsitemap_Block_Vehicles extends Mage_Core_Block_Template implement
     /** @return Zend_Db_Adapter_Abstract */
     protected function getReadAdapter()
     {
-	return Elite_Vaf_Singleton::getInstance()->getReadAdapter();
+	return VF_Singleton::getInstance()->getReadAdapter();
     }
 
 }

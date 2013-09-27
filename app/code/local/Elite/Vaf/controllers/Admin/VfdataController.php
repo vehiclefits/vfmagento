@@ -118,7 +118,7 @@ class Elite_Vaf_Admin_VfdataController extends Mage_Adminhtml_Controller_Action
     function getConfig()
     {
         if (!$this->config instanceof Zend_Config) {
-            $this->config = Elite_Vaf_Singleton::getInstance()->getConfig();
+            $this->config = VF_Singleton::getInstance()->getConfig();
         }
         return $this->config;
     }

@@ -32,7 +32,7 @@ class Elite_Vaflogo_Block_Logo extends Mage_Core_Block_Abstract
     {
         if( !$this->config instanceof Zend_Config )
         {
-            $this->config = Elite_Vaf_Singleton::getInstance()->getConfig();
+            $this->config = VF_Singleton::getInstance()->getConfig();
         }
         return $this->config;
     }
@@ -44,7 +44,7 @@ class Elite_Vaflogo_Block_Logo extends Mage_Core_Block_Abstract
 
     function _toHtml()
     {
-	if (Elite_Vaf_Singleton::getInstance()->getConfig()->logo->disable)
+	if (VF_Singleton::getInstance()->getConfig()->logo->disable)
 	{
 	    return;
 	}
@@ -67,7 +67,7 @@ class Elite_Vaflogo_Block_Logo extends Mage_Core_Block_Abstract
 
     function selectionPart()
     {
-	$vehicleSelection = Elite_Vaf_Singleton::getInstance()->vehicleSelection();
+	$vehicleSelection = VF_Singleton::getInstance()->vehicleSelection();
 	if ($vehicleSelection->isEmpty())
 	{
 	    return false;

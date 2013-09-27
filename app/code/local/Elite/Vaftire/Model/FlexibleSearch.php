@@ -134,7 +134,7 @@ class Elite_Vaftire_Model_FlexibleSearch extends VF_FlexibleSearch_Wrapper imple
     {
 	if (!$this->config instanceof Zend_Config)
 	{
-	    $this->config = Elite_Vaf_Singleton::getInstance()->getConfig();
+	    $this->config = VF_Singleton::getInstance()->getConfig();
 	}
 	return $this->config;
     }

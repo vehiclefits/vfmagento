@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vaf_SnippetTest extends Elite_TestCase
+class Elite_Vaf_SnippetTest extends VF_TestCase
 {
     const MAKE = 'Honda_Unique';
     const MODEL = 'Civic';
@@ -31,7 +31,7 @@ class Elite_Vaf_SnippetTest extends Elite_TestCase
     {
         $vehicle = $this->createMMY( self::MAKE, self::MODEL, self::YEAR );
         $request = $this->getRequest( $vehicle->toValueArray() );
-        $helper = new Elite_Vaf_Singleton();
+        $helper = new VF_Singleton();
         $helper->setRequest( $request );
         $vehicle = $helper->vehicleSelection();                                                              
         $this->assertMMYTitlesEquals( self::MAKE, self::MODEL, self::YEAR, $vehicle );

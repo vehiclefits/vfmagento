@@ -43,7 +43,7 @@ class Elite_Vafsitemap_Block_Product extends Mage_Catalog_Block_Seo_Sitemap_Prod
     
     function sitemap()
     {
-        return new Elite_Vafsitemap_Model_Sitemap_Product_Html(Elite_Vaf_Singleton::getInstance()->getConfig());
+        return new Elite_Vafsitemap_Model_Sitemap_Product_Html(VF_Singleton::getInstance()->getConfig());
     }
     
 }

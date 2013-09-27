@@ -82,7 +82,7 @@
                 <?php
                 foreach( $this->getFits() as $fit )
                 {
-                    $leafLevel = Elite_Vaf_Singleton::getInstance()->getLeafLevel();
+                    $leafLevel = VF_Singleton::getInstance()->getLeafLevel();
                     ?>
                     <div class="multiTree-selection">
                         <input type="checkbox" name="vafcheck[]" class="vafcheck" value="<?php echo $leafLevel?>-<?php echo $fit->id?>" />

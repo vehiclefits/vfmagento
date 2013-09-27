@@ -24,7 +24,7 @@
 require_once( 'app/Mage.php' );
 require_once( 'app/code/local/Elite/Vaf/Model/Schema/Generator.php' );
 Mage::app();
-$helper = Elite_Vaf_Singleton::getInstance();
+$helper = VF_Singleton::getInstance();
 $generator = new Elite_Vafpaint_Model_Schema_Generator;
 
 $sql = $generator->install();

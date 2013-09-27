@@ -22,7 +22,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Vafsitemap_Model_Url_Rewrite_SlugTest extends Elite_TestCase
+class Vafsitemap_Model_Url_Rewrite_SlugTest extends VF_TestCase
 {
 
     function testSlugToVehicle()

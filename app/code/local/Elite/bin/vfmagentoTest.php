@@ -21,19 +21,19 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class vfmagentoTest extends Elite_TestCase
+class vfmagentoTest extends VF_TestCase
 {
     function setUp()
     {
-        Elite_Vaf_Singleton::reset();
-        Elite_Vaf_Singleton::getInstance(true);
-        Elite_Vaf_Singleton::getInstance()->setRequest(new Zend_Controller_Request_Http);
+        VF_Singleton::reset();
+        VF_Singleton::getInstance(true);
+        VF_Singleton::getInstance()->setRequest(new Zend_Controller_Request_Http);
         $database = new VF_TestDbAdapter(array(
             'dbname' => VAF_DB_NAME,
             'username' => VAF_DB_USERNAME,
             'password' => VAF_DB_PASSWORD
         ));
-        Elite_Vaf_Singleton::getInstance()->setReadAdapter($database);
+        VF_Singleton::getInstance()->setReadAdapter($database);
 
         $schemaGenerator = new VF_Schema_Generator();
         $schemaGenerator->dropExistingTables();

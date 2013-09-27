@@ -159,6 +159,6 @@ abstract class Elite_Vafinstall_MigrateBase
     
     function db()
     {
-		return Elite_Vaf_Singleton::getInstance()->getReadAdapter();
+		return VF_Singleton::getInstance()->getReadAdapter();
     }
 }

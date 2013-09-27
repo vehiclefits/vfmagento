@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vafnote_SnippetTest extends Elite_TestCase
+class Elite_Vafnote_SnippetTest extends VF_TestCase
 {
     const PRODUCT_ID = 1;
     const NOTE_CODE = 1;
@@ -108,7 +108,7 @@ class Elite_Vafnote_SnippetTest extends Elite_TestCase
         // begin fitment fitment notes
         
         $noteFinder = new VF_Note_Finder();
-        $vehicle = Elite_Vaf_Singleton::getInstance()->vehicleSelection()->getFirstVehicle();
+        $vehicle = VF_Singleton::getInstance()->vehicleSelection()->getFirstVehicle();
         
         $product = new Elite_Vaf_Model_Catalog_Product();
         $product->setId( $product_id );

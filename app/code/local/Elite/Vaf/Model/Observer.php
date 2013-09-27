@@ -36,8 +36,8 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
         );
         $resource = Mage::getSingleton('core/resource');
         $read = $resource->getConnection('core_read');
-        Elite_Vaf_Singleton::getInstance()->setReadAdapter($read);
-        Elite_Vaf_Singleton::getInstance()->setProcessURL('/vaf/ajax/process?');
+        VF_Singleton::getInstance()->setReadAdapter($read);
+        VF_Singleton::getInstance()->setProcessURL('/vaf/ajax/process?');
     }
 
     function catalogProductEditAction($event)
@@ -150,7 +150,7 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
     /** array('order'=>$order, 'quote'=>$this->getQuote()) */
     function checkoutSaveOrder($event)
     {
-        $fit_id = Elite_Vaf_Singleton::getInstance()->getFitId();
+        $fit_id = VF_Singleton::getInstance()->getFitId();
         if ($fit_id) {
             $event->order->setEliteFit($fit_id);
         }
@@ -173,6 +173,6 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
     /** @return Zend_Db_Adapter_Abstract */
     protected function getReadAdapter()
     {
-        return Elite_Vaf_Singleton::getInstance()->getReadAdapter();
+        return VF_Singleton::getInstance()->getReadAdapter();
     }
 }

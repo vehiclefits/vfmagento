@@ -21,11 +21,8 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vaf_Block_Product_ResultTest extends Elite_Vaf_Block_SearchTestCase
+class Elite_Vaf_Block_Product_ResultTest extends VF_SearchTestCase
 {
-    protected function setUp() {
-        parent::setUp();
-    }
     function testShouldTranslate()
     {
         $vehicle = $this->createVehicle(array('make'=>'Honda','model'=>'Civic','year'=>2000));

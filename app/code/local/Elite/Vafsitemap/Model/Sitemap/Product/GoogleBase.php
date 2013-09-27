@@ -33,7 +33,7 @@ class Elite_Vafsitemap_Model_Sitemap_Product_GoogleBase extends Elite_Vafsitemap
 
 	fwrite($stream, $this->fieldNames());
 
-	$query = Elite_Vaf_Singleton::getInstance()->getReadAdapter()->select()
+	$query = VF_Singleton::getInstance()->getReadAdapter()->select()
 		->from($this->getProductTable(), array('entity_id'));
 	$rs = $query->query();
 	while($productRow = $rs->fetch())
@@ -52,7 +52,7 @@ class Elite_Vafsitemap_Model_Sitemap_Product_GoogleBase extends Elite_Vafsitemap
 
     function doProduct($product)
     {
-	$sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle(Elite_Vaf_Singleton::getInstance()->getConfig());
+	$sitemap = new Elite_Vafsitemap_Model_Sitemap_Vehicle(VF_Singleton::getInstance()->getConfig());
 	$vehicles = $sitemap->getDefinitions(null,null,$product->getId());
 	foreach ($vehicles as $vehicle)
 	{

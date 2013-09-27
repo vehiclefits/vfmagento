@@ -24,7 +24,7 @@ if(!isPainted($product))
 
 <div class="paintOptions" align="center">
     <?php
-    $fit = Elite_Vaf_Singleton::getInstance()->vehicleSelection();
+    $fit = VF_Singleton::getInstance()->vehicleSelection();
     if( $fit )
     {
     	$leaf_id = $fit->getLeafValue();

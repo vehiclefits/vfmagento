@@ -25,6 +25,6 @@ class Elite_Vaf_MockController
 {
     function getRequest()
     {
-        return Elite_Vaf_Singleton::getInstance()->getRequest();
+        return VF_Singleton::getInstance()->getRequest();
     }
 }

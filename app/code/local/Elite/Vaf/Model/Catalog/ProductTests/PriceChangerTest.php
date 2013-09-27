@@ -21,24 +21,16 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vaf_Model_Catalog_ProductTests_PriceChangerTest extends Elite_TestCase
+class Elite_Vaf_Model_Catalog_ProductTests_PriceChangerTest extends VF_Import_ProductFitments_CSV_ImportTests_TestCase
 {
-    /** @var  Elite_Vaf_Model_Catalog_ProductTests_ImportSubClassTestCase */
-    protected $importSubClass;
-
-    protected function setUp() {
-        parent::setUp();
-        $this->importSubClass = new Elite_Vaf_Model_Catalog_ProductTests_ImportSubClassTestCase();
-    }
-
     function testShouldNotChangePrice()
     {
 	$this->insertProduct('sku');
 
-	$this->importSubClass->mappingsImport('sku, make, model, year, price
+	$this->mappingsImport('sku, make, model, year, price
 sku, honda, civic, 2000, 222.22
 sku, honda, civic, 2001');
-
+        
 	$product = $this->getProductForSku('sku');
         $product->setPrice(1);
         $vehicle1 = $this->vehicleFinder()->findOneByLevels(array('make'=>'honda', 'model'=>'civic', 'year'=>2000));
@@ -53,7 +45,7 @@ sku, honda, civic, 2001');
     {
 	$this->insertProduct('sku');
 
-	$this->importSubClass->mappingsImport('sku, make, model, year, price
+	$this->mappingsImport('sku, make, model, year, price
 sku, honda, civic, 2000, 222.22
 sku, honda, civic, 2001');
 
@@ -66,7 +58,7 @@ sku, honda, civic, 2001');
     {
 	$this->insertProduct('sku');
 
-	$this->importSubClass->mappingsImport('sku, make, model, year, price
+	$this->mappingsImport('sku, make, model, year, price
 sku, honda, civic, 2000, 222.22');
 
 	$product = $this->getProductForSku('sku');
@@ -79,7 +71,7 @@ sku, honda, civic, 2000, 222.22');
     {
 	$this->insertProduct('sku');
 
-	$this->importSubClass->mappingsImport('sku, make, model, year, price
+	$this->mappingsImport('sku, make, model, year, price
 sku, honda, civic, 2000, 222.22');
 
 	$product = $this->getProductForSku('sku');
@@ -91,7 +83,7 @@ sku, honda, civic, 2000, 222.22');
     {
 	$this->insertProduct('sku');
 
-	$this->importSubClass->mappingsImport('sku, make, model, year, price
+	$this->mappingsImport('sku, make, model, year, price
 sku, honda, civic, 2000, 222.22');
 
 	$product = $this->getProductForSku('sku');
@@ -102,7 +94,7 @@ sku, honda, civic, 2000, 222.22');
     {
 	$this->insertProduct('sku');
 
-	$this->importSubClass->mappingsImport('sku, make, model, year, price
+	$this->mappingsImport('sku, make, model, year, price
 sku, honda, civic, 2000, 222.22');
 
 	$product = $this->getProductForSku('sku');
@@ -114,7 +106,7 @@ sku, honda, civic, 2000, 222.22');
     {
 	$this->insertProduct('sku');
 
-	$this->importSubClass->mappingsImport('sku, make, model, year, price
+	$this->mappingsImport('sku, make, model, year, price
 sku, honda, civic, 2000, 0');
 
 	$product = $this->getProductForSku('sku');
@@ -127,7 +119,7 @@ sku, honda, civic, 2000, 0');
     {
 	$this->insertProduct('sku');
 
-	$this->importSubClass->mappingsImport('sku, make, model, year, price
+	$this->mappingsImport('sku, make, model, year, price
 sku, honda, civic, 2000, 222.22');
 
 	$product = $this->getProductForSku('sku');
@@ -138,7 +130,7 @@ sku, honda, civic, 2000, 222.22');
     {
 	$this->insertProduct('sku');
 
-	$this->importSubClass->mappingsImport('price,sku, make, model, year,
+	$this->mappingsImport('price,sku, make, model, year,
 222.22,sku, honda, civic, 2000');
 
 	$product = $this->getProductForSku('sku');
@@ -151,7 +143,7 @@ sku, honda, civic, 2000, 222.22');
     {
 	$this->insertProduct('sku');
 
-	$this->importSubClass->mappingsImport('price,sku, make, model, year,
+	$this->mappingsImport('price,sku, make, model, year,
 222.22,sku, honda, civic, 2000');
 
 	$product = $this->getProductForSku('sku');
@@ -159,17 +151,17 @@ sku, honda, civic, 2000, 222.22');
 	$this->assertEquals( 222.22, $product->getFormatedPrice(), 'should change "formatted price"');
 
     }
-
+    
     function testGetsGlobalVehicle()
     {
         $this->insertProduct('sku');
         $vehicle = $this->createVehicle(array('make'=>'honda', 'model'=>'civic', 'year'=>2000));
-	$this->importSubClass->mappingsImport('price,sku, make, model, year,
+	$this->mappingsImport('price,sku, make, model, year,
 222.22,sku, honda, civic, 2000');
 
 	$product = $this->getProductForSku('sku');
 	$this->setRequestParams($vehicle->toValueArray());
-
+        
         $this->assertNotEquals(null,$product->currentlySelectedFit());
 	$this->assertEquals( 222.22, $product->getPrice(), 'should get price/fitment from global fitment"');
     }
@@ -178,7 +170,7 @@ sku, honda, civic, 2000, 222.22');
     {
         $this->insertProduct('sku');
         $vehicle = $this->createVehicle(array('make' => 'honda', 'model' => 'civic', 'year' => 2000));
-        $this->importSubClass->mappingsImport(
+        $this->mappingsImport(
             'price,sku, make, model, year,
             0,sku, honda, civic, 2000'
         );

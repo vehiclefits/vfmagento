@@ -84,7 +84,7 @@ The splash page that is shown can be edited in vaf/splash.phtml ',
     {
         if (!$this->config instanceof Zend_Config)
         {
-            $this->config = Elite_Vaf_Singleton::getInstance()->getConfig();
+            $this->config = VF_Singleton::getInstance()->getConfig();
         }
         return $this->config;
     }

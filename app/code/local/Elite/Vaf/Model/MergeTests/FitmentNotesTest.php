@@ -22,7 +22,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Elite_Vaf_Model_MergeTests_FitmentNotesTest extends Elite_TestCase
+class Elite_Vaf_Model_MergeTests_FitmentNotesTest extends VF_TestCase
 {
 
     function doSetUp()

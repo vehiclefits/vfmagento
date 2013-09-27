@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vafwheeladapter_Model_FlexibleSearchTests_VehicleSideLugCountTest extends Elite_TestCase
+class Elite_Vafwheeladapter_Model_FlexibleSearchTests_VehicleSideLugCountTest extends VF_TestCase
 {
 	function testShouldGetFromRequest()
     {
@@ -32,17 +32,17 @@ class Elite_Vafwheeladapter_Model_FlexibleSearchTests_VehicleSideLugCountTest ex
     function testShouldStoreInSession()
     {
         $flexibleSearch = $this->flexibleWheeladapterSearch(array('vehicle_lug_count'=>'5'));
-        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
+        VF_Singleton::getInstance()->storeFitInSession();
         $this->assertEquals( 5, $this->flexibleWheeladapterSearch()->vehicleSideLugCount(), 'should store vehicle side lug count in session' );
     }
     
     function testShouldClearFromSession()
     {
         $flexibleSearch = $this->flexibleWheeladapterSearch(array('vehicle_lug_count'=>'5'));
-        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
+        VF_Singleton::getInstance()->storeFitInSession();
         
         $flexibleSearch = $this->flexibleWheeladapterSearch(array('vehicle_lug_count'=>'0'));
-        Elite_Vaf_Singleton::getInstance()->storeFitInSession();
+        VF_Singleton::getInstance()->storeFitInSession();
         
         $this->assertNull( $this->flexibleWheeladapterSearch()->vehicleSideLugCount(), 'should clear vehicle side lug count from session' );
     }
