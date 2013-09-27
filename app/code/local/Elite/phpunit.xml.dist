@@ -14,7 +14,6 @@
         bootstrap="Vaf/bootstrap-tests.php">
 
     <php>
-        <env name="PHP_MAGE_PATH" value="/home/josh/www/magento"/>
         <env name="PHP_TEMP_PATH" value="/tmp"/>
         <env name="PHP_VAF_DB_USERNAME" value="root"/>
         <env name="PHP_VAF_DB_PASSWORD" value=""/>

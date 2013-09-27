@@ -24,13 +24,15 @@
 error_reporting( E_ALL | E_STRICT | E_NOTICE );
 ini_set( 'display_errors', 1 );
 
+
+define( 'MAGE_PATH', __DIR__.'/../vendor/kylecannon/magento/');
+
 /**
  * The paths are controlled by app/code/local/Elite/phpunit.xml.dist
  * using the <php><env /></php> section. To make changes, make a copy
  * of phpunit.xml.dist to phpunit.xml
  */
 
-define( 'MAGE_PATH', realpath(getenv('PHP_MAGE_PATH')));
 define( 'TEMP_PATH', getenv('PHP_TEMP_PATH') );
 
 # database details for test server
