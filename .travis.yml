@@ -12,7 +12,7 @@ before_script:
 - mysql -e 'create database vf_magento'
 - cd app/code/local/Elite
 - curl -s http://getcomposer.org/installer | php -- --quiet
-- php composer.phar install --dev
+- php composer.phar install --dev --prefer-source
 - cp Vaf/config.default.ini Vaf/config.ini
 - mkdir -p vendor/kylecannon/magento/app/design/frontend/base/default/template
 - cd vendor/kylecannon/magento/app/design/frontend/base/default/template
