@@ -37,7 +37,7 @@ class Elite_Vaftire_Model_Catalog_TireProduct_Import extends VF_Import_Abstract
 		$sku = $this->getFieldValue('sku',$row);
 		$productId = $this->productId($sku);
 		
-		$product = new Elite_Vaftire_Model_Catalog_TireProduct(new Elite_Vaf_Model_Catalog_Product());
+		$product = new Elite_Vaftire_Model_Catalog_TireProduct(new VF_Product());
 		$product->setId($productId);
 		
         $tireSize = $this->tireSize($row);

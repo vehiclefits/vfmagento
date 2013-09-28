@@ -27,14 +27,14 @@ class Elite_Vaftire_Model_Catalog_TireProductTests_TireSizeTest extends VF_TestC
     
     function testCreateNewProduct()
     {
-	$product = new Elite_Vaf_Model_Catalog_Product;
+	$product = new VF_Product;
 	$tireProduct = new Elite_Vaftire_Model_Catalog_TireProduct($product);
 	$this->assertFalse( $tireProduct->getTireSize(), 'should create new product w/ no tire size');
     }
 
     function testCreateNewProduct_TireType()
     {
-	$product = new Elite_Vaf_Model_Catalog_Product;
+	$product = new VF_Product;
 	$tireProduct = new Elite_Vaftire_Model_Catalog_TireProduct($product);
 	$this->assertFalse( $tireProduct->tireType(), 'should create new product w/ no tire type');
     }

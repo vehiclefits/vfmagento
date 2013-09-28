@@ -30,7 +30,7 @@ class Elite_Vaftire_Model_Catalog_TireProduct
     const SUMMER_ALL = 1;
     const WINTER = 2;
 
-    function __construct(Elite_Vaf_Model_Catalog_Product $productToWrap)
+    function __construct(VF_Product $productToWrap)
     {
         $this->wrappedProduct = $productToWrap;
     }

@@ -41,7 +41,7 @@ class Elite_Vaftire_Model_Catalog_TireProduct_ImportTests_DifferentColumnOrderTe
     {
         $importer = $this->importer( $this->csvFile );
         $importer->import();
-        $product = $this->getProductForSku( self::SKU );
+        $product = $this->getVFProductForSku( self::SKU );
         $product = new Elite_Vaftire_Model_Catalog_TireProduct($product);
         $tireSize = $product->getTireSize();
         $this->assertEquals( 16, $tireSize->diameter(), 'should set diameter' );
@@ -51,7 +51,7 @@ class Elite_Vaftire_Model_Catalog_TireProduct_ImportTests_DifferentColumnOrderTe
     {
         $importer = $this->importer( $this->csvFile );
         $importer->import();
-        $product = $this->getProductForSku( self::SKU );
+        $product = $this->getVFProductForSku( self::SKU );
         $product = new Elite_Vaftire_Model_Catalog_TireProduct($product);
         $tireSize = $product->getTireSize();
         $this->assertEquals( 205, $tireSize->sectionWidth(), 'should set section width' );
@@ -61,7 +61,7 @@ class Elite_Vaftire_Model_Catalog_TireProduct_ImportTests_DifferentColumnOrderTe
     {
         $importer = $this->importer( $this->csvFile );
         $importer->import();
-        $product = $this->getProductForSku( self::SKU );
+        $product = $this->getVFProductForSku( self::SKU );
         $product = new Elite_Vaftire_Model_Catalog_TireProduct($product);
         $tireSize = $product->getTireSize();
         $this->assertEquals( 55, $tireSize->aspectRatio(), 'should set aspect ratio' );

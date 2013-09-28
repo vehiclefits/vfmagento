@@ -32,7 +32,7 @@ class Elite_Vaftire_Model_Catalog_TireProduct_Export
 
 	foreach ($this->getProductRows() as $productRow)
 	{
-	    $product = new Elite_Vaf_Model_Catalog_Product;
+	    $product = new VF_Product;
 	    $product->setId($productRow['entity_id']);
 	    
 	    $product = new Elite_Vaftire_Model_Catalog_TireProduct($product);

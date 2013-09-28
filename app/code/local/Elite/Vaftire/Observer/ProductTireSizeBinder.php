@@ -61,10 +61,16 @@ class Elite_Vaftire_Observer_ProductTireSizeBinder
     {
 		return $this->controller->getRequest()->getParam('tire_type');
     }
-    
+
+    /**
+     * @param Mage_Catalog_Model_Product
+     * @return Elite_Vaftire_Model_Catalog_TireProduct
+     */
     function tireProduct($product)
     {
-        return new Elite_Vaftire_Model_Catalog_TireProduct($product);
+        $vfProduct = new VF_product();
+        $vfProduct->setId($product->getId());
+        return new Elite_Vaftire_Model_Catalog_TireProduct($vfProduct);
     }
     
     /** @return Zend_Db_Adapter_Abstract */
