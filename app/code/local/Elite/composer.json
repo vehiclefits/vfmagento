@@ -1,5 +1,5 @@
 {
-    "name": "vehiclefits/vehicle-fits-magento",
+    "name": "vehiclefits/vfmagento",
     "description": "Vehiclefits Magento Module.",
     "license": "OSL-3.0",
     "autoload": {
@@ -12,7 +12,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "vehiclefits/vehicle-fits-core": "0.2.*",
+        "vehiclefits/library": "0.2.*",
         "joshribakoff/zf1-empty": "*"
     },
     "require-dev": {
