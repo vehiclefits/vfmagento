@@ -6,7 +6,9 @@
     
         <?php
         $product = $this->getProduct();
-        $tireProduct = new Elite_Vaftire_Model_Catalog_TireProduct($product);
+        $vfProduct = new VF_Product();
+        $vfProduct->setId($product->getId());
+        $tireProduct = new VF_Tire_Catalog_TireProduct($vfProduct);
         $tireSize = $tireProduct->getTireSize();
         ?>
     
@@ -25,8 +27,8 @@
 	    $helper = new Zend_View_Helper_FormSelect();
 	    $helper->setView( new Zend_View );
 	    echo $helper->formSelect('tire_type',$tireProduct->tireType(),array(),array(
-	    	Elite_Vaftire_Model_Catalog_TireProduct::SUMMER_ALL => 'Summer/All Seasons',
-	    	Elite_Vaftire_Model_Catalog_TireProduct::WINTER => 'Winter'
+            VF_Tire_Catalog_TireProduct::SUMMER_ALL => 'Summer/All Seasons',
+            VF_Tire_Catalog_TireProduct::WINTER => 'Winter'
 	    	
 	    ));
 		?>

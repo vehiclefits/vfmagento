@@ -14,7 +14,9 @@
         <br />
         <?php
         $product = $this->getProduct();
-        $wheelProduct = new Elite_Vafwheel_Model_Catalog_Product($product);
+        $vfProduct = new VF_Product();
+        $vfProduct->setId($product->getId());
+        $wheelProduct = new VF_Wheel_Catalog_Product($vfProduct);
         $boltPatterns = $wheelProduct->getBoltPatterns();
         ?>
         <textarea name="multipatterns" rows="3" cols="50"><?php echo implode("\n",$boltPatterns)?></textarea>

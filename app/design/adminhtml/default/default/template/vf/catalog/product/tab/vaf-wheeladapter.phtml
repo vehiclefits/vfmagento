@@ -10,7 +10,9 @@
         <br />
         <?php
         $product = $this->getProduct();
-        $wheeladapterProduct = new Elite_Vafwheeladapter_Model_Catalog_Product($product);
+        $vfProduct = new VF_Product();
+        $vfProduct->setId($product->getId());
+        $wheeladapterProduct = new VF_Wheeladapter_Catalog_Product($vfProduct);
         $boltPattern = $wheeladapterProduct->getWheelSideBoltPattern();
         ?>
         <input type="text" name="wheel_side_pattern" value="<?php echo $boltPattern?>" />
