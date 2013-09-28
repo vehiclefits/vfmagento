@@ -31,5 +31,5 @@ Zend_Registry::set('db',$db);
 
 
 $file = 'product-tire-sizes-export.csv';
-$exporter = new Elite_Vaftire_Model_Catalog_TireProduct_Export();
+$exporter = new VF_Tire_Catalog_TireProduct_Export();
 file_put_contents($file,$exporter->export());

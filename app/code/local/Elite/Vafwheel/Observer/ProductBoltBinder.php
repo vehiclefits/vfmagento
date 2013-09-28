@@ -34,13 +34,13 @@ class Elite_Vafwheel_Observer_ProductBoltBinder
     */
     protected function doAddBoltPatterns( $controller,  VF_Product $product )
     {
-        $wheelProduct = new Elite_Vafwheel_Model_Catalog_Product($product);
+        $wheelProduct = new VF_Wheel_Catalog_Product($product);
         $wheelProduct->removeBoltPatterns();
         
         /** @todo get under test */
         if( isset($_FILES['boltpatterncsv']) && $_FILES['boltpatterncsv']['tmp_name'] && $_FILES['boltpatterncsv']['error'] == 0 )
         {
-            $importer = new Elite_Vafwheel_Model_Catalog_Product_Import( $_FILES['boltpatterncsv']['tmp_name'] );
+            $importer = new VF_Wheel_Catalog_Product_Import( $_FILES['boltpatterncsv']['tmp_name'] );
             $importer->import();
         }
         else
@@ -56,7 +56,7 @@ class Elite_Vafwheel_Observer_ProductBoltBinder
                     return;
                 }
 
-                $boltPattern = Elite_Vafwheel_Model_BoltPattern::create( $pattern );
+                $boltPattern = VF_Wheel_BoltPattern::create( $pattern );
                 if( !is_array( $boltPattern ) )
                 {
                     $boltPattern = array( $boltPattern );

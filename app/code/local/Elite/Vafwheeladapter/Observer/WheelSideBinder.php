@@ -34,13 +34,13 @@ class Elite_Vafwheeladapter_Observer_WheelSideBinder
     */
 	function doBindWheelSide( $controller,  VF_Product $product )
 	{
-		$wheeladapterProduct = new Elite_Vafwheeladapter_Model_Catalog_Product($product);
+		$wheeladapterProduct = new VF_Wheeladapter_Catalog_Product($product);
 		$pattern = $controller->getRequest()->getParam( 'wheel_side_pattern' );
 		if(!$pattern)
 		{
 			return $wheeladapterProduct->unsetWheelSideBoltPattern();
 		}
-		$boltPattern = Elite_Vafwheel_Model_BoltPattern::create( $pattern );
+		$boltPattern = VF_Wheel_BoltPattern::create( $pattern );
 		$wheeladapterProduct->setWheelSideBoltPattern($boltPattern);
 	}
 }

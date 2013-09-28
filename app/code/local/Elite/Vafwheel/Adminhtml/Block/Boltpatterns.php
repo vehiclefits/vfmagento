@@ -33,7 +33,7 @@ class Elite_Vafwheel_Adminhtml_Block_Boltpatterns extends Mage_Adminhtml_Block_W
         
         if( isset( $_FILES['file']['error'] ) && $_FILES['file']['error'] === 0 )
         {
-            $importer = new Elite_Vafwheel_Model_Importer_Definitions_Bolts( $_FILES['file']['tmp_name'] );
+            $importer = new VF_Wheel_Importer_Definitions_Bolts( $_FILES['file']['tmp_name'] );
             $importer->import();
             $this->messages = 'done';
         }

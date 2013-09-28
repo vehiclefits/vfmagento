@@ -45,7 +45,7 @@ class Elite_Vafwheeladapter_Observer_WheelSideBinderTest extends VF_TestCase
         $event = $this->event($product);
         $binder->bindWheelSide( $event );
         
-        $wheeladapterProduct = new Elite_Vafwheeladapter_Model_Catalog_Product($product);
+        $wheeladapterProduct = new VF_Wheeladapter_Catalog_Product($product);
         $this->assertEquals( 4, $wheeladapterProduct->getWheelSideBoltPattern()->getLugCount(), 'should add bolt pattern to product' );
         $this->assertEquals( 114.3, $wheeladapterProduct->getWheelSideBoltPattern()->getDistance(), 'should add bolt pattern to product' );
     }    
@@ -68,7 +68,7 @@ class Elite_Vafwheeladapter_Observer_WheelSideBinderTest extends VF_TestCase
         $event = $this->event($product);
         $binder->bindWheelSide( $event );
         
-        $wheeladapterProduct = new Elite_Vafwheeladapter_Model_Catalog_Product($product);
+        $wheeladapterProduct = new VF_Wheeladapter_Catalog_Product($product);
         $this->assertFalse( $wheeladapterProduct->getWheelSideBoltPattern(), 'should unbind bolt pattern from product' );
     }
 

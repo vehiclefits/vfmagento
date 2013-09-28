@@ -37,7 +37,7 @@ class product_wheel_sizes_import_csvTest extends VF_TestCase
 //	exec('php ' . dirname(__FILE__) . '/product-wheel-sizes-import.csv.php');
 //
 //	$product = $this->getProductForSku('sku');
-//        $product = new Elite_Vafwheel_Model_Catalog_Product($product);
+//        $product = new VF_Wheel_Catalog_Product($product);
 //        $boltPatterns = $product->getBoltPatterns();
 //
 //        $this->assertEquals( 4, $boltPatterns[0]->getLugCount(), 'should set lug_count' );

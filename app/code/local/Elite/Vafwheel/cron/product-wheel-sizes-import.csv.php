@@ -29,5 +29,5 @@ Mage::app('admin')->setUseSessionInUrl(false);
 Mage::getConfig()->init();
 
 $file = 'product-wheel-sizes-import.csv';
-$import = new Elite_Vafwheel_Model_Catalog_Product_Import($file);
+$import = new VF_Wheel_Catalog_Product_Import($file);
 $import->import();

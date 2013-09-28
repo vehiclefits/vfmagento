@@ -41,7 +41,7 @@ class Elite_Vaftire_Admin_VaftirevehicleimportController extends Mage_Adminhtml_
     {
 		if( isset( $_FILES['file']['error'] ) && $_FILES['file']['error'] === 0 )
         {
-			$importer = new Elite_Vaftire_Model_Importer_Definitions_TireSize($_FILES['file']['tmp_name']);
+			$importer = new VF_Tire_Importer_Definitions_TireSize($_FILES['file']['tmp_name']);
             $importer->import();
         }
     }

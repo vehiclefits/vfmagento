@@ -80,13 +80,13 @@ class Elite_Vaf_Model_Merge extends Elite_Vaf_Model_Base
     {
         if (file_exists(ELITE_PATH . '/Vafwheel'))
         {
-            $wheelValidator = new Elite_Vafwheel_Model_MergeValidator;
+            $wheelValidator = new VF_Wheel_MergeValidator;
             $wheelValidator->ensureCompatible($slaveVehicles, $masterVehicle);
         }
 
         if (file_exists(ELITE_PATH . '/Vaftire'))
         {
-            $tireValidator = new Elite_Vaftire_Model_MergeValidator;
+            $tireValidator = new VF_Tire_MergeValidator;
             $tireValidator->ensureCompatible($slaveVehicles, $masterVehicle);
         }
 

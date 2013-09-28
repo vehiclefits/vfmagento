@@ -33,7 +33,7 @@ class Elite_Vaftire_Observer_ProductTireSizeBinder
         $this->doSetTireSize($tireProduct);
     }
     
-    function doSetTireSize( Elite_Vaftire_Model_Catalog_TireProduct $tireProduct )
+    function doSetTireSize( VF_Tire_Catalog_TireProduct $tireProduct )
     {
         $tireProduct->setTireSize($this->tireSize());
         $tireProduct->setTireType($this->tireType());
@@ -64,13 +64,13 @@ class Elite_Vaftire_Observer_ProductTireSizeBinder
 
     /**
      * @param Mage_Catalog_Model_Product
-     * @return Elite_Vaftire_Model_Catalog_TireProduct
+     * @return VF_Tire_Catalog_TireProduct
      */
     function tireProduct($product)
     {
         $vfProduct = new VF_product();
         $vfProduct->setId($product->getId());
-        return new Elite_Vaftire_Model_Catalog_TireProduct($vfProduct);
+        return new VF_Tire_Catalog_TireProduct($vfProduct);
     }
     
     /** @return Zend_Db_Adapter_Abstract */

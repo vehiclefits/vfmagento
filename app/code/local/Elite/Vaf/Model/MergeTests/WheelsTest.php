@@ -33,11 +33,11 @@ class Elite_Vaf_Model_MergeTests_WheelsTest extends VF_TestCase
         $vehicle1 = $this->createMMY('Honda','Civic','2000');
         $vehicle2 = $this->createMMY('Honda','Civic','2001');
         
-        $wheelVehicle1 = new Elite_Vafwheel_Model_Vehicle($vehicle1);
+        $wheelVehicle1 = new VF_Wheel_Vehicle($vehicle1);
         $wheelVehicle1->save();
         $wheelVehicle1->addBoltPattern( $this->boltPattern('4x114.3') );
         
-        $wheelVehicle2 = new Elite_Vafwheel_Model_Vehicle($vehicle2);
+        $wheelVehicle2 = new VF_Wheel_Vehicle($vehicle2);
         $wheelVehicle2->save();
         $wheelVehicle2->addBoltPattern( $this->boltPattern('4x114.3') );
         
@@ -58,11 +58,11 @@ class Elite_Vaf_Model_MergeTests_WheelsTest extends VF_TestCase
         $vehicle1 = $this->createMMY('Honda','Civic','2000');
         $vehicle2 = $this->createMMY('Honda','Civic','2001');
         
-        $wheelVehicle1 = new Elite_Vafwheel_Model_Vehicle($vehicle1);
+        $wheelVehicle1 = new VF_Wheel_Vehicle($vehicle1);
         $wheelVehicle1->save();
         $wheelVehicle1->addBoltPattern( $this->boltPattern('4x114.3') );
         
-        $wheelVehicle2 = new Elite_Vafwheel_Model_Vehicle($vehicle2);
+        $wheelVehicle2 = new VF_Wheel_Vehicle($vehicle2);
         $wheelVehicle2->save();
         $wheelVehicle2->addBoltPattern( $this->boltPattern('5x114') );
         

@@ -33,17 +33,17 @@ class Elite_Vaf_Model_SplitTests_TireTest extends VF_TestCase
         $vehicle = $this->createMMY('Honda','Civic','2000');
         $tireSize = VF_TireSize::create('205/55-16');
         
-        $tireVehicle = new Elite_Vaftire_Model_Vehicle($vehicle);
+        $tireVehicle = new VF_Tire_Vehicle($vehicle);
         $tireVehicle->save();
         $tireVehicle->addTireSize( $tireSize );
         
         $this->split($vehicle, 'year', array('2000','2001'));
         
         $one = $this->vehicleFinder()->findOneByLevels(array('make'=>'Honda', 'model'=>'Civic', 'year'=>'2000'));
-        $tireVehicle1 = new Elite_Vaftire_Model_Vehicle($one);
+        $tireVehicle1 = new VF_Tire_Vehicle($one);
         
         $two = $this->vehicleFinder()->findOneByLevels(array('make'=>'Honda', 'model'=>'Civic', 'year'=>'2000'));
-        $tireVehicle2 = new Elite_Vaftire_Model_Vehicle($two);
+        $tireVehicle2 = new VF_Tire_Vehicle($two);
         
         $one = $tireVehicle1->tireSize();
         $two = $tireVehicle2->tireSize();
