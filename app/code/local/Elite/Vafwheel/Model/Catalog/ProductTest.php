@@ -25,7 +25,7 @@ class Elite_Vafwheel_Model_Catalog_ProductTest extends VF_TestCase
 { 
     function testCreateNewProduct()
     {
-	$product = new Elite_Vaf_Model_Catalog_Product;
+	$product = new VF_Product;
 	$wheelProduct = new Elite_Vafwheel_Model_Catalog_Product($product);
 	$this->assertEquals( array(), $wheelProduct->getBoltPatterns(), 'should create new product w/ no bolt patterns');
     }
@@ -134,7 +134,7 @@ class Elite_Vafwheel_Model_Catalog_ProductTest extends VF_TestCase
 	$importer = new Elite_Vafwheel_Model_Catalog_Product_ImportTests_TestSubClass($file);
 	$importer->import();
 
-	$product = $this->getProductForSku('sku');
+	$product = $this->getVFProductForSku('sku');
         $product = new Elite_Vafwheel_Model_Catalog_Product($product);
         $boltPatterns = $product->getBoltPatterns();
 

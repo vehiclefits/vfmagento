@@ -39,7 +39,7 @@ class Elite_Vafwheel_Model_Catalog_Product_Import extends VF_Import_Abstract
 	$sku = $this->getFieldValue('sku', $row);
 	$productId = $this->productId($sku);
 
-	$product = new Elite_Vafwheel_Model_Catalog_Product(new Elite_Vaf_Model_Catalog_Product());
+	$product = new Elite_Vafwheel_Model_Catalog_Product(new VF_Product());
 	$product->setId($productId);
 
 	$boltPattern = $this->wheelSize($row);

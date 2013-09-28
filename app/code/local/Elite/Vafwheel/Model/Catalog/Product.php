@@ -23,10 +23,10 @@
  */
 class Elite_Vafwheel_Model_Catalog_Product
 {
-    /** @var Elite_Vaf_Model_Catalog_Product */
+    /** @var VF_Product */
     protected $wrappedProduct;
     
-    function __construct(Elite_Vaf_Model_Catalog_Product $productToWrap )
+    function __construct(VF_Product $productToWrap )
     {
         $this->wrappedProduct = $productToWrap;
     }

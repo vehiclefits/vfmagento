@@ -31,7 +31,7 @@ class Elite_Vafwheeladapter_Observer_WheelSideBinderTest extends VF_TestCase
     function testIsSilentWhenNoBoltDataPassed()
     {
         $binder = new Elite_Vafwheeladapter_Observer_WheelSideBinder;
-        $event = $this->event(new Elite_Vaf_Model_Catalog_Product());
+        $event = $this->event(new VF_Product());
         $binder->bindWheelSide( $event );
     }
     
@@ -40,7 +40,7 @@ class Elite_Vafwheeladapter_Observer_WheelSideBinderTest extends VF_TestCase
         $this->setRequestParams(array('wheel_side_pattern'=>'4x114.3'));
         
         $binder = new Elite_Vafwheeladapter_Observer_WheelSideBinder;
-        $product = new Elite_Vaf_Model_Catalog_Product();
+        $product = new VF_Product();
         $product->setId(1);
         $event = $this->event($product);
         $binder->bindWheelSide( $event );
@@ -55,7 +55,7 @@ class Elite_Vafwheeladapter_Observer_WheelSideBinderTest extends VF_TestCase
         $this->setRequestParams(array('wheel_side_pattern'=>'4x114.3'));
         
         $binder = new Elite_Vafwheeladapter_Observer_WheelSideBinder;
-        $product = new Elite_Vaf_Model_Catalog_Product();
+        $product = new VF_Product();
         $product->setId(1);
         $event = $this->event($product);
         $binder->bindWheelSide( $event );
@@ -63,7 +63,7 @@ class Elite_Vafwheeladapter_Observer_WheelSideBinderTest extends VF_TestCase
         $this->setRequestParams(array('wheel_side_pattern'=>''));
         
         $binder = new Elite_Vafwheeladapter_Observer_WheelSideBinder;
-        $product = new Elite_Vaf_Model_Catalog_Product();
+        $product = new VF_Product();
         $product->setId(1);
         $event = $this->event($product);
         $binder->bindWheelSide( $event );
