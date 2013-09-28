@@ -25,7 +25,7 @@ class Elite_Vaftire_Model_FlexibleSearchTests_FilterByTypeTest extends VF_TestCa
 {
 	function testFilterByType()
     {
-        $tireSize = new Elite_Vaftire_Model_TireSize(205,55,16);
+        $tireSize = new VF_TireSize(205,55,16);
         
         $product = $this->newTireProduct();
         $product->setId(1);
@@ -38,7 +38,7 @@ class Elite_Vaftire_Model_FlexibleSearchTests_FilterByTypeTest extends VF_TestCa
 	
 	function testOmitsDifferentType()
 	{
-		$tireSize = new Elite_Vaftire_Model_TireSize(205,55,16);
+		$tireSize = new VF_TireSize(205,55,16);
         
         $product = $this->newTireProduct();
         $product->setId(1);
@@ -51,7 +51,7 @@ class Elite_Vaftire_Model_FlexibleSearchTests_FilterByTypeTest extends VF_TestCa
     	
 	function testAllTypes()
 	{
-		$tireSize = new Elite_Vaftire_Model_TireSize(205,55,16);
+		$tireSize = new VF_TireSize(205,55,16);
         
         $product = $this->newTireProduct();
         $product->setId(1);

@@ -30,7 +30,7 @@ class Elite_Vaf_Model_MergeTests_TireTest extends VF_TestCase
     
 	function testShouldAllowOperation()
     {
-        $tireSize = Elite_Vaftire_Model_TireSize::create('205/55-16');
+        $tireSize = VF_TireSize::create('205/55-16');
     	$vehicle1 = $this->createTireMMY('Honda','Civic','2000');
         $vehicle1->addTireSize( $tireSize );
         
@@ -55,10 +55,10 @@ class Elite_Vaf_Model_MergeTests_TireTest extends VF_TestCase
 	function testShouldPreventOperation()
     {
         $vehicle1 = $this->createTireMMY('Honda','Civic','2000');
-        $vehicle1->addTireSize( Elite_Vaftire_Model_TireSize::create('205/55-16') );
+        $vehicle1->addTireSize( VF_TireSize::create('205/55-16') );
         
         $vehicle2 = $this->createTireMMY('Honda','Civic','2001');
-        $vehicle2->addTireSize( Elite_Vaftire_Model_TireSize::create('205/55-17') );
+        $vehicle2->addTireSize( VF_TireSize::create('205/55-17') );
         
         $slaveLevels = array(
             array('year', $vehicle1->vehicle() ),
@@ -75,10 +75,10 @@ class Elite_Vaf_Model_MergeTests_TireTest extends VF_TestCase
 	function testShouldPreventOperation2()
     {
         $vehicle1 = $this->createTireMMY('Honda','Civic','2000');
-        $vehicle1->addTireSize( Elite_Vaftire_Model_TireSize::create('205/55-16') );
+        $vehicle1->addTireSize( VF_TireSize::create('205/55-16') );
         
         $vehicle2 = $this->createTireMMY('Honda','Civic','2001');
-        $vehicle2->addTireSize( Elite_Vaftire_Model_TireSize::create('205/56-16') );
+        $vehicle2->addTireSize( VF_TireSize::create('205/56-16') );
         
         $slaveLevels = array(
             array('year', $vehicle1->vehicle() ),
@@ -95,10 +95,10 @@ class Elite_Vaf_Model_MergeTests_TireTest extends VF_TestCase
 	function testShouldPreventOperation3()
     {
         $vehicle1 = $this->createTireMMY('Honda','Civic','2000');
-        $vehicle1->addTireSize( Elite_Vaftire_Model_TireSize::create('205/55-16') );
+        $vehicle1->addTireSize( VF_TireSize::create('205/55-16') );
         
         $vehicle2 = $this->createTireMMY('Honda','Civic','2001');
-        $vehicle2->addTireSize( Elite_Vaftire_Model_TireSize::create('204/55-16') );
+        $vehicle2->addTireSize( VF_TireSize::create('204/55-16') );
         
         $slaveLevels = array(
             array('year', $vehicle1->vehicle() ),

@@ -48,7 +48,7 @@ class Elite_Vaftire_Observer_ProductTireSizeBinder
         {
             return false;
         }
-        $tireSize = new Elite_Vaftire_Model_TireSize($sectionWidth,$aspectRatio,$diameter);
+        $tireSize = new VF_TireSize($sectionWidth,$aspectRatio,$diameter);
         return $tireSize;
     }
     

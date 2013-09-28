@@ -105,7 +105,7 @@ class Elite_Vaftire_Model_FlexibleSearch extends VF_FlexibleSearch_Wrapper imple
 
     function tireSize()
     {
-	return new Elite_Vaftire_Model_TireSize($this->sectionWidth(), $this->aspectRatio(), $this->diameter());
+	return new VF_TireSize($this->sectionWidth(), $this->aspectRatio(), $this->diameter());
     }
 
     function tireType()

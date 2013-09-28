@@ -52,7 +52,7 @@ class Elite_Vaftire_Model_Catalog_TireProduct_Import extends VF_Import_Abstract
 		$section_width = $this->getFieldValue('section_width',$row);
 		$aspect_ratio = $this->getFieldValue('aspect_ratio',$row);
 		$diameter = $this->getFieldValue('diameter',$row);
-		return new Elite_Vaftire_Model_TireSize($section_width,$aspect_ratio,$diameter);
+		return new VF_TireSize($section_width,$aspect_ratio,$diameter);
 	}
 	
 	function tireType($row)

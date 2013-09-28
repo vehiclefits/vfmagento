@@ -32,7 +32,7 @@ class Elite_Vaftire_Model_FlexibleSearchTests extends VF_TestCase
     function testShouldSelectAspectRatio()
     {
         $vehicle = $this->createTireMMY('Honda','Civic','2000');
-        $vehicle->addTireSize( Elite_Vaftire_Model_TireSize::create('205/55-16') );
+        $vehicle->addTireSize( VF_TireSize::create('205/55-16') );
         
         $search = $this->flexibleTireSearch($vehicle->toValueArray());
 	$search->setConfig( new Zend_Config(array('tire'=>array('populateWhenSelectVehicle'=>'true'))));
@@ -42,7 +42,7 @@ class Elite_Vaftire_Model_FlexibleSearchTests extends VF_TestCase
     function testShouldSelectSectionWidth()
     {
         $vehicle = $this->createTireMMY('Honda','Civic','2000');
-        $vehicle->addTireSize( Elite_Vaftire_Model_TireSize::create('205/55-16') );
+        $vehicle->addTireSize( VF_TireSize::create('205/55-16') );
         
         $search = $this->flexibleTireSearch($vehicle->toValueArray());
 	$search->setConfig( new Zend_Config(array('tire'=>array('populateWhenSelectVehicle'=>'true'))));
@@ -52,7 +52,7 @@ class Elite_Vaftire_Model_FlexibleSearchTests extends VF_TestCase
     function testShouldSelectDiameter()
     {
         $vehicle = $this->createTireMMY('Honda','Civic','2000');
-        $vehicle->addTireSize( Elite_Vaftire_Model_TireSize::create('205/55-16') );
+        $vehicle->addTireSize( VF_TireSize::create('205/55-16') );
         
         $search = $this->flexibleTireSearch($vehicle->toValueArray());
 	$search->setConfig( new Zend_Config(array('tire'=>array('populateWhenSelectVehicle'=>'true'))));
@@ -62,7 +62,7 @@ class Elite_Vaftire_Model_FlexibleSearchTests extends VF_TestCase
     function testShouldBeAbleToOverrideSize()
     {
         $vehicle = $this->createTireMMY('Honda','Civic','2000');
-        $vehicle->addTireSize( Elite_Vaftire_Model_TireSize::create('205/55-16') );
+        $vehicle->addTireSize( VF_TireSize::create('205/55-16') );
         
         $params = $vehicle->toValueArray();
         $params['section_width'] = 3;
@@ -74,7 +74,7 @@ class Elite_Vaftire_Model_FlexibleSearchTests extends VF_TestCase
     function testShouldNotSelectAspectRatioWhenDisabled()
     {
         $vehicle = $this->createTireMMY('Honda','Civic','2000');
-        $vehicle->addTireSize( Elite_Vaftire_Model_TireSize::create('205/55-16') );
+        $vehicle->addTireSize( VF_TireSize::create('205/55-16') );
 
         $search = $this->flexibleTireSearch($vehicle->toValueArray());
 	$search->setConfig( new Zend_Config(array('tire'=>array('populateWhenSelectVehicle'=>''))));

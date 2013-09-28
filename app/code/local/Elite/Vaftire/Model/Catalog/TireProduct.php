@@ -78,7 +78,7 @@ class Elite_Vaftire_Model_Catalog_TireProduct
         return $vehicleFinder->findById($vehicleID);
     }
 
-    /** @return Elite_Vaftire_Model_TireSize */
+    /** @return VF_TireSize */
     function getTireSize()
     {
         if (!$this->getId()) {
@@ -94,7 +94,7 @@ class Elite_Vaftire_Model_Catalog_TireProduct
             return false;
         }
 
-        $tireSize = new Elite_Vaftire_Model_TireSize($row->section_width, $row->aspect_ratio, $row->diameter);
+        $tireSize = new VF_TireSize($row->section_width, $row->aspect_ratio, $row->diameter);
         return $tireSize;
     }
 

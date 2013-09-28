@@ -65,7 +65,7 @@ class Elite_Vaftire_Model_Finder
         return $return;
     }
     
-    function productIds( Elite_Vaftire_Model_TireSize $tireSize, $tireType = null )
+    function productIds( VF_TireSize $tireSize, $tireType = null )
     {
         $select = $this->getReadAdapter()->select()
             ->from('elite_product_tire','distinct(entity_id) entity_id')

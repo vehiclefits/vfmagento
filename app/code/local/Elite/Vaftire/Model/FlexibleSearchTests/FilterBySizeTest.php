@@ -27,7 +27,7 @@ class Elite_Vaftire_Model_FlexibleSearchTests_FilterBySizeTest extends VF_TestCa
 
     function testTireSearch()
     {
-	$tireSize = new Elite_Vaftire_Model_TireSize(205, 55, 16);
+	$tireSize = new VF_TireSize(205, 55, 16);
 	$product = $this->newTireProduct(1, $tireSize);
 
 	$flexibleSearch = $this->flexibleTireSearch(array('section_width' => '205', 'aspect_ratio' => '55', 'diameter' => '16'));
@@ -36,7 +36,7 @@ class Elite_Vaftire_Model_FlexibleSearchTests_FilterBySizeTest extends VF_TestCa
 
     function testInvalidCombination()
     {
-	$tireSize = new Elite_Vaftire_Model_TireSize(205, 55, 16);
+	$tireSize = new VF_TireSize(205, 55, 16);
 	$product = $this->newTireProduct(1, $tireSize);
 
 	$flexibleSearch = $this->flexibleTireSearch(array('section_width' => '206', 'aspect_ratio' => '56', 'diameter' => '17'));
@@ -45,7 +45,7 @@ class Elite_Vaftire_Model_FlexibleSearchTests_FilterBySizeTest extends VF_TestCa
 
     function testShouldClearWheelSelection()
     {
-	$tireSize = new Elite_Vaftire_Model_TireSize(205, 55, 16);
+	$tireSize = new VF_TireSize(205, 55, 16);
 	$product = $this->newTireProduct(1, $tireSize);
 
 	$tireParamaters = array('section_width' => '205', 'aspect_ratio' => '55', 'diameter' => '16');

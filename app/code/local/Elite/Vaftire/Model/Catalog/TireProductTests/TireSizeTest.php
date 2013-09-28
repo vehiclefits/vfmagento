@@ -48,7 +48,7 @@ class Elite_Vaftire_Model_Catalog_TireProductTests_TireSizeTest extends VF_TestC
     
     function testReadBackTireSize()
     {
-        $tireSize = new Elite_Vaftire_Model_TireSize(205, 55, 16);
+        $tireSize = new VF_TireSize(205, 55, 16);
         
         $product = $this->newTireProduct();
         $product->setId(1);
@@ -65,7 +65,7 @@ class Elite_Vaftire_Model_Catalog_TireProductTests_TireSizeTest extends VF_TestC
         
     function testUnsetTireSize()
     {
-        $tireSize = new Elite_Vaftire_Model_TireSize(205, 55, 16);
+        $tireSize = new VF_TireSize(205, 55, 16);
         
         // set a size
         $product = $this->newTireProduct();
@@ -87,10 +87,10 @@ class Elite_Vaftire_Model_Catalog_TireProductTests_TireSizeTest extends VF_TestC
     function testWhenSetTireSizeShouldBindVehicle()
     {
         $vehicle = $this->createTireMMY('Honda','Civic','2000');
-        $vehicle->addTireSize( Elite_Vaftire_Model_TireSize::create('205/55-16') );
+        $vehicle->addTireSize( VF_TireSize::create('205/55-16') );
         
         $product = $this->newTireProduct(self::ID);
-        $product->setTireSize( Elite_Vaftire_Model_TireSize::create('205/55-16') );
+        $product->setTireSize( VF_TireSize::create('205/55-16') );
         
         $tireProduct = $this->newTireProduct(self::ID);
         $this->assertEquals( 1, count($tireProduct->getFits()), 'should add vehicles for a product via its tire size' );
@@ -99,7 +99,7 @@ class Elite_Vaftire_Model_Catalog_TireProductTests_TireSizeTest extends VF_TestC
     function testDoesntInterfereWithTireSize()
     {
         $product = $this->newTireProduct(self::ID);
-        $product->setTireSize( new Elite_Vaftire_Model_TireSize(205,55,16) );
+        $product->setTireSize( new VF_TireSize(205,55,16) );
         $product->setTireType( Elite_Vaftire_Model_Catalog_TireProduct::WINTER );
         $product->setTireSize( false );
         $this->assertFalse( $this->newTireProduct(self::ID)->tireType(), 'should set & unset tire type' );

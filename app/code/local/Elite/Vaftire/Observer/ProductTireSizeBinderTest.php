@@ -72,7 +72,7 @@ class Elite_Vaftire_Observer_ProductTireSizeBinderTest extends VF_TestCase
     function testWhenSetTireSizeShouldBindVehicle()
     {
         $vehicle = $this->createTireMMY('Honda','Civic','2000');
-        $vehicle->addTireSize( Elite_Vaftire_Model_TireSize::create('205/55-16') );
+        $vehicle->addTireSize( VF_TireSize::create('205/55-16') );
         
         $product = $this->newProduct(self::ID);
         $this->setRequestParams( array('section_width'=>'205', 'aspect_ratio'=>'55', 'diameter'=>16) );

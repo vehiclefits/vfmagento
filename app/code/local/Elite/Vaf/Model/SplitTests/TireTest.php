@@ -31,7 +31,7 @@ class Elite_Vaf_Model_SplitTests_TireTest extends VF_TestCase
 	function testShouldDuplicateTire()
     {
         $vehicle = $this->createMMY('Honda','Civic','2000');
-        $tireSize = Elite_Vaftire_Model_TireSize::create('205/55-16');
+        $tireSize = VF_TireSize::create('205/55-16');
         
         $tireVehicle = new Elite_Vaftire_Model_Vehicle($vehicle);
         $tireVehicle->save();

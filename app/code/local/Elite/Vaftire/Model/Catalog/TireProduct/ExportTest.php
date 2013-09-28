@@ -25,7 +25,7 @@ class Elite_Vaftire_Model_Catalog_TireProduct_ExportTest extends VF_TestCase
 {
 	function testExportHeaders()
 	{
-	    $tireSize = new Elite_Vaftire_Model_TireSize(205, 55, 16);
+	    $tireSize = new VF_TireSize(205, 55, 16);
 
 	    $id = $this->insertProduct( 'sku123' );
 

@@ -53,7 +53,7 @@ class Elite_Vaftire_Model_Catalog_TireProductTests_TireTypeTest extends VF_TestC
 	function testDoesntInterfereWithTireSize()
 	{
 		$product = $this->newTireProduct(1);
-		$product->setTireSize( new Elite_Vaftire_Model_TireSize(205,55,16) );
+		$product->setTireSize( new VF_TireSize(205,55,16) );
 		$product->setTireType( Elite_Vaftire_Model_Catalog_TireProduct::WINTER );
 		$product->setTireSize( false );
 		$this->assertFalse( $this->newTireProduct(1)->tireType(), 'should set & unset tire type' );

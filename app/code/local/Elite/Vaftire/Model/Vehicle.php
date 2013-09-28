@@ -31,7 +31,7 @@ class Elite_Vaftire_Model_Vehicle
         $this->wrappedVehicle = $vehicle;
     }
     
-    /** @return Elite_Vaftire_Model_TireSize */
+    /** @return VF_TireSize */
     function tireSize()
     {
         $select = $this->getReadAdapter()->select()
@@ -43,12 +43,12 @@ class Elite_Vaftire_Model_Vehicle
         $return = array();
         foreach( $result->fetchAll(Zend_Db::FETCH_OBJ) as $tireSizeStd )
         {
-            array_push($return, new Elite_Vaftire_Model_TireSize($tireSizeStd->section_width, $tireSizeStd->aspect_ratio, $tireSizeStd->diameter ) );
+            array_push($return, new VF_TireSize($tireSizeStd->section_width, $tireSizeStd->aspect_ratio, $tireSizeStd->diameter ) );
         }
         return $return;
     }
     
-    function addTireSize( Elite_Vaftire_Model_TireSize $tireSize )
+    function addTireSize( VF_TireSize $tireSize )
     {
         $select = $this->getReadAdapter()->select()
             ->from('elite_vehicle_tire')

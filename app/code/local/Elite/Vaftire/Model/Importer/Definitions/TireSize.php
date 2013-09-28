@@ -48,15 +48,15 @@ class Elite_Vaftire_Model_Importer_Definitions_TireSize extends VF_Import_Vehicl
         $tireVehicle->addTireSize($tireSize);
     }
     
-    /** @return Elite_Vaftire_Model_TireSize|boolean tire size, or false if formatting was invalid */
+    /** @return VF_TireSize|boolean tire size, or false if formatting was invalid */
     function tireSize($row)
     {
         try
         {
             $tireSizeString = $this->getFieldValue( 'tire_size', $row );
-            $tireSize = Elite_Vaftire_Model_TireSize::create($tireSizeString);
+            $tireSize = VF_TireSize::create($tireSizeString);
         }
-        catch( Elite_Vaftire_Model_TireSize_InvalidFormatException $e )
+        catch( VF_TireSize_InvalidFormatException $e )
         {
             return false;
         }
