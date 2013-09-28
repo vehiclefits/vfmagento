@@ -21,38 +21,13 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vaftire_Model_Catalog_Product_ExportTest extends VF_TestCase
+
+class Elite_Vaftire_Model_Catalog_TireProduct_ImportTests_TestCase extends VF_TestCase
 {
-	function testExportHeaders()
-	{
-	    $tireSize = new Elite_Vaftire_Model_TireSize(205, 55, 16);
 
-	    $id = $this->insertProduct( 'sku123' );
-
-	    $product = $this->newTireProduct();
-	    $product->setId($id);
-	    $product->setTireSize($tireSize);
-
-	    $stream = fopen("php://temp", 'w');
-	    $export = new Elite_Vaftire_Model_Catalog_Product_ExportTestSub;
-	    $export->export($stream);
-
-	    rewind($stream);
-
-	    $data = stream_get_contents($stream);
-
-	    $expected = '"sku","section_width","aspect_ratio","diameter"
-"sku123","205","55","16"
-';
-
-	    $this->assertEquals( $expected, $data );
-	}
-}
-
-class Elite_Vaftire_Model_Catalog_Product_ExportTestSub extends Elite_Vaftire_Model_Catalog_Product_Export
-{
-    function getProductTable()
+    function importer($file)
     {
-	return 'test_catalog_product_entity';
+	return new Elite_Vaftire_Model_Catalog_TireProduct_ImportTests_TestSubClass($file);
     }
+
 }

@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vaftire_Model_Catalog_Product_Import extends VF_Import_Abstract
+class Elite_Vaftire_Model_Catalog_TireProduct_Import extends VF_Import_Abstract
 {
 	function import()
 	{
@@ -37,7 +37,7 @@ class Elite_Vaftire_Model_Catalog_Product_Import extends VF_Import_Abstract
 		$sku = $this->getFieldValue('sku',$row);
 		$productId = $this->productId($sku);
 		
-		$product = new Elite_Vaftire_Model_Catalog_Product(new Elite_Vaf_Model_Catalog_Product());
+		$product = new Elite_Vaftire_Model_Catalog_TireProduct(new Elite_Vaf_Model_Catalog_Product());
 		$product->setId($productId);
 		
         $tireSize = $this->tireSize($row);

@@ -33,7 +33,7 @@ class Elite_Vaftire_Observer_ProductTireSizeBinder
         $this->doSetTireSize($tireProduct);
     }
     
-    function doSetTireSize( Elite_Vaftire_Model_Catalog_Product $tireProduct )
+    function doSetTireSize( Elite_Vaftire_Model_Catalog_TireProduct $tireProduct )
     {
         $tireProduct->setTireSize($this->tireSize());
         $tireProduct->setTireType($this->tireType());
@@ -64,7 +64,7 @@ class Elite_Vaftire_Observer_ProductTireSizeBinder
     
     function tireProduct($product)
     {
-        return new Elite_Vaftire_Model_Catalog_Product($product);
+        return new Elite_Vaftire_Model_Catalog_TireProduct($product);
     }
     
     /** @return Zend_Db_Adapter_Abstract */

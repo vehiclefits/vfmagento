@@ -21,21 +21,21 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vaftire_Model_Catalog_ProductTests_TireSizeTest extends VF_TestCase
+class Elite_Vaftire_Model_Catalog_TireProductTests_TireSizeTest extends VF_TestCase
 {
     const ID = 1;
     
     function testCreateNewProduct()
     {
 	$product = new Elite_Vaf_Model_Catalog_Product;
-	$tireProduct = new Elite_Vaftire_Model_Catalog_Product($product);
+	$tireProduct = new Elite_Vaftire_Model_Catalog_TireProduct($product);
 	$this->assertFalse( $tireProduct->getTireSize(), 'should create new product w/ no tire size');
     }
 
     function testCreateNewProduct_TireType()
     {
 	$product = new Elite_Vaf_Model_Catalog_Product;
-	$tireProduct = new Elite_Vaftire_Model_Catalog_Product($product);
+	$tireProduct = new Elite_Vaftire_Model_Catalog_TireProduct($product);
 	$this->assertFalse( $tireProduct->tireType(), 'should create new product w/ no tire type');
     }
 
@@ -100,7 +100,7 @@ class Elite_Vaftire_Model_Catalog_ProductTests_TireSizeTest extends VF_TestCase
     {
         $product = $this->newTireProduct(self::ID);
         $product->setTireSize( new Elite_Vaftire_Model_TireSize(205,55,16) );
-        $product->setTireType( Elite_Vaftire_Model_Catalog_Product::WINTER );
+        $product->setTireType( Elite_Vaftire_Model_Catalog_TireProduct::WINTER );
         $product->setTireSize( false );
         $this->assertFalse( $this->newTireProduct(self::ID)->tireType(), 'should set & unset tire type' );
     }

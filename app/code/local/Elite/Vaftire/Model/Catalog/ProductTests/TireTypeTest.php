@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vaftire_Model_Catalog_ProductTests_TireTypeTest extends VF_TestCase
+class Elite_Vaftire_Model_Catalog_TireProductTests_TireTypeTest extends VF_TestCase
 {
 	function testNoTireType()
 	{
@@ -31,21 +31,21 @@ class Elite_Vaftire_Model_Catalog_ProductTests_TireTypeTest extends VF_TestCase
 	function testSetToWinter()
 	{
 		$product = $this->newTireProduct(1);
-		$product->setTireType( Elite_Vaftire_Model_Catalog_Product::WINTER );
-		$this->assertEquals( Elite_Vaftire_Model_Catalog_Product::WINTER, $this->newTireProduct(1)->tireType(), 'should set tire type' );
+		$product->setTireType( Elite_Vaftire_Model_Catalog_TireProduct::WINTER );
+		$this->assertEquals( Elite_Vaftire_Model_Catalog_TireProduct::WINTER, $this->newTireProduct(1)->tireType(), 'should set tire type' );
 	}
 	
 	function testSetToSummer()
 	{
 		$product = $this->newTireProduct(1);
-		$product->setTireType( Elite_Vaftire_Model_Catalog_Product::SUMMER_ALL );
-		$this->assertEquals( Elite_Vaftire_Model_Catalog_Product::SUMMER_ALL, $this->newTireProduct(1)->tireType(), 'should set tire type' );
+		$product->setTireType( Elite_Vaftire_Model_Catalog_TireProduct::SUMMER_ALL );
+		$this->assertEquals( Elite_Vaftire_Model_Catalog_TireProduct::SUMMER_ALL, $this->newTireProduct(1)->tireType(), 'should set tire type' );
 	}
 	
 	function testSetAndUnset()
 	{
 		$product = $this->newTireProduct(1);
-		$product->setTireType( Elite_Vaftire_Model_Catalog_Product::WINTER );
+		$product->setTireType( Elite_Vaftire_Model_Catalog_TireProduct::WINTER );
 		$product->setTireType(false);
 		$this->assertFalse( $this->newTireProduct(1)->tireType(), 'should set & unset tire type' );
 	}
@@ -54,7 +54,7 @@ class Elite_Vaftire_Model_Catalog_ProductTests_TireTypeTest extends VF_TestCase
 	{
 		$product = $this->newTireProduct(1);
 		$product->setTireSize( new Elite_Vaftire_Model_TireSize(205,55,16) );
-		$product->setTireType( Elite_Vaftire_Model_Catalog_Product::WINTER );
+		$product->setTireType( Elite_Vaftire_Model_Catalog_TireProduct::WINTER );
 		$product->setTireSize( false );
 		$this->assertFalse( $this->newTireProduct(1)->tireType(), 'should set & unset tire type' );
 	}

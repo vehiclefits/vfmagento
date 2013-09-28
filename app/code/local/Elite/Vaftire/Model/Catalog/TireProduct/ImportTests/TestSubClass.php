@@ -22,12 +22,12 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Elite_Vaftire_Model_Catalog_Product_ImportTests_TestCase extends VF_TestCase
+class Elite_Vaftire_Model_Catalog_TireProduct_ImportTests_TestSubClass extends Elite_Vaftire_Model_Catalog_TireProduct_Import
 {
 
-    function importer($file)
+    function getProductTable()
     {
-	return new Elite_Vaftire_Model_Catalog_Product_ImportTests_TestSubClass($file);
+	return 'test_catalog_product_entity';
     }
 
 }

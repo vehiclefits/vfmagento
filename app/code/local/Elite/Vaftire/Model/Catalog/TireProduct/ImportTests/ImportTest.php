@@ -21,7 +21,7 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Elite_Vaftire_Model_Catalog_Product_ImportTests_ImportTest extends Elite_Vaftire_Model_Catalog_Product_ImportTests_TestCase
+class Elite_Vaftire_Model_Catalog_TireProduct_ImportTests_ImportTest extends Elite_Vaftire_Model_Catalog_TireProduct_ImportTests_TestCase
 {    
     const SKU = 'sku';
     
@@ -42,7 +42,7 @@ class Elite_Vaftire_Model_Catalog_Product_ImportTests_ImportTest extends Elite_V
         $importer = $this->importer( $this->csvFile );
         $importer->import();
         $product = $this->getProductForSku( self::SKU );
-        $product = new Elite_Vaftire_Model_Catalog_Product($product);
+        $product = new Elite_Vaftire_Model_Catalog_TireProduct($product);
         $tireSize = $product->getTireSize();
         $this->assertEquals( 205, $tireSize->sectionWidth(), 'should set section width' );
     }
@@ -52,7 +52,7 @@ class Elite_Vaftire_Model_Catalog_Product_ImportTests_ImportTest extends Elite_V
         $importer = $this->importer( $this->csvFile );
         $importer->import();
         $product = $this->getProductForSku( self::SKU );
-        $product = new Elite_Vaftire_Model_Catalog_Product($product);
+        $product = new Elite_Vaftire_Model_Catalog_TireProduct($product);
         $tireSize = $product->getTireSize();
         $this->assertEquals( 55, $tireSize->aspectRatio(), 'should set aspect ratio' );
     }
@@ -62,7 +62,7 @@ class Elite_Vaftire_Model_Catalog_Product_ImportTests_ImportTest extends Elite_V
         $importer = $this->importer( $this->csvFile );
         $importer->import();
         $product = $this->getProductForSku( self::SKU );
-        $product = new Elite_Vaftire_Model_Catalog_Product($product);
+        $product = new Elite_Vaftire_Model_Catalog_TireProduct($product);
         $tireSize = $product->getTireSize();
         $this->assertEquals( 16, $tireSize->diameter(), 'should set diameter' );
     }
@@ -72,7 +72,7 @@ class Elite_Vaftire_Model_Catalog_Product_ImportTests_ImportTest extends Elite_V
         $importer = $this->importer( $this->csvFile );
         $importer->import();
         $product = $this->getProductForSku( self::SKU );
-        $product = new Elite_Vaftire_Model_Catalog_Product($product);
-        $this->assertEquals( Elite_Vaftire_Model_Catalog_Product::WINTER, $product->tireType(), 'should set tire type' );
+        $product = new Elite_Vaftire_Model_Catalog_TireProduct($product);
+        $this->assertEquals( Elite_Vaftire_Model_Catalog_TireProduct::WINTER, $product->tireType(), 'should set tire type' );
     }
 }

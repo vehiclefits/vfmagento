@@ -33,5 +33,5 @@ $db->getConnection();
 Zend_Registry::set('db',$db);
 
 $file = 'product-tire-sizes-import.csv';
-$import = new Elite_Vaftire_Model_Catalog_Product_Import($file);
+$import = new Elite_Vaftire_Model_Catalog_TireProduct_Import($file);
 $import->import();

@@ -33,16 +33,16 @@ class Elite_Vaftire_Model_FinderTest extends VF_TestCase
     function testFindsProductBySizeAndType()
     {
         $tireSize = new Elite_Vaftire_Model_TireSize(205,55,16);
-        $product = $this->newTireProduct(1,$tireSize,Elite_Vaftire_Model_Catalog_Product::SUMMER_ALL);
-        $actual = $this->tireFinder()->productIds($tireSize,Elite_Vaftire_Model_Catalog_Product::SUMMER_ALL);
+        $product = $this->newTireProduct(1,$tireSize,Elite_Vaftire_Model_Catalog_TireProduct::SUMMER_ALL);
+        $actual = $this->tireFinder()->productIds($tireSize,Elite_Vaftire_Model_Catalog_TireProduct::SUMMER_ALL);
         $this->assertEquals( array(1), $actual, 'should find products with this tire size & tire type' );
     }
         
     function testOmitsProductOfDifferentType()
     {
         $tireSize = new Elite_Vaftire_Model_TireSize(205,55,16);
-        $product = $this->newTireProduct(1,$tireSize,Elite_Vaftire_Model_Catalog_Product::SUMMER_ALL);
-        $actual = $this->tireFinder()->productIds($tireSize,Elite_Vaftire_Model_Catalog_Product::WINTER);
+        $product = $this->newTireProduct(1,$tireSize,Elite_Vaftire_Model_Catalog_TireProduct::SUMMER_ALL);
+        $actual = $this->tireFinder()->productIds($tireSize,Elite_Vaftire_Model_Catalog_TireProduct::WINTER);
         $this->assertEquals( array(), $actual, 'should omit products of different tire type' );
     }
     

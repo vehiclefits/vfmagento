@@ -62,11 +62,11 @@ class Elite_Vaftire_Observer_ProductTireSizeBinderTest extends VF_TestCase
     function testSetTireType()
     {
 		$product = $this->newProduct(self::ID);
-        $this->setRequestParams( array('tire_type'=>Elite_Vaftire_Model_Catalog_Product::SUMMER_ALL) );
+        $this->setRequestParams( array('tire_type'=>Elite_Vaftire_Model_Catalog_TireProduct::SUMMER_ALL) );
         $this->bindTireSize( $product );
         
         $tireProduct = $this->newTireProduct(self::ID);
-        $this->assertEquals( Elite_Vaftire_Model_Catalog_Product::SUMMER_ALL, $tireProduct->tireType(), 'should be able to assign tire type' );
+        $this->assertEquals( Elite_Vaftire_Model_Catalog_TireProduct::SUMMER_ALL, $tireProduct->tireType(), 'should be able to assign tire type' );
     }
     
     function testWhenSetTireSizeShouldBindVehicle()

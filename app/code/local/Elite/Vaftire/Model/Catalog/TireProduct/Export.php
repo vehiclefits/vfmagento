@@ -22,7 +22,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Elite_Vaftire_Model_Catalog_Product_Export
+class Elite_Vaftire_Model_Catalog_TireProduct_Export
 {
 
     function export($stream)
@@ -35,7 +35,7 @@ class Elite_Vaftire_Model_Catalog_Product_Export
 	    $product = new Elite_Vaf_Model_Catalog_Product;
 	    $product->setId($productRow['entity_id']);
 	    
-	    $product = new Elite_Vaftire_Model_Catalog_Product($product);
+	    $product = new Elite_Vaftire_Model_Catalog_TireProduct($product);
 	    if ($product->getTireSize())
 	    {
 		$tireSize = $product->getTireSize();

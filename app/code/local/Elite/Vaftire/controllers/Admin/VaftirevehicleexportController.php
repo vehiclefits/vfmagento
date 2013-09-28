@@ -44,7 +44,7 @@ class Elite_Vaftire_Admin_VaftirevehicleexportController extends Mage_Adminhtml_
 	    header(sprintf('Content-Disposition: attachment;filename="vaf-export-%s.csv"', time()));
 	    header('Content-Type: text/csv');
 
-	    $exporter = new Elite_Vaftire_Model_Catalog_Product_Export($_FILES['file']['tmp_name']);
+	    $exporter = new Elite_Vaftire_Model_Catalog_TireProduct_Export($_FILES['file']['tmp_name']);
 	    echo $exporter->export();
 	    exit();
 	}

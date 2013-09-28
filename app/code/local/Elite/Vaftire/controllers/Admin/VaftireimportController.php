@@ -41,7 +41,7 @@ class Elite_Vaftire_Admin_VaftireimportController extends Mage_Adminhtml_Control
     {
 		if( isset( $_FILES['file']['error'] ) && $_FILES['file']['error'] === 0 )
         {
-			$importer = new Elite_Vaftire_Model_Catalog_Product_Import($_FILES['file']['tmp_name']);
+			$importer = new Elite_Vaftire_Model_Catalog_TireProduct_Import($_FILES['file']['tmp_name']);
             $importer->import();
         }
     }
