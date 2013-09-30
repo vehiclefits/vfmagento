@@ -23,7 +23,10 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-require_once(__DIR__ . '/../vendor/autoload.php');
+$loader = require(__DIR__ . '/../../../../../vendor/autoload.php');
+/** @var \Composer\Autoload\ClassLoader$loader */
+$loader->setUseIncludePath(true);
+
 define('COMPOSER_INIT', true);
 
 if (file_exists(realpath(__DIR__ . '/../../../../../../../app/Mage.php'))) {
@@ -31,7 +34,7 @@ if (file_exists(realpath(__DIR__ . '/../../../../../../../app/Mage.php'))) {
 } elseif (file_exists(realpath(__DIR__ . '/../../../app/Mage.php'))) {
     define('MAGENTO_ROOT_LOCATION', realpath(__DIR__ . '/../../../'));
 }
-
+die(MAGENTO_ROOT_LOCATION);
 if (defined('MAGENTO_ROOT_LOCATION')) {
 
     $config = new Zend_Config_Xml(MAGENTO_ROOT_LOCATION . 'app/etc/local.xml');
@@ -48,6 +51,11 @@ if (defined('MAGENTO_ROOT_LOCATION')) {
     require_once MAGENTO_ROOT_LOCATION . 'app/Mage.php';
     Mage::app('default');
 }
+$paths = explode(":", get_include_path());
+foreach ($paths AS $path) {
+    echo $path . "\n";
+}
+die;
 
 $command = isset($argv[1]) ? $argv[1] : null;
 switch ($command) {
