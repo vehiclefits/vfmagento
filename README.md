@@ -1,5 +1,8 @@
-[![Build Status](https://api.travis-ci.org/vehiclefits/Vehicle-Fits-Magento.png)](https://travis-ci.org/vehiclefits/Vehicle-Fits-Magento)
+[![Build Status](https://api.travis-ci.org/vehiclefits/vfmagento.png)](https://travis-ci.org/vehiclefits/vfmagento)
 
+Development Only
+---------------------
+The source code here is for development only. If you are an end user, the only supported installation method is to grab the stable downloads here - http://vehiclefits.com/download
 
 What is Vehicle-Fits?
 ---------------------
