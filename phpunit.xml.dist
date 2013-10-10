@@ -11,7 +11,7 @@
         processIsolation="false"
         stopOnFailure="true"
         syntaxCheck="false"
-        bootstrap="Vaf/bootstrap-tests.php">
+        bootstrap="app/code/local/Elite/Vaf/bootstrap-tests.php">
 
     <php>
         <env name="PHP_TEMP_PATH" value="/tmp"/>
@@ -22,21 +22,21 @@
 
     <testsuites>
         <testsuite name="vfall">
-            <directory>Vaf*/</directory>
-    	    <directory>../../../../app/design/frontend/template/vf/</directory>
-            <directory>../../../../vf-documentation</directory>
+            <directory>app/code/local/Elite/Vaf*/</directory>
+    	    <directory>app/design/frontend/template/vf/</directory>
+            <directory>vf-documentation</directory>
             <exclude>performanceTests/*</exclude>
         </testsuite>
         <testsuite name="vfmage">
-            <directory>Vaf*/</directory>
-            <directory>../../../../app/design/frontend/template/vf/</directory>
-            <exclude>performanceTests/*</exclude>
+            <directory>app/code/local/Elite/Vaf*/</directory>
+            <directory>app/design/frontend/template/vf/</directory>
+            <exclude>app/code/local/Elite/performanceTests/*</exclude>
         </testsuite>
         <testsuite name="vfdocs">
-            <directory>../../../../vf-documentation</directory>
+            <directory>vf-documentation</directory>
         </testsuite>
         <testsuite name="vfperformance">
-            <directory>performanceTests*/</directory>
+            <directory>app/code/local/Elite/performanceTests*/</directory>
         </testsuite>
     </testsuites>
 

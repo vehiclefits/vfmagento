@@ -28,7 +28,9 @@ defined('ELITE_CONFIG_DEFAULT') or define( 'ELITE_CONFIG_DEFAULT', ELITE_PATH . 
 defined('ELITE_CONFIG') or define( 'ELITE_CONFIG', ELITE_PATH . '/Vaf/config.ini' );
 defined('MAGE_PATH') or define( 'MAGE_PATH', realpath($elite_path.'../../../../'));
 
-require_once( __DIR__.'/../vendor/autoload.php' );
+$loader = require(__DIR__ . '/../../../../../vendor/autoload.php');
+/** @var \Composer\Autoload\ClassLoader $loader */
+$loader->setUseIncludePath(false);
 
 $resource = Mage::getSingleton('core/resource');
 $read = $resource->getConnection('core_read');

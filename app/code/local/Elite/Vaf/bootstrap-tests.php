@@ -25,7 +25,7 @@ error_reporting( E_ALL | E_STRICT | E_NOTICE );
 ini_set( 'display_errors', 1 );
 
 
-define( 'MAGE_PATH', __DIR__.'/../vendor/kylecannon/magento/');
+define( 'MAGE_PATH', __DIR__.'/../../../../../vendor/kylecannon/magento/');
 
 /**
  * The paths are controlled by app/code/local/Elite/phpunit.xml.dist
@@ -49,14 +49,13 @@ defined('ELITE_CONFIG_DEFAULT') or define(  'ELITE_CONFIG_DEFAULT', ELITE_PATH .
 defined('ELITE_CONFIG') or define(  'ELITE_CONFIG', ELITE_PATH . '/Vaf/config.ini' );
 
 # If being used on qUnit tests, ensure composer's autoloader is setup.
-require_once(__DIR__.'/../vendor/autoload.php');
+require_once(__DIR__.'/../../../../../vendor/autoload.php');
 
 set_include_path(
         PATH_SEPARATOR . MAGE_PATH . '/lib/'
-        . PATH_SEPARATOR . get_include_path()
         . PATH_SEPARATOR . MAGE_PATH . '/app/code/local/'
         . PATH_SEPARATOR . MAGE_PATH . '/app/code/core/'
-
+        . PATH_SEPARATOR . get_include_path()
 );
 
 $_SESSION = array();

@@ -29,11 +29,8 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
         defined('ELITE_CONFIG_DEFAULT') or define('ELITE_CONFIG_DEFAULT', ELITE_PATH . '/Vaf/config.default.ini');
         defined('ELITE_CONFIG') or define('ELITE_CONFIG', ELITE_PATH . '/Vaf/config.ini');
         defined('MAGE_PATH') or define('MAGE_PATH', Mage::getBaseDir());
-        require_once('Elite/vendor/autoload.php');
-        set_include_path(
-            PATH_SEPARATOR . MAGE_PATH . '/lib/'
-            . PATH_SEPARATOR . get_include_path()
-        );
+        require(Mage::getBaseDir().'/vendor/autoload.php');
+        
         $resource = Mage::getSingleton('core/resource');
         $read = $resource->getConnection('core_read');
         VF_Singleton::getInstance()->setReadAdapter($read);
