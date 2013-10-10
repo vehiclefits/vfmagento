@@ -1,0 +1,72 @@
+{
+    "name": "vehiclefits/vfmagento",
+    "type": "magento-module",
+    "description": "Vehiclefits Magento Module.",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "name": "Josh Ribakoff",
+            "email": "sales@vehiclefits.com"
+        },
+        {
+            "name": "Kyle Cannon",
+            "email": "kyle.d.cannon@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.firegento.com"
+        }
+    ],
+    "require": {
+        "magento-hackathon/magento-composer-installer": "dev-master",
+        "vehiclefits/library": "0.2.*",
+        "joshribakoff/zf1-empty": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.19",
+        "phpunit/php-invoker": "*",
+        "phpunit/phpunit-selenium": "*",
+        "phpunit/phpunit-story": "*",
+        "phpunit/dbunit": "*",
+        "kylecannon/magento": "v1.8.0.0",
+        "ecomdev/mage-ci": "dev-master"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "Elite": "app/code/local"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        },
+        "magento-root-dir": "test",
+        "map": [
+            ["app/code/local/Elite", "app/code/local/Elite"],
+            ["app/design/adminhtml/default/default/layout/vf", "app/design/adminhtml/default/default/layout/vf"],
+            ["app/design/adminhtml/default/default/template/vf", "app/design/adminhtml/default/default/template/vf"],
+            ["app/design/frontend/base/default/layout/vf", "app/design/frontend/base/default/layout/vf"],
+            ["app/design/frontend/base/default/template/vf", "app/design/frontend/base/default/template/vf"],
+            ["app/etc/modules/Elite_Vaf.xml", "app/etc/modules/Elite_Vaf.xml"],
+            ["app/etc/modules/Elite_Vafbundle.xml", "app/etc/modules/Elite_Vafbundle.xml"],
+            ["app/etc/modules/Elite_Vafgarage.xml", "app/etc/modules/Elite_Vafgarage.xml"],
+            ["app/etc/modules/Elite_Vafimporter.xml", "app/etc/modules/Elite_Vafimporter.xml"],
+            ["app/etc/modules/Elite_Vaflinks.xml", "app/etc/modules/Elite_Vaflinks.xml"],
+            ["app/etc/modules/Elite_Vaflogo.xml", "app/etc/modules/Elite_Vaflogo.xml"],
+            ["app/etc/modules/Elite_Vafnote.xml", "app/etc/modules/Elite_Vafnote.xml"],
+            ["app/etc/modules/Elite_Vafpaint.xml", "app/etc/modules/Elite_Vafpaint.xml"],
+            ["app/etc/modules/Elite_Vafsitemap.xml", "app/etc/modules/Elite_Vafsitemap.xml"],
+            ["app/etc/modules/Elite_Vaftire.xml", "app/etc/modules/Elite_Vaftire.xml"],
+            ["app/etc/modules/Elite_Vafwheel.xml", "app/etc/modules/Elite_Vafwheel.xml"],
+            ["app/etc/modules/Elite_Vafwheeladapter.xml", "app/etc/modules/Elite_Vafwheeladapter.xml"],
+            ["skin/adminhtml/default/default/vf", "skin/adminhtml/default/default/vf"]
+        ]
+    }
+}
