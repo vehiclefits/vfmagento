@@ -31,7 +31,7 @@ class Elite_Vafwheeladapter_Observer_WheelSideBinderTest extends VF_TestCase
     function testIsSilentWhenNoBoltDataPassed()
     {
         $binder = new Elite_Vafwheeladapter_Observer_WheelSideBinder;
-        $event = $this->event(new VF_Product());
+        $event = $this->event(new Elite_Vaf_Model_Catalog_Product());
         $binder->bindWheelSide( $event );
     }
     
@@ -40,12 +40,14 @@ class Elite_Vafwheeladapter_Observer_WheelSideBinderTest extends VF_TestCase
         $this->setRequestParams(array('wheel_side_pattern'=>'4x114.3'));
         
         $binder = new Elite_Vafwheeladapter_Observer_WheelSideBinder;
-        $product = new VF_Product();
+        $product = new Elite_Vaf_Model_Catalog_Product();
         $product->setId(1);
         $event = $this->event($product);
         $binder->bindWheelSide( $event );
-        
-        $wheeladapterProduct = new VF_Wheeladapter_Catalog_Product($product);
+
+        $VFproduct = new VF_Product;
+        $VFproduct->setId($product->getId());
+        $wheeladapterProduct = new VF_Wheeladapter_Catalog_Product($VFproduct);
         $this->assertEquals( 4, $wheeladapterProduct->getWheelSideBoltPattern()->getLugCount(), 'should add bolt pattern to product' );
         $this->assertEquals( 114.3, $wheeladapterProduct->getWheelSideBoltPattern()->getDistance(), 'should add bolt pattern to product' );
     }    
@@ -55,7 +57,7 @@ class Elite_Vafwheeladapter_Observer_WheelSideBinderTest extends VF_TestCase
         $this->setRequestParams(array('wheel_side_pattern'=>'4x114.3'));
         
         $binder = new Elite_Vafwheeladapter_Observer_WheelSideBinder;
-        $product = new VF_Product();
+        $product = new Elite_Vaf_Model_Catalog_Product();
         $product->setId(1);
         $event = $this->event($product);
         $binder->bindWheelSide( $event );
@@ -63,12 +65,14 @@ class Elite_Vafwheeladapter_Observer_WheelSideBinderTest extends VF_TestCase
         $this->setRequestParams(array('wheel_side_pattern'=>''));
         
         $binder = new Elite_Vafwheeladapter_Observer_WheelSideBinder;
-        $product = new VF_Product();
+        $product = new Elite_Vaf_Model_Catalog_Product();
         $product->setId(1);
         $event = $this->event($product);
         $binder->bindWheelSide( $event );
-        
-        $wheeladapterProduct = new VF_Wheeladapter_Catalog_Product($product);
+
+        $VFproduct = new VF_Product;
+        $VFproduct->setId($product->getId());
+        $wheeladapterProduct = new VF_Wheeladapter_Catalog_Product($VFproduct);
         $this->assertFalse( $wheeladapterProduct->getWheelSideBoltPattern(), 'should unbind bolt pattern from product' );
     }
 

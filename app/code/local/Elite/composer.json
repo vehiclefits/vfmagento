@@ -10,9 +10,8 @@
     "include-path": [
         "../"
     ],
-    "minimum-stability": "dev",
     "require": {
-        "vehiclefits/library": "0.2.*",
+        "vehiclefits/library": "dev-master",
         "joshribakoff/zf1-empty": "*"
     },
     "require-dev": {

@@ -31,7 +31,7 @@ class Elite_Vafwheel_Observer_ProductBoltBinderTest extends VF_TestCase
     function testIsSilentWhenNoBoltDataPassed()
     {
         $binder = new Elite_Vafwheel_Observer_ProductBoltBinder;
-        $event = $this->event(new VF_Product());
+        $event = $this->event(new Elite_Vaf_Model_Catalog_Product());
         $binder->addBoltPatterns( $event );
     }
     
@@ -40,12 +40,14 @@ class Elite_Vafwheel_Observer_ProductBoltBinderTest extends VF_TestCase
         $this->setRequestParams(array('multipatterns'=>'4x114.3'));
         
         $binder = new Elite_Vafwheel_Observer_ProductBoltBinder;
-        $product = new VF_Product();
+        $product = new Elite_Vaf_Model_Catalog_Product();
         $product->setId(1);
         $event = $this->event($product);
         $binder->addBoltPatterns( $event );
-        
-        $wheelProduct = new VF_Wheel_Catalog_Product($product);
+
+        $VFproduct = new VF_Product;
+        $VFproduct->setId($product->getId());
+        $wheelProduct = new VF_Wheel_Catalog_Product($VFproduct);
         $this->assertEquals( 1, count($wheelProduct->getBoltPatterns()), 'should add bolt pattern to product' );
     } 
     
@@ -54,12 +56,14 @@ class Elite_Vafwheel_Observer_ProductBoltBinderTest extends VF_TestCase
         $this->setRequestParams(array('multipatterns'=>"4x114.3\n5x114.3"));
         
         $binder = new Elite_Vafwheel_Observer_ProductBoltBinder;
-        $product = new VF_Product();
+        $product = new Elite_Vaf_Model_Catalog_Product();
         $product->setId(1);
         $event = $this->event($product);
         $binder->addBoltPatterns( $event );
-        
-        $wheelProduct = new VF_Wheel_Catalog_Product($product);
+
+        $VFproduct = new VF_Product;
+        $VFproduct->setId($product->getId());
+        $wheelProduct = new VF_Wheel_Catalog_Product($VFproduct);
         $this->assertEquals( 2, count($wheelProduct->getBoltPatterns()), 'should add multiple bolt patterns to product' );
     }
     
@@ -68,23 +72,27 @@ class Elite_Vafwheel_Observer_ProductBoltBinderTest extends VF_TestCase
         $this->setRequestParams(array('multipatterns'=>"4x114.3\n5x114.3"));
         
         $binder = new Elite_Vafwheel_Observer_ProductBoltBinder;
-        $product = new VF_Product();
+        $product = new Elite_Vaf_Model_Catalog_Product();
         $product->setId(1);
         $event = $this->event($product);
         $binder->addBoltPatterns( $event );
-        
-        $wheelProduct = new VF_Wheel_Catalog_Product($product);
+
+        $VFproduct = new VF_Product;
+        $VFproduct->setId($product->getId());
+        $wheelProduct = new VF_Wheel_Catalog_Product($VFproduct);
         $this->assertEquals( 2, count($wheelProduct->getBoltPatterns()) );
         
         $this->setRequestParams(array('wheel_side_pattern'=>"4x114.3"));
         
         $binder = new Elite_Vafwheel_Observer_ProductBoltBinder;
-        $product = new VF_Product();
+        $product = new Elite_Vaf_Model_Catalog_Product();
         $product->setId(1);
         $event = $this->event($product);
         $binder->addBoltPatterns( $event );
-        
-        $wheelProduct = new VF_Wheel_Catalog_Product($product);
+
+        $VFproduct = new VF_Product;
+        $VFproduct->setId($product->getId());
+        $wheelProduct = new VF_Wheel_Catalog_Product($VFproduct);
         $this->assertEquals( 1, count($wheelProduct->getBoltPatterns()), 'removes previously added bolt patterns' );
     }
     
