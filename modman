@@ -20,3 +20,5 @@ app/etc/modules/Elite_Vafwheel.xml                                              
 app/etc/modules/Elite_Vafwheeladapter.xml                                       app/etc/modules/Elite_Vafwheeladapter.xml
 
 skin/adminhtml/default/default/vf                                               skin/adminhtml/default/default/vf
+vf-install.php                                                                  vf-install.php
+vf-upgrade                                                                      vf-upgrade

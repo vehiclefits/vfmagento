@@ -12,7 +12,8 @@
     ],
     "require": {
         "vehiclefits/library": "0.3.*",
-        "joshribakoff/zf1-empty": "*"
+        "joshribakoff/zf1-empty": "*",
+        "robmorgan/phinx": "0.2.8"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.19",
