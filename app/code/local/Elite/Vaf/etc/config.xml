@@ -67,6 +67,15 @@
                     </vaf>
                 </observers>
             </controller_front_init_before>
+            <shell_reindex_init_process>
+                <observers>
+                    <vaf>
+                        <type>singleton</type>
+                        <class>Elite_Vaf_Model_Observer</class>
+                        <method>bootstrap</method>
+                    </vaf>
+                </observers>
+            </shell_reindex_init_process>
             <controller_action_postdispatch_adminhtml_catalog_product_save>
                 <observers>
                     <vaf>
