@@ -11,7 +11,7 @@
         "../"
     ],
     "require": {
-        "vehiclefits/library": "dev-master",
+        "vehiclefits/library": "0.3.*",
         "joshribakoff/zf1-empty": "*"
     },
     "require-dev": {

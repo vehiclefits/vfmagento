@@ -20,7 +20,7 @@
                 if( $this->showClearButton() )
                 {
                     ?>
-                    <a href="#" id="vafClear"><?=$this->getClearText()?></a>
+                    <a href="#" class="vafClear"><?=$this->getClearText()?></a>
                     <?php
                 }
                 ?>
@@ -83,11 +83,11 @@
                     {
                         if( 'link' == $this->clearButton() )
                         {
-                            ?><a href="#" id="vafClear"><?=$this->getClearText()?></a><?php
+                            ?><a href="#" class="vafClear"><?=$this->getClearText()?></a><?php
                         }
                         else
                         {
-                            ?><input type="button" id="vafClear" value="<?=$this->getClearText()?>" /><?php
+                            ?><input type="button" class="vafClear" value="<?=$this->getClearText()?>" /><?php
                         }
                     }
                     
