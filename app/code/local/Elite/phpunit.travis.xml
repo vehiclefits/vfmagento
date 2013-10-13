@@ -11,7 +11,7 @@
         processIsolation="false"
         stopOnFailure="true"
         syntaxCheck="false"
-        bootstrap="app/code/local/Elite/Vaf/bootstrap-tests.travis.php">
+        bootstrap="Vaf/bootstrap-tests.travis.php">
 
     <php>
         <env name="PHP_MAGE_PATH" value="vendor/kylecannon/magento"/>
@@ -23,9 +23,9 @@
 
     <testsuites>
         <testsuite name="vfall">
-            <directory>app/code/local/Elite/Vaf*/</directory>
-            <directory>app/design/frontend/template/vf/</directory>
-            <directory>vf-documentation</directory>
+            <directory>Vaf*/</directory>
+            <directory>../../../../app/design/frontend/template/vf/</directory>
+            <directory>../../../../vf-documentation</directory>
         </testsuite>
     </testsuites>
 
