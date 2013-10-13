@@ -19,7 +19,9 @@ chmod($mageRoot.'var/vf-upgrade-progress.txt', 0777);
 
                 $('#upgrade').click(function() {
                     $('#upgrade').attr("disabled", "disabled");
-                    $.get('run.php');
+                    $.get('run.php', function(data) {
+                        alert(data);
+                    });
                     showProgress();
                 });
             });

@@ -1,7 +1,7 @@
 <?php
 $mageRoot = str_replace('vf-upgrade', '', dirname($_SERVER['SCRIPT_FILENAME']));
 
-require_once $mageRoot . 'app/code/local/Elite/vendor/vehiclefits/library/vendor/autoload.php';
+require_once $mageRoot . 'app/code/local/Elite/vendor/autoload.php';
 putenv('PHINX_MIGRATIONS_DIR=test');
 putenv('PHINX_DBNAME=localhost');
 putenv('PHINX_DBNAME=magento');
@@ -14,7 +14,7 @@ $config = new Zend_Config_Xml($mageRoot.'app/etc/local.xml');
 $dbConfig = $config->toArray();
 $dbinfo = $dbConfig['global']['resources']['default_setup']['connection'];
 
-$_SERVER['PHINX_MIGRATIONS_DIR'] = 'app/code/local/Elite/migrations';
+$_SERVER['PHINX_MIGRATIONS_DIR'] = $mageRoot.'app/code/local/Elite/migrations';
 $_SERVER['PHINX_HOST'] = $dbinfo['host'];
 $_SERVER['PHINX_USER'] = $dbinfo['username'];
 $_SERVER['PHINX_PASSWORD'] = $dbinfo['password'];
@@ -57,5 +57,4 @@ $app = new Phinx\Console\PhinxApplication('0.2.8');
 $app->setAutoExit(false);
 
 $app->run($input, $output);
-echo($output->getBuffer());
-
+echo 'done.';
