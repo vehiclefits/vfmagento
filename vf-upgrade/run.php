@@ -57,4 +57,3 @@ $app = new Phinx\Console\PhinxApplication('0.2.8');
 $app->setAutoExit(false);
 
 $app->run($input, $output);
-echo 'done.';

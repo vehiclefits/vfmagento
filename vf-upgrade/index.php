@@ -9,20 +9,25 @@ chmod($mageRoot.'var/vf-upgrade-progress.txt', 0777);
         <script type="text/javascript">
             $(document).ready(function() {
 
+                var finished = false;
+
                 var showProgress = function() {
                     $.get('progress.php', function(data){
                         console.log(data);
                         $('.progress').text(data)
                     })
-                    setTimeout(showProgress, 1000);
+                    if(!finished) {
+                        setTimeout(showProgress, 500);
+                    }
                 };
 
                 $('#upgrade').click(function() {
+                    showProgress();
                     $('#upgrade').attr("disabled", "disabled");
                     $.get('run.php', function(data) {
-                        alert(data);
+                        $('.results').text(data);
+                        finished = true;
                     });
-                    showProgress();
                 });
             });
         </script>
@@ -31,5 +36,6 @@ chmod($mageRoot.'var/vf-upgrade-progress.txt', 0777);
         <input type="button" name="upgrade" id="upgrade" value="upgrade" />
         <br />
         <pre class="progress"></pre>
+        <pre class="results"></pre>
     </body>
 </html>
