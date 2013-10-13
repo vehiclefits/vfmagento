@@ -32,9 +32,12 @@ class Elite_Vafwheeladapter_Observer_WheelSideBinder
     * @param Varien_Controller_Action
     * @param Mage_Catalog_Model_Product
     */
-	function doBindWheelSide( $controller,  VF_Product $product )
+	function doBindWheelSide( $controller,  Elite_Vaf_Model_Catalog_Product $product )
 	{
-		$wheeladapterProduct = new VF_Wheeladapter_Catalog_Product($product);
+        $VFproduct = new VF_Product();
+        $VFproduct->setId($product->getId());
+
+		$wheeladapterProduct = new VF_Wheeladapter_Catalog_Product($VFproduct);
 		$pattern = $controller->getRequest()->getParam( 'wheel_side_pattern' );
 		if(!$pattern)
 		{

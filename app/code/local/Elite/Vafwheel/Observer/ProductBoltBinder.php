@@ -32,9 +32,12 @@ class Elite_Vafwheel_Observer_ProductBoltBinder
     * @param Varien_Controller_Action
     * @param Mage_Catalog_Model_Product
     */
-    protected function doAddBoltPatterns( $controller,  VF_Product $product )
+    protected function doAddBoltPatterns( $controller,  Elite_Vaf_Model_Catalog_Product $product )
     {
-        $wheelProduct = new VF_Wheel_Catalog_Product($product);
+        $VFproduct = new VF_Product();
+        $VFproduct->setId($product->getId());
+
+        $wheelProduct = new VF_Wheel_Catalog_Product($VFproduct);
         $wheelProduct->removeBoltPatterns();
         
         /** @todo get under test */
