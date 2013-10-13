@@ -29,7 +29,7 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
         defined('ELITE_CONFIG_DEFAULT') or define('ELITE_CONFIG_DEFAULT', ELITE_PATH . '/Vaf/config.default.ini');
         defined('ELITE_CONFIG') or define('ELITE_CONFIG', ELITE_PATH . '/Vaf/config.ini');
         defined('MAGE_PATH') or define('MAGE_PATH', Mage::getBaseDir());
-        require(Mage::getBaseDir().'/vendor/autoload.php');
+        require('Elite/vendor/autoload.php');
         
         $resource = Mage::getSingleton('core/resource');
         $read = $resource->getConnection('core_read');
@@ -43,6 +43,7 @@ class Elite_Vaf_Model_Observer extends Mage_Core_Model_Abstract
         if (!is_object($product)) {
             return;
         }
+
         $controller = $event->getControllerAction();
         $request = $controller->getRequest();
         $this->removeFitments($request, $product);
