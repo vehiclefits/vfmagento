@@ -16,35 +16,17 @@
 <body>
 
 <h1>Developer Guide</h1>
-<h2>Installing Symlinks</h2>
-<div style="float:right;"><img src="developer-paths.png"  /><br />Figure 1</div>
-<p>Magento's extension system utilizes a complex directory structure. Due to this, there are many points in the Magento directory strucutre in which we must add files. Normally this is done via unzipping. However when we develop the extension we do not unzip the extension over Magento like a normal install. We keep the paths separate & use symlinks. This way our version control system [git] does not try to track Magento's files.</p>
-<p>Before creating the symlinks, we must tell Magento to follow them for the template files.
-<pre class="kodify">System > Configuration > Developer > Template Settings > Allow Symlinks </pre>
-Set this to <strong>yes</strong> and press 'Save Config'. Below are the SSH commands to create the actual symlinks.</p>
 
-<pre class="kodify">cd ~/www
-git clone git@github.com:vehiclefits/Vehicle-Fits-Magento.git
+<h2>Install With Modman</h2>
 
-cd ~/www/magento/app/code/local
-ln -s ~/www/Vehiclefits-Magento/app/code/local/Elite Elite
-
-cd ~/www/magento/lib
-ln -s /home/josh/www/Vehicle-Fits-Magento/lib/Vehicle-Fits-Core
-
-cd ~/www/magento
-ln -s /home/josh/www/Vehicle-Fits-Magento/lib/Vehicle-Fits-Core/library/VF/html/vafAjaxTests
-
-cd ~/www/magento/skin/adminhtml/default/default
-ln -s ~/www/Vehicle-Fits-Magento/skin/adminhtml/default/default/vf/
-
-cd ~/www/magento/app/design/adminhtml/default/default/template/
-ln -s ~/www/Vehicle-Fits-Magento/app/design/adminhtml/default/default/template/vf/
-
-cd ~/www/magento/app/design/frontend/default/default/template/
-ln -s /home/josh/www/Vehicle-Fits-Magento/app/design/frontend/default/default/template/vf
+<pre>
+$ cd /path/to/root/magento/install
+$ modman clone https://github.com/vehiclefits/Vehicle-Fits-Magento
+$ cd .modman/Vehicle-Fits-Magento/app/code/local/Elite
+$ composer install
 </pre>
-This assumes you have Magento installed at ~/www/magento/. We check out the Vehicle Fits repository in ~/www/, we then create symlinks from the points in Magento's directory tree in which our extension normally adds files via unzipping. See the screenshot in figure 1 showing on the left the Magento installation with symlinks into the file structure from the right which only contains our extension. <br />
+
+After installation, log into Magento's admin panel and go to system -> configuration -> developer -> template settings -> Allow Symlinks: Yes
 
 <h1>Automated Tests</h1>
 <p>The Vehicle Fits software is a complex software. Some users want "year,make,model", others may want "foo,bar". Due to this, the number of interactions between features is difficult to manage. In order to ensure all interactions of these features work after making code changes, we run an automated test suite. This is comprised of phpunit tests for PHP &amp; qunit tests for javascript.</p>
