@@ -1,3 +1,7 @@
+v3.0.1 October 14, 2013
+===================================================================
+Fixed upgrade script not running
+
 v3.0.0 October 13, 2013
 ===================================================================
 Reduced memory usage issue on larger imports

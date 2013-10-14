@@ -9,6 +9,7 @@ putenv('PHINX_DB_USER=root');
 putenv('PHINX_DB_PASS=');
 putenv('PHINX_DB_PORT=3306');
 
+require_once $mageRoot . 'lib/Zend/Config.php';
 require_once $mageRoot . 'lib/Zend/Config/Xml.php';
 $config = new Zend_Config_Xml($mageRoot.'app/etc/local.xml');
 $dbConfig = $config->toArray();
