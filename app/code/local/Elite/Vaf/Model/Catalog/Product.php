@@ -264,8 +264,22 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product
 
         $newProduct = parent::duplicate();
         foreach ($this->getFits() as $fit) {
-            $vehicle = $vehicleFinder->findByLeaf($fit->$leaf);
-            $newProduct->insertMapping($vehicle);
+            
+            // 2.x has a bug that it inserts blank fitments, which prevents duplicating products here. Simple workaround for 2.x
+            if(!$fit->$leaf) {
+                continue;
+            }
+
+            $levelIDs = array();
+            foreach($schema->getLevels() as $level) {
+                $levelIDs[$level.'_id'] = $fit->{$level.'_id'};
+            }
+
+            $vehicle = $vehicleFinder->findOneByLevelIds($levelIDs);
+            if(is_object($vehicle)) {
+                $newProduct->insertMapping($vehicle);
+            }
+
         }
         if ($this->isUniversal()) {
             $newProduct->setUniversal(true);
