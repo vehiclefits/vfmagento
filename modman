@@ -22,3 +22,4 @@ app/etc/modules/Elite_Vafwheeladapter.xml                                       
 skin/adminhtml/default/default/vf                                               skin/adminhtml/default/default/vf
 vf-install.php                                                                  vf-install.php
 vf-upgrade                                                                      vf-upgrade
+app/code/local/Elite/vendor/vehiclefits/library/vfAjaxTests			vfAjaxTests
