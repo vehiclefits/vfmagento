@@ -3,10 +3,10 @@
     <div class="content">                            
     
     <?php
-    $finder = new Elite_Vafwheel_Model_Finder();
+    $finder = new VF_Wheel_Finder();
     
-    $flexibleSearch = new Elite_Vaf_Model_FlexibleSearch(new Elite_Vaf_Model_Schema(),$this->getRequest());
-    $flexibleSearch = new Elite_Vafwheel_Model_FlexibleSearch($flexibleSearch);
+    $flexibleSearch = new VF_FlexibleSearch(new VF_Schema(),$this->getRequest());
+    $flexibleSearch = new VF_Wheel_FlexibleSearch($flexibleSearch);
     
     $helper = new Zend_View_Helper_FormSelect();
     $helper->setView(new Zend_View);
