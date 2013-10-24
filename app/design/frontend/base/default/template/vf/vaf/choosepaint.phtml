@@ -3,17 +3,20 @@
 $product = Mage::registry('current_product');
 
 /** @todo move this out of templates */
-function isPainted($product)
-{
-	$options = $product->getOptions();
-	foreach($options as $option)
-	{
-		 if('painted'==strtolower($option->getTitle()))
-		 {
-			 return true;
-		 }
-	}
-	return false;
+/** Wrapped in function_exists() cuz Magento likes to include it 2x? */
+if(!function_exists('isPainted')) {
+    function isPainted($product)
+    {
+        $options = $product->getOptions();
+        foreach($options as $option)
+        {
+             if('painted'==strtolower($option->getTitle()))
+             {
+                 return true;
+             }
+        }
+        return false;
+    }
 }
 
 if(!isPainted($product))
@@ -24,12 +27,12 @@ if(!isPainted($product))
 
 <div class="paintOptions" align="center">
     <?php
-    $fit = VF_Singleton::getInstance()->vehicleSelection();
-    if( $fit )
+    $selection = VF_Singleton::getInstance()->vehicleSelection();
+    if( !$selection->isEmpty() )
     {
-    	$leaf_id = $fit->getLeafValue();
-    
-        $vehicleFinder = new Elite_Vaf_Model_Vehicle_Finder( new Elite_Vaf_Model_Schema );
+    	$leaf_id = $selection->getLeafValue();
+
+        $vehicleFinder = new VF_Vehicle_Finder( new VF_Schema );
         $vehicle = $vehicleFinder->findByLeaf( $leaf_id );
         ?>
         <strong>Choose Painting Option For Your <?=$vehicle->__toString()?>:</strong>
@@ -63,3 +66,7 @@ if(!isPainted($product))
     }
     ?>
 </div>
+
+
+<script type="text/javascript" src="/skin/adminhtml/default/default/vf/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/skin/adminhtml/default/default/vf/vafPaint.js"></script>
