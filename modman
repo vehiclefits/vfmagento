@@ -1,6 +1,5 @@
 app/code/local/Elite                                                            app/code/local/Elite
 
-app/design/adminhtml/default/default/layout/vf                                  app/design/adminhtml/default/default/layout/vf
 app/design/adminhtml/default/default/template/vf                                app/design/adminhtml/default/default/template/vf
 
 app/design/frontend/base/default/layout/vf                                      app/design/frontend/base/default/layout/vf
