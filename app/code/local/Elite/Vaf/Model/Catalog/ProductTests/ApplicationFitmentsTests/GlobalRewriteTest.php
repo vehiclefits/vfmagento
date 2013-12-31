@@ -25,7 +25,8 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_GlobalRewrit
 {
     const PRODUCT_ID = 1;
     const PRODUCT_NAME = 'Widget';
-    
+
+    /** @var  VF_Vehicle */
     protected $vehicle;
     
     function doSetUp()

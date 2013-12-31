@@ -42,9 +42,9 @@ class Elite_Vaf_Block_Product_Result extends Elite_Vaf_Block_Product_List
     function getHeaderText()
     {
         $fit = VF_Singleton::getInstance()->vehicleSelection();
-        if( $fit )
+        if( count($fit) == 1 )
         {            
-            return $this->translate("Products for %s", htmlentities( $fit->__toString() ) );
+            return $this->translate("Products for %s", htmlentities( $fit[0]->__toString() ) );
         }
         else
         {
