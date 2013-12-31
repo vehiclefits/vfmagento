@@ -29,6 +29,9 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements VF_Conf
      */
     public $searchStrategy;
 
+    /** @var  Zend_Controller_Request_Abstract */
+    protected $request;
+
     function __construct()
     {
         $this->searchStrategy = new Elite_Vaf_Search_Mage();
