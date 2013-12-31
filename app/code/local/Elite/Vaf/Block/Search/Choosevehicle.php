@@ -63,12 +63,12 @@ class Elite_Vaf_Block_Search_Choosevehicle extends Elite_Vaf_Block_Search
     
     function listEntities( $level )
     {
-        if($level != $this->getSchema()->getRootLevel() )
+        if($level != $this->searchStrategy->getSchema()->getRootLevel() )
         {
             return array();
         }
         $entity = new VF_Level( $level );
-        return $entity->listInUse( $this->getRequestLevels(), $this->getProductId() );           
+        return $entity->listInUse( $this->searchStrategy->getRequestLevels(), $this->getProductId() );
     }
     
     function setProductId( $product_id )

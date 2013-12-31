@@ -29,25 +29,25 @@ class Elite_Vaf_Block_SearchTests_Search_WhiteBlackListTest extends VF_SearchTes
     function testWhenHomepageWillNoFilterByCategory()
     {
         $block = new Elite_Vaf_Block_Search();
-        $this->assertTrue( $block->categoryEnabled( 0 ), 'on the homepage, or "category 0", categoryEnable WILL return true' );   
+        $this->assertTrue( $block->getSearchStrategy()->categoryEnabled( 0 ), 'on the homepage, or "category 0", categoryEnable WILL return true' );
     }
     
     function testWhenFilterIsFalseWillReturnFalse()
     {
         $block = new Elite_Vaf_Block_Search();
-        $block->setFilter( $this->getMockFilterThatShouldReturn( false ) );
+        $block->getSearchStrategy()->setFilter( $this->getMockFilterThatShouldReturn( false ) );
         
-        $this->assertFalse( $block->categoryEnabled( self::ID ), 'if the filter returns FALSE, WILL return FALSE' );
-        $this->assertEquals( self::ID, $block->getFilter()->argumentWas(), 'the search block will call the filter with the correct category id' );
+        $this->assertFalse( $block->getSearchStrategy()->categoryEnabled( self::ID ), 'if the filter returns FALSE, WILL return FALSE' );
+        $this->assertEquals( self::ID, $block->getSearchStrategy()->getFilter()->argumentWas(), 'the search block will call the filter with the correct category id' );
     }
     
     function testWhenFilterIsFalseWillReturnTrue()
     {
         $block = new Elite_Vaf_Block_Search();
-        $block->setFilter( $this->getMockFilterThatShouldReturn( true ) );
+        $block->getSearchStrategy()->setFilter( $this->getMockFilterThatShouldReturn( true ) );
         
-        $this->assertTrue( $block->categoryEnabled( self::ID ), 'if the filter returns TRUE, WILL return TRUE' );
-        $this->assertEquals( self::ID, $block->getFilter()->argumentWas(), 'the search block will call the filter with the correct category id' );
+        $this->assertTrue( $block->getSearchStrategy()->categoryEnabled( self::ID ), 'if the filter returns TRUE, WILL return TRUE' );
+        $this->assertEquals( self::ID, $block->getSearchStrategy()->getFilter()->argumentWas(), 'the search block will call the filter with the correct category id' );
     }
     
     function testWhenFilterIsTrueWillShow()

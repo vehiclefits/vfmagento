@@ -51,7 +51,7 @@ class Elite_Vaflinks_Block_List extends Elite_Vaf_Block_Search {
 
     function getItems() {
         $level = $this->getListLevel();
-        $items = $this->listEntities($level);
+        $items = $this->getSearchStrategy()->listEntities($level);
         return $items;
     }
 

@@ -30,7 +30,7 @@ class Elite_Vaf_Block_SearchTests_CategoryChooser_AllOptionTest extends VF_Searc
     {
         $search = $this->getBlockWithChooserConfig( array() );
         $this->emulateHomepage( $search );
-        $this->assertFalse( $search->showAllOptionOnCategoryChooser(), 'When no configuration, it WILL NOT show' );
+        $this->assertFalse( $search->getSearchStrategy()->showAllOptionOnCategoryChooser(), 'When no configuration, it WILL NOT show' );
     }
     
     function testWhenallOptionOnHomepageIsTrueItShowsOnHomepage()
@@ -39,7 +39,7 @@ class Elite_Vaf_Block_SearchTests_CategoryChooser_AllOptionTest extends VF_Searc
             'allOptionOnHomepage' => true
         ));
         $this->emulateHomepage( $search );
-        $this->assertTrue( $search->showAllOptionOnCategoryChooser(), 'When it IS the homepage, and allOptionOnHomepage IS TRUE, it WILL show' );
+        $this->assertTrue( $search->getSearchStrategy()->showAllOptionOnCategoryChooser(), 'When it IS the homepage, and allOptionOnHomepage IS TRUE, it WILL show' );
     }
     
     function testWhenallOptionOnAllPagesIsTrueItShowsOnHomepage()
@@ -48,7 +48,7 @@ class Elite_Vaf_Block_SearchTests_CategoryChooser_AllOptionTest extends VF_Searc
             'allOptionOnAllPages' => true
         ));
         $this->emulateHomepage( $search );
-        $this->assertTrue( $search->showAllOptionOnCategoryChooser(), 'When it IS the homepage, and allOptionOnAllPages = true, it WILL show' );
+        $this->assertTrue( $search->getSearchStrategy()->showAllOptionOnCategoryChooser(), 'When it IS the homepage, and allOptionOnAllPages = true, it WILL show' );
     }
     
     function testWhenOnHomepageIsFalseItNeverShowsOnHomepage()
@@ -58,7 +58,7 @@ class Elite_Vaf_Block_SearchTests_CategoryChooser_AllOptionTest extends VF_Searc
             'allOptionOnAllPages' => true                
         ));
         $this->emulateHomepage( $search );
-        $this->assertFalse( $search->showAllOptionOnCategoryChooser(), 'When it IS the homepage, allOptionOnHomepage = false, and allOptionOnAllPages = true, it WILL NOT show' );
+        $this->assertFalse( $search->getSearchStrategy()->showAllOptionOnCategoryChooser(), 'When it IS the homepage, allOptionOnHomepage = false, and allOptionOnAllPages = true, it WILL NOT show' );
     }
     
     
@@ -70,7 +70,7 @@ class Elite_Vaf_Block_SearchTests_CategoryChooser_AllOptionTest extends VF_Searc
     {
         $search = $this->getBlockWithChooserConfig( array() );
         $this->emulateNotHomepage( $search );
-        $this->assertFalse( $search->showAllOptionOnCategoryChooser(), 'Default configuration is to not show on all pages' );
+        $this->assertFalse( $search->getSearchStrategy()->showAllOptionOnCategoryChooser(), 'Default configuration is to not show on all pages' );
     }
     
     function testWhenIsNotHomepageDoesntShow()
@@ -79,7 +79,7 @@ class Elite_Vaf_Block_SearchTests_CategoryChooser_AllOptionTest extends VF_Searc
             'allOptionOnHomepage' => true
         ));
         $this->emulateNotHomepage( $search );
-        $this->assertFalse( $search->showAllOptionOnCategoryChooser(), 'When it IS NOT the homepage, and onHomepage IS TRUE, it WILL NOT show' );
+        $this->assertFalse( $search->getSearchStrategy()->showAllOptionOnCategoryChooser(), 'When it IS NOT the homepage, and onHomepage IS TRUE, it WILL NOT show' );
     }
     
     function testWhenOnAllPagesIsTrueItShows()
@@ -88,7 +88,7 @@ class Elite_Vaf_Block_SearchTests_CategoryChooser_AllOptionTest extends VF_Searc
             'allOptionOnAllPages' => true
         ));
         $this->emulateNotHomepage( $search );
-        $this->assertTrue( $search->showAllOptionOnCategoryChooser(), 'When onAllPages IS TRUE, it WILL show' );
+        $this->assertTrue( $search->getSearchStrategy()->showAllOptionOnCategoryChooser(), 'When onAllPages IS TRUE, it WILL show' );
     }
     
 }

@@ -121,7 +121,7 @@ class Elite_Vaflinks_Block_ListTest extends VF_TestCase {
 
         VF_Singleton::getInstance()->storeFitInSession();
 
-        // list years
+        // list ye
         $block = new Elite_Vaflinks_Block_ListTestSub;
 
         $request = $this->getRequest(array('make' => $vehicle->getValue('make'), 'model' => $vehicle->getValue('model')));

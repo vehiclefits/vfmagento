@@ -29,7 +29,7 @@ class Elite_Vaf_Block_SearchTests_CategoryChooser_IgnoreCategoryTest extends VF_
         $search = $this->getBlockWithChooserConfig( array(
             'ignore' => 1
         ));
-        $categories = $search->getFilteredCategories( array(
+        $categories = $search->getSearchStrategy()->getFilteredCategories( array(
             array( 'id' => 1, 'url' => 'foo', 'title' => 'bar' ),
             array( 'id' => 2, 'url' => 'foo', 'title' => 'bar' )
         ));
@@ -42,7 +42,7 @@ class Elite_Vaf_Block_SearchTests_CategoryChooser_IgnoreCategoryTest extends VF_
         $search = $this->getBlockWithChooserConfig( array(
             'ignore' => '1, 2'
         ));
-        $categories = $search->getFilteredCategories( array(
+        $categories = $search->getSearchStrategy()->getFilteredCategories( array(
             array( 'id' => 1, 'url' => 'foo', 'title' => 'bar' ),
             array( 'id' => 2, 'url' => 'foo', 'title' => 'bar' )
         ));
@@ -52,7 +52,7 @@ class Elite_Vaf_Block_SearchTests_CategoryChooser_IgnoreCategoryTest extends VF_
     function testWhenNoConfigurationItDoesntFilter()
     {
         $search = $this->getBlockWithChooserConfig( array() );
-        $categories = $search->getFilteredCategories( array(
+        $categories = $search->getSearchStrategy()->getFilteredCategories( array(
             array( 'id' => 1, 'url' => 'foo', 'title' => 'bar' ),
             array( 'id' => 2, 'url' => 'foo', 'title' => 'bar' )
         ));

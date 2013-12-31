@@ -1,23 +1,24 @@
+<?php /** @var Elite_Vaf_Block_Search $this */ ?>
 <div class="box vaf vaf-search">
-    <div class="head"><h4><?=$this->getHeaderText()?></h4></div>
+    <div class="head"><h4><?=$this->getSearchStrategy()->getHeaderText()?></h4></div>
     <div class="content">                            
     	<?php
         VF_Singleton::getInstance()->storeFitInSession();
         ?>
-    	<?=$this->renderBefore()?>
+    	<?=$this->getSearchStrategy()->renderBefore()?>
     	
         <!-- start "My Garage" -->
         <?php
-        if( $this->shouldShowMyGarageActive()  )
+        if( $this->getSearchStrategy()->shouldShowMyGarageActive()  )
         {
-            $vehicle = $this->getFlexibleDefinition()
+            $vehicle = $this->getSearchStrategy()->getFlexibleDefinition()
             ?>
             <div class="vafMyGarageActive">
                 <strong>My Vehicle:</strong> <?=$this->htmlEscape( $vehicle->__toString() )?>
                 <br />
                 <a href="#" class="vafMyGarageChange">Change</a>
                 <?php
-                if( $this->showClearButton() )
+                if( $this->getSearchStrategy()->showClearButton() )
                 {
                     ?>
                     <a href="#" class="vafClear"><?=$this->getClearText()?></a>
@@ -30,17 +31,17 @@
         ?>
         <!-- end "My Garage" -->
         
-        <form action="<?=$this->action()?>" method="<?=$this->getMethod()?>" id="<?=$this->formId()?>" name="<?=$this->formId()?>">
-            <input type="hidden" id="vafProduct" value="<?=$this->getProductId()?>" />
-            <?=$this->proxyValues();?>
+        <form action="<?=$this->action()?>" method="<?=$this->getSearchStrategy()->getMethod()?>" id="<?=$this->getSearchStrategy()->formId()?>" name="<?=$this->getSearchStrategy()->formId()?>">
+            <input type="hidden" id="vafProduct" value="<?=$this->getSearchStrategy()->getProductId()?>" />
+            <?=$this->getSearchStrategy()->proxyValues();?>
             <!-- start "category chooser" --> 
             <?php
-            if( $this->showCategoryChooser() )
+            if( $this->getSearchStrategy()->showCategoryChooser() )
             {
                 ?>
                 <label>Category:</label>
                 <select name="category" id="categorySelect" style="width:160px"> 
-                    <?=$this->renderCategoryOptions()?>
+                    <?=$this->getSearchStrategy()->renderCategoryOptions()?>
                 </select>
                 <?php
                 if(VF_Singleton::getInstance()->displayBrTag())
@@ -56,11 +57,10 @@
             <!-- end "category chooser" --> 
             
             <?php
-            $levels = $this->getLevels();
-            
+
             $helper = new VF_SearchLevel();
             
-            $displayLevels = $this->getLevels();
+            $displayLevels = $this->getSearchStrategy()->getLevels();
             $c = count( $displayLevels );
             
             for( $i = 0; $i < $c; $i++ )
@@ -73,34 +73,34 @@
 //            echo $helper->display( $this, 'year', 'make', null, 'year_start' );
 //            echo $helper->display( $this, 'year', 'make', null, 'year_end' );
             
-            if( $this->showSearchButton() )
+            if( $this->getSearchStrategy()->showSearchButton() )
             {
                 ?>
                 <div align="center">
                     <?php
                     // clear button
-                    if( $this->showClearButton()  )
+                    if( $this->getSearchStrategy()->showClearButton()  )
                     {
-                        if( 'link' == $this->clearButton() )
+                        if( 'link' == $this->getSearchStrategy()->clearButton() )
                         {
-                            ?><a href="#" class="vafClear"><?=$this->getClearText()?></a><?php
+                            ?><a href="#" class="vafClear"><?=$this->getSearchStrategy()->getClearText()?></a><?php
                         }
                         else
                         {
-                            ?><input type="button" class="vafClear" value="<?=$this->getClearText()?>" /><?php
+                            ?><input type="button" class="vafClear" value="<?=$this->getSearchStrategy()->getClearText()?>" /><?php
                         }
                     }
                     
                     echo ' ';
                     
                     // search button
-                    if( 'link' == $this->searchButton() )
+                    if( 'link' == $this->getSearchStrategy()->searchButton() )
                     {
-                        ?><a href="#" class="vafSubmit"><?=$this->getSubmitText()?></a><?php
+                        ?><a href="#" class="vafSubmit"><?=$this->getSearchStrategy()->getSubmitText()?></a><?php
                     }
                     else
                     {
-                        ?><input type="button" value="<?=$this->getSubmitText()?>" class="vafSubmit" /><?php
+                        ?><input type="button" value="<?=$this->getSearchStrategy()->getSubmitText()?>" class="vafSubmit" /><?php
                     }
                     ?>
                     

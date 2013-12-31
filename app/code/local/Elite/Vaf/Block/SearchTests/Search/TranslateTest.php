@@ -26,6 +26,6 @@ class Elite_Vaf_Block_SearchTests_Search_TranslateTest extends VF_SearchTestCase
     function testShouldTranslate()
     {
         $block = $this->getBlock();
-        $this->assertEquals('foo',$block->translate('foo'), 'should translate');
+        $this->assertEquals('foo',$block->getSearchStrategy()->translate('foo'), 'should translate');
     }
 }

@@ -28,32 +28,32 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitButtonTest extends VF_SearchTestC
     function testDefaultsToShown()
     {
         $block = $this->getBlock( array( 'search' => array( 'searchButton' => '' ) ) );
-        $this->assertTrue( $block->showSearchButton(), 'search button defaults to shown' );
+        $this->assertTrue( $block->getSearchStrategy()->showSearchButton(), 'search button defaults to shown' );
     }
     
     function testShownFalse()
     {
         $block = $this->getBlock( array( 'search' => array( 'searchButton' => 'hide' ) ) );
-        $this->assertFalse( $block->showSearchButton(), 'setting to false should disable search button' );
+        $this->assertFalse( $block->getSearchStrategy()->showSearchButton(), 'setting to false should disable search button' );
     }
     
     function testLinkShown()
     {
         $block = $this->getBlock( array( 'search' => array( 'searchButton' => 'link' ) ) );
-        $this->assertTrue( $block->showSearchButton(), 'when in link mode should be shown' );
+        $this->assertTrue( $block->getSearchStrategy()->showSearchButton(), 'when in link mode should be shown' );
     }
     
     // modes
     function testDefaultsToButton()
     {
         $block = $this->getBlock( array( 'search' => array( 'searchButton' => '' ) ) );
-        $this->assertEquals( 'button', $block->searchButton(), 'search button defaults to button' );
+        $this->assertEquals( 'button', $block->getSearchStrategy()->searchButton(), 'search button defaults to button' );
     }
    
     function testLink()
     {
         $block = $this->getBlock( array( 'search' => array( 'searchButton' => 'link' ) ) );
-        $this->assertEquals( 'link', $block->searchButton(), 'should be in link mode' );
+        $this->assertEquals( 'link', $block->getSearchStrategy()->searchButton(), 'should be in link mode' );
     }
     
 }

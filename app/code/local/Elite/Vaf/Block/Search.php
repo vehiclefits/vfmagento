@@ -24,6 +24,9 @@
 
 class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements VF_Configurable
 {
+    /**
+     * @var Elite_Vaf_Search_Mage
+     */
     public $searchStrategy;
 
     function __construct()
@@ -31,13 +34,12 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements VF_Conf
         $this->searchStrategy = new Elite_Vaf_Search_Mage();
     }
 
-    function __call($method, $arguments)
+    /**
+     * @return Elite_Vaf_Search_Mage
+     */
+    public function getSearchStrategy()
     {
-        if (method_exists($this->searchStrategy, $method)) {
-            return call_user_func_array(array($this->searchStrategy, $method), $arguments);
-        } else {
-            return parent::__call($method, $arguments);
-        }
+        return $this->searchStrategy;
     }
 
     function url($route)
@@ -47,7 +49,7 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements VF_Conf
 
     function _toHtml()
     {
-        if (!$this->shouldShow($this->currentCategoryId())) {
+        if (!$this->searchStrategy->shouldShow($this->searchStrategy->currentCategoryId())) {
             return '';
         }
         $html = $this->renderView();
@@ -61,7 +63,7 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements VF_Conf
         return $this;
     }
 
-    function setRequest($request)
+    function setRequest(Zend_Controller_Request_Abstract $request)
     {
         $this->request = $request;
         $this->searchStrategy->setRequest($request);

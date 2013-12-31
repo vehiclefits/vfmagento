@@ -33,7 +33,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'product' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( self::HomePageSearch, $block->action(), 'should default to homepage search' );   
+        $this->assertEquals( self::HomePageSearch, $block->getSearchStrategy()->action(), 'should default to homepage search' );
     }
     
     function testWhenOnProductPageProductActionHomepage()
@@ -46,7 +46,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'product' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( self::HomePageSearch, $block->action(), 'when on product page with submitOnProductAction set to "homepagesearch", should submit to homepage search' );   
+        $this->assertEquals( self::HomePageSearch, $block->getSearchStrategy()->action(), 'when on product page with submitOnProductAction set to "homepagesearch", should submit to homepage search' );
     }
     
     function testWhenOnCMSPageActionHomepage()
@@ -59,7 +59,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'page', 'cms' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( self::HomePageSearch, $block->action(), 'when on CMS page with submitAction set to "homepagesearch", should submit to homepage search' );   
+        $this->assertEquals( self::HomePageSearch, $block->getSearchStrategy()->action(), 'when on CMS page with submitAction set to "homepagesearch", should submit to homepage search' );
     }
     
     function testWhenOnHomePageActionHomepage()
@@ -72,7 +72,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'index', 'cms' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( self::HomePageSearch, $block->action(), 'when on home page with submitAction set to "homepagesearch", should submit to homepage search' );   
+        $this->assertEquals( self::HomePageSearch, $block->getSearchStrategy()->action(), 'when on home page with submitAction set to "homepagesearch", should submit to homepage search' );
     }
     
     function testWhenOnHomePageHomepageActionHomepage()
@@ -85,7 +85,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'index', 'cms' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( self::HomePageSearch, $block->action(), 'when on home page with submitOnHomepageAction set to "homepagesearch", should submit to homepage search' );   
+        $this->assertEquals( self::HomePageSearch, $block->getSearchStrategy()->action(), 'when on home page with submitOnHomepageAction set to "homepagesearch", should submit to homepage search' );
     }
     
     function testWhenOnProductPageProductActionRefresh()
@@ -98,7 +98,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'product' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( '?', $block->action(), 'when on product page with submitOnProductAction equal to "refresh", action should be to refresh' );   
+        $this->assertEquals( '?', $block->getSearchStrategy()->action(), 'when on product page with submitOnProductAction equal to "refresh", action should be to refresh' );
     }
     
     function testWhenOnCMSPageActionRefresh()
@@ -111,7 +111,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'page', 'cms' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( '?', $block->action(), 'when on CMS page with submitAction equal to "refresh", action should be to refresh' );   
+        $this->assertEquals( '?', $block->getSearchStrategy()->action(), 'when on CMS page with submitAction equal to "refresh", action should be to refresh' );
     }
     
     function testWhenOnHomePageActionRefresh()
@@ -124,7 +124,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'index', 'cms' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( '?', $block->action(), 'when on home page with submitAction equal to "refresh", action should be to refresh' );   
+        $this->assertEquals( '?', $block->getSearchStrategy()->action(), 'when on home page with submitAction equal to "refresh", action should be to refresh' );
     }
     
     function testWhenOnHomePageHomepageActionRefresh()
@@ -137,7 +137,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'index', 'cms' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( '?', $block->action(), 'when on home page with submitOnHomepageAction equal to "refresh", action should be to refresh' );   
+        $this->assertEquals( '?', $block->getSearchStrategy()->action(), 'when on home page with submitOnHomepageAction equal to "refresh", action should be to refresh' );
     }
     
     function testWhenOnProductPageActionUrl()
@@ -150,7 +150,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'product' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( 'http://google.com', $block->action(), 'when on product page with submitAction equal to a URL, action should submit to that URL' );   
+        $this->assertEquals( 'http://google.com', $block->getSearchStrategy()->action(), 'when on product page with submitAction equal to a URL, action should submit to that URL' );
     }
     
     function testWhenOnProductPageProductActionUrl()
@@ -163,7 +163,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'product' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( 'http://google.com', $block->action(), 'when on product page with submitOnProductAction equal to a URL, action should submit to that URL' );   
+        $this->assertEquals( 'http://google.com', $block->getSearchStrategy()->action(), 'when on product page with submitOnProductAction equal to a URL, action should submit to that URL' );
     }    
     
     function testWhenOnCMSPageActionUrl()
@@ -176,7 +176,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'page', 'cms' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( 'http://google.com', $block->action(), 'when on CMS page with submitAction equal to a URL, action should be to that URL' );   
+        $this->assertEquals( 'http://google.com', $block->getSearchStrategy()->action(), 'when on CMS page with submitAction equal to a URL, action should be to that URL' );
     }
     
     function testWhenOnHomePageActionUrl()
@@ -189,7 +189,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'index', 'cms' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( 'http://google.com', $block->action(), 'when on home page with submitAction equal to a URL, action should be to that URL' );   
+        $this->assertEquals( 'http://google.com', $block->getSearchStrategy()->action(), 'when on home page with submitAction equal to a URL, action should be to that URL' );
     }
     
     function testWhenOnHomePageHomepageActionUrl()
@@ -202,7 +202,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'index', 'cms' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( 'http://google.com', $block->action(), 'when on home page with submitOnHomepageAction equal to a URL, action should be to that URL' );   
+        $this->assertEquals( 'http://google.com', $block->getSearchStrategy()->action(), 'when on home page with submitOnHomepageAction equal to a URL, action should be to that URL' );
     }
     
     function testWhenOnProductPageShouldGiveProductPageActionPresedence()
@@ -216,7 +216,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'product' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( 'bar', $block->action(), 'value of submitOnProductAction takes presedence over submitAction on product page' );   
+        $this->assertEquals( 'bar', $block->getSearchStrategy()->action(), 'value of submitOnProductAction takes presedence over submitAction on product page' );
     }
     
     function testWhenOnProductPageAndNoProductActionShouldDelegateToAction()
@@ -230,7 +230,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'product' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( 'foo', $block->action(), 'when on product page, and no specific product action is specified by a global action is, should delegate to the global action' );   
+        $this->assertEquals( 'foo', $block->getSearchStrategy()->action(), 'when on product page, and no specific product action is specified by a global action is, should delegate to the global action' );
     }
     
     function testWhenOnCMSPageShouldGiveActionPresedence()
@@ -245,7 +245,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'page', 'cms' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( 'foo', $block->action(), 'when on CMS page, value of submitAction should take presedence' );   
+        $this->assertEquals( 'foo', $block->getSearchStrategy()->action(), 'when on CMS page, value of submitAction should take presedence' );
     }
     
     function testWhenOnOtherPageShouldGiveActionPresedence2()
@@ -259,7 +259,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'other' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( 'foo', $block->action(), 'when on CMS page, value of submitAction takes presedence over submitOnProductAction' );   
+        $this->assertEquals( 'foo', $block->getSearchStrategy()->action(), 'when on CMS page, value of submitAction takes presedence over submitOnProductAction' );
     }
 
     function testWhenOnCategoryPageActionRefresh()
@@ -270,7 +270,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'category' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( '?', $block->action(), 'when on category page defaults to refresh' );   
+        $this->assertEquals( '?', $block->getSearchStrategy()->action(), 'when on category page defaults to refresh' );
     }
     
     function testWhenOnCategoryPageActionUrl()
@@ -281,7 +281,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'category' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( 'bar', $block->action(), 'when on category page and category action is set' );
+        $this->assertEquals( 'bar', $block->getSearchStrategy()->action(), 'when on category page and category action is set' );
     }
     
     function testWhenOnCategoryPageShouldIgnoreSubmitAction()
@@ -292,7 +292,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionTest extends VF_TestCase
         );
         $request = $this->request( 'category' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( '?', $block->action(), 'when on category page and category action is set' );
+        $this->assertEquals( '?', $block->getSearchStrategy()->action(), 'when on category page and category action is set' );
     }
 
     protected function block( $config = array(), $request )

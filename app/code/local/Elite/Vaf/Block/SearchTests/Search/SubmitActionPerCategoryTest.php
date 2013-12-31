@@ -33,7 +33,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionPerCategoryTest extends VF_
         );
         $request = $this->request( 'category' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( '?', $block->categoryAction(1) );
+        $this->assertEquals( '?', $block->getSearchStrategy()->categoryAction(1) );
     }
 
     function testHomepage()
@@ -44,7 +44,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionPerCategoryTest extends VF_
         );
         $request = $this->request( 'category' );
         $block = $this->block( $config, $request );
-        $this->assertEquals( 'vaf/product/list', $block->categoryAction(4) );
+        $this->assertEquals( 'vaf/product/list', $block->getSearchStrategy()->categoryAction(4) );
     }
 
     function testHomepage2()
@@ -55,8 +55,8 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionPerCategoryTest extends VF_
         );
         $request = $this->request( 'category' );
         $block = $this->block( $config, $request );
-        $block->setCurrentCategoryId(4);
-        $this->assertEquals( 'vaf/product/list', $block->action() );
+        $block->getSearchStrategy()->setCurrentCategoryId(4);
+        $this->assertEquals( 'vaf/product/list', $block->getSearchStrategy()->action() );
     }
 
     protected function block( $config = array(), $request )
