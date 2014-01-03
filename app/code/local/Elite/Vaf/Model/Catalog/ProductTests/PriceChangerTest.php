@@ -161,8 +161,7 @@ sku, honda, civic, 2000, 222.22');
 
 	$product = $this->getProductForSku('sku');
 	$this->setRequestParams($vehicle->toValueArray());
-        
-        $this->assertNotEquals(null,$product->currentlySelectedFit());
+    $this->assertNotEquals(null,$product->currentlySelectedFit());
 	$this->assertEquals( 222.22, $product->getPrice(), 'should get price/fitment from global fitment"');
     }
 

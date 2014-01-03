@@ -4,11 +4,11 @@
 
         <?php
         $selection = VF_Singleton::getInstance()->vehicleSelection();
-        if ($selection) {
+        if (count($selection)>0) {
             ?>
             <strong>Your Selection</strong>
             <?php
-            echo $this->htmlEscape($selection) . '<br />';
+            echo $this->htmlEscape($selection[0]) . '<br />';
         }
 
         foreach ($this->getItems() as $level) {

@@ -119,6 +119,7 @@ class Elite_Vaf_Model_Merge extends Elite_Vaf_Model_Base
         foreach ($this->slaveLevels as $levelsToBeMergedArray)
         {
             $vehicle_object = next($levelsToBeMergedArray);
+            /** @var VF_Vehicle $vehicle_object */
 
             $levelIds = $vehicle_object->levelIdsTruncateAfter($this->operatingGrain());
             $slaveVehicles = array_merge($slaveVehicles, $this->vehicleFinder()->findByLevelIds($levelIds));

@@ -40,6 +40,8 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_GlobalRewrit
         $config = new Zend_Config( array('seo'=>array('rewriteProductName'=>true, 'globalRewrites'=>true)));
         $product = $this->getProduct2($config);
         $product->addVafFit($this->vehicle->toValueArray());
+        $product->setCurrentlySelectedFit($this->vehicle);
+
         $this->setRequestParams($this->vehicle->toValueArray());
         $this->assertEquals( 'Widget for Honda Civic 2002', $product->getName(), 'when product fits selection (and rewrites enabled), should rewrite title' );
     }
@@ -51,7 +53,7 @@ class Elite_Vaf_Model_Catalog_ProductTests_ApplicationFitmentsTests_GlobalRewrit
         $product = $this->getProduct2($config);
         $product->addVafFit($this->vehicle->toValueArray());
         $product->setCurrentlySelectedFit($this->vehicle);
-        
+
         $this->assertEquals( 'Widget for Honda Civic 2002', $product->getName(), 'when product fits selection (and rewrites enabled), should rewrite title' );
     }
     

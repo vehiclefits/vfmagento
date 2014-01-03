@@ -62,8 +62,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product
         if (!$this->currentlySelectedFit()) {
             return parent::getMinimalPrice();
         }
-        $selection = $this->currentlySelectedFit();
-        $vehicle = $selection->getFirstVehicle();
+        $vehicle = $this->vf_product->getFirstCurrentlySelectedFitment();
         if (!$vehicle) {
             return parent::getMinimalPrice();
         }
@@ -79,8 +78,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product
         if (!$this->currentlySelectedFit()) {
             return parent::getFinalPrice($qty);
         }
-        $selection = $this->currentlySelectedFit();
-        $vehicle = $selection->getFirstVehicle();
+        $vehicle = $this->vf_product->getFirstCurrentlySelectedFitment();
         if (!$vehicle) {
             return parent::getFinalPrice($qty);
         }
@@ -94,11 +92,12 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product
     function getPrice()
     {
         $this->setFitFromGlobalIfNoLocalFitment();
-        if ($this->currentlySelectedFit()->isEmpty()) {
+        if (!$this->vf_product->hasFitmentBeenSelected()) {
             return parent::getPrice();
         }
 
-        $vehicle = $this->currentlySelectedFit()->getFirstVehicle();
+        $vehicle = $this->vf_product->getFirstCurrentlySelectedFitment();
+        /** @var VF_Vehicle $vehicle */
         $customPrice = $this->customPrice($vehicle);
         if ($customPrice) {
             return $customPrice;
@@ -108,7 +107,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product
 
     function getFormatedPrice()
     {
-        if ($this->currentlySelectedFit() && $customPrice = $this->customPrice($this->currentlySelectedFit())) {
+        if ($this->vf_product->hasFitmentBeenSelected() && $customPrice = $this->customPrice($this->vf_product->getFirstCurrentlySelectedFitment())) {
             return $customPrice;
         }
         return parent::getPrice();
@@ -135,7 +134,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product
         return $this->vf_product->getFits();
     }
 
-    function customPrice($vehicle)
+    function customPrice(VF_Vehicle $vehicle)
     {
         return $this->vf_product->customPrice($vehicle);
     }
@@ -147,7 +146,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product
 
     public static function getJoins()
     {
-        return vf_product::getJoins();
+        return VF_Product::getJoins();
     }
 
     /**

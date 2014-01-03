@@ -94,10 +94,13 @@ class Elite_Vaf_CartController extends Mage_Checkout_CartController
     {
         return Mage::getUrl("*/*/choosevehicle/product/$productid") . '?' . http_build_query( $_POST );
     }
-    
+
+    /**
+     * @return bool
+     */
     protected function customerAlreadySelectedFit()
     {
-        return !VF_Singleton::getInstance()->vehicleSelection()->isEmpty();
+        return count(VF_Singleton::getInstance()->vehicleSelection()) > 0;
     }
     
     protected function getProductId()
