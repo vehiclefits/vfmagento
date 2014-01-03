@@ -64,18 +64,20 @@ class Elite_Vaflogo_Block_Logo extends Mage_Core_Block_Abstract
     function selectionPart()
     {
         $vehicleSelection = VF_Singleton::getInstance()->vehicleSelection();
-        if ($vehicleSelection->isEmpty()) {
+        if (count($vehicleSelection) == 0) {
             return false;
         }
+        $vehicle = $vehicleSelection[0];
+        /** @var VF_Vehicle $vehicle */
 
         if ($this->getConfig()->logo->level) {
             $level = $this->getConfig()->logo->level;
-            return $vehicleSelection->getLevel($level)->__toString();
+            return $vehicle->getLevel($level)->__toString();
         }
 
         $schema = new VF_Schema;
         if (in_array('make', $schema->getLevels())) {
-            $make = $vehicleSelection->getLevel('make');
+            $make = $vehicle->getLevel('make');
             if (!$make) {
                 return false;
             }
@@ -83,7 +85,7 @@ class Elite_Vaflogo_Block_Logo extends Mage_Core_Block_Abstract
         }
 
         $rootLevel = $schema->getRootLevel();
-        return $vehicleSelection->getLevel($rootLevel)->__toString();
+        return $vehicle->getLevel($rootLevel)->__toString();
     }
 
     function selectionToken()
