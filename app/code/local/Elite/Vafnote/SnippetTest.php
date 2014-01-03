@@ -108,12 +108,12 @@ class Elite_Vafnote_SnippetTest extends VF_TestCase
         // begin fitment fitment notes
         
         $noteFinder = new VF_Note_Finder();
-        $vehicle = VF_Singleton::getInstance()->vehicleSelection()->getFirstVehicle();
+        $vehicleSelection = VF_Singleton::getInstance()->vehicleSelection();
         
         $product = new Elite_Vaf_Model_Catalog_Product();
         $product->setId( $product_id );
         
-        if( null == $vehicle )
+        if( count($vehicleSelection) ==0 )
         {
             echo 'Select a vehicle to view fitment notes';
         }
@@ -123,6 +123,7 @@ class Elite_Vafnote_SnippetTest extends VF_TestCase
         }
         else
         {
+            $vehicle = $vehicleSelection[0];
             $mapping_id = $product->getMappingId( $vehicle );   
             $notes = $noteFinder->getNotes( $mapping_id );
             
