@@ -118,19 +118,18 @@ class Elite_Vafsitemap_Model_Url_Rewrite extends Mage_Core_Model_Url_Rewrite
         return $this->getRequestPathForDefinition($vehicle);
     }
 
-    function getRequestPathForDefinition($vehicle)
+    function getRequestPathForDefinition(VF_Vehicle $vehicle)
     {
         $path = parent::getData('url_path');
         if (!$vehicle || !$this->getData('product_id')) {
             return $this->getRequestPath();
         }
-        $schema = new VF_Schema();
 
         $path = 'fit/' . $this->vehicleSlug($vehicle) . '/' . $path;
         return $path;
     }
 
-    function vehicleSlug($vehicle)
+    function vehicleSlug(VF_Vehicle $vehicle)
     {
         $config = $this->getConfig();
         $rewriteLevels = $config->seo->rewriteLevels;
