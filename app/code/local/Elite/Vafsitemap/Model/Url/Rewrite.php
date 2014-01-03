@@ -115,7 +115,7 @@ class Elite_Vafsitemap_Model_Url_Rewrite extends Mage_Core_Model_Url_Rewrite
     function getRequestPathRewritten()
     {
         $vehicle = VF_Singleton::getInstance()->vehicleSelection();
-        return $this->getRequestPathForDefinition($vehicle);
+        return $this->getRequestPathForDefinition($vehicle[0]);
     }
 
     function getRequestPathForDefinition(VF_Vehicle $vehicle)
