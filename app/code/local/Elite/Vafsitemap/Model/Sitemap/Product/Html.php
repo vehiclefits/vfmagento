@@ -29,7 +29,11 @@ class Elite_Vafsitemap_Model_Sitemap_Product_Html extends Elite_Vafsitemap_Model
     /** @return VF_Vehicle */
     function getSelectedDefinition()
     {
-        return VF_Singleton::getInstance()->vehicleSelection();
+        $selectedDefinition = VF_Singleton::getInstance()->vehicleSelection();
+        if(count($selectedDefinition)==0){
+            return false;
+        }
+        return $selectedDefinition[0];
     }
     
     function getCollection()
