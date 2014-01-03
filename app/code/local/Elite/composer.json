@@ -2,6 +2,7 @@
     "name": "vehiclefits/vfmagento",
     "description": "Vehiclefits Magento Module.",
     "license": "OSL-3.0",
+    "minimum-stability": "dev",
     "autoload": {
         "psr-0": {
             "Elite": "../"
@@ -11,9 +12,8 @@
         "../"
     ],
     "require": {
-        "vehiclefits/library": "0.4.0",
-        "joshribakoff/zf1-empty": "*",
-        "robmorgan/phinx": "0.2.8"
+        "vehiclefits/library": "0.4.x-dev",
+        "joshribakoff/zf1-empty": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.19",
