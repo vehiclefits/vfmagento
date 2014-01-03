@@ -67,7 +67,7 @@
             {
                 $level = $displayLevels[ $i ];
                 $prevLevel = ( $i > 0 ) ? $displayLevels[ $i - 1 ] : false;
-                echo $helper->display( $this, $level, $prevLevel );
+                echo $helper->display( $this->getSearchStrategy(), $level, $prevLevel );
             }
             //            echo $helper->display( $this, 'make', '' );
             //            echo $helper->display( $this, 'year', 'make', null, 'year_start' );

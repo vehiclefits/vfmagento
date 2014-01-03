@@ -246,17 +246,6 @@ class Elite_Vaf_Search_Mage extends VF_SearchForm
         return $this->chooser;
     }
 
-
-
-
-
-
-
-
-
-
-
-
     function translate($text)
     {
         if (defined('ELITE_TESTING')) {
