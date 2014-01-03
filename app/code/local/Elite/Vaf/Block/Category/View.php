@@ -98,7 +98,7 @@ class Elite_Vaf_Block_Category_View extends Mage_Catalog_Block_Category_View
     /** @return boolean */
     function vehicleIsSelected()
     {
-        return !VF_Singleton::getInstance()->vehicleSelection()->isEmpty();
+        return VF_Singleton::getInstance()->vehicleSelection();
     }
     
     function setConfig($config)
