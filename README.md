@@ -25,6 +25,12 @@ $ cd .modman/Vehicle-Fits-Magento/app/code/local/Elite
 $ composer install
 ```
 
+If you wish to install the latest development branch but don't plan on using the development tools use 
+
+```
+$ composer install --no-dev
+```
+
 After installation, log into Magento's admin panel and go to system -> configuration -> developer -> template settings -> Allow Symlinks: *Yes*
 
 Creating Your Schema For Your Fitments
