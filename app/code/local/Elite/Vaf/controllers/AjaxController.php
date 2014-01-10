@@ -17,21 +17,21 @@
  * Do not edit or add to this file if you wish to upgrade Vehicle Fits to newer
  * versions in the future. If you wish to customize Vehicle Fits for your
  * needs please refer to http://www.vehiclefits.com for more information.
-
+ *
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 class Elite_Vaf_AjaxController extends Mage_Core_Controller_Front_Action
-{    
-    
+{
+
     function jsAction()
     {
-        header('Content-Type:application/x-javascript');
+        $this->getResponse()->setHeader('Content-Type', 'application/javascript');
         echo 'jQuery.noConflict();';
         require_once('VF/html/vafAjax.js.include.php');
     }
-    
+
     function processAction()
     {
         require_once('VF/html/vafAjax.include.php');
