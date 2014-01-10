@@ -22,7 +22,7 @@ abstract class Elite_Vaf_Block_SearchTestCase extends VF_TestCase
         if (is_array($configArray)) {
             $search->setConfig(new Zend_Config($configArray));
         }
-        $search->setRequest($this->getRequest($requestParams));
+        VF_Singleton::getInstance()->setRequest($this->getRequest($requestParams));
         return $search;
     }
 
@@ -44,12 +44,12 @@ abstract class Elite_Vaf_Block_SearchTestCase extends VF_TestCase
     // @todo curently if it is anything but product & catalog, for the controller & route name, it detects it as homepage
     protected function emulateHomepage($search)
     {
-        $search->setRequest($this->getMagentoRequest(array('controllerName' => 'index', 'routeName' => 'cms')));
+        VF_Singleton::getInstance()->setRequest($this->getMagentoRequest(array('controllerName' => 'index', 'routeName' => 'cms')));
     }
 
     protected function emulateNotHomepage($search)
     {
-        $search->setRequest($this->getMagentoRequest(array('controllerName' => 'category', 'routeName' => 'catalog')));
+        VF_Singleton::getInstance()->setRequest($this->getMagentoRequest(array('controllerName' => 'category', 'routeName' => 'catalog')));
     }
 
 }

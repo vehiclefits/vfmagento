@@ -41,7 +41,7 @@ class Elite_Vaflinks_Block_ListTest extends VF_TestCase {
         $request->setBasePath('/foo/');
 
         $block = new Elite_Vaflinks_Block_ListTestSub;
-        $block->setRequest($request);
+        
         $html = $block->toHtml();
         $this->assertRegExp('#<a href="\?make=[0-9]+&model=0&year=0">Honda</a>#', $html, 'should use base path');
     }
@@ -55,7 +55,7 @@ class Elite_Vaflinks_Block_ListTest extends VF_TestCase {
         $request->setRequestUri('/bar');
 
         $block = new Elite_Vaflinks_Block_ListTestSub;
-        $block->setRequest($request);
+        
         $html = $block->toHtml();
         $this->assertRegExp('#<a href="\?make=[0-9]+&model=0&year=0">Honda</a>#', $html, 'should use request uri');
     }
@@ -67,7 +67,7 @@ class Elite_Vaflinks_Block_ListTest extends VF_TestCase {
         $block = new Elite_Vaflinks_Block_ListTestSub;
         $request = $this->getRequest(array('make' => $vehicle->getValue('make')));
         $this->setRequest($request);
-        $block->setRequest($request);
+        
         $html = $block->toHtml();
         $this->assertRegExp('#<a href="\?make=[0-9]+&model=[0-9]+&year=0">Honda Civic</a>#', $html, 'should list out models');
     }
@@ -79,7 +79,6 @@ class Elite_Vaflinks_Block_ListTest extends VF_TestCase {
         $block = new Elite_Vaflinks_Block_ListTestSub;
         $request = $this->getRequest(array('make' => $vehicle->getValue('make'), 'model' => $vehicle->getValue('model')));
         $this->setRequest($request);
-        $block->setRequest($request);
         $html = $block->toHtml();
         $this->assertRegExp('#<a href="/vaf/product/list\?make=[0-9]+&model=[0-9]+&year=[0-9]+">Honda Civic 2000</a>#', $html, 'should list out years');
     }
@@ -88,21 +87,11 @@ class Elite_Vaflinks_Block_ListTest extends VF_TestCase {
         $vehicle = $this->createMMY('Honda', 'Civic', '2000');
         $this->insertMappingMMY($vehicle, 1);
 
-        // list models
-        $block = new Elite_Vaflinks_Block_ListTestSub;
-        $request = $this->getRequest(array('make' => $vehicle->getValue('make')));
-        $this->setRequest($request);
-        $block->setRequest($request);
-        $html = $block->toHtml();
-
-        VF_Singleton::getInstance()->storeFitInSession();
-
-        // list years
         $block = new Elite_Vaflinks_Block_ListTestSub;
 
         $request = $this->getRequest(array('make' => $vehicle->getValue('make'), 'model' => $vehicle->getValue('model')));
         $this->setRequest($request);
-        $block->setRequest($request);
+        
 
         $html = $block->toHtml();
         $this->assertRegExp('#<a href="/vaf/product/list\?make=[0-9]+&model=[0-9]+&year=[0-9]+">Honda Civic 2000</a>#', $html, 'should list out years after listing models');
@@ -112,22 +101,12 @@ class Elite_Vaflinks_Block_ListTest extends VF_TestCase {
         $vehicle = $this->createMMY('Honda', 'Civic', '2000');
         $this->insertMappingMMY($vehicle, 1);
 
-        // list models
-        $block = new Elite_Vaflinks_Block_ListTestSub;
-        $request = $this->getRequest(array('make' => $vehicle->getValue('make')));
-        $this->setRequest($request);
-        $block->setRequest($request);
-        $html = $block->toHtml();
-
-        VF_Singleton::getInstance()->storeFitInSession();
-
-        // list ye
         $block = new Elite_Vaflinks_Block_ListTestSub;
 
         $request = $this->getRequest(array('make' => $vehicle->getValue('make'), 'model' => $vehicle->getValue('model')));
         $request->setBasePath('/foo/');
         $this->setRequest($request);
-        $block->setRequest($request);
+        
 
         $html = $block->toHtml();
         $this->assertRegExp('#<a href="/foo/vaf/product/list\?make=[0-9]+&model=[0-9]+&year=[0-9]+">Honda Civic 2000</a>#', $html, 'should use base path');

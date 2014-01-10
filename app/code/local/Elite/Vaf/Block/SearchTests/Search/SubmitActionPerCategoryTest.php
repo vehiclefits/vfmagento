@@ -63,7 +63,7 @@ class Elite_Vaf_Block_SearchTests_Search_SubmitActionPerCategoryTest extends VF_
     {
         $block = new Elite_Vaf_Block_Search_SubmitTestSub;
         $block->setConfig( $this->config( $config ) );
-        $block->setRequest( $request );
+        VF_Singleton::getInstance()->setRequest( $request );
         return $block;
     }
 
