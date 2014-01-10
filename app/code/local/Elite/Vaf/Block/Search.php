@@ -25,7 +25,7 @@
 class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements VF_Configurable
 {
     /**
-     * @var Elite_Vaf_Search_Mage
+     * @var Elite_Vaf_Search_Form
      */
     public $searchStrategy;
 
@@ -34,11 +34,11 @@ class Elite_Vaf_Block_Search extends Elite_Vaf_Block_Abstract implements VF_Conf
 
     function __construct()
     {
-        $this->searchStrategy = new Elite_Vaf_Search_Mage();
+        $this->searchStrategy = new Elite_Vaf_Search_Form();
     }
 
     /**
-     * @return Elite_Vaf_Search_Mage
+     * @return Elite_Vaf_Search_Form
      */
     public function getSearchStrategy()
     {

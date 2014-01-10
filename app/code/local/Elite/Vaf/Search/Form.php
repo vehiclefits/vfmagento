@@ -1,7 +1,7 @@
 <?php
 
 
-class Elite_Vaf_Search_Mage extends VF_SearchForm
+class Elite_Vaf_Search_Form extends VF_Search_Form
 {
     /** @var array of category ids we are searching */
     protected $categories;
