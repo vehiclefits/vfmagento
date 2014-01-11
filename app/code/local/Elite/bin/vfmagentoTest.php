@@ -92,7 +92,7 @@ class vfmagentoTest extends VF_TestCase
 
         $command = __DIR__.'/vfmagento schema --force --levels="year,make,model"';
         exec($command);
-        $schema = new VF_Schema;
+        $schema = VF_Singleton::getInstance()->schema();
         $this->assertEquals(array('year','make','model'), $schema->getLevels(), 'should create default schema of MMY');
     }
 

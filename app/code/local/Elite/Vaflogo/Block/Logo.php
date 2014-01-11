@@ -75,7 +75,7 @@ class Elite_Vaflogo_Block_Logo extends Mage_Core_Block_Abstract
             return $vehicle->getLevel($level)->__toString();
         }
 
-        $schema = new VF_Schema;
+        $schema = VF_Singleton::getInstance()->schema();
         if (in_array('make', $schema->getLevels())) {
             $make = $vehicle->getLevel('make');
             if (!$make) {

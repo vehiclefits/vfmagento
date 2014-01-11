@@ -60,7 +60,7 @@ abstract class Elite_Vaf_Model_Base
     
     function getSchema()
     {
-        $schema = new VF_Schema;
+        $schema = VF_Singleton::getInstance()->schema();
         $schema->setConfig( $this->getConfig() );
         return $schema;
     }

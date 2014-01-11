@@ -29,7 +29,7 @@ class Elite_Vafsitemap_Model_Sitemap_Vehicle extends VF_Import_Abstract
 
     function __construct($config)
     {
-        $this->schema = new VF_Schema;
+        $this->schema = VF_Singleton::getInstance()->schema();
         $this->config = $config;
     }
 
@@ -100,7 +100,7 @@ class Elite_Vafsitemap_Model_Sitemap_Vehicle extends VF_Import_Abstract
 
     function getSchema()
     {
-        $schema = new VF_Schema();
+        $schema = VF_Singleton::getInstance()->schema();
         $schema->setConfig($this->config);
         return $schema;
     }

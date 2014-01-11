@@ -41,7 +41,7 @@ class Elite_Vafpaint_Model_Importer_Definitions_Paint extends VF_Import_Vehicles
     
     function addPaintCode( VF_Vehicle $vehicle, Elite_Vafpaint_Model_Paint $paint )
     {
-        $schema = new VF_Schema();
+        $schema = VF_Singleton::getInstance()->schema();
         $sql = sprintf(
             "
             REPLACE INTO

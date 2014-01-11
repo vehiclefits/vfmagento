@@ -358,7 +358,7 @@ class Elite_Vaf_Admin_VehicleslistController extends Mage_Adminhtml_Controller_A
 
     function getDefaultLevel()
     {
-        $schema = new VF_Schema;
+        $schema = VF_Singleton::getInstance()->schema();
         $schema->setConfig( $this->getConfig() );
         return $schema->getRootLevel();
     }

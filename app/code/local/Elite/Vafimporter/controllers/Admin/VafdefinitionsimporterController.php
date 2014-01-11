@@ -161,7 +161,7 @@ class Elite_Vafimporter_Admin_VafdefinitionsimporterController extends Mage_Admi
     /** @todo move to importer model */
     protected function formatMessages()
     {
-        $schema = new VF_Schema();
+        $schema = VF_Singleton::getInstance()->schema();
             
         $this->formatMessage( '<strong>Vehicles List Import Results</strong>' );
         $this->formatMessage( number_format($this->importer->getCountAddedVehicles()) . ' Vehicles Added' );

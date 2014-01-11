@@ -77,7 +77,7 @@ class Elite_Vaf_Admin_SchemaController extends Mage_Adminhtml_Controller_Action
     
     function setSortingLevels()
     {
-        $schema = new VF_Schema();
+        $schema = VF_Singleton::getInstance()->schema();
         foreach( $schema->getLevels() as $level )
         {
             if( isset($_GET[$level.'Sorting']) )

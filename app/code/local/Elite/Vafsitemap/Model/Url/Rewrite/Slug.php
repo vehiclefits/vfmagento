@@ -70,7 +70,7 @@ class Elite_Vafsitemap_Model_Url_Rewrite_Slug
 
     function getSchema()
     {
-        $schema = new VF_Schema;
+        $schema = VF_Singleton::getInstance()->schema();
         if (!is_null($this->getConfig())) {
             $schema->setConfig($this->getConfig());
         }

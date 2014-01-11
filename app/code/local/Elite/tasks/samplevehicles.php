@@ -27,7 +27,7 @@ class SampleData
 {
     function main()
     {
-        $schema = new VF_Schema();
+        $schema = VF_Singleton::getInstance()->schema();
         $schemaGenerator = new VF_Schema_Generator();
         $schemaGenerator->dropExistingTables();
         $schemaGenerator->execute(array('make','model','year'));

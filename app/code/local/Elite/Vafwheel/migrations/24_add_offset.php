@@ -25,7 +25,7 @@ class Vaf24
 {
     function run()
     {
-        $schema = new VF_Schema();
+        $schema = VF_Singleton::getInstance()->schema();
         $db = VF_Singleton::getInstance()->getReadAdapter();
         foreach($schema->getLevels() as $level)
         {

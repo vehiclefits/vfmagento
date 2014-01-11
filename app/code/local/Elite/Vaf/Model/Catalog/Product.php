@@ -257,7 +257,7 @@ class Elite_Vaf_Model_Catalog_Product extends Mage_Catalog_Model_Product
      */
     function duplicate()
     {
-        $schema = new VF_Schema();
+        $schema = VF_Singleton::getInstance()->schema();
         $vehicleFinder = new VF_Vehicle_Finder($schema);
         $leaf = $schema->getLeafLevel() . '_id';
 
