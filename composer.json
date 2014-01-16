@@ -11,6 +11,12 @@
     "include-path": [
         "../"
     ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.firegento.com"
+        }
+    ],
     "require": {
         "vehiclefits/library": "0.4.x-dev",
         "kylecannon/magento": "<=v1.7.0.2",
