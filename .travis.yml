@@ -3,11 +3,6 @@
 language: php
 env:
   - MAGENTO_VERSION=1.7.0.2
-  global: 
-    secure: |-
-      ytyMocwwZYL2tdN3xCgALO8TXsJZDzUy7DrnuQhh9BioJVdQGZNoaaZ4UMa8
-      jbTEOSOrDeBZZF5FuJod+kic9zzM0Ai3SNPX6O0eIeWTUeFzGEZHzOyc8yO9
-      Dv3ldB6Aas6wG/GLMd5ZiLAFcF/JuUmxxY9H5I6ZjdJwR1xiy38=
 before_install:
 - mysql -e 'create database vf_magento'
 - git clone https://github.com/EcomDev/MageCI.git
