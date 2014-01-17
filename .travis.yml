@@ -3,10 +3,10 @@
 language: php
 env:
   - MAGENTO_VERSION=v1.7.0.2
-  - MAGENTO_VERSION=1.6.2.0
-  - MAGENTO_VERSION=1.6.1.0
-  - MAGENTO_VERSION=1.6.0.0
-  - MAGENTO_VERSION=1.5.0.1
+  - MAGENTO_VERSION=v1.6.2.0
+  - MAGENTO_VERSION=v1.6.1.0
+  - MAGENTO_VERSION=v1.6.0.0
+  - MAGENTO_VERSION=v1.5.0.1
 before_install:
 - mysql -e 'create database vf_magento'
 install:
