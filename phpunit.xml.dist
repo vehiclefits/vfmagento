@@ -11,7 +11,7 @@
         processIsolation="false"
         stopOnFailure="true"
         syntaxCheck="false"
-        bootstrap="Vaf/bootstrap-tests.php">
+        bootstrap="app/code/local/Elite/Vaf/bootstrap-tests.php">
 
     <php>
         <env name="PHP_TEMP_PATH" value="/tmp"/>

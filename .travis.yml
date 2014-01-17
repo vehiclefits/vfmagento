@@ -1,26 +1,30 @@
 --- 
-script: 
-- vendor/bin/phpunit -c phpunit.travis.xml --testsuite="vfall"
+
 language: php
-env: 
-  global: 
-    secure: |-
-      ytyMocwwZYL2tdN3xCgALO8TXsJZDzUy7DrnuQhh9BioJVdQGZNoaaZ4UMa8
-      jbTEOSOrDeBZZF5FuJod+kic9zzM0Ai3SNPX6O0eIeWTUeFzGEZHzOyc8yO9
-      Dv3ldB6Aas6wG/GLMd5ZiLAFcF/JuUmxxY9H5I6ZjdJwR1xiy38=
-before_script: 
+env:
+  - MAGENTO_VERSION=v1.7.0.2
+  - MAGENTO_VERSION=v1.6.2.0
+  - MAGENTO_VERSION=v1.6.1.0
+  - MAGENTO_VERSION=v1.6.0.0
+  - MAGENTO_VERSION=v1.5.0.1
+before_install:
 - mysql -e 'create database vf_magento'
-- cd app/code/local/Elite
-- curl -s http://getcomposer.org/installer | php -- --quiet
-- php composer.phar install --dev --prefer-source
-- cp Vaf/config.default.ini Vaf/config.ini
-- mkdir -p vendor/kylecannon/magento/app/design/frontend/base/default/template
-- cd vendor/kylecannon/magento/app/design/frontend/base/default/template
-- ln -s ../../../../../../../../../../../../design/frontend/base/default/template/vf vf
-- cd ../../../../adminhtml/default/default/template/
-- ln -s ../../../../../../../../../../../../design/adminhtml/default/default/template/vf vf
-- cd ../../../../../../../../../
-services: 
+install:
+- ROOT_DIR=$(pwd)
+- mkdir $ROOT_DIR/magento
+- composer require --no-update --dev kylecannon/magento:$MAGENTO_VERSION
+- composer install --dev --prefer-source
+- MAGE_DIR=$ROOT_DIR/vendor/kylecannon/magento
+
+before_script:
+- ln -s $ROOT_DIR/app/design/frontend/base/default/layout/vf $MAGE_DIR/app/design/frontend/base/default/layout/vf
+- ln -s $ROOT_DIR/app/design/frontend/base/default/template/vf $MAGE_DIR/app/design/frontend/base/default/template/vf
+- ln -s $ROOT_DIR/app/design/adminhtml/default/default/template/vf $MAGE_DIR/app/design/adminhtml/default/default/template/vf
+- cd $ROOT_DIR
+
+script:
+- vendor/bin/phpunit -c phpunit.travis.xml --testsuite="vfall"
+services:
 - mysql
 php: 
 - 5.3
