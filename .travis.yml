@@ -16,7 +16,7 @@ before_script:
 - ln -s $ROOT_DIR/app/design/frontend/base/default/layout/vf $MAGE_DIR/app/design/frontend/base/default/layout/vf
 - ln -s $ROOT_DIR/app/design/frontend/base/default/template/vf $MAGE_DIR/app/design/frontend/base/default/template/vf
 - ln -s $ROOT_DIR/app/design/adminhtml/default/default/template/vf $MAGE_DIR/app/design/adminhtml/default/default/template/vf
-- cd $ROOT_DIR/vendor
+- cd $ROOT_DIR
 
 script:
 - vendor/bin/phpunit -c phpunit.travis.xml --testsuite="vfall"
