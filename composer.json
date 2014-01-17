@@ -31,6 +31,9 @@
         "kylecannon/magento": "< v1.8.0.0",
         "magento-hackathon/composer-command-integrator": "*"
     },
+    "replace": {
+        "zendframework/zendframework1": "*"
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "3.1.x-dev"
