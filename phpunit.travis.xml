@@ -23,9 +23,9 @@
 
     <testsuites>
         <testsuite name="vfall">
-            <directory>Vaf*/</directory>
-            <directory>../../../../app/design/frontend/template/vf/</directory>
-            <directory>../../../../vf-documentation</directory>
+            <directory>app/code/local/Elite/Vaf*/</directory>
+            <directory>app/design/frontend/template/vf/</directory>
+            <directory>vf-documentation</directory>
         </testsuite>
     </testsuites>
 
