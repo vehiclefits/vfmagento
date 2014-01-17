@@ -28,6 +28,7 @@
         "phpunit/phpunit-selenium": "*",
         "phpunit/phpunit-story": "*",
         "phpunit/dbunit": "*",
+        "kylecannon/magento": "< v1.8.0.0",
         "magento-hackathon/composer-command-integrator": "*"
     },
     "extra": {
