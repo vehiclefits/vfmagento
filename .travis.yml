@@ -1,26 +1,31 @@
 --- 
-script: 
-- vendor/bin/phpunit -c phpunit.travis.xml --testsuite="vfall"
+
 language: php
-env: 
+env:
+  - MAGENTO_VERSION=1.7.0.2
   global: 
     secure: |-
       ytyMocwwZYL2tdN3xCgALO8TXsJZDzUy7DrnuQhh9BioJVdQGZNoaaZ4UMa8
       jbTEOSOrDeBZZF5FuJod+kic9zzM0Ai3SNPX6O0eIeWTUeFzGEZHzOyc8yO9
       Dv3ldB6Aas6wG/GLMd5ZiLAFcF/JuUmxxY9H5I6ZjdJwR1xiy38=
-before_script: 
+before_install:
 - mysql -e 'create database vf_magento'
-- cd app/code/local/Elite
-- curl -s http://getcomposer.org/installer | php -- --quiet
-- php composer.phar install --dev --prefer-source
-- cp Vaf/config.default.ini Vaf/config.ini
-- mkdir -p vendor/kylecannon/magento/app/design/frontend/base/default/template
-- cd vendor/kylecannon/magento/app/design/frontend/base/default/template
-- ln -s ../../../../../../../../../../../../design/frontend/base/default/template/vf vf
-- cd ../../../../adminhtml/default/default/template/
-- ln -s ../../../../../../../../../../../../design/adminhtml/default/default/template/vf vf
-- cd ../../../../../../../../../
-services: 
+- git clone https://github.com/EcomDev/MageCI.git
+install:
+- ROOT_DIR=$(pwd)
+- php MageCI/bin/mage-ci install ./magento $MAGENTO_VERSION vf_magento -u root
+- MAGE_DIR=$ROOT_DIR/magento
+- composer install --dev --prefer-source
+
+before_script:
+- ln -s $ROOT_DIR/app/design/frontend/base/default/layout/vf $MAGE_DIR/app/design/frontend/base/default/layout/vf
+- ln -s $ROOT_DIR/app/design/frontend/base/default/template/vf $MAGE_DIR/app/design/frontend/base/default/template/vf
+- ln -s $ROOT_DIR/app/design/adminhtml/default/default/template/vf $MAGE_DIR/app/design/adminhtml/default/default/template/vf
+- cd $ROOT_DIR/vendor
+
+script:
+- vendor/bin/phpunit -c phpunit.travis.xml --testsuite="vfall"
+services:
 - mysql
 php: 
 - 5.3

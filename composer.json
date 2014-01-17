@@ -3,6 +3,7 @@
     "description": "Vehiclefits Magento Module.",
     "license": "OSL-3.0",
     "minimum-stability": "dev",
+    "type": "magento-module",
     "autoload": {
         "psr-0": {
             "Elite": "../"
@@ -19,7 +20,6 @@
     ],
     "require": {
         "vehiclefits/library": "0.4.x-dev",
-        "kylecannon/magento": "<=v1.7.0.2",
         "magento-hackathon/magento-composer-installer": "*"
     },
     "require-dev": {
@@ -28,12 +28,13 @@
         "phpunit/phpunit-selenium": "*",
         "phpunit/phpunit-story": "*",
         "phpunit/dbunit": "*",
-        "kylecannon/magento": "dev-master"
+        "magento-hackathon/composer-command-integrator": "*"
     },
-    "extras": {
+    "extra": {
         "branch-alias": {
             "dev-master": "3.1.x-dev"
         },
+        "magento-root-dir": "./magento",
         "map": [
             ["app/code/local/Elite", "app/code/local/Elite"],
             ["app/design/adminhtml/default/default/template/vf", "app/design/adminhtml/default/default/template/vf"],
