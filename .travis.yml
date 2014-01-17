@@ -2,15 +2,16 @@
 
 language: php
 env:
-  - MAGENTO_VERSION=1.7.0.2
+  - MAGENTO_VERSION=v1.7.0.2
 before_install:
 - mysql -e 'create database vf_magento'
 - git clone https://github.com/EcomDev/MageCI.git
 install:
 - ROOT_DIR=$(pwd)
-- MageCI/bin/mage-ci install ./magento $MAGENTO_VERSION vf_magento -u root
-- MAGE_DIR=$ROOT_DIR/magento
+- mkdir $ROOT_DIR/magento
 - composer install --dev --prefer-source
+- composer require kylecannon/magento:$MAGENTO_VERSION
+- MAGE_DIR=$ROOT_DIR/vendor/kylecannon/magento
 
 before_script:
 - ln -s $ROOT_DIR/app/design/frontend/base/default/layout/vf $MAGE_DIR/app/design/frontend/base/default/layout/vf

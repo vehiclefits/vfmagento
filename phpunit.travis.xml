@@ -11,7 +11,7 @@
         processIsolation="false"
         stopOnFailure="true"
         syntaxCheck="false"
-        bootstrap="Vaf/bootstrap-tests.travis.php">
+        bootstrap="app/code/local/Elite/Vaf/bootstrap-tests.travis.php">
 
     <php>
         <env name="PHP_MAGE_PATH" value="vendor/kylecannon/magento"/>
