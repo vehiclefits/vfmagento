@@ -8,7 +8,7 @@ before_install:
 - git clone https://github.com/EcomDev/MageCI.git
 install:
 - ROOT_DIR=$(pwd)
-- php MageCI/bin/mage-ci install ./magento $MAGENTO_VERSION vf_magento -u root
+- MageCI/bin/mage-ci install ./magento $MAGENTO_VERSION vf_magento -u root
 - MAGE_DIR=$ROOT_DIR/magento
 - composer install --dev --prefer-source
 
