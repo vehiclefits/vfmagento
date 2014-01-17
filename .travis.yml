@@ -8,8 +8,8 @@ before_install:
 install:
 - ROOT_DIR=$(pwd)
 - mkdir $ROOT_DIR/magento
+- composer require --no-update --dev kylecannon/magento:$MAGENTO_VERSION
 - composer install --dev --prefer-source
-- composer require kylecannon/magento:$MAGENTO_VERSION
 - MAGE_DIR=$ROOT_DIR/vendor/kylecannon/magento
 
 before_script:

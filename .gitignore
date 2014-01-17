@@ -1,10 +1,10 @@
 # Local configurations specific to your installation
 app/code/local/Elite/Vaf/config.ini
 app/code/local/Elite/bin/config.php
-app/code/local/Elite/phpunit.xml
+phpunit.xml
 
 # Don't commit 3rd party libraries into git
-app/code/local/Elite/vendor
+vendor
 composer.lock
 .idea
 *.log
