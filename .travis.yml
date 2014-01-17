@@ -5,7 +5,6 @@ env:
   - MAGENTO_VERSION=v1.7.0.2
 before_install:
 - mysql -e 'create database vf_magento'
-- git clone https://github.com/EcomDev/MageCI.git
 install:
 - ROOT_DIR=$(pwd)
 - mkdir $ROOT_DIR/magento
