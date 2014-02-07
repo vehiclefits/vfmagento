@@ -6,11 +6,11 @@
     "type": "magento-module",
     "autoload": {
         "psr-0": {
-            "Elite": "../"
+            "Elite": "app/code/local/"
         }
     },
     "include-path": [
-        "../"
+        "app/code/local/"
     ],
     "repositories": [
         {
