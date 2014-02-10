@@ -21,11 +21,9 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
+
 error_reporting(E_ALL | E_STRICT | E_NOTICE);
 ini_set('display_errors', 1);
-
-
-define('MAGE_PATH', __DIR__ . '/../../../../../vendor/kylecannon/magento/');
 
 /**
  * The paths are controlled by app/code/local/Elite/phpunit.xml.dist
@@ -52,11 +50,6 @@ if (!class_exists('Composer\Autoload\ClassLoader')) {
     require_once(__DIR__ . '/../../../../../vendor/autoload.php');
 }
 
-set_include_path(
-    PATH_SEPARATOR . MAGE_PATH . '/lib/' . PATH_SEPARATOR . get_include_path() . PATH_SEPARATOR . MAGE_PATH
-    . '/app/code/local/' . PATH_SEPARATOR . MAGE_PATH . '/app/code/core/'
-
-);
 
 $_SESSION = array();
 
@@ -67,18 +60,5 @@ $database = new VF_TestDbAdapter(array(
     'password' => VAF_DB_PASSWORD
 ));
 VF_Singleton::getInstance()->setReadAdapter($database);
-
-# used to autoload the Mage_ classes
-function my_autoload($class_name)
-{
-    $file = str_replace('_', '/', $class_name . '.php');
-
-    if ('Mage.php' == $file) {
-        throw new Exception();
-    }
-    require_once $file;
-}
-
-spl_autoload_register('my_autoload');
 
 require_once('test-stubs.php');
