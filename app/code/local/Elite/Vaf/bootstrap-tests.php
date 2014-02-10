@@ -47,7 +47,7 @@ defined('ELITE_CONFIG_DEFAULT') or define('ELITE_CONFIG_DEFAULT', ELITE_PATH . '
 defined('ELITE_CONFIG') or define('ELITE_CONFIG', ELITE_PATH . '/Vaf/config.ini');
 
 if (!class_exists('Composer\Autoload\ClassLoader')) {
-    require_once(__DIR__ . '/../../../../../vendor/autoload.php');
+    require_once(__DIR__ . '/../../../../../../../autoload.php');
 }
 
 
