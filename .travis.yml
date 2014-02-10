@@ -13,7 +13,7 @@ install:
 - ROOT_DIR=$(pwd)
 - mkdir $ROOT_DIR/magento
 - composer require --no-update --dev kylecannon/magento:$MAGENTO_VERSION
-- composer install --dev --prefer-source
+- composer install --dev --prefer-source --optimize-autoloader
 - MAGE_DIR=$ROOT_DIR/vendor/kylecannon/magento
 
 before_script:

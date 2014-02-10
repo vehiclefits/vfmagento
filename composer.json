@@ -6,11 +6,11 @@
     "type": "magento-module",
     "autoload": {
         "psr-0": {
-            "Elite": "../"
+            "Elite": "app/code/local/"
         }
     },
     "include-path": [
-        "../"
+        "app/code/local/"
     ],
     "repositories": [
         {
@@ -28,11 +28,7 @@
         "phpunit/phpunit-selenium": "*",
         "phpunit/phpunit-story": "*",
         "phpunit/dbunit": "*",
-        "kylecannon/magento": "< v1.8.0.0",
-        "magento-hackathon/composer-command-integrator": "*"
-    },
-    "replace": {
-        "zendframework/zendframework1": "*"
+        "kylecannon/magento": "< v1.8.0.0"
     },
     "extra": {
         "branch-alias": {
