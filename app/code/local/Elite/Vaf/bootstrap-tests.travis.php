@@ -21,8 +21,3 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 require_once('bootstrap-tests.php');
-set_include_path(
-    ELITE_PATH . '../'
-    . PATH_SEPARATOR . '../../../../lib/Vehicle-Fits-Core/library/'
-    . PATH_SEPARATOR . get_include_path()
-);

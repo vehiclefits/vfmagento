@@ -17,7 +17,7 @@
         <env name="PHP_MAGE_PATH" value="vendor/kylecannon/magento"/>
         <env name="PHP_TEMP_PATH" value="/tmp"/>
         <env name="PHP_VAF_DB_USERNAME" value="root"/>
-        <env name="PHP_VAF_DB_PASSWORD" value=""/>
+        <env name="PHP_VAF_DB_PASSWORD" value="root"/>
         <env name="PHP_VAF_DB_NAME" value="vf_magento"/>
     </php>
 
