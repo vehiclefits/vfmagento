@@ -19,7 +19,7 @@
         }
     ],
     "require": {
-        "vehiclefits/library": "dev-0.4.x-dev",
+        "vehiclefits/library": "0.4.x-dev",
         "magento-hackathon/magento-composer-installer": "*"
     },
     "require-dev": {
@@ -28,7 +28,7 @@
         "phpunit/phpunit-selenium": "*",
         "phpunit/phpunit-story": "*",
         "phpunit/dbunit": "*",
-        "kylecannon/magento": "v1.7.0.2",
+        "kylecannon/magento": "< v1.8.0.0",
         "magento-hackathon/composer-command-integrator": "*"
     },
     "replace": {
