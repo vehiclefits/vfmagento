@@ -30,7 +30,7 @@ class Elite_Vaf_Block_Product_ResultTest extends Elite_Vaf_Block_SearchTestCase
 
         $block = new Elite_Vaf_Block_Product_Result();
 
-        $this->assertEquals('Products for %s',$block->getHeaderText(), 'should translate');
+        $this->assertEquals('Products for Honda Civic 2000',$block->getHeaderText(), 'should translate');
     }
 
     function testShouldTranslateNoResultsMessage()

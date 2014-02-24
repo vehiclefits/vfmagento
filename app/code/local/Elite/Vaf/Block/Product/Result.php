@@ -297,11 +297,13 @@ class Elite_Vaf_Block_Product_Result extends Elite_Vaf_Block_Product_List
         return Mage::getBaseUrl();
     }
 
-    function translate($text)
+    function translate()
     {
-        if(defined('ELITE_TESTING')) {
-            return $text;
-        }
-        return Mage::helper('catalog/product')->__($text);
+        $args = func_get_args();
+
+        if( defined('ELITE_TESTING') )
+            return call_user_func_array( 'sprintf', $args );
+
+        return call_user_func_array( array( Mage::helper('catalog/product'), '__' ), $args );
     }
 }
