@@ -301,8 +301,9 @@ class Elite_Vaf_Block_Product_Result extends Elite_Vaf_Block_Product_List
     {
         $args = func_get_args();
 
-        if( defined('ELITE_TESTING') )
-            return call_user_func_array( 'sprintf', $args );
+        if( defined('ELITE_TESTING') ) {
+            return call_user_func_array('sprintf', $args);
+        }
 
         return call_user_func_array( array( Mage::helper('catalog/product'), '__' ), $args );
     }
